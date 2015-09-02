@@ -3,7 +3,7 @@
 
 Bienvenue au projet Windows Phone de Ets Mobile.
 
-## Pré-rquis du projet 
+## Pré-requis du projet 
 * Visual Studio 2013 avec les **dernières mises-à-jours** ([Update 4](http://www.microsoft.com/en-ca/download/details.aspx?id=44921))
 * Windows 8 et ultérieur
 * Windows Phone SDK (téléchargeable [ici](http://dev.windows.com/en-us/develop/download-phone-sdk) (Devrais être installé en même temps que Visual Studio 2013 mentionné ci-dessus))
