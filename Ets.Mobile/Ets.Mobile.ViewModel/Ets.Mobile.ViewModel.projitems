@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>c5a679b8-8f8e-451a-8a8e-45ddbeb3c57d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Ets.Mobile.ViewModel</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ApplicationPages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparators\SemestersComparator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeViewModelGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IMainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DesignTimeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\MainViewModelDt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ScheduleException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Account\LoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Grade.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.SideNavigation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Today.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bases\PageViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Content\Account\" />
+  </ItemGroup>
+</Project>
