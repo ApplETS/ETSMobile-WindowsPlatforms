@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>60a7d9b5-1117-4146-a27a-e5e5111df59d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Ets.Mobile.Client</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ClientEndpoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ClientKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\ICustomSettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISignetsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DTCustomServiceSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DTSignetsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Signets\SignetsExceptionHandlerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Abstractions\SignetsAbstractFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\CoursesFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\CoursesForSemesterFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\CoursesIntervalSemestersFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\EvaluationsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\ProgramsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\ReplacedDaysFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\ScheduleAndTeachersFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\ScheduleFinalExamsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\SchedulesFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\SemestersFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\SignetsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\TeammatesFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\UserDetailsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ICoursesFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ICoursesForSemesterFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ICoursesIntervalSemestersFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IEvaluationsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IProgramsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IReplacedDaysFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IScheduleAndTeachersFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IScheduleFinalExamsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ISchedulesFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ISemestersFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ITeammatesFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IUserDetailsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\CustomSettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SignetsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SignetsException.cs" />
+  </ItemGroup>
+</Project>

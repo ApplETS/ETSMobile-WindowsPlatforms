@@ -1,0 +1,532 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:c="using:StoreFramework.Controls"
+    xmlns:library="using:SlideView.Library"
+    xmlns:primitives="using:SlideView.Library.Primitives"
+    mc:Ignorable="d">
+
+    <!-- Main Colors                                    -->
+    <Color x:Key="EtsRedLowestColor">#680100</Color>
+    <Color x:Key="EtsRedMidColor">#7F0100</Color>    
+    <Color x:Key="EtsRedMediumColor">#FF0200</Color>    
+    <Color x:Key="EtsRedHighColor">#CC0100</Color>
+    <Color x:Key="EtsRedHighestColor">#FF4E4C</Color>
+
+    <Color x:Key="EtsBackgroundColor">#FFFFFFFF</Color>
+
+    <Color x:Key="EtsTextMainColor">#323232</Color>
+    <Color x:Key="EtsTextSecondaryColor">#666666</Color>
+    <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
+    
+    <!-- Brush                                          -->
+    <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
+    <Brush x:Key="EtsRedMidBrush">#7F0100</Brush>
+    <Brush x:Key="EtsRedMediumBrush">#FF0200</Brush>
+    <Brush x:Key="EtsRedHighBrush">#CC0100</Brush>
+    <Brush x:Key="EtsRedHighestBrush">#FF4E4C</Brush>
+
+    <Brush x:Key="EtsCommandBarBrush">#FFFFFF</Brush>
+    <Brush x:Key="EtsBackgroundBrush">#FFFFFFFF</Brush>
+
+    <Brush x:Key="EtsTextMainBrush">#323232</Brush>
+    <Brush x:Key="EtsTextWhiteBrush">#FFFFFF</Brush>
+    <Brush x:Key="EtsTextSecondaryBrush">#666666</Brush>
+    
+    <Brush x:Key="EtsBorderItemBrush">#e6e6e6</Brush>
+
+    <!-- Main Fonts                                     -->
+    <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
+    
+    <!-- Sizes                                          -->
+    <x:String x:Key="Size1">36</x:String>
+    <x:String x:Key="Size2">30</x:String>
+    <x:String x:Key="Size3">24</x:String>
+    <x:String x:Key="Size4">18</x:String>
+    <x:String x:Key="Size5">14</x:String>
+    <x:String x:Key="Size6">12</x:String>
+
+    <!-- Buttons                                        -->
+    <Style x:Key="EtsButtonStyle" TargetType="Button">  
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="Thin" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style x:Key="EtsButtonRedLowestColor" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource EtsRedLowestColor}" />
+    </Style>
+    <Style x:Key="EtsButtonRedMidColor" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource EtsRedMidColor}" />
+    </Style>
+    <Style x:Key="EtsButtonRedMediumColor" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource EtsRedMediumColor}" />
+    </Style>
+    <Style x:Key="EtsButtonRedHighColor" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource EtsRedHighColor}" />
+    </Style>
+    <Style x:Key="EtsButtonRedHighestColor" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource EtsRedHighestColor}" />
+    </Style>
+
+    <Style x:Key="EtsLoginButton" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource EtsRedMediumColor}" Opacity="0.5" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- TextBlock                                      -->
+    <Style x:Key="EtsTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+        <Setter Property="FontWeight" Value="Thin" />
+    </Style>
+
+    <Style x:Key="EtsTextBlockRedLowestColor" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedLowestColor}" />
+    </Style>
+    <Style x:Key="EtsTextBlockRedMidColor" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedMidColor}" />
+    </Style>
+    <Style x:Key="EtsTextBlockRedMediumColor" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedMediumColor}" />
+    </Style>
+    <Style x:Key="EtsTextBlockRedHighColor" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedHighColor}" />
+    </Style>
+    <Style x:Key="EtsTextBlockRedHighestColor" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedHighestColor}" />
+    </Style>
+
+    <Style x:Key="EtsTextBlockMainColor1" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size1}" />
+    </Style>
+    <Style x:Key="EtsTextBlockMainColor2" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />        
+        <Setter Property="FontSize" Value="{StaticResource Size2}" />
+    </Style>
+    <Style x:Key="EtsTextBlockMainColor3" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size3}" />
+    </Style>
+    <Style x:Key="EtsTextBlockMainColor4" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size4}" />
+    </Style>
+    <Style x:Key="EtsTextBlockMainColor5" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size5}" />
+    </Style>
+
+        <!-- White TextBlock -->
+    <Style x:Key="EtsTextBlockWhite1" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size1}" />
+    </Style>
+    <Style x:Key="EtsTextBlockWhite2" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size2}" />
+    </Style>
+    <Style x:Key="EtsTextBlockWhite3" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size3}" />
+    </Style>
+    <Style x:Key="EtsTextBlockWhite4" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size4}" />
+    </Style>
+    <Style x:Key="EtsTextBlockWhite5" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size5}" />
+    </Style>
+
+    <!-- Localized Textblock                                      -->
+    <Style x:Key="EtsLocalizedTextStyle" TargetType="c:LocalizedTextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+        <Setter Property="FontWeight" Value="Thin" />
+    </Style>
+
+    <Style x:Key="EtsLocalizedTextBlockRedLowestColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedLowestColor}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockRedMidColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedMidColor}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockRedMediumColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedMediumColor}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockRedHighColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedHighColor}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockRedHighestColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedHighestColor}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockMainColor1" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size1}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockMainColor2" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size2}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockMainColor3" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size3}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockMainColor4" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size4}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockMainColor5" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size5}" />
+    </Style>
+
+        <!-- White -->
+    <Style x:Key="EtsLocalizedTextBlockWhite1" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size1}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockWhite2" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size2}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockWhite3" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size3}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockWhite4" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size4}" />
+    </Style>
+    <Style x:Key="EtsLocalizedTextBlockWhite5" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size5}" />
+    </Style>
+
+    <!-- LocalizedTextBlock -->
+    <Style TargetType="c:LocalizedTextBlock">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="c:LocalizedTextBlock">
+                    <Border
+                       Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <TextBlock
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Foreground="{TemplateBinding Foreground}"   
+                            Text="{Binding OutputText, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- ListView                                       -->
+    <Style x:Key="EtsListViewHeaderItem" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size2}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Margin" Value="7,0" />
+        <Setter Property="FontSize" Value="24" />
+    </Style>
+
+    <!-- CommandBar                                     -->
+    <SolidColorBrush x:Key="CommandBarBackgroundThemeBrush" Color="{StaticResource EtsBackgroundColor}" />
+    <SolidColorBrush x:Key="CommandBarForegroundThemeBrush" Color="{StaticResource EtsBackgroundColor}" />
+
+    <SolidColorBrush x:Key="AppBarBackgroundThemeBrush" Color="{StaticResource EtsBackgroundColor}" />
+    <SolidColorBrush x:Key="AppBarBorderThemeBrush" Color="{ThemeResource PhonePageBackgroundColor}" />
+    <SolidColorBrush x:Key="AppBarItemDisabledForegroundThemeBrush" Color="{ThemeResource PhoneDisabledColor}" />
+    <SolidColorBrush x:Key="AppBarItemForegroundThemeBrush" Color="{ThemeResource PhoneForegroundColor}" />
+    <SolidColorBrush x:Key="AppBarItemPointerOverBackgroundThemeBrush" Color="{ThemeResource PhoneBaseLowColor}" />
+    <SolidColorBrush x:Key="AppBarItemPointerOverForegroundThemeBrush" Color="{ThemeResource PhoneForegroundColor}" />
+    <SolidColorBrush x:Key="AppBarItemPressedForegroundThemeBrush" Color="{ThemeResource PhoneBackgroundColor}" />
+    <SolidColorBrush x:Key="AppBarSeparatorForegroundThemeBrush" Color="{ThemeResource PhoneBaseMediumMidColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedPointerOverBackgroundThemeBrush" Color="{ThemeResource PhoneBaseMidColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedPointerOverBorderThemeBrush" Color="{ThemeResource PhoneBaseMidColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonPointerOverBackgroundThemeBrush" Color="{ThemeResource PhoneBaseLowColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedBackgroundThemeBrush" Color="{ThemeResource PhoneForegroundColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedBorderThemeBrush" Color="{ThemeResource PhoneForegroundColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedDisabledBackgroundThemeBrush" Color="{ThemeResource PhoneDisabledColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedDisabledForegroundThemeBrush" Color="{ThemeResource PhoneBackgroundColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedForegroundThemeBrush" Color="{ThemeResource PhoneBackgroundColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedPressedBorderThemeBrush" Color="{ThemeResource PhoneForegroundColor}" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedPressedForegroundThemeBrush" Color="{ThemeResource PhoneForegroundColor}" />
+
+    <x:Double x:Key="AppBarThemeMinHeight">54.5</x:Double>
+    <Thickness x:Key="AppBarBottomBorderThemeThickness">0,1.5,0,0</Thickness>
+    <Thickness x:Key="AppBarBottomThemePadding">0,0,0,1.5</Thickness>
+    <Thickness x:Key="AppBarTopBorderThemeThickness">0,0,0,1.5</Thickness>
+    <Thickness x:Key="AppBarTopThemePadding">0,1.5,0,0</Thickness>
+    <SolidColorBrush x:Key="AppBarItemBackgroundThemeBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedDisabledBorderThemeBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="AppBarToggleButtonCheckedPressedBackgroundThemeBrush" Color="Transparent" />
+
+    <!-- Default style for Windows.UI.Xaml.Controls.AppBarButton -->
+    <Style x:Key="EtsAppBarButton"  TargetType="AppBarButton">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="AppBarButton">
+                    <StackPanel x:Name="LayoutRoot" Width="80" Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ApplicationViewStates">
+                                <!-- FullSize is used when we are in landscape or filled mode -->
+                                <VisualState x:Name="FullSize" />
+                                <!-- Compact is used when we are in portrait or snapped mode -->
+                                <VisualState x:Name="Compact">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Width">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="48" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource EtsRedHighBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource EtsRedHighBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid Width="38.5" Height="38.5" Margin="0,12,0,4" HorizontalAlignment="Center">
+                            <Ellipse x:Name="Ellipse" UseLayoutRounding="False" Width="38.5" Height="38.5" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}"
+                                Stroke="{StaticResource EtsRedHighBrush}" StrokeThickness="2.5" />
+                            <Grid x:Name="ContentRoot" Background="Transparent">
+                                <ContentPresenter x:Name="Content" Content="{TemplateBinding Icon}" Foreground="{StaticResource EtsRedHighBrush}" HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" />
+                            </Grid>
+                        </Grid>
+                        <TextBlock x:Name="TextLabel" Text="{TemplateBinding Label}" Foreground="{StaticResource EtsRedHighBrush}" FontSize="9.5"
+                       FontFamily="{TemplateBinding FontFamily}" TextAlignment="Center" Width="70.5" TextWrapping="Wrap" Margin="0,0,0,10.5" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Default style for Windows.UI.Xaml.Controls.AppBarToggleButton -->
+    <Style TargetType="AppBarToggleButton">
+        <Setter Property="Foreground" Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="AppBarToggleButton">
+                    <StackPanel x:Name="LayoutRoot" Width="80" Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ApplicationViewStates">
+                                <!-- FullSize is used when we are in landscape or filled mode -->
+                                <VisualState x:Name="FullSize" />
+                                <!-- Compact is used when we are in portrait or snapped mode -->
+                                <VisualState x:Name="Compact">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Width">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="48" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemPressedForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedBorderThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedPressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedPressedBorderThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedPressedBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedPressedForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="CheckedDisabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedDisabledBorderThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ellipse" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedDisabledBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarToggleButtonCheckedDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid Width="38.5" Height="38.5" Margin="0,11,0,4" HorizontalAlignment="Center">
+                            <Ellipse x:Name="Ellipse" UseLayoutRounding="False" Width="38.5" Height="38.5" Fill="{ThemeResource AppBarItemBackgroundThemeBrush}"
+                       Stroke="{ThemeResource AppBarItemForegroundThemeBrush}" StrokeThickness="2.5" />
+                            <Grid x:Name="ContentRoot" Background="Transparent">
+                                <ContentPresenter x:Name="Content" Content="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch" AutomationProperties.AccessibilityView="Raw" />
+                            </Grid>
+                        </Grid>
+                        <TextBlock x:Name="TextLabel" Text="{TemplateBinding Label}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="9.5"
+                       FontFamily="{TemplateBinding FontFamily}" TextAlignment="Center" Width="70.5" TextWrapping="Wrap" Margin="0,0,0,10.5" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- Pivot                                          -->
+    <!--<Style x:Key="EtsPivotItemHeaderRedMediumColor" TargetType="HubSection">
+        <Setter Property="Foreground" Value="{StaticResource EtsRedMediumColor}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="HubSection">
+                    <Grid Margin="{StaticResource HubSectionMarginThickness}" Background="{TemplateBinding Background}">
+                        <Grid.RenderTransform>
+                            <CompositeTransform x:Name="WrappingTransform" />
+                        </Grid.RenderTransform>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Rectangle x:Name="HubHeaderPlaceholder" Grid.Row="0" />
+                        <ContentControl x:Name="Header"
+                                Grid.Row="1"
+                                Margin="{StaticResource HubSectionHeaderMarginThickness}"
+                                FontFamily="{StaticResource EtsMainFont}"
+                                FontSize="{StaticResource HubSectionHeaderFontSize}"
+                                FontWeight="SemiBold"
+                                CharacterSpacing="{StaticResource HubSectionHeaderCharacterSpacing}"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                Foreground="{StaticResource EtsRedMediumBrush}"
+                                HorizontalAlignment="Left">
+                            <ContentControl.RenderTransform>
+                                <CompositeTransform x:Name="StickyHeaderTransform" />
+                            </ContentControl.RenderTransform>
+                        </ContentControl>
+                        <ContentPresenter x:Name="ContentPresenter" Grid.Row="2" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+    <Style TargetType="library:SlideView">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <primitives:SlideViewPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="library:SlideView">
+                    <Border Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.RenderTransform>
+                                <TranslateTransform x:Name="SlidingTransform" />
+                            </Grid.RenderTransform>
+                            <ItemsPresenter x:Name="ItemsList" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
