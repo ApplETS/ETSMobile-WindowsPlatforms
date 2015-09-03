@@ -114,7 +114,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                 Model = model;
                 _timeRemainingDisposable = new CompositeDisposable();
                 IsTimeRemainingVisible = false;
-                BindTimeRemaining();
+                //BindTimeRemaining();
             }
 
             private readonly CompositeDisposable _timeRemainingDisposable;

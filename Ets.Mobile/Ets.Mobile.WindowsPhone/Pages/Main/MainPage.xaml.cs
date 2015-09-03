@@ -24,6 +24,7 @@ namespace Ets.Mobile.Pages.Main
 
             // Side Navigation
             this.OneWayBind(ViewModel, x => x.Profile, x => x.SideNavigation.ProfileDataContext);
+            this.OneWayBind(ViewModel, x => x.GetProfile, x => x.SideNavigation.RefreshProfileCommand);
             this.OneWayBind(ViewModel, x => x.Logout, x => x.SideNavigation.LogoutCommand);
 
             SideViewButton.Command = ReactiveCommand.CreateAsyncObservable(_ =>

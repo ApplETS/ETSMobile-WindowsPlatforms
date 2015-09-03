@@ -17,6 +17,12 @@ namespace Ets.Mobile.Views.Content.Shared
             set { Profile.DataContext = value; }
         }
 
+        public ICommand RefreshProfileCommand
+        {
+            get { return RefreshProfile.Command; }
+            set { RefreshProfile.Command = value; }
+        }
+
         public ICommand LogoutCommand
         {
             get { return Logout.Command; }

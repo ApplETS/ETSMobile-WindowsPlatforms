@@ -16,8 +16,13 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="0,3,0,10" FontSize="17" Text="ACCOUNT" Foreground="{StaticResource EtsTextSecondaryBrush}"></TextBlock>
-            <main:Profile Grid.Row="1" x:Name="Profile" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Margin="0,3,0,10" FontSize="17" Text="ACCOUNT" Foreground="{StaticResource EtsTextSecondaryBrush}"></TextBlock>
+            <main:Profile Grid.Row="1" x:Name="Profile" Height="60" />
+            <AppBarButton Grid.Row="1" Grid.Column="1" Icon="Refresh" x:Name="RefreshProfile" Style="{StaticResource EtsAppBarButton}" />
         </Grid>
         <Border VerticalAlignment="Bottom" BorderBrush="DarkGray" BorderThickness="0,1,0,0">
             <Grid Margin="10">
