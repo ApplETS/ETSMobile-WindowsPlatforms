@@ -15,7 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Common\Akavache.Sqlite3.Registrations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ApplicationShell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Main\Grades.xaml.cs">
@@ -36,7 +35,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\LightGray.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MediumGray.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\DarkGray.png" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Skins\MainSkin.xaml">

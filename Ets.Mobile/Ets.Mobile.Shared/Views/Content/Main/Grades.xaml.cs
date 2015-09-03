@@ -6,7 +6,7 @@ namespace Ets.Mobile.Views.Content.Main
     {
         public Grades()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

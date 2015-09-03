@@ -8,8 +8,10 @@ using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Signets
 {
+    [DataContract]
     public class ScheduleAndTeachersVm : ReactiveObject
     {
+        [DataMember]
         public List<ActivityVm> Activities { get; set; }
 
         public List<TeacherVm> Teachers { get; set; }

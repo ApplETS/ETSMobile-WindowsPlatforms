@@ -10,7 +10,7 @@ namespace Ets.Mobile.Views.Content.Main
     {
         public Today()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             //this.WhenAnyValue(x => x.DataContext)
             //    .Where(x => x != null)

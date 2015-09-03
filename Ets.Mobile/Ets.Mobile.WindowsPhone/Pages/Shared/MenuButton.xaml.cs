@@ -8,7 +8,7 @@ namespace Ets.Mobile.Pages.Shared
     {
         public MenuButton()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

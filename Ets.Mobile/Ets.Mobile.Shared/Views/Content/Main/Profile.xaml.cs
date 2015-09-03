@@ -6,7 +6,7 @@ namespace Ets.Mobile.Views.Content.Main
     {
         public Profile()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
