@@ -161,6 +161,10 @@
       <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.1.0.4-beta\lib\wpa81\Coding4Fun.Toolkit.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CrittercismSDK, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Crittercism.2.2.2\lib\wpa81\CrittercismSDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fusillade, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\fusillade.0.6.0\lib\Portable-net45+win+wpa81+wp80\Fusillade.dll</HintPath>
       <Private>True</Private>

@@ -1,6 +1,8 @@
 ﻿using Windows.ApplicationModel.Resources;
+using CrittercismSDK;
 using Splat;
 using StoreFramework.Composite;
+using StoreFramework.Logger;
 using StoreFramework.Messaging;
 using StoreFramework.Messaging.Notifications;
 using StoreFramework.Messaging.Popup;

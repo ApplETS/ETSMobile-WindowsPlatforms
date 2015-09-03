@@ -1,6 +1,7 @@
 ﻿using System;
 using Splat;
 using StoreFramework.Composite;
+using StoreFramework.Logger;
 
 namespace Ets.Mobile.Shared
 {
@@ -16,10 +17,13 @@ namespace Ets.Mobile.Shared
 			}
 			_resolver = resolver;
 
-			var types = new[]
+            // Log 
+            _resolver.Register(() => new CrittercismLogger(), typeof(ILogger));
+
+            var types = new[]
 			{
-				typeof (Entities.ModuleInit),
-				typeof (Module.StoreFramework.ModuleInit),
+                typeof (Module.StoreFramework.ModuleInit),
+                typeof (Entities.ModuleInit),
 				typeof (Business.ModuleInit),
 				typeof (Client.ModuleInit),
 				typeof (ViewModel.ModuleInit)

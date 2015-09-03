@@ -7,6 +7,7 @@ using ReactiveUI;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using CrittercismSDK;
 using Ets.Mobile.Shell;
 using Splat;
 
@@ -27,12 +28,19 @@ namespace Ets.Mobile
         {
             InitializeComponent();
 
+            // Crittercism
+            Crittercism.Init("55e87dc18d4d8c0a00d07811");
+            UnhandledException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - wasHandled:{e.Handled} - {e.Message}", e.Exception));
+
+            // Initialize Rx App
             Locator.CurrentMutable.RegisterConstant(new ApplicationShell(), typeof(IScreen));
             RxApp.SuspensionHost.CreateNewAppState = () => Locator.Current.GetService<IScreen>();
-            Suspending += OnSuspending;
-            _autoSuspendHelper = new AutoSuspendHelper(this);
             
+            _autoSuspendHelper = new AutoSuspendHelper(this);
             RxApp.SuspensionHost.SetupDefaultSuspendResume();
+
+            // Default Universal Behavior
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -126,6 +134,8 @@ namespace Ets.Mobile
             var deferral = e.SuspendingOperation.GetDeferral();
 
             deferral.Complete();
+
+            Crittercism.Shutdown();
         }
     }
 }
