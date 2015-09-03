@@ -13,6 +13,7 @@ namespace Module.StoreFramework
 	{
 		public void Initialize(IMutableDependencyResolver container)
 		{
+            container.Register(() => new CrittercismLogger(), typeof(IUserEnabledLogger));
             container.Register(() => new ResourceLoader(), typeof(ResourceLoader));
             container.Register(() => new PopupManager(container.GetService<ResourceLoader>()), typeof(IPopupManager));
             container.Register(() => new InAppNotificationManager(), typeof(INotificationManager), "InApp");

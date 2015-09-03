@@ -9,6 +9,7 @@ using Ets.Mobile.Client.Extensions.Signets;
 using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Client.Factories.Implementations;
 using Ets.Mobile.Entities.Signets;
+using StoreFramework.Logger;
 using StoreFramework.Security;
 
 namespace Ets.Mobile.Client.Services
@@ -18,15 +19,18 @@ namespace Ets.Mobile.Client.Services
         private readonly ISignetsBusinessService _signetsService;
         private SignetsAccountVm _userCredentials;
         private readonly SignetsAbstractFactory _factory;
+        private readonly IUserEnabledLogger _userEnabledLogger;
 
-        public SignetsService(ISignetsBusinessService signetsService, SignetsAbstractFactory factory)
+        public SignetsService(ISignetsBusinessService signetsService, SignetsAbstractFactory factory, IUserEnabledLogger userEnabledLogger)
         {
             _signetsService = signetsService;
             _factory = factory;
+            _userEnabledLogger = userEnabledLogger;
         }
 
         public void SetCredentials(SignetsAccountVm vm)
         {
+            _userEnabledLogger.SetUser(vm.Username);
             _userCredentials = vm;
         }
 

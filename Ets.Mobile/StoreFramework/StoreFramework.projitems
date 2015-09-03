@@ -12,6 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Presenter\Exceptions\ReactivePresenterExceptionBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ThrownExceptionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\CrittercismLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\DefaultUserEnabledLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\IUserEnabledLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\Common\ErrorMessageContent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\Common\IMessagingContent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\Common\MessagingContent.cs" />

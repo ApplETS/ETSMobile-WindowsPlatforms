@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
-using CrittercismSDK;
 using Splat;
 
 namespace StoreFramework.Logger
 {
-    public class CrittercismLogger : IUserEnabledLogger
+    public class DefaultUserEnabledLogger : IUserEnabledLogger
     {
         public void Write(string message, LogLevel logLevel)
         {
-            Crittercism.LogHandledException(new Exception($"[{DateTime.Now}] {message} ({logLevel})"));
+            Debug.WriteLine(message);
         }
 
         public LogLevel Level { get; set; }
         public void SetUser(string username)
         {
-            Crittercism.SetUsername(username);
+            Debug.WriteLine($"Username: {username}");
         }
     }
 }
