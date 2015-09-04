@@ -54,9 +54,18 @@ namespace Ets.Mobile.Entities.Signets
         public IBitmap Image
         {
             get { return _imageSource; }
-            set { this.RaiseAndSetIfChanged(ref _imageSource, value); }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _imageSource, value);
+                ImageSource = value.ToNative();
+            }
         }
 
-        public ImageSource ImageSource => Image?.ToNative();
+        private ImageSource _imgSource;
+        public ImageSource ImageSource
+        {
+            get { return _imgSource; }
+            set { this.RaiseAndSetIfChanged(ref _imgSource, value); }
+        }
     }
 }

@@ -45,8 +45,7 @@ namespace Ets.Mobile.Client.Shared.Tests.Services
                 };
                 locator.Register(() => RestService.For<ISignetsBusinessService>(client), typeof(ISignetsBusinessService));
                 locator.Register(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
-                locator.Register(() => new DefaultUserEnabledLogger(), typeof(IUserEnabledLogger));
-                locator.Register(() => new SignetsService(locator.GetService<ISignetsBusinessService>(), locator.GetService<SignetsAbstractFactory>(), locator.GetService<IUserEnabledLogger>()), typeof(ISignetsService));
+                locator.Register(() => new SignetsService(locator.GetService<ISignetsBusinessService>(), locator.GetService<SignetsAbstractFactory>()), typeof(ISignetsService));
             }
 
             return Task.FromResult(locator.GetService<ISignetsService>());

@@ -38,7 +38,7 @@ namespace Ets.Mobile.ViewModel.Content.Main
             set { this.RaiseAndSetIfChanged(ref _gradesItems, value); }
         }
 
-        public GradeViewModelGroup(string semester, IEnumerable<CourseVm> courses, Action<GradeViewModelItem> fetchEvaluations)
+        public GradeViewModelGroup(string semester, IEnumerable<CourseVm> courses)
         {
             // Semester
             Semester = semester;
@@ -49,10 +49,9 @@ namespace Ets.Mobile.ViewModel.Content.Main
             // Courses
             GradesItems = new ReactiveList<GradeViewModelItem>();
             GradesItems.AddRange(courses.Select(y => new GradeViewModelItem(semester, y)));
-            GradesItems.ToObservable().Do(fetchEvaluations).Subscribe();
         }
 
-        public GradeViewModelGroup(string semester, IObservable<List<CourseVm>> courses, Action<GradeViewModelGroup> fetchEvaluations)
+        public GradeViewModelGroup(string semester, IObservable<List<CourseVm>> courses)
         {
             // Semester
             Semester = semester;
@@ -65,24 +64,12 @@ namespace Ets.Mobile.ViewModel.Content.Main
             {
                 GradesItems.Clear();
                 GradesItems.AddRange(x.Select(y => new GradeViewModelItem(semester, y)));
-                fetchEvaluations(this);
             });
-        }
-
-        public void FetchGrades(IObservable<EvaluationsVm> evaluations)
-        {
-            GradesItems.ToObservable().Do(x => x.FetchGrades(evaluations));
         }
 
         public void Dispose()
         {
-            if (GradesItems != null)
-            {
-                foreach (var grades in GradesItems)
-                {
-                    grades?.Dispose();
-                }
-            }
+            GradesItems?.Clear();
         }
     }
 }

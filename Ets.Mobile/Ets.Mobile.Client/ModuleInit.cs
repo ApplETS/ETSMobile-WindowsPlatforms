@@ -25,8 +25,7 @@ namespace Ets.Mobile.Client
                 container.Register(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
                 var signetServiceInstance = new SignetsService(
                     container.GetService<ISignetsBusinessService>(),
-                    container.GetService<SignetsAbstractFactory>(),
-                    container.GetService<IUserEnabledLogger>()
+                    container.GetService<SignetsAbstractFactory>()
                 );
                 container.Register(() => signetServiceInstance, typeof(ISignetsService));
                 container.Register(() => new CustomSettingsService(), typeof(ICustomSettingsService));

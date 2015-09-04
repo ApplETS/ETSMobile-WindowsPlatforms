@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using Windows.ApplicationModel;
+using Windows.UI.Xaml.Media;
 using Ets.Mobile.ViewModel.Content.Main;
 using Ets.Mobile.ViewModel.Contracts;
 using ReactiveUI;
@@ -48,8 +49,10 @@ namespace Ets.Mobile.ViewModel.DesignTime
                             DayName = "Friday",
                             Location = "A-1300",
                             Name = "Activité de cours",
-                            Color = AppColors.Green,
-                        
+                            A = AppColors.Green.A,
+                            R = AppColors.Green.R,
+                            G = AppColors.Green.G,
+                            B = AppColors.Green.B,
                         },
                         IsTimeRemainingVisible = true,
                         TimeRemaining = "39"
@@ -67,7 +70,10 @@ namespace Ets.Mobile.ViewModel.DesignTime
                         DayName = "Friday",
                         Location = "A-1300",
                         Name = "Activité de cours",
-                        Color = AppColors.Red
+                        A = AppColors.Red.A,
+                        R = AppColors.Red.R,
+                        G = AppColors.Red.G,
+                        B = AppColors.Red.B
                     }},
                     new TodayTileVm {Model = new ActivityVm
                     {
@@ -82,7 +88,10 @@ namespace Ets.Mobile.ViewModel.DesignTime
                         DayName = "Friday",
                         Location = "A-1300",
                         Name = "Activité de cours",
-                        Color = AppColors.Orange
+                        A = AppColors.Orange.A,
+                        R = AppColors.Orange.R,
+                        G = AppColors.Orange.G,
+                        B = AppColors.Orange.B
                     }},
                 };
 
@@ -97,14 +106,11 @@ namespace Ets.Mobile.ViewModel.DesignTime
                                 Group = "01",
                                 Acronym = "LOG210",
                                 Name = "Activité de cours",
-                                Color = AppColors.Red
+                                A = AppColors.Red.A,
+                                R = AppColors.Red.R,
+                                G = AppColors.Red.G,
+                                B = AppColors.Red.B
                             }
-                        }, _ =>
-                        {
-                            _.Evaluations = new EvaluationsVm
-                            {
-                                ActualGrade = 80
-                            };
                         })
                         {
                             Key = "H2015",
@@ -115,7 +121,6 @@ namespace Ets.Mobile.ViewModel.DesignTime
                                     Group = "01",
                                     Acronym = "LOG210",
                                     Name = "Activité de cours",
-                                    Color = AppColors.Red,
                                     A = AppColors.Red.A,
                                     R = AppColors.Red.R,
                                     G = AppColors.Red.G,

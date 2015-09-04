@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ets.Mobile.Entities.Signets.Interfaces;
 
@@ -14,6 +15,6 @@ namespace Ets.Mobile.Client.Contracts
         /// <param name="semester">Semester in-which the class are</param>
         /// <param name="courseNameSelector">Course name Selector</param>
         /// <returns></returns>
-        Task<T[]> ApplyColorOnCoursesForSemester<T>(T[] schedules, string semester, Func<T, object> courseNameSelector) where T : class, ICustomColor;
+        Task<IList<T>> ApplyColorOnCoursesForSemester<T>(IList<T> schedules, string semester, Func<T, object> courseNameSelector) where T : class, ICustomColor;
     }
 }

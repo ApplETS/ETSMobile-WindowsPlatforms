@@ -29,28 +29,20 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             {
                 return Observable.Defer(() =>
                 {
-                    Action<GradeViewModelItem> fetchEvaluations = gradeItem => gradeItem.FetchGrades(
-                        Cache.GetAndFetchLatest(
-                            ViewModelKeys.GradesForSemesterAndCourse(gradeItem.Semester, gradeItem.Course.Acronym),
-                            () => ClientServices().SignetsService.Evaluations(gradeItem.Course.Acronym, gradeItem.Course.Group, gradeItem.Course.Semester)
-                        ).Catch(Observable.Return(new EvaluationsVm()))
-                    );
                     return Cache.GetAndFetchLatest(ViewModelKeys.Courses, async () =>
                     {
                         var courses = await ClientServices().SignetsService.Courses();
-                        await courses
-                            .Where(x => x.Semester != "s.o.")
-                            .GroupBy(x => x.Semester)
-                            .ToObservable()
-                            .Do(course =>
-                                SettingsService().ApplyColorOnCoursesForSemester(
+                        foreach(var course in courses.Where(x => x.Semester != "s.o.")
+                                                     .GroupBy(x => x.Semester))
+                        {
+                            await SettingsService().ApplyColorOnCoursesForSemester(
                                     courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
-                                    course.FirstOrDefault().Semester, x => x.Acronym
-                                )).ToTask();
+                                    course.FirstOrDefault().Semester, x => x.Acronym);
+                        }
 
-                        return courses.Where(x => x.Semester != "s.o.").OrderByDescending(x => x.Semester, new SemestersComparator());
+                        return courses.Where(x => x.Semester != "s.o.").OrderByDescending(x => x.Semester, new SemestersComparator()).ToList();
                     })
-                    .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeViewModelGroup(course.Key, course.ToList(), fetchEvaluations)).ToList());
+                    .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeViewModelGroup(course.Key, course.ToList())).ToList());
                 });
             });
 

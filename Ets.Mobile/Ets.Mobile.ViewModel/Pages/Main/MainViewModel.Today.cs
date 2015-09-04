@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -30,22 +31,15 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             {
                 return Observable.Defer(() =>
                 {
-                    Cache.GetAllKeys().Subscribe(x => Debug.WriteLine(string.Join(",", x)));
                     return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
-                        .Catch<List<SemesterVm>, ApiException>(x => Cache.GetObject<List<SemesterVm>>(ViewModelKeys.Semesters))
                         .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
-                        .ObserveOn(RxApp.MainThreadScheduler).Do(x =>
-                        {
-                            if (!x.Any(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now))
-                            {
-                                TodayItems.Clear();
-                            }
-                        })
                         .SelectMany(x => x)
-                        .Where(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
-                        .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), () => ClientServices().SignetsService.ScheduleAndTeachers(currentSemester.AbridgedName).ToObservable()
-                            .Do(activities => SettingsService().ApplyColorOnCoursesForSemester(activities.Activities.ToArray(), currentSemester.AbridgedName, x => x.Acronym)))
-                            .Catch<ScheduleAndTeachersVm, ApiException>(x => Cache.GetObject<ScheduleAndTeachersVm>(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName))))
+                        .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
+                        .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
+                            var schedule = await ClientServices().SignetsService.ScheduleAndTeachers(currentSemester.AbridgedName);
+                            await SettingsService().ApplyColorOnCoursesForSemester(schedule.Activities, currentSemester.AbridgedName, x => x.Acronym);
+                            return schedule;
+                        }))
                         .Where(x => x?.Activities != null)
                         .Select(x => x.Activities);
                 });

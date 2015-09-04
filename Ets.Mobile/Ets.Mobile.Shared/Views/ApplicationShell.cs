@@ -11,6 +11,7 @@ using Ets.Mobile.Pages.Main;
 using Ets.Mobile.ViewModel.Pages.Account;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Ets.Mobile.Client.Contracts;
+using StoreFramework.Logger;
 
 namespace Ets.Mobile.ViewModel
 {
@@ -19,9 +20,7 @@ namespace Ets.Mobile.ViewModel
         // The Router holds the ViewModels for the back stack. Because it's
         // in this object, it will be serialized automatically.
         public RoutingState Router { get; protected set; }
-
-	    private bool isLoggedIn;
-
+        
         public ApplicationShell()
 		{
             Router = new RoutingState();
@@ -68,6 +67,7 @@ namespace Ets.Mobile.ViewModel
 	                if (signetsAccountVm.IsLoginSuccessful)
 	                {
                         Locator.Current.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
+                        Locator.Current.GetService<IUserEnabledLogger>().SetUser(signetsAccountVm.Username);
                         Router.Navigate.Execute(new MainViewModel(this));
                     }
                     else

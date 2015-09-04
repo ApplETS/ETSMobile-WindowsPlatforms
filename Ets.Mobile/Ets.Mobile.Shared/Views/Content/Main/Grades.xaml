@@ -16,7 +16,7 @@
             <Grid Margin="5,0,3,10" Height="100" Background="{Binding Course.Brush, FallbackValue=Black}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Vertical">
@@ -41,7 +41,7 @@
                            Style="{StaticResource EtsTextBlockWhite2}" 
                            FontWeight="Normal" 
                            FontSize="80"
-                           Text="{Binding GradeSummary, Converter={StaticResource StringToIntegerConverter}}" />
+                           Text="{Binding Course.Grade, Converter={StaticResource StringToIntegerConverter}}" />
             </Grid>
         </DataTemplate>
 
@@ -54,7 +54,9 @@
 						    Source="{Binding}" />
                     <views:ScreenWidthMultiplier x:Key="ScreenWidth" />
                 </Grid.Resources>
-                <ListView ItemsSource="{Binding Source={StaticResource GradeCollectionViewSource}}" 
+                <ListView 
+                    Margin="-5,0,0,0"
+                    ItemsSource="{Binding Source={StaticResource GradeCollectionViewSource}}" 
 	                    ItemTemplate="{StaticResource GradeDataTemplate}"
 		                ScrollViewer.HorizontalScrollMode="Disabled"    
 			            ScrollViewer.IsHorizontalScrollChainingEnabled="False"
@@ -85,10 +87,11 @@
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
+    
     <controls:ReactivePresenter UseDialogForErrors="False"
-                                PresenterSource="{Binding}"
-                                DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again." 
-                                ValueTemplate="{StaticResource GradesPresenterValue}">
+                            PresenterSource="{Binding}"
+                            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again." 
+                            ValueTemplate="{StaticResource GradesPresenterValue}">
         <controls:ReactivePresenter.EmptyTemplate>
             <DataTemplate>
                 <Grid>
@@ -107,4 +110,5 @@
             </DataTemplate>
         </controls:ReactivePresenter.RefreshingTemplate>
     </controls:ReactivePresenter>
+    
 </UserControl>
