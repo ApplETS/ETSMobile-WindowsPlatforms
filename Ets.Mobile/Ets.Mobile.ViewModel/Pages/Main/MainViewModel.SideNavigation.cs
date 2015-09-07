@@ -23,7 +23,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         {
             Profile = new UserDetailsVm();
 
-            GetProfile = ReactiveCommand.CreateAsyncObservable(_ =>
+            LoadProfile = ReactiveCommand.CreateAsyncObservable(_ =>
             {
                 return Observable.Defer(() =>
                 {
@@ -37,7 +37,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                 });
             });
 
-            GetProfile.ThrownExceptions
+            LoadProfile.ThrownExceptions
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
@@ -65,7 +65,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                     _profileExceptionSubject.OnNext(exception);
                 });
 
-            GetProfile.Subscribe(profile =>
+            LoadProfile.Subscribe(profile =>
             {
                 Profile = profile;
             });
@@ -87,7 +87,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             set { this.RaiseAndSetIfChanged(ref _profile, value); }
         }
 
-        public ReactiveCommand<UserDetailsVm> GetProfile { get; protected set; }
+        public ReactiveCommand<UserDetailsVm> LoadProfile { get; protected set; }
         private readonly ReplaySubject<Exception> _profileExceptionSubject = new ReplaySubject<Exception>();
 
         public ReactiveCommand<Unit> Logout { get; set; }

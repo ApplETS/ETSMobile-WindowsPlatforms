@@ -26,11 +26,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Main\Today.xaml.cs">
       <DependentUpon>Today.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Schedule\Schedule.xaml.cs">
+      <DependentUpon>Schedule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Shared\SideNavigation.xaml.cs">
       <DependentUpon>SideNavigation.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Account\LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Main\MainPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Schedule\SchedulePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Shell\ShellPage.cs" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LightGray.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MediumGray.png" />
@@ -54,6 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\Content\Main\Today.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Schedule\Schedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

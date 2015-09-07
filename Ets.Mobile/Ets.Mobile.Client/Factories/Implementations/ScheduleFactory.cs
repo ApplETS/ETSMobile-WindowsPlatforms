@@ -6,7 +6,7 @@ using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.Client.Factories.Implementations
 {
-    public class SchedulesFactory : ISchedulesFactory
+    public class ScheduleFactory : IScheduleFactory
     {
         public List<ScheduleVm> Create(ScheduleResult result)
         {

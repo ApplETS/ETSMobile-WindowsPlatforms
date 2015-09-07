@@ -72,6 +72,7 @@
         <CommandBar x:Name="BottomBar" Background="White" Foreground="{StaticResource EtsRedHighBrush}" Opacity="0.7">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshToday" Icon="Refresh" Label="Refresh" />
+                <AppBarButton x:Name="ShowSchedule" Icon="Calendar" Label="Calendar" />
                 <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" />
             </CommandBar.PrimaryCommands>
         </CommandBar>

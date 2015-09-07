@@ -4,7 +4,7 @@ using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.Client.Factories.Interfaces
 {
-    public interface ISchedulesFactory: IFactory<ScheduleResult, List<ScheduleVm>>
+    public interface IScheduleFactory: IFactory<ScheduleResult, List<ScheduleVm>>
     {
     }
 }

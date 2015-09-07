@@ -11,14 +11,6 @@ namespace Ets.Mobile.Views.Content.Main
         public Today()
         {
             InitializeComponent();
-
-            //this.WhenAnyValue(x => x.DataContext)
-            //    .Where(x => x != null)
-            //    .Subscribe(x =>
-            //    {
-            //        ViewModel = (MainViewModel)DataContext;
-            //        this.OneWayBind(ViewModel, vm => vm.Today, view => view.TodayListView.ItemsSource);
-            //    });
         }
 
         #region IViewFor<T>

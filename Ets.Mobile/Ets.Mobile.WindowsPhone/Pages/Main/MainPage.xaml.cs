@@ -24,8 +24,11 @@ namespace Ets.Mobile.Pages.Main
 
             // Side Navigation
             this.OneWayBind(ViewModel, x => x.Profile, x => x.SideNavigation.ProfileDataContext);
-            this.OneWayBind(ViewModel, x => x.GetProfile, x => x.SideNavigation.RefreshProfileCommand);
+            this.OneWayBind(ViewModel, x => x.LoadProfile, x => x.SideNavigation.RefreshProfileCommand);
             this.OneWayBind(ViewModel, x => x.Logout, x => x.SideNavigation.LogoutCommand);
+
+            // Show Schedule
+            this.OneWayBind(ViewModel, x => x.NavigateToSchedule, x => x.ShowSchedule.Command);
 
             SideViewButton.Command = ReactiveCommand.CreateAsyncObservable(_ =>
             {
@@ -46,16 +49,17 @@ namespace Ets.Mobile.Pages.Main
                 SlideView.SelectedIndex = 1;
                 MainPivot.SelectionChanged += (sender, e2) =>
                 {
-                    RefreshToday.Visibility = Visibility.Collapsed;
                     RefreshGrade.Visibility = Visibility.Collapsed;
 
                     switch (MainPivot.SelectedIndex)
                     {
                         case (int) MainPivotItem.Today:
                             RefreshToday.Visibility = Visibility.Visible;
+                            ShowSchedule.Visibility = Visibility.Visible;
                             break;
                         case (int) MainPivotItem.Grade:
                             RefreshGrade.Visibility = Visibility.Visible;
+                            ShowSchedule.Visibility = Visibility.Collapsed;
                             break;
                     }
                 };

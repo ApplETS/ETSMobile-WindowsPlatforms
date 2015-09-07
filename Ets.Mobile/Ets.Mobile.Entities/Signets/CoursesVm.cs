@@ -11,11 +11,6 @@ namespace Ets.Mobile.Entities.Signets
     [DataContract]
     public class CourseVm : ReactiveObject, ICustomColor
     {
-        public CourseVm()
-        {
-            //SetCurrentColor(Color.FromArgb(A, R, G, B));
-        }
-
         private string _acronym;
         [DataMember] public string Acronym
         {

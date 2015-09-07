@@ -11,6 +11,8 @@ using Ets.Mobile.Pages.Main;
 using Ets.Mobile.ViewModel.Pages.Account;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Ets.Mobile.Client.Contracts;
+using Ets.Mobile.Pages.Schedule;
+using Ets.Mobile.ViewModel.Pages.Schedule;
 using StoreFramework.Logger;
 
 namespace Ets.Mobile.ViewModel
@@ -92,7 +94,8 @@ namespace Ets.Mobile.ViewModel
             // Register Views for the Router
             resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginViewModel>));
             resolver.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
-		}
+            resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
+        }
 
 		#endregion
     }

@@ -25,7 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\ReplacedDaysFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\ScheduleAndTeachersFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\ScheduleFinalExamsFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\SchedulesFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\ScheduleFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\SemestersFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\SignetsFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\TeammatesFactory.cs" />
@@ -39,7 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IReplacedDaysFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IScheduleAndTeachersFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IScheduleFinalExamsFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ISchedulesFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IScheduleFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ISemestersFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ITeammatesFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IUserDetailsFactory.cs" />

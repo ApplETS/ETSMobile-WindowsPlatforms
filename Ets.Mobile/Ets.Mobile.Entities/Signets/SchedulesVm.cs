@@ -59,6 +59,11 @@ namespace Ets.Mobile.Entities.Signets
             set { this.RaiseAndSetIfChanged(ref _title, value); }
         }
 
+        public string Time => $"{StartDate.ToString(@"hh\:mm tt")}-{EndDate.ToString(@"hh\:mm tt")}";
+
+        [DataMember]
+        public string ActivityName => $"{CourseAndGroup.Substring(0, CourseAndGroup.IndexOf("-", StringComparison.Ordinal))}: {Title}";
+
         #region ICustomColor Implementation
 
         [DataMember]

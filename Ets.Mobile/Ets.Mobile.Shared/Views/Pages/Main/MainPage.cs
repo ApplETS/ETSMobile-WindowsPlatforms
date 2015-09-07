@@ -40,7 +40,7 @@ namespace Ets.Mobile.Pages.Main
                 .Where(x => x != null);
 
             subscriptionForViewModel
-                .InvokeCommand(this, x => x.ViewModel.GetProfile);
+                .InvokeCommand(this, x => x.ViewModel.LoadProfile);
 
             subscriptionForViewModel
                 .InvokeCommand(this, x => x.ViewModel.LoadCoursesForToday);

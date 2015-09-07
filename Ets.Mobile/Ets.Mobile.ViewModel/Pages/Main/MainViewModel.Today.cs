@@ -25,7 +25,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
     {
         private void InitializeToday()
         {
-            TodayItems = new ReactiveList<ActivityVm>();
+            TodayItems = new ReactiveList<ScheduleVm>();
 
             LoadCoursesForToday = ReactiveCommand.CreateAsyncObservable(_ =>
             {
@@ -36,12 +36,12 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                         .SelectMany(x => x)
                         .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
                         .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
-                            var schedule = await ClientServices().SignetsService.ScheduleAndTeachers(currentSemester.AbridgedName);
-                            await SettingsService().ApplyColorOnCoursesForSemester(schedule.Activities, currentSemester.AbridgedName, x => x.Acronym);
+                            var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
+                            await SettingsService().ApplyColorOnCoursesForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
                             return schedule;
                         }))
-                        .Where(x => x?.Activities != null)
-                        .Select(x => x.Activities);
+                        .Where(x => x != null)
+                        .Select(x => x);
                 });
             });
 
@@ -80,20 +80,20 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             });
 
             Today = TodayItems.CreateDerivedCollection(
-                x => new ActivityTileViewModel(x),
+                x => new ScheduleTileViewModel(x),
                 x => x.Dispose(),
-                x => x.Day == (int)DateTime.Now.DayOfWeek,
-                (x, y) => TimeSpan.Compare(x.Model.StartHour, y.Model.StartHour));
+                x => x.StartDate == DateTime.Now,
+                (x, y) => TimeSpan.Compare(x.Model.StartDate.TimeOfDay, y.Model.StartDate.TimeOfDay));
 
-            TodayPresenter = ReactivePresenterViewModel<ReactiveList<ActivityVm>>.Create(TodayItems, Today, LoadCoursesForToday.IsExecuting, _scheduleExceptionSubject);
+            TodayPresenter = ReactivePresenterViewModel<ReactiveList<ScheduleVm>>.Create(TodayItems, Today, LoadCoursesForToday.IsExecuting, _scheduleExceptionSubject);
         }
 
         #region Properties
 
-        [DataMember] public ReactiveList<ActivityVm> TodayItems { get; protected set; }
-        [DataMember] public IReactiveDerivedList<ActivityTileViewModel> Today { get; protected set; }
-        public IReactivePresenterViewModel<ReactiveList<ActivityVm>> TodayPresenter { get; protected set; }
-        public ReactiveCommand<List<ActivityVm>> LoadCoursesForToday { get; protected set; }
+        [DataMember] public ReactiveList<ScheduleVm> TodayItems { get; protected set; }
+        [DataMember] public IReactiveDerivedList<ScheduleTileViewModel> Today { get; protected set; }
+        public IReactivePresenterViewModel<ReactiveList<ScheduleVm>> TodayPresenter { get; protected set; }
+        public ReactiveCommand<List<ScheduleVm>> LoadCoursesForToday { get; protected set; }
         private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion
@@ -101,12 +101,12 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         #region Methods
 
         [DataContract]
-        public class ActivityTileViewModel : ReactiveObject, IDisposable
+        public class ScheduleTileViewModel : ReactiveObject, IDisposable
         {
             [DataMember]
-            public ActivityVm Model { get; protected set; }
+            public ScheduleVm Model { get; protected set; }
 
-            public ActivityTileViewModel(ActivityVm model)
+            public ScheduleTileViewModel(ScheduleVm model)
             {
                 Model = model;
                 _timeRemainingDisposable = new CompositeDisposable();
@@ -145,16 +145,16 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             {
                 var timer = Observable.Timer(TimeSpan.Zero, TimeSpan.FromMinutes(1));
 
-                timer.Where(x => Model.StartHour > DateTime.Now.TimeOfDay && (Model.StartHour - DateTime.Now.TimeOfDay).TotalMinutes > 0 && (Model.StartHour - DateTime.Now.TimeOfDay).TotalMinutes < 60)
+                timer.Where(x => Model.StartDate.TimeOfDay > DateTime.Now.TimeOfDay && (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).TotalMinutes > 0 && (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).TotalMinutes < 60)
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(x =>
                     {
-                        TimeRemaining = (Model.StartHour.Minutes - DateTime.Now.TimeOfDay.Minutes).ToString();
+                        TimeRemaining = (Model.StartDate.TimeOfDay.Minutes - DateTime.Now.TimeOfDay.Minutes).ToString();
                         IsTimeRemainingVisible = true;
                     })
                     .DisposeWith(_timeRemainingDisposable);
 
-                timer.Where(x => Model.StartHour < DateTime.Now.TimeOfDay && (Model.StartHour - DateTime.Now.TimeOfDay).Minutes < 0 || (Model.StartHour - DateTime.Now.TimeOfDay).Minutes > 60)
+                timer.Where(x => Model.StartDate.TimeOfDay < DateTime.Now.TimeOfDay && (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).Minutes < 0 || (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).Minutes > 60)
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(x =>
                     {
