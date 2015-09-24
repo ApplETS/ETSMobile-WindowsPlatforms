@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="Ets.Mobile.Pages.UserDetails.UserDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Pages.UserDetails"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+            <TextBlock x:Name="SelectedProgram" Text="{Binding Name}" />
+            <Button.Flyout>
+                <ListPickerFlyout Title="{Binding [SelectProgram], Source={StaticResource LocalizedStrings}}" 
+                                  ItemsSource="{Binding Items}"
+                                  SelectedItem="{Binding SelectedCity, Mode=TwoWay}">
+                    <ListPickerFlyout.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding City}" FontSize="{StaticResource TextStyleExtraLargeFontSize}"/>
+                                <TextBlock Text="{Binding State}" FontSize="{StaticResource TextStyleLargeFontSize}"/>
+                                <TextBlock Text="{Binding TimeZone}" FontSize="{StaticResource TextStyleMediumFontSize}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListPickerFlyout.ItemTemplate>
+                </ListPickerFlyout>
+            </Button.Flyout>
+        </Button>
+    </Grid>
+</Page>
