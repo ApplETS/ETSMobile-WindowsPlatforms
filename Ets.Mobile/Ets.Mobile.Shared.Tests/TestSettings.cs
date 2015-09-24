@@ -14,7 +14,7 @@ namespace Ets.Mobile.Shared.Tests
         public static string Semester = "H2014";
         public static string Course = "LOG240";
         public static string Group = "01";
-        public static string CourseGroup = string.Format("{0}-{1}", Course, Group);
+        public static string CourseGroup = $"{Course}-{Group}";
         public static string DateDebut = new DateTime(2014, 09, 01).ToString("yyyy-MM-dd");
         public static string DateFin = new DateTime(2014, 12, 19).ToString("yyyy-MM-dd");
         #endregion

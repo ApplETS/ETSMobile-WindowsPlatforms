@@ -49,6 +49,7 @@ namespace Ets.Mobile.Pages.Main
                 SlideView.SelectedIndex = 1;
                 MainPivot.SelectionChanged += (sender, e2) =>
                 {
+                    RefreshToday.Visibility = Visibility.Collapsed;
                     RefreshGrade.Visibility = Visibility.Collapsed;
 
                     switch (MainPivot.SelectedIndex)

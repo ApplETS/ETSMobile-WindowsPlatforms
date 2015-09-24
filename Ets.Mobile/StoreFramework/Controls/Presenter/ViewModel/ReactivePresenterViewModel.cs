@@ -6,7 +6,7 @@ namespace ReactiveUI.Xaml.Controls.Presenter
 {
     public class ReactivePresenterViewModel<T> : IReactivePresenterViewModel<T>
     {
-        public static IReactivePresenterViewModel<T> Create(
+        public static IReactivePresenterViewModel<T> Create<T>(
             IObservable<T> value, 
             IObservable<bool> refreshObservable = null, 
             IObservable<bool> isEmptyObservable = null,

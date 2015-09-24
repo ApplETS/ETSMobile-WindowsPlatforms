@@ -1,13 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reactive.Linq;
 using System.Runtime.Serialization;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
+using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
 
 namespace Ets.Mobile.Entities.Signets
 {
     [DataContract]
-    public class EvaluationsVm : ReactiveObject
+    public class EvaluationsVm : ReactiveObject, ICustomColor
     {
+        private string _letterGrade;
+        [DataMember]
+        public string LetterGrade
+        {
+            get { return _letterGrade; }
+            set { this.RaiseAndSetIfChanged(ref _letterGrade, value); }
+        }
+
         private double _actualGrade;
         [DataMember] public double ActualGrade
         { 
@@ -22,32 +34,32 @@ namespace Ets.Mobile.Entities.Signets
             set { this.RaiseAndSetIfChanged(ref _finalGradeOnHundred, value); }
         }
 
-        private double _averageOfClass;
-        [DataMember] public double AverageOfClass 
+        private double _average;
+        [DataMember] public double Average 
         { 
-            get { return _averageOfClass; }
-            set { this.RaiseAndSetIfChanged(ref _averageOfClass, value); }
+            get { return _average; }
+            set { this.RaiseAndSetIfChanged(ref _average, value); }
         }
 
-        private double _standardDeviationOfClass;
-        [DataMember] public double StandardDeviationOfClass 
+        private double _standardDeviation;
+        [DataMember] public double StandardDeviation 
         { 
-            get { return _standardDeviationOfClass; }
-            set { this.RaiseAndSetIfChanged(ref _standardDeviationOfClass, value); }
+            get { return _standardDeviation; }
+            set { this.RaiseAndSetIfChanged(ref _standardDeviation, value); }
         }
 
-        private double _medianOfClass;
-        [DataMember] public double MedianOfClass 
+        private double _median;
+        [DataMember] public double Median 
         { 
-            get { return _medianOfClass; }
-            set { this.RaiseAndSetIfChanged(ref _medianOfClass, value); }
+            get { return _median; }
+            set { this.RaiseAndSetIfChanged(ref _median, value); }
         }
 
-        private double _percentileOfClass;
-        [DataMember] public double PercentileOfClass 
+        private double _percentile;
+        [DataMember] public double Percentile 
         { 
-            get { return _percentileOfClass; }
-            set { this.RaiseAndSetIfChanged(ref _percentileOfClass, value); }
+            get { return _percentile; }
+            set { this.RaiseAndSetIfChanged(ref _percentile, value); }
         }
 
         private double _actualGradeOfIndividualElements;
@@ -65,10 +77,42 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         [DataMember] public List<EvaluationVm> Evaluations { get; set; }
+
+
+
+        #region ICustomColor Implementation
+
+        [DataMember]
+        public byte A { get; set; }
+        [DataMember]
+        public byte R { get; set; }
+        [DataMember]
+        public byte G { get; set; }
+        [DataMember]
+        public byte B { get; set; }
+
+        public void SetNewColor(ColorVm color)
+        {
+            // Set Value for Store
+            A = color.A;
+            R = color.R;
+            G = color.G;
+            B = color.B;
+
+            // Set Value For Evaluations
+            foreach (var eval in Evaluations)
+            {
+                eval.SetNewColor(color);
+            }
+        }
+
+        public SolidColorBrush Brush => new SolidColorBrush(Color.FromArgb(A, R, G, B));
+
+        #endregion
     }
 
     [DataContract]
-    public class EvaluationVm : ReactiveObject
+    public class EvaluationVm : ReactiveObject, ICustomColor
     {
         private string _courseAndGroup;
         [DataMember] public string CourseAndGroup 
@@ -105,12 +149,15 @@ namespace Ets.Mobile.Entities.Signets
             set { this.RaiseAndSetIfChanged(ref _grade, value); }
         }
 
-        private string _total;
-        [DataMember] public string Total 
+        private double _total;
+        [DataMember] public double Total 
         { 
             get { return _total; }
             set { this.RaiseAndSetIfChanged(ref _total, value); }
         }
+
+        [DataMember]
+        public double GradeComputed => Math.Round((_grade / _total) * 100, 2, MidpointRounding.AwayFromZero);
 
         private string _weighting;
         [DataMember] public string Weighting 
@@ -167,5 +214,29 @@ namespace Ets.Mobile.Entities.Signets
             get { return _ignoredFromCalculation; }
             set { this.RaiseAndSetIfChanged(ref _ignoredFromCalculation, value); }
         }
+
+        #region ICustomColor Implementation
+
+        [DataMember]
+        public byte A { get; set; }
+        [DataMember]
+        public byte R { get; set; }
+        [DataMember]
+        public byte G { get; set; }
+        [DataMember]
+        public byte B { get; set; }
+
+        public void SetNewColor(ColorVm color)
+        {
+            // Set Value for Store
+            A = color.A;
+            R = color.R;
+            G = color.G;
+            B = color.B;
+        }
+
+        public SolidColorBrush Brush => new SolidColorBrush(Color.FromArgb(A, R, G, B));
+
+        #endregion
     }
 }

@@ -5,13 +5,16 @@ using System.Net.Http;
 using System.Reactive.Linq;
 using Akavache;
 using System;
+using Windows.UI.Xaml;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Pages.Account;
 using Ets.Mobile.Pages.Main;
 using Ets.Mobile.ViewModel.Pages.Account;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Ets.Mobile.Client.Contracts;
+using Ets.Mobile.Pages.Grade;
 using Ets.Mobile.Pages.Schedule;
+using Ets.Mobile.ViewModel.Pages.Grade;
 using Ets.Mobile.ViewModel.Pages.Schedule;
 using StoreFramework.Logger;
 
@@ -26,6 +29,17 @@ namespace Ets.Mobile.ViewModel
         public ApplicationShell()
 		{
             Router = new RoutingState();
+
+#if WINDOWS_PHONE_APP
+            Windows.Phone.UI.Input.HardwareButtons.BackPressed += (sender, e) =>
+            {
+                if (Router.NavigationStack.Count > 1)
+                {
+                    Router.NavigateBack.Execute(null);
+                    e.Handled = true;
+                }
+            };
+#endif
 
             // Set up Akavache
             // 
@@ -95,6 +109,7 @@ namespace Ets.Mobile.ViewModel
             resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginViewModel>));
             resolver.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
             resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
+            resolver.Register(() => new GradePage(), typeof(IViewFor<GradeViewModel>));
         }
 
 		#endregion

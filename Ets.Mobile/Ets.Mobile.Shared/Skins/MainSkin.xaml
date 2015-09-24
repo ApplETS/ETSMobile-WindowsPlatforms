@@ -10,12 +10,13 @@
 
     <!-- Main Colors                                    -->
     <Color x:Key="EtsRedLowestColor">#680100</Color>
-    <Color x:Key="EtsRedMidColor">#7F0100</Color>    
-    <Color x:Key="EtsRedMediumColor">#FF0200</Color>    
+    <Color x:Key="EtsRedMidColor">#7F0100</Color>
+    <Color x:Key="EtsRedMediumColor">#FF0200</Color>
     <Color x:Key="EtsRedHighColor">#CC0100</Color>
     <Color x:Key="EtsRedHighestColor">#FF4E4C</Color>
 
     <Color x:Key="EtsBackgroundColor">#FFFFFFFF</Color>
+    <Color x:Key="EtsBackgroundMainColor">#f2f2f2</Color>
 
     <Color x:Key="EtsTextMainColor">#323232</Color>
     <Color x:Key="EtsTextSecondaryColor">#666666</Color>
@@ -30,6 +31,7 @@
 
     <Brush x:Key="EtsCommandBarBrush">#FFFFFF</Brush>
     <Brush x:Key="EtsBackgroundBrush">#FFFFFFFF</Brush>
+    <Brush x:Key="EtsBackgroundMainBrush">#f2f2f2</Brush>
 
     <Brush x:Key="EtsTextMainBrush">#323232</Brush>
     <Brush x:Key="EtsTextWhiteBrush">#FFFFFF</Brush>
@@ -41,12 +43,15 @@
     <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
     
     <!-- Sizes                                          -->
-    <x:String x:Key="Size1">36</x:String>
-    <x:String x:Key="Size2">30</x:String>
-    <x:String x:Key="Size3">24</x:String>
-    <x:String x:Key="Size4">18</x:String>
-    <x:String x:Key="Size5">14</x:String>
-    <x:String x:Key="Size6">12</x:String>
+    <x:Double x:Key="Size1">36</x:Double>
+    <x:Double x:Key="Size2">30</x:Double>
+    <x:Double x:Key="Size3">24</x:Double>
+    <x:Double x:Key="Size3_5">20</x:Double>
+    <x:Double x:Key="Size4">18</x:Double>
+    <x:Double x:Key="Size5">14</x:Double>
+    <x:Double x:Key="Size6">12</x:Double>
+    <x:Double x:Key="Size7">10</x:Double>
+    <x:Double x:Key="Size8">8</x:Double>
 
     <!-- Buttons                                        -->
     <Style x:Key="EtsButtonStyle" TargetType="Button">  
@@ -104,7 +109,6 @@
     <Style x:Key="EtsTextBlockRedHighestColor" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource EtsRedHighestColor}" />
     </Style>
-
     <Style x:Key="EtsTextBlockMainColor1" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size1}" />
@@ -126,7 +130,7 @@
         <Setter Property="FontSize" Value="{StaticResource Size5}" />
     </Style>
 
-        <!-- White TextBlock -->
+    <!-- White TextBlock -->
     <Style x:Key="EtsTextBlockWhite1" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size1}" />
@@ -148,91 +152,6 @@
         <Setter Property="FontSize" Value="{StaticResource Size5}" />
     </Style>
 
-    <!-- Localized Textblock                                      -->
-    <Style x:Key="EtsLocalizedTextStyle" TargetType="c:LocalizedTextBlock">
-        <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
-        <Setter Property="FontWeight" Value="Thin" />
-    </Style>
-
-    <Style x:Key="EtsLocalizedTextBlockRedLowestColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsRedLowestColor}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockRedMidColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsRedMidColor}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockRedMediumColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsRedMediumColor}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockRedHighColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsRedHighColor}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockRedHighestColor" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsRedHighestColor}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockMainColor1" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size1}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockMainColor2" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size2}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockMainColor3" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size3}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockMainColor4" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size4}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockMainColor5" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size5}" />
-    </Style>
-
-        <!-- White -->
-    <Style x:Key="EtsLocalizedTextBlockWhite1" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size1}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockWhite2" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size2}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockWhite3" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size3}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockWhite4" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size4}" />
-    </Style>
-    <Style x:Key="EtsLocalizedTextBlockWhite5" TargetType="c:LocalizedTextBlock" BasedOn="{StaticResource EtsLocalizedTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size5}" />
-    </Style>
-
-    <!-- LocalizedTextBlock -->
-    <Style TargetType="c:LocalizedTextBlock">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="c:LocalizedTextBlock">
-                    <Border
-                       Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
-                        <TextBlock
-                            FontFamily="{TemplateBinding FontFamily}"
-                            FontSize="{TemplateBinding FontSize}"
-                            FontWeight="{TemplateBinding FontWeight}"
-                            Foreground="{TemplateBinding Foreground}"   
-                            Text="{Binding OutputText, RelativeSource={RelativeSource TemplatedParent}}" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
     <!-- ListView                                       -->
     <Style x:Key="EtsListViewHeaderItem" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />

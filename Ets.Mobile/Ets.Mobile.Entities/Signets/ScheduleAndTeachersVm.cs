@@ -12,9 +12,9 @@ namespace Ets.Mobile.Entities.Signets
     public class ScheduleAndTeachersVm : ReactiveObject
     {
         [DataMember]
-        public List<ActivityVm> Activities { get; set; }
+        public ActivityVm[] Activities { get; set; }
 
-        public List<TeacherVm> Teachers { get; set; }
+        public TeacherVm[] Teachers { get; set; }
     }
 
     [DataContract]

@@ -19,9 +19,8 @@ namespace Ets.Mobile.Pages.Account
             statusBar.BackgroundOpacity = 0;
 
             // View ModelGroup
-            RxApp.SuspensionHost.ObserveAppState<LoginViewModel>()
-                .BindTo(this, x => x.ViewModel);
-            //this.OneWayBind(ViewModel, x => x.HostScreen, x => x.LoginRoutedViewHost);
+            //RxApp.SuspensionHost.ObserveAppState<LoginViewModel>()
+            //    .BindTo(this, x => x.ViewModel);
 
             // Form
             this.Bind(ViewModel, x => x.UserName, x => x.UserName.Text);

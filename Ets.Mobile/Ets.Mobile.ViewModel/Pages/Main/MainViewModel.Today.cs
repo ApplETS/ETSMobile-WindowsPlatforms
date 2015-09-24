@@ -37,7 +37,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                         .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
                         .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
                             var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
-                            await SettingsService().ApplyColorOnCoursesForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
+                            await SettingsService().ApplyColorOnItemsForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
                             return schedule;
                         }))
                         .Where(x => x != null)
@@ -82,7 +82,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             Today = TodayItems.CreateDerivedCollection(
                 x => new ScheduleTileViewModel(x),
                 x => x.Dispose(),
-                x => x.StartDate == DateTime.Now,
+                x => x.StartDate.Date.Equals(DateTime.Now.Date),
                 (x, y) => TimeSpan.Compare(x.Model.StartDate.TimeOfDay, y.Model.StartDate.TimeOfDay));
 
             TodayPresenter = ReactivePresenterViewModel<ReactiveList<ScheduleVm>>.Create(TodayItems, Today, LoadCoursesForToday.IsExecuting, _scheduleExceptionSubject);
@@ -93,7 +93,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         [DataMember] public ReactiveList<ScheduleVm> TodayItems { get; protected set; }
         [DataMember] public IReactiveDerivedList<ScheduleTileViewModel> Today { get; protected set; }
         public IReactivePresenterViewModel<ReactiveList<ScheduleVm>> TodayPresenter { get; protected set; }
-        public ReactiveCommand<List<ScheduleVm>> LoadCoursesForToday { get; protected set; }
+        public ReactiveCommand<ScheduleVm[]> LoadCoursesForToday { get; protected set; }
         private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion

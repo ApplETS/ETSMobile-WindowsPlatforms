@@ -182,14 +182,14 @@ namespace Ets.Mobile.Business.DesignTime
             var evaluationsResult = new EvaluationsResult
             {
                 ErrorMessage = null,
-                StandardDeviationOfClass = 95,
+                StandardDeviation = 95,
                 Evaluations = null,
-                MedianOfClass = 75,
-                AverageOfClass = 79,
+                Median = 75,
+                Average = 79,
                 ActualGrade = 95,
                 ActualGradeOfIndividualElements = 95,
                 GradeOnHundredOfIndividualElements = 95,
-                PercentileOfClass = 75,
+                Percentile = 75,
                 FinalGradeOnHundred = 95
             };
 

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Business.DesignTime;
 using Ets.Mobile.Client.Contracts;
-using Ets.Mobile.Client.DesignTime;
 using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Client.Factories.Implementations;
 using Ets.Mobile.Client.Services;
@@ -28,25 +27,17 @@ namespace Ets.Mobile.Client.Shared.Tests.Services
     {
         public Task<ISignetsService> GetSignetsServices()
         {
-            if (UseDT)
+            locator.Register(() =>
+                new SignetsServiceInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
+                typeof(SignetsServiceInfo)
+            );
+            var client = new HttpClient(NetCache.UserInitiated)
             {
-                locator.Register(() => new DtSignetsBusinessService(), typeof(ISignetsBusinessService));
-                locator.Register(() => new DtSignetsService(locator.GetService<ISignetsBusinessService>()), typeof(ISignetsService));
-            }
-            else
-            {
-                locator.Register(() =>
-                    new SignetsServiceInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
-                    typeof(SignetsServiceInfo)
-                );
-                var client = new HttpClient(NetCache.UserInitiated)
-                {
-                    BaseAddress = new Uri("https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx"),
-                };
-                locator.Register(() => RestService.For<ISignetsBusinessService>(client), typeof(ISignetsBusinessService));
-                locator.Register(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
-                locator.Register(() => new SignetsService(locator.GetService<ISignetsBusinessService>(), locator.GetService<SignetsAbstractFactory>()), typeof(ISignetsService));
-            }
+                BaseAddress = new Uri("https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx"),
+            };
+            locator.Register(() => RestService.For<ISignetsBusinessService>(client), typeof(ISignetsBusinessService));
+            locator.Register(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
+            locator.Register(() => new SignetsService(locator.GetService<ISignetsBusinessService>(), locator.GetService<SignetsAbstractFactory>()), typeof(ISignetsService));
 
             return Task.FromResult(locator.GetService<ISignetsService>());
         }

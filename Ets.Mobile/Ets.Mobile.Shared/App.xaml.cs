@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -28,9 +30,15 @@ namespace Ets.Mobile
         {
             InitializeComponent();
 
+
+
             // Crittercism
             Crittercism.Init("55e87dc18d4d8c0a00d07811");
+            
             UnhandledException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - wasHandled:{e.Handled} - {e.Message}", e.Exception));
+
+            // ensure unobserved task exceptions (unawaited async methods returning Task or Task<T>) are handled
+            TaskScheduler.UnobservedTaskException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - observed:{e.Observed} - {e.Exception.Message}", e.Exception));
 
             // Initialize Rx App
             Locator.CurrentMutable.RegisterConstant(new ApplicationShell(), typeof(IScreen));
@@ -42,6 +50,77 @@ namespace Ets.Mobile
             // Default Universal Behavior
             Suspending += OnSuspending;
         }
+        public class AsyncSynchronizationContext : SynchronizationContext
+        {
+            public static AsyncSynchronizationContext Register()
+            {
+                var syncContext = Current;
+                if (syncContext == null)
+                    throw new InvalidOperationException("Ensure a synchronization context exists before calling this method.");
+
+                var customSynchronizationContext = syncContext as AsyncSynchronizationContext;
+
+                if (customSynchronizationContext == null)
+                {
+                    customSynchronizationContext = new AsyncSynchronizationContext(syncContext);
+                    SetSynchronizationContext(customSynchronizationContext);
+                }
+
+                return customSynchronizationContext;
+            }
+
+            private readonly SynchronizationContext _syncContext;
+
+            public AsyncSynchronizationContext(SynchronizationContext syncContext)
+            {
+                _syncContext = syncContext;
+            }
+
+            public override SynchronizationContext CreateCopy()
+            {
+                return new AsyncSynchronizationContext(_syncContext.CreateCopy());
+            }
+
+            public override void OperationCompleted()
+            {
+                _syncContext.OperationCompleted();
+            }
+
+            public override void OperationStarted()
+            {
+                _syncContext.OperationStarted();
+            }
+
+            public override void Post(SendOrPostCallback d, object state)
+            {
+                _syncContext.Post(WrapCallback(d), state);
+            }
+
+            public override void Send(SendOrPostCallback d, object state)
+            {
+                _syncContext.Send(d, state);
+            }
+
+            private static SendOrPostCallback WrapCallback(SendOrPostCallback sendOrPostCallback)
+            {
+                return state =>
+                {
+                    Exception exception = null;
+
+                    try
+                    {
+                        sendOrPostCallback(state);
+                    }
+                    catch (Exception ex)
+                    {
+                        exception = ex;
+                    }
+
+                    if (exception != null)
+                        Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {exception.Message} - observed:{exception.InnerException}", exception.InnerException));
+                };
+            }
+        }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -52,6 +131,7 @@ namespace Ets.Mobile
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             base.OnLaunched(e);
+            AsyncSynchronizationContext.Register();
             _autoSuspendHelper.OnLaunched(e);
 
             var rootFrame = Window.Current.Content as Frame;

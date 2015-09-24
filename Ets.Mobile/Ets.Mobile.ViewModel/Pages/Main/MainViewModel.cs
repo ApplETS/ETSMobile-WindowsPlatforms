@@ -2,8 +2,10 @@
 using System.Reactive;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts;
+using Ets.Mobile.ViewModel.Pages.Grade;
 using Ets.Mobile.ViewModel.Pages.Schedule;
 using ReactiveUI;
 
@@ -32,6 +34,13 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             InitializeSideNavigation();
             InitializeToday();
             InitializeGrade();
+            InitializeNavigations();
+        }
+
+        #region Navigate
+
+        protected void InitializeNavigations()
+        {
             NavigateToSchedule = ReactiveCommand.CreateAsyncTask(_ =>
             {
                 HostScreen.Router.Navigate.Execute(new ScheduleViewModel(HostScreen));
@@ -39,9 +48,9 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             });
         }
 
-        #region Navigate
-
         public ReactiveCommand<Unit> NavigateToSchedule { get; protected set; }
+        
+        public ReactiveCommand<Unit> NavigateToGrade { get; protected set; }
 
         #endregion
     }

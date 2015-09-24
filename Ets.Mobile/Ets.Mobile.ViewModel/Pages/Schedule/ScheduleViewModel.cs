@@ -15,9 +15,6 @@ using Refit;
 using Splat;
 using StoreFramework.Controls.Presenter.Exceptions;
 using StoreFramework.Messaging.Common;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
 
 namespace Ets.Mobile.ViewModel.Pages.Schedule
 {
@@ -43,7 +40,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
                         .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
                         .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
                             var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
-                            await SettingsService().ApplyColorOnCoursesForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
+                            await SettingsService().ApplyColorOnItemsForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
                             return schedule;
                         }))
                         .Where(x => x != null)

@@ -9,16 +9,20 @@
     <Import_RootNamespace>Ets.Mobile.ViewModel</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Comparators\ProgramsComparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Comparators\SemestersComparator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeViewModelGroup.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Grade\GradeViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeSummaryViewModelGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeSummaryViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\IMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DesignTimeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\GradeViewModelDt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\MainViewModelDt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ScheduleException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Account\LoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\GradeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Schedule\ScheduleViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Grade.cs" />

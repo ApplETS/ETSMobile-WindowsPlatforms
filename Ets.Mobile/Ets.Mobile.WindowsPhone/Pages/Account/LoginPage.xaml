@@ -102,9 +102,9 @@
 				<CompositeTransform/>
 			</Image.RenderTransform>
 			<Image.Triggers>
-				<EventTrigger x:Name="OnLoaded" RoutedEvent="Canvas.Loaded">
+				<EventTrigger RoutedEvent="Canvas.Loaded">
 					<BeginStoryboard>
-						<Storyboard x:Name="MoveBackground"   RepeatBehavior="Forever">
+						<Storyboard RepeatBehavior="Forever">
 							<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="EtsBuilding">
 								<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
 								<EasingDoubleKeyFrame KeyTime="0:1:7" Value="-940"/>
@@ -116,12 +116,12 @@
 			</Image.Triggers>
 		</Image>
 
-		<Grid x:Name="StartPanel">
+		<Grid>
 			<Image x:Name="BackgroundImage" VerticalAlignment="Top"
 				Margin="30,60,30,0" 
 				Source="/Assets/Account/Login/Ets-Devise.png" />
 
-            <Button x:Name="SwitchToLogin" Content="SE CONNECTER" 
+            <Button x:Name="SwitchToLogin" Content="{Binding [Connect], Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUpperConverter}}" 
 				HorizontalAlignment="Stretch"
 				Style="{StaticResource EtsLoginButton}"
 				VerticalAlignment="Bottom" Margin="0,0,0,-11"
@@ -144,9 +144,8 @@
                 <SolidColorBrush Color="{StaticResource EtsRedMediumColor}" Opacity="0.5"/>
 			</Grid.Background>
             
-
 			<!--TitlePanel contains the name of the application and page title-->
-			<TextBlock Margin="12,0,0,0" Grid.Row="1" Text="CONNEXION" FontSize="32" VerticalAlignment="Center"/>
+            <TextBlock Margin="12,0,0,0" Grid.Row="1" Text="{Binding [Connect], Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUpperConverter}}" FontSize="32" VerticalAlignment="Center"/>
 
 			<Grid Grid.Row="2" Margin="12,0,12,0">
 				<Grid.ColumnDefinitions>
@@ -165,7 +164,7 @@
 					VerticalAlignment="Bottom"
 					TextWrapping="Wrap"
 					FontSize="18"
-					Text="code universel" 
+					Text="{Binding [Username], Source={StaticResource LocalizedStrings}}" 
 					Foreground="White" />
                 <TextBox Grid.Row="1"                         
 					x:Name="UserName"
@@ -176,7 +175,7 @@
 					VerticalAlignment="Bottom"
 					TextWrapping="Wrap" 
 					FontSize="18"
-					Text="mot de passe" 
+					Text="{Binding [Password], Source={StaticResource LocalizedStrings}}" 
 					Foreground="White"/>
 				<PasswordBox Grid.Row="3"
 					x:Name="Password"
@@ -188,7 +187,7 @@
 					<Button Height="40"
                         Name="SubmitCommand"
 						HorizontalAlignment="Stretch"
-						Content="connexion"
+						Content="{Binding [Connect], Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToLowerConverter}}"
 						Style="{StaticResource EtsButtonRedLowestColor}" 
 						BorderThickness="0" />
 				</StackPanel>

@@ -29,11 +29,11 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                 {
                     Cache.GetAllKeys().Subscribe(x => string.Join(",", x));
                     return Cache.GetAndFetchLatest(ViewModelKeys.UserProfile, () => ClientServices().SignetsService.UserDetails())
-                        .Do(ud => Cache.LoadImage("gravatar")
+                        .Do(ud => Cache.LoadImage(ViewModelKeys.Gravatar)
                             .ObserveOn(RxApp.MainThreadScheduler)
                             .Catch<IBitmap, KeyNotFoundException>(x => Observable.Empty<IBitmap>())
                             .Where(x => x != null)
-                            .Subscribe(x => ud.Image = x));
+                            .Subscribe(image => ud.Image = image));
                 });
             });
 

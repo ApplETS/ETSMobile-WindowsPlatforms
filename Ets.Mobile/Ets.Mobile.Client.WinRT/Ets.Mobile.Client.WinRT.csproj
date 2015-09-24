@@ -85,6 +85,25 @@
     <Compile Include="RefitStubs.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ets.Mobile.Business.WinRT\Ets.Mobile.Business.WinRT.csproj">
+      <Project>{51d4c81f-ac59-4516-b307-aff1a779e11f}</Project>
+      <Name>Ets.Mobile.Business.WinRT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Entities.WinRT\Ets.Mobile.Entities.WinRT.csproj">
+      <Project>{17d45b8a-6118-4502-b079-227c45968c7c}</Project>
+      <Name>Ets.Mobile.Entities.WinRT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.StoreFramework.WinRT\Ets.Mobile.StoreFramework.WinRT.csproj">
+      <Project>{fb2f492d-f022-4436-838a-f7c48de0dba4}</Project>
+      <Name>Ets.Mobile.StoreFramework.WinRT</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs, Version=12.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Akavache, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\akavache.core.4.1.1\lib\Win8\Akavache.dll</HintPath>
       <Private>True</Private>
@@ -102,7 +121,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Punchclock, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -151,40 +170,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Ets.Mobile.Business.WinRT\Ets.Mobile.Business.WinRT.csproj">
-      <Project>{51d4c81f-ac59-4516-b307-aff1a779e11f}</Project>
-      <Name>Ets.Mobile.Business.WinRT</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.Entities.WinRT\Ets.Mobile.Entities.WinRT.csproj">
-      <Project>{17d45b8a-6118-4502-b079-227c45968c7c}</Project>
-      <Name>Ets.Mobile.Entities.WinRT</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.StoreFramework.WinRT\Ets.Mobile.StoreFramework.WinRT.csproj">
-      <Project>{fb2f492d-f022-4436-838a-f7c48de0dba4}</Project>
-      <Name>Ets.Mobile.StoreFramework.WinRT</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="Microsoft.VCLibs, Version=12.0">
-      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
-    </SDKReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\Ets.Mobile.Client\Ets.Mobile.Client.projitems" Label="Shared" Condition="Exists('..\Ets.Mobile.Client\Ets.Mobile.Client.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <Import Project="..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets" Condition="Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets')" />
+  <Import Project="..\packages\refit.2.3.0\build\refit.targets" Condition="Exists('..\packages\refit.2.3.0\build\refit.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets'))" />
     <Error Condition="!Exists('..\packages\refit.2.3.0\build\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\refit.2.3.0\build\refit.targets'))" />
+    <Error Condition="!Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets'))" />
   </Target>
-  <Import Project="..\packages\refit.2.3.0\build\refit.targets" Condition="Exists('..\packages\refit.2.3.0\build\refit.targets')" />
+  <Import Project="..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets" Condition="Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

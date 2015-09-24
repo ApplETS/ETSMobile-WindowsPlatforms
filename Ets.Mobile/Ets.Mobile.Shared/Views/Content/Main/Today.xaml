@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:ReactiveUI.Xaml.Controls"
-    xmlns:storeControls="using:StoreFramework.Controls"
     mc:Ignorable="d"
     d:DesignHeight="800"
     d:DesignWidth="400">
@@ -56,7 +55,7 @@
                                                         <RowDefinition Height="50*" />
                                                     </Grid.RowDefinitions>
                                                     <TextBlock Text="{Binding TimeRemaining, FallbackValue=0}" FontSize="26"/>
-                                                    <storeControls:LocalizedTextBlock Key="MinutesRemaining" DefaultValue="minutes restantes" Grid.Row="1" TextWrapping="WrapWholeWords" />
+                                                    <TextBlock Text="{Binding [MinutesRemaining], Source={StaticResource LocalizedStrings}}" Grid.Row="1" TextWrapping="WrapWholeWords" />
                                                 </Grid>
                                             </Border>
                                         </Grid>
@@ -70,7 +69,6 @@
                                 </Grid>
                             </Border>
                         </Border>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -84,7 +82,7 @@
         <controls:ReactivePresenter.EmptyTemplate>
             <DataTemplate>
                 <Grid>
-                    <storeControls:LocalizedTextBlock Key="TodayEmpty" DefaultValue="Vous ne semblez pas avoir de cours aujourd'hui." Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
+                    <TextBlock Text="{Binding [TodayEmpty], Source={StaticResource LocalizedStrings}}" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
                 </Grid>
             </DataTemplate>
         </controls:ReactivePresenter.EmptyTemplate>

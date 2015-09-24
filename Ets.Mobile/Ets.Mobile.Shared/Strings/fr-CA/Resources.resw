@@ -117,20 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActualGrade" xml:space="preserve">
+    <value>Note à ce jour</value>
+  </data>
   <data name="ApplicationName" xml:space="preserve">
-    <value>Ets Mobile</value>
+    <value>ÉTS Mobile</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Éts Mobile</value>
+    <value>ÉTS Mobile</value>
   </data>
   <data name="Autumn" xml:space="preserve">
     <value>Automne</value>
   </data>
-  <data name="GradesHeader" xml:space="preserve">
+  <data name="Average" xml:space="preserve">
+    <value>Moyenne</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>CONNEXION</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Cote</value>
+  </data>
+  <data name="GradePage_Header" xml:space="preserve">
     <value>Résultats</value>
+  </data>
+  <data name="Median" xml:space="preserve">
+    <value>Médiane</value>
   </data>
   <data name="MinutesRemaining" xml:space="preserve">
     <value>minutes restantes</value>
+  </data>
+  <data name="MyGrades" xml:space="preserve">
+    <value>Mes notes</value>
   </data>
   <data name="NetworkError" xml:space="preserve">
     <value>Assurez-vous que vous êtes connecté à un réseau Wi-Fi ou réseau cellulaire et réessayez à nouveau.</value>
@@ -144,11 +162,29 @@
   <data name="No" xml:space="preserve">
     <value>Non</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>mot de passe</value>
+  </data>
+  <data name="Percentile" xml:space="preserve">
+    <value>Rang centile</value>
+  </data>
+  <data name="PivotItem_Grades" xml:space="preserve">
+    <value>Résultats</value>
+  </data>
   <data name="ProfileHeader" xml:space="preserve">
     <value>Profil</value>
   </data>
+  <data name="SelectProgram" xml:space="preserve">
+    <value>SÉLECTION D'UN PROGRAMME</value>
+  </data>
+  <data name="StandardDeviation" xml:space="preserve">
+    <value>Écart-type</value>
+  </data>
   <data name="StudentIsInactiveInCurrentSemester" xml:space="preserve">
     <value>Vous n'êtes pas en session active.</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Sommaire</value>
   </data>
   <data name="Summer" xml:space="preserve">
     <value>Été</value>
@@ -158,6 +194,12 @@
   </data>
   <data name="TodayHeader" xml:space="preserve">
     <value>Aujourd'hui</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>code universel</value>
+  </data>
+  <data name="Weighting" xml:space="preserve">
+    <value>Pondération</value>
   </data>
   <data name="Winter" xml:space="preserve">
     <value>Hiver</value>

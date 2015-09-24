@@ -128,7 +128,7 @@
         <controls:ReactivePresenter.EmptyTemplate>
             <DataTemplate>
                 <Grid>
-                    <storeControls:LocalizedTextBlock Key="SchedulesEmpty" DefaultValue="There is no Schedules to show." Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
+                    <TextBox Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP" Text="{Binding [ScheduleEmpty], Source={StaticResource LocalizedStrings}}"/>
                 </Grid>
             </DataTemplate>
         </controls:ReactivePresenter.EmptyTemplate>

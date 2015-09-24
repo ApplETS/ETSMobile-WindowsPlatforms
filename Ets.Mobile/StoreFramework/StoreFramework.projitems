@@ -9,8 +9,14 @@
     <Import_RootNamespace>StoreFramework</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Bordered\BorderedControl.xaml.cs">
+      <DependentUpon>BorderedControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Bordered\BorderedControlDesign.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Presenter\Exceptions\ReactivePresenterExceptionBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToLowerConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ThrownExceptionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\LocalizedString.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\CrittercismLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\DefaultUserEnabledLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\IUserEnabledLogger.cs" />
@@ -20,9 +26,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\Notifications\InAppNotificationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\Notifications\INotificationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Modules\IModuleInitializer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\LocalizedTextBlock.xaml.cs">
-      <DependentUpon>LocalizedTextBlock.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Presenter\Controls\ReactivePresenter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Presenter\ViewModel\IReactivePresenterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Presenter\ViewModel\ReactivePresenterViewModel.cs" />
@@ -46,7 +49,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ScreenWidthMultiplier.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\LocalizedTextBlock.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Bordered\BorderedControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

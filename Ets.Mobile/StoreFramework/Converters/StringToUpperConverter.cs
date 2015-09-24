@@ -8,9 +8,10 @@ namespace StoreFramework.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && value is string)
+            var s = value as string;
+            if (s != null)
             {
-                return ((string)value).ToUpper();
+                return s.ToUpper();
             }
 
             return value;
@@ -18,9 +19,10 @@ namespace StoreFramework.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value != null && value is string)
+            var s = value as string;
+            if (s != null)
             {
-                return ((string)value).ToUpper();
+                return s.ToUpper();
             }
 
             return value;

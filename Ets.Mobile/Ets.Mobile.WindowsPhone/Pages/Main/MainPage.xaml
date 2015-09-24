@@ -5,13 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
     xmlns:menu="using:Ets.Mobile.Pages.Shared"
-    xmlns:c="using:StoreFramework.Controls"
     xmlns:main="using:Ets.Mobile.Views.Content.Main"
-    xmlns:controls="using:ReactiveUI.Xaml.Controls"
     DataContext="{Binding}"
     d:DataContext="{d:DesignInstance Type=designTime:MainViewModelDt, IsDesignTimeCreatable=True}"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
-    xmlns:views="using:StoreFramework.Views"
     xmlns:slideView="using:SlideView.Library"
     xmlns:shared="using:Ets.Mobile.Views.Content.Shared"
     mc:Ignorable="d">
@@ -19,7 +16,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Skins/PhoneSkin.xaml" />
-                <ResourceDictionary Source="/Skins/MainSkin.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -33,34 +29,29 @@
             <Border Grid.Row="0">
                 <StackPanel Margin="0,5,0,0" Orientation="Horizontal" VerticalAlignment="Center">
                     <menu:MenuButton x:Name="SideViewButton" Height="60" Width="60"/>
-                    <c:LocalizedTextBlock VerticalAlignment="Center" Margin="10,-7,0,0" Key="ApplicationTitle" DefaultValue="Ets Mobile" Style="{StaticResource EtsLocalizedTextBlockMainColor2}" />
+                    <TextBlock VerticalAlignment="Center" Margin="10,-7,0,0" Text="{Binding [ApplicationTitle], Source={StaticResource LocalizedStrings}}" Style="{StaticResource EtsTextBlockMainColor2}" />
                 </StackPanel>
             </Border>
 
-            <Grid Grid.Row="1" Background="#f2f2f2">
+            <Grid Grid.Row="1" Background="{StaticResource EtsBackgroundMainBrush}">
                 <slideView:SlideView x:Name="SlideView" IsSlideEnabled="False" SelectedIndex="1">
-                    <Grid Background="#f2f2f2">
+                    <Grid Background="{StaticResource EtsBackgroundMainBrush}">
                         <shared:SideNavigation x:Name="SideNavigation" />
                     </Grid>
-                    <Grid Background="#f2f2f2">
+                    <Grid Background="{StaticResource EtsBackgroundMainBrush}">
                         <Pivot x:Name="MainPivot">
                             <PivotItem Margin="15,0,15,0">
                                 <PivotItem.Header>
-                                    <c:LocalizedTextBlock Key="TodayHeader" DefaultValue="Aujourd'hui" CharacterCase="Upper" Background="#f2f2f2" />
+                                    <TextBlock Text="{Binding [TodayHeader], Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUpperConverter}}" />
                                 </PivotItem.Header>
                                 <main:Today x:Name="Today" />
                             </PivotItem>
                             <PivotItem Margin="15,0,15,0">
                                 <PivotItem.Header>
-                                    <c:LocalizedTextBlock Key="GradesHeader" DefaultValue="Résultats" CharacterCase="Upper" />
+                                    <TextBlock Text="{Binding [PivotItem_Grades], Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUpperConverter}}" />
                                 </PivotItem.Header>
                                 <main:Grades x:Name="Grade" />
                             </PivotItem>
-                            <!--<PivotItem>
-                                <PivotItem.Header>
-                                    <c:LocalizedTextBlock Key="NewsHeader" DefaultValue="Nouvelles" CharacterCase="Upper" />
-                                </PivotItem.Header>
-                            </PivotItem>-->
                         </Pivot>
                     </Grid>
                 </slideView:SlideView>
@@ -69,7 +60,7 @@
     </Grid>
     
     <Page.BottomAppBar>
-        <CommandBar x:Name="BottomBar" Background="White" Foreground="{StaticResource EtsRedHighBrush}" Opacity="0.7">
+        <CommandBar x:Name="BottomBar" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Opacity="0.7">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshToday" Icon="Refresh" Label="Refresh" />
                 <AppBarButton x:Name="ShowSchedule" Icon="Calendar" Label="Calendar" />

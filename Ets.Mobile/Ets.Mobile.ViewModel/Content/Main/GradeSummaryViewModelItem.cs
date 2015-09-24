@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Reactive;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Ets.Mobile.Entities.Signets;
+using Ets.Mobile.ViewModel.Pages.Grade;
 using ReactiveUI;
+using Splat;
 
 namespace Ets.Mobile.ViewModel.Content.Main
 {
-    public class GradeViewModelItem : ReactiveObject
+    public class GradeSummaryViewModelItem : ReactiveObject
     {
         private CourseVm _course;
         public CourseVm Course {
@@ -19,10 +24,13 @@ namespace Ets.Mobile.ViewModel.Content.Main
             set { this.RaiseAndSetIfChanged(ref _semester, value); }
         }
 
-        public GradeViewModelItem(string semester, CourseVm course)
+        public ReactiveCommand<Unit> NavigateToGrade { get; protected set; }
+
+        public GradeSummaryViewModelItem(string semester, CourseVm course, ReactiveCommand<Unit> command)
         {
             Semester = semester;
             Course = course;
+            NavigateToGrade = command;
         }
     }
 }

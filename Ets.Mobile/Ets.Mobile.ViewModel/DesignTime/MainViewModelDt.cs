@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using Windows.ApplicationModel;
-using Windows.UI.Xaml.Media;
 using Ets.Mobile.ViewModel.Content.Main;
 using Ets.Mobile.ViewModel.Contracts;
 using ReactiveUI;
@@ -25,7 +24,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
 
         public class GradeTileVm
         {
-            public GradeViewModelGroup ModelGroup { get; set; }
+            public GradeSummaryViewModelGroup ModelGroup { get; set; }
         }
 
         public MainViewModelDt()
@@ -99,7 +98,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                 {
                     new GradeTileVm
                     {
-                        ModelGroup = new GradeViewModelGroup("H2015", new List<CourseVm>
+                        ModelGroup = new GradeSummaryViewModelGroup("H2015", new []
                         {
                             new CourseVm
                             {
@@ -111,12 +110,12 @@ namespace Ets.Mobile.ViewModel.DesignTime
                                 G = AppColors.Red.G,
                                 B = AppColors.Red.B
                             }
-                        })
+                        }, null)
                         {
                             Key = "H2015",
-                            GradesItems = new ReactiveList<GradeViewModelItem>
+                            GradesItems = new ReactiveList<GradeSummaryViewModelItem>
                             {
-                                new GradeViewModelItem("H2015", new CourseVm
+                                new GradeSummaryViewModelItem("H2015", new CourseVm
                                 {
                                     Group = "01",
                                     Acronym = "LOG210",
@@ -125,7 +124,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                                     R = AppColors.Red.R,
                                     G = AppColors.Red.G,
                                     B = AppColors.Red.B,
-                                })
+                                }, null)
                             }
                         }
                     }

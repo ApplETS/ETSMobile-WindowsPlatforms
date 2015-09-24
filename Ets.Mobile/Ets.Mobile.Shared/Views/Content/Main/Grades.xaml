@@ -8,7 +8,8 @@
 	mc:Ignorable="d"
 	xmlns:views="using:StoreFramework.Views"
 	xmlns:controls="using:ReactiveUI.Xaml.Controls"
-	xmlns:controls1="using:StoreFramework.Controls"
+	xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+	xmlns:core="using:Microsoft.Xaml.Interactions.Core"
 	d:DesignHeight="800"
 	d:DesignWidth="400">
     <UserControl.Resources>
@@ -18,7 +19,11 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
-
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction Command="{Binding NavigateToGrade}" CommandParameter="{Binding Semester}"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
                 <StackPanel Grid.Column="0" Orientation="Vertical">
                     <TextBlock 
                            FontSize="24" 
@@ -49,19 +54,24 @@
             <Grid>
                 <Grid.Resources>
                     <CollectionViewSource x:Name="GradeCollectionViewSource"
-                            IsSourceGrouped="True"
-                            ItemsPath="Model.GradesItems"
-						    Source="{Binding}" />
+                        IsSourceGrouped="True"
+                        ItemsPath="Model.GradesItems"
+						Source="{Binding}" />
                     <views:ScreenWidthMultiplier x:Key="ScreenWidth" />
                 </Grid.Resources>
                 <ListView 
                     Margin="-5,0,0,0"
                     ItemsSource="{Binding Source={StaticResource GradeCollectionViewSource}}" 
-	                    ItemTemplate="{StaticResource GradeDataTemplate}"
-		                ScrollViewer.HorizontalScrollMode="Disabled"    
-			            ScrollViewer.IsHorizontalScrollChainingEnabled="False"
-			            IsItemClickEnabled="True"
-			            SelectionMode="None">
+	                ItemTemplate="{StaticResource GradeDataTemplate}"
+		            ScrollViewer.HorizontalScrollMode="Disabled"    
+			        ScrollViewer.IsHorizontalScrollChainingEnabled="False"
+			        IsItemClickEnabled="True"
+			        SelectionMode="None">
+                    <!--<interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="ItemClick">
+                            <core:InvokeCommandAction Command="{Binding NavigateToGrade}" CommandParameter="{Binding Semester}"/>
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>-->
                     <ListView.ItemContainerTransitions>
                         <TransitionCollection>
                             <EntranceThemeTransition/>
@@ -94,9 +104,7 @@
                             ValueTemplate="{StaticResource GradesPresenterValue}">
         <controls:ReactivePresenter.EmptyTemplate>
             <DataTemplate>
-                <Grid>
-                    <controls1:LocalizedTextBlock Key="GradesEmpty" DefaultValue="There is no grades to show." Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
-                </Grid>
+                <TextBlock Text="{Binding [GradesEmpty], Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUpperConverter}}" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
             </DataTemplate>
         </controls:ReactivePresenter.EmptyTemplate>
         <controls:ReactivePresenter.RefreshingTemplate>
@@ -110,5 +118,4 @@
             </DataTemplate>
         </controls:ReactivePresenter.RefreshingTemplate>
     </controls:ReactivePresenter>
-    
 </UserControl>

@@ -17,6 +17,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ApplicationShell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeItem.xaml.cs">
+      <DependentUpon>GradeItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeSummary.xaml.cs">
+      <DependentUpon>GradeSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Main\Grades.xaml.cs">
       <DependentUpon>Grades.xaml</DependentUpon>
     </Compile>
@@ -33,6 +39,7 @@
       <DependentUpon>SideNavigation.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Account\LoginPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Grade\GradePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Main\MainPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Schedule\SchedulePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Shell\ShellPage.cs" />
@@ -48,6 +55,14 @@
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Skins\ReactivePresenter.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\Content\Main\Grades.xaml">
       <SubType>Designer</SubType>

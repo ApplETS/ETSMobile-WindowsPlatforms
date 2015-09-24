@@ -13,8 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ClientKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ICustomSettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISignetsService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DTCustomServiceSettings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DTSignetsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Signets\SignetsExceptionHandlerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Abstractions\SignetsAbstractFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\CoursesFactory.cs" />

@@ -53,7 +53,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private string _title;
-        public string Title
+        [DataMember] public string Title
         {
         	get { return _title; }
             set { this.RaiseAndSetIfChanged(ref _title, value); }

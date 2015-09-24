@@ -27,23 +27,16 @@ namespace Ets.Mobile.Business.Shared.Tests.Services
 
 			if (locator.GetService<ISignetsBusinessService>() != null)
 			{
-				if (UseDT)
-				{
-                    locator.Register(() => new DtSignetsBusinessService(), typeof(ISignetsBusinessService));
-				}
-				else
-				{
-                    locator.Register(() => new SignetsAccountVm(TestSettings.Username, TestSettings.Password), typeof(ICredentials));
-                    locator.Register(() =>
-                        new SignetsServiceInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" }, 
-                        typeof(IClientInfo)
-                    );
-                    var client = new HttpClient(NetCache.UserInitiated)
-                    {
-                        BaseAddress = new Uri("https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx"),
-                    };
-                    locator.Register(() => RestService.For<ISignetsBusinessService>(client), typeof(ISignetsBusinessService));
-				}                
+                locator.Register(() => new SignetsAccountVm(TestSettings.Username, TestSettings.Password), typeof(ICredentials));
+                locator.Register(() =>
+                    new SignetsServiceInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" }, 
+                    typeof(IClientInfo)
+                );
+                var client = new HttpClient(NetCache.UserInitiated)
+                {
+                    BaseAddress = new Uri("https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx"),
+                };
+                locator.Register(() => RestService.For<ISignetsBusinessService>(client), typeof(ISignetsBusinessService));              
 			}
 
 			return Task.FromResult(locator.GetService<ISignetsBusinessService>());
