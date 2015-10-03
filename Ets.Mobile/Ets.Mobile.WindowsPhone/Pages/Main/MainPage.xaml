@@ -29,7 +29,7 @@
             <Border Grid.Row="0">
                 <StackPanel Margin="0,5,0,0" Orientation="Horizontal" VerticalAlignment="Center">
                     <menu:MenuButton x:Name="SideViewButton" Height="60" Width="60"/>
-                    <TextBlock VerticalAlignment="Center" Margin="10,-7,0,0" Text="{Binding [ApplicationTitle], Source={StaticResource LocalizedStrings}}" Style="{StaticResource EtsTextBlockMainColor2}" />
+                    <TextBlock x:Uid="ApplicationTitleUid" Text="Éts Mobile" VerticalAlignment="Center" Margin="10,-7,0,0"  Style="{StaticResource EtsTextBlockMainColor2}" />
                 </StackPanel>
             </Border>
 
@@ -42,13 +42,13 @@
                         <Pivot x:Name="MainPivot">
                             <PivotItem Margin="15,0,15,0">
                                 <PivotItem.Header>
-                                    <TextBlock Text="{Binding [TodayHeader], Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUpperConverter}}" />
+                                    <TextBlock x:Uid="TodayHeaderUid" Text="AUJOURD'HUI" />
                                 </PivotItem.Header>
                                 <main:Today x:Name="Today" />
                             </PivotItem>
                             <PivotItem Margin="15,0,15,0">
                                 <PivotItem.Header>
-                                    <TextBlock Text="{Binding [PivotItem_Grades], Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUpperConverter}}" />
+                                    <TextBlock x:Uid="GradeHeaderUid" Text="RÉSULTATS" />
                                 </PivotItem.Header>
                                 <main:Grades x:Name="Grade" />
                             </PivotItem>

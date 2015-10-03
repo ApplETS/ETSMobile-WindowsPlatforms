@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Ets.Mobile.ViewModel;
 using ReactiveUI;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using CrittercismSDK;
@@ -28,9 +29,9 @@ namespace Ets.Mobile
         /// </summary>
         public App()
         {
+            Locator.CurrentMutable.Register(() => new ResourceLoader(), typeof(ResourceLoader));
+
             InitializeComponent();
-
-
 
             // Crittercism
             Crittercism.Init("55e87dc18d4d8c0a00d07811");

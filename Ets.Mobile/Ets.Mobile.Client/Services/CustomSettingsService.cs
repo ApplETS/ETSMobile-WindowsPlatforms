@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Media;
 using Akavache;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Entities.Signets.Interfaces;
-using StoreFramework.Themes;
+using Themes;
 
 namespace Ets.Mobile.Client.Services
 {

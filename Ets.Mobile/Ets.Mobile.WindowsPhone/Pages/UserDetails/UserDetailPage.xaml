@@ -12,7 +12,7 @@
         <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
             <TextBlock x:Name="SelectedProgram" Text="{Binding Name}" />
             <Button.Flyout>
-                <ListPickerFlyout Title="{Binding [SelectProgram], Source={StaticResource LocalizedStrings}}" 
+                <ListPickerFlyout Title="{Binding SelectProgram, Source={StaticResource LocalizedStrings}}" 
                                   ItemsSource="{Binding Items}"
                                   SelectedItem="{Binding SelectedCity, Mode=TwoWay}">
                     <ListPickerFlyout.ItemTemplate>

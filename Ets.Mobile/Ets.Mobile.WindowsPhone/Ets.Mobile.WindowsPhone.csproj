@@ -18,6 +18,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
+    <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -267,13 +268,49 @@
       <Project>{ce35f282-6085-4910-bfe2-38a93c50cd8b}</Project>
       <Name>Ets.Mobile.Entities.WinPhone</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.StoreFramework.WinPhone\Ets.Mobile.StoreFramework.WinPhone.csproj">
-      <Project>{36c64212-92f6-47cc-b21b-d5bf1bf47fee}</Project>
-      <Name>Ets.Mobile.StoreFramework.WinPhone</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ets.Mobile.ViewModel.WinPhone\Ets.Mobile.ViewModel.WinPhone.csproj">
       <Project>{a059e0a6-8a78-4a53-b2a9-4ec0efdff71b}</Project>
       <Name>Ets.Mobile.ViewModel.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Controls\Controls.csproj">
+      <Project>{f30613aa-0eb9-4d44-b42f-ecaf50bdf7ec}</Project>
+      <Name>Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Crittercism\Logger.CrittercismLog.WinPhone\Logger.CrittercismLog.WinPhone.csproj">
+      <Project>{9c143aa8-6734-4177-b131-510078ca8e12}</Project>
+      <Name>Logger.CrittercismLog.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Localization\Localization.csproj">
+      <Project>{8070a42a-49a9-46a6-8bc1-daa063bc3832}</Project>
+      <Name>Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger\Logger.csproj">
+      <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
+      <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
+      <Name>Messaging.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\UniversalApp\Messaging.UniversalApp.WinPhone\Messaging.UniversalApp.WinPhone.csproj">
+      <Project>{f78a088c-306c-4c5d-b393-8ff9ea30ed8f}</Project>
+      <Name>Messaging.UniversalApp.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Moduler\Moduler.csproj">
+      <Project>{f99ab029-1684-44be-a91f-0c1bcc18cba9}</Project>
+      <Name>Moduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.csproj">
+      <Project>{6c59c015-597d-410a-99a4-5be537a8fb93}</Project>
+      <Name>ReactiveUI.Xaml.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Themes\Themes.csproj">
+      <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
+      <Name>Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Xaml.Converters\Xaml.Converters.csproj">
+      <Project>{d09cb47f-c41a-4121-b6d8-02dd70ba9410}</Project>
+      <Name>Xaml.Converters</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

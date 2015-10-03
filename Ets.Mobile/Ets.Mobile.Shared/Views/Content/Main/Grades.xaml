@@ -6,10 +6,11 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	xmlns:views="using:StoreFramework.Views"
 	xmlns:controls="using:ReactiveUI.Xaml.Controls"
 	xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
 	xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+	xmlns:data="using:Windows.UI.Xaml.Data"
+	xmlns:converters="using:Xaml.Converters"
 	d:DesignHeight="800"
 	d:DesignWidth="400">
     <UserControl.Resources>
@@ -21,30 +22,30 @@
                 </Grid.ColumnDefinitions>
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Tapped">
-                        <core:InvokeCommandAction Command="{Binding NavigateToGrade}" CommandParameter="{Binding Semester}"/>
+                        <core:InvokeCommandAction Command="{Binding NavigateToGrade}" CommandParameter="{Binding}"/>
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
                 <StackPanel Grid.Column="0" Orientation="Vertical">
-                    <TextBlock 
-                           FontSize="24" 
-                           Margin="3,0,0,0" 
-                           TextWrapping="Wrap" 
-                           Text="{Binding Course.Acronym}" 
+                    <TextBlock
+                           FontSize="24"
+                           Margin="3,0,0,0"
+                           TextWrapping="Wrap"
+                           Text="{Binding Course.Acronym}"
                            Style="{StaticResource EtsTextBlockWhite2}" />
-                    <TextBlock 
-                           FontSize="14" 
-                           Margin="3,0,0,0" 
-                           TextWrapping="Wrap" 
-                           Text="{Binding Course.Name}" 
+                    <TextBlock
+                           FontSize="14"
+                           Margin="3,0,0,0"
+                           TextWrapping="Wrap"
+                           Text="{Binding Course.Name}"
                            Style="{StaticResource EtsTextBlockWhite2}" />
                 </StackPanel>
 
-                <TextBlock Grid.Column="1" 
-                           Margin="0,0,0,-15" 
-                           HorizontalAlignment="Right" 
-                           VerticalAlignment="Bottom" 
-                           Style="{StaticResource EtsTextBlockWhite2}" 
-                           FontWeight="Normal" 
+                <TextBlock Grid.Column="1"
+                           Margin="0,0,0,-15"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           Style="{StaticResource EtsTextBlockWhite2}"
+                           FontWeight="Normal"
                            FontSize="80"
                            Text="{Binding Course.Grade, Converter={StaticResource StringToIntegerConverter}}" />
             </Grid>
@@ -57,21 +58,16 @@
                         IsSourceGrouped="True"
                         ItemsPath="Model.GradesItems"
 						Source="{Binding}" />
-                    <views:ScreenWidthMultiplier x:Key="ScreenWidth" />
+                    <converters:ScreenWidthMultiplier x:Key="ScreenWidth" />
                 </Grid.Resources>
-                <ListView 
+                <ListView
                     Margin="-5,0,0,0"
-                    ItemsSource="{Binding Source={StaticResource GradeCollectionViewSource}}" 
+                    ItemsSource="{Binding Source={StaticResource GradeCollectionViewSource}}"
 	                ItemTemplate="{StaticResource GradeDataTemplate}"
-		            ScrollViewer.HorizontalScrollMode="Disabled"    
+		            ScrollViewer.HorizontalScrollMode="Disabled"
 			        ScrollViewer.IsHorizontalScrollChainingEnabled="False"
 			        IsItemClickEnabled="True"
 			        SelectionMode="None">
-                    <!--<interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding NavigateToGrade}" CommandParameter="{Binding Semester}"/>
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>-->
                     <ListView.ItemContainerTransitions>
                         <TransitionCollection>
                             <EntranceThemeTransition/>
@@ -97,14 +93,14 @@
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
-    
+
     <controls:ReactivePresenter UseDialogForErrors="False"
                             PresenterSource="{Binding}"
-                            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again." 
+                            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
                             ValueTemplate="{StaticResource GradesPresenterValue}">
         <controls:ReactivePresenter.EmptyTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding [GradesEmpty], Source={StaticResource LocalizedStrings}, Converter={StaticResource StringToUpperConverter}}" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
+                <TextBlock x:Uid="GradesEmptyUid" Text="Il n'y a pas de résultats à afficher" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
             </DataTemplate>
         </controls:ReactivePresenter.EmptyTemplate>
         <controls:ReactivePresenter.RefreshingTemplate>

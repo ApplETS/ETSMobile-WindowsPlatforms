@@ -19,7 +19,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DesignTimeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\GradeViewModelDt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\MainViewModelDt.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ScheduleException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Account\LoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\GradeViewModel.cs" />

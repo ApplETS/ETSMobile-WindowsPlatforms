@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.Serialization;
-using Windows.ApplicationModel.Resources;
-using Windows.UI.Xaml;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Content.Grade;
+using Messaging.UniversalApp.Common;
 using ReactiveUI;
+using ReactiveUI.Extensions;
+using ReactiveUI.Xaml.Controls.Exceptions;
 using Refit;
-using Splat;
-using StoreFramework.Controls.Presenter.Exceptions;
-using StoreFramework.Messaging.Common;
-using ReactiveUI.Xaml.Controls;
-using ReactiveUI.Xaml.Controls.Presenter;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
@@ -29,14 +24,16 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         public void Dispose()
         {
             Semester = null;
+            GradeItems.Clear();
         }
 
         #endregion
 
-        public GradeViewModel(IScreen screen, string semester) 
+        public GradeViewModel(IScreen screen, CourseVm selectedCourse) 
             : base(screen, "Evaluation")
         {
-            Semester = semester;
+            Semester = selectedCourse.Semester;
+            SelectedCourse = selectedCourse;
             OnViewModelCreation();
         }
 
@@ -44,15 +41,12 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         {
             GradeItems = new ReactiveList<GradeViewModelItem>();
 
-            LoadGrade = ReactiveCommand.CreateAsyncObservable(_ =>
+            LoadGrade = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
-                return Observable.Defer(() =>
-                {
-                    return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Courses())
-                        .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.Semester)) && x.Any(y => y.Semester == Semester))
-                        .Select(x => x.Where(y => y.Semester == Semester))
-                        .Select(x => x.Select(y => new GradeViewModelItem(y)));
-                });
+                return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Courses())
+                    .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.Semester)) && x.Any(y => y.Semester == Semester))
+                    .Select(x => x.Where(y => y.Semester == Semester))
+                    .Select(x => x.Select(y => new GradeViewModelItem(y)));
             });
 
             LoadGrade.ThrownExceptions
@@ -66,15 +60,10 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                         var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
                         if (apiException.ReasonPhrase == "Not Found")
                         {
-                            exceptionMessage.Content.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
-                            exceptionMessage.Content.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
+                            exceptionMessage.Message = Resources().GetString("NetworkError");
+                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
                         }
-                        exception = exceptionMessage;
-                    }
-                    else if (x is ReactivePresenterExceptionBase)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, x);
-                        exception = exceptionMessage;
+                        exception = exceptionMessage.Exception;
                     }
                     else
                     {
@@ -87,6 +76,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             {
                 GradeItems.Clear();
                 GradeItems.AddRange(x);
+                InitialIndex = GradeItems.IndexOf(GradeItems.First(y => y.Course.Acronym == SelectedCourse.Acronym));
             });
 
             Grades = GradeItems.CreateDerivedCollection(
@@ -99,14 +89,29 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
 
         public ReactiveCommand<IEnumerable<GradeViewModelItem>> LoadGrade { get; protected set; }
         private readonly ReplaySubject<Exception> _gradesExceptionSubject = new ReplaySubject<Exception>();
-
-
+        
         private string _semester;
         [DataMember]
         public string Semester
         {
             get { return _semester; }
             set { this.RaiseAndSetIfChanged(ref _semester, value); }
+        }
+
+        private CourseVm _selectedCourse;
+        [DataMember]
+        public CourseVm SelectedCourse
+        {
+            get { return _selectedCourse; }
+            set { this.RaiseAndSetIfChanged(ref _selectedCourse, value); }
+        }
+
+        private int _initialIndex;
+        [DataMember]
+        public int InitialIndex
+        {
+            get { return _initialIndex; }
+            set { this.RaiseAndSetIfChanged(ref _initialIndex, value); }
         }
 
         private ReactiveList<GradeViewModelItem> _gradeItems;
@@ -119,12 +124,6 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
 
         [DataMember]
         public IReactiveDerivedList<GradeTileViewModel> Grades { get; protected set; }
-
-        #endregion
-
-        #region Methods
-
-
 
         #endregion
 

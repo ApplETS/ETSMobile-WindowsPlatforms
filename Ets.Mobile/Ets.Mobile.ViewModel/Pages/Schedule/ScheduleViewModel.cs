@@ -1,20 +1,19 @@
 ﻿using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Presenter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.Serialization;
-using Windows.ApplicationModel.Resources;
 using Akavache;
 using Ets.Mobile.ViewModel.Content.Schedule;
+using Messaging.UniversalApp.Common;
+using ReactiveUI.Extensions;
+using ReactiveUI.Xaml.Controls.Presenter;
+using ReactiveUI.Xaml.Controls.ViewModel;
 using Refit;
-using Splat;
-using StoreFramework.Controls.Presenter.Exceptions;
-using StoreFramework.Messaging.Common;
 
 namespace Ets.Mobile.ViewModel.Pages.Schedule
 {
@@ -30,22 +29,19 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
         {
             ScheduleItems = new ReactiveList<IGrouping<DateTime, ScheduleVm>>();
 
-            LoadSchedule = ReactiveCommand.CreateAsyncObservable(_ =>
+            LoadSchedule = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
-                return Observable.Defer(() =>
-                {
-                    return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
-                        .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
-                        .SelectMany(x => x)
-                        .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
-                        .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
-                            var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
-                            await SettingsService().ApplyColorOnItemsForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
-                            return schedule;
-                        }))
-                        .Where(x => x != null)
-                        .Select(x => x.GroupBy(y => y.StartDate.Date));
-                });
+                return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
+                    .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
+                    .SelectMany(x => x)
+                    .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
+                    .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
+                        var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
+                        await SettingsService().ApplyColorOnItemsForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
+                        return schedule;
+                    }))
+                    .Where(x => x != null)
+                    .Select(x => x.GroupBy(y => y.StartDate.Date));
             });
 
             LoadSchedule.ThrownExceptions
@@ -59,15 +55,10 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
                         var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
                         if (apiException.ReasonPhrase == "Not Found")
                         {
-                            exceptionMessage.Content.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
-                            exceptionMessage.Content.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
+                            exceptionMessage.Message = Resources().GetString("NetworkError");
+                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
                         }
-                        exception = exceptionMessage;
-                    }
-                    else if (x is ReactivePresenterExceptionBase)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, x);
-                        exception = exceptionMessage;
+                        exception = exceptionMessage.Exception;
                     }
                     else
                     {

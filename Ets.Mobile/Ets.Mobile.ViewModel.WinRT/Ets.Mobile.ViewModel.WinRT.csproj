@@ -96,9 +96,29 @@
       <Project>{17d45b8a-6118-4502-b079-227c45968c7c}</Project>
       <Name>Ets.Mobile.Entities.WinRT</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.StoreFramework.WinRT\Ets.Mobile.StoreFramework.WinRT.csproj">
-      <Project>{fb2f492d-f022-4436-838a-f7c48de0dba4}</Project>
-      <Name>Ets.Mobile.StoreFramework.WinRT</Name>
+    <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
+      <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
+      <Name>Messaging.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\UniversalApp\Messaging.UniversalApp.WinRT\Messaging.UniversalApp.WinRT.csproj">
+      <Project>{8fe53ee7-c620-4327-876a-bf2c2222cd7f}</Project>
+      <Name>Messaging.UniversalApp.WinRT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Moduler\Moduler.csproj">
+      <Project>{f99ab029-1684-44be-a91f-0c1bcc18cba9}</Project>
+      <Name>Moduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Extensions\ReactiveUI.Extensions.csproj">
+      <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
+      <Name>ReactiveUI.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.csproj">
+      <Project>{6c59c015-597d-410a-99a4-5be537a8fb93}</Project>
+      <Name>ReactiveUI.Xaml.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Themes\Themes.csproj">
+      <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
+      <Name>Themes</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

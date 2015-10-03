@@ -49,8 +49,6 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         }
 
         public ReactiveCommand<Unit> NavigateToSchedule { get; protected set; }
-        
-        public ReactiveCommand<Unit> NavigateToGrade { get; protected set; }
 
         #endregion
     }

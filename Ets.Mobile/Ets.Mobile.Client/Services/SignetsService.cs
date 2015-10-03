@@ -9,8 +9,7 @@ using Ets.Mobile.Client.Extensions.Signets;
 using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Client.Factories.Implementations;
 using Ets.Mobile.Entities.Signets;
-using StoreFramework.Logger;
-using StoreFramework.Security;
+using Security.Algorithms;
 
 namespace Ets.Mobile.Client.Services
 {
@@ -47,7 +46,7 @@ namespace Ets.Mobile.Client.Services
             var userDetailsVm = _factory.CreateFor<UserDetailsResult, UserDetailsVm>(userDetailsResult);
             
             userDetailsVm.Image = await BlobCache.UserAccount.LoadImageFromUrl("gravatar",
-                $"http://www.gravatar.com/avatar/{Md5Provider.GetHashString($"{_userCredentials.Username}@ens.etsmtl.ca".ToLower())}", true).ToTask();
+                $"http://www.gravatar.com/avatar/{Md5Hash.GetHashString($"{_userCredentials.Username}@ens.etsmtl.ca".ToLower())}", true).ToTask();
 
             return userDetailsVm;
         }

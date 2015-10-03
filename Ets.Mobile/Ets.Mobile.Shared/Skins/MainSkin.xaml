@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:c="using:StoreFramework.Controls"
     xmlns:library="using:SlideView.Library"
     xmlns:primitives="using:SlideView.Library.Primitives"
     mc:Ignorable="d">
@@ -21,7 +20,7 @@
     <Color x:Key="EtsTextMainColor">#323232</Color>
     <Color x:Key="EtsTextSecondaryColor">#666666</Color>
     <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
-    
+
     <!-- Brush                                          -->
     <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
     <Brush x:Key="EtsRedMidBrush">#7F0100</Brush>
@@ -36,12 +35,12 @@
     <Brush x:Key="EtsTextMainBrush">#323232</Brush>
     <Brush x:Key="EtsTextWhiteBrush">#FFFFFF</Brush>
     <Brush x:Key="EtsTextSecondaryBrush">#666666</Brush>
-    
+
     <Brush x:Key="EtsBorderItemBrush">#e6e6e6</Brush>
 
     <!-- Main Fonts                                     -->
     <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
-    
+
     <!-- Sizes                                          -->
     <x:Double x:Key="Size1">36</x:Double>
     <x:Double x:Key="Size2">30</x:Double>
@@ -54,7 +53,7 @@
     <x:Double x:Key="Size8">8</x:Double>
 
     <!-- Buttons                                        -->
-    <Style x:Key="EtsButtonStyle" TargetType="Button">  
+    <Style x:Key="EtsButtonStyle" TargetType="Button">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
         <Setter Property="FontSize" Value="16" />
@@ -114,7 +113,7 @@
         <Setter Property="FontSize" Value="{StaticResource Size1}" />
     </Style>
     <Style x:Key="EtsTextBlockMainColor2" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />        
+        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size2}" />
     </Style>
     <Style x:Key="EtsTextBlockMainColor3" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
@@ -381,7 +380,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!-- Pivot                                          -->
     <!--<Style x:Key="EtsPivotItemHeaderRedMediumColor" TargetType="HubSection">
         <Setter Property="Foreground" Value="{StaticResource EtsRedMediumColor}" />

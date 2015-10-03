@@ -90,9 +90,9 @@
     <Compile Include="RefitStubs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ets.Mobile.StoreFramework.WinPhone\Ets.Mobile.StoreFramework.WinPhone.csproj">
-      <Project>{36c64212-92f6-47cc-b21b-d5bf1bf47fee}</Project>
-      <Name>Ets.Mobile.StoreFramework.WinPhone</Name>
+    <ProjectReference Include="..\Modules\Moduler\Moduler.csproj">
+      <Project>{f99ab029-1684-44be-a91f-0c1bcc18cba9}</Project>
+      <Name>Moduler</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

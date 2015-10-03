@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
-    xmlns:bordered="using:StoreFramework.Controls.Bordered"
+    xmlns:bordered="using:Controls.Bordered"
     d:DesignHeight="40"
     x:Name="P"
     d:DesignWidth="250"

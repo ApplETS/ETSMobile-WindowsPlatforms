@@ -5,9 +5,9 @@ using Akavache;
 using Ets.Mobile.Business;
 using Ets.Mobile.Client;
 using Ets.Mobile.Client.Contracts;
+using Messaging.Interfaces.ViewService;
 using ReactiveUI;
 using Splat;
-using StoreFramework.Messaging;
 
 namespace Ets.Mobile.ViewModel.Bases
 {

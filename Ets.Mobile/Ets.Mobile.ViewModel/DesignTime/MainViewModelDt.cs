@@ -9,7 +9,8 @@ using Ets.Mobile.ViewModel.Content.Main;
 using Ets.Mobile.ViewModel.Contracts;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Presenter;
-using StoreFramework.Themes;
+using ReactiveUI.Xaml.Controls.ViewModel;
+using Themes;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {

@@ -120,11 +120,14 @@
   <data name="ActualGrade" xml:space="preserve">
     <value>Actual Grade</value>
   </data>
-  <data name="ApplicationName" xml:space="preserve">
+  <data name="ActualGradeUid.Text" xml:space="preserve">
+    <value>Actual Grade</value>
+  </data>
+  <data name="ApplicationNameUid.Text" xml:space="preserve">
     <value>ÉTS Mobile</value>
   </data>
-  <data name="ApplicationTitle" xml:space="preserve">
-    <value>ÉTS Mobile</value>
+  <data name="ApplicationTitleUid.Text" xml:space="preserve">
+    <value>ETS Mobile</value>
   </data>
   <data name="Autumn" xml:space="preserve">
     <value>Autumn</value>
@@ -132,22 +135,40 @@
   <data name="Average" xml:space="preserve">
     <value>Average</value>
   </data>
-  <data name="Connect" xml:space="preserve">
+  <data name="AverageUid.Text" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="ConnectButtonUid.Content" xml:space="preserve">
+    <value>CONNECT</value>
+  </data>
+  <data name="ConnectUid.Text" xml:space="preserve">
     <value>CONNECT</value>
   </data>
   <data name="Grade" xml:space="preserve">
     <value>Grade</value>
   </data>
-  <data name="GradePage_Header" xml:space="preserve">
-    <value>Grades</value>
+  <data name="GradeHeaderUid.Text" xml:space="preserve">
+    <value>GRADES</value>
+  </data>
+  <data name="GradesEmptyUid.Text" xml:space="preserve">
+    <value>There are no results to show</value>
+  </data>
+  <data name="GradeTitleUid.Text" xml:space="preserve">
+    <value>GRADES</value>
+  </data>
+  <data name="GradeUid.Text" xml:space="preserve">
+    <value>Grade</value>
   </data>
   <data name="Median" xml:space="preserve">
     <value>Median</value>
   </data>
-  <data name="MinutesRemaining" xml:space="preserve">
+  <data name="MedianUid.Text" xml:space="preserve">
+    <value>Median</value>
+  </data>
+  <data name="MinutesRemainingUid.Text" xml:space="preserve">
     <value>minutes remaining</value>
   </data>
-  <data name="MyGrades" xml:space="preserve">
+  <data name="MyGradesUid.Text" xml:space="preserve">
     <value>My grades</value>
   </data>
   <data name="NetworkError" xml:space="preserve">
@@ -156,49 +177,58 @@
   <data name="NetworkTitleError" xml:space="preserve">
     <value>No network connection</value>
   </data>
-  <data name="NewsHeader" xml:space="preserve">
+  <data name="NewsHeaderUid.Text" xml:space="preserve">
     <value>News</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="Password" xml:space="preserve">
+  <data name="PasswordUid.Text" xml:space="preserve">
     <value>password</value>
   </data>
   <data name="Percentile" xml:space="preserve">
     <value>Percentile</value>
   </data>
-  <data name="PivotItem_Grades" xml:space="preserve">
-    <value>Grades</value>
+  <data name="PercentileUid.Text" xml:space="preserve">
+    <value>Percentile</value>
   </data>
-  <data name="ProfileHeader" xml:space="preserve">
+  <data name="ProfileHeaderUid.Text" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="ScheduleEmptyUid.Text" xml:space="preserve">
+    <value>You do not have classes.</value>
+  </data>
   <data name="SelectProgram" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="SelectProgramUid.Text" xml:space="preserve">
     <value>SELECT A PROGRAM</value>
   </data>
   <data name="StandardDeviation" xml:space="preserve">
     <value>Standard Deviation</value>
   </data>
-  <data name="StudentIsInactiveInCurrentSemester" xml:space="preserve">
-    <value>You are not currently in an active semester.</value>
+  <data name="StandardDeviationUid.Text" xml:space="preserve">
+    <value>Standard Deviation</value>
   </data>
-  <data name="Summary" xml:space="preserve">
+  <data name="StudentIsInactiveInCurrentSemester" xml:space="preserve">
+    <value>You are not currently in an active semester</value>
+  </data>
+  <data name="SummaryUid.Text" xml:space="preserve">
     <value>Summary</value>
   </data>
   <data name="Summer" xml:space="preserve">
     <value>Summer</value>
   </data>
-  <data name="TodayEmpty" xml:space="preserve">
-    <value>You do not have courses today.</value>
+  <data name="TodayEmptyUid.Text" xml:space="preserve">
+    <value>You do not have courses today</value>
   </data>
-  <data name="TodayHeader" xml:space="preserve">
-    <value>Today</value>
+  <data name="TodayHeaderUid.Text" xml:space="preserve">
+    <value>TODAY</value>
   </data>
-  <data name="Username" xml:space="preserve">
+  <data name="UsernameUid.Text" xml:space="preserve">
     <value>universal code</value>
   </data>
-  <data name="Weighting" xml:space="preserve">
+  <data name="WeightingUid.Text" xml:space="preserve">
     <value>Weighting</value>
   </data>
   <data name="Winter" xml:space="preserve">

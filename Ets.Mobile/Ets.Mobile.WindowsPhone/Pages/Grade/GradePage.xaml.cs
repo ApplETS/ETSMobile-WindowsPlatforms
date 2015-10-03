@@ -1,12 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reactive.Linq;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Ets.Mobile.ViewModel.Pages.Grade;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls;
+using System;
 
 namespace Ets.Mobile.Pages.Grade
 {
@@ -36,6 +33,8 @@ namespace Ets.Mobile.Pages.Grade
                     ChangeRefreshCommandAndExecuteOnce();
                 }
             };
+
+            this.OneWayBind(ViewModel, x => x.InitialIndex, x => x.Pivot.SelectedIndex);
 
             this.OneWayBind(ViewModel, x => x.Grades, x => x.Pivot.ItemsSource);
         }

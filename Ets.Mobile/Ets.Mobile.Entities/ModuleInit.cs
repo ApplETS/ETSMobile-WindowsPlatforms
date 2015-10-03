@@ -1,5 +1,5 @@
-﻿using Splat;
-using StoreFramework.Composite;
+﻿using Moduler;
+using Splat;
 
 namespace Ets.Mobile.Entities
 {
@@ -8,5 +8,5 @@ namespace Ets.Mobile.Entities
         public void Initialize(IMutableDependencyResolver container)
 		{
         }
-	}
+    }
 }

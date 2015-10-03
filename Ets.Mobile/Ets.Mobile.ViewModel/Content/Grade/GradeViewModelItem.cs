@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reactive.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
-using System.Diagnostics;
 using ReactiveUI.Xaml.Controls.Presenter;
 using Refit;
-using StoreFramework.Messaging.Common;
 using Splat;
 using Windows.ApplicationModel.Resources;
-using StoreFramework.Controls.Presenter.Exceptions;
 using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using Windows.UI;
-using Windows.UI.Xaml;
-using ReactiveUI.Xaml.Controls;
+using Messaging.UniversalApp.Common;
+using ReactiveUI.Extensions;
+using ReactiveUI.Xaml.Controls.Exceptions;
+using ReactiveUI.Xaml.Controls.ViewModel;
 
 namespace Ets.Mobile.ViewModel.Content.Grade
 {
@@ -63,19 +60,16 @@ namespace Ets.Mobile.ViewModel.Content.Grade
 
         protected override sealed void OnViewModelCreation()
         {
-            LoadGrade = ReactiveCommand.CreateAsyncObservable(_ =>
+            LoadGrade = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
-                return Observable.Defer(() =>
-                {
-                    return Cache.GetAndFetchLatest(ViewModelKeys.GradesForSemesterAndCourse(Course.Semester, Course.Name),
-                        () => ClientServices().SignetsService.Evaluations(Course.Acronym, Course.Group, Course.Semester)
-                            .ToObservable()
-                            .Do(async grade => {
-                                grade.LetterGrade = Course.Grade;
-                                await SettingsService().ApplyColorOnItemsForSemester(grade, Course.Semester, x => Course.Acronym, Color.FromArgb(Course.A, Course.R, Course.G, Course.B));
-                            })
-                    );
-                });
+                return Cache.GetAndFetchLatest(ViewModelKeys.GradesForSemesterAndCourse(Course.Semester, Course.Name),
+                    () => ClientServices().SignetsService.Evaluations(Course.Acronym, Course.Group, Course.Semester)
+                        .ToObservable()
+                        .Do(async grade => {
+                            grade.LetterGrade = Course.Grade;
+                            await SettingsService().ApplyColorOnItemsForSemester(grade, Course.Semester, x => Course.Acronym, Color.FromArgb(Course.A, Course.R, Course.G, Course.B));
+                        })
+                );
             });
             
             LoadGrade.ThrownExceptions
@@ -89,15 +83,10 @@ namespace Ets.Mobile.ViewModel.Content.Grade
                         var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
                         if (apiException.ReasonPhrase == "Not Found")
                         {
-                            exceptionMessage.Content.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
-                            exceptionMessage.Content.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
+                            exceptionMessage.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
+                            exceptionMessage.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
                         }
-                        exception = exceptionMessage;
-                    }
-                    else if (x is ReactivePresenterExceptionBase)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, x);
-                        exception = exceptionMessage;
+                        exception = exceptionMessage.Exception;
                     }
                     else
                     {

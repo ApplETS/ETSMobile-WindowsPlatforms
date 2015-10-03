@@ -5,11 +5,11 @@ namespace Ets.Mobile.Entities.Signets
 {
     public class ScheduleFinalExamVm : ReactiveObject
     {
-    	private string _Abridged;
+    	private string _abridged;
         public string Abridged
         {
-        	get { return _Abridged; }
-        	set { this.RaiseAndSetIfChanged(ref _Abridged, value); }
+        	get { return _abridged; }
+        	set { this.RaiseAndSetIfChanged(ref _abridged, value); }
         }
 
         private string _group;

@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Reactive.Linq;
 using Akavache;
 using System;
-using Windows.UI.Xaml;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Pages.Account;
 using Ets.Mobile.Pages.Main;
@@ -16,7 +15,7 @@ using Ets.Mobile.Pages.Grade;
 using Ets.Mobile.Pages.Schedule;
 using Ets.Mobile.ViewModel.Pages.Grade;
 using Ets.Mobile.ViewModel.Pages.Schedule;
-using StoreFramework.Logger;
+using Logger;
 
 namespace Ets.Mobile.ViewModel
 {

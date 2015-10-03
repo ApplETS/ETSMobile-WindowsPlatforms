@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
-    xmlns:bordered="using:StoreFramework.Controls.Bordered"
+    xmlns:bordered="using:Controls.Bordered"
     d:DesignHeight="85"
     x:Name="P"
     d:DesignWidth="250"
@@ -33,30 +33,30 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Margin="10,3,0,3">
                         <TextBlock>
-                            <Run Text="{Binding [Average], FallbackValue='Moyenne', Source={StaticResource LocalizedStrings}}" />
+                            <Run x:Uid="AverageUid" Text="Moyenne" />
                             <Run Text=":" />
                             <Run Text="{Binding Average}" />
                             <Run Text="%" FontSize="{StaticResource Size8}" />
                         </TextBlock>
                         <TextBlock>
-                            <Run Text="{Binding [Median], FallbackValue='Médiane', Source={StaticResource LocalizedStrings}}" />
+                            <Run x:Uid="MedianUid" Text="Médiane" />
                             <Run Text=":" />
                             <Run Text="{Binding Median}" />
                             <Run Text="%" FontSize="{StaticResource Size8}" />
                         </TextBlock>
                         <TextBlock>
-                            <Run Text="{Binding [Percentile], FallbackValue='Rang centile', Source={StaticResource LocalizedStrings}}" />
+                            <Run x:Uid="PercentileUid" Text="Rang centile" />
                             <Run Text=":" />
                             <Run Text="{Binding Percentile}" />
                         </TextBlock>
                         <TextBlock>
-                            <Run Text="{Binding [StandardDeviation], FallbackValue='Écart-type', Source={StaticResource LocalizedStrings}}" />
+                            <Run x:Uid="StandardDeviationUid" Text="Écart-type" />
                             <Run Text=":" />
                             <Run Text="{Binding StandardDeviation}" />
                         </TextBlock>
                     </StackPanel>
                     <TextBlock Grid.Column="1" Margin="0,3,5,3" TextAlignment="Right" FontSize="{StaticResource Size6}">
-                        <Run Text="{Binding [Weighting], FallbackValue='Pondération', Source={StaticResource LocalizedStrings}}"></Run>
+                        <Run x:Uid="WeightingUid" Text="Pondération" />
                         <Run Text=":" />
                         <Run Text="{Binding Weighting}" />
                         <Run Text="%" FontSize="{StaticResource Size8}" />

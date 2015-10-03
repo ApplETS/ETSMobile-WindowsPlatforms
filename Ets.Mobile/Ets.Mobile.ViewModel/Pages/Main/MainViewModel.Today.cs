@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
-using Windows.ApplicationModel.Resources;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
+using Messaging.UniversalApp.Common;
 using ReactiveUI;
+using ReactiveUI.Extensions;
+using ReactiveUI.Xaml.Controls.Exceptions;
 using ReactiveUI.Xaml.Controls.Presenter;
+using ReactiveUI.Xaml.Controls.ViewModel;
 using Refit;
-using Splat;
-using StoreFramework.Controls.Presenter.Exceptions;
-using StoreFramework.Extensions;
-using StoreFramework.Messaging.Common;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
@@ -27,22 +22,19 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         {
             TodayItems = new ReactiveList<ScheduleVm>();
 
-            LoadCoursesForToday = ReactiveCommand.CreateAsyncObservable(_ =>
+            LoadCoursesForToday = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
-                return Observable.Defer(() =>
-                {
-                    return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
-                        .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
-                        .SelectMany(x => x)
-                        .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
-                        .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
-                            var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
-                            await SettingsService().ApplyColorOnItemsForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
-                            return schedule;
-                        }))
-                        .Where(x => x != null)
-                        .Select(x => x);
-                });
+                return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
+                    .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
+                    .SelectMany(x => x)
+                    .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
+                    .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
+                        var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
+                        await SettingsService().ApplyColorOnItemsForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
+                        return schedule;
+                    }))
+                    .Where(x => x != null)
+                    .Select(x => x);
             });
 
             LoadCoursesForToday.ThrownExceptions
@@ -56,15 +48,10 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                         var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
                         if (apiException.ReasonPhrase == "Not Found")
                         {
-                            exceptionMessage.Content.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
-                            exceptionMessage.Content.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
+                            exceptionMessage.Message = Resources().GetString("NetworkError");
+                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
                         }
-                        exception = exceptionMessage;
-                    }
-                    else if (x is ReactivePresenterExceptionBase)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, x);
-                        exception = exceptionMessage;
+                        exception = exceptionMessage.Exception;
                     }
                     else
                     {
@@ -111,7 +98,9 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                 Model = model;
                 _timeRemainingDisposable = new CompositeDisposable();
                 IsTimeRemainingVisible = false;
-                //BindTimeRemaining();
+
+                // TODO Make it work!
+                // BindTimeRemaining();
             }
 
             private readonly CompositeDisposable _timeRemainingDisposable;
@@ -145,16 +134,18 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             {
                 var timer = Observable.Timer(TimeSpan.Zero, TimeSpan.FromMinutes(1));
 
-                timer.Where(x => Model.StartDate.TimeOfDay > DateTime.Now.TimeOfDay && (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).TotalMinutes > 0 && (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).TotalMinutes < 60)
+                var showTimeRemaining = 
+                    timer.Where(x => Model.StartDate.TimeOfDay > DateTime.Now.TimeOfDay && (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).TotalMinutes > 0 && (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).TotalMinutes < 60)
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(x =>
                     {
                         TimeRemaining = (Model.StartDate.TimeOfDay.Minutes - DateTime.Now.TimeOfDay.Minutes).ToString();
                         IsTimeRemainingVisible = true;
-                    })
-                    .DisposeWith(_timeRemainingDisposable);
+                    });
+                _timeRemainingDisposable.Add(showTimeRemaining);
 
-                timer.Where(x => Model.StartDate.TimeOfDay < DateTime.Now.TimeOfDay && (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).Minutes < 0 || (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).Minutes > 60)
+                var hideTimeRemaining = 
+                    timer.Where(x => Model.StartDate.TimeOfDay < DateTime.Now.TimeOfDay && (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).Minutes < 0 || (Model.StartDate.TimeOfDay - DateTime.Now.TimeOfDay).Minutes > 60)
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(x =>
                     {
@@ -162,8 +153,8 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                         {
                             IsTimeRemainingVisible = false;
                         }
-                    })
-                    .DisposeWith(_timeRemainingDisposable);
+                    });
+                _timeRemainingDisposable.Add(hideTimeRemaining);
             }
 
             #endregion

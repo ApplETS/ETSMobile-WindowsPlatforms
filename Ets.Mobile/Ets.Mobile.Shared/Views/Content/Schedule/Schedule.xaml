@@ -2,13 +2,11 @@
     x:Class="Ets.Mobile.Views.Content.Schedule.Schedule"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Ets.Mobile.Views.Content.Schedule"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:controls="using:ReactiveUI.Xaml.Controls"
-    xmlns:storeControls="using:StoreFramework.Controls"
-    xmlns:views="using:StoreFramework.Views"
+    xmlns:converters="using:Xaml.Converters"
     Background="White"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -48,14 +46,14 @@
                             IsSourceGrouped="True"
                             ItemsPath="Model.ScheduleItems"
 						    Source="{Binding}" />
-                    <views:ScreenWidthMultiplier x:Key="ScreenWidth" />
+                    <converters:ScreenWidthMultiplier x:Key="ScreenWidth" />
                 </Grid.Resources>
                 <SemanticZoom x:Name="MySemanticZoom">
                     <SemanticZoom.ZoomedInView>
                         <ListView Margin="-5,0,0,0"
-                            ItemsSource="{Binding Source={StaticResource ScheduleCollectionViewSource}}" 
+                            ItemsSource="{Binding Source={StaticResource ScheduleCollectionViewSource}}"
 	                        ItemTemplate="{StaticResource ScheduleDataTemplate}"
-		                    ScrollViewer.HorizontalScrollMode="Disabled"    
+		                    ScrollViewer.HorizontalScrollMode="Disabled"
 			                ScrollViewer.IsHorizontalScrollChainingEnabled="False"
 			                IsItemClickEnabled="True"
 			                SelectionMode="None">
@@ -123,12 +121,12 @@
 
     <controls:ReactivePresenter UseDialogForErrors="False"
                             PresenterSource="{Binding}"
-                            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again." 
+                            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
                             ValueTemplate="{StaticResource SchedulesPresenterValue}">
         <controls:ReactivePresenter.EmptyTemplate>
             <DataTemplate>
                 <Grid>
-                    <TextBox Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP" Text="{Binding [ScheduleEmpty], Source={StaticResource LocalizedStrings}}"/>
+                    <TextBox x:Uid="ScheduleEmptyUid" Text="Vous n'avez pas de cours" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP" />
                 </Grid>
             </DataTemplate>
         </controls:ReactivePresenter.EmptyTemplate>

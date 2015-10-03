@@ -100,10 +100,6 @@
       <Project>{ce35f282-6085-4910-bfe2-38a93c50cd8b}</Project>
       <Name>Ets.Mobile.Entities.WinPhone</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.StoreFramework.WinPhone\Ets.Mobile.StoreFramework.WinPhone.csproj">
-      <Project>{36c64212-92f6-47cc-b21b-d5bf1bf47fee}</Project>
-      <Name>Ets.Mobile.StoreFramework.WinPhone</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Akavache, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">

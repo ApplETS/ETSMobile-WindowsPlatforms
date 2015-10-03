@@ -55,7 +55,7 @@
                                                         <RowDefinition Height="50*" />
                                                     </Grid.RowDefinitions>
                                                     <TextBlock Text="{Binding TimeRemaining, FallbackValue=0}" FontSize="26"/>
-                                                    <TextBlock Text="{Binding [MinutesRemaining], Source={StaticResource LocalizedStrings}}" Grid.Row="1" TextWrapping="WrapWholeWords" />
+                                                    <TextBlock x:Uid="MinutesRemainingUid" Text="Temps Restant" Grid.Row="1" TextWrapping="WrapWholeWords" />
                                                 </Grid>
                                             </Border>
                                         </Grid>
@@ -82,7 +82,7 @@
         <controls:ReactivePresenter.EmptyTemplate>
             <DataTemplate>
                 <Grid>
-                    <TextBlock Text="{Binding [TodayEmpty], Source={StaticResource LocalizedStrings}}" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
+                    <TextBlock x:Uid="TodayEmptyUid" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
                 </Grid>
             </DataTemplate>
         </controls:ReactivePresenter.EmptyTemplate>

@@ -1,12 +1,10 @@
-﻿using Windows.ApplicationModel;
-using Ets.Mobile.Business.Contracts;
+﻿using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Client.Factories.Implementations;
 using Ets.Mobile.Client.Services;
+using Moduler;
 using Splat;
-using StoreFramework.Composite;
-using StoreFramework.Logger;
 
 namespace Ets.Mobile.Client
 {

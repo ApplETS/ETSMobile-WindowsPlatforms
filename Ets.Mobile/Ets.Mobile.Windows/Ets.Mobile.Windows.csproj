@@ -104,9 +104,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="HubPage.xaml.cs">
-      <DependentUpon>HubPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Account\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -123,12 +120,6 @@
       <DependentUpon>UserDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RefitStubs.cs" />
-    <Compile Include="SectionPage.xaml.cs">
-      <DependentUpon>SectionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ItemPage.xaml.cs">
-      <DependentUpon>ItemPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shell\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
@@ -151,10 +142,6 @@
     <Content Include="Assets\WideLogo.scale-100.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="HubPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Pages\Account\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,14 +161,6 @@
     <Page Include="Pages\UserDetails\UserDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SectionPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ItemPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Shell\ShellPage.xaml">
       <SubType>Designer</SubType>
@@ -262,10 +241,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ets.Mobile.Business.WinRT\Ets.Mobile.Business.WinRT.csproj">
-      <Project>{51d4c81f-ac59-4516-b307-aff1a779e11f}</Project>
-      <Name>Ets.Mobile.Business.WinRT</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ets.Mobile.Client.WinRT\Ets.Mobile.Client.WinRT.csproj">
       <Project>{28e2ee97-79f2-4149-8dc3-cf8c93542376}</Project>
       <Name>Ets.Mobile.Client.WinRT</Name>
@@ -274,13 +249,49 @@
       <Project>{17d45b8a-6118-4502-b079-227c45968c7c}</Project>
       <Name>Ets.Mobile.Entities.WinRT</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.StoreFramework.WinRT\Ets.Mobile.StoreFramework.WinRT.csproj">
-      <Project>{fb2f492d-f022-4436-838a-f7c48de0dba4}</Project>
-      <Name>Ets.Mobile.StoreFramework.WinRT</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ets.Mobile.ViewModel.WinRT\Ets.Mobile.ViewModel.WinRT.csproj">
       <Project>{d3500b1e-2074-4e90-bcda-7bf56447bb2f}</Project>
       <Name>Ets.Mobile.ViewModel.WinRT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Controls\Controls.csproj">
+      <Project>{f30613aa-0eb9-4d44-b42f-ecaf50bdf7ec}</Project>
+      <Name>Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Crittercism\Logger.CrittercismLog.WinRT\Logger.CrittercismLog.WinRT.csproj">
+      <Project>{9ec2ed5e-1099-4d6c-a0ca-c6d53dfeffa4}</Project>
+      <Name>Logger.CrittercismLog.WinRT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Localization\Localization.csproj">
+      <Project>{8070a42a-49a9-46a6-8bc1-daa063bc3832}</Project>
+      <Name>Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger\Logger.csproj">
+      <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
+      <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
+      <Name>Messaging.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\UniversalApp\Messaging.UniversalApp.WinRT\Messaging.UniversalApp.WinRT.csproj">
+      <Project>{8fe53ee7-c620-4327-876a-bf2c2222cd7f}</Project>
+      <Name>Messaging.UniversalApp.WinRT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Moduler\Moduler.csproj">
+      <Project>{f99ab029-1684-44be-a91f-0c1bcc18cba9}</Project>
+      <Name>Moduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.csproj">
+      <Project>{6c59c015-597d-410a-99a4-5be537a8fb93}</Project>
+      <Name>ReactiveUI.Xaml.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Themes\Themes.csproj">
+      <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
+      <Name>Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Xaml.Converters\Xaml.Converters.csproj">
+      <Project>{d09cb47f-c41a-4121-b6d8-02dd70ba9410}</Project>
+      <Name>Xaml.Converters</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

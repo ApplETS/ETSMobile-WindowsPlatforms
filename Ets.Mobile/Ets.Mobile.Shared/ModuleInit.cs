@@ -1,7 +1,17 @@
 ﻿using System;
+using Windows.ApplicationModel.Resources;
+using Localization;
+using Logger;
+using Logger.CrittercismLog;
+using Messaging.Interfaces.Notifications;
+using Messaging.Interfaces.Popup;
+using Messaging.Interfaces.ViewService;
+using Messaging.UniversalApp.Notifications;
+using Messaging.UniversalApp.Popup;
+using Messaging.UniversalApp.ViewService;
+using Moduler;
 using Splat;
-using StoreFramework.Composite;
-using StoreFramework.Logger;
+using Themes;
 
 namespace Ets.Mobile.Shared
 {
@@ -18,11 +28,13 @@ namespace Ets.Mobile.Shared
 			_resolver = resolver;
 
             // Log 
-            _resolver.Register(() => new CrittercismLogger(), typeof(ILogger));
+            _resolver.Register(() => new CrittercismLogger(), typeof(IUserEnabledLogger));
+            _resolver.Register(() => new PopupManager(_resolver.GetService<ResourceLoader>()), typeof(IPopupManager));
+            _resolver.Register(() => new InAppNotificationManager(AppBrushes.MediumBrush), typeof(INotificationManager), "InApp");
+            _resolver.Register(() => new ViewService(), typeof(IViewService));
 
             var types = new[]
 			{
-                typeof (Module.StoreFramework.ModuleInit),
                 typeof (Entities.ModuleInit),
 				typeof (Business.ModuleInit),
 				typeof (Client.ModuleInit),

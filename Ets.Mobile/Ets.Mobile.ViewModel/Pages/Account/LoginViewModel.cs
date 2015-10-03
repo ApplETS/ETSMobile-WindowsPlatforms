@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Reactive.Linq;
 using System.Runtime.Serialization;
-using Windows.ApplicationModel.Resources;
 using Akavache;
 using Ets.Mobile.Client;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Pages.Main;
+using Messaging.UniversalApp.Common;
 using ReactiveUI;
+using ReactiveUI.Xaml.Controls.Exceptions;
 using Refit;
-using Splat;
-using StoreFramework.Controls.Presenter.Exceptions;
-using StoreFramework.Messaging.Common;
-using StoreFramework.Messaging.Popup;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
@@ -85,44 +82,19 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             });
 
             SubmitCommand.ThrownExceptions.Subscribe(ex => {
-                Exception exception;
                 var apiException = ex as ApiException;
-                if (apiException != null)
+                var exception = apiException != null ? new ErrorMessageContent(Resources().GetString("NetworkError"), Resources().GetString("NetworkTitleError"), apiException) : new ErrorMessageContent(ex.Message, ex);
+                
+                if (apiException == null)
                 {
-                    var exceptionMessage = new ErrorMessageContent(ex.Message, apiException);
-                    if (apiException.ReasonPhrase == "Not Found")
-                    {
-                        exceptionMessage.Content.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
-                        exceptionMessage.Content.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
-                    }
-                    exception = exceptionMessage;
-                }
-                else if (ex is ReactivePresenterExceptionBase)
-                {
-                    var exceptionMessage = new ErrorMessageContent(ex.Message, ex);
-                    exception = exceptionMessage;
+                    ViewServices().Popup.ShowMessage(exception);
                 }
                 else
                 {
-                    exception = ex;
+                    ViewServices().Popup.ShowMessage(exception.Message, exception.Title);
                 }
 
-                var errorAsPopup = exception as ErrorMessageContent;
-                
-                if (errorAsPopup != null)
-                {
-                    Locator.Current.GetService<IPopupManager>().ShowMessage(errorAsPopup.Content);
-                    UserError.Throw(errorAsPopup.Content.Message, ex);
-                }
-                else
-                {
-                    if(!(exception is SignetsException))
-                    {
-                        Locator.Current.GetService<IPopupManager>().ShowMessage(exception.Message);
-                    }
-                    
-                    UserError.Throw(ex.Message, ex);
-                }
+                UserError.Throw(exception.Message, ex);
             });
         }
 

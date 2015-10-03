@@ -5,22 +5,18 @@ using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
-using Windows.UI.Xaml;
 using Akavache;
-using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Main;
 using Ets.Mobile.ViewModel.Pages.Grade;
+using Messaging.UniversalApp.Common;
 using ReactiveUI;
+using ReactiveUI.Extensions;
 using ReactiveUI.Xaml.Controls.Presenter;
+using ReactiveUI.Xaml.Controls.ViewModel;
 using Refit;
-using Splat;
-using StoreFramework.Controls.Presenter.Exceptions;
-using StoreFramework.Messaging.Common;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
@@ -28,14 +24,14 @@ namespace Ets.Mobile.ViewModel.Pages.Main
     {
         private void InitializeGrade()
         {
-            NavigateToGradeItem = ReactiveCommand.CreateAsyncTask(param =>
+            _navigateToGradeItem = ReactiveCommand.CreateAsyncTask(param =>
             {
-                var s = param as string;
-                if (s != null)
+                var selectedItem = param as GradeSummaryViewModelItem;
+                if (selectedItem != null)
                 {
                     RxApp.MainThreadScheduler.Schedule(() =>
                     {
-                        HostScreen.Router.Navigate.Execute(new GradeViewModel(HostScreen, s));
+                        HostScreen.Router.Navigate.Execute(new GradeViewModel(HostScreen, selectedItem.Course));
                     });
                 }
                 return Task.FromResult(Unit.Default);
@@ -43,25 +39,22 @@ namespace Ets.Mobile.ViewModel.Pages.Main
 
             GradesItems = new ReactiveList<GradeSummaryViewModelGroup>();
 
-            LoadGrades = ReactiveCommand.CreateAsyncObservable(p =>
+            LoadGrades = ReactiveDeferedCommand.CreateAsyncObservable(() => 
             {
-                return Observable.Defer(() =>
+                return Cache.GetAndFetchLatest(ViewModelKeys.Courses, async () =>
                 {
-                    return Cache.GetAndFetchLatest(ViewModelKeys.Courses, async () =>
+                    var courses = await ClientServices().SignetsService.Courses();
+                    foreach(var course in courses.Where(x => x.Semester != "s.o.")
+                                                    .GroupBy(x => x.Semester))
                     {
-                        var courses = await ClientServices().SignetsService.Courses();
-                        foreach(var course in courses.Where(x => x.Semester != "s.o.")
-                                                     .GroupBy(x => x.Semester))
-                        {
-                            await SettingsService().ApplyColorOnItemsForSemester(
-                                    courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
-                                    course.FirstOrDefault().Semester, x => x.Acronym);
-                        }
+                        await SettingsService().ApplyColorOnItemsForSemester(
+                                courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
+                                course.FirstOrDefault().Semester, x => x.Acronym);
+                    }
 
-                        return courses.Where(x => x.Semester != "s.o.").OrderByDescending(x => x.Semester, new SemestersComparator()).ToList();
-                    })
-                    .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), NavigateToGradeItem)).ToList());
-                });
+                    return courses.Where(x => x.Semester != "s.o.").OrderByDescending(x => x.Semester, new SemestersComparator()).ToList();
+                })
+                .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)).ToList());
             });
 
             LoadGrades.ThrownExceptions
@@ -75,15 +68,10 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                         var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
                         if (apiException.ReasonPhrase == "Not Found")
                         {
-                            exceptionMessage.Content.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
-                            exceptionMessage.Content.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
+                            exceptionMessage.Message = Resources().GetString("NetworkError");
+                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
                         }
-                        exception = exceptionMessage;
-                    }
-                    else if (x is ReactivePresenterExceptionBase)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, x);
-                        exception = exceptionMessage;
+                        exception = exceptionMessage.Exception;
                     }
                     else
                     {
@@ -115,7 +103,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             set { this.RaiseAndSetIfChanged(ref _gradesItems, value); }
         }
 
-        private ReactiveCommand<Unit> NavigateToGradeItem;
+        private ReactiveCommand<Unit> _navigateToGradeItem;
 
         [DataMember]
         public IReactiveDerivedList<GradeGroupViewModel> Grades { get; protected set; }

@@ -5,15 +5,15 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
-using Windows.ApplicationModel.Resources;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Pages.Account;
+using Messaging.UniversalApp.Common;
 using ReactiveUI;
+using ReactiveUI.Extensions;
+using ReactiveUI.Xaml.Controls.Exceptions;
 using Refit;
 using Splat;
-using StoreFramework.Controls.Presenter.Exceptions;
-using StoreFramework.Messaging.Common;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
@@ -23,18 +23,14 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         {
             Profile = new UserDetailsVm();
 
-            LoadProfile = ReactiveCommand.CreateAsyncObservable(_ =>
+            LoadProfile = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
-                return Observable.Defer(() =>
-                {
-                    Cache.GetAllKeys().Subscribe(x => string.Join(",", x));
-                    return Cache.GetAndFetchLatest(ViewModelKeys.UserProfile, () => ClientServices().SignetsService.UserDetails())
-                        .Do(ud => Cache.LoadImage(ViewModelKeys.Gravatar)
-                            .ObserveOn(RxApp.MainThreadScheduler)
-                            .Catch<IBitmap, KeyNotFoundException>(x => Observable.Empty<IBitmap>())
-                            .Where(x => x != null)
-                            .Subscribe(image => ud.Image = image));
-                });
+                return Cache.GetAndFetchLatest(ViewModelKeys.UserProfile, () => ClientServices().SignetsService.UserDetails())
+                    .Do(ud => Cache.LoadImage(ViewModelKeys.Gravatar)
+                        .ObserveOn(RxApp.MainThreadScheduler)
+                        .Catch<IBitmap, KeyNotFoundException>(x => Observable.Empty<IBitmap>())
+                        .Where(x => x != null)
+                        .Subscribe(image => ud.Image = image));
             });
 
             LoadProfile.ThrownExceptions
@@ -48,15 +44,10 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                         var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
                         if (apiException.ReasonPhrase == "Not Found")
                         {
-                            exceptionMessage.Content.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
-                            exceptionMessage.Content.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
+                            exceptionMessage.Message = Resources().GetString("NetworkError");
+                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
                         }
-                        exception = exceptionMessage;
-                    }
-                    else if (x is ReactivePresenterExceptionBase)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, x);
-                        exception = exceptionMessage;
+                        exception = exceptionMessage.Exception;
                     }
                     else
                     {

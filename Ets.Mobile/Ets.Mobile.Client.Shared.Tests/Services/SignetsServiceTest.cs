@@ -3,7 +3,6 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Ets.Mobile.Business.Contracts;
-using Ets.Mobile.Business.DesignTime;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Client.Factories.Implementations;
@@ -15,8 +14,6 @@ using Fusillade;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using Refit;
 using Splat;
-using StoreFramework.Logger;
-
 #endif
 
 namespace Ets.Mobile.Client.Shared.Tests.Services

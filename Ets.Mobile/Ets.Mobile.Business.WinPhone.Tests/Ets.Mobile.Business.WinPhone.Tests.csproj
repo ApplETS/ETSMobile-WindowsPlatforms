@@ -91,10 +91,6 @@
       <Project>{ce35f282-6085-4910-bfe2-38a93c50cd8b}</Project>
       <Name>Ets.Mobile.Entities.WinPhone</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.StoreFramework.WinPhone\Ets.Mobile.StoreFramework.WinPhone.csproj">
-      <Project>{36c64212-92f6-47cc-b21b-d5bf1bf47fee}</Project>
-      <Name>Ets.Mobile.StoreFramework.WinPhone</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Akavache, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -103,6 +99,10 @@
     </Reference>
     <Reference Include="Akavache.Sqlite3">
       <HintPath>..\packages\akavache.sqlite3.4.1.1\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.Sqlite3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrittercismSDK, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Crittercism.2.2.2\lib\wpa81\CrittercismSDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fusillade">

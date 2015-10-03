@@ -2,7 +2,7 @@
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using ReactiveUI;
-using StoreFramework.Themes;
+using Themes;
 
 namespace Ets.Mobile.Pages.Main
 {
@@ -11,7 +11,7 @@ namespace Ets.Mobile.Pages.Main
         partial void PartialInitialize()
         {
             var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
-            statusBar.BackgroundColor = EtsColors.HighBrush;
+            statusBar.BackgroundColor = AppBrushes.HighBrush;
             statusBar.BackgroundOpacity = 1;
 
             // Today Presenter

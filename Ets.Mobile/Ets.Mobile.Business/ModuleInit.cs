@@ -7,10 +7,10 @@ using Ets.Mobile.Business.DesignTime;
 using Ets.Mobile.Business.Entities.Results.Signets.Converters;
 using Ets.Mobile.Entities.ServiceInfo;
 using Ets.Mobile.Entities.Signets;
+using Moduler;
 using Newtonsoft.Json;
 using Refit;
 using Splat;
-using StoreFramework.Composite;
 
 namespace Ets.Mobile.Business
 {
