@@ -300,17 +300,21 @@ namespace ReactiveUI.Xaml.Controls
                 _isReactiveSourceInitialized = true;
                 var source = (IReactivePresenterViewModel)PresenterSource;
 
-                _subscriptions.Add(source.Content.Where(x => x != null).Subscribe(x =>
+                _subscriptions.Add(source.Content.Where(x => x != null).ObserveOn(RxApp.MainThreadScheduler).Subscribe(x =>
                 {
                     PreviousSource = previousValue;
                     CurrentSource = x;
                     ReactiveState = ReactiveState.Value;
                 }));
-                _subscriptions.Add(source.IsContentEmpty.Where(isEmpty => isEmpty).Subscribe(x =>
-                {
-                    CurrentIsEmpty = x;
-                    ReactiveState = ReactiveState.Empty;
-                }));
+                _subscriptions.Add(
+                    source.IsContentEmpty.Where(isEmpty => isEmpty)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Subscribe(x =>
+                    {
+                        CurrentIsEmpty = x;
+                        ReactiveState = ReactiveState.Empty;
+                    })
+                );
                 _subscriptions.Add(source.IsRefreshing.Where(isRefreshing => isRefreshing).Subscribe(x =>
                 {
                     CurrentIsRefreshing = x;

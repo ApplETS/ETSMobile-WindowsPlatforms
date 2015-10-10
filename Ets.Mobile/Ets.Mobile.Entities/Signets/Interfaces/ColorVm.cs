@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Runtime.Serialization;
 using Windows.UI;
-using Windows.UI.Xaml.Media;
 
 namespace Ets.Mobile.Entities.Signets.Interfaces
 {

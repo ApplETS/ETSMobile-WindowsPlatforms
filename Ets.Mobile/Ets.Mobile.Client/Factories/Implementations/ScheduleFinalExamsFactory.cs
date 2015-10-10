@@ -10,7 +10,7 @@ namespace Ets.Mobile.Client.Factories.Implementations
     {
         public List<ScheduleFinalExamVm> Create(ScheduleFinalExamsResult result)
         {
-            return new List<ScheduleFinalExamVm>(result.ScheduleFinalExams.Select(schedule => new ScheduleFinalExamVm()
+            return new List<ScheduleFinalExamVm>(result.ScheduleFinalExams.Select(schedule => new ScheduleFinalExamVm
             {
                 Abridged = schedule.Abridged,
                 Date = schedule.Date,

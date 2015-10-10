@@ -27,7 +27,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
 
         protected override sealed void OnViewModelCreation()
         {
-            ScheduleItems = new ReactiveList<IGrouping<DateTime, ScheduleVm>>();
+            ScheduleItems = new ReactiveList<ScheduleVm>();
 
             LoadSchedule = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
@@ -41,7 +41,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
                         return schedule;
                     }))
                     .Where(x => x != null)
-                    .Select(x => x.GroupBy(y => y.StartDate.Date));
+                    .Select(x => x.AsEnumerable());
             });
 
             LoadSchedule.ThrownExceptions
@@ -74,51 +74,50 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
             });
 
             Schedule = ScheduleItems.CreateDerivedCollection(
-                x => new ScheduleTileViewModel(x),
-                x => x.Dispose(),
-                null,
-                (x, y) => DateTime.Compare(x.Model.Date, y.Model.Date)
+                //x => new ScheduleTileViewModel(x),
+                x => x,
+                x => x = null
             );
 
-            SchedulePresenter = ReactivePresenterViewModel<ReactiveList<IGrouping<DateTime, ScheduleVm>>>.Create(ScheduleItems, Schedule, LoadSchedule.IsExecuting, _scheduleExceptionSubject);
+            SchedulePresenter = ReactivePresenterViewModel<ReactiveList<ScheduleVm>>.Create(ScheduleItems, Schedule, LoadSchedule.IsExecuting, _scheduleExceptionSubject);
         }
 
         #region Properties
 
         [DataMember]
-        public ReactiveList<IGrouping<DateTime, ScheduleVm>> ScheduleItems { get; protected set; }
+        public ReactiveList<ScheduleVm> ScheduleItems { get; protected set; }
         [DataMember]
-        public IReactiveDerivedList<ScheduleTileViewModel> Schedule { get; protected set; }
-        public IReactivePresenterViewModel<ReactiveList<IGrouping<DateTime, ScheduleVm>>> SchedulePresenter { get; protected set; }
-        public ReactiveCommand<IEnumerable<IGrouping<DateTime, ScheduleVm>>> LoadSchedule { get; protected set; }
+        public IReactiveDerivedList<ScheduleVm> Schedule { get; protected set; }
+        public IReactivePresenterViewModel<ReactiveList<ScheduleVm>> SchedulePresenter { get; protected set; }
+        public ReactiveCommand<IEnumerable<ScheduleVm>> LoadSchedule { get; protected set; }
         private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion
 
-        #region Methods
+        //#region Methods
 
-        [DataContract]
-        public class ScheduleTileViewModel : ReactiveObject, IDisposable
-        {
-            #region IDisposable
+        //[DataContract]
+        //public class ScheduleTileViewModel : ReactiveObject, IDisposable
+        //{
+        //    #region IDisposable
 
-            public void Dispose()
-            {
-                Model?.Dispose();
-                Model = null;
-            }
+        //    public void Dispose()
+        //    {
+        //        Model?.Dispose();
+        //        Model = null;
+        //    }
 
-            #endregion
+        //    #endregion
 
-            [DataMember]
-            public ScheduleViewModelItem Model { get; protected set; }
+        //    [DataMember]
+        //    public ScheduleViewModelItem Model { get; protected set; }
 
-            public ScheduleTileViewModel(IGrouping<DateTime, ScheduleVm> model)
-            {
-                Model = new ScheduleViewModelItem(model.Key, model.ToList());
-            }            
-        }
+        //    public ScheduleTileViewModel(ScheduleVm model)
+        //    {
+        //        Model = new ScheduleViewModelItem(model);
+        //    }            
+        //}
 
-        #endregion
+        //#endregion
     }
 }

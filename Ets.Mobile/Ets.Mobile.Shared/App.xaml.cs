@@ -197,7 +197,7 @@ namespace Ets.Mobile
             var rootFrame = sender as Frame;
             if (rootFrame != null)
             {
-                rootFrame.ContentTransitions = _transitions ?? new TransitionCollection() { new NavigationThemeTransition() };
+                rootFrame.ContentTransitions = _transitions ?? new TransitionCollection { new NavigationThemeTransition() };
                 rootFrame.Navigated -= RootFrame_FirstNavigated;
             }
         }

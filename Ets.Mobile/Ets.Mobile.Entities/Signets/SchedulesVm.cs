@@ -8,20 +8,20 @@ using ReactiveUI;
 namespace Ets.Mobile.Entities.Signets
 {
     [DataContract]
-    public class ScheduleVm : ReactiveObject, ICustomColor
+    public class ScheduleVm : ReactiveObject, ICustomColor, IDisposable
     {
     	private DateTime _startDate;
         [DataMember] public DateTime StartDate
         {
         	get { return _startDate; }
-        	set { this.RaiseAndSetIfChanged(ref _startDate, value); }
+        	set { this.RaiseAndSetIfChanged(ref _startDate, value.ToLocalTime()); }
         }
 
         private DateTime _endDate;
         [DataMember] public DateTime EndDate
         {
         	get { return _endDate; }
-            set { this.RaiseAndSetIfChanged(ref _endDate, value); }
+            set { this.RaiseAndSetIfChanged(ref _endDate, value.ToLocalTime()); }
         }
 
         private string _courseAndGroup;
@@ -87,5 +87,7 @@ namespace Ets.Mobile.Entities.Signets
         public SolidColorBrush Brush => new SolidColorBrush(Color.FromArgb(A, R, G, B));
 
         #endregion
+
+        public void Dispose() {}
     }
 }

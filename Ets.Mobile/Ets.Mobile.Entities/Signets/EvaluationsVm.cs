@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reactive.Linq;
 using System.Runtime.Serialization;
 using Windows.UI;
 using Windows.UI.Xaml.Media;

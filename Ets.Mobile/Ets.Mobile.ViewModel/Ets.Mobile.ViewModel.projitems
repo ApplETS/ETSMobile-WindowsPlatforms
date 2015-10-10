@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Content\Grade\GradeViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeSummaryViewModelGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeSummaryViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleGroupedByDayViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\IMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DesignTimeHelper.cs" />

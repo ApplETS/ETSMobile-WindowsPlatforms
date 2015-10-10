@@ -92,27 +92,34 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Coding4Fun.Toolkit, Version=2.0.8.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\wpa81\Coding4Fun.Toolkit.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\netcore451\Coding4Fun.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\wpa81\Coding4Fun.Toolkit.Controls.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\netcore451\Coding4Fun.Toolkit.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Splat">
       <HintPath>..\..\..\..\packages\Splat.1.6.2\lib\Portable-Win81+Wpa81\Splat.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="ReadMe.Coding4Fun.Toolkit.txt" />
-  </ItemGroup>
   <Import Project="..\Messaging.UniversalApp\Messaging.UniversalApp.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <Target Name="BeforeBuild">
+    <PropertyGroup>
+      <Coding4Fun_Toolkit_Controls_Xr_Xml>$([System.IO.Path]::GetFullPath('..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\netcore451\Coding4Fun.Toolkit.Controls\Coding4Fun.Toolkit.Controls.xr.xml'))</Coding4Fun_Toolkit_Controls_Xr_Xml>
+      <Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>$([System.IO.Path]::GetFullPath('..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\netcore451\Coding4Fun.Toolkit.Controls\Themes\Generic.xbf'))</Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>
+    </PropertyGroup>
+    <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Xr_Xml)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls"/>
+    <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls/Themes"/>
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

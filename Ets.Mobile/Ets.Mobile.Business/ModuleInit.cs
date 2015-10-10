@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using Windows.ApplicationModel;
 using Ets.Mobile.Business.Contracts;
@@ -9,6 +10,7 @@ using Ets.Mobile.Entities.ServiceInfo;
 using Ets.Mobile.Entities.Signets;
 using Moduler;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Refit;
 using Splat;
 
@@ -49,4 +51,12 @@ namespace Ets.Mobile.Business
             }
 		}
 	}
+
+    public class CustomDateTimeConverter : IsoDateTimeConverter
+    {
+        public CustomDateTimeConverter()
+        {
+            base.DateTimeFormat = "yyyy-MM-ddThh:mm:ss";
+        }
+    }
 }

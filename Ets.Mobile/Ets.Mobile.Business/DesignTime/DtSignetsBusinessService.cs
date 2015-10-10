@@ -11,7 +11,7 @@ namespace Ets.Mobile.Business.DesignTime
     {
         public Task<LoginResult> LoginRaw(Dictionary<string, string> form)
         {
-            var loginResult = new LoginResult()
+            var loginResult = new LoginResult
             {
                 IsAuthentificated = true
             };
@@ -140,7 +140,7 @@ namespace Ets.Mobile.Business.DesignTime
                     {
                         Code = "0725",
                         Name = "Microprogramme de 1er cycle en enseignement coopératif I",
-                        Average = 60,
+                        Average = "60/100",
                         CompletedCreditsCount = "26",
                         RegisteredCreditsCount = "4",
                         PotentialCreditsCount = "56",

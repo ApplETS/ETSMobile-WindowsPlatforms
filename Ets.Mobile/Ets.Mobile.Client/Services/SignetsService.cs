@@ -25,6 +25,13 @@ namespace Ets.Mobile.Client.Services
             _factory = factory;
         }
 
+        public SignetsService(ISignetsBusinessService signetsService, SignetsAbstractFactory factory, SignetsAccountVm account)
+        {
+            _signetsService = signetsService;
+            _factory = factory;
+            _userCredentials = account;
+        }
+
         public void SetCredentials(SignetsAccountVm vm)
         {
             _userCredentials = vm;

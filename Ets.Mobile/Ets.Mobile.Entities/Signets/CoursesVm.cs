@@ -1,10 +1,8 @@
-﻿using System.Reactive.Linq;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
-using System;
 
 namespace Ets.Mobile.Entities.Signets
 {

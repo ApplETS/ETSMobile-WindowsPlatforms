@@ -10,7 +10,7 @@ namespace Ets.Mobile.Client.Factories.Implementations
     {
         public List<ScheduleVm> Create(ScheduleResult result)
         {
-            return new List<ScheduleVm>(result.Schedules.Select(schedule => new ScheduleVm()
+            return new List<ScheduleVm>(result.Schedules.Select(schedule => new ScheduleVm
             {
                 CourseAndGroup = schedule.CourseAndGroup,
                 Description = schedule.Description,

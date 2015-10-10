@@ -39,8 +39,8 @@ namespace Ets.Mobile.Entities.Signets
         	set { this.RaiseAndSetIfChanged(ref _semesterEnd, value); }
         }
 
-        private double _average;
-        public double Average
+        private string _average;
+        public string Average
         { 
         	get { return _average; }
         	set { this.RaiseAndSetIfChanged(ref _average, value); }

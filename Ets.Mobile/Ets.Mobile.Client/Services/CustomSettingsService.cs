@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Windows.UI;
-using Windows.UI.Xaml.Media;
 using Akavache;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Entities.Signets.Interfaces;
