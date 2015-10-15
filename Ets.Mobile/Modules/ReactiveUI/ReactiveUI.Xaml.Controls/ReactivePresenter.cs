@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Markup;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
 using Messaging.Interfaces.Popup;
+using ReactiveUI.Xaml.Controls.Exceptions;
 using ReactiveUI.Xaml.Controls.ViewModel;
 using Splat;
 
@@ -23,7 +24,7 @@ namespace ReactiveUI.Xaml.Controls
     [TemplateVisualState(Name = ErrorStateName, GroupName = ReactiveGroupName)]
     [TemplateVisualState(Name = EmptyStateName, GroupName = ReactiveGroupName)]
     [ContentProperty(Name = "ValueTemplate")]
-    public class ReactivePresenter : ContentControl, IDisposable
+    public class ReactivePresenter : ContentControl, IEnableLogger, IDisposable
     {
         #region Names
 
@@ -300,30 +301,33 @@ namespace ReactiveUI.Xaml.Controls
                 _isReactiveSourceInitialized = true;
                 var source = (IReactivePresenterViewModel)PresenterSource;
 
-                _subscriptions.Add(source.Content.Where(x => x != null).ObserveOn(RxApp.MainThreadScheduler).Subscribe(x =>
+                _subscriptions.Add(source.Content.Where(x => x != null).Subscribe(x =>
                 {
                     PreviousSource = previousValue;
                     CurrentSource = x;
                     ReactiveState = ReactiveState.Value;
+                    this.Log().Info($"[{typeof(ReactivePresenter)}]: Value ({x}) State for {Name}");
                 }));
                 _subscriptions.Add(
                     source.IsContentEmpty.Where(isEmpty => isEmpty)
-                    .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(x =>
                     {
                         CurrentIsEmpty = x;
                         ReactiveState = ReactiveState.Empty;
+                        this.Log().Info($"[{typeof(ReactivePresenter)}]: IsEmpty State for {Name}");
                     })
                 );
                 _subscriptions.Add(source.IsRefreshing.Where(isRefreshing => isRefreshing).Subscribe(x =>
                 {
                     CurrentIsRefreshing = x;
                     ReactiveState = ReactiveState.Refreshing;
+                    this.Log().Info($"[{typeof(ReactivePresenter)}]: Refreshing State for {Name}");
                 }));
                 _subscriptions.Add(source.ThrownExceptions.Where(error => error != null).Subscribe(x =>
                 {
                     CurrentError = x;
                     ReactiveState = ReactiveState.Error;
+                    this.Log().Error($"[{typeof(ReactivePresenter)}]: Error State for {Name}");
                 }));
             }
         }

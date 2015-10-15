@@ -45,6 +45,10 @@ namespace Ets.Mobile.ViewModel.Pages.Account
         protected override sealed void OnViewModelCreation()
         {
             UserName = Password = string.Empty;
+#if DEBUG
+            UserName = "";
+            Password = "";
+#endif
             _isValidating = false;
 
             SetupSubmitCommand();

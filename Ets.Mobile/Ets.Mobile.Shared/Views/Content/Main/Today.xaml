@@ -75,6 +75,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <controls:ReactivePresenter
+        x:Name="TodayPresenter"
         UseDialogForErrors="False"
         DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again." 
         ValueTemplate="{StaticResource TodayPresenterValue}" 

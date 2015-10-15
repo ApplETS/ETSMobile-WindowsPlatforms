@@ -28,7 +28,7 @@ namespace Ets.Mobile.Pages.Schedule
 
         public SchedulePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
                 .Where(x => x != null);

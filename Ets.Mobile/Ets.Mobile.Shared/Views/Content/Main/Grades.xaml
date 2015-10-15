@@ -94,10 +94,12 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <controls:ReactivePresenter UseDialogForErrors="False"
-                            PresenterSource="{Binding}"
-                            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
-                            ValueTemplate="{StaticResource GradesPresenterValue}">
+    <controls:ReactivePresenter
+        x:Name="GradeSummaryPresenter"
+        UseDialogForErrors="False"
+        PresenterSource="{Binding}"
+        DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
+        ValueTemplate="{StaticResource GradesPresenterValue}">
         <controls:ReactivePresenter.EmptyTemplate>
             <DataTemplate>
                 <TextBlock x:Uid="GradesEmptyUid" Text="Il n'y a pas de résultats à afficher" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>

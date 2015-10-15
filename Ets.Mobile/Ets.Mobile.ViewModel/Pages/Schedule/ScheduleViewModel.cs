@@ -3,6 +3,7 @@ using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -74,9 +75,8 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
             });
 
             Schedule = ScheduleItems.CreateDerivedCollection(
-                //x => new ScheduleTileViewModel(x),
                 x => x,
-                x => x = null
+                x => x.Dispose()
             );
 
             SchedulePresenter = ReactivePresenterViewModel<ReactiveList<ScheduleVm>>.Create(ScheduleItems, Schedule, LoadSchedule.IsExecuting, _scheduleExceptionSubject);
@@ -93,31 +93,5 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
         private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion
-
-        //#region Methods
-
-        //[DataContract]
-        //public class ScheduleTileViewModel : ReactiveObject, IDisposable
-        //{
-        //    #region IDisposable
-
-        //    public void Dispose()
-        //    {
-        //        Model?.Dispose();
-        //        Model = null;
-        //    }
-
-        //    #endregion
-
-        //    [DataMember]
-        //    public ScheduleViewModelItem Model { get; protected set; }
-
-        //    public ScheduleTileViewModel(ScheduleVm model)
-        //    {
-        //        Model = new ScheduleViewModelItem(model);
-        //    }            
-        //}
-
-        //#endregion
     }
 }

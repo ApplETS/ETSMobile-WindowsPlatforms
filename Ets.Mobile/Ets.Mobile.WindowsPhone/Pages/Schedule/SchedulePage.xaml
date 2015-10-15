@@ -10,12 +10,22 @@
     mc:Ignorable="d">
 
     <!--<s:Schedule x:Name="Schedule" />-->
-
-    <Grid Background="Black">
-        <controls:ReactivePresenter UseDialogForErrors="False"
-                            PresenterSource="{Binding}"
-                            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
-                            >
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Skins/PhoneSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="White">
+        <controls:ReactivePresenter 
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            x:Name="SchedulePresenter"
+            UseDialogForErrors="False"
+            PresenterSource="{Binding}"
+            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
+            >
             <controls:ReactivePresenter.EmptyTemplate>
                 <DataTemplate>
                     <TextBlock x:Uid="GradesEmptyUid" Text="Il n'y a pas de résultats à afficher" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
@@ -33,27 +43,27 @@
             </controls:ReactivePresenter.RefreshingTemplate>
             <controls:ReactivePresenter.ValueTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Schedule:SfSchedule ItemsSource="{Binding}" AllowEditing="True" ScheduleType="Week">
+                    <Schedule:SfSchedule ItemsSource="{Binding}"
+                                         Foreground="Black"
+                                         AllowEditing="False" 
+                                         ScheduleType="Week" 
+                                         RequestedTheme="Light">
                         <Schedule:SfSchedule.AppointmentMapping>
                             <Schedule:ScheduleAppointmentMapping SubjectMapping="ActivityName" 
-                                                                 StartTimeMapping="StartDate"
-                                                                 LocationMapping="Location"
-                                                                 AppointmentBackgroundMapping="Brush"
-                                                                 EndTimeMapping="EndDate">
-
+                                                                    StartTimeMapping="StartDate"
+                                                                    LocationMapping="Location"
+                                                                    AppointmentBackgroundMapping="Brush"
+                                                                    EndTimeMapping="EndDate">
                             </Schedule:ScheduleAppointmentMapping>
                         </Schedule:SfSchedule.AppointmentMapping>
                     </Schedule:SfSchedule>
-                    </Grid>
-                    
                 </DataTemplate>
             </controls:ReactivePresenter.ValueTemplate>
         </controls:ReactivePresenter>
         
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Compact" IsOpen="False" Background="White" Foreground="{StaticResource EtsRedHighBrush}" Opacity="0.7">
+        <CommandBar ClosedDisplayMode="Minimal" IsOpen="False" Background="White" Foreground="{StaticResource EtsRedHighBrush}" Opacity="0.7">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
             </CommandBar.PrimaryCommands>
