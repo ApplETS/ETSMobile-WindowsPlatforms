@@ -121,8 +121,8 @@
     <Compile Include="Pages\Schedule\SchedulePage.xaml.cs">
       <DependentUpon>SchedulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UserDetails\UserDetailPage.xaml.cs">
-      <DependentUpon>UserDetailPage.xaml</DependentUpon>
+    <Compile Include="Pages\UserDetails\UserDetailsPage.xaml.cs">
+      <DependentUpon>UserDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RefitStubs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,7 +162,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UserDetails\UserDetailPage.xaml">
+    <Page Include="Pages\UserDetails\UserDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -240,6 +240,9 @@
     <SDKReference Include="Microsoft.VCLibs, Version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
     </SDKReference>
+    <SDKReference Include="Syncfusion 8.1 controls for Universal XAML, Version=13.3.0.7">
+      <Name>Syncfusion 8.1 controls for Universal XAML</Name>
+    </SDKReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Akavache">
@@ -286,8 +289,8 @@
       <ReactiveUI_Xr_Xml>$([System.IO.Path]::GetFullPath('..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI\ReactiveUI.xr.xml'))</ReactiveUI_Xr_Xml>
       <Generic_Winrt_Xbf>$([System.IO.Path]::GetFullPath('..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI\Themes\generic-winrt.xbf'))</Generic_Winrt_Xbf>
     </PropertyGroup>
-    <Copy SourceFiles="$(ReactiveUI_Xr_Xml)" DestinationFolder="bin/$(Platform)/$(Configuration)/ReactiveUI"/>
-    <Copy SourceFiles="$(Generic_Winrt_Xbf)" DestinationFolder="bin/$(Platform)/$(Configuration)/ReactiveUI/Themes"/>
+    <Copy SourceFiles="$(ReactiveUI_Xr_Xml)" DestinationFolder="bin/$(Platform)/$(Configuration)/ReactiveUI" />
+    <Copy SourceFiles="$(Generic_Winrt_Xbf)" DestinationFolder="bin/$(Platform)/$(Configuration)/ReactiveUI/Themes" />
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="bin/$(Platform)/$(Configuration)/ReactiveUI" />

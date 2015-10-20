@@ -17,6 +17,7 @@ namespace Ets.Mobile.Pages.Account
         {
             var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
             statusBar.BackgroundOpacity = 0;
+            statusBar.HideAsync();
 
             // View ModelGroup
             //RxApp.SuspensionHost.ObserveAppState<LoginViewModel>()

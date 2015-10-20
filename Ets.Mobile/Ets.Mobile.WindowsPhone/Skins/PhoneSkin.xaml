@@ -4,7 +4,8 @@
     xmlns:controls="using:Windows.UI.Xaml.Controls"
     xmlns:primitives="using:Windows.UI.Xaml.Controls.Primitives"
     xmlns:local="using:Ets.Mobile.Skins"
-    xmlns:schedule="using:Syncfusion.UI.Xaml.Schedule">
+    xmlns:schedule="using:Syncfusion.UI.Xaml.Schedule"
+    xmlns:sfSchedule="using:Ets.Mobile.SyncFusion.SfSchedule">
 
     <!-- Pivot                                                     -->
     <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="{StaticResource EtsRedMediumColor}" />
@@ -82,84 +83,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <schedule:ExpandingAppointmentVisibility x:Key="Appvisibility"></schedule:ExpandingAppointmentVisibility>
-    <Style TargetType="schedule:WeekViewItem">
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="BorderBrush" Value="Black"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="BorderThickness" Value="0,0,1,1"/>
-
-    </Style>
-    <Style TargetType="schedule:ScheduleWeekView">
-        <Setter Property="FontSize" Value="18"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="BorderBrush" Value="Black"/>
-        <Setter Property="Background" Value="Black"/>
-        <Setter Property="BorderThickness" Value="0,1,0,0"/>
-        <Setter Property="Margin" Value="-20,0,-20,0" />
-    </Style>
-
-    <Style TargetType="schedule:ExpandingControl">
-        <Setter Property="BorderThickness" Value="0,0,0,1"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="schedule:ExpandingControl">
-                    <Border BorderBrush="Black" BorderThickness="{TemplateBinding BorderThickness}" Margin="0,0,0,1">
-                        <ScrollViewer Margin="7,10,0,0" VerticalContentAlignment="Top"
-                                      VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto">
-                            <Grid>
-                                <schedule:ExpandingItemControl DataContext="{TemplateBinding AppointmentCollection}" Margin="3,3,0,0"
-                                                            ItemsSource="{Binding}" AppointmentTemplate="{TemplateBinding AppointmentTemplate}"
-                                                            Visibility="{Binding Converter={StaticResource Appvisibility },ConverterParameter=Appointmentcollection}">
-                                </schedule:ExpandingItemControl>
-
-                                <TextBlock x:Name="EventsTextBlock" Text="no events" Margin="5,5,0,0" Foreground="Gray" 
-                                           DataContext="{TemplateBinding AppointmentCollection}" 
-                                           Visibility="{Binding Converter={StaticResource Appvisibility}, ConverterParameter=Emptycollection}">
-                                </TextBlock>
-                            </Grid>
-                        </ScrollViewer>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style TargetType="schedule:CalendarCell">
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="schedule:CalendarCell">
-                    <Grid>
-                        <Rectangle Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}"/>
-                        <TextBlock Margin="0,0,0,2" Text="{Binding Date}" Foreground="Black" FontFamily="Segoe UI" FontWeight="Light" TextAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style TargetType="schedule:WeekViewMonthCalendar">
-        <Setter Property="SelectedDateStroke" Value="{StaticResource PhoneAccentBrush}"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="BorderThickness" Value="0,0,0,1"/>
-        <Setter Property="BorderBrush" Value="Black"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontWeight" Value="Light"/>
-        <Setter Property="FontSize" Value="12"/>
-    </Style>
-    <Style TargetType="schedule:WeekAppointmentsControl">
-        <Setter Property="Foreground" Value="Black"/>
-    </Style>
-    <Style TargetType="schedule:ExpandedAppointmentViewControl">
-        <Setter Property="Background" Value="#FF2671EB"/>
-        <Setter Property="BorderThickness" Value="0,1,0,0"/>
-        <Setter Property="FontSize" Value="15"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="BorderBrush" Value="#FFB0B6BE"/>
-    </Style>
-
 </ResourceDictionary>

@@ -15,11 +15,14 @@
     <Color x:Key="EtsRedHighestColor">#FF4E4C</Color>
 
     <Color x:Key="EtsBackgroundColor">#FFFFFFFF</Color>
-    <Color x:Key="EtsBackgroundMainColor">#f2f2f2</Color>
-
+    <Color x:Key="EtsBackgroundMainColor">#f1f2f3</Color>
     <Color x:Key="EtsTextMainColor">#323232</Color>
     <Color x:Key="EtsTextSecondaryColor">#666666</Color>
     <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
+
+    <Color x:Key="EtsSideNavigationBackgroundColor">#2b2b2b</Color>
+    
+    <Color x:Key="AppointmentDescriptionColor">#8c8c8c</Color>
 
     <!-- Brush                                          -->
     <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
@@ -30,13 +33,20 @@
 
     <Brush x:Key="EtsCommandBarBrush">#FFFFFF</Brush>
     <Brush x:Key="EtsBackgroundBrush">#FFFFFFFF</Brush>
-    <Brush x:Key="EtsBackgroundMainBrush">#f2f2f2</Brush>
+    <Brush x:Key="EtsBackgroundMainBrush">#f1f2f3</Brush>
 
     <Brush x:Key="EtsTextMainBrush">#323232</Brush>
+    <Brush x:Key="EtsTextBlackBrush">#000000</Brush>
     <Brush x:Key="EtsTextWhiteBrush">#FFFFFF</Brush>
     <Brush x:Key="EtsTextSecondaryBrush">#666666</Brush>
 
     <Brush x:Key="EtsBorderItemBrush">#e6e6e6</Brush>
+
+    <Brush x:Key="EtsSideNavigationBackgroundBrush">#2b2b2b</Brush>
+
+    <Brush x:Key="SfScheduleCommandBrush">#000000</Brush>
+    <Brush x:Key="SfScheduleChangeCalendarBackgroundBrush">#dddddd</Brush>
+    <Brush x:Key="AppointmentDescriptionBrush">#8c8c8c</Brush>
 
     <!-- Main Fonts                                     -->
     <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
@@ -126,6 +136,28 @@
     </Style>
     <Style x:Key="EtsTextBlockMainColor5" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size5}" />
+    </Style>
+
+    <!-- Black TextBlock -->
+    <Style x:Key="EtsTextBlockBlack1" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size1}" />
+    </Style>
+    <Style x:Key="EtsTextBlockBlack2" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size2}" />
+    </Style>
+    <Style x:Key="EtsTextBlockBlack3" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size3}" />
+    </Style>
+    <Style x:Key="EtsTextBlockBlack4" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource Size4}" />
+    </Style>
+    <Style x:Key="EtsTextBlockBlack5" TargetType="TextBlock" BasedOn="{StaticResource EtsTextStyle}">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size5}" />
     </Style>
 
@@ -446,5 +478,81 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <!-- Schedule -->
+    <Style x:Key="FlyoutButtonStyle" TargetType="ButtonBase">
+        <Setter Property="Background"
+                    Value="Transparent" />
+        <Setter Property="Padding"
+                    Value="0" />
+        <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+        <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ButtonBase">
+                    <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Pressed"
+                                                          To="PointerOver">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="PointerOver" To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Pressed" To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <PointerDownThemeAnimation Storyboard.TargetName="Container" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          x:Name="Container"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ChangeCalendarViewFlyoutPresenter" TargetType="FlyoutPresenter">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style x:Key="ChangeCalendarViewFlyoutButtonStyle" TargetType="Button" BasedOn="{StaticResource FlyoutButtonStyle}">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Foreground" Value="{StaticResource SfScheduleCommandBrush}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Margin" Value="14,0,14,0" />
+    </Style>
 
+    <Style x:Key="ChangeCalendarViewFlyoutFirstButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
+        <Setter Property="Margin" Value="14,14,14,3" />
+    </Style>
+
+    <Style x:Key="ChangeCalendarViewFlyoutLastButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
+        <Setter Property="Margin" Value="14,0,14,20" />
+    </Style>
 </ResourceDictionary>

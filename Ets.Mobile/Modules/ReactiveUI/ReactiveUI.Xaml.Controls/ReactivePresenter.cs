@@ -464,7 +464,7 @@ namespace ReactiveUI.Xaml.Controls
                 ClearPresenter(_refreshingPresenter);
             }
 
-            _subscriptions.Dispose();
+            _subscriptions?.Dispose();
             _subscriptions = null;
         }
 

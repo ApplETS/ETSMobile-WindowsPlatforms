@@ -9,32 +9,18 @@
     DataContext="{Binding}"
     mc:Ignorable="d"
     d:DesignHeight="800"
-    d:DesignWidth="400">
+    d:DesignWidth="512">
     <Grid>
-        <Grid VerticalAlignment="Top" Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Margin="0,3,0,10" FontSize="17" Text="ACCOUNT" Foreground="{StaticResource EtsTextSecondaryBrush}"></TextBlock>
-            <main:Profile Grid.Row="1" x:Name="Profile" Height="60" />
-            <AppBarButton Grid.Row="1" Grid.Column="1" Icon="Refresh" x:Name="RefreshProfile" Style="{StaticResource EtsAppBarButton}" />
-        </Grid>
-        <Border VerticalAlignment="Bottom" BorderBrush="DarkGray" BorderThickness="0,1,0,0">
-            <Grid Margin="10">
-                <HyperlinkButton Height="50"
-                                 FontSize="22"
-                    Name="Logout"
-					HorizontalAlignment="Stretch"
-                    Padding="-190,0,0,0"
-					Content="Logout"
-					Foreground="{StaticResource EtsTextSecondaryBrush}" 
-					BorderThickness="0" />
-            </Grid>
-        </Border>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Height="96">
+                <Image Source="/Assets/Menu/Home-64.png" Width="25" Margin="25,0,0,0" />
+                <TextBlock x:Uid="HomeUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Home" Style="{StaticResource EtsTextBlockWhite4}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="45">
+                <Image Source="/Assets/Menu/Home-64.png" Width="25" Margin="25,0,0,0" />
+                <TextBlock x:Uid="HomeUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Home" Style="{StaticResource EtsTextBlockWhite4}" />
+            </StackPanel>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

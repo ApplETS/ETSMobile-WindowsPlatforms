@@ -288,5 +288,33 @@ namespace Localization
                 return _resourceLoader.GetString("Yes");
             }
         } 
+        public static string Hour  
+        {
+            get
+            {
+                return _resourceLoader.GetString("Hour");
+            }
+        } 
+        public static string Hours  
+        {
+            get
+            {
+                return _resourceLoader.GetString("Hours");
+            }
+        } 
+        public static string Minute  
+        {
+            get
+            {
+                return _resourceLoader.GetString("Minute");
+            }
+        } 
+        public static string Minutes  
+        {
+            get
+            {
+                return _resourceLoader.GetString("Minutes");
+            }
+        } 
     }
 }

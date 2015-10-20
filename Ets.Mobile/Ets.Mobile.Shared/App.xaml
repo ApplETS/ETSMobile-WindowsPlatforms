@@ -18,6 +18,7 @@
             <converters:AbridgedSemesterToFullNameConverter x:Key="AbridgedSemesterToFullNameConverter" />
             <converters:StringToIntegerConverter x:Key="StringToIntegerConverter" />
             <converters:SelectedPivotItemToVisibilityConverter x:Key="SelectedPivotItemToVisibilityConverter" />
+            <converters:InversedBooleanConverter x:Key="InversedBooleanConverter" />
             <localization:StringResources x:Key="LocalizedStrings" />
         </ResourceDictionary>
     </Application.Resources>

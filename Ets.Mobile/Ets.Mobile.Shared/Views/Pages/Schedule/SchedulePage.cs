@@ -29,15 +29,18 @@ namespace Ets.Mobile.Pages.Schedule
         public SchedulePage()
         {
             InitializeComponent();
-
+            
             var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
                 .Where(x => x != null);
 
             subscriptionForViewModel
                 .InvokeCommand(this, x => x.ViewModel.LoadSchedule);
-
-            this.OneWayBind(ViewModel, x => x.SchedulePresenter, x => x.DataContext);
+            
             this.OneWayBind(ViewModel, x => x.LoadSchedule, x => x.RefreshSchedule.Command);
+
+            PartialInitialize();
         }
+
+        partial void PartialInitialize();
     }
 }

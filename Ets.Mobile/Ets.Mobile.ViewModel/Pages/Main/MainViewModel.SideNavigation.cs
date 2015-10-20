@@ -5,9 +5,11 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Pages.Account;
+using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using ReactiveUI.Extensions;
@@ -67,6 +69,8 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                 HostScreen.Router.NavigateAndReset.Execute(new LoginViewModel(HostScreen));
                 return Unit.Default;
             });
+
+            NavigateToUserDetails = HostScreen.Router.CreateNavigationAsyncCommand(new UserDetailsViewModel(HostScreen));
         }
 
         #region Properties
@@ -82,6 +86,8 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         private readonly ReplaySubject<Exception> _profileExceptionSubject = new ReplaySubject<Exception>();
 
         public ReactiveCommand<Unit> Logout { get; set; }
+
+        public ReactiveCommand<Unit> NavigateToUserDetails { get; set; }
 
         #endregion
     }

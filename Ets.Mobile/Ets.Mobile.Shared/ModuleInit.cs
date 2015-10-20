@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.ApplicationModel.Resources;
-using Localization;
 using Logger;
 using Logger.CrittercismLog;
 using Messaging.Interfaces.Notifications;

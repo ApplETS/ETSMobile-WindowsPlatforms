@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reactive.Linq;
-using System.Text;
 using Windows.UI.Xaml;
 using Ets.Mobile.ViewModel.Pages.Grade;
 using ReactiveUI;

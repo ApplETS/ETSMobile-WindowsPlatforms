@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Grade.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.SideNavigation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Today.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\UserDetails\UserDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\PageViewModelBase.cs" />

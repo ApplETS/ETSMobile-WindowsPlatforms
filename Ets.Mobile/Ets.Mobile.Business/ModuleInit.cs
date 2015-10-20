@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Net.Http;
 using Windows.ApplicationModel;
 using Ets.Mobile.Business.Contracts;

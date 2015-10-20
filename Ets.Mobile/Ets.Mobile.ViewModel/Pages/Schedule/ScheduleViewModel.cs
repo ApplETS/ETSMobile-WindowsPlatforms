@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.Serialization;
+using Windows.UI.Xaml.Media;
 using Akavache;
 using Ets.Mobile.ViewModel.Content.Schedule;
 using Messaging.UniversalApp.Common;
@@ -15,6 +16,7 @@ using ReactiveUI.Extensions;
 using ReactiveUI.Xaml.Controls.Presenter;
 using ReactiveUI.Xaml.Controls.ViewModel;
 using Refit;
+using Syncfusion.UI.Xaml.Schedule;
 
 namespace Ets.Mobile.ViewModel.Pages.Schedule
 {
@@ -28,7 +30,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
 
         protected override sealed void OnViewModelCreation()
         {
-            ScheduleItems = new ReactiveList<ScheduleVm>();
+            ScheduleItems = new ReactiveList<ScheduleAppointment>();
 
             LoadSchedule = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
@@ -71,24 +73,24 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
             LoadSchedule.Subscribe(x =>
             {
                 ScheduleItems.Clear();
-                ScheduleItems.AddRange(x);
+                ScheduleItems.AddRange(x.Select(y => new ScheduleAppointment
+                {
+                    Subject = y.ActivityName,
+                    StartTime = y.StartDate,
+                    EndTime = y.EndDate,
+                    Location = y.Location,
+                    AppointmentBackground = y.Brush
+                }));
             });
 
-            Schedule = ScheduleItems.CreateDerivedCollection(
-                x => x,
-                x => x.Dispose()
-            );
-
-            SchedulePresenter = ReactivePresenterViewModel<ReactiveList<ScheduleVm>>.Create(ScheduleItems, Schedule, LoadSchedule.IsExecuting, _scheduleExceptionSubject);
+            SchedulePresenter = ReactivePresenterViewModel<ReactiveList<ScheduleAppointment>>.Create(ScheduleItems, LoadSchedule.IsExecuting, _scheduleExceptionSubject);
         }
 
         #region Properties
 
         [DataMember]
-        public ReactiveList<ScheduleVm> ScheduleItems { get; protected set; }
-        [DataMember]
-        public IReactiveDerivedList<ScheduleVm> Schedule { get; protected set; }
-        public IReactivePresenterViewModel<ReactiveList<ScheduleVm>> SchedulePresenter { get; protected set; }
+        public ReactiveList<ScheduleAppointment> ScheduleItems { get; protected set; }
+        public IReactivePresenterViewModel<ReactiveList<ScheduleAppointment>> SchedulePresenter { get; protected set; }
         public ReactiveCommand<IEnumerable<ScheduleVm>> LoadSchedule { get; protected set; }
         private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
 

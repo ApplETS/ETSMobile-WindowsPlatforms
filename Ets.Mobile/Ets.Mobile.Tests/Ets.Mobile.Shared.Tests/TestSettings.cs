@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ets.Mobile.Shared.Tests
+﻿namespace Ets.Mobile.Shared.Tests
 {
     public static class TestSettings
     {
