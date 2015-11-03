@@ -20,11 +20,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeItem.xaml.cs">
       <DependentUpon>GradeItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Grade\CourseChooserForGrades.xaml.cs">
+      <DependentUpon>CourseChooserForGrades.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeSummary.xaml.cs">
       <DependentUpon>GradeSummary.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Main\Grades.xaml.cs">
-      <DependentUpon>Grades.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Main\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
@@ -32,20 +32,24 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Main\Today.xaml.cs">
       <DependentUpon>Today.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Program\Programs.xaml.cs">
+      <DependentUpon>Programs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Schedule\Schedule.xaml.cs">
       <DependentUpon>Schedule.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuItem.xaml.cs">
-      <DependentUpon>MenuItem.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuButton.xaml.cs">
+      <DependentUpon>MenuButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Shared\SideNavigation.xaml.cs">
       <DependentUpon>SideNavigation.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Account\LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Grade\GradePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Grade\SelectCourseForGradePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Main\MainPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Program\ProgramPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Schedule\SchedulePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\UserDetails\UserDetailsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Shell\ShellPage.cs" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppBarButton\CalendarView.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LightGray.png" />
@@ -75,11 +79,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeSummary.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Grade\CourseChooserForGrades.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Main\Grades.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -91,11 +95,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Program\Programs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\Content\Schedule\Schedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuItem.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

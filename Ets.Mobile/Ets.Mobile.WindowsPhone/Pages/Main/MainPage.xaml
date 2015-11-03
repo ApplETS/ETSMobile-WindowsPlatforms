@@ -6,11 +6,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
     xmlns:menu="using:Ets.Mobile.Pages.Shared"
     xmlns:main="using:Ets.Mobile.Views.Content.Main"
-    DataContext="{Binding}"
+    xmlns:grade="using:Ets.Mobile.Content.Grade"
     d:DataContext="{d:DesignInstance Type=designTime:MainViewModelDt, IsDesignTimeCreatable=True}"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
     xmlns:slideView="using:SlideView.Library"
     xmlns:shared="using:Ets.Mobile.Views.Content.Shared"
+    x:Name="MainP"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
@@ -19,53 +20,51 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid>
-        <Grid Background="{StaticResource EtsBackgroundBrush}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+    <Grid Background="{StaticResource EtsBackgroundMainBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <Border Grid.Row="0">
-                <StackPanel Orientation="Horizontal" >
-                    <!--<menu:MenuButton x:Name="SideViewButton" Height="70" Width="70" Background="{StaticResource EtsRedHighBrush}"/>-->
-                    <Image Source="/Assets/Menu/Menu.png"/>
-                    <TextBlock x:Uid="ApplicationTitleUid" Text="Éts Mobile" VerticalAlignment="Center" Margin="15,0,0,0" Style="{StaticResource EtsTextBlockBlack4}" FontWeight="Bold" />
-                </StackPanel>
-            </Border>
-
-            <Grid Grid.Row="1" Background="{StaticResource EtsBackgroundMainBrush}">
-                <slideView:SlideView x:Name="SlideView" IsSlideEnabled="False" SelectedIndex="0">
-                    <Grid Background="{StaticResource EtsSideNavigationBackgroundBrush}">
-                        <shared:SideNavigation x:Name="SideNavigation" />
-                    </Grid>
-                    <Grid Background="{StaticResource EtsBackgroundMainBrush}">
-                        <Pivot x:Name="MainPivot">
-                            <PivotItem Margin="15,0,15,0">
-                                <PivotItem.Header>
-                                    <TextBlock x:Uid="TodayHeaderUid" Text="AUJOURD'HUI" />
-                                </PivotItem.Header>
-                                <main:Today x:Name="Today" />
-                            </PivotItem>
-                            <PivotItem Margin="15,0,15,0">
-                                <PivotItem.Header>
-                                    <TextBlock x:Uid="GradeHeaderUid" Text="RÉSULTATS" />
-                                </PivotItem.Header>
-                                <main:Grades x:Name="Grade" />
-                            </PivotItem>
-                        </Pivot>
-                    </Grid>
-                </slideView:SlideView>
+        <Border Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Background="White">
+                <!--<menu:MenuButton x:Name="SideViewButton" Height="70" Width="70" Background="{StaticResource EtsRedHighBrush}"/>-->
+                <menu:MenuButton x:Name="SideViewButton" Height="70"></menu:MenuButton>
+                <TextBlock x:Uid="ApplicationTitleUid" Text="ÉTS Mobile" VerticalAlignment="Center" Margin="15,0,0,0" Style="{StaticResource EtsTextBlockBlack4}" FontWeight="Bold" />
+            </StackPanel>
+        </Border>
+        <slideView:SlideView Grid.Row="1" x:Name="SlideView" IsSlideEnabled="False" SelectedIndex="1">
+            <Grid Background="{StaticResource EtsSideNavigationBackgroundBrush}">
+                <shared:SideNavigation DataContext="{Binding SideNavigation}" />
             </Grid>
-        </Grid>
+            <Grid>
+                <Pivot x:Name="MainPivot">
+                    <PivotItem Margin="15,0,15,0">
+                        <PivotItem.Header>
+                            <TextBlock x:Uid="TodayHeaderUid" Text="AUJOURD'HUI" />
+                        </PivotItem.Header>
+                        <main:Today DataContext="{Binding TodayPresenter}" />
+                    </PivotItem>
+                    <PivotItem Margin="15,0,15,0">
+                        <PivotItem.Header>
+                            <TextBlock x:Uid="GradeHeaderUid" Text="RÉSULTATS" />
+                        </PivotItem.Header>
+                        <Grid>
+                            <grade:CourseChooserForGrades x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+                        </Grid>
+                    </PivotItem>
+                </Pivot>
+            </Grid>
+        </slideView:SlideView>
     </Grid>
-    
+
     <Page.BottomAppBar>
         <CommandBar x:Name="BottomBar" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Opacity="0.7">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshToday" Icon="Refresh" Label="Refresh" />
-                <AppBarButton x:Name="ShowSchedule" Icon="Calendar" Label="Calendar" />
-                <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" />
+                <AppBarButton x:Name="RefreshToday" Icon="Refresh" Label="Refresh" Command="{Binding LoadCoursesForToday}" />
+                <AppBarButton x:Name="ShowSchedule" Icon="Calendar" Label="Calendar" Command="{Binding NavigateToSchedule}" />
+                <AppBarButton x:Name="ShowProgram" Icon="Account" Label="Program" Command="{Binding NavigateToProgram}" />
+                <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" Command="{Binding LoadGrades}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

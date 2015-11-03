@@ -16,5 +16,6 @@ namespace Ets.Mobile.ViewModel
         public static Func<string, string, string> GradesForSemesterAndCourse = (semester, course) => "grades_" + semester + "_" + course;
         public static string UserProfile = "profile";
         public static string Gravatar = "gravatar";
+        public static string Program = "program";
     }
 }

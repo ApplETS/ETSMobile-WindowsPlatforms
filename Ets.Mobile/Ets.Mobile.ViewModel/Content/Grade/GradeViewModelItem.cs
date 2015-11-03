@@ -5,7 +5,6 @@ using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Presenter;
 using Refit;
 using Splat;
 using Windows.ApplicationModel.Resources;

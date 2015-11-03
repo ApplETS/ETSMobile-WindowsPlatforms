@@ -8,6 +8,7 @@ using Ets.Mobile.Client.Contracts;
 using Messaging.Interfaces.ViewService;
 using ReactiveUI;
 using Splat;
+using Ets.Mobile.ViewModel.Contracts.Shared;
 
 namespace Ets.Mobile.ViewModel.Bases
 {
@@ -59,6 +60,9 @@ namespace Ets.Mobile.ViewModel.Bases
         {
             return _vs ?? (_vs = _serviceLocator.GetService<IViewService>());
         }
+
+        private ISideNavigationViewModel _sideNavigation;
+        public ISideNavigationViewModel SideNavigation => _sideNavigation ?? (_sideNavigation = _serviceLocator.GetService<ISideNavigationViewModel>());
 
         /// <summary>
         /// Gets a value that indicates whether the process is running in design mode.

@@ -144,7 +144,7 @@ namespace Ets.Mobile.Business.DesignTime
                         CompletedCreditsCount = "26",
                         RegisteredCreditsCount = "4",
                         PotentialCreditsCount = "56",
-                        SearchCreditsCount = "35",
+                        ResearchCreditsCount = "35",
                         FailedCreditsCount = "0",
                         SuceededCreditsCount = "4",
                         EquivalenceCount = "0",

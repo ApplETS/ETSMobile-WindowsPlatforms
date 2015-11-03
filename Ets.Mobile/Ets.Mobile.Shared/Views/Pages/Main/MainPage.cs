@@ -39,8 +39,7 @@ namespace Ets.Mobile.Pages.Main
             var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
                 .Where(x => x != null);
 
-            subscriptionForViewModel
-                .InvokeCommand(this, x => x.ViewModel.LoadProfile);
+            subscriptionForViewModel.BindTo(this, x => x.DataContext);
 
             subscriptionForViewModel
                 .InvokeCommand(this, x => x.ViewModel.LoadCoursesForToday);

@@ -12,15 +12,50 @@
     d:DesignWidth="512">
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" Height="96">
+            <StackPanel Orientation="Horizontal" Height="60" Background="{Binding CurrentPage, Converter={StaticResource MenuItemIsActiveToBackgroundColor}, ConverterParameter='Home'}">
                 <Image Source="/Assets/Menu/Home-64.png" Width="25" Margin="25,0,0,0" />
-                <TextBlock x:Uid="HomeUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Home" Style="{StaticResource EtsTextBlockWhite4}" />
+                <TextBlock x:Uid="HomeUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Home" Style="{StaticResource EtsTextBlockWhite4}" FontWeight="SemiBold" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="45">
-                <Image Source="/Assets/Menu/Home-64.png" Width="25" Margin="25,0,0,0" />
-                <TextBlock x:Uid="HomeUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Home" Style="{StaticResource EtsTextBlockWhite4}" />
+            <!--<StackPanel Orientation="Horizontal" Height="60" Background="{Binding CurrentPage, Converter={StaticResource MenuItemIsActiveToBackgroundColor}, ConverterParameter='News'}">
+                <Image Source="/Assets/Menu/News-64.png" Width="25" Margin="25,0,0,0" />
+                <TextBlock x:Uid="NewsUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="News" Style="{StaticResource EtsTextBlockWhite4}" FontWeight="SemiBold" />
+            </StackPanel>-->
+            <StackPanel Orientation="Horizontal" Height="60" Background="{Binding CurrentPage, Converter={StaticResource MenuItemIsActiveToBackgroundColor}, ConverterParameter='Schedule'}">
+                <Image Source="/Assets/Menu/Calendar-64.png" Width="25" Margin="25,0,0,0" />
+                <TextBlock x:Uid="CalendarUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Calendar" Style="{StaticResource EtsTextBlockWhite4}" FontWeight="SemiBold" />
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="60" Background="{Binding CurrentPage, Converter={StaticResource MenuItemIsActiveToBackgroundColor}, ConverterParameter='Evaluation'}">
+                <Image Source="/Assets/Menu/Exam-64.png" Width="25" Margin="25,0,0,0" />
+                <TextBlock x:Uid="GradeUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Grades" Style="{StaticResource EtsTextBlockWhite4}" FontWeight="SemiBold" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="60" Background="{Binding CurrentPage, Converter={StaticResource MenuItemIsActiveToBackgroundColor}, ConverterParameter='Program'}">
+                <Image Source="/Assets/Menu/Student-64.png" Width="25" Margin="25,0,0,0" />
+                <TextBlock x:Uid="ProgramUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Program" Style="{StaticResource EtsTextBlockWhite4}" FontWeight="SemiBold" />
+            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal" Height="60" Background="{Binding CurrentPage, Converter={StaticResource MenuItemIsActiveToBackgroundColor}, ConverterParameter='News'}">
+                <Image Source="/Assets/Menu/Wi-Fi-64.png" Width="25" Margin="25,0,0,0" />
+                <TextBlock x:Uid="UsageUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Usage" Style="{StaticResource EtsTextBlockWhite4}" FontWeight="SemiBold" />
+            </StackPanel>-->
         </StackPanel>
-        
+        <StackPanel VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal" Height="75">
+                <Border Background="DarkGray" CornerRadius="25" Margin="25,0,0,0" Width="32" Height="32">
+                    <Border CornerRadius="25" Width="32" Height="32">
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding UserDetails.Profile.ImageSource, FallbackValue='/Assets/Menu/Contacts-64.png'}"  />
+                        </Border.Background>
+                    </Border>
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Margin="25,0,0,0" VerticalAlignment="Center" Text="{Binding UserDetails.Profile.Email}" FontSize="15" Style="{StaticResource EtsTextBlockWhite4}" />
+                    <TextBlock x:Uid="LogoutUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Sign out" FontSize="26" Style="{StaticResource EtsTextBlockWhite4}" />
+                </StackPanel>
+            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal" Height="75">
+                <Image Source="/Assets/Menu/Settings-64.png" Width="32" Margin="25,0,0,0" />
+                <TextBlock x:Uid="SettingsUid" Margin="25,0,0,0" VerticalAlignment="Center" Text="Settings" FontSize="26" Style="{StaticResource EtsTextBlockWhite4}" />
+            </StackPanel>-->
+        </StackPanel>
+
     </Grid>
 </UserControl>

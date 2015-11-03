@@ -249,4 +249,16 @@
   <data name="Minutes" xml:space="preserve">
     <value>minutes</value>
   </data>
+  <data name="CalendarUid.Text" xml:space="preserve">
+    <value>Calendrier</value>
+  </data>
+  <data name="GradesUid.Text" xml:space="preserve">
+    <value>Résultats</value>
+  </data>
+  <data name="ProgramUid.Text" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="ProgramEmptyUid" xml:space="preserve">
+    <value>Vous ne semblez pas avoir de programme</value>
+  </data>
 </root>

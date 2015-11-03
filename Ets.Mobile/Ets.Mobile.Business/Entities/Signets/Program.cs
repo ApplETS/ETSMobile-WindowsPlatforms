@@ -41,6 +41,6 @@ namespace Ets.Mobile.Business.Entities.Signets
         public string PotentialCreditsCount { get; set; }
 
         [JsonProperty("nbCreditsRecherche")]
-        public string SearchCreditsCount { get; set; }
+        public string ResearchCreditsCount { get; set; }
     }
 }

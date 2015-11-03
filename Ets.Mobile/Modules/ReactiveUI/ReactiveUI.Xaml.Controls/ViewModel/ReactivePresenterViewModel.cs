@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reactive.Linq;
-using ReactiveUI.Xaml.Controls.ViewModel;
 
-namespace ReactiveUI.Xaml.Controls.Presenter
+namespace ReactiveUI.Xaml.Controls.ViewModel
 {
     public class ReactivePresenterViewModel<T> : IReactivePresenterViewModel<T>
     {

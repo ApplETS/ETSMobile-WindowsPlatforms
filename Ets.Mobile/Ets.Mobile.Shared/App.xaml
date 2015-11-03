@@ -9,7 +9,7 @@
                 <ResourceDictionary Source="Skins/MainSkin.xaml" />
                 <ResourceDictionary Source="Skins/ReactivePresenter.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <x:String x:Key="AppName">Éts Mobile</x:String>
+            <x:String x:Key="AppName">ETS Mobile</x:String>
             <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
             <converters:StringToLowerConverter x:Key="StringToLowerConverter" />
             <converters:StringToLocalizedStringConverter x:Key="StringToLocalizedStringConverter" />
@@ -19,6 +19,8 @@
             <converters:StringToIntegerConverter x:Key="StringToIntegerConverter" />
             <converters:SelectedPivotItemToVisibilityConverter x:Key="SelectedPivotItemToVisibilityConverter" />
             <converters:InversedBooleanConverter x:Key="InversedBooleanConverter" />
+            <converters:MenuItemIsActiveToBackgroundColor  x:Key="MenuItemIsActiveToBackgroundColor" />
+            <converters:StringToNotApplicableConverter x:Key="StringToNotApplicableConverter" />
             <localization:StringResources x:Key="LocalizedStrings" />
         </ResourceDictionary>
     </Application.Resources>

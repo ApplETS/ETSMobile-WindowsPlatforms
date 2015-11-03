@@ -9,7 +9,6 @@ using Windows.UI.Xaml.Markup;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
 using Messaging.Interfaces.Popup;
-using ReactiveUI.Xaml.Controls.Exceptions;
 using ReactiveUI.Xaml.Controls.ViewModel;
 using Splat;
 
@@ -39,7 +38,7 @@ namespace ReactiveUI.Xaml.Controls
         private const string ValuePresenterPartName = "PART_ValuePresenter";
         private const string ErrorPresenterPartName = "PART_ErrorPresenter";
         private const string EmptyPresenterPartName = "PART_EmptyPresenter";
-        private const string WaitingPresenterPartName = "PART_WaitingPresenter";
+        // private const string WaitingPresenterPartName = "PART_WaitingPresenter";
 
         #endregion
 

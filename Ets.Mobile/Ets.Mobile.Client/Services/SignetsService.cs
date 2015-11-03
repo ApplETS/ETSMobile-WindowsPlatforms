@@ -51,9 +51,12 @@ namespace Ets.Mobile.Client.Services
             _signetsService.HandleError(userDetailsResult);
 
             var userDetailsVm = _factory.CreateFor<UserDetailsResult, UserDetailsVm>(userDetailsResult);
-            
+
+            userDetailsVm.Username = _userCredentials.Username;
+
             userDetailsVm.Image = await BlobCache.UserAccount.LoadImageFromUrl("gravatar",
-                $"http://www.gravatar.com/avatar/{Md5Hash.GetHashString($"{_userCredentials.Username}@ens.etsmtl.ca".ToLower())}", true).ToTask();
+                "http://www.gravatar.com/avatar/" +
+                $"{Md5Hash.GetHashString(userDetailsVm.Email.ToLower())}", true).ToTask();
 
             return userDetailsVm;
         }

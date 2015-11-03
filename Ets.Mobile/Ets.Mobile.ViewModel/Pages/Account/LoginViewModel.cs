@@ -5,11 +5,16 @@ using Akavache;
 using Ets.Mobile.Client;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
+using Ets.Mobile.ViewModel.Contracts;
+using Ets.Mobile.ViewModel.Contracts.Shared;
 using Ets.Mobile.ViewModel.Pages.Main;
+using Ets.Mobile.ViewModel.Pages.Shared;
+using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Exceptions;
 using Refit;
+using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
@@ -82,7 +87,8 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             SubmitCommand.Subscribe(accountVm => {
                 ClientServices().SignetsService.SetCredentials(accountVm);
-                HostScreen.Router.Navigate.Execute(new MainViewModel(HostScreen));
+                Locator.CurrentMutable.Register(() => new SideNavigationViewModel(HostScreen, new UserDetailsViewModel(HostScreen)), typeof(ISideNavigationViewModel));
+                HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });
 
             SubmitCommand.ThrownExceptions.Subscribe(ex => {

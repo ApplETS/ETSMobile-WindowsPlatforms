@@ -14,7 +14,6 @@ using Ets.Mobile.ViewModel.Pages.Grade;
 using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using ReactiveUI.Extensions;
-using ReactiveUI.Xaml.Controls.Presenter;
 using ReactiveUI.Xaml.Controls.ViewModel;
 using Refit;
 
@@ -95,42 +94,13 @@ namespace Ets.Mobile.ViewModel.Pages.Main
 
         #region Properties
 
-        private ReactiveList<GradeSummaryViewModelGroup> _gradesItems;
         [DataMember]
-        public ReactiveList<GradeSummaryViewModelGroup> GradesItems
-        {
-            get { return _gradesItems; }
-            set { this.RaiseAndSetIfChanged(ref _gradesItems, value); }
-        }
-
+        public ReactiveList<GradeSummaryViewModelGroup> GradesItems { get; protected set; }
         private ReactiveCommand<Unit> _navigateToGradeItem;
-
-        [DataMember]
         public IReactiveDerivedList<GradeGroupViewModel> Grades { get; protected set; }
         public IReactivePresenterViewModel<ReactiveList<GradeSummaryViewModelGroup>> GradesPresenter { get; protected set; }
         public ReactiveCommand<List<GradeSummaryViewModelGroup>> LoadGrades { get; protected set; }
         private readonly ReplaySubject<Exception> _gradesExceptionSubject = new ReplaySubject<Exception>();
-
-        #endregion
-
-        #region Methods
-
-        [DataContract]
-        public class GradeGroupViewModel : ReactiveObject, IDisposable
-        {
-            [DataMember]
-            public GradeSummaryViewModelGroup Model { get; protected set; }
-
-            public GradeGroupViewModel(GradeSummaryViewModelGroup gradeSummaryViewModelGroup)
-            {
-                Model = gradeSummaryViewModelGroup;
-            }
-
-            public void Dispose()
-            {
-                Model?.Dispose();
-            }
-        }
 
         #endregion
     }

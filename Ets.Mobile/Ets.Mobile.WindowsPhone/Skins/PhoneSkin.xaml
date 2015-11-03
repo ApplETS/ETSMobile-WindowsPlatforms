@@ -2,10 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Windows.UI.Xaml.Controls"
-    xmlns:primitives="using:Windows.UI.Xaml.Controls.Primitives"
-    xmlns:local="using:Ets.Mobile.Skins"
-    xmlns:schedule="using:Syncfusion.UI.Xaml.Schedule"
-    xmlns:sfSchedule="using:Ets.Mobile.SyncFusion.SfSchedule">
+    xmlns:primitives="using:Windows.UI.Xaml.Controls.Primitives">
 
     <!-- Pivot                                                     -->
     <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="{StaticResource EtsRedMediumColor}" />
@@ -78,6 +75,86 @@
                                 <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Thickness x:Key="PivotPortraitThemePadding">19,10,0,0</Thickness>
+    <!-- Default style for Windows.UI.Xaml.Controls.Pivot -->
+    <Style TargetType="controls:Pivot">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Foreground" Value="{ThemeResource PhoneForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <Grid />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:Pivot">
+                    <Grid
+              x:Name="RootElement"
+              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalAlignment}"
+              Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="Orientation">
+                                <VisualState x:Name="Portrait">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TitleContentControl" Storyboard.TargetProperty="Margin">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PivotPortraitThemePadding}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Landscape">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TitleContentControl" Storyboard.TargetProperty="Margin">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PivotLandscapeThemePadding}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <ContentControl x:Name="TitleContentControl"
+                            Style="{StaticResource PivotTitleContentControlStyle}"
+                            Content="{TemplateBinding Title}"
+                            ContentTemplate="{TemplateBinding TitleTemplate}"/>
+                        <ScrollViewer
+                  x:Name="ScrollViewer"
+                  Margin="{TemplateBinding Padding}"
+                  Grid.Row="1"
+                  HorizontalSnapPointsType="MandatorySingle"
+                  HorizontalSnapPointsAlignment="Center"
+                  HorizontalScrollBarVisibility="Hidden"
+                  VerticalScrollMode="Disabled"
+                  VerticalScrollBarVisibility="Disabled"
+                  VerticalSnapPointsType="None"
+                  VerticalContentAlignment="Stretch"
+                  ZoomMode="Disabled"
+                  Template="{StaticResource ScrollViewerScrollBarlessTemplate}">
+                            <primitives:PivotPanel x:Name="Panel" VerticalAlignment="Stretch">
+                                <primitives:PivotHeaderPanel x:Name="Header">
+                                    <primitives:PivotHeaderPanel.RenderTransform>
+                                        <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0" />
+                                    </primitives:PivotHeaderPanel.RenderTransform>
+                                </primitives:PivotHeaderPanel>
+                                <ItemsPresenter x:Name="PivotItemPresenter">
+                                    <ItemsPresenter.RenderTransform>
+                                        <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0" />
+                                    </ItemsPresenter.RenderTransform>
+                                </ItemsPresenter>
+                            </primitives:PivotPanel>
+                        </ScrollViewer>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

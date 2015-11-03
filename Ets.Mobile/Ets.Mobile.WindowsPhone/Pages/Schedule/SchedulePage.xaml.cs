@@ -143,4 +143,36 @@ namespace Ets.Mobile.Pages.Schedule
             calendarFlyout?.Hide();
         }
     }
+
+    public class AppointmentDataTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate DayViewTemplate { get; set; }
+
+        public DataTemplate WeekViewTemplate { get; set; }
+
+        public ScheduleType Type { get; set; }
+
+        protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
+        {
+            var appointment = (ScheduleAppointment)item;
+            var appointmentTemplate = new DataTemplate();
+
+            if (Type == ScheduleType.Day)
+            {
+                appointmentTemplate = DayViewTemplate;
+            }
+            else if (Type == ScheduleType.Week)
+            {
+                appointmentTemplate = WeekViewTemplate;
+            }
+
+            var frameworkElement = appointmentTemplate?.LoadContent() as FrameworkElement;
+            if (frameworkElement != null)
+            {
+                frameworkElement.DataContext = appointment;
+            }
+
+            return appointmentTemplate;
+        }
+    }
 }

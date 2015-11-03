@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using System;
+using ReactiveUI;
 
 namespace Ets.Mobile.Entities.Signets
 {
@@ -46,53 +47,53 @@ namespace Ets.Mobile.Entities.Signets
         	set { this.RaiseAndSetIfChanged(ref _average, value); }
         }
 
-        private string _equivalenceCount;
-        public string EquivalenceCount
+        private short _equivalenceCount;
+        public short EquivalenceCount
         { 
         	get { return _equivalenceCount; }
         	set { this.RaiseAndSetIfChanged(ref _equivalenceCount, value); }
         }
 
-        private string _suceededCreditsCount;
-        public string SuceededCreditsCount
+        private short _suceededCreditsCount;
+        public short SuceededCreditsCount
         { 
         	get { return _suceededCreditsCount; }
             set { this.RaiseAndSetIfChanged(ref _suceededCreditsCount, value); }
         }
 
-        private string _failedCreditsCount;
-        public string FailedCreditsCount
+        private short _failedCreditsCount;
+        public short FailedCreditsCount
         { 
         	get { return _failedCreditsCount; }
             set { this.RaiseAndSetIfChanged(ref _failedCreditsCount, value); }
         }
 
-        private string _registeredCreditsCount;
-        public string RegisteredCreditsCount 
+        private short _registeredCreditsCount;
+        public short RegisteredCreditsCount 
         { 
         	get { return _registeredCreditsCount; }
             set { this.RaiseAndSetIfChanged(ref _registeredCreditsCount, value); }
         }
 
-        private string _completedCreditsCount;
-        public string CompletedCreditsCount
+        private short _completedCreditsCount;
+        public short CompletedCreditsCount
         { 
         	get { return _completedCreditsCount; }
             set { this.RaiseAndSetIfChanged(ref _completedCreditsCount, value); }
         }
 
-        private string _potentialCreditsCount;
-        public string PotentialCreditsCount
+        private short _potentialCreditsCount;
+        public short PotentialCreditsCount
         { 
         	get { return _potentialCreditsCount; }
             set { this.RaiseAndSetIfChanged(ref _potentialCreditsCount, value); }
         }
 
-        private string _searchCreditsCount;
-        public string SearchCreditsCount 
+        private short _researchCreditsCount;
+        public short ResearchCreditsCount 
         { 
-        	get { return _searchCreditsCount; }
-            set { this.RaiseAndSetIfChanged(ref _searchCreditsCount, value); }
+        	get { return _researchCreditsCount; }
+            set { this.RaiseAndSetIfChanged(ref _researchCreditsCount, value); }
         }
     }
 }

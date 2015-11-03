@@ -12,10 +12,17 @@ using Ets.Mobile.ViewModel.Pages.Account;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Pages.Grade;
+using Ets.Mobile.Pages.Program;
 using Ets.Mobile.Pages.Schedule;
+using Ets.Mobile.ViewModel.Contracts;
+using Ets.Mobile.ViewModel.Contracts.Shared;
 using Ets.Mobile.ViewModel.Pages.Grade;
+using Ets.Mobile.ViewModel.Pages.Program;
 using Ets.Mobile.ViewModel.Pages.Schedule;
+using Ets.Mobile.ViewModel.Pages.Shared;
+using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Logger;
+using Syncfusion.Data.Extensions;
 
 namespace Ets.Mobile.ViewModel
 {
@@ -30,6 +37,7 @@ namespace Ets.Mobile.ViewModel
             Router = new RoutingState();
 
 #if WINDOWS_PHONE_APP
+            // Back Button Handling
             Windows.Phone.UI.Input.HardwareButtons.BackPressed += (sender, e) =>
             {
                 if (Router.NavigationStack.Count > 1)
@@ -83,13 +91,14 @@ namespace Ets.Mobile.ViewModel
 	                {
                         Locator.Current.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
                         Locator.Current.GetService<IUserEnabledLogger>().SetUser(signetsAccountVm.Username);
+                        Locator.CurrentMutable.Register(() => new SideNavigationViewModel(this, new UserDetailsViewModel(this)), typeof(ISideNavigationViewModel));
                         Router.Navigate.Execute(new MainViewModel(this));
                     }
                     else
 	                {
                         Router.Navigate.Execute(new LoginViewModel(this));
                     }
-	            });
+                });
         }
 
         #endregion
@@ -98,8 +107,8 @@ namespace Ets.Mobile.ViewModel
 
         static void RegisterContainer(IMutableDependencyResolver resolver)
 		{
-			Shared.ModuleInit _module = new Shared.ModuleInit();
-            _module.Initialize(resolver);
+			var module = new Shared.ModuleInit();
+            module.Initialize(resolver);
 		}
 
         private static void RegisterViewModelAndPages(IMutableDependencyResolver resolver)
@@ -109,8 +118,9 @@ namespace Ets.Mobile.ViewModel
             resolver.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
             resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
             resolver.Register(() => new GradePage(), typeof(IViewFor<GradeViewModel>));
+            resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramViewModel>));
         }
 
-		#endregion
+        #endregion
     }
 }

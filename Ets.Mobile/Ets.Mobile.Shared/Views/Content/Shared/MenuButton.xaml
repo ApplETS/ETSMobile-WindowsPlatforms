@@ -5,10 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="50"
-    d:DesignWidth="50">
-
-    <Grid VerticalAlignment="Stretch" Height="13.8" Margin="0,-7,0,-10">
+    d:DesignHeight="60" d:DesignWidth="65">
+    <Image Source="/Assets/Menu/Menu.png" Height="65" />
+    <!--<Grid VerticalAlignment="Stretch" Height="13.8" Margin="0,-7,0,-10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -17,5 +16,5 @@
         <Line Grid.Row="0" VerticalAlignment="Top" StrokeThickness="2" Stroke="{StaticResource EtsTextWhiteBrush}" X1="0" X2="25" Y1="0" Y2="0" />
         <Line Grid.Row="1" VerticalAlignment="Center" StrokeThickness="2" Stroke="{StaticResource EtsTextWhiteBrush}" X1="0" X2="25" Y1="0" Y2="0" />
         <Line Grid.Row="2" VerticalAlignment="Bottom" StrokeThickness="2" Stroke="{StaticResource EtsTextWhiteBrush}" X1="0" X2="25" Y1="0" Y2="0" />
-    </Grid>
+    </Grid>-->
 </HyperlinkButton>

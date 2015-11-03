@@ -52,9 +52,9 @@ namespace Ets.Mobile.Pages.Account
 
             this.BindCommand(ViewModel, x => x.SubmitCommand, x => x.SubmitCommand);
 
-            PartialRegisterBindings();
+            PartialInitialize();
         }
 
-        partial void PartialRegisterBindings();
+        partial void PartialInitialize();
     }
 }

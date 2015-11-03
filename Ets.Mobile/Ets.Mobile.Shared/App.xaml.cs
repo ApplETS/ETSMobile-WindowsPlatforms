@@ -118,7 +118,7 @@ namespace Ets.Mobile
                     }
 
                     if (exception != null)
-                        Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {exception.Message} - observed:{exception.InnerException}", exception.InnerException));
+                        Crittercism.LogUnhandledException(new Exception($"[WrapCallback][{DateTime.Now}] {exception.Message} -> {exception?.InnerException?.Message}", exception.InnerException));
                 };
             }
         }
@@ -178,6 +178,7 @@ namespace Ets.Mobile
                 // parameter
                 if (!rootFrame.Navigate(typeof(ShellPage), e.Arguments))
                 {
+                    Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] Failed to create initial page"));
                     throw new Exception("Failed to create initial page");
                 }
             }

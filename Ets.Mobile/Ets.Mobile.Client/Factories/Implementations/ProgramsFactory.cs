@@ -14,17 +14,17 @@ namespace Ets.Mobile.Client.Factories.Implementations
             {
                 Average = program.Average,
                 Code = program.Code,
-                CompletedCreditsCount = program.CompletedCreditsCount,
-                EquivalenceCount = program.EquivalenceCount,
-                FailedCreditsCount = program.FailedCreditsCount,
+                CompletedCreditsCount = short.Parse(program.CompletedCreditsCount),
+                EquivalenceCount = short.Parse(program.EquivalenceCount),
+                FailedCreditsCount = short.Parse(program.FailedCreditsCount),
                 Name = program.Name,
-                PotentialCreditsCount = program.PotentialCreditsCount,
-                RegisteredCreditsCount = program.RegisteredCreditsCount,
-                SearchCreditsCount = program.SearchCreditsCount,
+                PotentialCreditsCount = short.Parse(program.PotentialCreditsCount),
+                RegisteredCreditsCount = short.Parse(program.RegisteredCreditsCount),
+                ResearchCreditsCount = short.Parse(program.ResearchCreditsCount),
                 SemesterEnd = program.SemesterEnd,
                 SemesterStart = program.SemesterStart,
                 Status = program.Status,
-                SuceededCreditsCount = program.SuceededCreditsCount
+                SuceededCreditsCount = short.Parse(program.SuceededCreditsCount)
             }));
         }
     }

@@ -47,7 +47,19 @@ namespace Ets.Mobile.Entities.Signets
         [DataMember] public string Username
         {
             get { return _username; }
-            set { this.RaiseAndSetIfChanged(ref _username, value); }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _username, value);
+                Email = _username + "@ens.etsmtl.ca";
+            }
+        }
+
+        private string _email;
+        [DataMember]
+        public string Email
+        {
+            get { return _email; }
+            set { this.RaiseAndSetIfChanged(ref _email, value); }
         }
 
         private IBitmap _imageSource;

@@ -3,12 +3,11 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Presenter;
 using ReactiveUI.Xaml.Controls.ViewModel;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
-    public class GradeViewModelDt : ReactiveObject
+    public class GradeViewModelDt : DesignTimeBase
     {
         public GradeViewModelDt()
         {

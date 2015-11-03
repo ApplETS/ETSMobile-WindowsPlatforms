@@ -13,7 +13,6 @@ using Akavache;
 using Ets.Mobile.ViewModel.Content.Schedule;
 using Messaging.UniversalApp.Common;
 using ReactiveUI.Extensions;
-using ReactiveUI.Xaml.Controls.Presenter;
 using ReactiveUI.Xaml.Controls.ViewModel;
 using Refit;
 using Syncfusion.UI.Xaml.Schedule;
