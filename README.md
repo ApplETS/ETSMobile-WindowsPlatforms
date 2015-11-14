@@ -58,7 +58,7 @@ Permet la manipulation d'objets ou de strings Json.
 
 ## Crittercism
 Permet d'évaluer la performance et les alertes reliés à l'historique d'évènement dans l'application.
-##[En savoir plus](http://www.crittercism.com/)
+**[En savoir plus](http://www.crittercism.com/)**
 
 ## Glossaire
 | Name          | Description   | |
