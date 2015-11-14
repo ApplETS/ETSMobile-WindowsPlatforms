@@ -5,9 +5,12 @@ using Akavache;
 using Ets.Mobile.Business;
 using Ets.Mobile.Client;
 using Ets.Mobile.Client.Contracts;
+using Messaging.Interfaces.ViewService;
 using ReactiveUI;
 using Splat;
-using StoreFramework.Messaging;
+using System.Linq;
+using Ets.Mobile.ViewModel.Contracts.Shared;
+using System.Reactive.Linq;
 
 namespace Ets.Mobile.ViewModel.Bases
 {
@@ -58,6 +61,13 @@ namespace Ets.Mobile.ViewModel.Bases
         public IViewService ViewServices()
         {
             return _vs ?? (_vs = _serviceLocator.GetService<IViewService>());
+        }
+
+        private ISideNavigationViewModel _sideNavigation;
+
+        public ISideNavigationViewModel SideNavigation
+        {
+            get { return _sideNavigation ?? (_sideNavigation = _serviceLocator.GetService<ISideNavigationViewModel>()); }
         }
 
         /// <summary>

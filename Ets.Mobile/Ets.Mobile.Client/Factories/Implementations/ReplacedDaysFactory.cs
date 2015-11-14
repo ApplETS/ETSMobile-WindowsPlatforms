@@ -10,7 +10,7 @@ namespace Ets.Mobile.Client.Factories.Implementations
     {
         public List<ReplacedDayVm> Create(ReplacedDaysResult result)
         {
-            return new List<ReplacedDayVm>(result.ReplacedDays.Select(replacedDay => new ReplacedDayVm()
+            return new List<ReplacedDayVm>(result.ReplacedDays.Select(replacedDay => new ReplacedDayVm
             {
                 Description = replacedDay.Description,
                 OriginDate = replacedDay.OriginDate,

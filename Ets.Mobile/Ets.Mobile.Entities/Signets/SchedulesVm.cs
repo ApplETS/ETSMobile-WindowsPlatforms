@@ -7,80 +7,87 @@ using ReactiveUI;
 
 namespace Ets.Mobile.Entities.Signets
 {
-    public class ScheduleVm : ReactiveObject, ICustomColor
+    [DataContract]
+    public class ScheduleVm : ReactiveObject, ICustomColor, IDisposable
     {
     	private DateTime _startDate;
-        public DateTime StartDate
+        [DataMember] public DateTime StartDate
         {
         	get { return _startDate; }
-        	set { this.RaiseAndSetIfChanged(ref _startDate, value); }
+        	set { this.RaiseAndSetIfChanged(ref _startDate, value.ToLocalTime()); }
         }
 
         private DateTime _endDate;
-        public DateTime EndDate
+        [DataMember] public DateTime EndDate
         {
         	get { return _endDate; }
-            set { this.RaiseAndSetIfChanged(ref _endDate, value); }
+            set { this.RaiseAndSetIfChanged(ref _endDate, value.ToLocalTime()); }
         }
 
         private string _courseAndGroup;
-        public string CourseAndGroup
+        [DataMember] public string CourseAndGroup
         {
         	get { return _courseAndGroup; }
             set { this.RaiseAndSetIfChanged(ref _courseAndGroup, value); }
         }
 
         private string _name;
-        public string Name
+        [DataMember] public string Name
         {
         	get { return _name; }
             set { this.RaiseAndSetIfChanged(ref _name, value); }
         }
 
         private string _location;
-        public string Location
+        [DataMember] public string Location
         {
         	get { return _location; }
             set { this.RaiseAndSetIfChanged(ref _location, value); }
         }
 
         private string _description;
-        public string Description
+        [DataMember] public string Description
         {
         	get { return _description; }
             set { this.RaiseAndSetIfChanged(ref _description, value); }
         }
 
         private string _title;
-        public string Title
+        [DataMember] public string Title
         {
         	get { return _title; }
             set { this.RaiseAndSetIfChanged(ref _title, value); }
         }
 
+        public string Time => $"{StartDate.ToString(@"hh\:mm tt")}-{EndDate.ToString(@"hh\:mm tt")}";
+
+        [DataMember]
+        public string ActivityName => $"{CourseAndGroup.Substring(0, CourseAndGroup.IndexOf("-", StringComparison.Ordinal))}: {Title}";
+
         #region ICustomColor Implementation
 
-        [DataMember] public byte A { get; set; }
-        [DataMember] public byte R { get; set; }
-        [DataMember] public byte G { get; set; }
-        [DataMember] public byte B { get; set; }
+        [DataMember]
+        public byte A { get; set; }
+        [DataMember]
+        public byte R { get; set; }
+        [DataMember]
+        public byte G { get; set; }
+        [DataMember]
+        public byte B { get; set; }
 
-        private Color _color;
-        public Color Color
+        public void SetNewColor(ColorVm color)
         {
-            get { return Color.FromArgb(A, R, G, B); }
-            set
-            {
-                _color = value;
-                A = _color.A;
-                R = _color.R;
-                G = _color.G;
-                B = _color.B;
-            }
+            // Set Value for Store
+            A = color.A;
+            R = color.R;
+            G = color.G;
+            B = color.B;
         }
 
-        public SolidColorBrush Brush => new SolidColorBrush(Color);
+        public SolidColorBrush Brush => new SolidColorBrush(Color.FromArgb(A, R, G, B));
 
         #endregion
+
+        public void Dispose() {}
     }
 }

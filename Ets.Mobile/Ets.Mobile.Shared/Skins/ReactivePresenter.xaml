@@ -59,7 +59,7 @@
                             <ContentPresenter x:Name="PART_EmptyPresenter" Opacity="0" />
                             <ContentPresenter x:Name="PART_ErrorPresenter" Opacity="0" />
                             <ContentPresenter x:Name="PART_ValuePresenter" Opacity="0" />
-                            <ContentPresenter  x:Name="PART_RefreshingPresenter" IsHitTestVisible="false" Opacity="0">
+                            <ContentPresenter x:Name="PART_RefreshingPresenter" IsHitTestVisible="false" Opacity="0">
                                 <ContentPresenter.Style>
                                     <Style TargetType="ContentPresenter">
                                         <Setter Property="HorizontalAlignment" Value="Stretch"/>

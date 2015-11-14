@@ -14,13 +14,13 @@ namespace Ets.Mobile.Business.Entities.Results.Signets
         [JsonProperty("scoreFinalSur100")]
         public double? FinalGradeOnHundred { get; set; }
         [JsonProperty("moyenneClasse")]
-        public double? AverageOfClass { get; set; }
+        public double? Average { get; set; }
         [JsonProperty("ecartTypeClasse")]
-        public double? StandardDeviationOfClass { get; set; }
+        public double? StandardDeviation { get; set; }
         [JsonProperty("medianeClasse")]
-        public double? MedianOfClass { get; set; }
+        public double? Median { get; set; }
         [JsonProperty("rangCentileClasse")]
-        public double? PercentileOfClass { get; set; }
+        public double? Percentile { get; set; }
         [JsonProperty("noteACeJourElementsIndividuels")]
         public double? ActualGradeOfIndividualElements { get; set; }
         [JsonProperty("noteSur100PourElementsIndividuels")]

@@ -21,7 +21,7 @@ namespace Ets.Mobile.Client.Factories.Implementations
                     EndDate = semester.EndDate,
                     EndOfClassesDate = semester.EndOfClassesDate,
                     StartDate = semester.StartDate,
-                    LimitDateForCancellingASEQ = semester.LimitForCancellingASEQ,
+                    LimitDateForCancellingAseq = semester.LimitForCancellingASEQ,
                     StartCancellationDateWithReimbursement = semester.StartCancellationDateWithReimbursement,
                     StartCancellationDateWithoutReimbursementForNewStudent = semester.StartCancellationDateWithoutReimbursementForNewStudent
                 }));

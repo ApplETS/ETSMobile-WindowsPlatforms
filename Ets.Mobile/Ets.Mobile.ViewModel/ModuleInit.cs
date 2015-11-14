@@ -1,5 +1,5 @@
-﻿using Splat;
-using StoreFramework.Composite;
+﻿using Moduler;
+using Splat;
 
 namespace Ets.Mobile.ViewModel
 {

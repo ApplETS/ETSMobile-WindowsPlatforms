@@ -12,7 +12,7 @@ namespace Ets.Mobile.Client.Factories.Abstractions
         public abstract IReplacedDaysFactory GetReplacedDaysFactory();
         public abstract IScheduleAndTeachersFactory GetScheduleAndTeachersFactory();
         public abstract IScheduleFinalExamsFactory GetScheduleFinalExamsFactory();
-        public abstract ISchedulesFactory GetSchedulesFactory();
+        public abstract IScheduleFactory GetScheduleFactory();
         public abstract ISemestersFactory GetSemestersFactory();
         public abstract ITeammatesFactory GetTeammatesFactory();
         public abstract IUserDetailsFactory GetUserDetailsFactory();

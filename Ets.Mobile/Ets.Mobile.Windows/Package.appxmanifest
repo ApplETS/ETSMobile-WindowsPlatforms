@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="c3906fed-c0e4-46f6-adf7-88c01ae493d5" Publisher="CN=martin.gemme" Version="1.0.0.0" />
+  <Identity Name="c3906fed-c0e4-46f6-adf7-88c01ae493d5" Publisher="CN=Martin Gemme" Version="1.0.0.0" />
   <Properties>
     <DisplayName>Ets.Mobile.Windows</DisplayName>
     <PublisherDisplayName>martin.gemme</PublisherDisplayName>

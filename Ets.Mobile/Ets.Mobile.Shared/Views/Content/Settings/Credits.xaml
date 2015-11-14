@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="Ets.Mobile.Views.Content.Settings.Credits"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Views.Content.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel>
+            <StackPanel>
+                <TextBlock Text="Akavache" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="AkavacheDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Sqlite" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="SqliteDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Crittercism" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="CrittercismDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="ModernHttpClient" Style="{StaticResource EtsTextBlockBlack2}" />
+                <RichTextBlock Style="{StaticResource EtsRichTextBlockGray4}" TextWrapping="WrapWholeWords">
+                    <Paragraph>
+                        <Run x:Uid="ModernHttpClientDescriptionUid" />
+                        <InlineUIContainer>
+                            <Image Source="/Assets/Credits/ModernHttpClient.png" Height="20" />
+                        </InlineUIContainer>
+                    </Paragraph>
+                </RichTextBlock>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Newtonsoft.Json" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="NewtonsoftJsonDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="ReactiveUI" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="ReactiveUIDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Splat" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="SplatDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Refit" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="RefitDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Syncfusion" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="SyncfusionDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="ReactiveExtensions" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="ReactiveExtensionsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

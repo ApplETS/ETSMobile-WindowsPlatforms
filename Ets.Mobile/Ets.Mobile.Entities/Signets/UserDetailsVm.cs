@@ -47,16 +47,37 @@ namespace Ets.Mobile.Entities.Signets
         [DataMember] public string Username
         {
             get { return _username; }
-            set { this.RaiseAndSetIfChanged(ref _username, value); }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _username, value);
+                Email = _username + "@ens.etsmtl.ca";
+            }
+        }
+
+        private string _email;
+        [DataMember]
+        public string Email
+        {
+            get { return _email; }
+            set { this.RaiseAndSetIfChanged(ref _email, value); }
         }
 
         private IBitmap _imageSource;
         public IBitmap Image
         {
             get { return _imageSource; }
-            set { this.RaiseAndSetIfChanged(ref _imageSource, value); }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _imageSource, value);
+                ImageSource = value.ToNative();
+            }
         }
 
-        public ImageSource ImageSource => Image?.ToNative();
+        private ImageSource _imgSource;
+        public ImageSource ImageSource
+        {
+            get { return _imgSource; }
+            set { this.RaiseAndSetIfChanged(ref _imgSource, value); }
+        }
     }
 }

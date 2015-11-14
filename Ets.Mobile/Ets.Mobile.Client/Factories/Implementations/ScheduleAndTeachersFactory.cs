@@ -25,7 +25,7 @@ namespace Ets.Mobile.Client.Factories.Implementations
                     StartHour = TimeSpan.Parse(activity.StartHour),
                     Title = activity.Title,
                     Type = activity.Type
-                }).ToList(),
+                }).ToArray(),
                 Teachers = result.Teachers.Select(teacher => new TeacherVm
                 {
                     Email = teacher.Email,
@@ -34,7 +34,7 @@ namespace Ets.Mobile.Client.Factories.Implementations
                     IsPrimaryTeacher = teacher.IsPrimaryTeacher == "Oui",
                     Location = teacher.Location,
                     Phone = teacher.Phone
-                }).ToList()
+                }).ToArray()
             };
         }
     }

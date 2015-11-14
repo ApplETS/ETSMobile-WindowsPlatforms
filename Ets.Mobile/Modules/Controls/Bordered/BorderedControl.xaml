@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="Controls.Bordered.BorderedControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:bordered="using:Controls.Bordered"
+    x:Name="BorderedCtrl"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <Grid DataContext="{Binding ElementName=BorderedCtrl}" d:DataContext="{d:DesignInstance Type=bordered:BorderedControlDesign, IsDesignTimeCreatable=True}">
+        <Border Background="{Binding BackgroundBrush}">
+            <StackPanel>
+                <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{Binding Header}" />
+                <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Content="{Binding Body}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+    
+</UserControl>

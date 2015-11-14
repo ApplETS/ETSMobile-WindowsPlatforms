@@ -12,26 +12,26 @@ namespace Ets.Mobile.Client.Contracts
 
         Task<UserDetailsVm> UserDetails();
 
-        Task<List<CourseVm>> Courses();
+        Task<CourseVm[]> Courses();
 
-        Task<List<CourseIntervalVm>> CoursesIntervalSemester(string startSemester, string endSemester);
+        Task<CourseIntervalVm[]> CoursesIntervalSemester(string startSemester, string endSemester);
 
-        Task<List<SemesterVm>> Semesters();
+        Task<SemesterVm[]> Semesters();
 
-        Task<List<ProgramVm>> Programs();
+        Task<ProgramVm[]> Programs();
 
-        Task<List<TeammateVm>> Teammates(string courseAbridgedName, string group, string semesterAbridgedName, string evaluationElementName = "");
+        Task<TeammateVm[]> Teammates(string courseAbridgedName, string group, string semesterAbridgedName, string evaluationElementName = "");
 
         Task<EvaluationsVm> Evaluations(string courseAbridgedName, string group, string semesterAbridgedName);
 
         Task<ScheduleAndTeachersVm> ScheduleAndTeachers(string semesterAbridgedName);
 
-        Task<List<ScheduleFinalExamVm>> ScheduleFinalExams(string semesterAbridgedName);
+        Task<ScheduleFinalExamVm[]> ScheduleFinalExams(string semesterAbridgedName);
 
-        Task<List<CourseForSemesterVm>> CoursesForSemester(string semesterAbridgedName, string courseAbridgedName);
+        Task<CourseForSemesterVm[]> CoursesForSemester(string semesterAbridgedName, string courseAbridgedName);
 
-        Task<List<ReplacedDayVm>> ReplacedDays(string semesterAbridgedName);
+        Task<ReplacedDayVm[]> ReplacedDays(string semesterAbridgedName);
 
-        Task<List<ScheduleVm>> Schedule(string semesterAbridgedName, string courseAbridgedNameAndGroup = "", string startDate = "", string endDate = "");
+        Task<ScheduleVm[]> Schedule(string semesterAbridgedName, string courseAbridgedNameAndGroup = "", string startDate = "", string endDate = "");
     }
 }

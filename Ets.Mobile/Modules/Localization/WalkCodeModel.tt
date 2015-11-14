@@ -1,0 +1,163 @@
+<#@ template  debug="true" hostSpecific="true" #>
+<#@ output extension=".html" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="System.Windows.Forms" #>
+<#@ assembly name="EnvDte" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ include file="VisualStudioHelper.ttinclude" #>
+<html>
+<body>
+<#
+	// get all namespaces defined in all projects of this solution via the file code model
+	// because the CodeModel is buggy and marks all namespaces as external so that one
+	// cannot decide which namespaces origin from the Visual Studio solution
+	List<string> namespaces = new List<string>();
+	foreach(var project in VisualStudioHelper.GetAllProjects())
+		foreach(var ns in GetAllNamespacesFromProject(project).OrderBy(s => s))
+			if (!namespaces.Contains(ns) && !namespaces.Any(n => ns.StartsWith(n)))
+				namespaces.Add(ns);
+
+	// find the matching namespaces from the CodeModel
+	List<EnvDTE.CodeNamespace> codeNamespaces = new List<EnvDTE.CodeNamespace>();
+	foreach(EnvDTE.Project project in VisualStudioHelper.GetAllProjects())
+		if (project.CodeModel != null && project.CodeModel.CodeElements != null)
+			foreach(EnvDTE.CodeNamespace codeNs in VisualStudioHelper.CodeModel.GetAllCodeElementsOfType(project.CodeModel.CodeElements,
+																										 EnvDTE.vsCMElement.vsCMElementNamespace,
+																										 true))
+				if (namespaces.Contains(codeNs.FullName))
+					codeNamespaces.Add(codeNs);
+
+	// now walk recursively all namespaces and their children and create a 
+	// tree representing the code model of this solution.
+	WalkElementsRecursively(codeNamespaces.OfType<EnvDTE.CodeElement>(), 0);
+#>
+
+<!-- this java script provides functionality to open and close sub sections of the tree view -->
+<script type="text/javascript">
+
+function Toggle(node)
+{
+	// Unfold the branch if it isn't visible
+	if (node.nextSibling.style.display == 'none')
+	{
+		// Change the image (if there is an image)
+		if (node.children.length > 0)
+		{
+			if (node.children.item(0).tagName == "IMG")
+			{
+				node.children.item(0).src = "minus.gif";
+			}
+		}
+
+		node.nextSibling.style.display = '';
+	}
+	// Collapse the branch if it IS visible
+	else
+	{
+		// Change the image (if there is an image)
+		if (node.children.length > 0)
+		{
+			if (node.children.item(0).tagName == "IMG")
+			{
+				node.children.item(0).src = "plus.gif";
+			}
+		}
+
+		node.nextSibling.style.display = 'none';
+	}
+
+}
+</script>
+
+</body>
+</html>
+<#+
+/// <summary>
+/// This method recursively walks a list of code elements and puts them into a tree view
+/// </summary>
+public void WalkElementsRecursively(IEnumerable<EnvDTE.CodeElement> elements, int recursionDepth)
+{
+#><table style="border-width:0px;margin-left:<#= (recursionDepth * 20).ToString() #>px;">
+<#+ // iterate all elements
+	foreach (EnvDTE.CodeElement element in elements)
+    {
+		// check if it contains any children
+		// bear in mind that namespaces need to be treated differently
+		// since their children are stored in the "Members"-Property
+		bool hasChildren = false;
+		IEnumerable<EnvDTE.CodeElement> children = null;
+		if (element is EnvDTE.CodeNamespace)
+        {
+			try 
+			{ 
+				children = (element as EnvDTE.CodeNamespace).Members.OfType<EnvDTE.CodeElement>();
+				hasChildren = (children.Count() > 0); 
+			} catch { }
+        }
+		else
+        {
+			try 
+			{ 
+				children = element.Children.OfType<EnvDTE.CodeElement>(); 
+				hasChildren = (children.Count() > 0); 
+			} catch { }
+        }
+		// decide what image to display next to the node depending on if there is content underneath it
+		string imageSource = (hasChildren) ? "plus.gif" : "leaf.gif";
+
+		// create the visual elements for this item
+		string itemName = "N/A";
+		try
+        {
+			itemName = (element is EnvDTE.CodeNamespace) ? element.FullName : element.FullName.Split('.').Last();
+        } catch { }
+#>   <tr>
+		<td>
+			<a <#+ if (hasChildren) { #> onClick="Toggle(this)" <#+ } #>>
+				<img style="margin-right:5px;" src="<#= imageSource #>" /><#= itemName #> (<#= element.Kind.ToString().Replace("vsCMElement", "") #>)</a><div style="display:none;">
+<#+			// if there is content to be rendered unterneath,
+		    // use the recursion
+			if (hasChildren)
+            {
+				WalkElementsRecursively(children, recursionDepth + 1);
+			}
+#>			</div>
+		</td>
+	</tr>
+<#+
+   }
+#>  </table>
+<#+
+}
+/// <summary>
+/// Getting namespaces that are defined within a Visual Studio Project via the CodeModel is 
+/// buggy, because their InfoLocation Property always returns "vsCMInfoLocationExternal".
+/// This is why this method uses the file code model to retrieve namespaces. You can work with these
+/// to get classes etc. from the CodeModel.
+/// </summary>
+public IEnumerable<string> GetAllNamespacesFromProject(EnvDTE.Project project)
+{
+	List<string> ret = new List<string>();
+
+	// iterate all items contained in the given project
+	foreach(EnvDTE.ProjectItem projectItem in VisualStudioHelper.GetAllProjectItems(project))
+    {
+		// make sure this item provides a file code model
+		if (projectItem.FileCodeModel == null) continue;
+
+		// find all code elements in this file
+		foreach(EnvDTE.CodeElement elem in projectItem.FileCodeModel.CodeElements)
+        {
+			if (elem.Kind == EnvDTE.vsCMElement.vsCMElementNamespace)
+				ret.Add(elem.FullName);
+        }
+    }
+
+	return ret;
+}
+#>

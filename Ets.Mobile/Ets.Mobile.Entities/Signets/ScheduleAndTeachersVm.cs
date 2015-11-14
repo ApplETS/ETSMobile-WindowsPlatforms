@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Ets.Mobile.Entities.Signets.Interfaces;
@@ -8,11 +7,13 @@ using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Signets
 {
+    [DataContract]
     public class ScheduleAndTeachersVm : ReactiveObject
     {
-        public List<ActivityVm> Activities { get; set; }
+        [DataMember]
+        public ActivityVm[] Activities { get; set; }
 
-        public List<TeacherVm> Teachers { get; set; }
+        public TeacherVm[] Teachers { get; set; }
     }
 
     [DataContract]
@@ -58,26 +59,25 @@ namespace Ets.Mobile.Entities.Signets
 
         #region ICustomColor Implementation
 
-        [DataMember] public byte A { get; set; }
-        [DataMember] public byte R { get; set; }
-        [DataMember] public byte G { get; set; }
-        [DataMember] public byte B { get; set; }
+        [DataMember]
+        public byte A { get; set; }
+        [DataMember]
+        public byte R { get; set; }
+        [DataMember]
+        public byte G { get; set; }
+        [DataMember]
+        public byte B { get; set; }
 
-        private Color _color;
-        public Color Color
+        public void SetNewColor(ColorVm color)
         {
-            get { return Color.FromArgb(A, R, G, B); }
-            set
-            {
-                _color = value;
-                A = _color.A;
-                R = _color.R;
-                G = _color.G;
-                B = _color.B;
-            }
+            // Set Value for Store
+            A = color.A;
+            R = color.R;
+            G = color.G;
+            B = color.B;
         }
-        
-        public SolidColorBrush Brush => new SolidColorBrush(Color);
+
+        public SolidColorBrush Brush => new SolidColorBrush(Color.FromArgb(A, R, G, B));
 
         #endregion
     }

@@ -56,8 +56,4 @@
     <Compile Include="$(MSBuildThisFileDirectory)EtsBusinessException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Entities\Signets\Interfaces\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
-  </ItemGroup>
 </Project>

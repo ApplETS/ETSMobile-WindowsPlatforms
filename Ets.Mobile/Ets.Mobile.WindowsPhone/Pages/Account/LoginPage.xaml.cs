@@ -13,15 +13,15 @@ namespace Ets.Mobile.Pages.Account
     {
         private bool _isLoginShown;
 
-        partial void PartialRegisterBindings()
+        partial void PartialInitialize()
         {
             var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
             statusBar.BackgroundOpacity = 0;
+            statusBar.HideAsync().GetResults();
 
             // View ModelGroup
-            RxApp.SuspensionHost.ObserveAppState<LoginViewModel>()
-                .BindTo(this, x => x.ViewModel);
-            //this.OneWayBind(ViewModel, x => x.HostScreen, x => x.LoginRoutedViewHost);
+            //RxApp.SuspensionHost.ObserveAppState<LoginViewModel>()
+            //    .BindTo(this, x => x.ViewModel);
 
             // Form
             this.Bind(ViewModel, x => x.UserName, x => x.UserName.Text);

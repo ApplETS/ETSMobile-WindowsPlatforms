@@ -20,7 +20,7 @@ namespace Ets.Mobile.Business.Entities.Signets
         public string SemesterEnd { get; set; }
 
         [JsonProperty("moyenne")]
-        public double Average { get; set; }
+        public string Average { get; set; }
 
         [JsonProperty("nbEquivalences")]
         public string EquivalenceCount { get; set; }
@@ -41,6 +41,6 @@ namespace Ets.Mobile.Business.Entities.Signets
         public string PotentialCreditsCount { get; set; }
 
         [JsonProperty("nbCreditsRecherche")]
-        public string SearchCreditsCount { get; set; }
+        public string ResearchCreditsCount { get; set; }
     }
 }

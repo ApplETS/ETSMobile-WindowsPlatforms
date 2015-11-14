@@ -55,10 +55,10 @@ namespace Ets.Mobile.Client.Factories.Implementations
             return _scheduleFinalExamsFactory ?? (_scheduleFinalExamsFactory = new ScheduleFinalExamsFactory());
         }
 
-        private ISchedulesFactory _schedulesFactory;
-        public override ISchedulesFactory GetSchedulesFactory()
+        private IScheduleFactory _scheduleFactory;
+        public override IScheduleFactory GetScheduleFactory()
         {
-            return _schedulesFactory ?? (_schedulesFactory = new SchedulesFactory());
+            return _scheduleFactory ?? (_scheduleFactory = new ScheduleFactory());
         }
 
         private ISemestersFactory _semestersFactory;

@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:ReactiveUI.Xaml.Controls"
-    xmlns:storeControls="using:StoreFramework.Controls"
     mc:Ignorable="d"
     d:DesignHeight="800"
     d:DesignWidth="400">
@@ -56,7 +55,7 @@
                                                         <RowDefinition Height="50*" />
                                                     </Grid.RowDefinitions>
                                                     <TextBlock Text="{Binding TimeRemaining, FallbackValue=0}" FontSize="26"/>
-                                                    <storeControls:LocalizedTextBlock Key="MinutesRemaining" DefaultValue="minutes restantes" Grid.Row="1" TextWrapping="WrapWholeWords" />
+                                                    <TextBlock x:Uid="MinutesRemainingUid" Text="Temps Restant" Grid.Row="1" TextWrapping="WrapWholeWords" />
                                                 </Grid>
                                             </Border>
                                         </Grid>
@@ -70,13 +69,13 @@
                                 </Grid>
                             </Border>
                         </Border>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </DataTemplate>
     </UserControl.Resources>
     <controls:ReactivePresenter
+        x:Name="TodayPresenter"
         UseDialogForErrors="False"
         DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again." 
         ValueTemplate="{StaticResource TodayPresenterValue}" 
@@ -84,7 +83,7 @@
         <controls:ReactivePresenter.EmptyTemplate>
             <DataTemplate>
                 <Grid>
-                    <storeControls:LocalizedTextBlock Key="TodayEmpty" DefaultValue="Vous ne semblez pas avoir de cours aujourd'hui." Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
+                    <TextBlock x:Uid="TodayEmptyUid" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP"/>
                 </Grid>
             </DataTemplate>
         </controls:ReactivePresenter.EmptyTemplate>

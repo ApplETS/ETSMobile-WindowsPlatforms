@@ -2,7 +2,7 @@
 {
     public sealed partial class LoginPage
     {
-        partial void PartialRegisterBindings()
+        partial void PartialInitialize()
         {
         }
     }

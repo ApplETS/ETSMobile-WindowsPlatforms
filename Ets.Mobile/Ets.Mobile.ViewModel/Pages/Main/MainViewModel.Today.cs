@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
-using Windows.ApplicationModel.Resources;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
+using Ets.Mobile.ViewModel.Content.Main;
+using Messaging.UniversalApp.Common;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Presenter;
+using ReactiveUI.Extensions;
+using ReactiveUI.Xaml.Controls.Exceptions;
+using ReactiveUI.Xaml.Controls.ViewModel;
 using Refit;
-using Splat;
-using StoreFramework.Controls.Presenter.Exceptions;
-using StoreFramework.Extensions;
-using StoreFramework.Messaging.Common;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
@@ -23,29 +20,21 @@ namespace Ets.Mobile.ViewModel.Pages.Main
     {
         private void InitializeToday()
         {
-            TodayItems = new ReactiveList<ActivityVm>();
+            TodayItems = new ReactiveList<ScheduleVm>();
 
-            LoadCoursesForToday = ReactiveCommand.CreateAsyncObservable(_ =>
+            LoadCoursesForToday = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
-                return Observable.Defer(() =>
-                {
-                    return Cache.GetAndFetchLatest(ViewModelKeys.Semesters,
-                        () => ClientServices().SignetsService.Semesters())
-                        .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
-                        .ObserveOn(RxApp.MainThreadScheduler).Do(x =>
-                        {
-                            if (!x.Any(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now))
-                            {
-                                TodayItems.Clear();
-                            }
-                        })
-                        .SelectMany(x => x)
-                        .Where(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
-                        .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), () => ClientServices().SignetsService.ScheduleAndTeachers(currentSemester.AbridgedName).ToObservable()
-                            .Do(activities => SettingsService().ApplyColorOnCoursesForSemester(activities.Activities.ToArray(), currentSemester.AbridgedName, x => x.Acronym))))
-                        .Where(x => x?.Activities != null)
-                        .Select(x => x.Activities);
-                });
+                return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
+                    .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
+                    .SelectMany(x => x)
+                    .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
+                    .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
+                        var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
+                        await SettingsService().ApplyColorOnItemsForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
+                        return schedule;
+                    }))
+                    .Where(x => x != null)
+                    .Select(x => x);
             });
 
             LoadCoursesForToday.ThrownExceptions
@@ -59,15 +48,10 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                         var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
                         if (apiException.ReasonPhrase == "Not Found")
                         {
-                            exceptionMessage.Content.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
-                            exceptionMessage.Content.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
+                            exceptionMessage.Message = Resources().GetString("NetworkError");
+                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
                         }
-                        exception = exceptionMessage;
-                    }
-                    else if (x is ReactivePresenterExceptionBase)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, x);
-                        exception = exceptionMessage;
+                        exception = exceptionMessage.Exception;
                     }
                     else
                     {
@@ -83,94 +67,21 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             });
 
             Today = TodayItems.CreateDerivedCollection(
-                x => new ActivityTileViewModel(x),
+                x => new ScheduleTileViewModel(x),
                 x => x.Dispose(),
-                x => x.Day == (int)DateTime.Now.DayOfWeek,
-                (x, y) => TimeSpan.Compare(x.Model.StartHour, y.Model.StartHour));
+                x => x.StartDate.Date.Equals(DateTime.Now.Date),
+                (x, y) => TimeSpan.Compare(x.Model.StartDate.TimeOfDay, y.Model.StartDate.TimeOfDay));
 
-            TodayPresenter = ReactivePresenterViewModel<ReactiveList<ActivityVm>>.Create(TodayItems, Today, LoadCoursesForToday.IsExecuting, _scheduleExceptionSubject);
+            TodayPresenter = ReactivePresenterViewModel<ReactiveList<ScheduleVm>>.Create(TodayItems, Today, LoadCoursesForToday.IsExecuting, _scheduleExceptionSubject);
         }
 
         #region Properties
 
-        [DataMember] public ReactiveList<ActivityVm> TodayItems { get; protected set; }
-        [DataMember] public IReactiveDerivedList<ActivityTileViewModel> Today { get; protected set; }
-        public IReactivePresenterViewModel<ReactiveList<ActivityVm>> TodayPresenter { get; protected set; }
-        public ReactiveCommand<List<ActivityVm>> LoadCoursesForToday { get; protected set; }
+        [DataMember] public ReactiveList<ScheduleVm> TodayItems { get; protected set; }
+        [DataMember] public IReactiveDerivedList<ScheduleTileViewModel> Today { get; protected set; }
+        public IReactivePresenterViewModel<ReactiveList<ScheduleVm>> TodayPresenter { get; protected set; }
+        public ReactiveCommand<ScheduleVm[]> LoadCoursesForToday { get; protected set; }
         private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
-
-        #endregion
-
-        #region Methods
-
-        [DataContract]
-        public class ActivityTileViewModel : ReactiveObject, IDisposable
-        {
-            [DataMember]
-            public ActivityVm Model { get; protected set; }
-
-            public ActivityTileViewModel(ActivityVm model)
-            {
-                Model = model;
-                _timeRemainingDisposable = new CompositeDisposable();
-                IsTimeRemainingVisible = false;
-                BindTimeRemaining();
-            }
-
-            private readonly CompositeDisposable _timeRemainingDisposable;
-
-            #region IDisposable Implementation
-
-            public void Dispose()
-            {
-                _timeRemainingDisposable?.Dispose();
-            }
-
-            #endregion
-
-            #region Time Remaining
-
-            private string _timeRemaining;
-            public string TimeRemaining
-            {
-                get { return _timeRemaining; }
-                set { this.RaiseAndSetIfChanged(ref _timeRemaining, value); }
-            }
-
-            private bool _isTimeRemainingVisible;
-            public bool IsTimeRemainingVisible
-            {
-                get { return _isTimeRemainingVisible; }
-                set { this.RaiseAndSetIfChanged(ref _isTimeRemainingVisible, value); }
-            }
-
-            public void BindTimeRemaining()
-            {
-                var timer = Observable.Timer(TimeSpan.Zero, TimeSpan.FromMinutes(1));
-
-                timer.Where(x => Model.StartHour > DateTime.Now.TimeOfDay && (Model.StartHour - DateTime.Now.TimeOfDay).TotalMinutes > 0 && (Model.StartHour - DateTime.Now.TimeOfDay).TotalMinutes < 60)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Subscribe(x =>
-                    {
-                        TimeRemaining = (Model.StartHour.Minutes - DateTime.Now.TimeOfDay.Minutes).ToString();
-                        IsTimeRemainingVisible = true;
-                    })
-                    .DisposeWith(_timeRemainingDisposable);
-
-                timer.Where(x => Model.StartHour < DateTime.Now.TimeOfDay && (Model.StartHour - DateTime.Now.TimeOfDay).Minutes < 0 || (Model.StartHour - DateTime.Now.TimeOfDay).Minutes > 60)
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .Subscribe(x =>
-                    {
-                        if (IsTimeRemainingVisible)
-                        {
-                            IsTimeRemainingVisible = false;
-                        }
-                    })
-                    .DisposeWith(_timeRemainingDisposable);
-            }
-
-            #endregion
-        }
 
         #endregion
     }
