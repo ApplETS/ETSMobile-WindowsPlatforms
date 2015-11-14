@@ -11,6 +11,29 @@ namespace Themes
         /// <summary>
         /// #680100
         /// </summary>
+        public static Color Background { get; } = new Color
+        {
+            A = 255,
+            R = 255,
+            G = 255,
+            B = 255
+        };
+
+        /// <summary>
+        /// #680100
+        /// </summary>
+        public static Color MainBackground { get; } = new Color
+        {
+            A = 255,
+            R = 241,
+            G = 242,
+            B = 243
+        };
+
+
+        /// <summary>
+        /// #680100
+        /// </summary>
         public static Color HighestBrush { get; } = new Color
         {
             A = 255,

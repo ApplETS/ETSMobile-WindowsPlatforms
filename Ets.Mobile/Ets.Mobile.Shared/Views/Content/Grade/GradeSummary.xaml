@@ -12,17 +12,21 @@
     mc:Ignorable="d">
 
     <Grid DataContext="{Binding ElementName=P}" d:DataContext="{d:DesignInstance Type=designTime:GradeItemViewModelDt, IsDesignTimeCreatable=True}">
-        <bordered:BorderedControl BackgroundBrush="{Binding BackgroundBrush, Mode=TwoWay}">
-            <bordered:BorderedControl.Body>
-                <Grid DataContext="{Binding DataContext}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80*" />
-                        <ColumnDefinition Width="20*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Foreground="White" FontSize="20" Padding="10" Text="{Binding Title, Mode=TwoWay}" />
-                    <TextBlock Foreground="White" FontSize="25" Padding="7" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Grade, Mode=TwoWay}" />
-                </Grid>
-            </bordered:BorderedControl.Body>
-        </bordered:BorderedControl>
+        <Border Background="{StaticResource EtsBackgroundBrush}" BorderBrush="{StaticResource EtsBorderItemBrush}">
+            <Border BorderThickness="1,1,0,0" BorderBrush="{Binding BackgroundBrush}">
+                <bordered:BorderedControl BackgroundBrush="{StaticResource EtsBackgroundBrush}">
+                    <bordered:BorderedControl.Body>
+                        <Grid DataContext="{Binding DataContext}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="20*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource EtsTextBlockBlack3}" Padding="10" Text="{Binding Title, Mode=TwoWay}" />
+                            <TextBlock Style="{StaticResource EtsTextBlockBlack3_5}" Padding="7" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Grade, Mode=TwoWay}" />
+                        </Grid>
+                    </bordered:BorderedControl.Body>
+                </bordered:BorderedControl>
+            </Border>
+        </Border>
     </Grid>
 </UserControl>

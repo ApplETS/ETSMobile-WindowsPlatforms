@@ -6,8 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:grade="using:Ets.Mobile.Content.Grade"
+    xmlns:shell="using:Ets.Mobile.Shell"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <grade:CourseChooserForGrades x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+    DataContext="{Binding}"
+    Background="{StaticResource EtsBackgroundBodyBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Hamburger -->
+        <shell:PageHeader DataContext="{Binding}"/>
+        <grade:CourseChooserForGrades Grid.Row="1" Margin="10" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+    </Grid>
 </Page>

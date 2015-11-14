@@ -14,27 +14,43 @@ using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Pages.Grade;
 using Ets.Mobile.Pages.Program;
 using Ets.Mobile.Pages.Schedule;
-using Ets.Mobile.ViewModel.Contracts;
+using Ets.Mobile.Pages.Settings;
 using Ets.Mobile.ViewModel.Contracts.Shared;
+using Ets.Mobile.ViewModel.Contracts.UserDetails;
 using Ets.Mobile.ViewModel.Pages.Grade;
 using Ets.Mobile.ViewModel.Pages.Program;
 using Ets.Mobile.ViewModel.Pages.Schedule;
+using Ets.Mobile.ViewModel.Pages.Settings;
 using Ets.Mobile.ViewModel.Pages.Shared;
 using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Logger;
-using Syncfusion.Data.Extensions;
 
 namespace Ets.Mobile.ViewModel
 {
-	public class ApplicationShell : ReactiveObject, IScreen
-	{
+    public interface IApplicationShell : IScreen
+    {
+        ISideNavigationViewModel SideNavigation { get; }
+        void HandleAuthentificated();
+    }
+
+    public class ApplicationShell : ReactiveObject, IApplicationShell
+    {
         // The Router holds the ViewModels for the back stack. Because it's
         // in this object, it will be serialized automatically.
         public RoutingState Router { get; protected set; }
         
-        public ApplicationShell()
+	    private ISideNavigationViewModel _sideNavigation;
+	    public ISideNavigationViewModel SideNavigation => _sideNavigation ?? (_sideNavigation = Locator.Current.GetService<ISideNavigationViewModel>());
+
+	    public ApplicationShell()
 		{
+            // Router for Navigation
             Router = new RoutingState();
+
+            // Register this screen
+            Locator.CurrentMutable.RegisterConstant(this, typeof(IScreen));
+            Locator.CurrentMutable.Register(() => new UserDetailsViewModel(this), typeof(IUserDetailsViewModel));
+            Locator.CurrentMutable.RegisterConstant(_sideNavigation = new SideNavigationViewModel(this), typeof(ISideNavigationViewModel));
 
 #if WINDOWS_PHONE_APP
             // Back Button Handling
@@ -47,14 +63,11 @@ namespace Ets.Mobile.ViewModel
                 }
             };
 #endif
-
             // Set up Akavache
             // 
             // Akavache is a portable data serialization library that we'll use to
             // cache data that we've downloaded
             BlobCache.ApplicationName = "EtsMobile";
-            // Temporary Brute Force Akavache's Registration
-            //Locator.CurrentMutable.RegisterCaching();
 
             // Set up Fusillade
             //
@@ -64,7 +77,7 @@ namespace Ets.Mobile.ViewModel
             // de-dupe them. We're saying here, that we want our *backing*
             // HttpMessageHandler to be ModernHttpClient.
             Locator.CurrentMutable.RegisterConstant(new NativeMessageHandler(), typeof(HttpMessageHandler));
-            
+
             // Set up Services
             //
             // Setting up services
@@ -74,16 +87,15 @@ namespace Ets.Mobile.ViewModel
             //
             // Setting up the Views and assign them to their corresponding ViewModels
             RegisterViewModelAndPages(Locator.CurrentMutable);
-
-            // Navigate to Main if Authentificated
-            HandleAuthentificated();
-		}
+        }
 
         #region Verify Authentification
 
-	    private void HandleAuthentificated()
+	    public void HandleAuthentificated()
 	    {
 	        BlobCache.UserAccount.GetObject<SignetsAccountVm>(ViewModelKeys.Login)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .SubscribeOn(RxApp.MainThreadScheduler)
                 .Catch(Observable.Return(new SignetsAccountVm()))
 	            .Subscribe(signetsAccountVm =>
 	            {
@@ -91,9 +103,9 @@ namespace Ets.Mobile.ViewModel
 	                {
                         Locator.Current.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
                         Locator.Current.GetService<IUserEnabledLogger>().SetUser(signetsAccountVm.Username);
-                        Locator.CurrentMutable.Register(() => new SideNavigationViewModel(this, new UserDetailsViewModel(this)), typeof(ISideNavigationViewModel));
+                        SideNavigation.UserDetails.LoadProfile.Execute(null);
                         Router.Navigate.Execute(new MainViewModel(this));
-                    }
+	                }
                     else
 	                {
                         Router.Navigate.Execute(new LoginViewModel(this));
@@ -119,6 +131,8 @@ namespace Ets.Mobile.ViewModel
             resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
             resolver.Register(() => new GradePage(), typeof(IViewFor<GradeViewModel>));
             resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramViewModel>));
+            resolver.Register(() => new SelectCourseForGradePage(), typeof(IViewFor<SelectCourseForGradeViewModel>));
+            resolver.Register(() => new SettingsPage(), typeof(IViewFor<SettingsViewModel>));
         }
 
         #endregion

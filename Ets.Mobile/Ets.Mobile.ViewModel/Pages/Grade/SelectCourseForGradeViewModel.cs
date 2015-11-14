@@ -23,7 +23,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
 {
     public class SelectCourseForGradeViewModel : PageViewModelBase, ISelectCourseForGradeViewModel
     {
-        public SelectCourseForGradeViewModel(IScreen screen) : base(screen, "Select Course")
+        public SelectCourseForGradeViewModel(IScreen screen) : base(screen, "SelectCourse")
         {
             OnViewModelCreation();
         }

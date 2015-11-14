@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ApplicationViewModelsTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ApplicationShell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeItem.xaml.cs">
       <DependentUpon>GradeItem.xaml</DependentUpon>
@@ -38,8 +39,20 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Schedule\Schedule.xaml.cs">
       <DependentUpon>Schedule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Settings\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Settings\Confidentiality.xaml.cs">
+      <DependentUpon>Confidentiality.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Settings\Credits.xaml.cs">
+      <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuButtonBar.xaml.cs">
+      <DependentUpon>MenuButtonBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Shared\SideNavigation.xaml.cs">
       <DependentUpon>SideNavigation.xaml</DependentUpon>
@@ -50,8 +63,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Main\MainPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Program\ProgramPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Schedule\SchedulePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Settings\SettingsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Shell\ShellPage.cs" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppBarButton\CalendarView.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Credits\ModernHttpClient.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LightGray.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\MediumGray.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\DarkGray.png" />
@@ -65,6 +80,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Menu\Settings-64.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Menu\Student-64.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Menu\Wi-Fi-64.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Fonts\segmdl2.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Skins\MainSkin.xaml">
@@ -74,6 +90,10 @@
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Skins\ReactivePresenter.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Skins\SplitViewStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeItem.xaml">
       <SubType>Designer</SubType>
@@ -100,6 +120,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\Content\Schedule\Schedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Settings\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Settings\Confidentiality.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Settings\Credits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuButtonBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

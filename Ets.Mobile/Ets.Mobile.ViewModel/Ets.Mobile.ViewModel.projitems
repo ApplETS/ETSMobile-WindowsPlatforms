@@ -22,6 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\ISelectCourseForGradeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Main\IMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Program\IProgramViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IAboutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\ISettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Shared\IManageAppBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Shared\ISideNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\UserDetails\IUserDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DesignTimeHelper.cs" />
@@ -38,6 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Grade.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Today.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Settings\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\SideNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\UserDetails\UserDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />

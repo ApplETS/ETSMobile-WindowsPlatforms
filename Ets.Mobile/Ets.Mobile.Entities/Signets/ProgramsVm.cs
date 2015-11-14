@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using ReactiveUI;
 
 namespace Ets.Mobile.Entities.Signets
 {
+    [DataContract]
     public class ProgramVm : ReactiveObject
     {
     	private string _code;
+        [DataMember]
         public string Code 
         { 
         	get { return _code; }
@@ -13,6 +16,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private string _name;
+        [DataMember]
         public string Name
         {
         	get { return _name; }
@@ -20,6 +24,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private string _status;
+        [DataMember]
         public string Status
         { 
         	get { return _status; }
@@ -27,6 +32,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private string _semesterStart;
+        [DataMember]
         public string SemesterStart
         { 
         	get { return _semesterStart; }
@@ -34,6 +40,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private string _semesterEnd;
+        [DataMember]
         public string SemesterEnd 
         { 
         	get { return _semesterEnd; }
@@ -41,6 +48,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private string _average;
+        [DataMember]
         public string Average
         { 
         	get { return _average; }
@@ -48,6 +56,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private short _equivalenceCount;
+        [DataMember]
         public short EquivalenceCount
         { 
         	get { return _equivalenceCount; }
@@ -55,6 +64,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private short _suceededCreditsCount;
+        [DataMember]
         public short SuceededCreditsCount
         { 
         	get { return _suceededCreditsCount; }
@@ -62,6 +72,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private short _failedCreditsCount;
+        [DataMember]
         public short FailedCreditsCount
         { 
         	get { return _failedCreditsCount; }
@@ -69,6 +80,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private short _registeredCreditsCount;
+        [DataMember]
         public short RegisteredCreditsCount 
         { 
         	get { return _registeredCreditsCount; }
@@ -76,6 +88,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private short _completedCreditsCount;
+        [DataMember]
         public short CompletedCreditsCount
         { 
         	get { return _completedCreditsCount; }
@@ -83,6 +96,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private short _potentialCreditsCount;
+        [DataMember]
         public short PotentialCreditsCount
         { 
         	get { return _potentialCreditsCount; }
@@ -90,6 +104,7 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         private short _researchCreditsCount;
+        [DataMember]
         public short ResearchCreditsCount 
         { 
         	get { return _researchCreditsCount; }

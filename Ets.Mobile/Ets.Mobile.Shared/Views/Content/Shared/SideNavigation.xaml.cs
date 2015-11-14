@@ -1,16 +1,22 @@
-﻿using System.Windows.Input;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Ets.Mobile.ViewModel.Pages.Shared;
-using Splat;
 
-namespace Ets.Mobile.Views.Content.Shared
+namespace Ets.Mobile.Content.Shared
 {
     public sealed partial class SideNavigation : UserControl
     {
         public SideNavigation()
         {
             InitializeComponent();
+        }
+
+        private void DontCheck(object sender, RoutedEventArgs e)
+        {
+            var s = sender as RadioButton;
+            if (s != null)
+            {
+                s.IsChecked = false;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Reactive.Linq;
+using Windows.UI.Xaml;
 using Ets.Mobile.ViewModel.Pages.Grade;
 using ReactiveUI;
 
@@ -14,7 +15,7 @@ namespace Ets.Mobile.Pages.Grade
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(SelectCourseForGradeViewModel), typeof(GradePage), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(SelectCourseForGradeViewModel), typeof(SelectCourseForGradePage), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
@@ -27,6 +28,14 @@ namespace Ets.Mobile.Pages.Grade
         public SelectCourseForGradePage()
         {
             InitializeComponent();
+
+            var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
+                .Where(x => x != null);
+
+            subscriptionForViewModel.BindTo(this, x => x.DataContext);
+
+            subscriptionForViewModel
+                .InvokeCommand(this, x => x.ViewModel.LoadGrades);
         }
     }
 }

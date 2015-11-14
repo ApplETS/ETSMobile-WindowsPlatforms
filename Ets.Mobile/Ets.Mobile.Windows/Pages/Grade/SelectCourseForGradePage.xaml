@@ -5,8 +5,8 @@
     xmlns:local="using:Ets.Mobile.Pages.Grade"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:main="using:Ets.Mobile.Views.Content.Main"
+    xmlns:grade="using:Ets.Mobile.Content.Grade"
     mc:Ignorable="d">
 
-    <main:Grades x:Name="Grades" DataContext="{Binding GradePresenter}" />
+    <grade:CourseChooserForGrades x:Name="Grades" DataContext="{Binding GradePresenter}" />
 </Page>

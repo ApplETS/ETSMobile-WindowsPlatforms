@@ -1,28 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reactive.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using ReactiveUI;
 using Syncfusion.Data.Extensions;
 using Syncfusion.UI.Xaml.Schedule;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using Windows.UI;
-using Windows.UI.Xaml.Markup;
-using Ets.Mobile.SyncFusion.SfSchedule;
 
 namespace Ets.Mobile.Pages.Schedule
 {
@@ -30,19 +13,6 @@ namespace Ets.Mobile.Pages.Schedule
     {
         partial void PartialInitialize()
         {
-            var reactiveToCollection = new ReactiveListScheduleToSynfusionSchedulerConverter();
-            var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
-                .Where(x => x != null);
-
-            subscriptionForViewModel
-                .Subscribe(x =>
-                {
-                    x.ScheduleItems.Changed.Subscribe(y =>
-                    {
-                        Scheduler.Appointments.Clear();
-                        Scheduler.Appointments = (ScheduleAppointmentCollection)reactiveToCollection.Convert(x.ScheduleItems, x.ScheduleItems.GetType(), "", "");
-                    });
-                });
         }
 
         public bool IsCurrentViewWeek { get; set; }
@@ -142,34 +112,67 @@ namespace Ets.Mobile.Pages.Schedule
             var calendarFlyout = (Flyout)Resources["ChangeCalendarViewFlyout"];
             calendarFlyout?.Hide();
         }
+
+        private void schedule_ScheduleTypeChanging(object sender, ScheduleTypeChangingEventArgs e)
+        {
+            var sel = Scheduler?.Resources["TemplateSelector"] as AppointmentDataTemplateSelector;
+            if (sel != null)
+            {
+                sel.Type = Scheduler.ScheduleType;
+            }
+        }
+
+        private void schedule_Loaded(object sender, RoutedEventArgs e)
+        {
+            var sel = Scheduler?.Resources["TemplateSelector"] as AppointmentDataTemplateSelector;
+            if (sel != null)
+            {
+                sel.Type = Scheduler.ScheduleType;
+            }
+        }
     }
 
     public class AppointmentDataTemplateSelector : DataTemplateSelector
     {
+        public DataTemplate TimelineViewTemplate { get; set; }
+
         public DataTemplate DayViewTemplate { get; set; }
 
         public DataTemplate WeekViewTemplate { get; set; }
+
+        public DataTemplate MonthViewTemplate { get; set; }
 
         public ScheduleType Type { get; set; }
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
-            var appointment = (ScheduleAppointment)item;
-            var appointmentTemplate = new DataTemplate();
+            DataTemplate appointmentTemplate;
 
-            if (Type == ScheduleType.Day)
+            switch (Type)
             {
-                appointmentTemplate = DayViewTemplate;
-            }
-            else if (Type == ScheduleType.Week)
-            {
-                appointmentTemplate = WeekViewTemplate;
+                case ScheduleType.Month:
+                    appointmentTemplate = MonthViewTemplate;
+                    break;
+                case  ScheduleType.Day:
+                    appointmentTemplate = DayViewTemplate;
+                    break;
+                case ScheduleType.TimeLine:
+                    appointmentTemplate = TimelineViewTemplate;
+                    break;
+                case ScheduleType.Week:
+                    appointmentTemplate = WeekViewTemplate;
+                    break;
+                case ScheduleType.WorkWeek:
+                    appointmentTemplate = WeekViewTemplate;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             var frameworkElement = appointmentTemplate?.LoadContent() as FrameworkElement;
             if (frameworkElement != null)
             {
-                frameworkElement.DataContext = appointment;
+                frameworkElement.DataContext = item;
             }
 
             return appointmentTemplate;

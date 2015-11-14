@@ -127,6 +127,9 @@
     <Compile Include="Pages\Schedule\SchedulePage.xaml.cs">
       <DependentUpon>SchedulePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RefitStubs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shell\ShellPage.xaml.cs">
@@ -172,6 +175,16 @@
     <Page Include="Pages\Schedule\SchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
     </Page>
     <Page Include="Shell\ShellPage.xaml">
       <SubType>Designer</SubType>
@@ -231,6 +244,10 @@
       <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
       <Name>Themes</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Universal.UI.Xaml.Controls\Universal.UI.Xaml.Controls.csproj">
+      <Project>{ad458c94-da3a-4940-bc31-a370aa0adb5e}</Project>
+      <Name>Universal.UI.Xaml.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Xaml.Converters\Xaml.Converters.csproj">
       <Project>{d09cb47f-c41a-4121-b6d8-02dd70ba9410}</Project>

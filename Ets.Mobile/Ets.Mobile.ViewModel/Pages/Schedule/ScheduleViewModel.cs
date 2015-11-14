@@ -22,14 +22,14 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
     [DataContract]
     public class ScheduleViewModel : PageViewModelBase
     {
-        public ScheduleViewModel(IScreen screen) : base(screen, "Schedule")
+        public ScheduleViewModel(IScreen screen = null) : base(screen, "Schedule")
         {
             OnViewModelCreation();
         }
 
-        protected override sealed void OnViewModelCreation()
+        protected sealed override void OnViewModelCreation()
         {
-            ScheduleItems = new ReactiveList<ScheduleAppointment>();
+            ScheduleItems = new ReactiveList<ScheduleVm>();
 
             LoadSchedule = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
@@ -72,24 +72,14 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
             LoadSchedule.Subscribe(x =>
             {
                 ScheduleItems.Clear();
-                ScheduleItems.AddRange(x.Select(y => new ScheduleAppointment
-                {
-                    Subject = y.ActivityName,
-                    StartTime = y.StartDate,
-                    EndTime = y.EndDate,
-                    Location = y.Location,
-                    AppointmentBackground = y.Brush
-                }));
+                ScheduleItems.AddRange(x);
             });
-
-            SchedulePresenter = ReactivePresenterViewModel<ReactiveList<ScheduleAppointment>>.Create(ScheduleItems, LoadSchedule.IsExecuting, _scheduleExceptionSubject);
         }
 
         #region Properties
 
         [DataMember]
-        public ReactiveList<ScheduleAppointment> ScheduleItems { get; protected set; }
-        public IReactivePresenterViewModel<ReactiveList<ScheduleAppointment>> SchedulePresenter { get; protected set; }
+        public ReactiveList<ScheduleVm> ScheduleItems { get; protected set; }
         public ReactiveCommand<IEnumerable<ScheduleVm>> LoadSchedule { get; protected set; }
         private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
 

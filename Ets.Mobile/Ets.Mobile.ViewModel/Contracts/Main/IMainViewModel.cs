@@ -11,9 +11,7 @@ namespace Ets.Mobile.ViewModel.Contracts.Main
     {
         ReactiveCommand<ScheduleVm[]> LoadCoursesForToday { get; }
         ReactiveCommand<List<GradeSummaryViewModelGroup>> LoadGrades { get; }
-        ReactiveCommand<Unit> NavigateToSchedule { get; }
-        ReactiveCommand<Unit> NavigateToProgram { get; }
         IReactivePresenterViewModel<ReactiveList<GradeSummaryViewModelGroup>> GradesPresenter { get; }
-        IReactivePresenterViewModel<ReactiveList<ScheduleVm>> TodayPresenter { get; }        
+        IReactivePresenterViewModel<ReactiveList<ScheduleVm>> TodayPresenter { get; }
     }
 }

@@ -2,13 +2,20 @@
 using System.Reactive;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts;
 using Ets.Mobile.ViewModel.Contracts.Main;
+using Ets.Mobile.ViewModel.Contracts.Shared;
 using Ets.Mobile.ViewModel.Pages.Grade;
 using Ets.Mobile.ViewModel.Pages.Schedule;
 using ReactiveUI;
+using Splat;
+using System.Reactive.Linq;
+using System.Linq;
+using System.Reactive.Disposables;
+using System.Reactive.Subjects;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
@@ -30,38 +37,10 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             OnViewModelCreation();
         }
 
-        protected override sealed void OnViewModelCreation()
+        protected sealed override void OnViewModelCreation()
         {
-            // Initialize Profile
-            SideNavigation.UserDetails.LoadProfile.Execute(null);
-            SideNavigation.CurrentPage = "Home";
-
             InitializeToday();
             InitializeGrade();
-            InitializeNavigations();
         }
-
-        #region Navigate
-
-        protected void InitializeNavigations()
-        {
-            NavigateToSchedule = ReactiveCommand.CreateAsyncTask(_ =>
-            {
-                HostScreen.Router.Navigate.Execute(new ScheduleViewModel(HostScreen));
-                return Task.FromResult(Unit.Default);
-            });
-
-            NavigateToProgram = ReactiveCommand.CreateAsyncTask(_ =>
-            {
-                HostScreen.Router.Navigate.Execute(new Ets.Mobile.ViewModel.Pages.Program.ProgramViewModel(HostScreen));
-                return Task.FromResult(Unit.Default);
-            });
-        }
-
-        public ReactiveCommand<Unit> NavigateToSchedule { get; protected set; }
-
-        public ReactiveCommand<Unit> NavigateToProgram { get; protected set; }
-
-        #endregion
     }
 }

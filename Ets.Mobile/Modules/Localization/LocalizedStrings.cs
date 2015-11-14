@@ -78,25 +78,11 @@ namespace Localization
                 return _resourceLoader.GetString("Grade");
             }
         } 
-        public static string GradeHeaderUid_Text  
-        {
-            get
-            {
-                return _resourceLoader.GetString("GradeHeaderUid");
-            }
-        } 
         public static string GradesEmptyUid_Text  
         {
             get
             {
                 return _resourceLoader.GetString("GradesEmptyUid");
-            }
-        } 
-        public static string GradeTitleUid_Text  
-        {
-            get
-            {
-                return _resourceLoader.GetString("GradeTitleUid");
             }
         } 
         public static string GradeUid_Text  
@@ -197,20 +183,6 @@ namespace Localization
                 return _resourceLoader.GetString("ScheduleEmptyUid");
             }
         } 
-        public static string SelectProgram  
-        {
-            get
-            {
-                return _resourceLoader.GetString("SelectProgram");
-            }
-        } 
-        public static string SelectProgramUid_Text  
-        {
-            get
-            {
-                return _resourceLoader.GetString("SelectProgramUid");
-            }
-        } 
         public static string StandardDeviation  
         {
             get
@@ -253,11 +225,11 @@ namespace Localization
                 return _resourceLoader.GetString("TodayEmptyUid");
             }
         } 
-        public static string TodayHeaderUid_Text  
+        public static string TodayUid_Text  
         {
             get
             {
-                return _resourceLoader.GetString("TodayHeaderUid");
+                return _resourceLoader.GetString("TodayUid");
             }
         } 
         public static string UsernameUid_Text  
@@ -314,6 +286,104 @@ namespace Localization
             get
             {
                 return _resourceLoader.GetString("Minutes");
+            }
+        } 
+        public static string CalendarUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("CalendarUid");
+            }
+        } 
+        public static string GradesUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("GradesUid");
+            }
+        } 
+        public static string ProgramUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ProgramUid");
+            }
+        } 
+        public static string ProgramEmptyUid  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ProgramEmptyUid");
+            }
+        } 
+        public static string HomeUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("HomeUid");
+            }
+        } 
+        public static string ScheduleUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleUid");
+            }
+        } 
+        public static string SettingsUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("SettingsUid");
+            }
+        } 
+        public static string Grades  
+        {
+            get
+            {
+                return _resourceLoader.GetString("Grades");
+            }
+        } 
+        public static string Home  
+        {
+            get
+            {
+                return _resourceLoader.GetString("Home");
+            }
+        } 
+        public static string Program  
+        {
+            get
+            {
+                return _resourceLoader.GetString("Program");
+            }
+        } 
+        public static string Schedule  
+        {
+            get
+            {
+                return _resourceLoader.GetString("Schedule");
+            }
+        } 
+        public static string SelectCourse  
+        {
+            get
+            {
+                return _resourceLoader.GetString("SelectCourse");
+            }
+        } 
+        public static string LogoutUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("LogoutUid");
+            }
+        } 
+        public static string ToBeDetermined  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ToBeDetermined");
             }
         } 
     }

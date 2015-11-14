@@ -16,18 +16,19 @@
 	d:DesignWidth="400">
     <UserControl.Resources>
         <DataTemplate x:Key="GradeDataTemplate">
-            <Border Margin="5,0,3,10" BorderThickness="0,0,1,1" Background="{StaticResource EtsBackgroundBrush}" BorderBrush="{Binding EtsBorderItemBrush}">
+            <Border Margin="5,0,3,10" BorderThickness="0,0,1,1" Background="{StaticResource EtsBackgroundBrush}" BorderBrush="{StaticResource EtsBorderItemBrush}">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction Command="{Binding NavigateToGrade}" CommandParameter="{Binding}"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
                 <Border BorderThickness="1,1,0,0" BorderBrush="{Binding Course.Brush}">
                     <Grid Height="100">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="150" />
                         </Grid.ColumnDefinitions>
-                        <interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="Tapped">
-                                <core:InvokeCommandAction Command="{Binding NavigateToGrade}" CommandParameter="{Binding}"/>
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
+                        
                         <StackPanel Grid.Column="0" Orientation="Vertical">
                             <TextBlock
                            FontSize="24"
@@ -49,8 +50,8 @@
                            VerticalAlignment="Bottom"
                            Style="{StaticResource EtsTextBlockBlack2}"
                            FontWeight="Normal"
-                           FontSize="80"
-                           Text="{Binding Course.Grade, Converter={StaticResource StringToNotApplicableConverter}}" />
+                           FontSize="{Binding Course.Grade, Converter={StaticResource NullOrNotToFontSizeSelectorConverter}, ConverterParameter='80,60'}"
+                           Text="{Binding Course.Grade, Converter={StaticResource StringToTbdConverter}}" />
                     </Grid>
                 </Border>
             </Border>                       
@@ -66,7 +67,7 @@
 						Source="{Binding}" />
                     <converters:ScreenWidthMultiplier x:Key="ScreenWidth" />
                 </Grid.Resources>
-                <ListView
+                    <ListView
                     Margin="-5,0,0,0"
                     ItemsSource="{Binding Source={StaticResource GradeCollectionViewSource}}"
 	                ItemTemplate="{StaticResource GradeDataTemplate}"
@@ -74,28 +75,28 @@
 			        ScrollViewer.IsHorizontalScrollChainingEnabled="False"
 			        IsItemClickEnabled="True"
 			        SelectionMode="None">
-                    <ListView.ItemContainerTransitions>
-                        <TransitionCollection>
-                            <EntranceThemeTransition/>
-                        </TransitionCollection>
-                    </ListView.ItemContainerTransitions>
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition></EntranceThemeTransition>
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
-                        <GroupStyle HidesIfEmpty="False">
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="0,0,12,5" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
-                                        <TextBlock Text="{Binding Model.Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{StaticResource EtsListViewHeaderItem}"  />
-                                    </Grid>
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
-                </ListView>
+                            <GroupStyle HidesIfEmpty="False">
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="5,0,0,5" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
+                                            <TextBlock Text="{Binding Model.Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{StaticResource EtsListViewHeaderItem}"  />
+                                        </Grid>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                    </ListView>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>

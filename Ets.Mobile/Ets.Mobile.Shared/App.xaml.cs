@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
@@ -8,7 +9,10 @@ using Ets.Mobile.ViewModel;
 using ReactiveUI;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using CrittercismSDK;
 using Ets.Mobile.Shell;
@@ -30,26 +34,24 @@ namespace Ets.Mobile
         public App()
         {
             Locator.CurrentMutable.Register(() => new ResourceLoader(), typeof(ResourceLoader));
-
+            
             InitializeComponent();
 
             // Crittercism
             Crittercism.Init("55e87dc18d4d8c0a00d07811");
-            
-            UnhandledException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - wasHandled:{e.Handled} - {e.Message}", e.Exception));
 
             // ensure unobserved task exceptions (unawaited async methods returning Task or Task<T>) are handled
             TaskScheduler.UnobservedTaskException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - observed:{e.Observed} - {e.Exception.Message}", e.Exception));
-
-            // Initialize Rx App
-            Locator.CurrentMutable.RegisterConstant(new ApplicationShell(), typeof(IScreen));
-            RxApp.SuspensionHost.CreateNewAppState = () => Locator.Current.GetService<IScreen>();
             
-            _autoSuspendHelper = new AutoSuspendHelper(this);
-            RxApp.SuspensionHost.SetupDefaultSuspendResume();
-
+            UnhandledException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - wasHandled:{e.Handled} - {e.Message}", e.Exception));
+            
             // Default Universal Behavior
             Suspending += OnSuspending;
+
+            // Initialize Rx App
+            _autoSuspendHelper = new AutoSuspendHelper(this);
+            RxApp.SuspensionHost.CreateNewAppState = () => new ApplicationShell();
+            RxApp.SuspensionHost.SetupDefaultSuspendResume();
         }
         public class AsyncSynchronizationContext : SynchronizationContext
         {
@@ -131,10 +133,18 @@ namespace Ets.Mobile
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            // Do Base Launched
             base.OnLaunched(e);
-            AsyncSynchronizationContext.Register();
+            
+            // Do RxApp OnLaunched
             _autoSuspendHelper.OnLaunched(e);
 
+            // IAsyncCommand are handled here
+            // We need a Synchronization Context to use this
+            // Don't move it.
+            AsyncSynchronizationContext.Register();
+
+            // Create New Frame
             var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -144,13 +154,8 @@ namespace Ets.Mobile
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame
                 {
-                    CacheSize = 1 // TODO: change this value to a cache size that is appropriate for your application
+                    CacheSize = 1, // Size of 1 is okay for now.
                 };
-
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    // TODO: Load state from previously suspended application
-                }
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
@@ -173,10 +178,19 @@ namespace Ets.Mobile
                 rootFrame.Navigated += RootFrame_FirstNavigated;
 #endif
 
+                rootFrame.Navigated += (sender, x) =>
+                {
+                    // Get resulted IScreen
+                    var screen = Locator.Current.GetService<IScreen>() as IApplicationShell ?? new ApplicationShell();
+                    // We can't put blocking methods like HandleAuthentificated in the ApplicationShellViewModel
+                    // since it remains stuck on getting the cache. Leave it here.
+                    screen.HandleAuthentificated();
+                };
+
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(ShellPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof (ShellPage), e.Arguments))
                 {
                     Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] Failed to create initial page"));
                     throw new Exception("Failed to create initial page");
@@ -185,6 +199,12 @@ namespace Ets.Mobile
 
             // Ensure the current window is active
             Window.Current.Activate();
+
+#if WINDOWS_PHONE_APP
+            // Allows the windows to always use the full screen
+            // This solves the problem: when hiding the commandbar, the windows would not resize. Now it does.
+            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+#endif
         }
 
 #if WINDOWS_PHONE_APP

@@ -25,7 +25,7 @@ namespace Ets.Mobile.ViewModel.Pages.Program
             OnViewModelCreation();
         }
 
-        protected override sealed void OnViewModelCreation()
+        protected sealed override void OnViewModelCreation()
         {
             ProgramItems = new ReactiveList<ProgramVm>();
             LoadProgram = ReactiveDeferedCommand.CreateAsyncObservable(() =>

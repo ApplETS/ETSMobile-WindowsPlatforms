@@ -147,14 +147,8 @@
   <data name="Grade" xml:space="preserve">
     <value>Grade</value>
   </data>
-  <data name="GradeHeaderUid.Text" xml:space="preserve">
-    <value>GRADES</value>
-  </data>
   <data name="GradesEmptyUid.Text" xml:space="preserve">
     <value>There are no results to show</value>
-  </data>
-  <data name="GradeTitleUid.Text" xml:space="preserve">
-    <value>GRADES</value>
   </data>
   <data name="GradeUid.Text" xml:space="preserve">
     <value>Grade</value>
@@ -198,12 +192,6 @@
   <data name="ScheduleEmptyUid.Text" xml:space="preserve">
     <value>You do not have classes.</value>
   </data>
-  <data name="SelectProgram" xml:space="preserve">
-    <value>Program</value>
-  </data>
-  <data name="SelectProgramUid.Text" xml:space="preserve">
-    <value>SELECT A PROGRAM</value>
-  </data>
   <data name="StandardDeviation" xml:space="preserve">
     <value>Standard Deviation</value>
   </data>
@@ -222,8 +210,8 @@
   <data name="TodayEmptyUid.Text" xml:space="preserve">
     <value>You do not have courses today</value>
   </data>
-  <data name="TodayHeaderUid.Text" xml:space="preserve">
-    <value>TODAY</value>
+  <data name="TodayUid.Text" xml:space="preserve">
+    <value>Today</value>
   </data>
   <data name="UsernameUid.Text" xml:space="preserve">
     <value>universal code</value>
@@ -258,7 +246,97 @@
   <data name="ProgramUid.Text" xml:space="preserve">
     <value>Program</value>
   </data>
-  <data name="ProgramEmptyUid" xml:space="preserve">
+  <data name="ProgramEmptyUid.Text" xml:space="preserve">
     <value>You do not have programs</value>
+  </data>
+  <data name="HomeUid.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ScheduleUid.Text" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="SettingsUid.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Grades" xml:space="preserve">
+    <value>Grades</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="SelectCourse" xml:space="preserve">
+    <value>Select a course</value>
+  </data>
+  <data name="LogoutUid.Text" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="ToBeDetermined" xml:space="preserve">
+    <value>TBD</value>
+  </data>
+  <data name="AboutUid.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="AppletsDescriptionUid.Text" xml:space="preserve">
+    <value>ApplÉTS Scientific Club</value>
+  </data>
+  <data name="AppletsWebsiteUid.NavigateUri" xml:space="preserve">
+    <value>http://www.clubapplets.ca/</value>
+  </data>
+  <data name="ContributeDescriptionUid.Text" xml:space="preserve">
+    <value>You are a student at ÉTS and you would like to contribute to the development of the application?</value>
+  </data>
+  <data name="EcoledeTechnologieSuperieurUid.Text" xml:space="preserve">
+    <value>École de technologie supérieure</value>
+  </data>
+  <data name="VisitAndJoinUsUid.Text" xml:space="preserve">
+    <value>Visit our website and join our team !</value>
+  </data>
+  <data name="AkavacheDescriptionUid.Text" xml:space="preserve">
+    <value>Akavache is an asynchronous, persistent (i.e. writes to disk) key-value store created for writing desktop and mobile applications in C#, based on SQLite3</value>
+  </data>
+  <data name="CreditsUid.Text" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="CrittercismDescriptionUid.Text" xml:space="preserve">
+    <value>Crittercism measures performance and reliability of apps</value>
+  </data>
+  <data name="ModernHttpClientDescriptionUid.Text" xml:space="preserve">
+    <value>HttpClient implementations that use platform-native HTTP clients for </value>
+  </data>
+  <data name="NewtonsoftJsonDescriptionUid.Text" xml:space="preserve">
+    <value>Json.NET is a popular high-performance JSON framework for .NET</value>
+  </data>
+  <data name="ReactiveExtensionsDescriptionUid.Text" xml:space="preserve">
+    <value>The Reactive Extensions (Rx) is a library for composing asynchronous and event-based programs using observable sequences and LINQ-style query operators.</value>
+  </data>
+  <data name="ReactiveUIDescriptionUid.Text" xml:space="preserve">
+    <value>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform.</value>
+  </data>
+  <data name="RefitDescriptionUid.Text" xml:space="preserve">
+    <value>The automatic type-safe REST library for Xamarin and .NET</value>
+  </data>
+  <data name="SplatDescriptionUid.Text" xml:space="preserve">
+    <value>Service Locator, Logging, Cross-Platform image loading/saving</value>
+  </data>
+  <data name="SqliteDescriptionUid.Text" xml:space="preserve">
+    <value>SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.</value>
+  </data>
+  <data name="SyncfusionDescriptionUid.Text" xml:space="preserve">
+    <value>Controls and framework</value>
+  </data>
+  <data name="ConfidentialityUid.Text" xml:space="preserve">
+    <value>Confidentiality</value>
+  </data>
+  <data name="FeedbackButtonUid.Content" xml:space="preserve">
+    <value>send feedback</value>
   </data>
 </root>

@@ -3,13 +3,16 @@ using System.Reactive.Linq;
 using System.Runtime.Serialization;
 using Akavache;
 using Ets.Mobile.Client;
+using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts;
 using Ets.Mobile.ViewModel.Contracts.Shared;
+using Ets.Mobile.ViewModel.Contracts.UserDetails;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Ets.Mobile.ViewModel.Pages.Shared;
 using Ets.Mobile.ViewModel.Pages.UserDetails;
+using Logger;
 using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Exceptions;
@@ -47,7 +50,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             OnViewModelCreation();
         }
 
-        protected override sealed void OnViewModelCreation()
+        protected sealed override void OnViewModelCreation()
         {
             UserName = Password = string.Empty;
 #if DEBUG
@@ -86,8 +89,9 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             });
 
             SubmitCommand.Subscribe(accountVm => {
-                ClientServices().SignetsService.SetCredentials(accountVm);
-                Locator.CurrentMutable.Register(() => new SideNavigationViewModel(HostScreen, new UserDetailsViewModel(HostScreen)), typeof(ISideNavigationViewModel));
+                Locator.Current.GetService<ISignetsService>().SetCredentials(accountVm);
+                Locator.Current.GetService<IUserEnabledLogger>().SetUser(accountVm.Username);
+                SideNavigation.UserDetails.LoadProfile.Execute(null);
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });
 

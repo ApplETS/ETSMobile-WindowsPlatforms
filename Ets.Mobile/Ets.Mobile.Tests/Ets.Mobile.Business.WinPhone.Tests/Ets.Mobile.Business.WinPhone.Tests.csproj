@@ -79,6 +79,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="app.config" />
     <None Include="Ets.Mobile.Business.WinPhone.Tests_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

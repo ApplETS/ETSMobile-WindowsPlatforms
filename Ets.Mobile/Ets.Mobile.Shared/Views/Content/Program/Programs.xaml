@@ -23,28 +23,28 @@
                                 <Run Text="{Binding SemesterEnd}" />
                         </TextBlock>
                         <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="AverageUid" Text="Average" />: <Run Text="{Binding Average, Converter={StaticResource StringToNotApplicableConverter}}" /></TextBlock>
+                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="AverageUid" Text="Average" />: <Run Text="{Binding Average, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
                         <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="EquivalenceCountUid" Text="Equivalences" />: <Run Text="{Binding EquivalenceCount, Converter={StaticResource StringToNotApplicableConverter}}" /></TextBlock>
+                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="EquivalenceCountUid" Text="Equivalences" />: <Run Text="{Binding EquivalenceCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
                         <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="SuceededCreditsCountUid" Text="Suceeded credits" />: <Run Text="{Binding SuceededCreditsCount, Converter={StaticResource StringToNotApplicableConverter}}" /></TextBlock>
+                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="SuceededCreditsCountUid" Text="Suceeded credits" />: <Run Text="{Binding SuceededCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
                         <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="FailedCreditsCountUid" Text="Failed credits" />: <Run Text="{Binding FailedCreditsCount, Converter={StaticResource StringToNotApplicableConverter}}" /></TextBlock>
+                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="FailedCreditsCountUid" Text="Failed credits" />: <Run Text="{Binding FailedCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
                         <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="RegisteredCreditsUid" Text="Registered credits" />: <Run Text="{Binding RegisteredCreditsCount, Converter={StaticResource StringToNotApplicableConverter}}" /></TextBlock>
+                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="RegisteredCreditsUid" Text="Registered credits" />: <Run Text="{Binding RegisteredCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
                         <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="CompletedCreditsUid" Text="Completed credits" />: <Run Text="{Binding CompletedCreditsCount, Converter={StaticResource StringToNotApplicableConverter}}" /></TextBlock>
+                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="CompletedCreditsUid" Text="Completed credits" />: <Run Text="{Binding CompletedCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
                         <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="PotentialCreditsUid" Text="Potiental credits" />: <Run Text="{Binding PotentialCreditsCount, Converter={StaticResource StringToNotApplicableConverter}}" /></TextBlock>
+                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="PotentialCreditsUid" Text="Potiental credits" />: <Run Text="{Binding PotentialCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
                         <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,5">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="ResearchCreditsUid" Text="Research credits" />: <Run Text="{Binding ResearchCreditsCount, Converter={StaticResource StringToNotApplicableConverter}}" /></TextBlock>
+                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="ResearchCreditsUid" Text="Research credits" />: <Run Text="{Binding ResearchCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
                     </StackPanel>
                 </Grid>

@@ -6,9 +6,28 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:program="using:Ets.Mobile.Views.Content.Program"
+    xmlns:shell="using:Ets.Mobile.Shell"
     mc:Ignorable="d"
     DataContext="{Binding}"
-    Background="{StaticResource EtsBackgroundMainBrush}">
+    Background="{StaticResource EtsBackgroundBodyBrush}">
 
-    <program:Programs DataContext="{Binding ProgramPresenter}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Hamburger -->
+        <shell:PageHeader DataContext="{Binding}"/>
+        <!-- Content -->
+        <program:Programs Grid.Row="1" Margin="10" DataContext="{Binding ProgramPresenter}" />
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="CommandB" ClosedDisplayMode="Minimal" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Refresh" Label="Refresh" Command="{Binding LoadProgram}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
 </Page>

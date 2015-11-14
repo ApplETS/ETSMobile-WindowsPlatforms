@@ -33,6 +33,8 @@ namespace Ets.Mobile.Pages.Schedule
             var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
                 .Where(x => x != null);
 
+            subscriptionForViewModel.BindTo(this, x => x.DataContext);
+
             subscriptionForViewModel
                 .InvokeCommand(this, x => x.ViewModel.LoadSchedule);
             

@@ -16,6 +16,7 @@ using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.UserDetails
 {
+    [DataContract]
     public class UserDetailsViewModel : PageViewModelBase, IUserDetailsViewModel
     {
         public UserDetailsViewModel(IScreen screen) : base(screen, "UserDetails")
@@ -23,7 +24,7 @@ namespace Ets.Mobile.ViewModel.Pages.UserDetails
             OnViewModelCreation();
         }
         
-        protected override sealed void OnViewModelCreation()
+        protected sealed override void OnViewModelCreation()
         {
             LoadProfile = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {
@@ -65,13 +66,13 @@ namespace Ets.Mobile.ViewModel.Pages.UserDetails
         }
 
         #region Properties
-        
+
         private UserDetailsVm _profile;
         [DataMember]
         public UserDetailsVm Profile
         {
             get { return _profile; }
-            set { this.RaiseAndSetIfChanged(ref _profile, value); }
+            set { _profile = value; this.RaisePropertyChanged(); }
         }
         //public IReactivePresenterViewModel<UserDetailsVm> UserDetailsPresenter { get; protected set; }
         public ReactiveCommand<UserDetailsVm> LoadProfile { get; protected set; }

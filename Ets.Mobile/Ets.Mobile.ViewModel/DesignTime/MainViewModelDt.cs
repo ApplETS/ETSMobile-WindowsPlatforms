@@ -79,13 +79,18 @@ namespace Ets.Mobile.ViewModel.DesignTime
                 LoadCoursesForToday = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(new ScheduleVm[0]));
                 LoadGrades = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(new List<GradeSummaryViewModelGroup>()));
                 NavigateToSchedule = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
-                SideNavigation = new SideNavigationViewModel(null, new UserDetailsViewModel(null)
+                SideNavigation = new SideNavigationViewModel(null)
                 {
-                    Profile = new UserDetailsVm()
+                    UserDetails = new UserDetailsViewModel(null)
                     {
-                        Username = "AK83510"
+                        Profile = new UserDetailsVm
+                        {
+                            Username = "AK83510"
+                        }
                     }
-                });
+                };
+
+                IsAppBarVisible = true;
             }
         }
 
@@ -99,6 +104,8 @@ namespace Ets.Mobile.ViewModel.DesignTime
                 OnPropertyChanged();
             }
         }
+
+        public bool IsAppBarVisible { get; set; }
 
         private IReactivePresenterViewModel<ReactiveList<GradeSummaryViewModelGroup>> _gradePresenter;
         public IReactivePresenterViewModel<ReactiveList<GradeSummaryViewModelGroup>> GradesPresenter

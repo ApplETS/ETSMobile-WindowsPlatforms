@@ -96,6 +96,14 @@
       <Project>{17d45b8a-6118-4502-b079-227c45968c7c}</Project>
       <Name>Ets.Mobile.Entities.WinRT</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Localization\Localization.csproj">
+      <Project>{8070A42A-49A9-46A6-8BC1-DAA063BC3832}</Project>
+      <Name>Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger\Logger.csproj">
+      <Project>{DB28D584-BA06-4FD9-BAA9-C593B8C57F8E}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
       <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
       <Name>Messaging.Interfaces</Name>

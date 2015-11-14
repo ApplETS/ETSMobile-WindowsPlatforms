@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
+using Ets.Mobile.Entities.Signets;
 using Localization;
 using ReactiveUI;
 using Splat;
@@ -11,34 +12,14 @@ using Syncfusion.UI.Xaml.Schedule;
 
 namespace Ets.Mobile.SyncFusion.SfSchedule
 {
-    public class ReactiveListScheduleToSynfusionSchedulerConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            var app = value as ReactiveList<ScheduleAppointment>;
-            if(app != null)
-            {
-                var col = new ScheduleAppointmentCollection();
-                app.ForEach(x => col.Add(x));
-                return col;
-            }
-            return value;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class AppointmentToDescriptionConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var app = value as ScheduleAppointment;
+            var app = value as ScheduleVm;
             if(app != null)
             {
-                var time = (app.EndTime - app.StartTime);
+                var time = (app.EndDate - app.StartDate);
                 var description = "";
                 if(time.Hours > 0)
                 {
@@ -70,7 +51,7 @@ namespace Ets.Mobile.SyncFusion.SfSchedule
         }
     }
 
-    public class StartTimeToStringConverter : IValueConverter
+    public class StartDateToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

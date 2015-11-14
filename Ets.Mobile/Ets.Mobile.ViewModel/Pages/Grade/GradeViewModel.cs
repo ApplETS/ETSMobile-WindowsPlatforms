@@ -30,14 +30,14 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         #endregion
 
         public GradeViewModel(IScreen screen, CourseVm selectedCourse) 
-            : base(screen, "Evaluation")
+            : base(screen, "Grades")
         {
             Semester = selectedCourse.Semester;
             SelectedCourse = selectedCourse;
             OnViewModelCreation();
         }
 
-        protected override sealed void OnViewModelCreation()
+        protected sealed override void OnViewModelCreation()
         {
             GradeItems = new ReactiveList<GradeViewModelItem>();
 

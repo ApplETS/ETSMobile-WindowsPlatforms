@@ -5,10 +5,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:reactiveUi="using:ReactiveUI"
+    xmlns:controls="using:Universal.UI.Xaml.Controls"
+    xmlns:shared="using:Ets.Mobile.Content.Shared"
     mc:Ignorable="d"
-    Background="White">
-
-    <Grid Background="{StaticResource EtsBackgroundBrush}">
-        <reactiveUi:RoutedViewHost Router="{Binding Router}" />
-    </Grid>
+    x:Name="Shell"
+    Background="{StaticResource EtsBackgroundBrush}">
+    <Page.Resources>
+        <ResourceDictionary Source="ms-appx:///Universal.UI.Xaml.Controls/Themes/Generic.xaml" />
+    </Page.Resources>
+    <controls:SplitView OpenPaneLength="{Binding ActualWidth, ElementName=Shell}" x:Name="ShellSplitView">
+        <controls:SplitView.Pane>
+            <shared:SideNavigation x:Name="SideNavigation" />
+        </controls:SplitView.Pane>
+        <controls:SplitView.Content>
+            <reactiveUi:RoutedViewHost x:Name="RoutedViewModelHost" HorizontalAlignment="Stretch">
+                <reactiveUi:RoutedViewHost.Transitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition FromVerticalOffset="10" />
+                    </TransitionCollection>
+                </reactiveUi:RoutedViewHost.Transitions>
+            </reactiveUi:RoutedViewHost>
+        </controls:SplitView.Content>
+    </controls:SplitView>
 </Page>

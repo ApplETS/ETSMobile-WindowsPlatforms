@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="Black">
-
     <Page.Resources>
         <ResourceDictionary Source="/Skins/MainSkin.xaml" />
     </Page.Resources>
@@ -129,12 +128,10 @@
 				    VerticalAlignment="Bottom" Margin="0,0,0,-11"
                     ClickMode="Press">
             </Button>
-		</Grid>              
+		</Grid>
 
-		<Grid x:Name="LoginForm" Margin="0,561,0,-611"              
-			Visibility="Collapsed" RenderTransformOrigin="0.5,0.5"
-              >            
-			<Grid.RenderTransform>
+        <Grid x:Name="LoginForm" Margin="0,561,0,-611" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
 				<CompositeTransform/>
 			</Grid.RenderTransform>
 			<Grid.RowDefinitions>
@@ -147,7 +144,7 @@
 			</Grid.Background>
             
 			<!--TitlePanel contains the name of the application and page title-->
-            <TextBlock x:Uid="ConnectUid" Text="CONNEXION" Margin="12,0,0,0" Grid.Row="1" FontSize="32" VerticalAlignment="Center"/>
+            <TextBlock x:Uid="ConnectUid" Text="CONNEXION" Margin="12,0,0,0" Grid.Row="1" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
 			<Grid Grid.Row="2" Margin="12,0,12,0">
 				<Grid.ColumnDefinitions>
@@ -169,6 +166,7 @@
 					VerticalAlignment="Bottom"
 					TextWrapping="Wrap"
 					FontSize="18"
+                    HorizontalAlignment="Left"
 					Foreground="White" />
                 <TextBox Grid.Row="1"                         
 					x:Name="UserName"
@@ -179,6 +177,7 @@
                     x:Uid="PasswordUid"
                     Text="mot de passe"
                     Grid.Row="2"
+                    HorizontalAlignment="Left"
 					VerticalAlignment="Bottom"
 					TextWrapping="Wrap" 
 					FontSize="18"
