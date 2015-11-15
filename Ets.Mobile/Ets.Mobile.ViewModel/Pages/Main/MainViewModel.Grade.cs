@@ -53,7 +53,6 @@ namespace Ets.Mobile.ViewModel.Pages.Main
 
                     return courses.Where(x => x.Semester != "s.o.").OrderByDescending(x => x.Semester, new SemestersComparator()).ToList();
                 })
-                .Do(x => BlobCache.UserAccount.GetAllKeys().Subscribe(y => y.Count()))
                 .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)).ToList());
             });
 
