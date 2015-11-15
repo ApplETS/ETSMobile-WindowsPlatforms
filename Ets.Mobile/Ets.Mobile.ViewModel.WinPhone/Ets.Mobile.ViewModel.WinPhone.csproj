@@ -99,6 +99,10 @@
       <Project>{ce35f282-6085-4910-bfe2-38a93c50cd8b}</Project>
       <Name>Ets.Mobile.Entities.WinPhone</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Localization\Localization.csproj">
+      <Project>{8070a42a-49a9-46a6-8bc1-daa063bc3832}</Project>
+      <Name>Localization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Logger\Logger.csproj">
       <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
       <Name>Logger</Name>

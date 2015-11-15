@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\MainViewModelDt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\ProgramViewModelDt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\SelectCourseForGradeViewModelDt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mixins\OfflineMixins.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Account\LoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\GradeViewModel.cs" />
