@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
+using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Grade;
+using Ets.Mobile.ViewModel.Mixins;
 using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using ReactiveUI.Extensions;
-using ReactiveUI.Xaml.Controls.Exceptions;
 using Refit;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
@@ -40,11 +42,18 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         protected sealed override void OnViewModelCreation()
         {
             GradeItems = new ReactiveList<GradeViewModelItem>();
-
-            LoadGrade = ReactiveDeferedCommand.CreateAsyncObservable(() =>
+            
+            LoadGrade = ReactiveCommand.CreateAsyncObservable(_ =>
             {
-                return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Courses())
-                    .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.Semester)) && x.Any(y => y.Semester == Semester))
+                return BlobCache.UserAccount.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
+                    .Select(courses =>
+                        courses.Where(x => x.Semester != "s.o.")
+                            .OrderByDescending(x => x.Semester, new SemestersComparator())
+                            .ToList()
+                    )
+                    .Where(x => x != null 
+                        && x.Any(y => !string.IsNullOrEmpty(y.Semester)) 
+                        && x.Any(y => y.Semester == Semester))
                     .Select(x => x.Where(y => y.Semester == Semester))
                     .Select(x => x.Select(y => new GradeViewModelItem(y)));
             });
@@ -53,23 +62,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    Exception exception;
-                    var apiException = x as ApiException;
-                    if (apiException != null)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
-                        if (apiException.ReasonPhrase == "Not Found")
-                        {
-                            exceptionMessage.Message = Resources().GetString("NetworkError");
-                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
-                        }
-                        exception = exceptionMessage.Exception;
-                    }
-                    else
-                    {
-                        exception = x;
-                    }
-                    _gradesExceptionSubject.OnNext(exception);
+                    _gradesExceptionSubject.HandleOfflineConnection(x);
                 });
 
             LoadGrade.Subscribe(x =>
@@ -83,6 +76,23 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                 x => new GradeTileViewModel(x),
                 x => x.Dispose()
             );
+        }
+
+        public IObservable<List<CourseVm>> FetchCourses()
+        {
+            return ClientServices().SignetsService.Courses()
+                .ToObservable()
+                .Do(async courses =>
+                {
+                    foreach (var course in courses.Where(x => x.Semester != "s.o.")
+                        .GroupBy(x => x.Semester))
+                    {
+                        await SettingsService().ApplyColorOnItemsForSemester(
+                            courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
+                            course.FirstOrDefault().Semester, x => x.Acronym);
+                    }
+                })
+                .Select(x => x.ToList());
         }
 
         #region Properties
@@ -147,5 +157,5 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                 Model = model;
             }
         }
-    }
+    }    
 }

@@ -58,8 +58,9 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                                 course.FirstOrDefault().Semester, x => x.Acronym);
                     }
 
-                    return courses.Where(x => x.Semester != "s.o.").OrderByDescending(x => x.Semester, new SemestersComparator()).ToList();
+                    return courses;
                 })
+                .Select(y => y.Where(x => x.Semester != "s.o.").OrderByDescending(x => x.Semester, new SemestersComparator()).ToList())
                 .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)).ToList());
             });
 
