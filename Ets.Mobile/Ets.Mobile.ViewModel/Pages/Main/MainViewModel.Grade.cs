@@ -40,7 +40,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
 
             LoadGrades = ReactiveDeferedCommand.CreateAsyncObservable(() => 
             {
-                return BlobCache.UserAccount.GetAndFetchLatest(ViewModelKeys.Courses, async () =>
+                return Cache.GetAndFetchLatest(ViewModelKeys.Courses, async () =>
                 {
                     var courses = await ClientServices().SignetsService.Courses();
                     foreach(var course in courses.Where(x => x.Semester != "s.o.")
