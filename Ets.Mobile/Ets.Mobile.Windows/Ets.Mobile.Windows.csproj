@@ -240,6 +240,10 @@
       <Project>{6c59c015-597d-410a-99a4-5be537a8fb93}</Project>
       <Name>ReactiveUI.Xaml.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Security\Security.csproj">
+      <Project>{d940f3ac-b1bf-4d18-8924-d7348f6318ea}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Themes\Themes.csproj">
       <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
       <Name>Themes</Name>

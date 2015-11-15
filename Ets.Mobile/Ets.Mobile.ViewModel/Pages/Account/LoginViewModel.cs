@@ -6,17 +6,12 @@ using Ets.Mobile.Client;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
-using Ets.Mobile.ViewModel.Contracts;
-using Ets.Mobile.ViewModel.Contracts.Shared;
-using Ets.Mobile.ViewModel.Contracts.UserDetails;
 using Ets.Mobile.ViewModel.Pages.Main;
-using Ets.Mobile.ViewModel.Pages.Shared;
-using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Logger;
 using Messaging.UniversalApp.Common;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Exceptions;
 using Refit;
+using Security.Algorithms;
 using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
@@ -90,7 +85,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             SubmitCommand.Subscribe(accountVm => {
                 Locator.Current.GetService<ISignetsService>().SetCredentials(accountVm);
-                Locator.Current.GetService<IUserEnabledLogger>().SetUser(accountVm.Username);
+                Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(accountVm.Username));
                 SideNavigation.UserDetails.LoadProfile.Execute(null);
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });

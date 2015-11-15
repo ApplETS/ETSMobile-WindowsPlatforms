@@ -24,6 +24,7 @@ using Ets.Mobile.ViewModel.Pages.Settings;
 using Ets.Mobile.ViewModel.Pages.Shared;
 using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Logger;
+using Security.Algorithms;
 
 namespace Ets.Mobile.ViewModel
 {
@@ -102,7 +103,7 @@ namespace Ets.Mobile.ViewModel
 	                if (signetsAccountVm.IsLoginSuccessful)
 	                {
                         Locator.Current.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
-                        Locator.Current.GetService<IUserEnabledLogger>().SetUser(signetsAccountVm.Username);
+                        Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
                         SideNavigation.UserDetails.LoadProfile.Execute(null);
                         Router.Navigate.Execute(new MainViewModel(this));
 	                }
