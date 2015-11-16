@@ -57,7 +57,7 @@ namespace Ets.Mobile.ViewModel.Content.Grade
             OnViewModelCreation();
         }
 
-        protected override sealed void OnViewModelCreation()
+        protected sealed override void OnViewModelCreation()
         {
             LoadGrade = ReactiveDeferedCommand.CreateAsyncObservable(() =>
             {

@@ -28,7 +28,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             OnViewModelCreation();
         }
 
-        protected override sealed void OnViewModelCreation()
+        protected sealed override void OnViewModelCreation()
         {
             _navigateToGradeItem = ReactiveCommand.CreateAsyncTask(param =>
             {

@@ -240,7 +240,7 @@ namespace ReactiveUI.Xaml.Controls
 
         #region Control Methods
 
-        protected override sealed void OnApplyTemplate()
+        protected sealed override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             
