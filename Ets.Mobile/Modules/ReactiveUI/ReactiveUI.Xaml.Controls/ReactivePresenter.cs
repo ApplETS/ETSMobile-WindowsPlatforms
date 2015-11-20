@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Markup;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
 using Messaging.Interfaces.Popup;
-using ReactiveUI.Xaml.Controls.ViewModel;
+using ReactiveUI.Xaml.Controls.Handlers;
 using Splat;
 
 namespace ReactiveUI.Xaml.Controls
@@ -260,7 +260,7 @@ namespace ReactiveUI.Xaml.Controls
 
         #region Methods
 
-        bool _isReactiveSourceInitialized;
+        private bool _isReactiveSourceInitialized;
         public static void OnReactiveSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var presenter = d as ReactivePresenter;
@@ -284,7 +284,7 @@ namespace ReactiveUI.Xaml.Controls
         {
             PreviousPresenterSource = previousValue;
 
-            if (!(PresenterSource is IReactivePresenterViewModel))
+            if (!(PresenterSource is IReactivePresenterHandler))
             {
                 return;
             }
@@ -298,7 +298,7 @@ namespace ReactiveUI.Xaml.Controls
             {
                 _subscriptions = new CompositeDisposable();
                 _isReactiveSourceInitialized = true;
-                var source = (IReactivePresenterViewModel)PresenterSource;
+                var source = (IReactivePresenterHandler)PresenterSource;
 
                 _subscriptions.Add(source.Content.Where(x => x != null).Subscribe(x =>
                 {
@@ -307,8 +307,13 @@ namespace ReactiveUI.Xaml.Controls
                     ReactiveState = ReactiveState.Value;
                     this.Log().Info($"[{typeof(ReactivePresenter)}]: Value ({x}) State for {Name}");
                 }));
+                _subscriptions.Add(source.IsReady.Subscribe(x =>
+                {
+                    ReactiveState = ReactiveState.Value;
+                    this.Log().Info($"[{typeof(ReactivePresenter)}]: Value State since it's ready for {Name}");
+                }));
                 _subscriptions.Add(
-                    source.IsContentEmpty.Where(isEmpty => isEmpty)
+                    source.EmptyMessage.Where(message => message != null)
                     .Subscribe(x =>
                     {
                         CurrentIsEmpty = x;
@@ -383,7 +388,6 @@ namespace ReactiveUI.Xaml.Controls
                     }
 
                     SetTemplate(_errorPresenter, ErrorTemplate, CurrentSource, CurrentError as Exception);
-
                     break;
                 case ReactiveState.Empty:
                     SetTemplate(_emptyPresenter, EmptyTemplate ?? ValueTemplate);

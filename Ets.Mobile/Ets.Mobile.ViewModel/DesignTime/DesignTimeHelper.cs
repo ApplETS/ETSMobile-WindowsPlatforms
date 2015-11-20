@@ -1,6 +1,18 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Runtime.CompilerServices;
 using Windows.ApplicationModel;
+using Messaging.Interfaces.Common;
+using ReactiveUI;
+using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
@@ -19,5 +31,131 @@ namespace Ets.Mobile.ViewModel.DesignTime
         }
 
         #endregion
+    }
+
+    public class ReactivePresenterHandlerDesignTime<T> : IReactivePresenterHandler<T>
+    {
+        public ReactivePresenterHandlerDesignTime(IObservable<T> content)
+        {
+            Content = content.Select(x => (object)x);
+        }
+
+        public void OnNextValue(T obj) {}
+        public void OnNextIsReady(bool isReady) {}
+
+        public IObservable<object> Content { get; set; }
+        public ISubject<bool> IsReady { get; set; }
+        public IObservable<bool> IsRefreshing { get; set; }
+        public IObservable<IMessagingContent> EmptyMessage { get; set; }
+        public IObservable<Exception> ThrownExceptions { get; set; }
+        public void Dispose()
+        {
+        }
+    }
+
+    public class ReactiveDerivedListDesignTime<T> : IReactiveDerivedList<T>
+    {
+        private readonly IEnumerable<T> _enumerable; 
+
+        public ReactiveDerivedListDesignTime(IEnumerable<T> list)
+        {
+            _enumerable = list;
+        }
+
+        public ReactiveDerivedListDesignTime(T[] list)
+        {
+            _enumerable = list;
+        }
+
+        public ReactiveDerivedListDesignTime(List<T> list)
+        {
+            _enumerable = list;
+        }
+
+        public ReactiveDerivedListDesignTime(ReactiveList<T> list)
+        {
+            _enumerable = list;
+        }
+
+        public void Reset()
+        {
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return _enumerable.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _enumerable.GetEnumerator();
+        }
+
+        public int Count => _enumerable.Count();
+
+        public IDisposable SuppressChangeNotifications()
+        {
+            return Disposable.Empty;
+        }
+
+        public IObservable<T> ItemsAdded { get; }
+        public IObservable<T> BeforeItemsAdded { get; }
+        public IObservable<T> ItemsRemoved { get; }
+        public IObservable<T> BeforeItemsRemoved { get; }
+        public IObservable<IMoveInfo<T>> BeforeItemsMoved { get; }
+        public IObservable<IMoveInfo<T>> ItemsMoved { get; }
+        public IObservable<NotifyCollectionChangedEventArgs> Changing { get; }
+        public IObservable<NotifyCollectionChangedEventArgs> Changed { get; }
+        public IObservable<int> CountChanging { get; }
+        public IObservable<int> CountChanged { get; }
+        public IObservable<bool> IsEmptyChanged { get; }
+        public IObservable<Unit> ShouldReset { get; }
+        public IObservable<IReactivePropertyChangedEventArgs<T>> ItemChanging { get; }
+        public IObservable<IReactivePropertyChangedEventArgs<T>> ItemChanged { get; }
+        public bool ChangeTrackingEnabled { get; set; }
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+        public event NotifyCollectionChangedEventHandler CollectionChanging;
+        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+        {
+            add { }
+            remove { }
+        }
+
+        public void RaisePropertyChanging(PropertyChangingEventArgs args)
+        {
+        }
+
+        public void RaisePropertyChanged(PropertyChangedEventArgs args)
+        {
+        }
+
+        event PropertyChangingEventHandler IReactiveObject.PropertyChanging
+        {
+            add { }
+            remove { }
+        }
+
+        event PropertyChangedEventHandler IReactiveObject.PropertyChanged
+        {
+            add { }
+            remove { }
+        }
+
+        event PropertyChangingEventHandler INotifyPropertyChanging.PropertyChanging
+        {
+            add { }
+            remove { }
+        }
+
+        public T this[int index]
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public bool IsEmpty => !_enumerable.Any();
+
+        public void Dispose()
+        {
+        }
     }
 }

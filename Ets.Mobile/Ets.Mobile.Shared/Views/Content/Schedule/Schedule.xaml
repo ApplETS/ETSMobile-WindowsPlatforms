@@ -72,7 +72,7 @@
                                     <GroupStyle.HeaderTemplate>
                                         <DataTemplate>
                                             <Grid Margin="0,0,12,5" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
-                                                <TextBlock Text="{Binding Model.Key}" Style="{StaticResource EtsListViewHeaderItem}"  />
+                                                <TextBlock Text="{Binding Key}" Style="{StaticResource EtsListViewHeaderItem}"  />
                                             </Grid>
                                         </DataTemplate>
                                     </GroupStyle.HeaderTemplate>

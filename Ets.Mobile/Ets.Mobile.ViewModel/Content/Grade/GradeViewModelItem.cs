@@ -5,16 +5,12 @@ using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
-using Refit;
-using Splat;
-using Windows.ApplicationModel.Resources;
 using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using Windows.UI;
-using Messaging.UniversalApp.Common;
-using ReactiveUI.Extensions;
-using ReactiveUI.Xaml.Controls.Exceptions;
-using ReactiveUI.Xaml.Controls.ViewModel;
+using Ets.Mobile.ViewModel.Mixins;
+using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.Content.Grade
 {
@@ -43,9 +39,9 @@ namespace Ets.Mobile.ViewModel.Content.Grade
             set { this.RaiseAndSetIfChanged(ref _evaluation, value); }
         }
         
-        public IReactivePresenterViewModel<EvaluationsVm> GradesPresenter { get; protected set; }
+        public IReactivePresenterHandler<EvaluationsVm> GradesPresenter { get; protected set; }
         public ReplaySubject<Exception> GradesExceptionSubject = new ReplaySubject<Exception>();
-        public ReactiveCommand<EvaluationsVm> LoadGrade { get; protected set; }
+        public ReactivePresenterCommand<EvaluationsVm> LoadGrade { get; protected set; }
         public bool HasTriggeredLoadGradeOnce { get; set; }
         
         public GradeViewModelItem(CourseVm course)
@@ -59,7 +55,7 @@ namespace Ets.Mobile.ViewModel.Content.Grade
 
         protected sealed override void OnViewModelCreation()
         {
-            LoadGrade = ReactiveDeferedCommand.CreateAsyncObservable(() =>
+            LoadGrade = ReactivePresenterCommand.CreateAsyncObservable(_ =>
             {
                 return Cache.GetAndFetchLatest(ViewModelKeys.GradesForSemesterAndCourse(Course.Semester, Course.Name),
                     () => ClientServices().SignetsService.Evaluations(Course.Acronym, Course.Group, Course.Semester)
@@ -75,28 +71,12 @@ namespace Ets.Mobile.ViewModel.Content.Grade
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    Exception exception;
-                    var apiException = x as ApiException;
-                    if (apiException != null)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
-                        if (apiException.ReasonPhrase == "Not Found")
-                        {
-                            exceptionMessage.Message = Locator.Current.GetService<ResourceLoader>().GetString("NetworkError");
-                            exceptionMessage.Title = Locator.Current.GetService<ResourceLoader>().GetString("NetworkTitleError");
-                        }
-                        exception = exceptionMessage.Exception;
-                    }
-                    else
-                    {
-                        exception = x;
-                    }
-                    GradesExceptionSubject.OnNext(exception);
+                    GradesExceptionSubject.HandleOfflineConnection(x);
                 });
 
             LoadGrade.Subscribe(e => Evaluation = e);
 
-            GradesPresenter = ReactivePresenterViewModel<EvaluationsVm>.Create(LoadGrade, LoadGrade.IsExecuting, LoadGrade.IsEmpty(), GradesExceptionSubject);
+            GradesPresenter = LoadGrade.CreateReactivePresenter();
         }
     }
 }

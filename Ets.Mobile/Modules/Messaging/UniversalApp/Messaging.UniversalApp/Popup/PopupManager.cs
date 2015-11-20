@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Appointments;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.UI.Popups;
@@ -57,6 +58,8 @@ namespace Messaging.UniversalApp.Popup
                 progressIndicator.Text = string.Empty;
                 await progressIndicator.HideAsync();
             }
+#else
+            await Task.FromResult(isBusy);
 #endif
         }
 

@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.Serialization;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
-using Ets.Mobile.ViewModel.Content.Program;
 using Ets.Mobile.ViewModel.Contracts.Program;
-using Messaging.UniversalApp.Common;
+using Ets.Mobile.ViewModel.Mixins;
 using ReactiveUI;
-using ReactiveUI.Extensions;
-using ReactiveUI.Xaml.Controls.ViewModel;
-using Refit;
-using Splat;
+using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.Pages.Program
 {
@@ -28,7 +24,7 @@ namespace Ets.Mobile.ViewModel.Pages.Program
         protected sealed override void OnViewModelCreation()
         {
             ProgramItems = new ReactiveList<ProgramVm>();
-            LoadProgram = ReactiveDeferedCommand.CreateAsyncObservable(() =>
+            LoadProgram = ReactivePresenterCommand.CreateAsyncObservable(_ =>
             {
                 return Cache.GetAndFetchLatest(ViewModelKeys.Program, () => ClientServices().SignetsService.Programs());
             });
@@ -37,23 +33,7 @@ namespace Ets.Mobile.ViewModel.Pages.Program
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    Exception exception;
-                    var apiException = x as ApiException;
-                    if (apiException != null)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
-                        if (apiException.ReasonPhrase == "Not Found")
-                        {
-                            exceptionMessage.Message = Resources().GetString("NetworkError");
-                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
-                        }
-                        exception = exceptionMessage.Exception;
-                    }
-                    else
-                    {
-                        exception = x;
-                    }
-                    _programExceptionSubject.OnNext(exception);
+                    _programExceptionSubject.HandleOfflineConnection(x);
                 });
 
             LoadProgram.Subscribe(x =>
@@ -63,12 +43,12 @@ namespace Ets.Mobile.ViewModel.Pages.Program
             });
 
             Program = ProgramItems.CreateDerivedCollection(
-                x => new ProgramTileViewModel(x),
+                x => x,
                 x => x.Dispose(),
-                orderer: (x, y) => _programComparer.Compare(x.Model, y.Model)
+                orderer: (x, y) => _programComparer.Compare(x, y)
             );
 
-            ProgramPresenter = ReactivePresenterViewModel<ReactiveList<ProgramVm>>.Create(ProgramItems, Program, LoadProgram.IsExecuting, _programExceptionSubject);
+            ProgramPresenter = LoadProgram.CreateReactivePresenter(ProgramItems, Program, true);
         }
 
         #region Properties
@@ -77,9 +57,9 @@ namespace Ets.Mobile.ViewModel.Pages.Program
         [DataMember]
         public ReactiveList<ProgramVm> ProgramItems { get; protected set; }
         [DataMember]
-        public IReactiveDerivedList<ProgramTileViewModel> Program { get; protected set; }
-        public IReactivePresenterViewModel<ReactiveList<ProgramVm>> ProgramPresenter { get; protected set; }
-        public ReactiveCommand<ProgramVm[]> LoadProgram { get; protected set; }
+        public IReactiveDerivedList<ProgramVm> Program { get; protected set; }
+        public IReactivePresenterHandler<IReactiveDerivedList<ProgramVm>> ProgramPresenter { get; protected set; }
+        public ReactivePresenterCommand<ProgramVm[]> LoadProgram { get; protected set; }
         private readonly ReplaySubject<Exception> _programExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion

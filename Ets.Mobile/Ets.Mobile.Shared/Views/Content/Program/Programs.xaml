@@ -13,7 +13,7 @@
     d:DesignWidth="400">
     <UserControl.Resources>
         <DataTemplate x:Name="ProgramTemplate">
-            <Border BorderBrush="{StaticResource EtsBorderItemBrush}" BorderThickness="2,2,2,2" Margin="0,0,0,10" DataContext="{Binding Model}">
+            <Border BorderBrush="{StaticResource EtsBorderItemBrush}" BorderThickness="2,2,2,2" Margin="0,0,0,10">
                 <Grid Background="{StaticResource EtsBackgroundBrush}">
                     <StackPanel Margin="20,5,0,5">
                         <TextBlock Foreground="{StaticResource EtsTextBlackBrush}" VerticalAlignment="Center" FontSize="{StaticResource Size4}" Text="{Binding Name}" TextWrapping="Wrap" />

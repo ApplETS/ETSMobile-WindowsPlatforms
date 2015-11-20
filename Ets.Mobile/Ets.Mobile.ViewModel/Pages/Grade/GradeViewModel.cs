@@ -73,7 +73,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             });
 
             Grades = GradeItems.CreateDerivedCollection(
-                x => new GradeTileViewModel(x),
+                x => x,
                 x => x.Dispose()
             );
         }
@@ -133,29 +133,8 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         }
 
         [DataMember]
-        public IReactiveDerivedList<GradeTileViewModel> Grades { get; protected set; }
+        public IReactiveDerivedList<GradeViewModelItem> Grades { get; protected set; }
 
         #endregion
-
-        [DataContract]
-        public class GradeTileViewModel : ReactiveObject, IDisposable
-        {
-            #region IDisposable
-
-            public void Dispose()
-            {
-                Model.Dispose();
-            }
-
-            #endregion
-
-            [DataMember]
-            public GradeViewModelItem Model { get; protected set; }
-
-            public GradeTileViewModel(GradeViewModelItem model)
-            {
-                Model = model;
-            }
-        }
     }    
 }

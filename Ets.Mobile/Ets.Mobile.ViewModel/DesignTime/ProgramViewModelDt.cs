@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Reactive;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Contracts.Program;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.ViewModel;
+using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
@@ -29,9 +28,8 @@ namespace Ets.Mobile.ViewModel.DesignTime
 
         public ProgramViewModelDt()
         {
-            ProgramPresenter = new ReactivePresenterViewModel<ReactiveList<ProgramVm>>
-            {
-                Content = Observable.Return(new ReactiveList<ProgramVm>(new[]
+            ProgramPresenter = new ReactivePresenterHandlerDesignTime<IReactiveDerivedList<ProgramVm>>(
+                Observable.Return((IReactiveDerivedList<ProgramVm>)new List<ProgramVm>(new[]
                 {
                     new ProgramVm
                     {
@@ -45,13 +43,13 @@ namespace Ets.Mobile.ViewModel.DesignTime
                     {
                         Name = "Hello"
                     }
-                }))
-            };
-            LoadProgram = ReactiveCommand.CreateAsyncTask(x => Task.FromResult(default(ProgramVm[])));
+                }).AsEnumerable())
+            );
+            LoadProgram = ReactivePresenterCommand.CreateAsyncTask(x => Task.FromResult(default(ProgramVm[])));
         }
 
-        private IReactivePresenterViewModel<ReactiveList<ProgramVm>> _programPresenter;
-        public IReactivePresenterViewModel<ReactiveList<ProgramVm>> ProgramPresenter
+        private IReactivePresenterHandler<IReactiveDerivedList<ProgramVm>> _programPresenter;
+        public IReactivePresenterHandler<IReactiveDerivedList<ProgramVm>> ProgramPresenter
         {
             get { return _programPresenter; }
             set
@@ -61,6 +59,6 @@ namespace Ets.Mobile.ViewModel.DesignTime
             }
         }
 
-        public ReactiveCommand<ProgramVm[]> LoadProgram { get; }
+        public ReactivePresenterCommand<ProgramVm[]> LoadProgram { get; }
     }
 }

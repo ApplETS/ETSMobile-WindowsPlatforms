@@ -62,7 +62,7 @@
                 <Grid.Resources>
                     <CollectionViewSource x:Name="GradeCollectionViewSource"
                         IsSourceGrouped="True"
-                        ItemsPath="Model.GradesItems"
+                        ItemsPath="GradesItems"
                         d:Source="{Binding GradesItems}"
 						Source="{Binding}" />
                     <converters:ScreenWidthMultiplier x:Key="ScreenWidth" />
@@ -90,7 +90,7 @@
                                 <GroupStyle.HeaderTemplate>
                                     <DataTemplate>
                                         <Grid Margin="5,0,0,5" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
-                                            <TextBlock Text="{Binding Model.Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{StaticResource EtsListViewHeaderItem}"  />
+                                            <TextBlock Text="{Binding Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{StaticResource EtsListViewHeaderItem}"  />
                                         </Grid>
                                     </DataTemplate>
                                 </GroupStyle.HeaderTemplate>
@@ -103,7 +103,7 @@
 
     <controls:ReactivePresenter
         x:Name="GradeSummaryPresenter"
-        UseDialogForErrors="False"
+        UseDialogForErrors="True"
         PresenterSource="{Binding}"
         DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
         ValueTemplate="{StaticResource GradesPresenterValue}">

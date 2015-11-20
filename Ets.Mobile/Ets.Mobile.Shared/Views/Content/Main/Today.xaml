@@ -24,7 +24,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="{StaticResource EtsBorderItemBrush}" BorderThickness="0,1,1,1" Margin="0,0,0,10">
-                            <Border Width="Auto" BorderBrush="{Binding Model.Brush}" BorderThickness="3,0,0,0">
+                            <Border Width="Auto" BorderBrush="{Binding Brush}" BorderThickness="3,0,0,0">
                                 <Grid Background="White">
                                     <!-- Course not incoming -->
                                     <Grid Visibility="{Binding IsTimeRemainingVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}" Margin="5,5,0,5">
@@ -32,7 +32,7 @@
                                             <RowDefinition Height="35" />
                                             <RowDefinition Height="30" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock VerticalAlignment="Center" TextWrapping="NoWrap" Grid.Row="0" FontSize="20" Text="{Binding Model.ActivityName}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
+                                        <TextBlock VerticalAlignment="Center" TextWrapping="NoWrap" Grid.Row="0" FontSize="20" Text="{Binding ActivityName}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
                                         <Border Canvas.ZIndex="1" Grid.Row="0" Padding="23,0,15,0" HorizontalAlignment="Right" Margin="0,2,0,0">
                                             <Border.Background>
                                                 <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
@@ -41,9 +41,9 @@
                                                     <GradientStop Color="White" Offset="1"/>
                                                 </LinearGradientBrush>
                                             </Border.Background>
-                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="17" Text="{Binding Model.Time}" TextWrapping="Wrap" />
+                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="17" Text="{Binding Time}" TextWrapping="Wrap" />
                                         </Border>
-                                        <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="16" Foreground="{StaticResource EtsTextSecondaryBrush}" Text="{Binding Model.Location}" TextWrapping="Wrap" />
+                                        <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="16" Foreground="{StaticResource EtsTextSecondaryBrush}" Text="{Binding Location}" TextWrapping="Wrap" />
                                     </Grid>
                                     <!-- Course incoming -->
                                     <StackPanel Visibility="{Binding IsTimeRemainingVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal" Margin="5,10,0,10">
@@ -61,9 +61,9 @@
                                         </Grid>
 
                                         <StackPanel VerticalAlignment="Center" Margin="0,-2,0,0">
-                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" TextWrapping="Wrap" FontSize="20" Text="{Binding Model.ActivityName}" />
-                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="17" Text="{Binding Model.Time}" TextWrapping="Wrap" />
-                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="15" Text="{Binding Model.Location}" TextWrapping="Wrap" />
+                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" TextWrapping="Wrap" FontSize="20" Text="{Binding ActivityName}" />
+                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="17" Text="{Binding Time}" TextWrapping="Wrap" />
+                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="15" Text="{Binding Location}" TextWrapping="Wrap" />
                                         </StackPanel>
                                     </StackPanel>
                                 </Grid>
@@ -76,7 +76,7 @@
     </UserControl.Resources>
     <controls:ReactivePresenter
         x:Name="TodayPresenter"
-        UseDialogForErrors="False"
+        UseDialogForErrors="True"
         DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again." 
         ValueTemplate="{StaticResource TodayPresenterValue}" 
         PresenterSource="{Binding}">

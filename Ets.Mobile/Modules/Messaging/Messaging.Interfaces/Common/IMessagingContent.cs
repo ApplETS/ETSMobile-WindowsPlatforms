@@ -2,7 +2,7 @@
 {
     public interface IMessagingContent
     {
-        string Title { get; set; }
-        string Message { get; set; }
+        string Title { get; }
+        string Message { get; }
     }
 }

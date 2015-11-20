@@ -84,11 +84,14 @@
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\IMergeableObject.cs" />
+    <Compile Include="Core\IMergeObject.cs" />
+    <Compile Include="Core\ReactivePresenterCommand.cs" />
+    <Compile Include="Handlers\IReactivePresenterHandler.cs" />
+    <Compile Include="Handlers\ReactivePresenterMixins.cs" />
     <Compile Include="ReactivePresenter.cs" />
     <Compile Include="Exceptions\ReactivePresenterExceptionBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\IReactivePresenterViewModel.cs" />
-    <Compile Include="ViewModel\ReactivePresenterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ReactiveUI">
@@ -122,6 +125,7 @@
       <Name>Messaging.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

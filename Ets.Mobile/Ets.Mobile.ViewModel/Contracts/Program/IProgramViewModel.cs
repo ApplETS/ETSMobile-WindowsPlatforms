@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Ets.Mobile.Entities.Signets;
+﻿using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.ViewModel;
+using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.Contracts.Program
 {
     public interface IProgramViewModel
     {
-        IReactivePresenterViewModel<ReactiveList<ProgramVm>> ProgramPresenter { get; }
-        ReactiveCommand<ProgramVm[]> LoadProgram { get; }
+        IReactivePresenterHandler<IReactiveDerivedList<ProgramVm>> ProgramPresenter { get; }
+        ReactivePresenterCommand<ProgramVm[]> LoadProgram { get; }
     }
 }

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Linq;
-using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.Serialization;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
-using Ets.Mobile.ViewModel.Content.Main;
 using Messaging.UniversalApp.Common;
 using ReactiveUI;
-using ReactiveUI.Extensions;
-using ReactiveUI.Xaml.Controls.Exceptions;
-using ReactiveUI.Xaml.Controls.ViewModel;
+using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Handlers;
 using Refit;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
@@ -22,7 +19,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         {
             TodayItems = new ReactiveList<ScheduleVm>();
 
-            LoadCoursesForToday = ReactiveDeferedCommand.CreateAsyncObservable(() =>
+            LoadCoursesForToday = ReactivePresenterCommand.CreateAsyncObservable(_ =>
             {
                 return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
                     .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
@@ -67,20 +64,20 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             });
 
             Today = TodayItems.CreateDerivedCollection(
-                x => new ScheduleTileViewModel(x),
+                x => x,
                 x => x.Dispose(),
                 x => x.StartDate.Date.Equals(DateTime.Now.Date),
-                (x, y) => TimeSpan.Compare(x.Model.StartDate.TimeOfDay, y.Model.StartDate.TimeOfDay));
+                (x, y) => TimeSpan.Compare(x.StartDate.TimeOfDay, y.StartDate.TimeOfDay));
 
-            TodayPresenter = ReactivePresenterViewModel<ReactiveList<ScheduleVm>>.Create(TodayItems, Today, LoadCoursesForToday.IsExecuting, _scheduleExceptionSubject);
+            TodayPresenter = LoadCoursesForToday.CreateReactivePresenter(TodayItems, Today, true);
         }
 
         #region Properties
 
         [DataMember] public ReactiveList<ScheduleVm> TodayItems { get; protected set; }
-        [DataMember] public IReactiveDerivedList<ScheduleTileViewModel> Today { get; protected set; }
-        public IReactivePresenterViewModel<ReactiveList<ScheduleVm>> TodayPresenter { get; protected set; }
-        public ReactiveCommand<ScheduleVm[]> LoadCoursesForToday { get; protected set; }
+        [DataMember] public IReactiveDerivedList<ScheduleVm> Today { get; protected set; }
+        public IReactivePresenterHandler<IReactiveDerivedList<ScheduleVm>> TodayPresenter { get; protected set; }
+        public ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; protected set; }
         private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion

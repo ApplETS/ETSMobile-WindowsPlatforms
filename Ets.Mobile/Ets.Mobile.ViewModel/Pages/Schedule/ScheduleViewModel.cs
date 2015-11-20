@@ -3,19 +3,13 @@ using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.Serialization;
-using Windows.UI.Xaml.Media;
 using Akavache;
-using Ets.Mobile.ViewModel.Content.Schedule;
 using Messaging.UniversalApp.Common;
-using ReactiveUI.Extensions;
-using ReactiveUI.Xaml.Controls.ViewModel;
 using Refit;
-using Syncfusion.UI.Xaml.Schedule;
 
 namespace Ets.Mobile.ViewModel.Pages.Schedule
 {
@@ -31,7 +25,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
         {
             ScheduleItems = new ReactiveList<ScheduleVm>();
 
-            LoadSchedule = ReactiveDeferedCommand.CreateAsyncObservable(() =>
+            LoadSchedule = ReactiveCommand.CreateAsyncObservable(_ =>
             {
                 return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
                     .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))

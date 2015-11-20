@@ -1,13 +1,44 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using ReactiveUI;
+using ReactiveUI.Xaml.Controls.Core;
 
 namespace Ets.Mobile.Entities.Signets
 {
     [DataContract]
-    public class ProgramVm : ReactiveObject
+    public class ProgramVm : ReactiveObject, IMergeableObject<ProgramVm>, IDisposable
     {
-    	private string _code;
+        #region IMergeableObject
+
+        public bool Equals(ProgramVm x, ProgramVm y)
+        {
+            return x.Name == y.Name;
+        }
+
+        public int GetHashCode(ProgramVm obj)
+        {
+            return obj.Name.GetHashCode();
+        }
+
+        public void MergeWith(ProgramVm other)
+        {
+            Code = other.Code;
+            Status = other.Code;
+            SemesterStart = other.SemesterStart;
+            SemesterEnd = other.SemesterEnd;
+            Average = other.Average;
+            EquivalenceCount = other.EquivalenceCount;
+            SuceededCreditsCount = other.SuceededCreditsCount;
+            FailedCreditsCount = other.FailedCreditsCount;
+            RegisteredCreditsCount = other.RegisteredCreditsCount;
+            CompletedCreditsCount = other.CompletedCreditsCount;
+            PotentialCreditsCount = other.PotentialCreditsCount;
+            ResearchCreditsCount = other.ResearchCreditsCount;
+        }
+
+        #endregion
+
+        private string _code;
         [DataMember]
         public string Code 
         { 
@@ -110,5 +141,7 @@ namespace Ets.Mobile.Entities.Signets
         	get { return _researchCreditsCount; }
             set { this.RaiseAndSetIfChanged(ref _researchCreditsCount, value); }
         }
+
+        public void Dispose() {}
     }
 }
