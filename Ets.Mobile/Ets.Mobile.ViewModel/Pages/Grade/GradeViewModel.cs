@@ -11,10 +11,12 @@ using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Grade;
 using Ets.Mobile.ViewModel.Mixins;
+using Messaging.Interfaces.Popup;
 using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using ReactiveUI.Extensions;
 using Refit;
+using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
@@ -62,7 +64,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    _gradesExceptionSubject.HandleOfflineConnection(x);
+                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
             LoadGrade.Subscribe(x =>
@@ -98,7 +100,6 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         #region Properties
 
         public ReactiveCommand<IEnumerable<GradeViewModelItem>> LoadGrade { get; protected set; }
-        private readonly ReplaySubject<Exception> _gradesExceptionSubject = new ReplaySubject<Exception>();
         
         private string _semester;
         [DataMember]

@@ -18,6 +18,6 @@ namespace Messaging.UniversalApp.ViewService
         public IPopupManager Popup => _pm ?? (_pm = _serviceLocator.GetService<IPopupManager>());
 
         private INotificationManager _nm;
-        public INotificationManager Notification => _nm ?? (_nm = _serviceLocator.GetService<INotificationManager>());
+        public INotificationManager Notification => _nm ?? (_nm = _serviceLocator.GetService<INotificationManager>("InApp"));
     }
 }

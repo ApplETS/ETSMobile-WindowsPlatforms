@@ -8,9 +8,11 @@ using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Contracts.Program;
 using Ets.Mobile.ViewModel.Mixins;
+using Messaging.Interfaces.Popup;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
+using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.Program
 {
@@ -33,7 +35,7 @@ namespace Ets.Mobile.ViewModel.Pages.Program
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    _programExceptionSubject.HandleOfflineConnection(x);
+                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
             LoadProgram.Subscribe(x =>
@@ -60,7 +62,6 @@ namespace Ets.Mobile.ViewModel.Pages.Program
         public IReactiveDerivedList<ProgramVm> Program { get; protected set; }
         public IReactivePresenterHandler<IReactiveDerivedList<ProgramVm>> ProgramPresenter { get; protected set; }
         public ReactivePresenterCommand<ProgramVm[]> LoadProgram { get; protected set; }
-        private readonly ReplaySubject<Exception> _programExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion
     }

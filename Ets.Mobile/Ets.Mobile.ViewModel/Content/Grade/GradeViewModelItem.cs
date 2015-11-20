@@ -5,12 +5,13 @@ using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
-using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using Windows.UI;
 using Ets.Mobile.ViewModel.Mixins;
+using Messaging.Interfaces.Popup;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
+using Splat;
 
 namespace Ets.Mobile.ViewModel.Content.Grade
 {
@@ -40,7 +41,6 @@ namespace Ets.Mobile.ViewModel.Content.Grade
         }
         
         public IReactivePresenterHandler<EvaluationsVm> GradesPresenter { get; protected set; }
-        public ReplaySubject<Exception> GradesExceptionSubject = new ReplaySubject<Exception>();
         public ReactivePresenterCommand<EvaluationsVm> LoadGrade { get; protected set; }
         public bool HasTriggeredLoadGradeOnce { get; set; }
         
@@ -71,7 +71,7 @@ namespace Ets.Mobile.ViewModel.Content.Grade
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    GradesExceptionSubject.HandleOfflineConnection(x);
+                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
             LoadGrade.Subscribe(e => Evaluation = e);

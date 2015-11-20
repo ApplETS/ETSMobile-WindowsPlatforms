@@ -5,13 +5,17 @@ using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Akavache;
+using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Main;
+using Ets.Mobile.ViewModel.Messaging;
 using Ets.Mobile.ViewModel.Mixins;
 using Ets.Mobile.ViewModel.Pages.Grade;
+using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
@@ -37,20 +41,18 @@ namespace Ets.Mobile.ViewModel.Pages.Main
 
             GradesItems = new ReactiveList<GradeSummaryViewModelGroup>();
 
-            LoadGrades = ReactivePresenterCommand.CreateAsyncObservable(_ => 
-            {
+            LoadGrades = ReactivePresenterCommand.CreateAsyncObservable(_ => {
                 return Cache.GetAndFetchLatest(ViewModelKeys.Courses, async () =>
                 {
                     var courses = await ClientServices().SignetsService.Courses();
-                    foreach(var course in courses.Where(x => x.Semester != "s.o.")
-                                                    .GroupBy(x => x.Semester))
+                    courses = courses.Where(y => y.Semester != "s.o.").OrderByDescending(y => y.Semester, new SemestersComparator()).ToArray();
+                    foreach (var course in courses.Where(x => x.Semester != "s.o.").GroupBy(x => x.Semester))
                     {
                         await SettingsService().ApplyColorOnItemsForSemester(
                                 courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
                                 course.FirstOrDefault().Semester, x => x.Acronym);
                     }
-
-                    return courses.Where(x => x.Semester != "s.o.").OrderByDescending(x => x.Semester, new SemestersComparator());
+                    return courses;
                 })
                 .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)));
             });
@@ -58,8 +60,8 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             LoadGrades.ThrownExceptions
                 .Subscribe(x =>
                 {
-                    UserError.Throw(x.Message, x);
-                    _gradesExceptionSubject.HandleOfflineConnection(x);
+                    //UserError.Throw(x.Message, x);
+                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
             Grades = GradesItems.CreateDerivedCollection(x => x, x => x.Dispose(),
@@ -76,7 +78,6 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         public IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; protected set; }
         public IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> GradesPresenter { get; protected set; }
         public ReactivePresenterCommand<IEnumerable<GradeSummaryViewModelGroup>> LoadGrades { get; protected set; }
-        private readonly ReplaySubject<Exception> _gradesExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion
     }

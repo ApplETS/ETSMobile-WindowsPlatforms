@@ -1,4 +1,5 @@
 ﻿using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Media;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
@@ -19,6 +20,7 @@ namespace Messaging.UniversalApp.Notifications
 
         public void Notify(IMessagingContent messageContent)
         {
+            return; // TODO : Make this work
 #if !WINDOWS_APP
             var toast = new ToastPrompt();
             if (!string.IsNullOrEmpty(messageContent.Title))
@@ -30,6 +32,7 @@ namespace Messaging.UniversalApp.Notifications
             toast.TextWrapping = Windows.UI.Xaml.TextWrapping.WrapWholeWords;
             toast.Background = new SolidColorBrush(DefaultBackground);
             toast.Show();
+            
 #else
             // Not Implemented for WinRT yet
 #endif
