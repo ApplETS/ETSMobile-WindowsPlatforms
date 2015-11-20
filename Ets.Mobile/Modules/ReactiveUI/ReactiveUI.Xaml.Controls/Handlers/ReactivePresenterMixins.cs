@@ -75,10 +75,10 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             return command.Subscribe(list =>
             {
                 // Add
-                var itemsToExcept = list.Except(list.Where(x => reactiveList.Contains(x, x))).ToArray();
-                if (itemsToExcept.Any())
+                var itemsToAdd = list.Except(list.Where(x => reactiveList.Contains(x, x))).ToArray();
+                if (itemsToAdd.Any())
                 {
-                    reactiveList.AddRange(itemsToExcept);
+                    reactiveList.AddRange(itemsToAdd);
                 }
 
                 // Remove
@@ -105,10 +105,10 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             return command.Subscribe(list =>
             {
                 // Add
-                var itemsToExcept = list.Except(list.Where(x => reactiveList.Contains(x, x))).ToArray();
-                if (itemsToExcept.Any())
+                var itemsToAdd = list.Except(list.Where(x => reactiveList.Contains(x, x))).ToArray();
+                if (itemsToAdd.Any())
                 {
-                    reactiveList.AddRange(itemsToExcept);
+                    reactiveList.AddRange(itemsToAdd);
                 }
 
                 // Remove
@@ -136,10 +136,10 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             {
                 // Add
                 var list = enumerable.ToArray();
-                var itemsToExcept = list.Except(list.Where(x => reactiveList.Contains(x, x))).ToArray();
-                if (itemsToExcept.Any())
+                var itemsToAdd = list.Except(list.Where(x => reactiveList.Contains(x, x))).ToArray();
+                if (itemsToAdd.Any())
                 {
-                    reactiveList.AddRange(itemsToExcept);
+                    reactiveList.AddRange(itemsToAdd);
                 }
 
                 // Remove
