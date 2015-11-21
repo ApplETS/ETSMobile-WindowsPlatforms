@@ -127,7 +127,18 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <Target Name="BeforeBuild">
+    <PropertyGroup>
+      <ReactiveUI_Xr_Xml>$([System.IO.Path]::GetFullPath('..\..\..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI\ReactiveUI.xr.xml'))</ReactiveUI_Xr_Xml>
+      <Generic_Winrt_Xbf>$([System.IO.Path]::GetFullPath('..\..\..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI\Themes\generic-winrt.xbf'))</Generic_Winrt_Xbf>
+    </PropertyGroup>
+    <Copy SourceFiles="$(ReactiveUI_Xr_Xml)" DestinationFolder="bin/$(Platform)/$(Configuration)/ReactiveUI" />
+    <Copy SourceFiles="$(Generic_Winrt_Xbf)" DestinationFolder="bin/$(Platform)/$(Configuration)/ReactiveUI/Themes" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="bin/$(Platform)/$(Configuration)/ReactiveUI" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

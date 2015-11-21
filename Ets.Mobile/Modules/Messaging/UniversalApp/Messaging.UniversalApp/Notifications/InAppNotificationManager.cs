@@ -1,5 +1,4 @@
 ﻿using Windows.UI;
-using Windows.UI.Core;
 using Windows.UI.Xaml.Media;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
