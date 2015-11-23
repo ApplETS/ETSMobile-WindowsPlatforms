@@ -7,7 +7,7 @@ using ReactiveUI;
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
     [DataContract]
-    public partial class MainViewModel : PageViewModelBase, IMainViewModel, IDisposable
+    public partial class MainViewModel : ViewModelBase, IMainViewModel, IDisposable
     {
         #region IDisposable
 

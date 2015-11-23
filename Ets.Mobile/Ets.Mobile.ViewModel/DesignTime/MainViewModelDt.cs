@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ets.Mobile.Entities.Signets;
-using System.ComponentModel;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Ets.Mobile.ViewModel.Content.Main;
@@ -13,7 +12,8 @@ using Ets.Mobile.ViewModel.Contracts.Shared;
 using Ets.Mobile.ViewModel.Pages.Shared;
 using Ets.Mobile.ViewModel.Pages.UserDetails;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.ViewModel;
+using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Handlers;
 using Themes;
 
 namespace Ets.Mobile.ViewModel.DesignTime
@@ -74,11 +74,12 @@ namespace Ets.Mobile.ViewModel.DesignTime
                     }, null)
                 });
 
-                TodayPresenter = ReactivePresenterViewModel<ReactiveList<ScheduleVm>>.Create(Observable.Return(todayItems));
-                GradesPresenter = ReactivePresenterViewModel<ReactiveList<GradeSummaryViewModelGroup>>.Create(Observable.Return(gradeItems));
-                LoadCoursesForToday = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(new ScheduleVm[0]));
-                LoadGrades = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(new List<GradeSummaryViewModelGroup>()));
+                TodayPresenter = new ReactivePresenterHandlerDesignTime<IReactiveDerivedList<ScheduleVm>>(Observable.Return(new ReactiveDerivedListDesignTime<ScheduleVm>(todayItems)));
+                GradesPresenter = new ReactivePresenterHandlerDesignTime<IReactiveDerivedList<GradeSummaryViewModelGroup>>(Observable.Return(new ReactiveDerivedListDesignTime<GradeSummaryViewModelGroup>(gradeItems)));
+                LoadCoursesForToday = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new ScheduleVm[0]));
+                LoadGrades = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new List<GradeSummaryViewModelGroup>().AsEnumerable()));
                 NavigateToSchedule = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
+                NavigateToProgram = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
                 SideNavigation = new SideNavigationViewModel(null)
                 {
                     UserDetails = new UserDetailsViewModel(null)
@@ -94,8 +95,8 @@ namespace Ets.Mobile.ViewModel.DesignTime
             }
         }
 
-        private IReactivePresenterViewModel<ReactiveList<ScheduleVm>> _todayPresenter;
-        public IReactivePresenterViewModel<ReactiveList<ScheduleVm>> TodayPresenter
+        private IReactivePresenterHandler<IReactiveDerivedList<ScheduleVm>> _todayPresenter;
+        public IReactivePresenterHandler<IReactiveDerivedList<ScheduleVm>> TodayPresenter
         {
             get { return _todayPresenter; }
             set
@@ -107,8 +108,8 @@ namespace Ets.Mobile.ViewModel.DesignTime
 
         public bool IsAppBarVisible { get; set; }
 
-        private IReactivePresenterViewModel<ReactiveList<GradeSummaryViewModelGroup>> _gradePresenter;
-        public IReactivePresenterViewModel<ReactiveList<GradeSummaryViewModelGroup>> GradesPresenter
+        private IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> _gradePresenter;
+        public IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> GradesPresenter
         {
             get { return _gradePresenter; }
             set
@@ -120,8 +121,8 @@ namespace Ets.Mobile.ViewModel.DesignTime
 
         public ISideNavigationViewModel SideNavigation { get; }
 
-        public ReactiveCommand<ScheduleVm[]> LoadCoursesForToday { get; }
-        public ReactiveCommand<List<GradeSummaryViewModelGroup>> LoadGrades { get; }
+        public ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; }
+        public ReactivePresenterCommand<IEnumerable<GradeSummaryViewModelGroup>> LoadGrades { get; }
         public ReactiveCommand<Unit> NavigateToSchedule { get; }
         public ReactiveCommand<Unit> NavigateToProgram { get; }
     }

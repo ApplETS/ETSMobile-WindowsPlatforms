@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.Client.Contracts

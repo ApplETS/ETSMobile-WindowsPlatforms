@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserErrorHandlers\UserErrorOfflineHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ApplicationViewModelsTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ApplicationShell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Grade\GradeItem.xaml.cs">

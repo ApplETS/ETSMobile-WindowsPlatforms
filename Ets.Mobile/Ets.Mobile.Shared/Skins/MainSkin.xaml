@@ -503,7 +503,7 @@
     <Brush x:Key="SfScheduleCommandBrush">#000000</Brush>
     <Brush x:Key="SfScheduleChangeCalendarBackgroundBrush">#dddddd</Brush>
     <Brush x:Key="AppointmentDescriptionBrush">#8c8c8c</Brush>
-    <FontFamily x:Key="SfScheduleAppointmentDescription">Calibri</FontFamily>
+    <FontFamily x:Key="SfScheduleAppointmentFontFamily">Calibri</FontFamily>
     <Style x:Key="FlyoutButtonStyle" TargetType="ButtonBase">
         <Setter Property="Background"
                     Value="Transparent" />
@@ -581,19 +581,22 @@
     </Style>
 
     <Style x:Key="AppointementStartTime" TargetType="TextBlock">
-
+        <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
+        <Setter Property="FontFamily" Value="{StaticResource SfScheduleAppointmentFontFamily}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="AppointmentDescription" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource AppointmentDescriptionBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
-        <Setter Property="FontFamily" Value="{StaticResource SfScheduleAppointmentDescription}" />
+        <Setter Property="FontFamily" Value="{StaticResource SfScheduleAppointmentFontFamily}" />
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
     <Style x:Key="AppointementSubject" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
-        <Setter Property="FontFamily" Value="{StaticResource SfScheduleAppointmentDescription}" />
+        <Setter Property="FontFamily" Value="{StaticResource SfScheduleAppointmentFontFamily}" />
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 </ResourceDictionary>

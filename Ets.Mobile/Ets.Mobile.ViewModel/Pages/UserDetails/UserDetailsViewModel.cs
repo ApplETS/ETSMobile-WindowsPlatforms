@@ -7,17 +7,13 @@ using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts.UserDetails;
-using Messaging.UniversalApp.Common;
 using ReactiveUI;
-using ReactiveUI.Extensions;
-using ReactiveUI.Xaml.Controls.ViewModel;
-using Refit;
 using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.UserDetails
 {
     [DataContract]
-    public class UserDetailsViewModel : PageViewModelBase, IUserDetailsViewModel
+    public class UserDetailsViewModel : ViewModelBase, IUserDetailsViewModel
     {
         public UserDetailsViewModel(IScreen screen) : base(screen, "UserDetails")
         {
@@ -26,7 +22,7 @@ namespace Ets.Mobile.ViewModel.Pages.UserDetails
         
         protected sealed override void OnViewModelCreation()
         {
-            LoadProfile = ReactiveDeferedCommand.CreateAsyncObservable(() =>
+            LoadProfile = ReactiveCommand.CreateAsyncObservable(_ =>
             {
                 return Cache.GetAndFetchLatest(ViewModelKeys.UserProfile, () => ClientServices().SignetsService.UserDetails())
                     .Do(ud => Cache.LoadImage(ViewModelKeys.Gravatar)
@@ -40,23 +36,6 @@ namespace Ets.Mobile.ViewModel.Pages.UserDetails
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    Exception exception;
-                    var apiException = x as ApiException;
-                    if (apiException != null)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
-                        if (apiException.ReasonPhrase == "Not Found")
-                        {
-                            exceptionMessage.Message = Resources().GetString("NetworkError");
-                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
-                        }
-                        exception = exceptionMessage.Exception;
-                    }
-                    else
-                    {
-                        exception = x;
-                    }
-                    _profileExceptionSubject.OnNext(exception);
                 });
 
             LoadProfile.Subscribe(profile =>

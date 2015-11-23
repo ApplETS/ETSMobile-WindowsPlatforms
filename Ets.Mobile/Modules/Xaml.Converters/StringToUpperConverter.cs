@@ -8,12 +8,7 @@ namespace Xaml.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var s = value as string;
-            if (s != null)
-            {
-                return s.ToUpper();
-            }
-
-            return value;
+            return s != null ? s.ToUpper() : value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

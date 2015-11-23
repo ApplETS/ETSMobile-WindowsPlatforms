@@ -1,7 +1,4 @@
-﻿using System.Reactive.Linq;
-using ReactiveUI;
-using System;
-using Windows.UI.Xaml;
+﻿using ReactiveUI;
 
 namespace Ets.Mobile.Shell
 {

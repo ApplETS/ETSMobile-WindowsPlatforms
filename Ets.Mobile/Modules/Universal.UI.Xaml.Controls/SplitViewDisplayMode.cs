@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Universal.UI.Xaml.Controls
+﻿namespace Universal.UI.Xaml.Controls
 {
     /// <summary>
     /// Defines constants that specify how the pane is shown in a <see cref="SplitView"/>.

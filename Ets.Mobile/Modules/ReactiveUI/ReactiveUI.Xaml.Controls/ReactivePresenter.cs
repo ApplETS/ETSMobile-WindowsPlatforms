@@ -8,8 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
-using Messaging.Interfaces.Popup;
-using ReactiveUI.Xaml.Controls.ViewModel;
+using ReactiveUI.Xaml.Controls.Handlers;
 using Splat;
 
 namespace ReactiveUI.Xaml.Controls
@@ -104,8 +103,8 @@ namespace ReactiveUI.Xaml.Controls
         public static readonly DependencyProperty PreviousReactiveStateProperty =
             DependencyProperty.Register("PreviousReactiveState", typeof(ReactivePresenter), typeof(ReactivePresenter), null);
         
-        public static readonly DependencyProperty UseDialogForErrorsProperty =
-            DependencyProperty.Register("UseDialogForErrors", typeof(bool), typeof(ReactivePresenter), new PropertyMetadata(false));
+        public static readonly DependencyProperty DisableErrorNotificationProperty =
+            DependencyProperty.Register("DisableErrorNotification", typeof(bool), typeof(ReactivePresenter), new PropertyMetadata(false));
 
         public static readonly DependencyProperty DefaultErrorMessageProperty =
             DependencyProperty.Register("DefaultErrorMessage", typeof(string), typeof(ReactivePresenter), new PropertyMetadata(null));
@@ -198,10 +197,10 @@ namespace ReactiveUI.Xaml.Controls
             set { SetValue(CurrentIsRefreshingProperty, value); }
         }
         
-        public bool UseDialogForErrors
+        public bool DisableErrorNotification
         {
-            get { return (bool)GetValue(UseDialogForErrorsProperty); }
-            set { SetValue(UseDialogForErrorsProperty, value); }
+            get { return (bool)GetValue(DisableErrorNotificationProperty); }
+            set { SetValue(DisableErrorNotificationProperty, value); }
         }
 
         public string DefaultErrorMessage
@@ -240,7 +239,7 @@ namespace ReactiveUI.Xaml.Controls
 
         #region Control Methods
 
-        protected override sealed void OnApplyTemplate()
+        protected sealed override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             
@@ -260,7 +259,7 @@ namespace ReactiveUI.Xaml.Controls
 
         #region Methods
 
-        bool _isReactiveSourceInitialized;
+        private bool _isReactiveSourceInitialized;
         public static void OnReactiveSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var presenter = d as ReactivePresenter;
@@ -284,7 +283,7 @@ namespace ReactiveUI.Xaml.Controls
         {
             PreviousPresenterSource = previousValue;
 
-            if (!(PresenterSource is IReactivePresenterViewModel))
+            if (!(PresenterSource is IReactivePresenterHandler))
             {
                 return;
             }
@@ -298,7 +297,7 @@ namespace ReactiveUI.Xaml.Controls
             {
                 _subscriptions = new CompositeDisposable();
                 _isReactiveSourceInitialized = true;
-                var source = (IReactivePresenterViewModel)PresenterSource;
+                var source = (IReactivePresenterHandler)PresenterSource;
 
                 _subscriptions.Add(source.Content.Where(x => x != null).Subscribe(x =>
                 {
@@ -307,8 +306,16 @@ namespace ReactiveUI.Xaml.Controls
                     ReactiveState = ReactiveState.Value;
                     this.Log().Info($"[{typeof(ReactivePresenter)}]: Value ({x}) State for {Name}");
                 }));
+                _subscriptions.Add(source.IsReady.Subscribe(x =>
+                {
+                    if (ReactiveState != ReactiveState.Value)
+                    {
+                        ReactiveState = ReactiveState.Value;
+                        this.Log().Info($"[{typeof(ReactivePresenter)}]: Value State since it's ready for {Name}");
+                    }
+                }));
                 _subscriptions.Add(
-                    source.IsContentEmpty.Where(isEmpty => isEmpty)
+                    source.EmptyMessage.Where(message => message != null)
                     .Subscribe(x =>
                     {
                         CurrentIsEmpty = x;
@@ -324,7 +331,7 @@ namespace ReactiveUI.Xaml.Controls
                 }));
                 _subscriptions.Add(source.ThrownExceptions.Where(error => error != null).Subscribe(x =>
                 {
-                    CurrentError = x;
+                    CurrentError = (object)x;
                     ReactiveState = ReactiveState.Error;
                     this.Log().Error($"[{typeof(ReactivePresenter)}]: Error State for {Name}");
                 }));
@@ -355,25 +362,9 @@ namespace ReactiveUI.Xaml.Controls
                 case ReactiveState.Error:
                     var errorAsPopup = CurrentError as IExceptionMessagingContent;
 
-                    if (UseDialogForErrors)
-                    {
-                        if (errorAsPopup != null)
-                        {
-                            Locator.Current.GetService<IPopupManager>().ShowMessage(errorAsPopup.Message, errorAsPopup.Title);
-                        }
-                        else
-                        {
-                            var exception = CurrentError as Exception;
-                            if (exception != null)
-                            {
-                                Locator.Current.GetService<IPopupManager>().ShowMessage(exception.Message, "");
-                            }
-                        }
-                    }
-
                     if (CurrentSource != null)
                     {
-                        if (!UseDialogForErrors && errorAsPopup != null)
+                        if (!DisableErrorNotification && errorAsPopup != null)
                         {
                             Locator.Current.GetService<INotificationManager>("InApp").Notify(errorAsPopup);
                         }
@@ -383,7 +374,6 @@ namespace ReactiveUI.Xaml.Controls
                     }
 
                     SetTemplate(_errorPresenter, ErrorTemplate, CurrentSource, CurrentError as Exception);
-
                     break;
                 case ReactiveState.Empty:
                     SetTemplate(_emptyPresenter, EmptyTemplate ?? ValueTemplate);

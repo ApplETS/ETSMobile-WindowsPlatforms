@@ -4,13 +4,41 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
+using ReactiveUI.Extensions;
 
 namespace Ets.Mobile.Entities.Signets
 {
     [DataContract]
-    public class ScheduleVm : ReactiveObject, ICustomColor, IDisposable
+    public class ScheduleVm : ReactiveObject, ICustomColor, IMergeableObject<ScheduleVm>, IDisposable
     {
-    	private DateTime _startDate;
+        #region IMergeableObject
+
+        public bool Equals(ScheduleVm x, ScheduleVm y)
+        {
+            return x.Name == y.Name;
+        }
+
+        public int GetHashCode(ScheduleVm obj)
+        {
+            return obj.Name.GetHashCode();
+        }
+
+        public void MergeWith(ScheduleVm other)
+        {
+            StartDate = other.StartDate;
+            EndDate = other.EndDate;
+            CourseAndGroup = other.CourseAndGroup;
+            Location = other.Location;
+            Description = other.Description;
+            A = other.A;
+            R = other.R;
+            G = other.G;
+            B = other.B;
+        }
+
+        #endregion
+
+        private DateTime _startDate;
         [DataMember] public DateTime StartDate
         {
         	get { return _startDate; }
@@ -63,6 +91,22 @@ namespace Ets.Mobile.Entities.Signets
 
         [DataMember]
         public string ActivityName => $"{CourseAndGroup.Substring(0, CourseAndGroup.IndexOf("-", StringComparison.Ordinal))}: {Title}";
+
+        // TODO : Make this work so that the user can see the time remaining before his class occurs
+        public bool _isTimeRemainingVisible = false;
+        public bool IsTimeRemainingVisible
+        {
+            get { return _isTimeRemainingVisible; }
+            set { this.RaiseAndSetIfChanged(ref _isTimeRemainingVisible, value); }
+        }
+
+        // TODO : Make this work so that the user can see the time remaining before his class occurs
+        public string _timeRemaining = "0";
+        public string TimeRemaining
+        {
+            get { return _timeRemaining; }
+            set { this.RaiseAndSetIfChanged(ref _timeRemaining, value); }
+        }
 
         #region ICustomColor Implementation
 

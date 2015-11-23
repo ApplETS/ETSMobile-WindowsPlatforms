@@ -10,7 +10,6 @@ using Ets.Mobile.Client.Shared.Tests.Contracts;
 using Ets.Mobile.Entities.ServiceInfo;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Shared.Tests;
-using Fusillade;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using ModernHttpClient;
 using Refit;

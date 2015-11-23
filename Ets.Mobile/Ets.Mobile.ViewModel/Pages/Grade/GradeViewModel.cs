@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using Akavache;
@@ -10,16 +9,12 @@ using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Grade;
-using Ets.Mobile.ViewModel.Mixins;
-using Messaging.UniversalApp.Common;
 using ReactiveUI;
-using ReactiveUI.Extensions;
-using Refit;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
     [DataContract]
-    public class GradeViewModel : PageViewModelBase, IDisposable
+    public class GradeViewModel : ViewModelBase, IDisposable
     {
         #region IDisposable
 
@@ -62,7 +57,6 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    _gradesExceptionSubject.HandleOfflineConnection(x);
                 });
 
             LoadGrade.Subscribe(x =>
@@ -73,7 +67,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             });
 
             Grades = GradeItems.CreateDerivedCollection(
-                x => new GradeTileViewModel(x),
+                x => x,
                 x => x.Dispose()
             );
         }
@@ -98,7 +92,6 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         #region Properties
 
         public ReactiveCommand<IEnumerable<GradeViewModelItem>> LoadGrade { get; protected set; }
-        private readonly ReplaySubject<Exception> _gradesExceptionSubject = new ReplaySubject<Exception>();
         
         private string _semester;
         [DataMember]
@@ -133,29 +126,8 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         }
 
         [DataMember]
-        public IReactiveDerivedList<GradeTileViewModel> Grades { get; protected set; }
+        public IReactiveDerivedList<GradeViewModelItem> Grades { get; protected set; }
 
         #endregion
-
-        [DataContract]
-        public class GradeTileViewModel : ReactiveObject, IDisposable
-        {
-            #region IDisposable
-
-            public void Dispose()
-            {
-                Model.Dispose();
-            }
-
-            #endregion
-
-            [DataMember]
-            public GradeViewModelItem Model { get; protected set; }
-
-            public GradeTileViewModel(GradeViewModelItem model)
-            {
-                Model = model;
-            }
-        }
     }    
 }

@@ -57,6 +57,8 @@ namespace Messaging.UniversalApp.Popup
                 progressIndicator.Text = string.Empty;
                 await progressIndicator.HideAsync();
             }
+#else
+            await Task.FromResult(isBusy);
 #endif
         }
 
@@ -65,7 +67,7 @@ namespace Messaging.UniversalApp.Popup
             var messageDialog = !string.IsNullOrEmpty(title) ? new MessageDialog(message, title) : new MessageDialog(message);
 
             messageDialog.Commands.Add(new UICommand { Label = "Ok", Id = 0 });
-            await messageDialog.ShowAsync();
+            await messageDialog.ShowAsync().AsTask();
         }
 
         public void ShowMessage(IMessagingContent content)

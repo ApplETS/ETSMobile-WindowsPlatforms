@@ -1,17 +1,33 @@
-﻿using System;
-using System.Reactive;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Reactive;
 using Ets.Mobile.Entities.Signets;
-using Ets.Mobile.ViewModel.Pages.Grade;
 using ReactiveUI;
-using Splat;
+using ReactiveUI.Extensions;
 
 namespace Ets.Mobile.ViewModel.Content.Main
 {
-    public class GradeSummaryViewModelItem : ReactiveObject
+    public class GradeSummaryViewModelItem : ReactiveObject, IMergeableObject<GradeSummaryViewModelItem>
     {
+        #region IMergeableObject
+
+        public bool Equals(GradeSummaryViewModelItem x, GradeSummaryViewModelItem y)
+        {
+            return x.Course?.Acronym == y.Course?.Acronym
+                && x.Semester == y.Semester;
+        }
+
+        public int GetHashCode(GradeSummaryViewModelItem obj)
+        {
+            return obj.Course.Acronym.GetHashCode() ^ obj.Semester.GetHashCode();
+        }
+
+        public void MergeWith(GradeSummaryViewModelItem other)
+        {
+            Course.MergeWith(other.Course);
+            Semester = other.Semester;
+        }
+
+        #endregion
+
         private CourseVm _course;
         public CourseVm Course {
             get { return _course; }

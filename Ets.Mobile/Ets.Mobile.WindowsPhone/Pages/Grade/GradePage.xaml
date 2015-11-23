@@ -19,7 +19,7 @@
 
             <DataTemplate x:Name="GradesHeader">
                 <StackPanel>
-                    <TextBlock Text="{Binding Model.Course.Acronym}" />
+                    <TextBlock Text="{Binding Course.Acronym}" />
                 </StackPanel>
             </DataTemplate>
 
@@ -78,10 +78,10 @@
 
             <DataTemplate x:Name="GradesPresenter">
                 <controls:ReactivePresenter
-                    UseDialogForErrors="False"
-                            PresenterSource="{Binding Model.GradesPresenter}"
-                            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
-                            ValueTemplate="{StaticResource GradesPresenterValue}">
+                    DisableErrorNotification="True"
+                    PresenterSource="{Binding GradesPresenter}"
+                    DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
+                    ValueTemplate="{StaticResource GradesPresenterValue}">
                     <controls:ReactivePresenter.EmptyTemplate>
                         <DataTemplate>
                             <Grid>

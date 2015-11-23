@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Linq;
-using System.Reactive.Linq;
-using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
 using Ets.Mobile.Entities.Signets;
 using Localization;
-using ReactiveUI;
-using Splat;
-using Syncfusion.Data.Extensions;
-using Syncfusion.UI.Xaml.Schedule;
 
 namespace Ets.Mobile.SyncFusion.SfSchedule
 {

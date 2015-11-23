@@ -1,13 +1,12 @@
 ﻿using System;
 using Windows.ApplicationModel;
-using Windows.Security.ExchangeActiveSyncProvisioning;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts.Settings;
 using ReactiveUI;
 
 namespace Ets.Mobile.ViewModel.Pages.Settings
 {
-    public class SettingsViewModel : PageViewModelBase, ISettingsViewModel
+    public class SettingsViewModel : ViewModelBase, ISettingsViewModel
     {
         public string VersionNumber => $"{Package.Current.Id.Version.Major}.{Package.Current.Id.Version.Minor}.{Package.Current.Id.Version.Revision}.{Package.Current.Id.Version.Build}";
         public Uri SendFeedbackUri { get; private set; }

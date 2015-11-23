@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
@@ -10,11 +9,11 @@ using ReactiveUI;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Akavache;
 using CrittercismSDK;
+using Ets.Mobile.Agent;
 using Ets.Mobile.Shell;
 using Splat;
 
@@ -36,6 +35,9 @@ namespace Ets.Mobile
             Locator.CurrentMutable.Register(() => new ResourceLoader(), typeof(ResourceLoader));
             
             InitializeComponent();
+
+            // Akavache Init
+            BlobCache.ApplicationName = "EtsMobile";
 
             // Crittercism
             Crittercism.Init("55e87dc18d4d8c0a00d07811");
@@ -136,6 +138,13 @@ namespace Ets.Mobile
             // Do Base Launched
             base.OnLaunched(e);
             
+            // When the user is launching the app, ensure that the connectivity states are reset-ed
+            Task.WaitAll(Task.Run(async () =>
+            {
+                await HandleOfflineTask.SetConnectivityValues();
+                BlobCache.UserAccount.InsertObject("HasUserBeenNotified", false);
+            }));
+
             // Do RxApp OnLaunched
             _autoSuspendHelper.OnLaunched(e);
 

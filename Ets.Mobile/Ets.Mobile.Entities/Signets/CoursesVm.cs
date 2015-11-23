@@ -3,12 +3,41 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
+using ReactiveUI.Extensions;
 
 namespace Ets.Mobile.Entities.Signets
 {
     [DataContract]
-    public class CourseVm : ReactiveObject, ICustomColor
+    public class CourseVm : ReactiveObject, ICustomColor, IMergeableObject<CourseVm>
     {
+        #region IMergeableObject
+
+        public bool Equals(CourseVm x, CourseVm y)
+        {
+            return x.Acronym == y.Acronym
+                && x.Semester == y.Semester;
+        }
+
+        public int GetHashCode(CourseVm obj)
+        {
+            return obj.Acronym.GetHashCode() ^ obj.Semester.GetHashCode();
+        }
+
+        public void MergeWith(CourseVm other)
+        {
+            Acronym = other.Acronym;
+            Semester = other.Semester;
+            Group = other.Group;
+            Grade = other.Grade;
+            Name = other.Name;
+            A = other.A;
+            R = other.R;
+            G = other.G;
+            B = other.B;
+        }
+
+        #endregion
+
         private string _acronym;
         [DataMember] public string Acronym
         {

@@ -1,7 +1,7 @@
 ﻿using Windows.UI;
-using Windows.UI.Xaml.Media;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
+using Windows.UI.Xaml.Media;
 #if !WINDOWS_APP
 using Coding4Fun.Toolkit.Controls;
 #endif
@@ -30,6 +30,7 @@ namespace Messaging.UniversalApp.Notifications
             toast.TextWrapping = Windows.UI.Xaml.TextWrapping.WrapWholeWords;
             toast.Background = new SolidColorBrush(DefaultBackground);
             toast.Show();
+            
 #else
             // Not Implemented for WinRT yet
 #endif

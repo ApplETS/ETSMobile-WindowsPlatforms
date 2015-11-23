@@ -1,15 +1,5 @@
-﻿using System.Reactive.Linq;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using ReactiveUI;
-using System;
-using System.Linq;
-using System.Reactive;
-using System.Threading.Tasks;
-using Windows.UI;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Ets.Mobile.ViewModel.Contracts.Shared;
-using Splat;
 
 namespace Ets.Mobile.Pages.Main
 {

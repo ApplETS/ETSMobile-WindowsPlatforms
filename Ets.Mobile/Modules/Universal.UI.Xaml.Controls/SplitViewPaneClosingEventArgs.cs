@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Universal.UI.Xaml.Controls
+﻿namespace Universal.UI.Xaml.Controls
 {
     /// <summary>
     /// Provides event data for the <see cref="SplitView.PaneClosing"/> event.

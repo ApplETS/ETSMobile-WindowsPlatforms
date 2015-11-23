@@ -3,7 +3,7 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.ViewModel;
+using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
@@ -39,9 +39,8 @@ namespace Ets.Mobile.ViewModel.DesignTime
                         B = Colors.Orange.B,
                         Brush = {Color = Colors.Orange, Opacity = 1}
                     },
-                    GradesPresenter = new ReactivePresenterViewModel<EvaluationsVm>
-                    {
-                        Content = Observable.Return(new EvaluationsVm
+                    GradesPresenter = new ReactivePresenterHandlerDesignTime<EvaluationsVm>(
+                        Observable.Return(new EvaluationsVm
                         {
                             ActualGrade = 78.4,
                             A = Colors.Orange.A,
@@ -50,7 +49,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                             B = Colors.Orange.B,
                             Brush = {Color = Colors.Orange, Opacity = 1}
                         })
-                    }
+                    )
                 }
             };
 
@@ -82,7 +81,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
 
         public EvaluationsVm Evaluation { get; set; }
 
-        public IReactivePresenterViewModel<EvaluationsVm> GradesPresenter { get; set; }
+        public IReactivePresenterHandler<EvaluationsVm> GradesPresenter { get; set; }
     }
 
     public class GradeItemViewModelDt

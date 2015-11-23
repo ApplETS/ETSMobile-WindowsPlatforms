@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
-using System.Reactive.Linq;
 using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
+using ReactiveUI.Extensions;
 
 namespace Ets.Mobile.ViewModel.Content.Main
 {
-    public class GradeSummaryViewModelGroup : ReactiveObject, IGrouping<string, GradeSummaryViewModelItem>, IDisposable
+    public class GradeSummaryViewModelGroup : ReactiveObject, IGrouping<string, GradeSummaryViewModelItem>, IMergeableObject<GradeSummaryViewModelGroup>, IDisposable
     {
         #region IGrouping<string, GradesViewModelItem>
 
@@ -23,6 +23,25 @@ namespace Ets.Mobile.ViewModel.Content.Main
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _gradesItems.GetEnumerator();
+        }
+
+        #endregion
+
+        #region IMergeableObject
+
+        public bool Equals(GradeSummaryViewModelGroup x, GradeSummaryViewModelGroup y)
+        {
+            return x.Key == y.Key;
+        }
+
+        public int GetHashCode(GradeSummaryViewModelGroup obj)
+        {
+            return obj.Key.GetHashCode();
+        }
+
+        public void MergeWith(GradeSummaryViewModelGroup other)
+        {
+            GradesItems.MergeWith(other.GradesItems);
         }
 
         #endregion

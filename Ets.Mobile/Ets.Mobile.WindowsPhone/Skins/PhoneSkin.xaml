@@ -38,7 +38,7 @@
 
     <!-- PivotHeaderItem -->
     <x:Int32 x:Key="EtsPivotHeaderItemFontSize">22</x:Int32>
-    <Thickness x:Key="EtsPivotHeaderItemMargin">15,10,10,10</Thickness>
+    <x:String x:Key="EtsPivotHeaderItemMargin">15,10,10,10</x:String>
     <Style TargetType="primitives:PivotHeaderItem">
         <Setter Property="FontSize" Value="{ThemeResource EtsPivotHeaderItemFontSize}" />
         <Setter Property="FontFamily" Value="{ThemeResource PivotHeaderItemFontFamily}" />
@@ -87,7 +87,7 @@
         </Setter>
     </Style>
 
-    <Thickness x:Key="PivotPortraitThemePadding">19,10,0,0</Thickness>
+    <x:String x:Key="PivotPortraitThemePadding">19,10,0,0</x:String>
     <!-- Default style for Windows.UI.Xaml.Controls.Pivot -->
     <Style TargetType="controls:Pivot">
         <Setter Property="Margin" Value="0" />

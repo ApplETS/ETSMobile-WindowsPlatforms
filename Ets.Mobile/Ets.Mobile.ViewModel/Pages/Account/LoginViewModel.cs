@@ -17,7 +17,7 @@ using Splat;
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
     [DataContract]
-    public class LoginViewModel : PageViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
         #region VM Properties
         
