@@ -8,7 +8,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
-using Messaging.Interfaces.Popup;
 using ReactiveUI.Xaml.Controls.Handlers;
 using Splat;
 

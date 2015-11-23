@@ -8,16 +8,14 @@ using Ets.Mobile.Client.Contracts;
 using Messaging.Interfaces.ViewService;
 using ReactiveUI;
 using Splat;
-using System.Linq;
 using Ets.Mobile.ViewModel.Contracts.Shared;
-using System.Reactive.Linq;
 
 namespace Ets.Mobile.ViewModel.Bases
 {
     [DataContract]
-    public abstract class ApplicationViewModelBase : ReactiveObject
+    public abstract class ApplicationServicesBase : ReactiveObject
     {
-        protected ApplicationViewModelBase()
+        protected ApplicationServicesBase()
         {
             _serviceLocator = Locator.CurrentMutable;
         }

@@ -30,7 +30,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\ProgramViewModelDt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\SelectCourseForGradeViewModelDt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messaging\EmptyMessageContent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Mixins\OfflineMixins.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Account\LoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\GradeViewModel.cs" />
@@ -44,8 +43,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\SideNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\UserDetails\UserDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationViewModelBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Bases\PageViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationServicesBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bases\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Content\Account\" />

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using Akavache;
@@ -10,18 +9,12 @@ using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Grade;
-using Ets.Mobile.ViewModel.Mixins;
-using Messaging.Interfaces.Popup;
-using Messaging.UniversalApp.Common;
 using ReactiveUI;
-using ReactiveUI.Extensions;
-using Refit;
-using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
     [DataContract]
-    public class GradeViewModel : PageViewModelBase, IDisposable
+    public class GradeViewModel : ViewModelBase, IDisposable
     {
         #region IDisposable
 
@@ -64,7 +57,6 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
             LoadGrade.Subscribe(x =>

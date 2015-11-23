@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-#if SILVERLIGHT
+﻿#if SILVERLIGHT
 using System.Windows;
 #else
 using Windows.UI.Xaml;

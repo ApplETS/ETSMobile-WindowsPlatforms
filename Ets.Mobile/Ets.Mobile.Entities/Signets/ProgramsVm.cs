@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Extensions;
 
 namespace Ets.Mobile.Entities.Signets
 {

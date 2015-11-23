@@ -36,7 +36,7 @@ namespace Xaml.Converters
 
             return str;
         }
-
+        
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();

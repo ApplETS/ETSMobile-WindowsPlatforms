@@ -2,9 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Ets.Mobile.ViewModel;
-using Ets.Mobile.ViewModel.Pages.Main;
 using ReactiveUI;
-using Splat;
 
 namespace Ets.Mobile.Shell
 {

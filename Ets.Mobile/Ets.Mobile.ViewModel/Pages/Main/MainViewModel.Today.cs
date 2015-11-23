@@ -5,14 +5,9 @@ using System.Reactive.Subjects;
 using System.Runtime.Serialization;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
-using Ets.Mobile.ViewModel.Messaging;
-using Ets.Mobile.ViewModel.Mixins;
-using Localization;
-using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
-using Refit;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
@@ -41,14 +36,13 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
-            LoadCoursesForToday.Subscribe(x =>
-            {
-                TodayItems.Clear();
-                TodayItems.AddRange(x);
-            });
+            //LoadCoursesForToday.Subscribe(x =>
+            //{
+            //    TodayItems.Clear();
+            //    TodayItems.AddRange(x);
+            //});
 
             Today = TodayItems.CreateDerivedCollection(
                 x => x,

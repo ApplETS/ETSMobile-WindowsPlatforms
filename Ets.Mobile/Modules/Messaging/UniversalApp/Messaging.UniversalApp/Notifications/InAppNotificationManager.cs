@@ -1,7 +1,7 @@
 ﻿using Windows.UI;
-using Windows.UI.Xaml.Media;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
+using Windows.UI.Xaml.Media;
 #if !WINDOWS_APP
 using Coding4Fun.Toolkit.Controls;
 #endif
@@ -19,7 +19,6 @@ namespace Messaging.UniversalApp.Notifications
 
         public void Notify(IMessagingContent messageContent)
         {
-            return; // TODO : Make this work
 #if !WINDOWS_APP
             var toast = new ToastPrompt();
             if (!string.IsNullOrEmpty(messageContent.Title))

@@ -1,7 +1,7 @@
 ﻿
 using Windows.ApplicationModel.Resources;
 using Splat;
-using System;
+
 namespace Localization
 {
     public sealed class StringResources

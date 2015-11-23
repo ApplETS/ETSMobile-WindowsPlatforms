@@ -4,7 +4,7 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Extensions;
 
 namespace Ets.Mobile.Entities.Signets
 {

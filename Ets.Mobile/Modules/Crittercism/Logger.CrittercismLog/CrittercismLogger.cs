@@ -1,7 +1,6 @@
 ﻿using System;
 using CrittercismSDK;
 using Splat;
-using Logger;
 
 namespace Logger.CrittercismLog
 {

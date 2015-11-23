@@ -14,7 +14,7 @@ using Refit;
 namespace Ets.Mobile.ViewModel.Pages.Schedule
 {
     [DataContract]
-    public class ScheduleViewModel : PageViewModelBase
+    public class ScheduleViewModel : ViewModelBase
     {
         public ScheduleViewModel(IScreen screen = null) : base(screen, "Schedule")
         {

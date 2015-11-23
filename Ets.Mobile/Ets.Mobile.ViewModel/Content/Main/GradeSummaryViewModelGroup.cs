@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reactive;
 using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Extensions;
 
 namespace Ets.Mobile.ViewModel.Content.Main
 {
@@ -41,7 +41,7 @@ namespace Ets.Mobile.ViewModel.Content.Main
 
         public void MergeWith(GradeSummaryViewModelGroup other)
         {
-            GradesItems = other.GradesItems;
+            GradesItems.MergeWith(other.GradesItems);
         }
 
         #endregion

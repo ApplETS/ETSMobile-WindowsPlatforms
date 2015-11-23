@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ReactiveUI.Xaml.Controls.Core
+namespace ReactiveUI.Extensions
 {
     public interface IMergeableObject<in T> : IMergeObject<T>, IEqualityComparer<T>
     {

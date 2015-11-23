@@ -1,8 +1,7 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using Splat;
+using System;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
-using Splat;
 
 namespace Xaml.Converters
 {

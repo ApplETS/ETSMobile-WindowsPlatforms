@@ -4,25 +4,21 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using Akavache;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Main;
 using ReactiveUI;
 using Ets.Mobile.ViewModel.Contracts.Grade;
-using Ets.Mobile.ViewModel.Mixins;
-using Messaging.Interfaces.Popup;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
-using Splat;
+using Akavache;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
-    public class SelectCourseForGradeViewModel : PageViewModelBase, ISelectCourseForGradeViewModel
+    public class SelectCourseForGradeViewModel : ViewModelBase, ISelectCourseForGradeViewModel
     {
         public SelectCourseForGradeViewModel(IScreen screen) : base(screen, "SelectCourse")
         {
@@ -71,7 +67,6 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
             Grades = GradesItems.CreateDerivedCollection(x => x, x => x.Dispose(),

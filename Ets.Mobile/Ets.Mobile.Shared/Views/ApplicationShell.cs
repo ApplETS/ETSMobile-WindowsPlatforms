@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Reactive.Linq;
 using Akavache;
 using System;
+using Ets.Mobile.Agent;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Pages.Account;
 using Ets.Mobile.Pages.Main;
@@ -15,6 +16,7 @@ using Ets.Mobile.Pages.Grade;
 using Ets.Mobile.Pages.Program;
 using Ets.Mobile.Pages.Schedule;
 using Ets.Mobile.Pages.Settings;
+using Ets.Mobile.UserErrorHandlers;
 using Ets.Mobile.ViewModel.Contracts.Shared;
 using Ets.Mobile.ViewModel.Contracts.UserDetails;
 using Ets.Mobile.ViewModel.Pages.Grade;
@@ -24,6 +26,8 @@ using Ets.Mobile.ViewModel.Pages.Settings;
 using Ets.Mobile.ViewModel.Pages.Shared;
 using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Logger;
+using ReactiveUI.Xaml.Controls.Handlers;
+using Refit;
 using Security.Algorithms;
 
 namespace Ets.Mobile.ViewModel
@@ -83,7 +87,15 @@ namespace Ets.Mobile.ViewModel
             //
             // Setting up services
             RegisterContainer(Locator.CurrentMutable);
-            
+
+            // Register OfflineHandler
+            //
+            // This handler makes easy to tell the user (only once!) that he is currently
+            // offline, removing the hassle to look for his connection each time we request.
+            // Added bonus: each UserError will get handled and message the user based on
+            // the internet availability.
+	        RegisterBackgroundTasks();
+
             // Set up ViewModels and Views
             //
             // Setting up the Views and assign them to their corresponding ViewModels
@@ -134,6 +146,14 @@ namespace Ets.Mobile.ViewModel
             resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramViewModel>));
             resolver.Register(() => new SelectCourseForGradePage(), typeof(IViewFor<SelectCourseForGradeViewModel>));
             resolver.Register(() => new SettingsPage(), typeof(IViewFor<SettingsViewModel>));
+        }
+
+        private static async void RegisterBackgroundTasks()
+        {
+            await HandleOfflineTask.Register();
+            UserError.RegisterHandler(UserErrorOfflineHandler.Handler);
+            UserErrorOfflineHandler.ExceptionsHandled.Add(typeof(ApiException));
+            ReactivePresenterMixins.ExceptionsNotHandledFromReactivePresenter.Add(typeof(ApiException));
         }
 
         #endregion

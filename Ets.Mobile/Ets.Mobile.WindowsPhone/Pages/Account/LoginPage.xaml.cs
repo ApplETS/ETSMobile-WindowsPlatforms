@@ -3,7 +3,6 @@ using System.Reactive.Linq;
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Ets.Mobile.ViewModel.Pages.Account;
 using ReactiveUI;
 using System.Threading.Tasks;
 

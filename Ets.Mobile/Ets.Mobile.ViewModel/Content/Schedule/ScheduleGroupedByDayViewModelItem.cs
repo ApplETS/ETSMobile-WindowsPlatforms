@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
 

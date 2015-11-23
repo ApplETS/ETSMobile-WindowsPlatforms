@@ -7,16 +7,13 @@ using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
 using System.Reactive.Threading.Tasks;
 using Windows.UI;
-using Ets.Mobile.ViewModel.Mixins;
-using Messaging.Interfaces.Popup;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
-using Splat;
 
 namespace Ets.Mobile.ViewModel.Content.Grade
 {
     [DataContract]
-    public class GradeViewModelItem : ApplicationViewModelBase, IDisposable
+    public class GradeViewModelItem : ApplicationServicesBase, IDisposable
     {
         #region IDisposable
 
@@ -71,7 +68,6 @@ namespace Ets.Mobile.ViewModel.Content.Grade
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
             LoadGrade.Subscribe(e => Evaluation = e);

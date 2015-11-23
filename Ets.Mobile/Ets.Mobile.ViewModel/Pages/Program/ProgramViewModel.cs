@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reactive.Subjects;
 using System.Runtime.Serialization;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Contracts.Program;
-using Ets.Mobile.ViewModel.Mixins;
-using Messaging.Interfaces.Popup;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
-using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.Program
 {
-    public class ProgramViewModel : PageViewModelBase, IProgramViewModel
+    public class ProgramViewModel : ViewModelBase, IProgramViewModel
     {
         public ProgramViewModel(IScreen screen) : base(screen, "Program")
         {
@@ -35,7 +31,6 @@ namespace Ets.Mobile.ViewModel.Pages.Program
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
             LoadProgram.Subscribe(x =>

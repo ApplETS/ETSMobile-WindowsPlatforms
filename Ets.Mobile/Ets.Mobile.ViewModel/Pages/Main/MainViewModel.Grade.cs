@@ -4,18 +4,12 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
-using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Akavache;
-using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Main;
-using Ets.Mobile.ViewModel.Messaging;
-using Ets.Mobile.ViewModel.Mixins;
 using Ets.Mobile.ViewModel.Pages.Grade;
-using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
@@ -60,8 +54,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             LoadGrades.ThrownExceptions
                 .Subscribe(x =>
                 {
-                    //UserError.Throw(x.Message, x);
-                    x.HandleOfflineConnection(ViewServices().Notification);
+                    UserError.Throw(x.Message, x);
                 });
 
             Grades = GradesItems.CreateDerivedCollection(x => x, x => x.Dispose(),

@@ -5,12 +5,15 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using Messaging.Interfaces.Common;
+using ReactiveUI.Extensions;
 using ReactiveUI.Xaml.Controls.Core;
 
 namespace ReactiveUI.Xaml.Controls.Handlers
 {
     public static class ReactivePresenterMixins
     {
+        public static List<Type> ExceptionsNotHandledFromReactivePresenter = new List<Type>();
+
         private class ReactivePresenterHandler<T> : IReactivePresenterHandler<T>
         {
             public ReactivePresenterHandler(IObservable<T> content)
@@ -46,7 +49,24 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             public ISubject<bool> IsReady { get; set; }
             public IObservable<bool> IsRefreshing { get; set; }
             public IObservable<IMessagingContent> EmptyMessage { get; set; }
-            public IObservable<Exception> ThrownExceptions { get; set; }
+
+            public IObservable<Exception> ThrownExceptions
+            {
+                get { return _thrownExceptions; }
+                set
+                {
+                    _thrownExceptions = value;
+
+                    // If there are exceptions that shouldn't be seen in the presenter's
+                    // Error Template, we need to filter them
+                    if (ExceptionsNotHandledFromReactivePresenter.Any())
+                    {
+                        _thrownExceptions =
+                            _thrownExceptions?.Where(x => !ExceptionsNotHandledFromReactivePresenter.Contains(x.GetType()));
+                    }
+                }
+            }
+            private IObservable<Exception> _thrownExceptions; 
 
             public readonly CompositeDisposable CompositeDisposable;
 
@@ -74,26 +94,7 @@ namespace ReactiveUI.Xaml.Controls.Handlers
         {
             return command.Subscribe(list =>
             {
-                // Add
-                var itemsToAdd = list.Except(list.Where(x => reactiveList.Contains(x, x))).ToArray();
-                if (itemsToAdd.Any())
-                {
-                    reactiveList.AddRange(itemsToAdd);
-                }
-
-                // Remove
-                var itemsToRemove = reactiveList.Where(x => !list.Contains(x, x)).ToArray();
-                if (itemsToRemove.Any())
-                {
-                    reactiveList.RemoveAll(itemsToRemove);
-                }
-
-                // Merge
-                foreach (var item in reactiveList.Where(x => list.Contains(x, x)))
-                {
-                    var mergeItem = list.First(x => x.Equals(x, item));
-                    item.MergeWith(mergeItem);
-                }
+                list.MergeWith(reactiveList);
 
                 isReady.OnNext(true);
             });
@@ -104,26 +105,7 @@ namespace ReactiveUI.Xaml.Controls.Handlers
         {
             return command.Subscribe(list =>
             {
-                // Add
-                var itemsToAdd = list.Except(list.Where(x => reactiveList.Contains(x, x))).ToArray();
-                if (itemsToAdd.Any())
-                {
-                    reactiveList.AddRange(itemsToAdd);
-                }
-
-                // Remove
-                var itemsToRemove = reactiveList.Where(x => !list.Contains(x, x)).ToArray();
-                if (itemsToRemove.Any())
-                {
-                    reactiveList.RemoveAll(itemsToRemove);
-                }
-
-                // Merge
-                foreach (var item in reactiveList.Where(x => list.Contains(x, x)))
-                {
-                    var mergeItem = list.First(x => x.Equals(x, item));
-                    item.MergeWith(mergeItem);
-                }
+                list.MergeWith(reactiveList);
 
                 isReady.OnNext(true);
             });
@@ -134,27 +116,7 @@ namespace ReactiveUI.Xaml.Controls.Handlers
         {
             return command.Subscribe(enumerable =>
             {
-                // Add
-                var list = enumerable.ToArray();
-                var itemsToAdd = list.Except(list.Where(x => reactiveList.Contains(x, x))).ToArray();
-                if (itemsToAdd.Any())
-                {
-                    reactiveList.AddRange(itemsToAdd);
-                }
-
-                // Remove
-                var itemsToRemove = reactiveList.Where(x => !list.Contains(x, x)).ToArray();
-                if (itemsToRemove.Any())
-                {
-                    reactiveList.RemoveAll(itemsToRemove);
-                }
-
-                // Merge
-                foreach (var item in reactiveList.Where(x => list.Contains(x, x)))
-                {
-                    var mergeItem = list.First(x => x.Equals(x, item));
-                    item.MergeWith(mergeItem);
-                }
+                enumerable.MergeWith(reactiveList);
 
                 isReady.OnNext(true);
             });

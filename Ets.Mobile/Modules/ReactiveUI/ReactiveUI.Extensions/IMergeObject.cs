@@ -1,4 +1,4 @@
-﻿namespace ReactiveUI.Xaml.Controls.Core
+﻿namespace ReactiveUI.Extensions
 {
     public interface IMergeObject<in T>
     {

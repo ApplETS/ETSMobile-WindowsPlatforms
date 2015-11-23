@@ -7,15 +7,13 @@ using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts.UserDetails;
-using Ets.Mobile.ViewModel.Mixins;
-using Messaging.Interfaces.Popup;
 using ReactiveUI;
 using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.UserDetails
 {
     [DataContract]
-    public class UserDetailsViewModel : PageViewModelBase, IUserDetailsViewModel
+    public class UserDetailsViewModel : ViewModelBase, IUserDetailsViewModel
     {
         public UserDetailsViewModel(IScreen screen) : base(screen, "UserDetails")
         {
@@ -38,7 +36,6 @@ namespace Ets.Mobile.ViewModel.Pages.UserDetails
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
-                    x.HandleOfflineConnection(ViewServices().Notification);
                 });
 
             LoadProfile.Subscribe(profile =>

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.UI.Xaml.Data;
 
 namespace Xaml.Converters
@@ -12,24 +9,28 @@ namespace Xaml.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var val = value as bool?;
+            var convertedValue = (double)0;
 
             if (val != null && val.Value)
             {
                 double res;
                 if (parameter != null && double.TryParse(parameter.ToString(), out res))
                 {
-                    return res;
+                    convertedValue = res;
                 }
-
-                return 1;
+                else
+                {
+                    convertedValue = 1;
+                }
             }
 
-            return 0;
+            return convertedValue;
         }
 
+        [return: ReturnValueName("convertedBackValue")]
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            return value;
         }
     }
 }

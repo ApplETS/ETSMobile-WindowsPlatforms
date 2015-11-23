@@ -100,8 +100,8 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Target Name="BeforeBuild">
     <PropertyGroup>
-      <Coding4Fun_Toolkit_Controls_Xr_Xml>$([System.IO.Path]::GetFullPath('..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\netcore451\Coding4Fun.Toolkit.Controls\Coding4Fun.Toolkit.Controls.xr.xml'))</Coding4Fun_Toolkit_Controls_Xr_Xml>
-      <Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>$([System.IO.Path]::GetFullPath('..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\netcore451\Coding4Fun.Toolkit.Controls\Themes\Generic.xbf'))</Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>
+      <Coding4Fun_Toolkit_Controls_Xr_Xml>$([System.IO.Path]::GetFullPath('..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\netcore451\Coding4Fun.Toolkit.Controls\Coding4Fun.Toolkit.Controls.xr.xml'))</Coding4Fun_Toolkit_Controls_Xr_Xml>
+      <Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>$([System.IO.Path]::GetFullPath('..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\netcore451\Coding4Fun.Toolkit.Controls\Themes\Generic.xbf'))</Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>
     </PropertyGroup>
     <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Xr_Xml)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls"/>
     <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls/Themes"/>
