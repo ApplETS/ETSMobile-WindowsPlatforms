@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Akavache;
@@ -34,11 +33,7 @@ namespace Ets.Mobile.UserErrorHandlers
                     .CombineLatest(
                         BlobCache.UserAccount.GetObject<bool>("HasUserBeenNotified")
                         .Catch(Observable.Return(false)),
-                        (x, y) =>
-                        {
-                            Debug.WriteLine($"CurrentlyOnline:{x};HasBeenNotified:{y};HasNOTBeenNotified:{!y}");
-                            return x && !y;
-                        }
+                        (x, y) => x && !y
                     )
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .Subscribe(isUserOfflinehasNotBeenNotified =>
