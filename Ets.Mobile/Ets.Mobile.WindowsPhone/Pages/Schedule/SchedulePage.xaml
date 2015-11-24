@@ -45,6 +45,34 @@
         </Style>
 
         <!-- Schedule -->
+        <schedule:ExpandingAppointmentVisibility x:Key="Appvisibility"/>
+
+        <Style TargetType="schedule:ExpandingControl">
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="schedule:ExpandingControl">
+                        <Border BorderBrush="{ThemeResource ScheduleExpandingControlBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Margin="0,0,0,1" >
+                            <ScrollViewer VerticalContentAlignment="Top" 
+                                      VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto">
+                                <Grid>
+                                    <schedule:ExpandingItemControl DataContext="{TemplateBinding AppointmentCollection}" Margin="3,3,0,0"
+                                                            ItemsSource="{Binding}" AppointmentTemplate="{TemplateBinding AppointmentTemplate}"
+                                                            Visibility="{Binding Converter={StaticResource Appvisibility },ConverterParameter=Appointmentcollection}">
+                                    </schedule:ExpandingItemControl>
+
+                                    <TextBlock x:Name="EventsTextBlock" Text="no events" Margin="5,5,0,0" Foreground="Gray" 
+                                           DataContext="{TemplateBinding AppointmentCollection}" 
+                                           Visibility="{Binding Converter={StaticResource Appvisibility}, ConverterParameter=Emptycollection}">
+                                    </TextBlock>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <sfSchedule:StartDateToStringConverter x:Key="StartDateToStringConverter" />
         <sfSchedule:AppointmentToDescriptionConverter x:Key="AppointmentToDescriptionConverter" />
         <Style TargetType="schedule:ExpandedAppointmentViewControl">
@@ -84,9 +112,7 @@
                 <TextBlock Style="{StaticResource AppointementStartTime}" Text="{Binding StartDate, Converter={StaticResource StartDateToStringConverter}}" Grid.Column="0" />
                 <StackPanel Grid.Column="1" Orientation="Vertical">
                     <TextBlock Text="{Binding ActivityName}" Foreground="{Binding Brush}" Style="{StaticResource AppointementSubject}"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource AppointmentDescription}" Text="{Binding Converter={StaticResource AppointmentToDescriptionConverter}}" />
-                    </StackPanel>
+                    <TextBlock Style="{StaticResource AppointmentDescription}" Text="{Binding Converter={StaticResource AppointmentToDescriptionConverter}}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -136,7 +162,7 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Minimal" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
+        <CommandBar x:Name="CommandB" ClosedDisplayMode="Minimal" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
                 <AppBarButton Label="View" Click="ChangeCalendarView_Click">

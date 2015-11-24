@@ -46,14 +46,14 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             
             OpenMenu = ReactiveCommand.CreateAsyncTask(_ =>
             {
-                //IsSideNavigationVisibleSubject.OnNext(true);
+                IsSideNavigationVisibleSubject.OnNext(true);
                 IsSideNavigationVisible = true;
                 return Task.FromResult(IsSideNavigationVisible);
             });
 
             CloseMenu = ReactiveCommand.CreateAsyncTask(_ =>
             {
-                //IsSideNavigationVisibleSubject.OnNext(false);
+                IsSideNavigationVisibleSubject.OnNext(false);
                 IsSideNavigationVisible = false;
                 return Task.FromResult(IsSideNavigationVisible);
             });
@@ -109,7 +109,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
                     var navType = _ as Type;
                     if (navType != CurrentViewModelType)
                     {
-                        CloseMenu.Execute(null);
+                        IsSideNavigationVisible = false;
                         Screen.Router.Navigate.Execute(Activator.CreateInstance(navType, Screen));
                     }
                     return Task.FromResult(navType);

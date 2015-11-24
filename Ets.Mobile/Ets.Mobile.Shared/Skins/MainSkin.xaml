@@ -4,6 +4,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
+            <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
 
     <!-- Main Colors                                    -->
     <Color x:Key="EtsRedLowestColor">#680100</Color>
@@ -583,7 +594,6 @@
     <Style x:Key="AppointementStartTime" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
         <Setter Property="FontFamily" Value="{StaticResource SfScheduleAppointmentFontFamily}" />
-        <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
 

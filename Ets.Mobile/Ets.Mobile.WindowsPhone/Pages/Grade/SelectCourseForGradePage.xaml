@@ -19,4 +19,11 @@
         <shell:PageHeader DataContext="{Binding}"/>
         <grade:CourseChooserForGrades Grid.Row="1" Margin="10" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar x:Name="CommandB" ClosedDisplayMode="Minimal" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Refresh" Label="Refresh" Command="{Binding LoadGrades}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

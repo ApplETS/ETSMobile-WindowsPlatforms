@@ -10,7 +10,7 @@
     <!-- Pivot                                                     -->
     <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="Black" />
     <SolidColorBrush x:Key="EtsPivotHeaderForegroundUnselectedBrush" Color="{StaticResource EtsTextSecondaryColor}" />
-    
+
     <!-- PivotItem -->
     <Style TargetType="controls:PivotItem">
         <Setter Property="Background" Value="Transparent" />
@@ -107,7 +107,7 @@
                     <Grid x:Name="RootElement"
                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                          Background="{TemplateBinding Background}"> 
+                          Background="{TemplateBinding Background}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="Orientation">
                                 <VisualState x:Name="Portrait">
