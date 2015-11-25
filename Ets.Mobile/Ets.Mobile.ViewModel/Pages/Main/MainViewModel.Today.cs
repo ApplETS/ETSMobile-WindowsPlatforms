@@ -38,12 +38,6 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                     UserError.Throw(x.Message, x);
                 });
 
-            //LoadCoursesForToday.Subscribe(x =>
-            //{
-            //    TodayItems.Clear();
-            //    TodayItems.AddRange(x);
-            //});
-
             Today = TodayItems.CreateDerivedCollection(
                 x => x,
                 x => x.Dispose(),
