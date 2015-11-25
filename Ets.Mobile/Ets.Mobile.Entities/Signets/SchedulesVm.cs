@@ -15,7 +15,10 @@ namespace Ets.Mobile.Entities.Signets
 
         public bool Equals(ScheduleVm x, ScheduleVm y)
         {
-            return x.Name == y.Name;
+            return x.Name == y.Name
+                && x.StartDate == y.StartDate
+                && x.EndDate == y.EndDate
+                && x.CourseAndGroup == y.CourseAndGroup;
         }
 
         public int GetHashCode(ScheduleVm obj)
