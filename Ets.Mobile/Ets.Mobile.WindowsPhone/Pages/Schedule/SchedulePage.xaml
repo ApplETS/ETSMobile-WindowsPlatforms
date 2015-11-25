@@ -32,7 +32,7 @@
                             Style="{StaticResource ChangeCalendarViewFlyoutButtonStyle}" 
                             Click="ChangeToMonth" />
                     <Button Content="timeline"
-                            x:Name="Timeline"
+                            x:Name="TimeLine"
                             IsEnabled="{Binding IsCurrentViewTimeLine, ElementName=ScheduleP, Converter={StaticResource InversedBooleanConverter}}"
                             Style="{StaticResource ChangeCalendarViewFlyoutLastButtonStyle}" 
                             Click="ChangeToTimeLine" />
@@ -61,7 +61,10 @@
                                                             Visibility="{Binding Converter={StaticResource Appvisibility },ConverterParameter=Appointmentcollection}">
                                     </schedule:ExpandingItemControl>
 
-                                    <TextBlock x:Name="EventsTextBlock" Text="no events" Margin="5,5,0,0" Foreground="Gray" 
+                                    <TextBlock x:Name="EventsTextBlock" Text="no events" Margin="15,11,0,0" Foreground="Gray" 
+                                           FontSize="20"
+                                           FontWeight="Thin"
+                                           FontFamily="Calibri"
                                            DataContext="{TemplateBinding AppointmentCollection}" 
                                            Visibility="{Binding Converter={StaticResource Appvisibility}, ConverterParameter=Emptycollection}">
                                     </TextBlock>
@@ -104,7 +107,7 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="WeekViewTemplate">
-            <Grid Background="Transparent" HorizontalAlignment="Stretch" Margin="0,0,0,5">
+            <Grid Background="Transparent" HorizontalAlignment="Stretch" Margin="0,3,0,5">
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="0.25*"/>
                     <ColumnDefinition Width="0.75*" />
@@ -126,6 +129,7 @@
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
         <schedule:SfSchedule
+            Margin="0,0,0,60"
             ScheduleTypeChanging="schedule_ScheduleTypeChanging"
             Loaded="schedule_Loaded"
             Grid.Row="1"
@@ -162,7 +166,7 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" ClosedDisplayMode="Minimal" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
+        <CommandBar x:Name="CommandB" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
                 <AppBarButton Label="View" Click="ChangeCalendarView_Click">
