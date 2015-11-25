@@ -8,10 +8,7 @@ using Windows.UI.Xaml.Media;
 using Syncfusion.Data.Extensions;
 using Syncfusion.UI.Xaml.Schedule;
 using Windows.UI;
-using Ets.Mobile.ViewModel;
-using Ets.Mobile.ViewModel.Contracts.Shared;
 using ReactiveUI;
-using Splat;
 
 namespace Ets.Mobile.Pages.Schedule
 {
