@@ -109,7 +109,7 @@
         <DataTemplate x:Key="WeekViewTemplate">
             <Grid Background="Transparent" HorizontalAlignment="Stretch" Margin="0,3,0,5">
                 <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="0.75*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Style="{StaticResource AppointementStartTime}" Text="{Binding StartDate, Converter={StaticResource StartDateToStringConverter}}" Grid.Column="0" />

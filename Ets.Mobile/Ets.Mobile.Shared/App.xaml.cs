@@ -1,21 +1,23 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Ets.Mobile.ViewModel;
-using ReactiveUI;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Resources;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
-using Akavache;
+﻿using Akavache;
 using CrittercismSDK;
 using Ets.Mobile.Agent;
 using Ets.Mobile.Shell;
+using Ets.Mobile.ViewModel;
+using ReactiveUI;
 using Splat;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Resources;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+#if WINDOWS_PHONE_APP
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Navigation;
+#endif
 
 namespace Ets.Mobile
 {
@@ -25,7 +27,6 @@ namespace Ets.Mobile
 #if WINDOWS_PHONE_APP
         private TransitionCollection _transitions;
 #endif
-
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -138,6 +139,10 @@ namespace Ets.Mobile
             // Do Base Launched
             base.OnLaunched(e);
             
+            // Navigate to the Startup ViewModel When Available
+            RxApp.SuspensionHost.ObserveAppState<ApplicationShell>()
+                        .Subscribe(screen => screen.HandleAuthentificated());
+
             // When the user is launching the app, ensure that the connectivity states are reset-ed
             Task.WaitAll(Task.Run(async () =>
             {
@@ -186,16 +191,6 @@ namespace Ets.Mobile
                 rootFrame.ContentTransitions = null;
                 rootFrame.Navigated += RootFrame_FirstNavigated;
 #endif
-
-                rootFrame.Navigated += (sender, x) =>
-                {
-                    // Get resulted IScreen
-                    var screen = Locator.Current.GetService<IScreen>() as IApplicationShell ?? new ApplicationShell();
-                    // We can't put blocking methods like HandleAuthentificated in the ApplicationShellViewModel
-                    // since it remains stuck on getting the cache. Leave it here.
-                    screen.HandleAuthentificated();
-                };
-
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
@@ -245,8 +240,6 @@ namespace Ets.Mobile
             var deferral = e.SuspendingOperation.GetDeferral();
 
             deferral.Complete();
-
-            Crittercism.Shutdown();
         }
     }
 }
