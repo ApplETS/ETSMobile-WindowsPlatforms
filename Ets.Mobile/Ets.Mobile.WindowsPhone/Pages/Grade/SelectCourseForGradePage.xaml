@@ -8,19 +8,18 @@
     xmlns:grade="using:Ets.Mobile.Content.Grade"
     xmlns:shell="using:Ets.Mobile.Shell"
     mc:Ignorable="d"
-    DataContext="{Binding}"
-    Background="{StaticResource EtsBackgroundBodyBrush}">
-    <Grid>
+    DataContext="{Binding}">
+    <Grid Background="{StaticResource EtsBackgroundBodyBrush}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
-        <grade:CourseChooserForGrades Grid.Row="1" Margin="10" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+        <grade:CourseChooserForGrades Grid.Row="1" Margin="15,10,15,0" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" ClosedDisplayMode="Minimal" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
+        <CommandBar x:Name="CommandB" Background="{StaticResource EtsCommandBarBackground}" Foreground="{StaticResource EtsCommandBarForeground}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Refresh" Label="Refresh" Command="{Binding LoadGrades}" />
             </CommandBar.PrimaryCommands>

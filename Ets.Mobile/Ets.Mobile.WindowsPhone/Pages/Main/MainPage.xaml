@@ -10,8 +10,7 @@
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
     xmlns:shell="using:Ets.Mobile.Shell"
     x:Name="MainP"
-    mc:Ignorable="d"
-    Background="{StaticResource EtsBackgroundBodyBrush}">
+    mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,8 +18,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
-    <Grid>
+
+    <Grid Background="{StaticResource EtsBackgroundBodyBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
@@ -39,13 +38,13 @@
                 <PivotItem.Header>
                     <TextBlock x:Uid="GradesUid" Text="Résultats" />
                 </PivotItem.Header>
-                <grade:CourseChooserForGrades x:Name="Grade" DataContext="{Binding GradesPresenter}" Margin="0,10,0,25" />
+                <grade:CourseChooserForGrades x:Name="Grade" DataContext="{Binding GradesPresenter}" Margin="0,10,0,0" />
             </PivotItem>
         </Pivot>
     </Grid>
     
     <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" ClosedDisplayMode="Minimal" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
+        <CommandBar x:Name="CommandB" Background="{StaticResource EtsCommandBarBackground}" Foreground="{StaticResource EtsCommandBarForeground}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshToday" Icon="Refresh" Label="Refresh" Command="{Binding LoadCoursesForToday}" />
                 <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" Command="{Binding LoadGrades}" />

@@ -17,7 +17,7 @@
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
                 <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
+                    <Style TargetType="ListViewItem"  BasedOn="{StaticResource ListViewItemWithoutPressedStyle}">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>

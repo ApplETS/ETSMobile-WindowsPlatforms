@@ -129,7 +129,6 @@
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
         <schedule:SfSchedule
-            Margin="0,0,0,60"
             ScheduleTypeChanging="schedule_ScheduleTypeChanging"
             Loaded="schedule_Loaded"
             Grid.Row="1"
@@ -166,7 +165,7 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
+        <CommandBar x:Name="CommandB" Background="{StaticResource EtsCommandBarBackground}" Foreground="{StaticResource EtsCommandBarForeground}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
                 <AppBarButton Label="View" Click="ChangeCalendarView_Click">

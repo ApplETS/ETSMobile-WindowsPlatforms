@@ -10,7 +10,7 @@
 
     <s:Schedule x:Name="Schedule" />
     <Page.BottomAppBar>
-        <CommandBar IsOpen="False" x:Name="BottomBar" Background="White" Foreground="{StaticResource EtsRedHighBrush}" Opacity="0.7">
+        <CommandBar x:Name="BottomBar" Background="{StaticResource EtsCommandBarBackground}" Foreground="{StaticResource EtsCommandBarForeground}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
             </CommandBar.PrimaryCommands>

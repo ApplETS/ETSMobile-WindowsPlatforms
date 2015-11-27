@@ -52,14 +52,14 @@
         </DataTemplate>
 
         <DataTemplate x:Name="ProgramPresenterValue">
-            <ListView ItemsSource="{Binding}" ItemTemplate="{StaticResource ProgramTemplate}">
+            <ListView IsItemClickEnabled="False" ItemsSource="{Binding}" ItemTemplate="{StaticResource ProgramTemplate}">
                 <ListView.ItemContainerTransitions>
                     <TransitionCollection>
                         <EntranceThemeTransition/>
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
                 <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemWithoutPressedStyle}">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>

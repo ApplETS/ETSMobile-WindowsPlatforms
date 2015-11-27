@@ -1,47 +1,20 @@
-﻿using System;
+﻿using Syncfusion.Data.Extensions;
+using Syncfusion.UI.Xaml.Schedule;
+using System;
 using System.Linq;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using Syncfusion.Data.Extensions;
-using Syncfusion.UI.Xaml.Schedule;
-using Windows.UI;
-using ReactiveUI;
 
 namespace Ets.Mobile.Pages.Schedule
 {
     public sealed partial class SchedulePage : Page
     {
-        partial void PartialInitialize()
-        {
-            var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
-                .Where(x => x != null);
-
-            subscriptionForViewModel
-                .Subscribe(vm =>
-                {
-                    IsCommandBarVisible = new Subject<bool>();
-                    vm.SideNavigation.IsSideNavigationVisibleSubject.Subscribe(x =>
-                    {
-                        CommandB.Visibility = x
-                            ? Visibility.Collapsed
-                            : Visibility.Visible;
-                    });
-                    IsCommandBarVisible
-                        .Subscribe(x => CommandB.Visibility = x
-                            ? Visibility.Visible
-                            : Visibility.Collapsed);
-                    IsCommandBarVisible.OnNext(true);
-                });
-        }
-
         public bool IsCurrentViewWeek { get; set; }
         public bool IsCurrentViewDay { get; set; }
         public bool IsCurrentViewMonth { get; set; }
         public bool IsCurrentViewTimeLine { get; set; }
-        private ISubject<bool> IsCommandBarVisible { get; set; }
 
         private void ChangeCalendarView_Click(object sender, RoutedEventArgs e)
         {
@@ -61,7 +34,7 @@ namespace Ets.Mobile.Pages.Schedule
             {
                 if (CommandB != null && CommandB.Visibility == Visibility.Visible)
                 {
-                    IsCommandBarVisible.OnNext(false);
+                    CommandB.Visibility = Visibility.Collapsed;
                 }
             };
 
@@ -70,7 +43,7 @@ namespace Ets.Mobile.Pages.Schedule
             {
                 if (CommandB != null && CommandB.Visibility == Visibility.Collapsed)
                 {
-                    IsCommandBarVisible.OnNext(true);
+                    CommandB.Visibility = Visibility.Visible;
                 }
             };
 
@@ -126,14 +99,14 @@ namespace Ets.Mobile.Pages.Schedule
             {
                 return;
             }
+            var calendarFlyout = (Flyout)Resources["ChangeCalendarViewFlyout"];
+            calendarFlyout?.Hide();
+
             Scheduler.ScheduleType = type;
             IsCurrentViewDay = type == ScheduleType.Day;
             IsCurrentViewWeek = type == ScheduleType.Week;
             IsCurrentViewMonth = type == ScheduleType.Month;
             IsCurrentViewTimeLine = type == ScheduleType.TimeLine;
-
-            var calendarFlyout = (Flyout)Resources["ChangeCalendarViewFlyout"];
-            calendarFlyout?.Hide();
         }
 
         private void schedule_ScheduleTypeChanging(object sender, ScheduleTypeChangingEventArgs e)

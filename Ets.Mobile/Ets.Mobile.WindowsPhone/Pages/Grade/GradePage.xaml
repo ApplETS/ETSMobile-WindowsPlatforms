@@ -8,8 +8,7 @@
     xmlns:grade="using:Ets.Mobile.Views.Content.Grade"
     xmlns:controls="using:ReactiveUI.Xaml.Controls"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
-    xmlns:shared="using:Ets.Mobile.Content.Shared"
-    Background="{StaticResource EtsBackgroundBodyBrush}">
+    xmlns:shared="using:Ets.Mobile.Content.Shared">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -105,7 +104,7 @@
 
     </Page.Resources>
 
-    <Grid x:Name="Grade" d:DataContext="{d:DesignInstance Type=designTime:GradeViewModelDt, IsDesignTimeCreatable=True}">
+    <Grid x:Name="Grade" Background="{StaticResource EtsBackgroundBodyBrush}" d:DataContext="{d:DesignInstance Type=designTime:GradeViewModelDt, IsDesignTimeCreatable=True}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
@@ -130,7 +129,7 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar x:Name="BottomBar" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Opacity="0.7" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
+        <CommandBar x:Name="BottomBar" Background="{StaticResource EtsCommandBarBackground}" Foreground="{StaticResource EtsCommandBarForeground}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" />
             </CommandBar.PrimaryCommands>
