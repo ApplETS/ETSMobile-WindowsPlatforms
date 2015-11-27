@@ -4,6 +4,7 @@
     xmlns:local="using:Ets.Mobile">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///Skins/MainSkin.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Skins/PhoneSkin.xaml"/>
         <ResourceDictionary Source="ms-appx:///Skins/SplitViewStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

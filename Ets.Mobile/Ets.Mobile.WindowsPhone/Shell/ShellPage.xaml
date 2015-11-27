@@ -13,7 +13,7 @@
     <Page.Resources>
         <ResourceDictionary Source="ms-appx:///Universal.UI.Xaml.Controls/Themes/Generic.xaml" />
     </Page.Resources>
-    <controls:SplitView OpenPaneLength="{Binding ActualWidth, ElementName=Shell}" x:Name="ShellSplitView">
+    <controls:SplitView OpenPaneLength="{Binding ActualWidth, ElementName=Shell}" x:Name="ShellSplitView" DisplayMode="Overlay">
         <controls:SplitView.Pane>
             <shared:SideNavigation x:Name="SideNavigation" />
         </controls:SplitView.Pane>

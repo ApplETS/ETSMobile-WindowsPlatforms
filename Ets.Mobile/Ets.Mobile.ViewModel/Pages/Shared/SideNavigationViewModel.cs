@@ -5,8 +5,10 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Reactive.Concurrency;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Windows.UI.Core;
 using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Pages.Account;
@@ -46,14 +48,14 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             
             OpenMenu = ReactiveCommand.CreateAsyncTask(_ =>
             {
-                //IsSideNavigationVisibleSubject.OnNext(true);
+                IsSideNavigationVisibleSubject.OnNext(true);
                 IsSideNavigationVisible = true;
                 return Task.FromResult(IsSideNavigationVisible);
             });
 
             CloseMenu = ReactiveCommand.CreateAsyncTask(_ =>
             {
-                //IsSideNavigationVisibleSubject.OnNext(false);
+                IsSideNavigationVisibleSubject.OnNext(false);
                 IsSideNavigationVisible = false;
                 return Task.FromResult(IsSideNavigationVisible);
             });
@@ -99,20 +101,29 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
         public ReactiveCommand<bool> CloseMenu { get; set; }
 
         private ReactiveCommand<Type> _navCommand;
-
         public ReactiveCommand<Type> NavCommand
         {
             get
             {
-                return _navCommand ?? (_navCommand = ReactiveCommand.CreateAsyncTask(_ =>
+                return _navCommand ?? (_navCommand = ReactiveCommand.CreateAsyncTask(async type =>
                 {
-                    var navType = _ as Type;
+                    var navType = type as Type;
                     if (navType != CurrentViewModelType)
                     {
-                        CloseMenu.Execute(null);
-                        Screen.Router.Navigate.Execute(Activator.CreateInstance(navType, Screen));
+                        var vm = Activator.CreateInstance(navType, Screen);
+
+                        await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
+                        () =>
+                        {
+                            IsSideNavigationVisible = false;
+                        });
+
+                        RxApp.MainThreadScheduler.Schedule(() =>
+                        {
+                            Screen.Router.Navigate.Execute(vm);
+                        });
                     }
-                    return Task.FromResult(navType);
+                    return navType;
                 }));
             }
         }
@@ -144,8 +155,10 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             get { return _isSideNavigationVisible; }
             set { this.RaiseAndSetIfChanged(ref _isSideNavigationVisible, value); }
         }
-
-        public ISubject<bool> IsSideNavigationVisibleSubject { get; set; } 
+        /// <summary>
+        /// Allows the Visibility of the sidenavigation to be observed and observable
+        /// </summary>
+        public ISubject<bool> IsSideNavigationVisibleSubject { get; set; }
 
         #region Menu Items
 

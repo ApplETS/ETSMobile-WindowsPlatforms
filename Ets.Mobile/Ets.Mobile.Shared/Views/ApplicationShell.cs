@@ -1,34 +1,35 @@
-﻿using ReactiveUI;
-using Splat;
-using ModernHttpClient;
-using System.Net.Http;
-using System.Reactive.Linq;
-using Akavache;
-using System;
+﻿using Akavache;
 using Ets.Mobile.Agent;
+using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Pages.Account;
-using Ets.Mobile.Pages.Main;
-using Ets.Mobile.ViewModel.Pages.Account;
-using Ets.Mobile.ViewModel.Pages.Main;
-using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Pages.Grade;
+using Ets.Mobile.Pages.Main;
 using Ets.Mobile.Pages.Program;
 using Ets.Mobile.Pages.Schedule;
 using Ets.Mobile.Pages.Settings;
 using Ets.Mobile.UserErrorHandlers;
 using Ets.Mobile.ViewModel.Contracts.Shared;
 using Ets.Mobile.ViewModel.Contracts.UserDetails;
+using Ets.Mobile.ViewModel.Pages.Account;
 using Ets.Mobile.ViewModel.Pages.Grade;
+using Ets.Mobile.ViewModel.Pages.Main;
 using Ets.Mobile.ViewModel.Pages.Program;
 using Ets.Mobile.ViewModel.Pages.Schedule;
 using Ets.Mobile.ViewModel.Pages.Settings;
 using Ets.Mobile.ViewModel.Pages.Shared;
 using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Logger;
+using ModernHttpClient;
+using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Handlers;
 using Refit;
 using Security.Algorithms;
+using Splat;
+using System;
+using System.Net.Http;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
 
 namespace Ets.Mobile.ViewModel
 {
@@ -107,30 +108,35 @@ namespace Ets.Mobile.ViewModel
 	    public void HandleAuthentificated()
 	    {
 	        BlobCache.UserAccount.GetObject<SignetsAccountVm>(ViewModelKeys.Login)
-                .ObserveOn(RxApp.MainThreadScheduler)
-                .SubscribeOn(RxApp.MainThreadScheduler)
                 .Catch(Observable.Return(new SignetsAccountVm()))
 	            .Subscribe(signetsAccountVm =>
 	            {
+	                object navigateTo;
 	                if (signetsAccountVm.IsLoginSuccessful)
 	                {
-                        Locator.Current.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
-                        Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
-                        SideNavigation.UserDetails.LoadProfile.Execute(null);
-                        Router.Navigate.Execute(new MainViewModel(this));
+	                    Locator.Current.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
+	                    Locator.Current.GetService<IUserEnabledLogger>()
+	                        .SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
+	                    SideNavigation.UserDetails.LoadProfile.Execute(null);
+                        navigateTo = new MainViewModel(this);
 	                }
-                    else
+	                else
 	                {
-                        Router.Navigate.Execute(new LoginViewModel(this));
+                        navigateTo = new LoginViewModel(this);
                     }
-                });
+
+	                RxApp.MainThreadScheduler.Schedule(() =>
+	                {
+	                    Router.Navigate.Execute(navigateTo);
+	                });
+	            });
         }
 
         #endregion
 
         #region Registration
 
-        static void RegisterContainer(IMutableDependencyResolver resolver)
+        private static void RegisterContainer(IMutableDependencyResolver resolver)
 		{
 			var module = new Shared.ModuleInit();
             module.Initialize(resolver);
