@@ -8,10 +8,9 @@
     xmlns:program="using:Ets.Mobile.Views.Content.Program"
     xmlns:shell="using:Ets.Mobile.Shell"
     mc:Ignorable="d"
-    DataContext="{Binding}"
-    Background="{StaticResource EtsBackgroundBodyBrush}">
+    DataContext="{Binding}">
 
-    <Grid>
+    <Grid Background="{StaticResource EtsBackgroundBodyBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
@@ -19,11 +18,11 @@
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <program:Programs Grid.Row="1" Margin="10" DataContext="{Binding ProgramPresenter}" />
+        <program:Programs Grid.Row="1" Margin="15,10,15,0" DataContext="{Binding ProgramPresenter}" />
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" ClosedDisplayMode="Minimal" Opacity="0.7" Background="{StaticResource EtsBackgroundBrush}" Foreground="{StaticResource EtsRedHighBrush}" Visibility="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}">
+        <CommandBar x:Name="CommandB" Background="{StaticResource EtsCommandBarBackground}" Foreground="{StaticResource EtsCommandBarForeground}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Refresh" Label="Refresh" Command="{Binding LoadProgram}" />
             </CommandBar.PrimaryCommands>

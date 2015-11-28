@@ -204,11 +204,11 @@ namespace Ets.Mobile
             // Ensure the current window is active
             Window.Current.Activate();
 
-#if WINDOWS_PHONE_APP
-            // Allows the windows to always use the full screen
-            // This solves the problem: when hiding the commandbar, the windows would not resize. Now it does.
-            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-#endif
+//#if WINDOWS_PHONE_APP
+//            // Allows the windows to always use the full screen
+//            // This solves the problem: when hiding the commandbar, the windows would not resize. Now it does.
+//            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+//#endif
         }
 
 #if WINDOWS_PHONE_APP
