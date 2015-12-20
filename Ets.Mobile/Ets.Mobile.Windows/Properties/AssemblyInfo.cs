@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ets Mobile")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("ETSMobile for Windows")]
+[assembly: AssemblyDescription("ETSMobile for Windows Phone")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Ets.Mobile.Windows")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("École de Technologie Supérieure")]
+[assembly: AssemblyProduct("ETSMobile for Windows Phone")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
