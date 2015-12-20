@@ -25,7 +25,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         }
 
         #endregion
-
+        
         public GradeViewModel(IScreen screen, CourseVm selectedCourse) 
             : base(screen, "Grades")
         {
@@ -39,19 +39,18 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             GradeItems = new ReactiveList<GradeViewModelItem>();
             
             LoadGrade = ReactiveCommand.CreateAsyncObservable(_ =>
-            {
-                return BlobCache.UserAccount.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
+                Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
                     .Select(courses =>
-                        courses.Where(x => x.Semester != "s.o.")
+                        courses
                             .OrderByDescending(x => x.Semester, new SemestersComparator())
                             .ToList()
                     )
-                    .Where(x => x != null 
-                        && x.Any(y => !string.IsNullOrEmpty(y.Semester)) 
-                        && x.Any(y => y.Semester == Semester))
+                    .Where(x => x != null
+                                && x.Any(y => !string.IsNullOrEmpty(y.Semester))
+                                && x.Any(y => y.Semester == Semester))
                     .Select(x => x.Where(y => y.Semester == Semester))
-                    .Select(x => x.Select(y => new GradeViewModelItem(y)));
-            });
+                    .Select(x => x.Select(y => new GradeViewModelItem(y)).ToArray())
+            );
 
             LoadGrade.ThrownExceptions
                 .Subscribe(x =>
@@ -59,39 +58,39 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                     UserError.Throw(x.Message, x);
                 });
 
-            LoadGrade.Subscribe(x =>
+            LoadGrade.Subscribe(gradeItems =>
             {
-                GradeItems.Clear();
-                GradeItems.AddRange(x);
-                InitialIndex = GradeItems.IndexOf(GradeItems.First(y => y.Course.Acronym == SelectedCourse.Acronym));
-            });
+                var selectedCourse = gradeItems.First(y => y.Course.Acronym == SelectedCourse.Acronym);
+                selectedCourse.LoadGrade.Execute(null);
+                selectedCourse.HasTriggeredLoadGradeOnce = true;
 
-            Grades = GradeItems.CreateDerivedCollection(
-                x => x,
-                x => x.Dispose()
-            );
+                using (GradeItems.SuppressChangeNotifications())
+                {
+                    GradeItems.Clear();
+                    GradeItems.AddRange(gradeItems.OrderBy(x => x.Course.Acronym != SelectedCourse.Acronym));
+                }
+            });
         }
 
-        public IObservable<List<CourseVm>> FetchCourses()
+        public IObservable<CourseVm[]> FetchCourses()
         {
             return ClientServices().SignetsService.Courses()
                 .ToObservable()
                 .Do(async courses =>
                 {
-                    foreach (var course in courses.Where(x => x.Semester != "s.o.")
-                        .GroupBy(x => x.Semester))
+                    foreach (var course in courses.GroupBy(x => x.Semester))
                     {
                         await SettingsService().ApplyColorOnItemsForSemester(
                             courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
                             course.FirstOrDefault().Semester, x => x.Acronym);
                     }
                 })
-                .Select(x => x.ToList());
+                .Select(x => x.ToArray());
         }
 
         #region Properties
 
-        public ReactiveCommand<IEnumerable<GradeViewModelItem>> LoadGrade { get; protected set; }
+        public ReactiveCommand<GradeViewModelItem[]> LoadGrade { get; protected set; }
         
         private string _semester;
         [DataMember]
@@ -109,14 +108,6 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             set { this.RaiseAndSetIfChanged(ref _selectedCourse, value); }
         }
 
-        private int _initialIndex;
-        [DataMember]
-        public int InitialIndex
-        {
-            get { return _initialIndex; }
-            set { this.RaiseAndSetIfChanged(ref _initialIndex, value); }
-        }
-
         private ReactiveList<GradeViewModelItem> _gradeItems;
         [DataMember]
         public ReactiveList<GradeViewModelItem> GradeItems
@@ -125,8 +116,8 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             set { this.RaiseAndSetIfChanged(ref _gradeItems, value); }
         }
 
-        [DataMember]
-        public IReactiveDerivedList<GradeViewModelItem> Grades { get; protected set; }
+        //[DataMember]
+        //public IReactiveDerivedList<GradeViewModelItem> Grades { get; protected set; }
 
         #endregion
     }    

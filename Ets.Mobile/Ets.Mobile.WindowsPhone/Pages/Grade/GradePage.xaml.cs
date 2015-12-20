@@ -1,9 +1,8 @@
-﻿using System.Linq;
+﻿using ReactiveUI;
+using System;
+using System.Linq;
 using System.Reactive.Linq;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using ReactiveUI;
-using System;
 
 namespace Ets.Mobile.Pages.Grade
 {
@@ -17,14 +16,17 @@ namespace Ets.Mobile.Pages.Grade
             subscriptionForViewModel
                 .InvokeCommand(this, x => x.ViewModel.LoadGrade);
 
-            subscriptionForViewModel
-                .Subscribe(x =>
+            subscriptionForViewModel.BindTo(this, x => x.DataContext);
+
+            subscriptionForViewModel.Subscribe(x =>
+            {
+                IDisposable disposable = null;
+                disposable = ViewModel.GradeItems.ItemsAdded.Subscribe(y =>
                 {
-                    x.LoadGrade.Subscribe(y =>
-                    {
-                        ChangeRefreshCommandAndExecuteOnce();
-                    });
+                    RefreshGrade.Command = ViewModel.GradeItems[0].LoadGrade;
+                    disposable?.Dispose();
                 });
+            });
 
             Pivot.SelectionChanged += (sender, e) =>
             {
@@ -33,10 +35,6 @@ namespace Ets.Mobile.Pages.Grade
                     ChangeRefreshCommandAndExecuteOnce();
                 }
             };
-
-            this.OneWayBind(ViewModel, x => x.InitialIndex, x => x.Pivot.SelectedIndex);
-
-            this.OneWayBind(ViewModel, x => x.Grades, x => x.Pivot.ItemsSource);
         }
 
         private void ChangeRefreshCommandAndExecuteOnce()
@@ -50,10 +48,6 @@ namespace Ets.Mobile.Pages.Grade
                     ViewModel.GradeItems[Pivot.SelectedIndex].HasTriggeredLoadGradeOnce = true;
                 }
             }
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
         }
     }
 }

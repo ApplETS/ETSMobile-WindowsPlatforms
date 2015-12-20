@@ -15,6 +15,26 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="EmptyTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding DefaultEmptyMessage}" TextWrapping="WrapWholeWords" Style="{StaticResource EtsTextBlockMainColor3}" Foreground="#a6a6a6" />
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RefreshingTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.7">
+                        <StackPanel VerticalAlignment="Center">
+                            <ProgressRing IsActive="True" Foreground="{StaticResource EtsTextMainBrush}" Background="Transparent" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ReactivePresenter">
@@ -59,7 +79,7 @@
                             <ContentPresenter x:Name="PART_EmptyPresenter" Opacity="0" />
                             <ContentPresenter x:Name="PART_ErrorPresenter" Opacity="0" />
                             <ContentPresenter x:Name="PART_ValuePresenter" Opacity="0" />
-                            <ContentPresenter x:Name="PART_RefreshingPresenter" IsHitTestVisible="false" Opacity="0">
+                            <ContentPresenter x:Name="PART_RefreshingPresenter" Opacity="0">
                                 <ContentPresenter.Style>
                                     <Style TargetType="ContentPresenter">
                                         <Setter Property="HorizontalAlignment" Value="Stretch"/>

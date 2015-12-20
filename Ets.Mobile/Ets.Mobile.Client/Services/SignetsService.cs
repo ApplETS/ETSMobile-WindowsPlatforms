@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 using Akavache;
@@ -67,7 +68,7 @@ namespace Ets.Mobile.Client.Services
 
             _signetsService.HandleError(coursesResult);
 
-            return _factory.CreateFor<CoursesResult, List<CourseVm>>(coursesResult).ToArray();
+            return _factory.CreateFor<CoursesResult, List<CourseVm>>(coursesResult).Where(x => x.Semester != "s.o.").ToArray();
         }
 
         public async Task<CourseIntervalVm[]> CoursesIntervalSemester(string startSemester, string endSemester)
@@ -108,7 +109,7 @@ namespace Ets.Mobile.Client.Services
 
         public async Task<EvaluationsVm> Evaluations(string courseAbridgedName, string group, string semesterAbridgedName)
         {
-            if (semesterAbridgedName == "s.o.")
+            if (semesterAbridgedName == "s.o.") // s.o. are not recognized by the webservice
             {
                 return new EvaluationsVm();
             }

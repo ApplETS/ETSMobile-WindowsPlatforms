@@ -7,6 +7,7 @@ using Akavache;
 using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Extensions;
 using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
@@ -29,7 +30,8 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                         return schedule;
                     }))
                     .Where(x => x != null)
-                    .Select(x => x);
+                    .Select(x => x)
+                    .ThrowIfEmpty();
             });
 
             LoadCoursesForToday.ThrownExceptions

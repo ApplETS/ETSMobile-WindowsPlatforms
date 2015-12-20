@@ -147,7 +147,7 @@
   <data name="Grade" xml:space="preserve">
     <value>Grade</value>
   </data>
-  <data name="GradesEmptyUid.Text" xml:space="preserve">
+  <data name="GradesEmpty" xml:space="preserve">
     <value>There are no results to show</value>
   </data>
   <data name="GradeUid.Text" xml:space="preserve">
@@ -189,8 +189,8 @@
   <data name="ProfileHeaderUid.Text" xml:space="preserve">
     <value>Profile</value>
   </data>
-  <data name="ScheduleEmptyUid.Text" xml:space="preserve">
-    <value>You do not have classes.</value>
+  <data name="ScheduleEmpty" xml:space="preserve">
+    <value>You do not have courses today</value>
   </data>
   <data name="StandardDeviation" xml:space="preserve">
     <value>Standard Deviation</value>
@@ -207,7 +207,7 @@
   <data name="Summer" xml:space="preserve">
     <value>Summer</value>
   </data>
-  <data name="TodayEmptyUid.Text" xml:space="preserve">
+  <data name="TodayEmpty" xml:space="preserve">
     <value>You do not have courses today</value>
   </data>
   <data name="TodayUid.Text" xml:space="preserve">
@@ -246,7 +246,7 @@
   <data name="ProgramUid.Text" xml:space="preserve">
     <value>Program</value>
   </data>
-  <data name="ProgramEmptyUid.Text" xml:space="preserve">
+  <data name="ProgramEmpty" xml:space="preserve">
     <value>You do not have programs</value>
   </data>
   <data name="HomeUid.Text" xml:space="preserve">
@@ -338,5 +338,14 @@
   </data>
   <data name="FeedbackButtonUid.Content" xml:space="preserve">
     <value>send feedback</value>
+  </data>
+  <data name="GradesNotAvailable" xml:space="preserve">
+    <value>The grades for this course are not currently available. Alternatively, make sure you're connected to a Wi-Fi or cellular network and that the course is either in a current semester or within a past one.</value>
+  </data>
+  <data name="ScheduleEmptyMessage" xml:space="preserve">
+    <value>No courses were loaded since you are not within in a semester or registered to a course at the moment.</value>
+  </data>
+  <data name="ScheduleEmptyTitle" xml:space="preserve">
+    <value>No courses loaded</value>
   </data>
 </root>

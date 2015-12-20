@@ -147,7 +147,7 @@
   <data name="Grade" xml:space="preserve">
     <value>Cote</value>
   </data>
-  <data name="GradesEmptyUid.Text" xml:space="preserve">
+  <data name="GradesEmpty" xml:space="preserve">
     <value>Il n'y a pas de résultats à afficher</value>
   </data>
   <data name="GradeUid.Text" xml:space="preserve">
@@ -189,7 +189,7 @@
   <data name="ProfileHeaderUid.Text" xml:space="preserve">
     <value>Profil</value>
   </data>
-  <data name="ScheduleEmptyUid.Text" xml:space="preserve">
+  <data name="ScheduleEmpty" xml:space="preserve">
     <value>Vous n'avez pas de cours</value>
   </data>
   <data name="StandardDeviation" xml:space="preserve">
@@ -207,7 +207,7 @@
   <data name="Summer" xml:space="preserve">
     <value>Été</value>
   </data>
-  <data name="TodayEmptyUid.Text" xml:space="preserve">
+  <data name="TodayEmpty" xml:space="preserve">
     <value>Vous ne semblez pas avoir de cours aujourd'hui</value>
   </data>
   <data name="TodayUid.Text" xml:space="preserve">
@@ -246,7 +246,7 @@
   <data name="ProgramUid.Text" xml:space="preserve">
     <value>Programme</value>
   </data>
-  <data name="ProgramEmptyUid.Text" xml:space="preserve">
+  <data name="ProgramEmpty" xml:space="preserve">
     <value>Vous ne semblez pas avoir de programme</value>
   </data>
   <data name="HomeUid.Text" xml:space="preserve">
@@ -338,5 +338,14 @@
   </data>
   <data name="FeedbackButtonUid.Content" xml:space="preserve">
     <value>envoyer des commentaires</value>
+  </data>
+  <data name="GradesNotAvailable" xml:space="preserve">
+    <value>Les résultats de ce cours ne sont pas actuellement disponibles. Alternativement, vérifiez que vous êtes connecté à internet et que le cours est soit dans le semestre courant ou passé.</value>
+  </data>
+  <data name="ScheduleEmptyMessage" xml:space="preserve">
+    <value>Il n'y a pas de cours puisque vous n'êtes pas actuellement dans une session ou que vous n'êtes pas inscrit à au moins un cours.</value>
+  </data>
+  <data name="ScheduleEmptyTitle" xml:space="preserve">
+    <value>Pas de cours à afficher</value>
   </data>
 </root>

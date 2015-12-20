@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Skins/MainSkin.xaml" />
-                <ResourceDictionary Source="/Skins/ReactivePresenter.xaml"/>
+                <ResourceDictionary Source="/Skins/ReactivePresenter.xaml" />
                 <ResourceDictionary Source="/Skins/SplitViewStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <x:String x:Key="AppName">ETS Mobile</x:String>

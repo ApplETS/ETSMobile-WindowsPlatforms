@@ -81,13 +81,6 @@
                         </ListView>
                     </SemanticZoom.ZoomedInView>
                     <SemanticZoom.ZoomedOutView>
-                        <!--<ListView ItemsSource="{Binding CollectionGroups, Source={StaticResource ScheduleCollectionViewSource}}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Group.Model.Key}" Foreground="Black" FontSize="18" />
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>-->
                         <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource ScheduleCollectionViewSource}}" ScrollViewer.IsHorizontalScrollChainingEnabled="False">
                             <GridView.ItemTemplate>
                                 <DataTemplate>
@@ -120,25 +113,8 @@
     </UserControl.Resources>
 
     <controls:ReactivePresenter DisableErrorNotification="False"
-                            PresenterSource="{Binding}"
-                            DefaultErrorMessage="Make sure you're connected to a Wi-Fi or cellular network and try again."
-                            ValueTemplate="{StaticResource SchedulesPresenterValue}">
-        <controls:ReactivePresenter.EmptyTemplate>
-            <DataTemplate>
-                <Grid>
-                    <TextBox x:Uid="ScheduleEmptyUid" Text="Vous n'avez pas de cours" Foreground="#a6a6a6" FontSize="24" FontWeight="Thin" FontFamily="Segoe WP" />
-                </Grid>
-            </DataTemplate>
-        </controls:ReactivePresenter.EmptyTemplate>
-        <controls:ReactivePresenter.RefreshingTemplate>
-            <DataTemplate>
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.7">
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Text="loading" Style="{StaticResource EtsTextBlockMainColor3}" />
-                        <ProgressBar IsIndeterminate="True" Foreground="#a6a6a6"  />
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
-        </controls:ReactivePresenter.RefreshingTemplate>
-    </controls:ReactivePresenter>
+        PresenterSource="{Binding}"
+        DefaultEmptyMessage="{Binding ScheduleEmptyUid, Source={StaticResource LocalizedStrings}}"
+        DefaultErrorMessage="{Binding NetworkError, Source={StaticResource LocalizedStrings}}"
+        ValueTemplate="{StaticResource SchedulesPresenterValue}" />
 </UserControl>

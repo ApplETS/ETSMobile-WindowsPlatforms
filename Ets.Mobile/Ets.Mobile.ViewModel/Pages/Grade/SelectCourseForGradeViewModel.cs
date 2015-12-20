@@ -15,6 +15,7 @@ using Ets.Mobile.ViewModel.Contracts.Grade;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
 using Akavache;
+using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
@@ -43,22 +44,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             GradesItems = new ReactiveList<GradeSummaryViewModelGroup>();
 
             LoadGrades = ReactivePresenterCommand.CreateAsyncObservable(_ => {
-                return Cache.GetAndFetchLatest(ViewModelKeys.Courses, () =>
-                    ClientServices().SignetsService.Courses()
-                    .ToObservable()
-                    .Select(x => x.Where(y => y.Semester != "s.o.").OrderByDescending(y => y.Semester, new SemestersComparator()))
-                    .Do(async courses =>
-                    {
-                        foreach (var course in courses.Where(x => x.Semester != "s.o.")
-                                                    .GroupBy(x => x.Semester))
-                        {
-                            await SettingsService().ApplyColorOnItemsForSemester(
-                                    courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
-                                    course.FirstOrDefault().Semester, x => x.Acronym);
-                        }
-                    })
-                    .Select(x => x.ToArray())
-                )
+                return Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
                 .Select(y => y.OrderByDescending(x => x.Semester, new SemestersComparator()).ToList())
                 .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)).ToList());
             });
@@ -73,6 +59,22 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                 orderer: (x, y) => SemestersComparatorMethod.ReversedCompare(x.Semester, y.Semester));
 
             GradesPresenter = LoadGrades.CreateReactivePresenter(GradesItems, Grades, true);
+        }
+
+        public IObservable<CourseVm[]> FetchCourses()
+        {
+            return ClientServices().SignetsService.Courses()
+                .ToObservable()
+                .Do(async courses =>
+                {
+                    foreach (var course in courses.GroupBy(x => x.Semester))
+                    {
+                        await SettingsService().ApplyColorOnItemsForSemester(
+                            courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
+                            course.FirstOrDefault().Semester, x => x.Acronym);
+                    }
+                })
+                .Select(x => x.ToArray());
         }
 
         #region Properties

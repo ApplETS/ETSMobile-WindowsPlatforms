@@ -11,6 +11,11 @@ namespace Ets.Mobile.Entities.Signets
     [DataContract]
     public class EvaluationsVm : ReactiveObject, ICustomColor
     {
+        public EvaluationsVm()
+        {
+            Evaluations = new List<EvaluationVm>();
+        }
+
         private string _letterGrade;
         [DataMember]
         public string LetterGrade

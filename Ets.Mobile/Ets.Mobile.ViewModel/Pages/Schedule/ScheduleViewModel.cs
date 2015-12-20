@@ -8,7 +8,9 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.Serialization;
 using Akavache;
+using Messaging.Interfaces.Common;
 using Messaging.UniversalApp.Common;
+using ReactiveUI.Xaml.Controls.Extensions;
 using Refit;
 
 namespace Ets.Mobile.ViewModel.Pages.Schedule
@@ -29,6 +31,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
             {
                 return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
                     .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
+                    .ThrowIfEmpty()
                     .SelectMany(x => x)
                     .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
                     .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
@@ -43,24 +46,13 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
             LoadSchedule.ThrownExceptions
                 .Subscribe(x =>
                 {
+                    var empty = x is IMessagingContent;
+                    if (empty)
+                    {
+                        ViewServices().Popup.ShowMessage(Resources().GetString("ScheduleEmptyMessage"), Resources().GetString("ScheduleEmptyTitle"));
+                    }
+
                     UserError.Throw(x.Message, x);
-                    Exception exception;
-                    var apiException = x as ApiException;
-                    if (apiException != null)
-                    {
-                        var exceptionMessage = new ErrorMessageContent(x.Message, apiException);
-                        if (apiException.ReasonPhrase == "Not Found")
-                        {
-                            exceptionMessage.Message = Resources().GetString("NetworkError");
-                            exceptionMessage.Title = Resources().GetString("NetworkTitleError");
-                        }
-                        exception = exceptionMessage.Exception;
-                    }
-                    else
-                    {
-                        exception = x;
-                    }
-                    _scheduleExceptionSubject.OnNext(exception);
                 });
 
             LoadSchedule.Subscribe(x =>
@@ -75,7 +67,6 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
         [DataMember]
         public ReactiveList<ScheduleVm> ScheduleItems { get; protected set; }
         public ReactiveCommand<IEnumerable<ScheduleVm>> LoadSchedule { get; protected set; }
-        private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion
     }

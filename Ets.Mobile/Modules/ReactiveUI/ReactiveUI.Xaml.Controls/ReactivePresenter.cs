@@ -1,15 +1,21 @@
-﻿using System;
-using System.Diagnostics;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using Windows.ApplicationModel;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Markup;
-using Messaging.Interfaces.Common;
+﻿using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
 using ReactiveUI.Xaml.Controls.Handlers;
 using Splat;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reactive.Concurrency;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Markup;
 
 namespace ReactiveUI.Xaml.Controls
 {
@@ -109,8 +115,8 @@ namespace ReactiveUI.Xaml.Controls
         public static readonly DependencyProperty DefaultErrorMessageProperty =
             DependencyProperty.Register("DefaultErrorMessage", typeof(string), typeof(ReactivePresenter), new PropertyMetadata(null));
 
-        public static readonly DependencyProperty DefaultErrorMessageKeyProperty =
-            DependencyProperty.Register("DefaultErrorMessageKey", typeof(string), typeof(ReactivePresenter), new PropertyMetadata(null));
+        public static readonly DependencyProperty DefaultEmptyMessageProperty =
+            DependencyProperty.Register("DefaultEmptyMessage", typeof(string), typeof(ReactivePresenter), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DefaultErrorTitleKeyProperty =
             DependencyProperty.Register("DefaultErrorTitleKey", typeof(string), typeof(ReactivePresenter), new PropertyMetadata(null));
@@ -181,7 +187,7 @@ namespace ReactiveUI.Xaml.Controls
 
         public object CurrentError
         {
-            get { return GetValue(CurrentErrorProperty) as Exception; }
+            get { return GetValue(CurrentErrorProperty); }
             set { SetValue(CurrentErrorProperty, value); }
         }
 
@@ -207,6 +213,12 @@ namespace ReactiveUI.Xaml.Controls
         {
             get { return (string)GetValue(DefaultErrorMessageProperty); }
             set { SetValue(DefaultErrorMessageProperty, value); }
+        }
+
+        public string DefaultEmptyMessage
+        {
+            get { return (string)GetValue(DefaultEmptyMessageProperty); }
+            set { SetValue(DefaultEmptyMessageProperty, value); }
         }
 
         public ReactiveState PreviousReactiveState
@@ -299,6 +311,70 @@ namespace ReactiveUI.Xaml.Controls
                 _isReactiveSourceInitialized = true;
                 var source = (IReactivePresenterHandler)PresenterSource;
 
+                // This puts the right content/state
+                Dispatcher.RunAsync(CoreDispatcherPriority.High, async () => 
+                {
+                    var getValue = source.GetLastValue();
+                    var getEmptyMessage = source.GetLastEmptyMessage();
+                    var getThrownException = source.GetLastThrownException();
+                    var getRefreshing = source.GetLastRefreshing();
+                    var taskCompleted = await Task.WhenAny(getRefreshing, Task.WhenAny(getValue, getEmptyMessage, getThrownException));
+                    if (taskCompleted == getRefreshing && getRefreshing.Result)
+                    {
+                        CurrentIsRefreshing = true;
+                        ReactiveState = ReactiveState.Refreshing;
+                        this.Log().Info($"[{typeof(ReactivePresenter)}]: Refreshing (true) State for {Name} has been injected");
+                        var subTaskCompleted = await Task.WhenAny(getValue, getEmptyMessage, getThrownException);
+                        if (subTaskCompleted == getValue)
+                        {
+                            var result = getValue.Result as IEnumerable;
+                            if (result != null && result.GetEnumerator().MoveNext())
+                            {
+                                CurrentSource = getValue.Result;
+                                ReactiveState = ReactiveState.Value;
+                                this.Log().Info($"[{typeof (ReactivePresenter)}]: Value ({getValue.Result}) State for {Name} has been injected");
+                            }
+                            else
+                            {
+                                CurrentIsEmpty = true;
+                                ReactiveState = ReactiveState.Empty;
+                                this.Log().Info($"[{typeof(ReactivePresenter)}]: IsEmpty State for {Name} has been injected");
+                            }
+                        }
+                        else if (subTaskCompleted == getEmptyMessage)
+                        {
+                            CurrentIsEmpty = true;
+                            ReactiveState = ReactiveState.Empty;
+                            this.Log().Info($"[{typeof(ReactivePresenter)}]: IsEmpty State for {Name} has been injected");
+                        }
+                        else if (subTaskCompleted == getThrownException)
+                        {
+                            CurrentError = getThrownException.Result.Message;
+                            ReactiveState = ReactiveState.Error;
+                            this.Log().Error($"[{typeof(ReactivePresenter)}]: Error State for {Name} has been injected");
+                        }
+                    }
+                    if (taskCompleted == getValue)
+                    {
+                        CurrentSource = getValue.Result;
+                        ReactiveState = ReactiveState.Value;
+                        this.Log().Info($"[{typeof(ReactivePresenter)}]: Value ({getValue.Result}) State for {Name} has been injected");
+                    }
+                    else if (taskCompleted == getEmptyMessage)
+                    {
+                        CurrentIsEmpty = true;
+                        ReactiveState = ReactiveState.Empty;
+                        this.Log().Info($"[{typeof(ReactivePresenter)}]: IsEmpty State for {Name} has been injected");
+                    }
+                    else if(taskCompleted == getThrownException)
+                    {
+                        CurrentError = getThrownException.Result.Message;
+                        ReactiveState = ReactiveState.Error;
+                        this.Log().Error($"[{typeof(ReactivePresenter)}]: Error State for {Name} has been injected");
+                    }
+                }).GetAwaiter().OnCompleted(() => {});
+
+                // When New Content Arrives
                 _subscriptions.Add(source.Content.Where(x => x != null).Subscribe(x =>
                 {
                     PreviousSource = previousValue;
@@ -306,6 +382,7 @@ namespace ReactiveUI.Xaml.Controls
                     ReactiveState = ReactiveState.Value;
                     this.Log().Info($"[{typeof(ReactivePresenter)}]: Value ({x}) State for {Name}");
                 }));
+                // When Ready, Ensures that the state is Value
                 _subscriptions.Add(source.IsReady.Subscribe(x =>
                 {
                     if (ReactiveState != ReactiveState.Value)
@@ -314,6 +391,7 @@ namespace ReactiveUI.Xaml.Controls
                         this.Log().Info($"[{typeof(ReactivePresenter)}]: Value State since it's ready for {Name}");
                     }
                 }));
+                // When a message says that the Value is empty, set Empty
                 _subscriptions.Add(
                     source.EmptyMessage.Where(message => message != null)
                     .Subscribe(x =>
@@ -329,9 +407,9 @@ namespace ReactiveUI.Xaml.Controls
                     ReactiveState = ReactiveState.Refreshing;
                     this.Log().Info($"[{typeof(ReactivePresenter)}]: Refreshing State for {Name}");
                 }));
-                _subscriptions.Add(source.ThrownExceptions.Where(error => error != null).Subscribe(x =>
+                _subscriptions.Add(source.ThrownExceptions.Where(error => error != null).Subscribe(ex =>
                 {
-                    CurrentError = (object)x;
+                    CurrentError = ex.Message;
                     ReactiveState = ReactiveState.Error;
                     this.Log().Error($"[{typeof(ReactivePresenter)}]: Error State for {Name}");
                 }));
