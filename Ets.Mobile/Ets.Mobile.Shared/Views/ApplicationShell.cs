@@ -62,6 +62,12 @@ namespace Ets.Mobile.ViewModel
             // Back Button Handling
             Windows.Phone.UI.Input.HardwareButtons.BackPressed += (sender, e) =>
             {
+                if (SideNavigation.IsSideNavigationVisible)
+                {
+                    SideNavigation.CloseMenu.Execute(null);
+                    e.Handled = true;
+                    return;
+                }
                 if (Router.NavigationStack.Count > 1)
                 {
                     Router.NavigateBack.Execute(null);
