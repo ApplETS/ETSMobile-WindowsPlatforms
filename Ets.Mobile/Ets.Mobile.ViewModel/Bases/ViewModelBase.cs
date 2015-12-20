@@ -17,6 +17,8 @@ namespace Ets.Mobile.ViewModel.Bases
             HostScreen = screen ?? Locator.Current.GetService<IScreen>();
             UrlPathSegment = urlPathSegment;
         }
+        
+        protected abstract void OnViewModelCreation();
 
         [IgnoreDataMember]
         public IScreen HostScreen { get; protected set; }

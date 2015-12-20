@@ -131,6 +131,7 @@
         <schedule:SfSchedule
             ScheduleTypeChanging="schedule_ScheduleTypeChanging"
             Loaded="schedule_Loaded"
+            VisibleDatesChanging="Scheduler_OnVisibleDatesChanging"
             Grid.Row="1"
             x:Name="Scheduler"
             AllowEditing="False" 

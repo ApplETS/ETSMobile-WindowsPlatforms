@@ -9,6 +9,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Messaging.Interfaces.Common;
 using ReactiveUI;
@@ -35,10 +36,13 @@ namespace Ets.Mobile.ViewModel.DesignTime
 
     public class ReactivePresenterHandlerDesignTime<T> : IReactivePresenterHandler<T>
     {
-        public ReactivePresenterHandlerDesignTime(IObservable<T> content)
+        public ReactivePresenterHandlerDesignTime(object value)
         {
-            Content = content.Select(x => (object)x);
+            Content = Observable.Return(value);
+            _value = value;
         }
+
+        private readonly object _value;
 
         public void OnNextValue(T obj) {}
         public void OnNextIsReady(bool isReady) {}
@@ -48,6 +52,32 @@ namespace Ets.Mobile.ViewModel.DesignTime
         public IObservable<bool> IsRefreshing { get; set; }
         public IObservable<IMessagingContent> EmptyMessage { get; set; }
         public IObservable<Exception> ThrownExceptions { get; set; }
+        public Task<object> GetLastValue()
+        {
+            return Task.FromResult(_value);
+        }
+
+        private class MessagingContent : IMessagingContent
+        {
+            public string Title { get; }
+            public string Message { get; }
+        }
+
+        public Task<IMessagingContent> GetLastEmptyMessage()
+        {
+            return Task.FromResult(new MessagingContent() as IMessagingContent);
+        }
+
+        public Task<Exception> GetLastThrownException()
+        {
+            return Task.FromResult(new Exception("Exception"));
+        }
+
+        public Task<bool> GetLastRefreshing()
+        {
+            return Task.FromResult(true);
+        }
+
         public void Dispose()
         {
         }

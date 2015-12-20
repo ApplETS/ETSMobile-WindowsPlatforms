@@ -1,7 +1,7 @@
 ﻿
 using Windows.ApplicationModel.Resources;
 using Splat;
-
+using System;
 namespace Localization
 {
     public sealed class StringResources
@@ -78,11 +78,11 @@ namespace Localization
                 return _resourceLoader.GetString("Grade");
             }
         } 
-        public static string GradesEmptyUid_Text  
+        public static string GradesEmpty  
         {
             get
             {
-                return _resourceLoader.GetString("GradesEmptyUid");
+                return _resourceLoader.GetString("GradesEmpty");
             }
         } 
         public static string GradeUid_Text  
@@ -176,11 +176,11 @@ namespace Localization
                 return _resourceLoader.GetString("ProfileHeaderUid");
             }
         } 
-        public static string ScheduleEmptyUid_Text  
+        public static string ScheduleEmpty  
         {
             get
             {
-                return _resourceLoader.GetString("ScheduleEmptyUid");
+                return _resourceLoader.GetString("ScheduleEmpty");
             }
         } 
         public static string StandardDeviation  
@@ -218,11 +218,11 @@ namespace Localization
                 return _resourceLoader.GetString("Summer");
             }
         } 
-        public static string TodayEmptyUid_Text  
+        public static string TodayEmpty  
         {
             get
             {
-                return _resourceLoader.GetString("TodayEmptyUid");
+                return _resourceLoader.GetString("TodayEmpty");
             }
         } 
         public static string TodayUid_Text  
@@ -309,11 +309,11 @@ namespace Localization
                 return _resourceLoader.GetString("ProgramUid");
             }
         } 
-        public static string ProgramEmptyUid  
+        public static string ProgramEmpty  
         {
             get
             {
-                return _resourceLoader.GetString("ProgramEmptyUid");
+                return _resourceLoader.GetString("ProgramEmpty");
             }
         } 
         public static string HomeUid_Text  
@@ -384,6 +384,153 @@ namespace Localization
             get
             {
                 return _resourceLoader.GetString("ToBeDetermined");
+            }
+        } 
+        public static string AboutUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("AboutUid");
+            }
+        } 
+        public static string Settings  
+        {
+            get
+            {
+                return _resourceLoader.GetString("Settings");
+            }
+        } 
+        public static string AppletsDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("AppletsDescriptionUid");
+            }
+        } 
+        public static string AppletsWebsiteUid_NavigateUri  
+        {
+            get
+            {
+                return _resourceLoader.GetString("AppletsWebsiteUid");
+            }
+        } 
+        public static string ContributeDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ContributeDescriptionUid");
+            }
+        } 
+        public static string EcoledeTechnologieSuperieurUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("EcoledeTechnologieSuperieurUid");
+            }
+        } 
+        public static string VisitAndJoinUsUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("VisitAndJoinUsUid");
+            }
+        } 
+        public static string AkavacheDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("AkavacheDescriptionUid");
+            }
+        } 
+        public static string CreditsUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("CreditsUid");
+            }
+        } 
+        public static string CrittercismDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("CrittercismDescriptionUid");
+            }
+        } 
+        public static string ModernHttpClientDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ModernHttpClientDescriptionUid");
+            }
+        } 
+        public static string NewtonsoftJsonDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("NewtonsoftJsonDescriptionUid");
+            }
+        } 
+        public static string ReactiveExtensionsDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ReactiveExtensionsDescriptionUid");
+            }
+        } 
+        public static string ReactiveUIDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ReactiveUIDescriptionUid");
+            }
+        } 
+        public static string RefitDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("RefitDescriptionUid");
+            }
+        } 
+        public static string SplatDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("SplatDescriptionUid");
+            }
+        } 
+        public static string SqliteDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("SqliteDescriptionUid");
+            }
+        } 
+        public static string SyncfusionDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("SyncfusionDescriptionUid");
+            }
+        } 
+        public static string ConfidentialityUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ConfidentialityUid");
+            }
+        } 
+        public static string FeedbackButtonUid_Content  
+        {
+            get
+            {
+                return _resourceLoader.GetString("FeedbackButtonUid");
+            }
+        } 
+        public static string GradesNotAvailable  
+        {
+            get
+            {
+                return _resourceLoader.GetString("GradesNotAvailable");
             }
         } 
     }

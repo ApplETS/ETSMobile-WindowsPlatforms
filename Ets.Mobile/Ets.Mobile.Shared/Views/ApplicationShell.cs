@@ -159,7 +159,6 @@ namespace Ets.Mobile.ViewModel
             await HandleOfflineTask.Register();
             UserError.RegisterHandler(UserErrorOfflineHandler.Handler);
             UserErrorOfflineHandler.ExceptionsHandled.Add(typeof(ApiException));
-            ReactivePresenterMixins.ExceptionsNotHandledFromReactivePresenter.Add(typeof(ApiException));
         }
 
         #endregion

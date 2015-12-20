@@ -4,6 +4,9 @@ using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Reactive.Threading.Tasks;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Messaging.Interfaces.Common;
 using ReactiveUI.Extensions;
 using ReactiveUI.Xaml.Controls.Core;
@@ -12,18 +15,35 @@ namespace ReactiveUI.Xaml.Controls.Handlers
 {
     public static class ReactivePresenterMixins
     {
-        public static List<Type> ExceptionsNotHandledFromReactivePresenter = new List<Type>();
-
         private class ReactivePresenterHandler<T> : IReactivePresenterHandler<T>
         {
-            public ReactivePresenterHandler(IObservable<T> content)
+            public ReactivePresenterHandler([NotNull] IObservable<T> content, [NotNull] IObservable<bool> isRefreshing, [NotNull] IObservable<IMessagingContent> emptyMessage, [NotNull] IObservable<Exception> thrownErrors)
             {
                 CompositeDisposable = new CompositeDisposable();
 
+                EmptyMessage = emptyMessage;
+                IsRefreshing = isRefreshing;
+                ThrownExceptions = thrownErrors;
+
                 // Content Subject is disposable
-                var contentSubject = new Subject<T>();
+                var isRefreshingSubject = new ReplaySubject<bool>(1);
+                CompositeDisposable.Add(isRefreshingSubject);
+                IsRefreshingSubject = isRefreshingSubject;
+
+                // Content Subject is disposable
+                var contentSubject = new ReplaySubject<T>(1);
                 CompositeDisposable.Add(contentSubject);
                 ContentSubject = contentSubject;
+
+                // Empty Message Subject is disposable
+                var emptyMessageSubject = new ReplaySubject<IMessagingContent>(1);
+                CompositeDisposable.Add(emptyMessageSubject);
+                EmptyMessageSubject = emptyMessageSubject;
+
+                // Thrown Errors Subject is disposable
+                var thrownErrorsSubject = new ReplaySubject<Exception>(1);
+                CompositeDisposable.Add(thrownErrorsSubject);
+                ThrownExceptionSubject = thrownErrorsSubject;
 
                 // IsReady Subject is disposable
                 var isReadySubject = new Subject<bool>();
@@ -32,9 +52,12 @@ namespace ReactiveUI.Xaml.Controls.Handlers
 
                 Content = content.Select(x => (object)x);
                 CompositeDisposable.Add(Content.Subscribe(y => ContentSubject.OnNext((T)y)));
+                CompositeDisposable.Add(EmptyMessage.Subscribe(y => EmptyMessageSubject.OnNext(y)));
+                CompositeDisposable.Add(ThrownExceptions.Subscribe(y => ThrownExceptionSubject.OnNext(y)));
+                CompositeDisposable.Add(IsRefreshing.Subscribe(y => IsRefreshingSubject.OnNext(y)));
             }
 
-            public void OnNextValue(T obj)
+            public void OnNextValue([NotNull] T obj)
             {
                 ContentSubject.OnNext(obj);
             }
@@ -45,28 +68,34 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             }
 
             private ISubject<T> ContentSubject { get; }
+            private ISubject<IMessagingContent> EmptyMessageSubject { get; }
+            private ISubject<Exception> ThrownExceptionSubject { get; }
+            private ISubject<bool> IsRefreshingSubject { get; }
             public IObservable<object> Content { get; set; }
             public ISubject<bool> IsReady { get; set; }
             public IObservable<bool> IsRefreshing { get; set; }
             public IObservable<IMessagingContent> EmptyMessage { get; set; }
+            public IObservable<Exception> ThrownExceptions { get; set; }
 
-            public IObservable<Exception> ThrownExceptions
+            public Task<object> GetLastValue()
             {
-                get { return _thrownExceptions; }
-                set
-                {
-                    _thrownExceptions = value;
-
-                    // If there are exceptions that shouldn't be seen in the presenter's
-                    // Error Template, we need to filter them
-                    if (ExceptionsNotHandledFromReactivePresenter.Any())
-                    {
-                        _thrownExceptions =
-                            _thrownExceptions?.Where(x => !ExceptionsNotHandledFromReactivePresenter.Contains(x.GetType()));
-                    }
-                }
+                return ContentSubject.FirstOrDefaultAsync().Select(x => x as object).ToTask();
             }
-            private IObservable<Exception> _thrownExceptions; 
+
+            public Task<IMessagingContent> GetLastEmptyMessage()
+            {
+                return EmptyMessageSubject.FirstOrDefaultAsync().ToTask();
+            }
+
+            public Task<Exception> GetLastThrownException()
+            {
+                return ThrownExceptionSubject.FirstOrDefaultAsync().ToTask();
+            }
+
+            public Task<bool> GetLastRefreshing()
+            {
+                return IsRefreshingSubject.FirstOrDefaultAsync().ToTask();
+            }
 
             public readonly CompositeDisposable CompositeDisposable;
 
@@ -76,17 +105,10 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             }
         }
 
-        public static IReactivePresenterHandler<T> CreateReactivePresenter<T>(this ReactivePresenterCommand<T> obj)
+        public static IReactivePresenterHandler<T> CreateReactivePresenter<T>(this ReactivePresenterCommand<T> command)
             where T : ReactiveObject
         {
-            var presenter = new ReactivePresenterHandler<T>(obj)
-            {
-                EmptyMessage = obj.Messages,
-                IsRefreshing = obj.IsExecuting,
-                ThrownExceptions = obj.ThrownExceptions
-            };
-
-            return presenter;
+            return new ReactivePresenterHandler<T>(command, command.IsExecuting, command.Messages, command.ThrownExceptions);
         }
 
         public static IDisposable SubscribeCommandToReactiveListAndMerge<T>(ReactivePresenterCommand<List<T>> command, ReactiveList<T> reactiveList, IObserver<bool> isReady)
@@ -125,38 +147,7 @@ namespace ReactiveUI.Xaml.Controls.Handlers
         public static IReactivePresenterHandler<ReactiveList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<List<T>> command, ReactiveList<T> reactiveList, bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
-            var presenter = new ReactivePresenterHandler<ReactiveList<T>>(Observable.Return(reactiveList))
-            {
-                EmptyMessage = command.Messages,
-                IsRefreshing = command.IsExecuting,
-                ThrownExceptions = command.ThrownExceptions
-            };
-
-            if (mergeResults)
-            {
-                presenter.CompositeDisposable.Add(SubscribeCommandToReactiveListAndMerge(command, reactiveList, presenter.IsReady));
-            }
-            else
-            {
-                presenter.CompositeDisposable.Add(command.Subscribe(x =>
-                {
-                    reactiveList.Clear();
-                    reactiveList.AddRange(x);
-                }));
-            }
-
-            return presenter;
-        }
-
-        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<List<T>> command, ReactiveList<T> reactiveList, IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
-            where T : ReactiveObject, IMergeableObject<T>
-        {
-            var presenter = new ReactivePresenterHandler<IReactiveDerivedList<T>>(Observable.Return(reactiveDerivedList))
-            {
-                EmptyMessage = command.Messages,
-                IsRefreshing = command.IsExecuting,
-                ThrownExceptions = command.ThrownExceptions
-            };
+            var presenter = new ReactivePresenterHandler<ReactiveList<T>>(Observable.Return(reactiveList), command.IsExecuting, command.Messages, command.ThrownExceptions);
 
             if (mergeResults)
             {
@@ -177,38 +168,7 @@ namespace ReactiveUI.Xaml.Controls.Handlers
         public static IReactivePresenterHandler<ReactiveList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<T[]> command, ReactiveList<T> reactiveList, bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
-            var presenter = new ReactivePresenterHandler<ReactiveList<T>>(Observable.Return(reactiveList))
-            {
-                EmptyMessage = command.Messages,
-                IsRefreshing = command.IsExecuting,
-                ThrownExceptions = command.ThrownExceptions
-            };
-
-            if (mergeResults)
-            {
-                presenter.CompositeDisposable.Add(SubscribeCommandToReactiveListAndMerge(command, reactiveList, presenter.IsReady));
-            }
-            else
-            {
-                presenter.CompositeDisposable.Add(command.Subscribe(x =>
-                {
-                    reactiveList.Clear();
-                    reactiveList.AddRange(x);
-                }));
-            }
-
-            return presenter;
-        }
-
-        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<T[]> command, ReactiveList<T> reactiveList, IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
-            where T : ReactiveObject, IMergeableObject<T>
-        {
-            var presenter = new ReactivePresenterHandler<IReactiveDerivedList<T>>(Observable.Return(reactiveDerivedList))
-            {
-                EmptyMessage = command.Messages,
-                IsRefreshing = command.IsExecuting,
-                ThrownExceptions = command.ThrownExceptions
-            };
+            var presenter = new ReactivePresenterHandler<ReactiveList<T>>(Observable.Return(reactiveList), command.IsExecuting, command.Messages, command.ThrownExceptions);
 
             if (mergeResults)
             {
@@ -229,12 +189,49 @@ namespace ReactiveUI.Xaml.Controls.Handlers
         public static IReactivePresenterHandler<ReactiveList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<IEnumerable<T>> command, ReactiveList<T> reactiveList, bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
-            var presenter = new ReactivePresenterHandler<ReactiveList<T>>(Observable.Return(reactiveList))
+            var presenter = new ReactivePresenterHandler<ReactiveList<T>>(Observable.Return(reactiveList), command.IsExecuting, command.Messages, command.ThrownExceptions);
+
+            if (mergeResults)
             {
-                EmptyMessage = command.Messages,
-                IsRefreshing = command.IsExecuting,
-                ThrownExceptions = command.ThrownExceptions
-            };
+                presenter.CompositeDisposable.Add(SubscribeCommandToReactiveListAndMerge(command, reactiveList, presenter.IsReady));
+            }
+            else
+            {
+                presenter.CompositeDisposable.Add(command.Subscribe(x =>
+                {
+                    reactiveList.Clear();
+                    reactiveList.AddRange(x);
+                }));
+            }
+
+            return presenter;
+        }
+
+        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<List<T>> command, ReactiveList<T> reactiveList, IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
+            where T : ReactiveObject, IMergeableObject<T>
+        {
+            var presenter = new ReactivePresenterHandler<IReactiveDerivedList<T>>(Observable.Return(reactiveDerivedList), command.IsExecuting, command.Messages, command.ThrownExceptions);
+
+            if (mergeResults)
+            {
+                presenter.CompositeDisposable.Add(SubscribeCommandToReactiveListAndMerge(command, reactiveList, presenter.IsReady));
+            }
+            else
+            {
+                presenter.CompositeDisposable.Add(command.Subscribe(x =>
+                {
+                    reactiveList.Clear();
+                    reactiveList.AddRange(x);
+                }));
+            }
+
+            return presenter;
+        }
+
+        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<T[]> command, ReactiveList<T> reactiveList, IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
+            where T : ReactiveObject, IMergeableObject<T>
+        {
+            var presenter = new ReactivePresenterHandler<IReactiveDerivedList<T>>(Observable.Return(reactiveDerivedList), command.IsExecuting, command.Messages, command.ThrownExceptions);
 
             if (mergeResults)
             {
@@ -255,13 +252,8 @@ namespace ReactiveUI.Xaml.Controls.Handlers
         public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<IEnumerable<T>> command, ReactiveList<T> reactiveList, IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
-            var presenter = new ReactivePresenterHandler<IReactiveDerivedList<T>>(Observable.Return(reactiveDerivedList))
-            {
-                EmptyMessage = command.Messages,
-                IsRefreshing = command.IsExecuting,
-                ThrownExceptions = command.ThrownExceptions
-            };
-            
+            var presenter = new ReactivePresenterHandler<IReactiveDerivedList<T>>(Observable.Return(reactiveDerivedList), command.IsExecuting, command.Messages, command.ThrownExceptions);
+
             if (mergeResults)
             {
                 presenter.CompositeDisposable.Add(SubscribeCommandToReactiveListAndMerge(command, reactiveList, presenter.IsReady));

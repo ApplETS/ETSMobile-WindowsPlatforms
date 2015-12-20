@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive.Subjects;
+using System.Threading.Tasks;
 using Messaging.Interfaces.Common;
 
 namespace ReactiveUI.Xaml.Controls.Handlers
@@ -11,6 +12,10 @@ namespace ReactiveUI.Xaml.Controls.Handlers
         IObservable<bool> IsRefreshing { get; set; }
         IObservable<IMessagingContent> EmptyMessage { get; set; }
         IObservable<Exception> ThrownExceptions { get; set; }
+        Task<object> GetLastValue();
+        Task<IMessagingContent> GetLastEmptyMessage();
+        Task<Exception> GetLastThrownException();
+        Task<bool> GetLastRefreshing();
     }
 
     public interface IReactivePresenterHandler<in T> : IReactivePresenterHandler, IDisposable

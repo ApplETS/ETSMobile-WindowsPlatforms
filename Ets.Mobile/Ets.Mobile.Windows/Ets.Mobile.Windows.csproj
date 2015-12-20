@@ -293,8 +293,9 @@
       <HintPath>..\packages\akavache.sqlite3.4.1.2\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.Sqlite3.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CrittercismSDK">
-      <HintPath>..\packages\Crittercism.2.2.2\lib\netcore451\CrittercismSDK.dll</HintPath>
+    <Reference Include="CrittercismSDK, Version=2.2.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Crittercism.2.2.4\lib\netcore451\CrittercismSDK.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
@@ -361,13 +362,12 @@
   <Target Name="Clean">
     <RemoveDir Directories="bin/$(Platform)/$(Configuration)/ReactiveUI" />
   </Target>
-  <Import Project="..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets" Condition="Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets'))" />
     <Error Condition="!Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets'))" />
+    <Error Condition="!Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets'))" />
   </Target>
   <Import Project="..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets" Condition="Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" />
   <Target Name="BeforeBuild">
@@ -381,6 +381,7 @@
   <Target Name="Clean">
     <RemoveDir Directories="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls" />
   </Target>
+  <Import Project="..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets" Condition="Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\netcore451\SQLitePCL.raw_basic.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

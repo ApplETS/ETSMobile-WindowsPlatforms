@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24627.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ets.Mobile", "Ets.Mobile", "{71327AB8-5D30-486D-85AD-2F4A6A24D3BA}"
 EndProject
@@ -240,14 +240,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Agent.WinRT", "E
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{82c93d76-299d-45c5-b90a-2c6c5e2fd8ef}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.projitems*{82c93d76-299d-45c5-b90a-2c6c5e2fd8ef}*SharedItemsImports = 4
+		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{82c93d76-299d-45c5-b90a-2c6c5e2fd8ef}*SharedItemsImports = 4
 		Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems*{d3500b1e-2074-4e90-bcda-7bf56447bb2f}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{b9a9236c-1d52-458a-af63-2d3dae72ec3f}*SharedItemsImports = 13
 		Modules\Crittercism\Logger.CrittercismLog\Logger.CrittercismLog.projitems*{fad47ffe-d4b9-4670-beca-a4c144ce2cf1}*SharedItemsImports = 13
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{60a7d9b5-1117-4146-a27a-e5e5111df59d}*SharedItemsImports = 13
-		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{17769e85-f8b8-405a-a76a-7aadaf97bb69}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.projitems*{17769e85-f8b8-405a-a76a-7aadaf97bb69}*SharedItemsImports = 4
+		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{17769e85-f8b8-405a-a76a-7aadaf97bb69}*SharedItemsImports = 4
 		Ets.Mobile.Entities\Ets.Mobile.Entities.projitems*{ce35f282-6085-4910-bfe2-38a93c50cd8b}*SharedItemsImports = 4
 		Ets.Mobile.Shared\Ets.Mobile.Shared.projitems*{d939c457-a5a0-4e43-9259-eb0ee2245c14}*SharedItemsImports = 4
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{28e2ee97-79f2-4149-8dc3-cf8c93542376}*SharedItemsImports = 4
@@ -255,8 +255,8 @@ Global
 		Ets.Mobile.Entities\Ets.Mobile.Entities.projitems*{bd887228-1e81-4ca3-aa3e-13b82248299b}*SharedItemsImports = 13
 		Modules\Messaging\UniversalApp\Messaging.UniversalApp\Messaging.UniversalApp.projitems*{3a40a61f-bbbf-4a75-b3e6-32d47f3db5d0}*SharedItemsImports = 13
 		Ets.Mobile.Agent\Ets.Mobile.Agent.projitems*{815430db-55ac-4981-bc24-61da853d094d}*SharedItemsImports = 4
-		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{7b938688-57a4-41f9-9239-c86a4fe330b2}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Client.Shared.Tests\Ets.Mobile.Client.Shared.Tests.projitems*{7b938688-57a4-41f9-9239-c86a4fe330b2}*SharedItemsImports = 4
+		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{7b938688-57a4-41f9-9239-c86a4fe330b2}*SharedItemsImports = 4
 		Ets.Mobile.Business\Ets.Mobile.Business.projitems*{3c371094-033f-4f31-9e34-d52ab65de73c}*SharedItemsImports = 13
 		Ets.Mobile.Shared\Ets.Mobile.Shared.projitems*{3e659f3b-a23d-4d6a-ad9d-684eb0c51e91}*SharedItemsImports = 4
 		Modules\Messaging\UniversalApp\Messaging.UniversalApp\Messaging.UniversalApp.projitems*{8fe53ee7-c620-4327-876a-bf2c2222cd7f}*SharedItemsImports = 4

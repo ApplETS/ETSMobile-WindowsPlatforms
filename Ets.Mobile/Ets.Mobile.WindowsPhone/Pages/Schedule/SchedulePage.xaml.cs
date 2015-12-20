@@ -1,6 +1,7 @@
 ﻿using Syncfusion.Data.Extensions;
 using Syncfusion.UI.Xaml.Schedule;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -11,6 +12,11 @@ namespace Ets.Mobile.Pages.Schedule
 {
     public sealed partial class SchedulePage : Page
     {
+        partial void PartialInitialize()
+        {
+            
+        }
+
         public bool IsCurrentViewWeek { get; set; }
         public bool IsCurrentViewDay { get; set; }
         public bool IsCurrentViewMonth { get; set; }
@@ -99,6 +105,8 @@ namespace Ets.Mobile.Pages.Schedule
             {
                 return;
             }
+            CommandB.Visibility = Visibility.Visible;
+
             var calendarFlyout = (Flyout)Resources["ChangeCalendarViewFlyout"];
             calendarFlyout?.Hide();
 
@@ -124,6 +132,21 @@ namespace Ets.Mobile.Pages.Schedule
             if (sel != null)
             {
                 sel.Type = Scheduler.ScheduleType;
+            }
+        }
+
+        private readonly TimeSpan _removeTimeSpanForVisibility = new TimeSpan(0, 30, 0); 
+        private void Scheduler_OnVisibleDatesChanging(object sender, VisibleDatesChangingEventArgs e)
+        {
+            var dates = e.NewValue as IEnumerable<DateTime>;
+            var datesArray = dates?.ToArray();
+            if (datesArray?.Length == 1)
+            {
+                var scheduleForDayOrTimeline = (from app in Scheduler.Appointments where app.StartTime.Date == datesArray.First().Date select app).OrderBy(a => a.StartTime).ToList();
+                if (scheduleForDayOrTimeline.Any())
+                {
+                    Scheduler.MoveToTime(scheduleForDayOrTimeline.First().StartTime.TimeOfDay.Subtract(_removeTimeSpanForVisibility));
+                }
             }
         }
     }

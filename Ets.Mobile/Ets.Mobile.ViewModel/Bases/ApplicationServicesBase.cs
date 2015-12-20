@@ -13,7 +13,7 @@ using Ets.Mobile.ViewModel.Contracts.Shared;
 namespace Ets.Mobile.ViewModel.Bases
 {
     [DataContract]
-    public abstract class ApplicationServicesBase : ReactiveObject
+    public class ApplicationServicesBase : ReactiveObject
     {
         protected ApplicationServicesBase()
         {
@@ -22,9 +22,7 @@ namespace Ets.Mobile.ViewModel.Bases
         
         [IgnoreDataMember]
         private readonly IMutableDependencyResolver _serviceLocator;
-
-        protected abstract void OnViewModelCreation();
-
+        
         [IgnoreDataMember] private BusinessEndpoint _be;
         public BusinessEndpoint BusinessServices()
         {

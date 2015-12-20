@@ -39,8 +39,8 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                 return Cache.GetAndFetchLatest(ViewModelKeys.Courses, async () =>
                 {
                     var courses = await ClientServices().SignetsService.Courses();
-                    courses = courses.Where(y => y.Semester != "s.o.").OrderByDescending(y => y.Semester, new SemestersComparator()).ToArray();
-                    foreach (var course in courses.Where(x => x.Semester != "s.o.").GroupBy(x => x.Semester))
+                    courses = courses.OrderByDescending(y => y.Semester, new SemestersComparator()).ToArray();
+                    foreach (var course in courses.GroupBy(x => x.Semester))
                     {
                         await SettingsService().ApplyColorOnItemsForSemester(
                                 courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),

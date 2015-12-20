@@ -1,5 +1,4 @@
 ﻿using Akavache;
-using CrittercismSDK;
 using Ets.Mobile.Agent;
 using Ets.Mobile.Shell;
 using Ets.Mobile.ViewModel;
@@ -13,8 +12,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using CrittercismSDK;
+
 #if WINDOWS_PHONE_APP
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 #endif
