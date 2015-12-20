@@ -46,7 +46,6 @@
     
     <SolidColorBrush x:Key="SplitViewBackgroundBrush" Color="{ThemeResource SystemBaseMediumColor}" Opacity="1" />
     <SolidColorBrush x:Key="SplitViewForegroundBrush" Color="{ThemeResource SystemBaseWhiteColor}" />
-    <SolidColorBrush x:Key="SplitViewForegroundDarkBrush" Color="{ThemeResource SystemBaseBlackColor}" />
     <SolidColorBrush x:Key="NavButtonPressedBackgroundBrush" Color="{ThemeResource SystemListMediumColor}" />
     <SolidColorBrush x:Key="NavButtonHoverBackgroundBrush" Color="{ThemeResource SystemListLowColor}" />
     <SolidColorBrush x:Key="NavButtonCheckedBackgroundBrush" Color="{StaticResource EtsRedLowestColor}" Opacity="0.3" />
@@ -76,16 +75,6 @@
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{ThemeResource SplitViewForegroundBrush}" />
         <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}" />
-        <!--<Setter Property="FontFamily" Value="/Fonts/mdl2-v136.ttf#mdl2-v136" />-->
-        <Setter Property="FontSize" Value="{ThemeResource SplitViewNormalNavFontSize}" />
-    </Style>
-
-    <Style TargetType="TextBlock" x:Key="SplitViewTextBlockDarkStyle">
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="{ThemeResource SplitViewForegroundDarkBrush}" />
-        <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}" />
-        <!--<Setter Property="FontFamily" Value="/Fonts/mdl2-v136.ttf#mdl2-v136" />-->
         <Setter Property="FontSize" Value="{ThemeResource SplitViewNormalNavFontSize}" />
     </Style>
 
@@ -244,10 +233,7 @@
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Background)" Storyboard.TargetName="Border">
-                                            <DiscreteObjectKeyFrame KeyTime="0">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <SolidColorBrush>#c2c2c2</SolidColorBrush>
-                                                </DiscreteObjectKeyFrame.Value>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource EtsRedHighestBrush}">
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -255,10 +241,7 @@
                                 <VisualState x:Name="Tapped">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Background)" Storyboard.TargetName="Border">
-                                            <DiscreteObjectKeyFrame KeyTime="0">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <SolidColorBrush>#c2c2c2</SolidColorBrush>
-                                                </DiscreteObjectKeyFrame.Value>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource EtsRedHighestBrush}">
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>

@@ -41,6 +41,7 @@
     <Brush x:Key="EtsRedHighestBrush">#FF4E4C</Brush>
 
     <Brush x:Key="EtsCommandBarBrush">#FFFFFF</Brush>
+    <Brush x:Key="EtsMenuButtonBrush">#FF0200</Brush>
     <Brush x:Key="EtsBackgroundBrush">#FFFFFFFF</Brush>
     <Brush x:Key="EtsBackgroundMainBrush">#f2f2f2</Brush>
     <Brush x:Key="EtsBackgroundBodyBrush">#e6e6e6</Brush>

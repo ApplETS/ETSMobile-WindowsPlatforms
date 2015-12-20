@@ -7,6 +7,7 @@
     mc:Ignorable="d"
     x:Name="MB"
     Width="{Binding ActualHeight, ElementName=MB}"
-    d:DesignHeight="60" d:DesignWidth="65">
-    <TextBlock Text="" Style="{StaticResource SplitViewTextBlockDarkStyle}" FontSize="{StaticResource SplitViewHamburgerButtonFontSize}"  />
+    d:DesignHeight="60" d:DesignWidth="65"
+    Background="{StaticResource EtsMenuButtonBrush}">
+    <TextBlock Text="" Style="{StaticResource SplitViewTextBlockStyle}" FontSize="{StaticResource SplitViewHamburgerButtonFontSize}"  />
 </HyperlinkButton>
