@@ -9,8 +9,34 @@
     <ScrollViewer>
         <StackPanel>
             <StackPanel>
+                <TextBlock Text="Paul Betts" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="PaulBettsContributionsUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <HyperlinkButton Content="@paulcbetts" NavigateUri="https://github.com/paulcbetts" Foreground="{StaticResource EtsRedMediumBrush}" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="ReactiveUI" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="ReactiveUIDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Splat" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="SplatDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Refit" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="RefitDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Fusillade" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="FusilladeDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+            <StackPanel>
                 <TextBlock Text="Akavache" Style="{StaticResource EtsTextBlockBlack2}" />
                 <TextBlock x:Uid="AkavacheDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="ReactiveExtensions" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock x:Uid="ReactiveExtensionsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Sqlite" Style="{StaticResource EtsTextBlockBlack2}" />
@@ -35,25 +61,8 @@
                 <TextBlock Text="Newtonsoft.Json" Style="{StaticResource EtsTextBlockBlack2}" />
                 <TextBlock x:Uid="NewtonsoftJsonDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
-            <StackPanel>
-                <TextBlock Text="ReactiveUI" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="ReactiveUIDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
-            </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Splat" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="SplatDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
-            </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Refit" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="RefitDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
-            </StackPanel>
-            <StackPanel>
                 <TextBlock Text="Syncfusion" Style="{StaticResource EtsTextBlockBlack2}" />
                 <TextBlock x:Uid="SyncfusionDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
-            </StackPanel>
-            <StackPanel>
-                <TextBlock Text="ReactiveExtensions" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="ReactiveExtensionsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

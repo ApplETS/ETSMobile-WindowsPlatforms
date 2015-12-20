@@ -348,4 +348,10 @@
   <data name="ScheduleEmptyTitle" xml:space="preserve">
     <value>Pas de cours à afficher</value>
   </data>
+  <data name="PaulBettsContributionsUid.Text" xml:space="preserve">
+    <value>Créateur de Splat, ModernHttpClient, Akavache, ReactiveUI, Refit, Fusillade en plus de plusieurs autres projets Open Source</value>
+  </data>
+  <data name="FusilladeDescriptionUid.Text" xml:space="preserve">
+    <value>Librairie HTTP pour développement mobile</value>
+  </data>
 </root>
