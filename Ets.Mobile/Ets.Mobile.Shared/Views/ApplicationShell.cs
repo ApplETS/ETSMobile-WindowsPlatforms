@@ -22,7 +22,6 @@ using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Logger;
 using ModernHttpClient;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Handlers;
 using Refit;
 using Security.Algorithms;
 using Splat;
