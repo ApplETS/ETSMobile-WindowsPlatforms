@@ -10,29 +10,36 @@
     d:DesignWidth="400">
     
     <StackPanel>
-        <TextBlock x:Uid="ApplicationNameUid" Margin="0,18,0,0" Style="{StaticResource EtsTextBlockBlack2}" />
+        <StackPanel.ChildrenTransitions>
+            <TransitionCollection>
+                <EdgeUIThemeTransition Edge="Bottom" />
+            </TransitionCollection>
+        </StackPanel.ChildrenTransitions>
+        
+        <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ApplicationNameUid" Margin="0,18,0,0" Style="{StaticResource EtsTextBlockBlack2}" />
 
         <!-- Version and Publisher -->
         <StackPanel Margin="0,20">
-            <TextBlock x:Uid="AppletsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" />
-            <TextBlock x:Uid="EcoledeTechnologieSuperieurUid" Style="{StaticResource EtsTextBlockGray4}" />
-            <TextBlock Style="{StaticResource EtsTextBlockGray4}" >
-            <Run Text="Version" />
-            <Run Text="{Binding VersionNumber}"/>
+            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="AppletsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" />
+            <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="EcoledeTechnologieSuperieurUid" Style="{StaticResource EtsTextBlockGray4}" />
+            <TextBlock Pivot.SlideInAnimationGroup="3" Style="{StaticResource EtsTextBlockGray4}" >
+                <Run Text="Version" />
+                <Run Text="{Binding VersionNumber}"/>
             </TextBlock>
         </StackPanel>
         
         <!-- Applets Description-->
         <StackPanel Margin="0,20">
-            <TextBlock x:Uid="ContributeDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
-            <TextBlock x:Uid="VisitAndJoinUsUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
+            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ContributeDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="VisitAndJoinUsUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
         </StackPanel>
         
         <!-- Applets Website-->
-        <HyperlinkButton x:Uid="AppletsWebsiteUid" Content="clubapplets.ca" Foreground="{StaticResource EtsRedMediumBrush}" />
+        <HyperlinkButton Pivot.SlideInAnimationGroup="1" x:Uid="AppletsWebsiteUid" Content="clubapplets.ca" Foreground="{StaticResource EtsRedMediumBrush}" />
     
         <!-- Feedback -->
-        <HyperlinkButton x:Uid="FeedbackButtonUid" 
+        <HyperlinkButton Pivot.SlideInAnimationGroup="2"
+                         x:Uid="FeedbackButtonUid" 
                          Content="envoyer des commentaires"
                          NavigateUri="{Binding SendFeedbackUri}"
                          Foreground="{StaticResource EtsRedMediumBrush}" />

@@ -111,10 +111,17 @@
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
-
-    <controls:ReactivePresenter DisableErrorNotification="False"
-        PresenterSource="{Binding}"
-        DefaultEmptyMessage="{Binding ScheduleEmptyUid, Source={StaticResource LocalizedStrings}}"
-        DefaultErrorMessage="{Binding NetworkError, Source={StaticResource LocalizedStrings}}"
-        ValueTemplate="{StaticResource SchedulesPresenterValue}" />
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EdgeUIThemeTransition Edge="Bottom" />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <controls:ReactivePresenter DisableErrorNotification="False"
+            PresenterSource="{Binding}"
+            DefaultEmptyMessage="{Binding ScheduleEmptyUid, Source={StaticResource LocalizedStrings}}"
+            DefaultErrorMessage="{Binding NetworkError, Source={StaticResource LocalizedStrings}}"
+            ValueTemplate="{StaticResource SchedulesPresenterValue}" />
+    </Grid>
+   
 </UserControl>

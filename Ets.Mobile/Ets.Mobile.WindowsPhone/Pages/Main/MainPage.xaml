@@ -27,20 +27,22 @@
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <Pivot x:Name="MainPivot" Grid.Row="1">
-            <PivotItem Margin="15,0,15,0">
-                <PivotItem.Header>
-                    <TextBlock x:Uid="TodayUid" Text="Aujourd'hui" />
-                </PivotItem.Header>
-                <main:Today DataContext="{Binding TodayPresenter}" Margin="0,10,0,25" />
-            </PivotItem>
-            <PivotItem Margin="15,0,15,0">
-                <PivotItem.Header>
-                    <TextBlock x:Uid="GradesUid" Text="Résultats" />
-                </PivotItem.Header>
-                <grade:CourseChooserForGrades x:Name="Grade" DataContext="{Binding GradesPresenter}" Margin="0,10,0,0" />
-            </PivotItem>
-        </Pivot>
+        <Grid Grid.Row="1">
+            <Pivot x:Name="MainPivot" ContinuumNavigationTransitionInfo.IsEntranceElement="True">
+                <PivotItem Margin="15,0,15,0">
+                    <PivotItem.Header>
+                        <TextBlock x:Uid="TodayUid" Text="Aujourd'hui" />
+                    </PivotItem.Header>
+                    <main:Today DataContext="{Binding TodayPresenter}" Margin="0,10,0,25" />
+                </PivotItem>
+                <PivotItem Margin="15,0,15,0">
+                    <PivotItem.Header>
+                        <TextBlock x:Uid="GradesUid" Text="Résultats" />
+                    </PivotItem.Header>
+                    <grade:CourseChooserForGrades x:Name="Grade" DataContext="{Binding GradesPresenter}" Margin="0,10,0,0" />
+                </PivotItem>
+            </Pivot>
+        </Grid>
     </Grid>
     
     <Page.BottomAppBar>

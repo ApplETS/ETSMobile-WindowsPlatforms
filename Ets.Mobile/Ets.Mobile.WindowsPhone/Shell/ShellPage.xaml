@@ -18,13 +18,7 @@
             <shared:SideNavigation x:Name="SideNavigation" />
         </controls:SplitView.Pane>
         <controls:SplitView.Content>
-            <reactiveUi:RoutedViewHost x:Name="RoutedViewModelHost" HorizontalAlignment="Stretch">
-                <reactiveUi:RoutedViewHost.Transitions>
-                    <TransitionCollection>
-                        <EntranceThemeTransition FromVerticalOffset="10" />
-                    </TransitionCollection>
-                </reactiveUi:RoutedViewHost.Transitions>
-            </reactiveUi:RoutedViewHost>
+            <reactiveUi:RoutedViewHost x:Name="RoutedViewModelHost" HorizontalAlignment="Stretch" />
         </controls:SplitView.Content>
     </controls:SplitView>
 </Page>

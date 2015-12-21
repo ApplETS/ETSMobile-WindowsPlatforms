@@ -28,7 +28,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="150" />
                         </Grid.ColumnDefinitions>
-                        
+
                         <StackPanel Grid.Column="0" Orientation="Vertical">
                             <TextBlock
                            FontSize="24"
@@ -54,7 +54,7 @@
                            Text="{Binding Course.Grade, Converter={StaticResource StringToTbdConverter}}" />
                     </Grid>
                 </Border>
-            </Border>                       
+            </Border>
         </DataTemplate>
 
         <DataTemplate x:Name="GradesPresenterValue">
@@ -67,7 +67,7 @@
 						Source="{Binding}" />
                     <converters:ScreenWidthMultiplier x:Key="ScreenWidth" />
                 </Grid.Resources>
-                    <ListView
+                <ListView
                     Margin="-5,0,0,0"
                     ItemsSource="{Binding Source={StaticResource GradeCollectionViewSource}}"
 	                ItemTemplate="{StaticResource GradeDataTemplate}"
@@ -75,32 +75,31 @@
 			        ScrollViewer.IsHorizontalScrollChainingEnabled="False"
 			        IsItemClickEnabled="True"
 			        SelectionMode="None">
-                        <ListView.ItemContainerTransitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition></EntranceThemeTransition>
-                            </TransitionCollection>
-                        </ListView.ItemContainerTransitions>
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition />
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
-                            <GroupStyle HidesIfEmpty="False">
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <Grid Margin="5,0,0,5" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
-                                            <TextBlock Text="{Binding Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{StaticResource EtsListViewHeaderItem}"  />
-                                        </Grid>
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                            </GroupStyle>
-                        </ListView.GroupStyle>
-                    </ListView>
+                        <GroupStyle HidesIfEmpty="False">
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="5,0,0,5" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
+                                        <TextBlock Text="{Binding Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{StaticResource EtsListViewHeaderItem}"  />
+                                    </Grid>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                </ListView>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
-
     <controls:ReactivePresenter
         x:Name="GradeSummaryPresenter"
         DisableErrorNotification="True"

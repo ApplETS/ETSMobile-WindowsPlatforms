@@ -66,11 +66,18 @@
             </ListView>
         </DataTemplate>
     </UserControl.Resources>
-    <controls:ReactivePresenter 
-        x:Name="ProgramPresenter"
-        DisableErrorNotification="False"
-        DefaultEmptyMessage="{Binding ProgramEmpty, Source={StaticResource LocalizedStrings}}"
-        DefaultErrorMessage="{Binding NetworkError, Source={StaticResource LocalizedStrings}}"
-        ValueTemplate="{StaticResource ProgramPresenterValue}" 
-        PresenterSource="{Binding}" />
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EdgeUIThemeTransition Edge="Bottom" />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <controls:ReactivePresenter 
+            x:Name="ProgramPresenter"
+            DisableErrorNotification="False"
+            DefaultEmptyMessage="{Binding ProgramEmpty, Source={StaticResource LocalizedStrings}}"
+            DefaultErrorMessage="{Binding NetworkError, Source={StaticResource LocalizedStrings}}"
+            ValueTemplate="{StaticResource ProgramPresenterValue}" 
+            PresenterSource="{Binding}" />
+    </Grid>
 </UserControl>

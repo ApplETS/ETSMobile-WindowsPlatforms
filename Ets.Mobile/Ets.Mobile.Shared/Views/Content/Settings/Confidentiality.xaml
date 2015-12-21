@@ -21,15 +21,15 @@
                     <Setter Property="TextAlignment" Value="Justify" />
                 </Style>
             </StackPanel.Resources>
-            <TextBlock FontSize="{StaticResource Size2}" FontWeight="SemiBold" Text="Engagement de confidentialité d'ApplETS" />
-            <RichTextBlock FontSize="{StaticResource Size5}">
+            <TextBlock Pivot.SlideInAnimationGroup="1" FontSize="{StaticResource Size2}" FontWeight="SemiBold" Text="Engagement de confidentialité d'ApplETS" />
+            <RichTextBlock Pivot.SlideInAnimationGroup="2" FontSize="{StaticResource Size5}">
                 <Paragraph>La dernière version de l'Engagement de confidentialité d'ApplETS date du 4 octobre 2014.</Paragraph>
                 <Paragraph>En utilisant ÉTSMobile, il est probable que le club ApplETS demande de fournir certaines données personnelles telles que votre code d'accès universel, mot de passe universitaire, votre nom, votre courriel ou votre numéro d'appartement et de phase. Le présent document a pour but de divulguer les pratiques du club ApplETS en matière d'utilisation de vos données personnelles et de protection de votre vie privée.</Paragraph>
             </RichTextBlock>
 
-            <TextBlock FontSize="{StaticResource Size3}" FontWeight="SemiBold" Text="Collecte et utilisation des données à caractère personnel" Margin="0,5,0,0"/>
-            <TextBlock FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Code d'accès universel et mot de passe de l'École de technologie supérieure"/>
-            <RichTextBlock FontSize="{StaticResource Size5}">
+            <TextBlock Pivot.SlideInAnimationGroup="1" FontSize="{StaticResource Size3}" FontWeight="SemiBold" Text="Collecte et utilisation des données à caractère personnel" Margin="0,5,0,0"/>
+            <TextBlock Pivot.SlideInAnimationGroup="2" FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Code d'accès universel et mot de passe de l'École de technologie supérieure"/>
+            <RichTextBlock Pivot.SlideInAnimationGroup="3" FontSize="{StaticResource Size5}">
                 <Paragraph>Votre code d'accès universel et mot de passe de l'École de technologie supérieure est demandé afin de récupérer votre horaire, vos résultats, votre dossier étudiant, vos stages et vos documents Moodle. Votre code d'accès universel et mot de passe de l'École de technologie supérieure est conservé dans le trousseau d'accès de votre téléphone intelligent ou de votre tablette tactile.</Paragraph>
                 <Paragraph>Votre code d'accès universel et mot de passe de l'École de technologie supérieure sont utilisés exclusivement pour vous authentifier sur les serveurs régis par les Services des technologies de l'information (sTI) de l'École de technologie supérieure.</Paragraph>
                 <Paragraph>● En aucun temps votre code d'accès universel et mot de passe ne transitent sur les serveurs du club ApplETS ou sur tous serveurs autres que ceux de l'École de technologie supérieure. Le club ApplETS ne possède aucun accès à votre code d'accès universel ou votre mot de passe.</Paragraph>
@@ -38,41 +38,41 @@
                 <Paragraph>● En vous déconnectant à partir d'ÉTSMobile, votre code d'accès universel et votre mot de passe sont supprimés de votre trousseau d'accès et toutes les informations confidentielles sont supprimées du cache.</Paragraph>
             </RichTextBlock>
 
-            <TextBlock FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Nom et courriel" Margin="0,5,0,0"/>
-            <RichTextBlock FontSize="{StaticResource Size5}">
+            <TextBlock Pivot.SlideInAnimationGroup="1" FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Nom et courriel" Margin="0,5,0,0"/>
+            <RichTextBlock Pivot.SlideInAnimationGroup="2" FontSize="{StaticResource Size5}">
                 <Paragraph>Si vous décidez de nous envoyer un commentaire à partir d'ÉTSMobile, il vous sera demandé de fournir votre nom et courriel en plus de votre commentaire. Ces données privées pourront être consultées par tout membre du club ApplETS. Si votre commentaire nécessite la consultation d'un membre du personnel de l'École de technologie supérieure, votre nom et courriel pourraient être transférés à l'autorité concernée."</Paragraph>
             </RichTextBlock>
 
-            <TextBlock FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Numéro d'appartement et de phase" Margin="0,5,0,0"/>
-            <RichTextBlock FontSize="{StaticResource Size5}">
+            <TextBlock Pivot.SlideInAnimationGroup="1" FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Numéro d'appartement et de phase" Margin="0,5,0,0"/>
+            <RichTextBlock Pivot.SlideInAnimationGroup="2" FontSize="{StaticResource Size5}">
                 <Paragraph>Si vous habitez les résidences universitaires et que vous souhaitez consulter la consommation de votre bande passante, il vous sera demandé de fournir votre numéro d'appartement et de phase. Ces deux informations privées transiteront vers YQL (Yahoo! Query Language) et les serveurs de CoopTel.</Paragraph>
                 <Paragraph>● Le club ApplETS n'a pas accès à votre numéro d'appartement et de phase.</Paragraph>
                 <Paragraph>● Votre numéro d'appartement et de phase ne sera jamais associé à votre code d'accès universel. Le club ApplETS est dans l'impossibilité de faire la correspondance entre ces deux données privées.</Paragraph>
             </RichTextBlock>
 
-            <TextBlock FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Accès à vos contacts" Margin="0,5,0,0"/>
-            <RichTextBlock FontSize="{StaticResource Size5}">
+            <TextBlock Pivot.SlideInAnimationGroup="1" FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Accès à vos contacts" Margin="0,5,0,0"/>
+            <RichTextBlock Pivot.SlideInAnimationGroup="2" FontSize="{StaticResource Size5}">
                 <Paragraph>ÉTSMobile demande accès aux contacts de votre téléphone intelligent ou de votre tablette tactile afin de pouvoir y ajouter une entrée du bottin de l'École de technologie supérieure.</Paragraph>
                 <Paragraph>● Vos contacts ne seront transmis à aucun serveur.</Paragraph>
                 <Paragraph>● Excepté l'ajout d'un contact, le club ApplETS n'accède d'aucune façon à vos contacts.</Paragraph>
                 <Paragraph>Il vous est possible de nous refuser tout accès à vos contacts. Dans ce cas, il nous sera impossible d'ajouter une entrée du bottin de l'École de technologie supérieure à vos contacts.</Paragraph>
             </RichTextBlock>
 
-            <TextBlock FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Accès à votre géolocalisation" Margin="0,5,0,0" />
-            <RichTextBlock FontSize="{StaticResource Size5}">
+            <TextBlock Pivot.SlideInAnimationGroup="1" FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Accès à votre géolocalisation" Margin="0,5,0,0" />
+            <RichTextBlock Pivot.SlideInAnimationGroup="2" FontSize="{StaticResource Size5}">
                 <Paragraph>ÉTSMobile demande l'accès à votre géolocalisation afin de pouvoir vous situer comparativement au poste de sécurité de l'École de technologie supérieure.</Paragraph>
                 <Paragraph>● Votre géolocalisation ne sera transmise à aucun serveur.</Paragraph>
                 <Paragraph>● Votre géolocalisation est utilisée exclusivement à l'intérieur d'ÉTSMobile. Le club ApplETS ne peut avoir accès à votre géolocalisation.</Paragraph>
             </RichTextBlock>
 
-            <TextBlock FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Collecte et utilisation des données à caractère non personnel" Margin="0,5,0,0" />
-            <RichTextBlock FontSize="{StaticResource Size5}">
+            <TextBlock Pivot.SlideInAnimationGroup="1" FontSize="{StaticResource Size4}" FontWeight="Bold" Text="Collecte et utilisation des données à caractère non personnel" Margin="0,5,0,0" />
+            <RichTextBlock Pivot.SlideInAnimationGroup="2" FontSize="{StaticResource Size5}">
                 <Paragraph>Dans l'éventualité où vous participez aux versions de développement sur TestFlight, le club ApplETS peut avoir accès aux sections d'ÉTSMobile auxquelles vous accédez ainsi que le moment. Ces informations sont utilisées afin de faciliter le débogage et aucune information privée ne peut être consultée.</Paragraph>
                 <Paragraph>Sur la version officielle distribuée sur l'App Store et le Google Play Store, des rapports d'erreurs peuvent être accessibles par l'entremise de Splunk Mint Express. Ces rapports ne contiennent aucune information privée et aucune information permettant de vous identifier.</Paragraph>
             </RichTextBlock>
 
-            <TextBlock FontSize="{StaticResource Size3}" FontWeight="Bold" Text="Résumé" Margin="0,5,0,0" />
-            <RichTextBlock FontSize="{StaticResource Size5}">
+            <TextBlock Pivot.SlideInAnimationGroup="1" FontSize="{StaticResource Size3}" FontWeight="Bold" Text="Résumé" Margin="0,5,0,0" />
+            <RichTextBlock Pivot.SlideInAnimationGroup="2" FontSize="{StaticResource Size5}">
                 <Paragraph>Le club ApplETS s'engage à n'accéder à aucune donnée à caractère personnel sans votre consentement. De plus, le club ApplETS travaille de concert avec l'École de technologie supérieure afin de protéger vos données confidentielles.</Paragraph>
                 <Paragraph>Le club ApplETS s'engage aussi devant toute la communauté de l'École de technologie supérieure à être entièrement transparent quant à l'utilisation de toutes les données de ses membres. Pour cette raison, tous les codes sources d'ÉTSMobile et ceux des API des serveurs du club ApplETS sont entièrement ouverts au public.</Paragraph>
                 <Paragraph>Vous pouvez contacter le club ApplETS (info@clubapplets.ca) pour toute question concernant notre politique d'engagement de confidentialité.</Paragraph>

@@ -9,46 +9,45 @@
     <ScrollViewer>
         <StackPanel>
             <StackPanel>
-                <TextBlock Text="Paul Betts" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="PaulBettsContributionsUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
-                <HyperlinkButton Content="@paulcbetts" NavigateUri="https://github.com/paulcbetts" Foreground="{StaticResource EtsRedMediumBrush}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Paul Betts" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="PaulBettsContributionsUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <HyperlinkButton Pivot.SlideInAnimationGroup="3" Content="@paulcbetts" NavigateUri="https://github.com/paulcbetts" Foreground="{StaticResource EtsRedMediumBrush}" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="ReactiveUI" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="ReactiveUIDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ReactiveUI" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="ReactiveUIDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Splat" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="SplatDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Splat" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="SplatDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Refit" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="RefitDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Refit" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="RefitDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Fusillade" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="FusilladeDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Fusillade" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="FusilladeDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-            <StackPanel>
-                <TextBlock Text="Akavache" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="AkavacheDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Akavache" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="AkavacheDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="ReactiveExtensions" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="ReactiveExtensionsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ReactiveExtensions" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="ReactiveExtensionsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Sqlite" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="SqliteDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Sqlite" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="SqliteDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Crittercism" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="CrittercismDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Crittercism" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="CrittercismDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="ModernHttpClient" Style="{StaticResource EtsTextBlockBlack2}" />
-                <RichTextBlock Style="{StaticResource EtsRichTextBlockGray4}" TextWrapping="WrapWholeWords">
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ModernHttpClient" Style="{StaticResource EtsTextBlockBlack2}" />
+                <RichTextBlock Pivot.SlideInAnimationGroup="2" Style="{StaticResource EtsRichTextBlockGray4}" TextWrapping="WrapWholeWords">
                     <Paragraph>
                         <Run x:Uid="ModernHttpClientDescriptionUid" />
                         <InlineUIContainer>
@@ -58,11 +57,12 @@
                 </RichTextBlock>
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Newtonsoft.Json" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="NewtonsoftJsonDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Newtonsoft.Json" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="NewtonsoftJsonDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
-                <TextBlock Text="Syncfusion" Style="{StaticResource EtsTextBlockBlack2}" />
-                <TextBlock x:Uid="SyncfusionDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Syncfusion" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="SyncfusionDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

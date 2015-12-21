@@ -32,7 +32,7 @@
                                             <RowDefinition Height="35" />
                                             <RowDefinition Height="30" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock VerticalAlignment="Center" TextWrapping="NoWrap" Grid.Row="0" FontSize="20" Text="{Binding ActivityName}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
+                                        <TextBlock Pivot.SlideInAnimationGroup="1" VerticalAlignment="Center" TextWrapping="NoWrap" Grid.Row="0" FontSize="20" Text="{Binding ActivityName}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
                                         <Border Canvas.ZIndex="1" Grid.Row="0" Padding="23,0,15,0" HorizontalAlignment="Right" Margin="0,2,0,0">
                                             <Border.Background>
                                                 <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
@@ -41,13 +41,13 @@
                                                     <GradientStop Color="White" Offset="1"/>
                                                 </LinearGradientBrush>
                                             </Border.Background>
-                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="17" Text="{Binding Time}" TextWrapping="Wrap" />
+                                            <TextBlock Pivot.SlideInAnimationGroup="2" Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="17" Text="{Binding Time}" TextWrapping="Wrap" />
                                         </Border>
-                                        <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="16" Foreground="{StaticResource EtsTextSecondaryBrush}" Text="{Binding Location}" TextWrapping="Wrap" />
+                                        <TextBlock Pivot.SlideInAnimationGroup="3" VerticalAlignment="Center" Grid.Row="1" FontSize="16" Foreground="{StaticResource EtsTextSecondaryBrush}" Text="{Binding Location}" TextWrapping="Wrap" />
                                     </Grid>
                                     <!-- Course incoming -->
                                     <StackPanel Visibility="{Binding IsTimeRemainingVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal" Margin="5,10,0,10">
-                                        <Grid Margin="10" MinWidth="68" VerticalAlignment="Center" Width="{Binding ActualHeight, Mode=OneWay, RelativeSource={RelativeSource Mode=Self}}">
+                                        <Grid Pivot.SlideInAnimationGroup="1" Margin="10" MinWidth="68" VerticalAlignment="Center" Width="{Binding ActualHeight, Mode=OneWay, RelativeSource={RelativeSource Mode=Self}}">
                                             <Border Background="{StaticResource EtsRedHighBrush}">
                                                 <Grid Margin="2,2,2,2" >
                                                     <Grid.RowDefinitions>
@@ -61,9 +61,9 @@
                                         </Grid>
 
                                         <StackPanel VerticalAlignment="Center" Margin="0,-2,0,0">
-                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" TextWrapping="Wrap" FontSize="20" Text="{Binding ActivityName}" />
-                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="17" Text="{Binding Time}" TextWrapping="Wrap" />
-                                            <TextBlock Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="15" Text="{Binding Location}" TextWrapping="Wrap" />
+                                            <TextBlock Pivot.SlideInAnimationGroup="1" Foreground="{StaticResource EtsTextSecondaryBrush}" TextWrapping="Wrap" FontSize="20" Text="{Binding ActivityName}" />
+                                            <TextBlock Pivot.SlideInAnimationGroup="2" Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="17" Text="{Binding Time}" TextWrapping="Wrap" />
+                                            <TextBlock Pivot.SlideInAnimationGroup="3" Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="15" Text="{Binding Location}" TextWrapping="Wrap" />
                                         </StackPanel>
                                     </StackPanel>
                                 </Grid>
@@ -74,11 +74,19 @@
             </ListView>
         </DataTemplate>
     </UserControl.Resources>
-    <controls:ReactivePresenter
-        x:Name="TodayPresenter"
-        DisableErrorNotification="True"
-        DefaultEmptyMessage="{Binding TodayEmpty, Source={StaticResource LocalizedStrings}}"
-        DefaultErrorMessage="{Binding NetworkError, Source={StaticResource LocalizedStrings}}"
-        ValueTemplate="{StaticResource TodayPresenterValue}" 
-        PresenterSource="{Binding}" />
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EdgeUIThemeTransition Edge="Bottom" />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <controls:ReactivePresenter
+            x:Name="TodayPresenter"
+            DisableErrorNotification="True"
+            DefaultEmptyMessage="{Binding TodayEmpty, Source={StaticResource LocalizedStrings}}"
+            DefaultErrorMessage="{Binding NetworkError, Source={StaticResource LocalizedStrings}}"
+            ValueTemplate="{StaticResource TodayPresenterValue}" 
+            PresenterSource="{Binding}" />
+    </Grid>
+    
 </UserControl>

@@ -10,7 +10,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding DefaultErrorMessage}" TextWrapping="WrapWholeWords" Style="{StaticResource EtsTextBlockMainColor3}" Foreground="#a6a6a6" />
+                        <TextBlock Pivot.SlideInAnimationGroup="1" Text="{Binding DefaultErrorMessage}" TextWrapping="WrapWholeWords" Style="{StaticResource EtsTextBlockMainColor3}" Foreground="#a6a6a6" />
                     </StackPanel>                    
                 </DataTemplate>
             </Setter.Value>
@@ -19,7 +19,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding DefaultEmptyMessage}" TextWrapping="WrapWholeWords" Style="{StaticResource EtsTextBlockMainColor3}" Foreground="#a6a6a6" />
+                        <TextBlock Pivot.SlideInAnimationGroup="1" Text="{Binding DefaultEmptyMessage}" TextWrapping="WrapWholeWords" Style="{StaticResource EtsTextBlockMainColor3}" Foreground="#a6a6a6" />
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>
@@ -29,7 +29,7 @@
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.7">
                         <StackPanel VerticalAlignment="Center">
-                            <ProgressRing IsActive="True" Foreground="{StaticResource EtsTextMainBrush}" Background="Transparent" />
+                            <ProgressRing Pivot.SlideInAnimationGroup="1" IsActive="True" Foreground="{StaticResource EtsTextMainBrush}" Background="Transparent" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -76,10 +76,10 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid>
-                            <ContentPresenter x:Name="PART_EmptyPresenter" Opacity="0" />
-                            <ContentPresenter x:Name="PART_ErrorPresenter" Opacity="0" />
-                            <ContentPresenter x:Name="PART_ValuePresenter" Opacity="0" />
-                            <ContentPresenter x:Name="PART_RefreshingPresenter" Opacity="0">
+                            <ContentPresenter Pivot.SlideInAnimationGroup="1" x:Name="PART_EmptyPresenter" Opacity="0" />
+                            <ContentPresenter Pivot.SlideInAnimationGroup="1" x:Name="PART_ErrorPresenter" Opacity="0" />
+                            <ContentPresenter Pivot.SlideInAnimationGroup="1" x:Name="PART_ValuePresenter" Opacity="0" />
+                            <ContentPresenter Pivot.SlideInAnimationGroup="1" x:Name="PART_RefreshingPresenter" Opacity="0">
                                 <ContentPresenter.Style>
                                     <Style TargetType="ContentPresenter">
                                         <Setter Property="HorizontalAlignment" Value="Stretch"/>

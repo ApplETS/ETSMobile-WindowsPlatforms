@@ -116,6 +116,11 @@
 		</Image>
 
 		<Grid>
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Bottom" />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
 			<Image x:Name="BackgroundImage" VerticalAlignment="Top"
 				Margin="30,60,30,0" 
 				Source="/Assets/Account/Login/Ets-Devise.png" />

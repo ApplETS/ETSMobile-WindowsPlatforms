@@ -16,7 +16,14 @@
         </Grid.RowDefinitions>
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
-        <grade:CourseChooserForGrades Grid.Row="1" Margin="15,10,15,0" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+        <Grid Grid.Row="1">
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Bottom" />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <grade:CourseChooserForGrades Margin="15,10,15,0" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+        </Grid>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar x:Name="CommandB" Background="{StaticResource EtsCommandBarBackground}" Foreground="{StaticResource EtsCommandBarForeground}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">

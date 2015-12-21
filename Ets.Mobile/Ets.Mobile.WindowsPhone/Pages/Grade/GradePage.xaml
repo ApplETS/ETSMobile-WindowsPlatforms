@@ -16,9 +16,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Skins/PhoneSkin.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <converters:DebugProxyConverter x:Name="DebugProxyConverter"/>
-            
             <DataTemplate x:Name="GradesHeader">
                 <StackPanel>
                     <TextBlock Text="{Binding Course.Acronym}" />
@@ -29,23 +26,23 @@
                 <ScrollViewer>
                     <StackPanel>
                         <Grid Margin="5" >
-                            <TextBlock x:Uid="SummaryUid" Text="Sommaire" Style="{StaticResource EtsListViewHeaderItem}"/>
+                            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="SummaryUid" Text="Sommaire" Style="{StaticResource EtsListViewHeaderItem}"/>
                         </Grid>
-                        
-                        <grade:GradeSummary Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding Grade, FallbackValue='Cote', Source={StaticResource LocalizedStrings}}" Grade="{Binding LetterGrade, Converter={StaticResource StringToTbdConverter}}" />
 
-                        <grade:GradeSummary Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding ActualGrade, FallbackValue='Résultat à ce jour', Source={StaticResource LocalizedStrings}}" Grade="{Binding ActualGrade, Converter={StaticResource StringToTbdConverter}}" />
+                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding Grade, FallbackValue='Cote', Source={StaticResource LocalizedStrings}}" Grade="{Binding LetterGrade, Converter={StaticResource StringToTbdConverter}}" />
 
-                        <grade:GradeSummary Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding Average, FallbackValue='Moyenne', Source={StaticResource LocalizedStrings}}" Grade="{Binding Average, Converter={StaticResource StringToTbdConverter}}" />
+                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding ActualGrade, FallbackValue='Résultat à ce jour', Source={StaticResource LocalizedStrings}}" Grade="{Binding ActualGrade, Converter={StaticResource StringToTbdConverter}}" />
 
-                        <grade:GradeSummary Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding StandardDeviation, FallbackValue='Écart-type', Source={StaticResource LocalizedStrings}}" Grade="{Binding StandardDeviation, Converter={StaticResource StringToTbdConverter}}" />
+                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding Average, FallbackValue='Moyenne', Source={StaticResource LocalizedStrings}}" Grade="{Binding Average, Converter={StaticResource StringToTbdConverter}}" />
 
-                        <grade:GradeSummary Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding Median, FallbackValue='Médianne', Source={StaticResource LocalizedStrings}}" Grade="{Binding Median, Converter={StaticResource StringToTbdConverter}}" />
+                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding StandardDeviation, FallbackValue='Écart-type', Source={StaticResource LocalizedStrings}}" Grade="{Binding StandardDeviation, Converter={StaticResource StringToTbdConverter}}" />
 
-                        <grade:GradeSummary Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding Percentile, FallbackValue='Rang centile', Source={StaticResource LocalizedStrings}}" Grade="{Binding Percentile, Converter={StaticResource StringToTbdConverter}}" />
+                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding Median, FallbackValue='Médianne', Source={StaticResource LocalizedStrings}}" Grade="{Binding Median, Converter={StaticResource StringToTbdConverter}}" />
+
+                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Brush}" Title="{Binding Percentile, FallbackValue='Rang centile', Source={StaticResource LocalizedStrings}}" Grade="{Binding Percentile, Converter={StaticResource StringToTbdConverter}}" />
 
                         <Grid Margin="5">
-                            <TextBlock x:Uid="MyGradesUid" Text="Mes notes" Style="{StaticResource EtsListViewHeaderItem}" />
+                            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="MyGradesUid" Text="Mes notes" Style="{StaticResource EtsListViewHeaderItem}" />
                         </Grid>
 
                         <ListView ItemsSource="{Binding Evaluations}" Margin="0,10,0,0" IsItemClickEnabled="False">
@@ -55,7 +52,7 @@
                                 </TransitionCollection>
                             </ListView.ItemContainerTransitions>
                             <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemWithoutPressedStyle}">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                 </Style>
                             </ListView.ItemContainerStyle>
@@ -91,7 +88,7 @@
 
     </Page.Resources>
 
-    <Grid x:Name="Grade" Background="{StaticResource EtsBackgroundBodyBrush}" d:DataContext="{d:DesignInstance Type=designTime:GradeViewModelDt, IsDesignTimeCreatable=True}">
+    <Grid x:Name="Root" Background="{StaticResource EtsBackgroundBodyBrush}" d:DataContext="{d:DesignInstance Type=designTime:GradeViewModelDt, IsDesignTimeCreatable=True}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
@@ -104,15 +101,17 @@
                 <TextBlock FontSize="{StaticResource Size5}" Margin="15,0,0,0" Text="{Binding Semester, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
             </StackPanel>
         </StackPanel>
-        
+
         <!-- Content -->
-        <Pivot x:Name="Pivot" Grid.Row="1" HeaderTemplate="{StaticResource GradesHeader}" ItemTemplate="{StaticResource GradesPresenter}" ItemsSource="{Binding GradeItems}" >
-            <Pivot.Resources>
-                <Style TargetType="PivotItem">
-                    <Setter Property="Margin" Value="10,10,10,10" />
-                </Style>
-            </Pivot.Resources>
-        </Pivot>
+        <Grid Grid.Row="1">
+            <Pivot x:Name="Pivot" HeaderTemplate="{StaticResource GradesHeader}" ItemTemplate="{StaticResource GradesPresenter}" ItemsSource="{Binding GradeItems}" >
+                <Pivot.Resources>
+                    <Style TargetType="PivotItem">
+                        <Setter Property="Margin" Value="10,10,10,10" />
+                    </Style>
+                </Pivot.Resources>
+            </Pivot>
+        </Grid>
     </Grid>
 
     <Page.BottomAppBar>

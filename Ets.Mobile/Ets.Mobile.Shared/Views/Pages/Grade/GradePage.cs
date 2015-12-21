@@ -34,7 +34,7 @@ namespace Ets.Mobile.Pages.Grade
                 .Where(x => x != null);
 
             subscriptionForViewModel
-                .Subscribe(x => Grade.DataContext = x);
+                .Subscribe(x => Root.DataContext = x);
 
             PartialInitialize();
         }

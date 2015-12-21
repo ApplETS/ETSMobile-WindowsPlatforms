@@ -27,9 +27,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+        <Grid Grid.Row="0">
             <shared:MenuButtonBar Command="{Binding CloseMenu}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"/>
-        </ScrollViewer>
+        </Grid>
 
         <StackPanel x:Name="RadioButtonContainer" Grid.Row="1">
             <!-- Home -->
