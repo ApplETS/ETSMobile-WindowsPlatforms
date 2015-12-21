@@ -80,7 +80,6 @@
     <Compile Include="AbridgedSemesterToFullNameConverter.cs" />
     <Compile Include="BooleanToOpacityConverter.cs" />
     <Compile Include="BooleanToVisibilityConverter.cs" />
-    <Compile Include="DebugProxyConverter.cs" />
     <Compile Include="InversedBooleanConverter.cs" />
     <Compile Include="InversedBooleanToVisibilityConverter.cs" />
     <Compile Include="MenuItemIsActiveToBackgroundColor.cs" />
