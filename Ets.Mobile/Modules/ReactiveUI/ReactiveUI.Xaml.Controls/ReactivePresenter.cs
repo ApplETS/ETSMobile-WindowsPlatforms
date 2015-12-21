@@ -334,12 +334,6 @@ namespace ReactiveUI.Xaml.Controls
                                 ReactiveState = ReactiveState.Value;
                                 this.Log().Info($"[{typeof (ReactivePresenter)}]: Value ({getValue.Result}) State for {Name} has been injected");
                             }
-                            else
-                            {
-                                CurrentIsEmpty = true;
-                                ReactiveState = ReactiveState.Empty;
-                                this.Log().Info($"[{typeof(ReactivePresenter)}]: IsEmpty State for {Name} has been injected");
-                            }
                         }
                         else if (subTaskCompleted == getEmptyMessage)
                         {
