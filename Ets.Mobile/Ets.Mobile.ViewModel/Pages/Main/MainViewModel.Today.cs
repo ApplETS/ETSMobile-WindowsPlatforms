@@ -22,8 +22,10 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             {
                 return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
                     .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
+                    .ThrowIfEmpty()
                     .SelectMany(x => x)
                     .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
+                    .ThrowIfEmpty()
                     .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
                         var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
                         await SettingsService().ApplyColorOnItemsForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
