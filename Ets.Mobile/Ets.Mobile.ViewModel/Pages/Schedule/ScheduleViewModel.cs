@@ -5,13 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Runtime.Serialization;
 using Akavache;
 using Messaging.Interfaces.Common;
-using Messaging.UniversalApp.Common;
 using ReactiveUI.Xaml.Controls.Extensions;
-using Refit;
 
 namespace Ets.Mobile.ViewModel.Pages.Schedule
 {
