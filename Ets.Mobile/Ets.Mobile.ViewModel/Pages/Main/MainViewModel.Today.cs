@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using Akavache;
+using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
@@ -26,11 +28,9 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                     .SelectMany(x => x)
                     .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
                     .ThrowIfEmpty()
-                    .SelectMany(currentSemester => Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => {
-                        var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName);
-                        await SettingsService().ApplyColorOnItemsForSemester(schedule, currentSemester.AbridgedName, x => x.Title);
-                        return schedule;
-                    }))
+                    .SelectMany(currentSemester => 
+                        Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ToObservable().ApplyCustomColors(SettingsService()))
+                    )
                     .Where(x => x != null)
                     .Select(x => x)
                     .ThrowIfEmpty();

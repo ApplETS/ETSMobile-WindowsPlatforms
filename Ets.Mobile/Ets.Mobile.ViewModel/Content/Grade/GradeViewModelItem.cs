@@ -7,6 +7,7 @@ using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
 using System.Reactive.Threading.Tasks;
 using Windows.UI;
+using Ets.Mobile.Client.Mixins;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
 using Refit;
@@ -30,16 +31,9 @@ namespace Ets.Mobile.ViewModel.Content.Grade
             get { return _course; }
             set { this.RaiseAndSetIfChanged(ref _course, value); }
         }
-
-        private EvaluationsVm _evaluation;
-        [DataMember] public EvaluationsVm Evaluation
-        {
-            get { return _evaluation; }
-            set { this.RaiseAndSetIfChanged(ref _evaluation, value); }
-        }
         
         public IReactivePresenterHandler<EvaluationsVm> GradesPresenter { get; protected set; }
-        public ReactivePresenterCommand<EvaluationsVm> LoadGrade { get; protected set; }
+        public ReactivePresenterCommand<EvaluationsVm> LoadGrade { get; private set; }
         public bool HasTriggeredLoadGradeOnce { get; set; }
         
         public GradeViewModelItem(CourseVm course)
@@ -53,8 +47,6 @@ namespace Ets.Mobile.ViewModel.Content.Grade
 
         private void OnViewModelCreation()
         {
-            Evaluation = new EvaluationsVm();
-
             LoadGrade = ReactivePresenterCommand.CreateAsyncObservable(_ =>
                 Cache.GetAndFetchLatest(
                     ViewModelKeys.GradesForSemesterAndCourse(Course.Semester, Course.Name),
@@ -62,21 +54,11 @@ namespace Ets.Mobile.ViewModel.Content.Grade
                         ClientServices()
                             .SignetsService.Evaluations(Course.Acronym, Course.Group, Course.Semester)
                             .ToObservable()
-                            .Do(async grade =>
-                            {
-                                grade.LetterGrade = Course.Grade;
-                                await
-                                    SettingsService()
-                                        .ApplyColorOnItemsForSemester(grade, Course.Semester,
-                                            x => Course.Acronym,
-                                            Color.FromArgb(Course.A, Course.R, Course.G, Course.B));
-                            })
+                            .ApplyCustomColors(SettingsService(), Course)
                 )
             );
 
             GradesPresenter = LoadGrade.CreateReactivePresenter();
         }
-
-        public IObservable<EvaluationsVm> TellUserThat { get; set; }
     }
 }

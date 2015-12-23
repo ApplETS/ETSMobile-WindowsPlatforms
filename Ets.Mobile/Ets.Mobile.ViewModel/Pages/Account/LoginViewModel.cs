@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Linq;
 using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using Akavache;
 using Ets.Mobile.Client;
 using Ets.Mobile.Client.Contracts;
+using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
+using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Logger;
 using Messaging.UniversalApp.Common;
@@ -84,9 +89,20 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             });
 
             SubmitCommand.Subscribe(accountVm => {
+                // Set the credentials of the User
                 Locator.Current.GetService<ISignetsService>().SetCredentials(accountVm);
+                // Username encrypted
                 Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(accountVm.Username));
+                // Load The Side Navigation Profile
                 SideNavigation.UserDetails.LoadProfile.Execute(null);
+                // Preload courses to have the colors ready on all pages
+                var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses()
+                    .ToObservable()
+                    .ApplyCustomColors(SettingsService())
+                );
+                Task.WaitAll(coursesTask);
+                Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result);
+                // Navigate to the next screen
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });
 

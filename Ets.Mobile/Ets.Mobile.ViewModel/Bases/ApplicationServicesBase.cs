@@ -31,36 +31,39 @@ namespace Ets.Mobile.ViewModel.Bases
 
         [IgnoreDataMember]
         private ClientEndpoint _ce;
-        public ClientEndpoint ClientServices()
+        protected ClientEndpoint ClientServices()
         {
             return _ce ?? (_ce = new ClientEndpoint(_serviceLocator));
         }
 
         [IgnoreDataMember]
         private ResourceLoader _rl;
-        public ResourceLoader Resources()
+        protected ResourceLoader Resources()
         {
             return _rl ?? (_rl = _serviceLocator.GetService<ResourceLoader>());
         }
 
         [IgnoreDataMember]
         private ICustomSettingsService _ss;
-        public ICustomSettingsService SettingsService()
+
+        protected ICustomSettingsService SettingsService()
         {
             return _ss ?? (_ss = _serviceLocator.GetService<ICustomSettingsService>());
         }
 
         private IBlobCache _bc;
-        public IBlobCache Cache => _bc ?? (_bc = BlobCache.UserAccount);
+        protected IBlobCache Cache => _bc ?? (_bc = BlobCache.UserAccount);
 
         private IViewService _vs;
-        public IViewService ViewServices()
+        protected IViewService ViewServices()
         {
             return _vs ?? (_vs = _serviceLocator.GetService<IViewService>());
         }
 
         private ISideNavigationViewModel _sideNavigation;
 
+        // ReSharper disable once MemberCanBeProtected.Global
+        // The side navigation needs to be accessible in the views
         public ISideNavigationViewModel SideNavigation
         {
             get { return _sideNavigation ?? (_sideNavigation = _serviceLocator.GetService<ISideNavigationViewModel>()); }

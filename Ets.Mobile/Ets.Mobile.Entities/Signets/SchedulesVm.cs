@@ -41,6 +41,14 @@ namespace Ets.Mobile.Entities.Signets
 
         #endregion
 
+        private string _semester;
+        [DataMember]
+        public string Semester
+        {
+            get { return _semester; }
+            set { this.RaiseAndSetIfChanged(ref _semester, value); }
+        }
+
         private DateTime _startDate;
         [DataMember] public DateTime StartDate
         {

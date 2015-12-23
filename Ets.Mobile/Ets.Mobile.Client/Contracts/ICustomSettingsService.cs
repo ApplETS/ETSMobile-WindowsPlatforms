@@ -1,32 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Ets.Mobile.Entities.Signets;
 using System.Threading.Tasks;
-using Windows.UI;
-using Ets.Mobile.Entities.Signets.Interfaces;
 
 namespace Ets.Mobile.Client.Contracts
 {
     public interface ICustomSettingsService
     {
         /// <summary>
-        /// Apply The Color of Each ICustomColor items according
-        /// to the selector
+        /// Apply the colors on the courses upon
+        /// a successful login
         /// </summary>
-        /// <param name="items">ICustomColor Items</param>
-        /// <param name="semester">Semester in-which the item is</param>
-        /// <param name="nameSelector">Course name Selector</param>
+        /// <param name="items"></param>
         /// <returns></returns>
-        Task<IList<T>> ApplyColorOnItemsForSemester<T>(IList<T> items, string semester, Func<T, object> nameSelector) where T : class, ICustomColor;
+        Task ApplyColorOnItemsForCoursesInitial(CourseVm[] items);
+        
+        /// <summary>
+        /// Apply The Color of Each Schedule items
+        /// </summary>
+        Task ApplyColorOnItemsForSchedule(ScheduleVm[] items);
 
         /// <summary>
-        /// Apply The Color of one ICustomColor item according
-        /// to the selector
+        /// Apply The Color of Each Evaluations items
         /// </summary>
-        /// <param name="item">ICustomColor Item</param>
-        /// <param name="semester">Semester in-which the item is</param>
-        /// <param name="nameSelector">Course name Selector</param>
-        /// <param name="color">Color of the item</param>
-        /// <returns></returns>
-        Task<T> ApplyColorOnItemsForSemester<T>(T item, string semester, Func<T, object> nameSelector, Color color) where T : class, ICustomColor;
+        Task ApplyColorOnItemsForEvaluations(EvaluationsVm items, string semester, string courseAndGroup);
     }
 }

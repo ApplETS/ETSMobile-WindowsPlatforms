@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using Akavache;
+using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
@@ -46,8 +47,8 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                             .ToList()
                     )
                     .Where(x => x != null
-                                && x.Any(y => !string.IsNullOrEmpty(y.Semester))
-                                && x.Any(y => y.Semester == Semester))
+                        && x.Any(y => !string.IsNullOrEmpty(y.Semester))
+                        && x.Any(y => y.Semester == Semester))
                     .Select(x => x.Where(y => y.Semester == Semester))
                     .Select(x => x.Select(y => new GradeViewModelItem(y)).ToArray())
             );
@@ -72,20 +73,11 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             });
         }
 
-        public IObservable<CourseVm[]> FetchCourses()
+        private IObservable<CourseVm[]> FetchCourses()
         {
             return ClientServices().SignetsService.Courses()
                 .ToObservable()
-                .Do(async courses =>
-                {
-                    foreach (var course in courses.GroupBy(x => x.Semester))
-                    {
-                        await SettingsService().ApplyColorOnItemsForSemester(
-                            courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
-                            course.FirstOrDefault().Semester, x => x.Acronym);
-                    }
-                })
-                .Select(x => x.ToArray());
+                .ApplyCustomColors(SettingsService());
         }
 
         #region Properties
@@ -115,9 +107,6 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             get { return _gradeItems; }
             set { this.RaiseAndSetIfChanged(ref _gradeItems, value); }
         }
-
-        //[DataMember]
-        //public IReactiveDerivedList<GradeViewModelItem> Grades { get; protected set; }
 
         #endregion
     }    
