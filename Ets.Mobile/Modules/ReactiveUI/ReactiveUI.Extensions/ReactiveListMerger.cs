@@ -23,7 +23,38 @@ namespace ReactiveUI.Extensions
             enumerable.ToArray().MergeWith(reactiveList);
         }
 
+        public static void MergeWith<T>(this ReactiveList<T> reactiveList, IEnumerable<T> enumerable)
+            where T : IMergeableObject<T>
+        {
+            reactiveList.MergeWith(enumerable.ToArray());
+        }
+
         public static void MergeWith<T>(this T[] array, ReactiveList<T> reactiveList)
+            where T : IMergeableObject<T>
+        {
+            // Add
+            var itemsToAdd = array.Except(array.Where(x => reactiveList.Contains(x, x))).ToArray();
+            if (itemsToAdd.Any())
+            {
+                reactiveList.AddRange(itemsToAdd);
+            }
+
+            // Remove
+            var itemsToRemove = array.Where(x => !array.Contains(x, x)).ToArray();
+            if (itemsToRemove.Any())
+            {
+                reactiveList.RemoveAll(itemsToRemove);
+            }
+
+            // Merge
+            foreach (var item in array.Where(x => array.Contains(x, x)))
+            {
+                var mergeItem = array.First(x => x.Equals(x, item));
+                item.MergeWith(mergeItem);
+            }
+        }
+
+        public static void MergeWith<T>(this ReactiveList<T> reactiveList, T[] array)
             where T : IMergeableObject<T>
         {
             // Add

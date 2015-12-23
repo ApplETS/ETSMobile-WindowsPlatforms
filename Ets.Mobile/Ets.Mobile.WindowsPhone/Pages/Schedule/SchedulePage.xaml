@@ -85,10 +85,11 @@
         <DataTemplate x:Key="DayViewTemplate">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Border BorderThickness="1" BorderBrush="{StaticResource SfScheduleDayBorder}">
-                    <Border Background="{StaticResource EtsBackgroundBrush}" BorderThickness="8,0,0,0" BorderBrush="{Binding Brush}">
+                    <Border Background="{StaticResource EtsBackgroundBrush}" BorderThickness="8,0,0,0" BorderBrush="{Binding Color}">
                         <StackPanel Orientation="Vertical" Margin="5,1,5,5">
-                            <TextBlock Text="{Binding ActivityName}" Foreground="{Binding Brush}" Style="{StaticResource AppointementSubject}"/>
-                            <TextBlock Style="{StaticResource AppointmentDescription}" Text="{Binding Location}" />
+                            <TextBlock Text="{Binding ActivityName}" Foreground="{Binding Color}" Style="{StaticResource AppointementSubject}"/>
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource AppointmentTypeStyle}" />
+                            <TextBlock Style="{StaticResource AppointmentDescriptionStyle}" Text="{Binding Location}" />
                         </StackPanel>
                     </Border>
                 </Border>
@@ -97,10 +98,11 @@
         <DataTemplate x:Key="TimelineViewTemplate">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Border BorderThickness="1" BorderBrush="{StaticResource SfScheduleDayBorder}">
-                    <Border Background="{StaticResource EtsBackgroundBrush}" BorderThickness="0,8,0,0" BorderBrush="{Binding Brush}">
+                    <Border Background="{StaticResource EtsBackgroundBrush}" BorderThickness="0,8,0,0" BorderBrush="{Binding Color}">
                         <StackPanel Orientation="Vertical" Margin="5,1,5,5">
-                            <TextBlock Text="{Binding ActivityName}" TextWrapping="WrapWholeWords" Foreground="{Binding Brush}" Style="{StaticResource AppointementSubject}"/>
-                            <TextBlock Style="{StaticResource AppointmentDescription}" Text="{Binding Location}" />
+                            <TextBlock Text="{Binding ActivityName}" TextWrapping="WrapWholeWords" Foreground="{Binding Color}" Style="{StaticResource AppointementSubject}"/>
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource AppointmentTypeStyle}" />
+                            <TextBlock Style="{StaticResource AppointmentDescriptionStyle}" Text="{Binding Location}" />
                         </StackPanel>
                     </Border>
                 </Border>
@@ -114,8 +116,9 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Style="{StaticResource AppointementStartTime}" Text="{Binding StartDate, Converter={StaticResource StartDateToStringConverter}}" Grid.Column="0" />
                 <StackPanel Grid.Column="1" Orientation="Vertical">
-                    <TextBlock Text="{Binding ActivityName}" Foreground="{Binding Brush}" Style="{StaticResource AppointementSubject}"/>
-                    <TextBlock Style="{StaticResource AppointmentDescription}" Text="{Binding Converter={StaticResource AppointmentToDescriptionConverter}}" />
+                    <TextBlock Text="{Binding ActivityName}" Style="{StaticResource AppointementSubject}" Foreground="{Binding Color}" />
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource AppointmentTypeStyle}" />
+                    <TextBlock Style="{StaticResource AppointmentDescriptionStyle}" Text="{Binding Converter={StaticResource AppointmentToDescriptionConverter}}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -156,7 +159,7 @@
             </schedule:SfSchedule.AppointmentTemplate>
             <schedule:SfSchedule.AppointmentMapping>
                 <schedule:ScheduleAppointmentMapping
-                    AppointmentBackgroundMapping="Brush"
+                    AppointmentBackgroundMapping="Color"
                     LocationMapping="Location"
 	                SubjectMapping="ActivityName"
 	                StartTimeMapping="StartDate"

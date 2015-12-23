@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using Akavache;
 using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Signets;
@@ -73,11 +74,9 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             });
         }
 
-        private IObservable<CourseVm[]> FetchCourses()
+        private Task<CourseVm[]> FetchCourses()
         {
-            return ClientServices().SignetsService.Courses()
-                .ToObservable()
-                .ApplyCustomColors(SettingsService());
+            return ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService());
         }
 
         #region Properties

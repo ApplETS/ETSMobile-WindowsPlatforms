@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Globalization;
+using System.Runtime.Serialization;
 using Windows.UI;
 
 namespace Ets.Mobile.Entities.Signets.Interfaces
@@ -8,19 +9,35 @@ namespace Ets.Mobile.Entities.Signets.Interfaces
     {
         public ColorVm(Color color)
         {
-            A = color.A;
-            R = color.R;
-            G = color.G;
-            B = color.B;
+            HexColor = color.ToString();
+        }
+
+        public ColorVm(string hexCode)
+        {
+            if (string.IsNullOrEmpty(hexCode))
+            {
+                hexCode = "#FFFFFFFF";
+            }
+            HexColor = hexCode;
+        }
+
+        public ColorVm()
+        {
         }
 
         [DataMember]
-        public byte A { get; set; }
-        [DataMember]
-        public byte R { get; set; }
-        [DataMember]
-        public byte G { get; set; }
-        [DataMember]
-        public byte B { get; set; }
+        public string HexColor { get; set; }
+
+        public Color ToColor()
+        {
+            var color = new Color
+            {
+                A = byte.Parse(HexColor.Substring(7, 2), NumberStyles.AllowHexSpecifier),
+                R = byte.Parse(HexColor.Substring(1, 2), NumberStyles.AllowHexSpecifier),
+                G = byte.Parse(HexColor.Substring(3, 2), NumberStyles.AllowHexSpecifier),
+                B = byte.Parse(HexColor.Substring(5, 2), NumberStyles.AllowHexSpecifier)
+            };
+            return color;
+        }
     }
 }

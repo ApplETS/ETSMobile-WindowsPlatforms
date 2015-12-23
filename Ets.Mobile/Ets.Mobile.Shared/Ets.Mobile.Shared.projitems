@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\CustomColorToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserErrorHandlers\UserErrorOfflineHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ApplicationViewModelsTypes.cs" />

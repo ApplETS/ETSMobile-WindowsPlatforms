@@ -10,7 +10,9 @@ using System.Runtime.Serialization;
 using Akavache;
 using Ets.Mobile.Client.Mixins;
 using Messaging.Interfaces.Common;
+using ReactiveUI.Extensions;
 using ReactiveUI.Xaml.Controls.Extensions;
+using Syncfusion.Data.Extensions;
 
 namespace Ets.Mobile.ViewModel.Pages.Schedule
 {
@@ -34,7 +36,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
                     .SelectMany(x => x)
                     .FirstAsync(x => (x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now) || (x.StartDate > DateTime.Now))
                     .SelectMany(currentSemester =>
-                        Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ToObservable().ApplyCustomColors(SettingsService()))
+                        Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService()))
                     )
                     .Where(x => x != null)
                     .Select(x => x.AsEnumerable());
@@ -52,10 +54,9 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
                     UserError.Throw(x.Message, x);
                 });
 
-            LoadSchedule.Subscribe(x =>
+            LoadSchedule.Subscribe(scheduleVms =>
             {
-                ScheduleItems.Clear();
-                ScheduleItems.AddRange(x);
+                ScheduleItems.MergeWith(scheduleVms);
             });
         }
 

@@ -62,11 +62,9 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             GradesPresenter = LoadGrades.CreateReactivePresenter(GradesItems, Grades, true);
         }
 
-        private IObservable<CourseVm[]> FetchCourses()
+        private Task<CourseVm[]> FetchCourses()
         {
-            return ClientServices().SignetsService.Courses()
-                .ToObservable()
-                .ApplyCustomColors(SettingsService());
+            return ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService());
         }
 
         #region Properties

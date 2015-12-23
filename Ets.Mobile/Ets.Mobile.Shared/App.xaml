@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
              xmlns:local="using:Ets.Mobile"
              xmlns:localization="using:Localization"
-             xmlns:converters="using:Xaml.Converters">
+             xmlns:converters="using:Xaml.Converters"
+             xmlns:convertersForEtsMobile="using:Ets.Mobile.Converters">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -11,6 +12,7 @@
                 <ResourceDictionary Source="/Skins/SplitViewStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <x:String x:Key="AppName">ETS Mobile</x:String>
+            <convertersForEtsMobile:CustomColorToBrushConverter x:Key="CustomColorToBrushConverter" />
             <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
             <converters:StringToLowerConverter x:Key="StringToLowerConverter" />
             <converters:StringToLocalizedStringConverter x:Key="StringToLocalizedStringConverter" />

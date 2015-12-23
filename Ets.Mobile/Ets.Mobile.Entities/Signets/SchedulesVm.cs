@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Windows.UI;
-using Windows.UI.Xaml.Media;
 using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
 using ReactiveUI.Extensions;
@@ -23,7 +22,10 @@ namespace Ets.Mobile.Entities.Signets
 
         public int GetHashCode(ScheduleVm obj)
         {
-            return obj.Name.GetHashCode();
+            return obj.Name.GetHashCode() ^
+                   obj.StartDate.ToString("O").GetHashCode() ^
+                   obj.EndDate.ToString("O").GetHashCode() ^
+                   obj.CourseAndGroup.GetHashCode();
         }
 
         public void MergeWith(ScheduleVm other)
@@ -33,10 +35,7 @@ namespace Ets.Mobile.Entities.Signets
             CourseAndGroup = other.CourseAndGroup;
             Location = other.Location;
             Description = other.Description;
-            A = other.A;
-            R = other.R;
-            G = other.G;
-            B = other.B;
+            SetNewColor(new ColorVm(other.Color));
         }
 
         #endregion
@@ -121,25 +120,22 @@ namespace Ets.Mobile.Entities.Signets
 
         #region ICustomColor Implementation
 
+        private string _color;
         [DataMember]
-        public byte A { get; set; }
-        [DataMember]
-        public byte R { get; set; }
-        [DataMember]
-        public byte G { get; set; }
-        [DataMember]
-        public byte B { get; set; }
+        public string Color
+        {
+            get { return _color; }
+            set { this.RaiseAndSetIfChanged(ref _color, value); }
+        }
 
         public void SetNewColor(ColorVm color)
         {
             // Set Value for Store
-            A = color.A;
-            R = color.R;
-            G = color.G;
-            B = color.B;
+            if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
+            {
+                Color = color.HexColor;
+            }
         }
-
-        public SolidColorBrush Brush => new SolidColorBrush(Color.FromArgb(A, R, G, B));
 
         #endregion
 

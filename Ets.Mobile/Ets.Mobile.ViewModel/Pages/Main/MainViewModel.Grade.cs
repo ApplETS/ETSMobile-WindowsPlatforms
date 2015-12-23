@@ -39,8 +39,9 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             GradesItems = new ReactiveList<GradeSummaryViewModelGroup>();
 
             LoadGrades = ReactivePresenterCommand.CreateAsyncObservable(_ => {
-                return FetchCourses()
-                .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)));
+                return Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
+                .Select(y => y.OrderByDescending(x => x.Semester, new SemestersComparator()).ToList())
+                .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)).ToList());
             });
 
             LoadGrades.ThrownExceptions
@@ -55,11 +56,9 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             GradesPresenter = LoadGrades.CreateReactivePresenter(GradesItems, Grades, true);
         }
 
-        private IObservable<CourseVm[]> FetchCourses()
+        private Task<CourseVm[]> FetchCourses()
         {
-            return ClientServices().SignetsService.Courses()
-                .ToObservable()
-                .ApplyCustomColors(SettingsService());
+            return ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService());
         }
 
         #region Properties
@@ -69,7 +68,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         private ReactiveCommand<Unit> _navigateToGradeItem;
         public IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; protected set; }
         public IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> GradesPresenter { get; protected set; }
-        public ReactivePresenterCommand<IEnumerable<GradeSummaryViewModelGroup>> LoadGrades { get; protected set; }
+        public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadGrades { get; protected set; }
 
         #endregion
     }

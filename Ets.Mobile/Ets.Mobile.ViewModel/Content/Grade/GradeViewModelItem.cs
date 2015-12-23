@@ -53,7 +53,6 @@ namespace Ets.Mobile.ViewModel.Content.Grade
                     () =>
                         ClientServices()
                             .SignetsService.Evaluations(Course.Acronym, Course.Group, Course.Semester)
-                            .ToObservable()
                             .ApplyCustomColors(SettingsService(), Course)
                 )
             );

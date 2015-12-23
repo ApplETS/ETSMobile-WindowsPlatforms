@@ -1,6 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Reactive.Linq;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Entities.Signets;
 
@@ -8,35 +7,29 @@ namespace Ets.Mobile.Client.Mixins
 {
     public static class CustomSettingsMixins
     {
-        public static IObservable<CourseVm[]> ApplyCustomColors(this IObservable<CourseVm[]> courses, ICustomSettingsService service)
+        public static async Task<CourseVm[]> ApplyCustomColors(this Task<CourseVm[]> courses, ICustomSettingsService service)
         {
-            return courses
-                .Do(async c =>
-                {
-                    var grouped = c.GroupBy(x => x.Semester).Select(x => x.OrderBy(y => y.Acronym)).ToArray();
-                    foreach (var group in grouped)
-                    {
-                        await service.ApplyColorOnItemsForCoursesInitial(group.ToArray());
-                    }
-                });
+            var c = await courses;
+            var grouped = c.GroupBy(x => x.Semester).Select(x => x.OrderBy(y => y.Acronym)).ToArray();
+            foreach (var group in grouped)
+            {
+                await service.ApplyColorOnItemsForCoursesInitial(group.ToArray());
+            }
+            return c;
         }
 
-        public static IObservable<ScheduleVm[]> ApplyCustomColors(this IObservable<ScheduleVm[]> courses, ICustomSettingsService service)
+        public static async Task<ScheduleVm[]> ApplyCustomColors(this Task<ScheduleVm[]> courses, ICustomSettingsService service)
         {
-            return courses
-                .Do(async c =>
-                {
-                    await service.ApplyColorOnItemsForSchedule(c);
-                });
+            var c = await courses;
+            await service.ApplyColorOnItemsForSchedule(c);
+            return c;
         }
 
-        public static IObservable<EvaluationsVm> ApplyCustomColors(this IObservable<EvaluationsVm> evaluation, ICustomSettingsService service, CourseVm belongsToCourse)
+        public static async Task<EvaluationsVm> ApplyCustomColors(this Task<EvaluationsVm> evaluation, ICustomSettingsService service, CourseVm belongsToCourse)
         {
-            return evaluation
-                .Do(async eval =>
-                {
-                    await service.ApplyColorOnItemsForEvaluations(eval, belongsToCourse.Semester, $"{belongsToCourse.Acronym}-{belongsToCourse.Group}");
-                });
+            var eval = await evaluation;
+            await service.ApplyColorOnItemsForEvaluations(eval, belongsToCourse.Semester, $"{belongsToCourse.Acronym}-{belongsToCourse.Group}");
+            return eval;
         }
     }
 }

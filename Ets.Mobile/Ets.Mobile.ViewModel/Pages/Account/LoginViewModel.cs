@@ -96,10 +96,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
                 // Load The Side Navigation Profile
                 SideNavigation.UserDetails.LoadProfile.Execute(null);
                 // Preload courses to have the colors ready on all pages
-                var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses()
-                    .ToObservable()
-                    .ApplyCustomColors(SettingsService())
-                );
+                var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
                 Task.WaitAll(coursesTask);
                 Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result);
                 // Navigate to the next screen

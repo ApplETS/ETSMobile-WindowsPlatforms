@@ -29,7 +29,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
                     .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
                     .ThrowIfEmpty()
                     .SelectMany(currentSemester => 
-                        Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ToObservable().ApplyCustomColors(SettingsService()))
+                        Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService()))
                     )
                     .Where(x => x != null)
                     .Select(x => x)
