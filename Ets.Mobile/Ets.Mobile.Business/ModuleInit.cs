@@ -19,15 +19,15 @@ namespace Ets.Mobile.Business
 	{
 		public void Initialize(IMutableDependencyResolver container)
 		{
-            container.Register(() => new SignetsAccountVm(), typeof(SignetsAccountVm));
+            container.RegisterLazySingleton(() => new SignetsAccountVm(), typeof(SignetsAccountVm));
 
             if (DesignMode.DesignModeEnabled)
             {
-                container.Register(() => new DtSignetsBusinessService(), typeof(ISignetsBusinessService));
+                container.RegisterLazySingleton(() => new DtSignetsBusinessService(), typeof(ISignetsBusinessService));
             }
             else
             {
-                container.Register(() =>
+                container.RegisterLazySingleton(() =>
                     new SignetsServiceInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
                     typeof(IClientInfo)
                 );
@@ -46,7 +46,7 @@ namespace Ets.Mobile.Business
                     }
                 };
 
-                container.Register(() => RestService.For<ISignetsBusinessService>(client, refitSettings), typeof(ISignetsBusinessService));
+                container.RegisterLazySingleton(() => RestService.For<ISignetsBusinessService>(client, refitSettings), typeof(ISignetsBusinessService));
             }
 		}
 	}

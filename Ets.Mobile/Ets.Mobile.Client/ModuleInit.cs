@@ -12,13 +12,13 @@ namespace Ets.Mobile.Client
     {
         public void Initialize(IMutableDependencyResolver container)
 		{
-            container.Register(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
+            container.RegisterLazySingleton(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
             var signetServiceInstance = new SignetsService(
                 container.GetService<ISignetsBusinessService>(),
                 container.GetService<SignetsAbstractFactory>()
             );
-            container.Register(() => signetServiceInstance, typeof(ISignetsService));
-            container.Register(() => new CustomSettingsService(), typeof(ICustomSettingsService));
+            container.RegisterLazySingleton(() => signetServiceInstance, typeof(ISignetsService));
+            container.RegisterLazySingleton(() => new CustomSettingsService(), typeof(ICustomSettingsService));
 		}
 	}
 }

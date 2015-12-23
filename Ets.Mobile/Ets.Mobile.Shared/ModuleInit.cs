@@ -27,10 +27,10 @@ namespace Ets.Mobile.Shared
 			_resolver = resolver;
 
             // Log 
-            _resolver.Register(() => new CrittercismLogger(), typeof(IUserEnabledLogger));
-            _resolver.Register(() => new PopupManager(_resolver.GetService<ResourceLoader>()), typeof(IPopupManager));
-            _resolver.Register(() => new InAppNotificationManager(AppBrushes.MediumBrush), typeof(INotificationManager), "InApp");
-            _resolver.Register(() => new ViewService(), typeof(IViewService));
+            _resolver.RegisterLazySingleton(() => new CrittercismLogger(), typeof(IUserEnabledLogger));
+            _resolver.RegisterLazySingleton(() => new PopupManager(_resolver.GetService<ResourceLoader>()), typeof(IPopupManager));
+            _resolver.RegisterLazySingleton(() => new InAppNotificationManager(AppBrushes.MediumBrush), typeof(INotificationManager), "InApp");
+            _resolver.RegisterLazySingleton(() => new ViewService(), typeof(IViewService));
 
             var types = new[]
 			{

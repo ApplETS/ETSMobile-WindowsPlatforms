@@ -24,7 +24,7 @@ namespace Ets.Mobile.Client.Shared.Tests.Services
         {
             if(locator.GetService<ISignetsService>() == null)
             {
-                locator.Register(() =>
+                locator.RegisterLazySingleton(() =>
                     new SignetsServiceInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
                     typeof(SignetsServiceInfo)
                 );
@@ -32,9 +32,9 @@ namespace Ets.Mobile.Client.Shared.Tests.Services
                 {
                     BaseAddress = new Uri("https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx"),
                 };
-                locator.Register(() => RestService.For<ISignetsBusinessService>(client), typeof(ISignetsBusinessService));
-                locator.Register(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
-                locator.Register(() => new SignetsService(locator.GetService<ISignetsBusinessService>(), locator.GetService<SignetsAbstractFactory>(), new SignetsAccountVm(TestSettings.Username, TestSettings.Password)), typeof(ISignetsService));
+                locator.RegisterLazySingleton(() => RestService.For<ISignetsBusinessService>(client), typeof(ISignetsBusinessService));
+                locator.RegisterLazySingleton(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
+                locator.RegisterLazySingleton(() => new SignetsService(locator.GetService<ISignetsBusinessService>(), locator.GetService<SignetsAbstractFactory>(), new SignetsAccountVm(TestSettings.Username, TestSettings.Password)), typeof(ISignetsService));
             }
             return locator.GetService<ISignetsService>();
         }

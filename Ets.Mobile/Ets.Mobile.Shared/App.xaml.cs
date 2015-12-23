@@ -33,7 +33,7 @@ namespace Ets.Mobile
         /// </summary>
         public App()
         {
-            Locator.CurrentMutable.Register(() => new ResourceLoader(), typeof(ResourceLoader));
+            Locator.CurrentMutable.RegisterLazySingleton(() => new ResourceLoader(), typeof(ResourceLoader));
             
             InitializeComponent();
 
