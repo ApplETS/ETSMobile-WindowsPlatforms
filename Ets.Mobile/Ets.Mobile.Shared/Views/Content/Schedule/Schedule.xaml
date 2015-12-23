@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="ScheduleDataTemplate">
             <Border BorderBrush="{StaticResource EtsBorderItemBrush}" BorderThickness="0,1,1,1" Margin="0,0,0,10">
-                <Border Width="Auto" BorderBrush="{Binding Brush}" BorderThickness="3,0,0,0">
+                <Border Width="Auto" BorderBrush="{Binding Color}" BorderThickness="3,0,0,0">
                     <Grid Background="White">
                         <!-- Course not incoming -->
                         <Grid Margin="5,5,0,5">

@@ -15,6 +15,7 @@ using Ets.Mobile.ViewModel.Contracts.Grade;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
 using Akavache;
+using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
@@ -61,20 +62,9 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             GradesPresenter = LoadGrades.CreateReactivePresenter(GradesItems, Grades, true);
         }
 
-        public IObservable<CourseVm[]> FetchCourses()
+        private Task<CourseVm[]> FetchCourses()
         {
-            return ClientServices().SignetsService.Courses()
-                .ToObservable()
-                .Do(async courses =>
-                {
-                    foreach (var course in courses.GroupBy(x => x.Semester))
-                    {
-                        await SettingsService().ApplyColorOnItemsForSemester(
-                            courses.Where(x => x.Semester == course.FirstOrDefault().Semester).ToArray(),
-                            course.FirstOrDefault().Semester, x => x.Acronym);
-                    }
-                })
-                .Select(x => x.ToArray());
+            return ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService());
         }
 
         #region Properties

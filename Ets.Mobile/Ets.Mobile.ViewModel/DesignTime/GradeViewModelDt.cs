@@ -24,30 +24,18 @@ namespace Ets.Mobile.ViewModel.DesignTime
                     Course = new CourseVm
                     {
                         Semester = "É2015",
-                        A = Colors.Orange.A,
-                        R = Colors.Orange.R,
-                        G = Colors.Orange.G,
-                        B = Colors.Orange.B,
-                        Brush = {Color = Colors.Orange, Opacity = 1}
+                        Color = Colors.Orange.ToString()
                     },
                     Evaluation = new EvaluationsVm
                     {
                         ActualGrade = 78.4,
-                        A = Colors.Orange.A,
-                        R = Colors.Orange.R,
-                        G = Colors.Orange.G,
-                        B = Colors.Orange.B,
-                        Brush = {Color = Colors.Orange, Opacity = 1}
+                        Color = Colors.Orange.ToString()
                     },
                     GradesPresenter = new ReactivePresenterHandlerDesignTime<EvaluationsVm>(
                         Observable.Return(new EvaluationsVm
                         {
                             ActualGrade = 78.4,
-                            A = Colors.Orange.A,
-                            R = Colors.Orange.R,
-                            G = Colors.Orange.G,
-                            B = Colors.Orange.B,
-                            Brush = {Color = Colors.Orange, Opacity = 1}
+                            Color = Colors.Orange.ToString()
                         })
                     )
                 }

@@ -164,7 +164,14 @@ namespace Ets.Mobile.Client.Services
 
             _signetsService.HandleError(scheduleResult);
 
-            return _factory.CreateFor<ScheduleResult, List<ScheduleVm>>(scheduleResult).ToArray();
+            return _factory.CreateFor<ScheduleResult, List<ScheduleVm>>(scheduleResult)
+                .Select(s => 
+                {
+                    // Embed Semester
+                    s.Semester = semesterAbridgedName;
+                    return s;
+                })
+                .ToArray();
         }
     }
 }

@@ -22,7 +22,7 @@
                         <core:InvokeCommandAction Command="{Binding NavigateToGrade}" CommandParameter="{Binding}"/>
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <Border BorderThickness="1,1,0,0" BorderBrush="{Binding Course.Brush}">
+                <Border BorderThickness="1,1,0,0" BorderBrush="{Binding Course.Color}">
                     <Grid Height="100">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />

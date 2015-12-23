@@ -6,6 +6,7 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.UI;
 using Ets.Mobile.ViewModel.Content.Main;
 using Ets.Mobile.ViewModel.Contracts.Main;
 using Ets.Mobile.ViewModel.Contracts.Shared;
@@ -35,10 +36,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                         Description = "Description",
                         StartDate = DateTime.Now.AddMinutes(2),
                         EndDate = DateTime.Now.AddMinutes(62),
-                        A = AppColors.Green.A,
-                        R = AppColors.Green.R,
-                        G = AppColors.Green.G,
-                        B = AppColors.Green.B,
+                        Color = AppColors.Orange.ToString()
                     },
                     new ScheduleVm
                     {
@@ -49,10 +47,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                         Description = "Description",
                         StartDate = DateTime.Now.AddMinutes(2),
                         EndDate = DateTime.Now.AddMinutes(62),
-                        A = AppColors.Orange.A,
-                        R = AppColors.Orange.R,
-                        G = AppColors.Orange.G,
-                        B = AppColors.Orange.B,
+                        Color = AppColors.Orange.ToString()
                     }
                 });
 
@@ -66,10 +61,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                             Name = "Architecture",
                             Semester = "H2015",
                             Program = "",
-                            A = AppColors.Orange.A,
-                            R = AppColors.Orange.R,
-                            G = AppColors.Orange.G,
-                            B = AppColors.Orange.B,
+                            Color = Colors.Orange.ToString()
                         }
                     }, null)
                 });
@@ -77,7 +69,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                 TodayPresenter = new ReactivePresenterHandlerDesignTime<IReactiveDerivedList<ScheduleVm>>(Observable.Return(new ReactiveDerivedListDesignTime<ScheduleVm>(todayItems)));
                 GradesPresenter = new ReactivePresenterHandlerDesignTime<IReactiveDerivedList<GradeSummaryViewModelGroup>>(Observable.Return(new ReactiveDerivedListDesignTime<GradeSummaryViewModelGroup>(gradeItems)));
                 LoadCoursesForToday = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new ScheduleVm[0]));
-                LoadGrades = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new List<GradeSummaryViewModelGroup>().AsEnumerable()));
+                LoadGrades = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new List<GradeSummaryViewModelGroup>()));
                 NavigateToSchedule = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
                 NavigateToProgram = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
                 SideNavigation = new SideNavigationViewModel(null)
@@ -122,7 +114,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
         public ISideNavigationViewModel SideNavigation { get; }
 
         public ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; }
-        public ReactivePresenterCommand<IEnumerable<GradeSummaryViewModelGroup>> LoadGrades { get; }
+        public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadGrades { get; }
         public ReactiveCommand<Unit> NavigateToSchedule { get; }
         public ReactiveCommand<Unit> NavigateToProgram { get; }
     }

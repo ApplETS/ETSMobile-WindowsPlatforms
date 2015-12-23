@@ -8,6 +8,6 @@ namespace Ets.Mobile.Client
         /// <para>arg1 Semester</para>
         /// <para>arg2 Course</para>
         /// </summary>
-        public static Func<string, string, string> ColorCourseForSemester = (semester, course) => "colorsFor_" + semester + "_" + course;
+        public static Func<string, string, string> ColorCourseForSemester = (semester, course) => "colorsFor_" + semester.Trim() + "_" + course.Trim();
     }
 }

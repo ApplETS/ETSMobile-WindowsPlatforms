@@ -1,6 +1,5 @@
-﻿using System.Runtime.Serialization;
-using Windows.UI;
-using Windows.UI.Xaml.Media;
+﻿using Windows.UI;
+using System.Runtime.Serialization;
 using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
 using ReactiveUI.Extensions;
@@ -30,10 +29,7 @@ namespace Ets.Mobile.Entities.Signets
             Group = other.Group;
             Grade = other.Grade;
             Name = other.Name;
-            A = other.A;
-            R = other.R;
-            G = other.G;
-            B = other.B;
+            SetNewColor(new ColorVm(other.Color));
         }
 
         #endregion
@@ -89,25 +85,22 @@ namespace Ets.Mobile.Entities.Signets
 
         #region ICustomColor Implementation
 
+        private string _color;
         [DataMember]
-        public byte A { get; set; }
-        [DataMember]
-        public byte R { get; set; }
-        [DataMember]
-        public byte G { get; set; }
-        [DataMember]
-        public byte B { get; set; }
+        public string Color
+        {
+            get { return _color; }
+            set { this.RaiseAndSetIfChanged(ref _color, value); }
+        }
 
         public void SetNewColor(ColorVm color)
         {
             // Set Value for Store
-            A = color.A;
-            R = color.R;
-            G = color.G;
-            B = color.B;
+            if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
+            {
+                Color = color.HexColor;
+            }
         }
-
-        public SolidColorBrush Brush => new SolidColorBrush(Color.FromArgb(A, R, G, B));
 
         #endregion
     }

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Windows.UI;
-using Windows.UI.Xaml.Media;
+using System.Runtime.Serialization;
 using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
 
@@ -82,35 +81,24 @@ namespace Ets.Mobile.Entities.Signets
 
         [DataMember] public List<EvaluationVm> Evaluations { get; set; }
 
-
-
         #region ICustomColor Implementation
 
+        private string _color;
         [DataMember]
-        public byte A { get; set; }
-        [DataMember]
-        public byte R { get; set; }
-        [DataMember]
-        public byte G { get; set; }
-        [DataMember]
-        public byte B { get; set; }
+        public string Color
+        {
+            get { return _color; }
+            set { this.RaiseAndSetIfChanged(ref _color, value); }
+        }
 
         public void SetNewColor(ColorVm color)
         {
             // Set Value for Store
-            A = color.A;
-            R = color.R;
-            G = color.G;
-            B = color.B;
-
-            // Set Value For Evaluations
-            foreach (var eval in Evaluations)
+            if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
             {
-                eval.SetNewColor(color);
+                Color = color.HexColor;
             }
         }
-
-        public SolidColorBrush Brush => new SolidColorBrush(Color.FromArgb(A, R, G, B));
 
         #endregion
     }
@@ -221,25 +209,22 @@ namespace Ets.Mobile.Entities.Signets
 
         #region ICustomColor Implementation
 
+        private string _color;
         [DataMember]
-        public byte A { get; set; }
-        [DataMember]
-        public byte R { get; set; }
-        [DataMember]
-        public byte G { get; set; }
-        [DataMember]
-        public byte B { get; set; }
+        public string Color
+        {
+            get { return _color; }
+            set { this.RaiseAndSetIfChanged(ref _color, value); }
+        }
 
         public void SetNewColor(ColorVm color)
         {
             // Set Value for Store
-            A = color.A;
-            R = color.R;
-            G = color.G;
-            B = color.B;
+            if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
+            {
+                Color = color.HexColor;
+            }
         }
-
-        public SolidColorBrush Brush => new SolidColorBrush(Color.FromArgb(A, R, G, B));
 
         #endregion
     }

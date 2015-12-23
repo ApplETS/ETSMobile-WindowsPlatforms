@@ -10,7 +10,7 @@ namespace Ets.Mobile.ViewModel.Contracts.Main
     public interface IMainViewModel
     {
         ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; }
-        ReactivePresenterCommand<IEnumerable<GradeSummaryViewModelGroup>> LoadGrades { get; }
+        ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadGrades { get; }
         IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> GradesPresenter { get; }
         IReactivePresenterHandler<IReactiveDerivedList<ScheduleVm>> TodayPresenter { get; }
     }

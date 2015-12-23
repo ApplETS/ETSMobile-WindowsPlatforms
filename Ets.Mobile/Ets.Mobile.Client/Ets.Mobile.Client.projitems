@@ -41,6 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ISemestersFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\ITeammatesFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\IUserDetailsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mixins\CustomSettingsMixins.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\CustomSettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\SignetsService.cs" />
