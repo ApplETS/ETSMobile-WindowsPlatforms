@@ -150,13 +150,13 @@ namespace Ets.Mobile.ViewModel
         private static void RegisterViewModelAndPages(IMutableDependencyResolver resolver)
 		{
             // Register Views for the Router
-            resolver.RegisterLazySingleton(() => new LoginPage(), typeof(IViewFor<LoginViewModel>));
-            resolver.RegisterLazySingleton(() => new MainPage(), typeof(IViewFor<MainViewModel>));
-            resolver.RegisterLazySingleton(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
-            resolver.RegisterLazySingleton(() => new GradePage(), typeof(IViewFor<GradeViewModel>));
-            resolver.RegisterLazySingleton(() => new ProgramPage(), typeof(IViewFor<ProgramViewModel>));
-            resolver.RegisterLazySingleton(() => new SelectCourseForGradePage(), typeof(IViewFor<SelectCourseForGradeViewModel>));
-            resolver.RegisterLazySingleton(() => new SettingsPage(), typeof(IViewFor<SettingsViewModel>));
+            resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginViewModel>));
+            resolver.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
+            resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
+            resolver.Register(() => new GradePage(), typeof(IViewFor<GradeViewModel>));
+            resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramViewModel>));
+            resolver.Register(() => new SelectCourseForGradePage(), typeof(IViewFor<SelectCourseForGradeViewModel>));
+            resolver.Register(() => new SettingsPage(), typeof(IViewFor<SettingsViewModel>));
         }
 
         private static async void RegisterBackgroundTasks()
