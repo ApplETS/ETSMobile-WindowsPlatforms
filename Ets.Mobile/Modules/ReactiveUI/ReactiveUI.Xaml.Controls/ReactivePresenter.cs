@@ -295,7 +295,7 @@ namespace ReactiveUI.Xaml.Controls
         {
             PreviousPresenterSource = previousValue;
 
-            if (!(PresenterSource is IReactivePresenterHandler))
+            if (PresenterSource == null || !(PresenterSource is IReactivePresenterHandler))
             {
                 return;
             }
@@ -305,11 +305,11 @@ namespace ReactiveUI.Xaml.Controls
                 DisposeSubscriptions(false);
             }
 
-            if (!_isReactiveSourceInitialized && reactiveSource != previousValue)
+            if (!_isReactiveSourceInitialized)
             {
                 _subscriptions = new CompositeDisposable();
                 _isReactiveSourceInitialized = true;
-                var source = (IReactivePresenterHandler)PresenterSource;
+                var source = ((IReactivePresenterHandler)PresenterSource) ?? (IReactivePresenterHandler)reactiveSource;
 
                 // Put the according state
                 SetStateDuringInitialization(source);
@@ -341,46 +341,61 @@ namespace ReactiveUI.Xaml.Controls
 
         private void SetContent(object value, object previousValue = null, bool hasBeenInjected = false)
         {
-            PreviousSource = previousValue;
-            CurrentSource = value;
-            ReactiveState = ReactiveState.Value;
-            this.Log().Info($"[{typeof(ReactivePresenter)}]: Value ({value}) State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                PreviousSource = previousValue != null && value != null && previousValue.GetType() != value.GetType() ? previousValue : null;
+                CurrentSource = value;
+                ReactiveState = ReactiveState.Value;
+                this.Log().Info($"[{typeof(ReactivePresenter)}]: Value ({value}) State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
+            }).GetAwaiter().OnCompleted(() => { });
         }
 
         private void SetIsReady()
         {
-            if (ReactiveState != ReactiveState.Value)
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
-                ReactiveState = ReactiveState.Value;
-                this.Log().Info($"[{typeof(ReactivePresenter)}]: Value State since it's ready for {Name}");
-            }
+                if (ReactiveState != ReactiveState.Value)
+                {
+                    ReactiveState = ReactiveState.Value;
+                    this.Log().Info($"[{typeof(ReactivePresenter)}]: Value State since it's ready for {Name}");
+                }
+            }).GetAwaiter().OnCompleted(() => { });
         }
 
         private void SetIsEmpty(object isEmpty, bool hasBeenInjected = false)
         {
-            CurrentIsEmpty = isEmpty;
-            ReactiveState = ReactiveState.Empty;
-            this.Log().Info($"[{typeof(ReactivePresenter)}]: IsEmpty State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                CurrentIsEmpty = isEmpty;
+                ReactiveState = ReactiveState.Empty;
+                this.Log().Info($"[{typeof(ReactivePresenter)}]: IsEmpty State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
+            }).GetAwaiter().OnCompleted(() => { });
         }
 
         private void SetIsRefreshing(bool hasBeenInjected = false)
         {
-            CurrentIsRefreshing = true;
-            ReactiveState = ReactiveState.Refreshing;
-            this.Log().Info($"[{typeof(ReactivePresenter)}]: Refreshing (true) State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                CurrentIsRefreshing = true;
+                ReactiveState = ReactiveState.Refreshing;
+                this.Log().Info($"[{typeof (ReactivePresenter)}]: Refreshing (true) State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
+            }).GetAwaiter().OnCompleted(() => { });
         }
 
         private void SetThrownException(string message, bool hasBeenInjected = false)
         {
-            CurrentError = message;
-            ReactiveState = ReactiveState.Error;
-            this.Log().Error($"[{typeof(ReactivePresenter)}]: Error State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                CurrentError = message;
+                ReactiveState = ReactiveState.Error;
+                this.Log().Error($"[{typeof (ReactivePresenter)}]: Error State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
+            }).GetAwaiter().OnCompleted(() => { });
         }
 
         private void SetStateDuringInitialization(IReactivePresenterHandler source)
         {
             // This puts the right content/state
-            Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
+            Task.Run(async () =>
             {
                 var getValue = source.GetLastValue();
                 var getEmptyMessage = source.GetLastEmptyMessage();
@@ -400,7 +415,7 @@ namespace ReactiveUI.Xaml.Controls
                             var reactiveList = getValue.Result as IReactiveList<object>;
                             if ((reactiveList != null && reactiveList.Any()) || (derived != null && derived.Any()))
                             {
-                                SetContent(getValue.Result, hasBeenInjected: true);
+                                //SetContent(getValue.Result, hasBeenInjected: true);
                             }
 
                             var subSubTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException);
@@ -418,7 +433,7 @@ namespace ReactiveUI.Xaml.Controls
                             // It's an object
                             if (getValue.Result != null)
                             {
-                                SetContent(getValue.Result, null, true);
+                                //SetContent(getValue.Result, null, true);
                             }
                             
                             // Verify that it is not an "empty" object
