@@ -123,7 +123,7 @@
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    <Grid HorizontalAlignment="Stretch">
+    <Grid HorizontalAlignment="Stretch" Margin="0,0,0,60">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />

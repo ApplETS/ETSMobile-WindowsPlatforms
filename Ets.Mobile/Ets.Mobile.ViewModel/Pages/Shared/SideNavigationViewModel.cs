@@ -19,6 +19,7 @@ using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Windows.UI.ViewManagement;
 
 namespace Ets.Mobile.ViewModel.Pages.Shared
 {
@@ -64,6 +65,13 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
                 CurrentPage = Locator.Current.GetService<ResourceLoader>().GetString(currentVm.UrlPathSegment);
                 CurrentViewModelType = currentVm.GetType();
 
+#if WINDOWS_PHONE_APP
+                ApplicationView.GetForCurrentView()
+                    .SetDesiredBoundsMode(CurrentViewModelType == typeof (ScheduleViewModel)
+                        ? ApplicationViewBoundsMode.UseCoreWindow
+                        : ApplicationViewBoundsMode.UseVisible);
+#endif
+
                 // Highlights the corresponding current ViewModel
                 IsMain = MainTypes.Contains(CurrentViewModelType);
                 IsSchedule = ScheduleTypes.Contains(CurrentViewModelType);
@@ -96,7 +104,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             });
         }
 
-        #region Properties
+#region Properties
 
         private UserDetailsVm _profile;
         [DataMember]
@@ -148,7 +156,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
         /// </summary>
         public ISubject<bool> IsSideNavigationVisibleSubject { get; set; }
 
-        #region Menu Items
+#region Menu Items
 
         private bool _isMain;
         public bool IsMain
@@ -195,8 +203,8 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
 
         public Type[] SettingsTypes { get; } = { typeof(SettingsViewModel) };
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
     }
 }

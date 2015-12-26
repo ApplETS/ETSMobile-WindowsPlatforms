@@ -16,7 +16,6 @@ namespace Ets.Mobile.Pages.Schedule
     {
         partial void PartialInitialize()
         {
-            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
         }
 
         public bool IsCurrentViewWeek { get; set; }
