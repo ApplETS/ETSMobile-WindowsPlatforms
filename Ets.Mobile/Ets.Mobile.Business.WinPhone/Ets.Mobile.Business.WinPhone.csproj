@@ -91,10 +91,6 @@
       <Project>{ce35f282-6085-4910-bfe2-38a93c50cd8b}</Project>
       <Name>Ets.Mobile.Entities.WinPhone</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Moduler\Moduler.csproj">
-      <Project>{f99ab029-1684-44be-a91f-0c1bcc18cba9}</Project>
-      <Name>Moduler</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=12.0">

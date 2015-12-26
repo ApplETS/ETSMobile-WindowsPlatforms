@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Akavache;
@@ -51,7 +49,13 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                         && x.Any(y => !string.IsNullOrEmpty(y.Semester))
                         && x.Any(y => y.Semester == Semester))
                     .Select(x => x.Where(y => y.Semester == Semester))
-                    .Select(x => x.Select(y => new GradeViewModelItem(y)).ToArray())
+                    .Select(gradeItems => gradeItems.Select(y => new GradeViewModelItem(y)).ToArray())
+                    .Do(gradeItems =>
+                    {
+                        var selectedCourse = gradeItems.First(y => y.Course.Acronym == SelectedCourse.Acronym);
+                        selectedCourse.LoadGrade.ExecuteAsyncTask(null);
+                        selectedCourse.HasTriggeredLoadGradeOnce = true;
+                    })
             );
 
             LoadGrade.ThrownExceptions
@@ -62,10 +66,6 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
 
             LoadGrade.Subscribe(gradeItems =>
             {
-                var selectedCourse = gradeItems.First(y => y.Course.Acronym == SelectedCourse.Acronym);
-                selectedCourse.LoadGrade.Execute(null);
-                selectedCourse.HasTriggeredLoadGradeOnce = true;
-
                 using (GradeItems.SuppressChangeNotifications())
                 {
                     GradeItems.Clear();

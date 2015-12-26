@@ -4,11 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="Black">
+    mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary Source="/Skins/MainSkin.xaml" />
     </Page.Resources>
+    <Page.Transitions>
+        <TransitionCollection>
+            <EdgeUIThemeTransition Edge="Right" />
+        </TransitionCollection>
+    </Page.Transitions>
     <Grid x:Name="Root">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="LoginGroup">
@@ -96,7 +100,7 @@
         <Image x:Name="EtsBuilding"
 			Source="/Assets/Account/Login/background_blur.jpg" 
 			Stretch="None" 
-			Margin="-1229,-522,-1591,-183" RenderTransformOrigin="0.5,0.5">			
+			Margin="-1219,-522,-1591,-183" RenderTransformOrigin="0.5,0.5">			
 			<Image.RenderTransform>
 				<CompositeTransform/>
 			</Image.RenderTransform>

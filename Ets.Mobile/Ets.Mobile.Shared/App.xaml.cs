@@ -1,18 +1,16 @@
-﻿using Akavache;
-using Ets.Mobile.Agent;
-using Ets.Mobile.Shell;
+﻿using Ets.Mobile.Shell;
 using Ets.Mobile.ViewModel;
 using ReactiveUI;
 using Splat;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Reactive.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using CrittercismSDK;
+using Ets.Mobile.TaskObservers;
 
 #if WINDOWS_PHONE_APP
 using Windows.UI.Xaml.Media.Animation;
@@ -21,9 +19,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Ets.Mobile
 {
-	public sealed partial class App : Application
+    public sealed partial class App : Application
 	{
-        readonly AutoSuspendHelper _autoSuspendHelper;
+	    private readonly AutoSuspendHelper _autoSuspendHelper;
 #if WINDOWS_PHONE_APP
         private TransitionCollection _transitions;
 #endif
@@ -36,15 +34,6 @@ namespace Ets.Mobile
             Locator.CurrentMutable.RegisterLazySingleton(() => new ResourceLoader(), typeof(ResourceLoader));
             
             InitializeComponent();
-
-            // Akavache Init
-            BlobCache.ApplicationName = "EtsMobile";
-
-            // Crittercism
-            Crittercism.Init("55e87dc18d4d8c0a00d07811");
-
-            // ensure unobserved task exceptions (unawaited async methods returning Task or Task<T>) are handled
-            TaskScheduler.UnobservedTaskException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - observed:{e.Observed} - {e.Exception.Message}", e.Exception));
             
             UnhandledException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - wasHandled:{e.Handled} - {e.Message}", e.Exception));
             
@@ -55,77 +44,6 @@ namespace Ets.Mobile
             _autoSuspendHelper = new AutoSuspendHelper(this);
             RxApp.SuspensionHost.CreateNewAppState = () => new ApplicationShell();
             RxApp.SuspensionHost.SetupDefaultSuspendResume();
-        }
-        public class AsyncSynchronizationContext : SynchronizationContext
-        {
-            public static AsyncSynchronizationContext Register()
-            {
-                var syncContext = Current;
-                if (syncContext == null)
-                    throw new InvalidOperationException("Ensure a synchronization context exists before calling this method.");
-
-                var customSynchronizationContext = syncContext as AsyncSynchronizationContext;
-
-                if (customSynchronizationContext == null)
-                {
-                    customSynchronizationContext = new AsyncSynchronizationContext(syncContext);
-                    SetSynchronizationContext(customSynchronizationContext);
-                }
-
-                return customSynchronizationContext;
-            }
-
-            private readonly SynchronizationContext _syncContext;
-
-            public AsyncSynchronizationContext(SynchronizationContext syncContext)
-            {
-                _syncContext = syncContext;
-            }
-
-            public override SynchronizationContext CreateCopy()
-            {
-                return new AsyncSynchronizationContext(_syncContext.CreateCopy());
-            }
-
-            public override void OperationCompleted()
-            {
-                _syncContext.OperationCompleted();
-            }
-
-            public override void OperationStarted()
-            {
-                _syncContext.OperationStarted();
-            }
-
-            public override void Post(SendOrPostCallback d, object state)
-            {
-                _syncContext.Post(WrapCallback(d), state);
-            }
-
-            public override void Send(SendOrPostCallback d, object state)
-            {
-                _syncContext.Send(d, state);
-            }
-
-            private static SendOrPostCallback WrapCallback(SendOrPostCallback sendOrPostCallback)
-            {
-                return state =>
-                {
-                    Exception exception = null;
-
-                    try
-                    {
-                        sendOrPostCallback(state);
-                    }
-                    catch (Exception ex)
-                    {
-                        exception = ex;
-                    }
-
-                    if (exception != null)
-                        Crittercism.LogUnhandledException(new Exception($"[WrapCallback][{DateTime.Now}] {exception.Message} -> {exception?.InnerException?.Message}", exception.InnerException));
-                };
-            }
         }
 
         /// <summary>
@@ -141,21 +59,15 @@ namespace Ets.Mobile
             
             // Navigate to the Startup ViewModel When Available
             RxApp.SuspensionHost.ObserveAppState<ApplicationShell>()
-                        .Subscribe(screen => screen.HandleAuthentificated());
-
-            // When the user is launching the app, ensure that the connectivity states are reset-ed
-            Task.WaitAll(Task.Run(async () =>
-            {
-                await HandleOfflineTask.SetConnectivityValues();
-                BlobCache.UserAccount.InsertObject("HasUserBeenNotified", false);
-            }));
+                .ObserveOn(RxApp.TaskpoolScheduler)
+                .SubscribeOn(RxApp.TaskpoolScheduler)
+                .Subscribe(screen => screen.HandleAuthentificated());
 
             // Do RxApp OnLaunched
             _autoSuspendHelper.OnLaunched(e);
 
             // IAsyncCommand are handled here
             // We need a Synchronization Context to use this
-            // Don't move it.
             AsyncSynchronizationContext.Register();
 
             // Create New Frame
@@ -203,12 +115,6 @@ namespace Ets.Mobile
 
             // Ensure the current window is active
             Window.Current.Activate();
-
-//#if WINDOWS_PHONE_APP
-//            // Allows the windows to always use the full screen
-//            // This solves the problem: when hiding the commandbar, the windows would not resize. Now it does.
-//            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-//#endif
         }
 
 #if WINDOWS_PHONE_APP
@@ -222,7 +128,7 @@ namespace Ets.Mobile
             var rootFrame = sender as Frame;
             if (rootFrame != null)
             {
-                rootFrame.ContentTransitions = _transitions ?? new TransitionCollection { new NavigationThemeTransition() };
+                rootFrame.ContentTransitions = _transitions ?? new TransitionCollection { /*new NavigationThemeTransition()*/ };
                 rootFrame.Navigated -= RootFrame_FirstNavigated;
             }
         }

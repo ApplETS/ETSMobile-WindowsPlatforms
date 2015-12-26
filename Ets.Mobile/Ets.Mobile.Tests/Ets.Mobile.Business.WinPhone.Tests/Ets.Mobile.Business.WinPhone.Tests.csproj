@@ -117,10 +117,6 @@
       <Project>{3e659f3b-a23d-4d6a-ad9d-684eb0c51e91}</Project>
       <Name>Ets.Mobile.WindowsPhone</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Modules\Moduler\Moduler.csproj">
-      <Project>{f99ab029-1684-44be-a91f-0c1bcc18cba9}</Project>
-      <Name>Moduler</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Modules\Themes\Themes.csproj">
       <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
       <Name>Themes</Name>

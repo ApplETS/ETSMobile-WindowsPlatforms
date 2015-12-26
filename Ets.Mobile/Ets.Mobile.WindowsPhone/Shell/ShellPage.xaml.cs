@@ -1,4 +1,6 @@
-﻿using ReactiveUI;
+﻿using Windows.ApplicationModel.Resources;
+using ReactiveUI;
+using Splat;
 
 namespace Ets.Mobile.Shell
 {
@@ -9,6 +11,7 @@ namespace Ets.Mobile.Shell
             this.Bind(ViewModel, x => x.SideNavigation.IsSideNavigationVisible, x => x.ShellSplitView.IsPaneOpen);
             this.Bind(ViewModel, x => x.SideNavigation, x => x.SideNavigation.DataContext);
             this.Bind(ViewModel, x => x.Router, x => x.RoutedViewModelHost.Router);
+            ApplicationReady.Text = Locator.Current.GetService<ResourceLoader>().GetString("ApplicationLoadingServices");
         }
     }
 }

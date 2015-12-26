@@ -83,22 +83,23 @@ namespace Ets.Mobile.ViewModel.Pages.Account
                     throw new SignetsException("Nom d'usager ou mot de passe invalide.");
                 }
 
+                // Set the credentials of the User
+                Locator.Current.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
+                // Username encrypted
+                Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
+                // Load The Side Navigation Profile
+                SideNavigation.UserDetails.LoadProfile.Execute(null);
+                // Preload courses to have the colors ready on all pages
+                var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
+                Task.WaitAll(coursesTask);
+                await Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result).ToTask();
+
                 _isValidating = false;
 
                 return signetsAccountVm;
             });
 
             SubmitCommand.Subscribe(accountVm => {
-                // Set the credentials of the User
-                Locator.Current.GetService<ISignetsService>().SetCredentials(accountVm);
-                // Username encrypted
-                Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(accountVm.Username));
-                // Load The Side Navigation Profile
-                SideNavigation.UserDetails.LoadProfile.Execute(null);
-                // Preload courses to have the colors ready on all pages
-                var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
-                Task.WaitAll(coursesTask);
-                Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result);
                 // Navigate to the next screen
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });

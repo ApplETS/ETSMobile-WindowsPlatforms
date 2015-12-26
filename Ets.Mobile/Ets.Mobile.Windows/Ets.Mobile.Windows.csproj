@@ -241,10 +241,6 @@
       <Project>{8fe53ee7-c620-4327-876a-bf2c2222cd7f}</Project>
       <Name>Messaging.UniversalApp.WinRT</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Moduler\Moduler.csproj">
-      <Project>{f99ab029-1684-44be-a91f-0c1bcc18cba9}</Project>
-      <Name>Moduler</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Extensions\ReactiveUI.Extensions.csproj">
       <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
       <Name>ReactiveUI.Extensions</Name>

@@ -354,4 +354,16 @@
   <data name="FusilladeDescriptionUid.Text" xml:space="preserve">
     <value>An opinionated HTTP library for Mobile Development</value>
   </data>
+  <data name="ApplicationLoadingBackgroundServices" xml:space="preserve">
+    <value>Registering background tasks...</value>
+  </data>
+  <data name="ApplicationLoadingEnds" xml:space="preserve">
+    <value>It's done!</value>
+  </data>
+  <data name="ApplicationLoadingServices" xml:space="preserve">
+    <value>Registering services...</value>
+  </data>
+  <data name="ApplicationLoadingViews" xml:space="preserve">
+    <value>Registering views...</value>
+  </data>
 </root>

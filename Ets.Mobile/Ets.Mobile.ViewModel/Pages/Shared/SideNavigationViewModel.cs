@@ -1,26 +1,24 @@
-﻿using System;
+﻿using Akavache;
+using Ets.Mobile.Entities.Signets;
+using Ets.Mobile.ViewModel.Contracts.Shared;
+using Ets.Mobile.ViewModel.Contracts.UserDetails;
+using Ets.Mobile.ViewModel.Pages.Account;
+using Ets.Mobile.ViewModel.Pages.Grade;
+using Ets.Mobile.ViewModel.Pages.Main;
+using Ets.Mobile.ViewModel.Pages.Program;
+using Ets.Mobile.ViewModel.Pages.Schedule;
+using Ets.Mobile.ViewModel.Pages.Settings;
+using ReactiveUI;
+using Splat;
+using System;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
-using System.Reactive.Concurrency;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.UI.Core;
-using Akavache;
-using Ets.Mobile.Entities.Signets;
-using Ets.Mobile.ViewModel.Pages.Account;
-using ReactiveUI;
-using Splat;
-using Ets.Mobile.ViewModel.Contracts.Shared;
-using Ets.Mobile.ViewModel.Contracts.UserDetails;
-using Ets.Mobile.ViewModel.Pages.Grade;
-using Ets.Mobile.ViewModel.Pages.Main;
-using Ets.Mobile.ViewModel.Pages.Program;
-using Ets.Mobile.ViewModel.Pages.Schedule;
-using Ets.Mobile.ViewModel.Pages.Settings;
 
 namespace Ets.Mobile.ViewModel.Pages.Shared
 {
@@ -60,7 +58,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
                 return Task.FromResult(IsSideNavigationVisible);
             });
 
-            Screen.Router.CurrentViewModel.Where(_ => _ != null).ObserveOn(RxApp.MainThreadScheduler).Subscribe(currentVm =>
+            Screen.Router.CurrentViewModel.Where(viewModel => viewModel != null).ObserveOn(RxApp.MainThreadScheduler).Subscribe(currentVm =>
             {
                 // Current Page Set
                 CurrentPage = Locator.Current.GetService<ResourceLoader>().GetString(currentVm.UrlPathSegment);
@@ -79,6 +77,22 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
                 .Subscribe(x =>
             {
                 Profile = x;
+            });
+
+            NavCommand = ReactiveCommand.CreateAsyncObservable(type =>
+            {
+                var navType = type as Type;
+                if (navType != CurrentViewModelType)
+                {
+                    return Observable.Return(Activator.CreateInstance(navType, Screen));
+                }
+                return Observable.Empty<object>();
+            });
+
+            NavCommand.Subscribe(viewModel =>
+            {
+                IsSideNavigationVisible = false;
+                Screen.Router.Navigate.Execute(viewModel);
             });
         }
 
@@ -99,34 +113,8 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
         public ReactiveCommand<bool> OpenMenu { get; set; }
 
         public ReactiveCommand<bool> CloseMenu { get; set; }
-
-        private ReactiveCommand<Type> _navCommand;
-        public ReactiveCommand<Type> NavCommand
-        {
-            get
-            {
-                return _navCommand ?? (_navCommand = ReactiveCommand.CreateAsyncTask(async type =>
-                {
-                    var navType = type as Type;
-                    if (navType != CurrentViewModelType)
-                    {
-                        var vm = Activator.CreateInstance(navType, Screen);
-
-                        await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                        () =>
-                        {
-                            IsSideNavigationVisible = false;
-                        });
-
-                        RxApp.MainThreadScheduler.Schedule(() =>
-                        {
-                            Screen.Router.Navigate.Execute(vm);
-                        });
-                    }
-                    return navType;
-                }));
-            }
-        }
+        
+        public ReactiveCommand<object> NavCommand { get; private set; }
 
         private IUserDetailsViewModel _userDetails;
         public IUserDetailsViewModel UserDetails

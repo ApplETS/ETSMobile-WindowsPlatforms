@@ -110,7 +110,7 @@
         </DataTemplate>
         <DataTemplate x:Key="WeekViewTemplate">
             <Grid Background="Transparent" HorizontalAlignment="Stretch" Margin="0,3,0,5">
-                <Grid.ColumnDefinitions >
+                <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="0.75*" />
                 </Grid.ColumnDefinitions>

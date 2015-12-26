@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Auth\UserCredentials.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServiceInfo\SignetsServiceInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\CoursesForSemestersVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\CoursesIntervalSemestersVm.cs" />

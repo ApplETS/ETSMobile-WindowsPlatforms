@@ -26,9 +26,15 @@ using Refit;
 using Security.Algorithms;
 using Splat;
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
+using CrittercismSDK;
+using Ets.Mobile.Shared;
 
 namespace Ets.Mobile.ViewModel
 {
@@ -48,7 +54,7 @@ namespace Ets.Mobile.ViewModel
 	    public ISideNavigationViewModel SideNavigation => _sideNavigation ?? (_sideNavigation = Locator.Current.GetService<ISideNavigationViewModel>());
 
 	    public ApplicationShell()
-		{
+	    {
             // Router for Navigation
             Router = new RoutingState();
 
@@ -79,16 +85,13 @@ namespace Ets.Mobile.ViewModel
             // Akavache is a portable data serialization library that we'll use to
             // cache data that we've downloaded
             BlobCache.ApplicationName = "EtsMobile";
+            
+            // Handle Application Exceptions
+	        HandleApplicationExceptions();
 
-            // Set up Fusillade
-            //
-            // Fusillade is a super cool library that will make it so that whenever
-            // we issue web requests, we'll only issue 4 concurrently, and if we
-            // end up issuing multiple requests to the same resource, it will
-            // de-dupe them. We're saying here, that we want our *backing*
-            // HttpMessageHandler to be ModernHttpClient.
-            Locator.CurrentMutable.RegisterConstant(new NativeMessageHandler(), typeof(HttpMessageHandler));
-
+            // Ensure we know if the phone has connectivity or not
+            SetInitialConnectivityForOfflineConnections();
+            
             // Set up Services
             //
             // Setting up services
@@ -107,10 +110,29 @@ namespace Ets.Mobile.ViewModel
             // Setting up the Views and assign them to their corresponding ViewModels
             RegisterViewModelAndPages(Locator.CurrentMutable);
         }
+        
+        private async void SetInitialConnectivityForOfflineConnections()
+        {
+            // When the user is launching the app, ensure that the connectivity states are reset-ed
+            await HandleOfflineTask.SetConnectivityValues();
+            await BlobCache.UserAccount.InsertObject("HasUserBeenNotified", false).ToTask();
+        }
+        
+        private void HandleApplicationExceptions()
+        {
+            RxApp.MainThreadScheduler.Schedule(() =>
+            {
+                LoadingApplicationText = Locator.Current.GetService<ResourceLoader>().GetString("ApplicationLoadingBackgroundServices");
+            });
 
-        #region Verify Authentification
+            // Crittercism
+            Crittercism.Init("55e87dc18d4d8c0a00d07811");
 
-	    public void HandleAuthentificated()
+            // Ensure unobserved task exceptions (unawaited async methods returning Task or Task<T>) are handled
+            TaskScheduler.UnobservedTaskException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - observed:{e.Observed} - {e.Exception.Message}", e.Exception));
+        }
+
+        public void HandleAuthentificated()
 	    {
 	        BlobCache.UserAccount.GetObject<SignetsAccountVm>(ViewModelKeys.Login)
                 .Catch(Observable.Return(new SignetsAccountVm()))
@@ -132,23 +154,33 @@ namespace Ets.Mobile.ViewModel
 
 	                RxApp.MainThreadScheduler.Schedule(() =>
 	                {
-	                    Router.Navigate.Execute(navigateTo);
+                        LoadingApplicationText = Locator.Current.GetService<ResourceLoader>().GetString("ApplicationLoadingEnds");
+                        Router.Navigate.Execute(navigateTo);
+	                    LoadingApplicationText = string.Empty;
 	                });
 	            });
         }
 
-        #endregion
+        private string _loadingApplicationText;
+        public string LoadingApplicationText
+        {
+            get { return _loadingApplicationText; }
+            set { this.RaiseAndSetIfChanged(ref _loadingApplicationText, value); }
+        }
 
         #region Registration
 
         private static void RegisterContainer(IMutableDependencyResolver resolver)
 		{
-			var module = new Shared.ModuleInit();
-            module.Initialize(resolver);
+            ModuleInit.Initialize(resolver);
 		}
 
-        private static void RegisterViewModelAndPages(IMutableDependencyResolver resolver)
-		{
+        private void RegisterViewModelAndPages(IMutableDependencyResolver resolver)
+        {
+            RxApp.MainThreadScheduler.Schedule(() =>
+            {
+                LoadingApplicationText = Locator.Current.GetService<ResourceLoader>().GetString("ApplicationLoadingViews");
+            });
             // Register Views for the Router
             resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginViewModel>));
             resolver.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));

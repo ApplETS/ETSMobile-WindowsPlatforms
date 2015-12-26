@@ -1,4 +1,6 @@
-﻿using System.Reactive.Linq;
+﻿using System;
+using System.Diagnostics;
+using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Ets.Mobile.ViewModel;
@@ -33,7 +35,7 @@ namespace Ets.Mobile.Shell
             RxApp.SuspensionHost.ObserveAppState<ApplicationShell>()
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .SubscribeOn(RxApp.MainThreadScheduler)
-                .BindTo(this, x => x.ViewModel);
+                .BindTo(this, page => page.ViewModel);
 
             PartialInitialize();
         }

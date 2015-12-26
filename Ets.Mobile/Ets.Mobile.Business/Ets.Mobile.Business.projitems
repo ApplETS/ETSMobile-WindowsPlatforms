@@ -54,6 +54,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Signets\Teacher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Signets\Teammate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EtsBusinessException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
   </ItemGroup>
 </Project>
