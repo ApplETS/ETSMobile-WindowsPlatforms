@@ -48,10 +48,13 @@ namespace Ets.Mobile.Shared
 
             // Log 
             resolver.RegisterLazySingleton(() => new CrittercismLogger(), typeof(IUserEnabledLogger));
+
+            // View Services
             resolver.RegisterLazySingleton(() => new PopupManager(resolver.GetService<ResourceLoader>()), typeof(IPopupManager));
             resolver.RegisterLazySingleton(() => new InAppNotificationManager(AppBrushes.MediumBrush), typeof(INotificationManager), "InApp");
             resolver.RegisterLazySingleton(() => new ViewService(), typeof(IViewService));
 
+            // Business Services
             resolver.RegisterLazySingleton(() => new SignetsAccountVm(), typeof(SignetsAccountVm));
 
             if (DesignMode.DesignModeEnabled)
@@ -82,6 +85,7 @@ namespace Ets.Mobile.Shared
                 resolver.RegisterLazySingleton(() => RestService.For<ISignetsBusinessService>(client, refitSettings), typeof(ISignetsBusinessService));
             }
 
+            // Client Services
             resolver.RegisterLazySingleton(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
             var signetServiceInstance = new SignetsService(
                 resolver.GetService<ISignetsBusinessService>(),

@@ -49,6 +49,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             {
                 IsSideNavigationVisibleSubject.OnNext(true);
                 IsSideNavigationVisible = true;
+                ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
                 return Task.FromResult(IsSideNavigationVisible);
             });
 
@@ -56,6 +57,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             {
                 IsSideNavigationVisibleSubject.OnNext(false);
                 IsSideNavigationVisible = false;
+                SetCoreWindowBounds(CurrentViewModelType);
                 return Task.FromResult(IsSideNavigationVisible);
             });
 
@@ -66,10 +68,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
                 CurrentViewModelType = currentVm.GetType();
 
 #if WINDOWS_PHONE_APP
-                ApplicationView.GetForCurrentView()
-                    .SetDesiredBoundsMode(CurrentViewModelType == typeof (ScheduleViewModel)
-                        ? ApplicationViewBoundsMode.UseCoreWindow
-                        : ApplicationViewBoundsMode.UseVisible);
+                SetCoreWindowBounds(CurrentViewModelType);
 #endif
 
                 // Highlights the corresponding current ViewModel
@@ -102,6 +101,14 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
                 IsSideNavigationVisible = false;
                 Screen.Router.Navigate.Execute(viewModel);
             });
+        }
+
+        private void SetCoreWindowBounds(Type vmType)
+        {
+            ApplicationView.GetForCurrentView()
+                    .SetDesiredBoundsMode(vmType == typeof(ScheduleViewModel)
+                        ? ApplicationViewBoundsMode.UseCoreWindow
+                        : ApplicationViewBoundsMode.UseVisible);
         }
 
 #region Properties

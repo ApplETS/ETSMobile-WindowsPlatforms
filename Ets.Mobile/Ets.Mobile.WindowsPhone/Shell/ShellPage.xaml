@@ -10,7 +10,7 @@
     xmlns:converters="using:Ets.Mobile.Converters"
     mc:Ignorable="d"
     x:Name="Shell"
-    Background="{StaticResource EtsBackgroundBrush}">
+    Background="{StaticResource EtsBackgroundMainBrush}">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,29 +22,14 @@
     </Page.Resources>
     <Page.Transitions>
         <TransitionCollection>
-            <EdgeUIThemeTransition Edge="Right" />    
         </TransitionCollection>
     </Page.Transitions>
-    <Grid>
-        <Image Visibility="{Binding ViewModel.LoadingApplicationText, ElementName=Shell, Converter={StaticResource ViewModelAvailabilityToVisibilityConverter}}"
-			    Source="/Assets/Account/Login/background_blur_loading_cropped.jpg" 
-			    Stretch="None" 
-                Margin="-27,-124,0,0"
-			    >
-        </Image>
-        <Canvas ZIndex="1000" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Width="200" Height="200" Margin="-100,-100,0,0">
-                <TextBlock x:Name="ApplicationReady" TextAlignment="Center" FontSize="20" FontFamily="Segoe UI"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding ViewModel.LoadingApplicationText, ElementName=Shell}" Visibility="{Binding ViewModel.LoadingApplicationText, ElementName=Shell, Converter={StaticResource ViewModelAvailabilityToVisibilityConverter}}" />
-                <ProgressRing Margin="25" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" IsActive="{Binding ViewModel.LoadingApplicationText, ElementName=Shell, FallbackValue=true, Converter={StaticResource ViewModelAvailabilityToBooleanConverter}}" Background="Transparent" />
-            </StackPanel>
-        </Canvas>
-        <controls:SplitView OpenPaneLength="{Binding ActualWidth, ElementName=Shell}" x:Name="ShellSplitView" DisplayMode="Overlay">
-            <controls:SplitView.Pane>
-                <shared:SideNavigation x:Name="SideNavigation" />
-            </controls:SplitView.Pane>
-            <controls:SplitView.Content>
-                <reactiveUi:RoutedViewHost x:Name="RoutedViewModelHost" HorizontalAlignment="Stretch" />
-            </controls:SplitView.Content>
-        </controls:SplitView>
-    </Grid>
+    <controls:SplitView OpenPaneLength="{Binding ActualWidth, ElementName=Shell}" x:Name="ShellSplitView" DisplayMode="Overlay">
+        <controls:SplitView.Pane>
+            <shared:SideNavigation x:Name="SideNavigation" />
+        </controls:SplitView.Pane>
+        <controls:SplitView.Content>
+            <reactiveUi:RoutedViewHost x:Name="RoutedViewModelHost" HorizontalAlignment="Stretch" />
+        </controls:SplitView.Content>
+    </controls:SplitView>
 </Page>

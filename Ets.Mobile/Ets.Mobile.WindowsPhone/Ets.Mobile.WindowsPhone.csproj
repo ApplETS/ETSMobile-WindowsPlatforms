@@ -91,6 +91,9 @@
     <Compile Include="Pages\Account\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ExtendedSplashScreen\ExtendedSplashScreenPage.xaml.cs">
+      <DependentUpon>ExtendedSplashScreenPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Grade\GradePage.xaml.cs">
       <DependentUpon>GradePage.xaml</DependentUpon>
     </Compile>
@@ -125,7 +128,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Account\Login\background_blur.jpg" />
+    <Content Include="Assets\Account\Login\background_blur_cropped.jpg" />
     <Content Include="Assets\Account\Login\background_blur_loading_cropped.jpg" />
     <Content Include="Assets\Account\Login\ETS-Devise.png" />
     <Content Include="Assets\Logo.scale-240.png" />
@@ -143,6 +146,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Pages\Account\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ExtendedSplashScreen\ExtendedSplashScreenPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

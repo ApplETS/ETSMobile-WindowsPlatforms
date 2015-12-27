@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using ReactiveUI;
+using Splat;
 
 namespace Ets.Mobile.Pages.Main
 {
@@ -19,7 +20,6 @@ namespace Ets.Mobile.Pages.Main
             // Handle the button visibility according to Pivot Context (SelectedIndex)
             Loaded += (s, e) =>
             {
-                //SlideView.SelectedIndex = 1;
                 MainPivot.SelectionChanged += (sender, e2) =>
                 {
                     RefreshToday.Visibility = Visibility.Collapsed;

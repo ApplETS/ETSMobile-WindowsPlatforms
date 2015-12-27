@@ -1,10 +1,8 @@
-﻿using System.Reactive.Linq;
+﻿using Ets.Mobile.ViewModel.Pages.Main;
+using ReactiveUI;
+using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Ets.Mobile.ViewModel.Pages.Main;
-using ReactiveUI;
-using System;
-using System.Diagnostics;
 
 namespace Ets.Mobile.Pages.Main
 {

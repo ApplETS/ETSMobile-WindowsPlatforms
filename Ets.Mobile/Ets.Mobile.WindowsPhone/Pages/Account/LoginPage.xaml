@@ -10,7 +10,6 @@
     </Page.Resources>
     <Page.Transitions>
         <TransitionCollection>
-            <EdgeUIThemeTransition Edge="Right" />
         </TransitionCollection>
     </Page.Transitions>
     <Grid x:Name="Root">
@@ -95,23 +94,30 @@
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>        
-
-        <Image x:Name="EtsBuilding"
-			Source="/Assets/Account/Login/background_blur.jpg" 
+        </VisualStateManager.VisualStateGroups>
+        <Image x:Name="EtsBuildingDummy"
+			Source="/Assets/Account/Login/background_blur_cropped.jpg" 
 			Stretch="None" 
-			Margin="-1219,-522,-1591,-183" RenderTransformOrigin="0.5,0.5">			
+			Margin="-40,-60,0,0" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <CompositeTransform/>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="EtsBuilding"
+			Source="/Assets/Account/Login/background_blur_cropped.jpg" 
+			Stretch="None" 
+			Margin="-40,-60,-900,0" RenderTransformOrigin="0.5,0.5">			
 			<Image.RenderTransform>
 				<CompositeTransform/>
 			</Image.RenderTransform>
 			<Image.Triggers>
-				<EventTrigger RoutedEvent="Canvas.Loaded">
+                <EventTrigger RoutedEvent="Grid.Loaded">
 					<BeginStoryboard>
 						<Storyboard RepeatBehavior="Forever">
 							<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="EtsBuilding">
 								<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-								<EasingDoubleKeyFrame KeyTime="0:1:7" Value="-940"/>
-								<EasingDoubleKeyFrame KeyTime="0:3:7" Value="0"/>
+								<EasingDoubleKeyFrame KeyTime="0:1:5" Value="-740"/>
+								<EasingDoubleKeyFrame KeyTime="0:3:0" Value="0"/>
 							</DoubleAnimationUsingKeyFrames>
 						</Storyboard>
 					</BeginStoryboard>

@@ -533,5 +533,33 @@ namespace Localization
                 return _resourceLoader.GetString("GradesNotAvailable");
             }
         } 
+        public static string ScheduleEmptyMessage  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleEmptyMessage");
+            }
+        } 
+        public static string ScheduleEmptyTitle  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleEmptyTitle");
+            }
+        } 
+        public static string PaulBettsContributionsUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("PaulBettsContributionsUid");
+            }
+        } 
+        public static string FusilladeDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("FusilladeDescriptionUid");
+            }
+        } 
     }
 }

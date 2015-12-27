@@ -354,16 +354,10 @@
   <data name="FusilladeDescriptionUid.Text" xml:space="preserve">
     <value>Librairie HTTP pour développement mobile</value>
   </data>
-  <data name="ApplicationLoadingBackgroundServices" xml:space="preserve">
-    <value>Préparation des services d'arrière-plan</value>
+  <data name="ApplicationLoadingUid.Text" xml:space="preserve">
+    <value>chargement en cours...</value>
   </data>
-  <data name="ApplicationLoadingEnds" xml:space="preserve">
-    <value>Et c'est fait!</value>
-  </data>
-  <data name="ApplicationLoadingServices" xml:space="preserve">
-    <value>Préparation des services...</value>
-  </data>
-  <data name="ApplicationLoadingViews" xml:space="preserve">
-    <value>Préparation des vues...</value>
+  <data name="ExtendedSplashScreen" xml:space="preserve">
+    <value />
   </data>
 </root>

@@ -37,7 +37,6 @@ namespace Ets.Mobile.Pages.Account
                         return Task.FromResult(_isLoginShown);
                     });
                 });
-
             this.BindCommand(ViewModel, x => x.SwitchToLogin, x => x.SwitchToLogin);
         }
 

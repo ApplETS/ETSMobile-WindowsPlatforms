@@ -44,7 +44,7 @@ namespace Ets.Mobile
             _autoSuspendHelper = new AutoSuspendHelper(this);
             RxApp.SuspensionHost.CreateNewAppState = () => new ApplicationShell();
             RxApp.SuspensionHost.SetupDefaultSuspendResume();
-        }
+        }        
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -56,12 +56,15 @@ namespace Ets.Mobile
         {
             // Do Base Launched
             base.OnLaunched(e);
-            
+
+#if WINDOWS_APP
             // Navigate to the Startup ViewModel When Available
+            // Only on Windows, on Windows Phone we use the Extended Splash Screen
             RxApp.SuspensionHost.ObserveAppState<ApplicationShell>()
                 .ObserveOn(RxApp.TaskpoolScheduler)
                 .SubscribeOn(RxApp.TaskpoolScheduler)
                 .Subscribe(screen => screen.HandleAuthentificated());
+#endif
 
             // Do RxApp OnLaunched
             _autoSuspendHelper.OnLaunched(e);
