@@ -9,7 +9,7 @@
     xmlns:shell="using:Ets.Mobile.Shell"
     mc:Ignorable="d"
     DataContext="{Binding}">
-    <Grid Background="{StaticResource EtsBackgroundBodyBrush}" >
+    <Grid Background="{ThemeResource EtsBackgroundBodyBrush}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
@@ -26,7 +26,7 @@
         </Grid>
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Background="{StaticResource EtsCommandBarBackground}" Foreground="{StaticResource EtsCommandBarForeground}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Refresh" Label="Refresh" Command="{Binding LoadGrades}" />
             </CommandBar.PrimaryCommands>

@@ -9,7 +9,7 @@
     xmlns:shell="using:Ets.Mobile.Shell"
     xmlns:settings="using:Ets.Mobile.Views.Content.Settings"
     mc:Ignorable="d"
-    Background="{StaticResource EtsBackgroundBrush}">
+    Background="{ThemeResource EtsProgramBackgroundBrush}">
 
     <Page.Resources>
         <ResourceDictionary>

@@ -6,10 +6,20 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Skins/MainSkin.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
-    <!-- Pivot                                                     -->
-    <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="Black" />
-    <SolidColorBrush x:Key="EtsPivotHeaderForegroundUnselectedBrush" Color="{StaticResource EtsTextSecondaryColor}" />
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="White" />
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundUnselectedBrush" Color="{StaticResource EtsTextSecondaryColor}" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="White" />
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundUnselectedBrush" Color="{StaticResource EtsTextSecondaryColor}" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="Black" />
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundUnselectedBrush" Color="{StaticResource EtsTextSecondaryColor}" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
 
     <!-- PivotItem -->
     <Style TargetType="controls:PivotItem">
@@ -149,7 +159,7 @@
                               ZoomMode="Disabled"
                               Template="{StaticResource ScrollViewerScrollBarlessTemplate}">
                             <primitives:PivotPanel x:Name="Panel" VerticalAlignment="Stretch">
-                                <primitives:PivotHeaderPanel x:Name="Header" Background="{StaticResource EtsBackgroundMainBrush}">
+                                <primitives:PivotHeaderPanel x:Name="Header" Background="{ThemeResource EtsBackgroundMainBrush}">
                                     <primitives:PivotHeaderPanel.RenderTransform>
                                         <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0" />
                                     </primitives:PivotHeaderPanel.RenderTransform>

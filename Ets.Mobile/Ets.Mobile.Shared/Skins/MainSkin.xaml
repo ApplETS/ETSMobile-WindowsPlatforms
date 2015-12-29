@@ -6,73 +6,829 @@
     mc:Ignorable="d">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
+            <!-- Main Fonts -->
+            <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
+            <!-- Sizes -->
+            <x:Double x:Key="Size1">36</x:Double>
+            <x:Double x:Key="Size2">30</x:Double>
+            <x:Double x:Key="Size3">24</x:Double>
+            <x:Double x:Key="Size3_5">20</x:Double>
+            <x:Double x:Key="Size4">18</x:Double>
+            <x:Double x:Key="Size5">14</x:Double>
+            <x:Double x:Key="Size6">12</x:Double>
+            <x:Double x:Key="Size7">10</x:Double>
+            <x:Double x:Key="Size8">8</x:Double>
+            <!-- Main Colors -->
+            <Color x:Key="EtsRedLowestColor">#680100</Color>
+            <Color x:Key="EtsRedMidColor">#7F0100</Color>
+            <Color x:Key="EtsRedMediumColor">#FF0200</Color>
+            <Color x:Key="EtsRedHighColor">#CC0100</Color>
+            <Color x:Key="EtsRedHighestColor">#FF4E4C</Color>
+            <Color x:Key="EtsBackgroundColor">#FFFFFFFF</Color>
+            <Color x:Key="EtsBackgroundMainColor">#f2f2f2</Color>
+            <Color x:Key="EtsBackgroundBodyColor">#e6e6e6</Color>
+            <Color x:Key="EtsSideNavigationBackgroundColor">#2b2b2b</Color>
+            <Color x:Key="EtsTextMainColor">#323232</Color>
+            <Color x:Key="EtsTextSecondaryColor">#666666</Color>
+            <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
+            <!-- Brush -->
+            <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
+            <Brush x:Key="EtsRedMidBrush">#7F0100</Brush>
+            <Brush x:Key="EtsRedMediumBrush">#FF0200</Brush>
+            <Brush x:Key="EtsRedHighBrush">#CC0100</Brush>
+            <Brush x:Key="EtsRedHighestBrush">#FF4E4C</Brush>
+            <Brush x:Key="EtsTextMainBrush">#323232</Brush>
+            <Brush x:Key="EtsTextBlackBrush">#000000</Brush>
+            <Brush x:Key="EtsTextWhiteBrush">#FFFFFF</Brush>
+            <Brush x:Key="EtsTextGrayBrush">#707070</Brush>
+            <Brush x:Key="EtsTextSecondaryBrush">#666666</Brush>
+            <Brush x:Key="EtsStateTextBrush">#a6a6a6</Brush>
+            <Brush x:Key="EtsSideNavigationBackgroundBrush">#2b2b2b</Brush>
+            <!-- Backgrounds -->
+            <Brush x:Key="EtsBackgroundBrush">#00000000</Brush>
+            <Brush x:Key="EtsBackgroundMainBrush">#404040</Brush>
+            <Brush x:Key="EtsBackgroundBodyBrush">#333333</Brush>
+            <!-- Page Header and Side Navigation -->
+            <Brush x:Key="EtsMenuButtonBrush">#680100</Brush>
+            <Style x:Key="EtsPageHeaderTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <!-- Command Bar -->
+            <Brush x:Key="EtsCommandBarForegroundBrush">#FFFFFFFF</Brush>
+            <Brush x:Key="EtsCommandBarBackgroundBrush">#404040</Brush>
+            <Brush x:Key="EtsCommandBarBrush">#404040</Brush>
+            <!-- Buttons -->
+            <Brush x:Key="EtsButtonPressedBrush">#FF0200</Brush>
+            <!-- Grades -->
+            <Brush x:Key="EtsGradeSummaryItemBrush">Transparent</Brush>
+            <Style x:Key="EtsGradeSummaryTitleForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsGradeSummaryGradeForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsGradeItemTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsGradeItemGradeStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6" />
+                <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsGradeItemSubGradesForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6" />
+                <Setter Property="FontSize" Value="{StaticResource Size6}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Brush x:Key="EtsProgramItemBrush">#b6b6b6</Brush>
+            <!-- Select Course For Grade -->
+            <Style x:Key="EtsCourseTitleForSelectingGradesStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsCourseDescriptionForSelectingGradesStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsCourseGradeForSelectingGradesStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <!-- Schedule -->
+            <Color x:Key="AppointmentDescriptionColor">#8c8c8c</Color>
             <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
+            <Brush x:Key="EtsScheduleBackgroundBrush">#333333</Brush>
+            <Brush x:Key="SfScheduleChangeCalendarBackgroundBrush">#404040</Brush>
+            <Brush x:Key="SfScheduleCommandBrush">#FFFFFF</Brush>
+            <Style x:Key="FlyoutButtonStyle" TargetType="ButtonBase">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ButtonBase">
+                            <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition From="Pressed"
+                                                          To="PointerOver">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition From="PointerOver" To="Normal">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition From="Pressed" To="Normal">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver" />
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="Container" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          x:Name="Container"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="ChangeCalendarViewFlyoutButtonStyle" TargetType="Button" BasedOn="{StaticResource FlyoutButtonStyle}">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="Margin" Value="14,0,14,0" />
+            </Style>
+            <Style x:Key="ChangeCalendarViewFlyoutFirstButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
+                <Setter Property="Margin" Value="14,14,14,3" />
+            </Style>
+            <Style x:Key="ChangeCalendarViewFlyoutLastButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
+                <Setter Property="Margin" Value="14,0,14,20" />
+            </Style>
+            <!-- Program -->
+            <Style x:Key="EtsProgramItemTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size4}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsProgramItemSubTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsProgramItemGradeStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsProgramItemGridStyle" TargetType="Grid">
+                <Setter Property="Background" Value="{StaticResource EtsBackgroundBrush}" />
+            </Style>
+            <Brush x:Key="EtsProgramBackgroundBrush">#333333</Brush>
+            <Style x:Key="EtsProgramBorderStyle" TargetType="Border">
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="2,2,2,2" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <!-- Settings -->
+            <Style x:Key="EtsApplicationTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+            </Style>
+            <Style x:Key="EtsContributerTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+            </Style>
+            <Style x:Key="EtsSendCommentsHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+            </Style>
+            <Style x:Key="EtsAppletsWebsiteHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+            </Style>
+            <Style x:Key="EtsContributerHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+            </Style>
+            <Style x:Key="EtsConfidentialityTitle1TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsConfidentialityTitle2TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsConfidentialityTitle3TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="{StaticResource Size4}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0,5,0,0" />
+            </Style>
+            <Style x:Key="EtsConfidentialityRichTextBlockStyle" TargetType="RichTextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6"/>
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Arial Unicode MS" />
+                <Setter Property="TextAlignment" Value="Justify" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <!-- ListView                                       -->
+            <Style x:Key="EtsListViewHeaderItemStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
+            <!-- Main Fonts -->
+            <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
+            <!-- Sizes -->
+            <x:Double x:Key="Size1">36</x:Double>
+            <x:Double x:Key="Size2">30</x:Double>
+            <x:Double x:Key="Size3">24</x:Double>
+            <x:Double x:Key="Size3_5">20</x:Double>
+            <x:Double x:Key="Size4">18</x:Double>
+            <x:Double x:Key="Size5">14</x:Double>
+            <x:Double x:Key="Size6">12</x:Double>
+            <x:Double x:Key="Size7">10</x:Double>
+            <x:Double x:Key="Size8">8</x:Double>
+            <!-- Main Colors -->
+            <Color x:Key="EtsRedLowestColor">#680100</Color>
+            <Color x:Key="EtsRedMidColor">#7F0100</Color>
+            <Color x:Key="EtsRedMediumColor">#FF0200</Color>
+            <Color x:Key="EtsRedHighColor">#CC0100</Color>
+            <Color x:Key="EtsRedHighestColor">#FF4E4C</Color>
+            <Color x:Key="EtsBackgroundColor">#FFFFFFFF</Color>
+            <Color x:Key="EtsBackgroundMainColor">#f2f2f2</Color>
+            <Color x:Key="EtsBackgroundBodyColor">#e6e6e6</Color>
+            <Color x:Key="EtsSideNavigationBackgroundColor">#2b2b2b</Color>
+            <Color x:Key="EtsTextMainColor">#323232</Color>
+            <Color x:Key="EtsTextSecondaryColor">#666666</Color>
+            <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
+            <!-- Brush -->
+            <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
+            <Brush x:Key="EtsRedMidBrush">#7F0100</Brush>
+            <Brush x:Key="EtsRedMediumBrush">#FF0200</Brush>
+            <Brush x:Key="EtsRedHighBrush">#CC0100</Brush>
+            <Brush x:Key="EtsRedHighestBrush">#FF4E4C</Brush>
+            <Brush x:Key="EtsTextMainBrush">#323232</Brush>
+            <Brush x:Key="EtsTextBlackBrush">#000000</Brush>
+            <Brush x:Key="EtsTextWhiteBrush">#FFFFFF</Brush>
+            <Brush x:Key="EtsTextGrayBrush">#707070</Brush>
+            <Brush x:Key="EtsTextSecondaryBrush">#666666</Brush>
+            <Brush x:Key="EtsStateTextBrush">#a6a6a6</Brush>
+            <Brush x:Key="EtsSideNavigationBackgroundBrush">#2b2b2b</Brush>
+            <!-- Backgrounds -->
+            <Brush x:Key="EtsBackgroundBrush">#FFFFFFFF</Brush>
+            <Brush x:Key="EtsBackgroundMainBrush">#404040</Brush>
+            <Brush x:Key="EtsBackgroundBodyBrush">#333333</Brush>
+            <!-- Page Header and Side Navigation -->
+            <Brush x:Key="EtsMenuButtonBrush">#680100</Brush>
+            <Style x:Key="EtsPageHeaderTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <!-- Command Bar                                    -->
+            <Brush x:Key="EtsCommandBarForegroundBrush">#FFFFFFFF</Brush>
+            <Brush x:Key="EtsCommandBarBackgroundBrush">#404040</Brush>
+            <Brush x:Key="EtsCommandBarBrush">#404040</Brush>
+            <!-- Buttons -->
+            <Brush x:Key="EtsButtonPressedBrush">#FF0200</Brush>
+            <!-- Grades -->
+            <Brush x:Key="EtsGradeSummaryItemBrush">Transparent</Brush>
+            <Style x:Key="EtsGradeSummaryTitleForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsGradeSummaryGradeForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsGradeItemTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsGradeItemGradeStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6" />
+                <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsGradeItemSubGradesForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6" />
+                <Setter Property="FontSize" Value="{StaticResource Size6}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <!-- Select Course For Grade -->
+            <Style x:Key="EtsCourseTitleForSelectingGradesStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsCourseDescriptionForSelectingGradesStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsCourseGradeForSelectingGradesStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <!-- Schedule -->
             <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
+            <Brush x:Key="EtsScheduleBackgroundBrush">#333333</Brush>
+            <Brush x:Key="SfScheduleChangeCalendarBackgroundBrush">#404040</Brush>
+            <Brush x:Key="SfScheduleCommandBrush">#FFFFFF</Brush>
+            <Style x:Key="FlyoutButtonStyle" TargetType="ButtonBase">
+                <Setter Property="Background"
+                    Value="Transparent" />
+                <Setter Property="Padding"
+                    Value="0" />
+                <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+                <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ButtonBase">
+                            <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition From="Pressed"
+                                                          To="PointerOver">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition From="PointerOver" To="Normal">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition From="Pressed" To="Normal">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver" />
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="Container" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          x:Name="Container"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="ChangeCalendarViewFlyoutButtonStyle" TargetType="Button" BasedOn="{StaticResource FlyoutButtonStyle}">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="Margin" Value="14,0,14,0" />
+            </Style>
+            <Style x:Key="ChangeCalendarViewFlyoutFirstButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
+                <Setter Property="Margin" Value="14,14,14,3" />
+            </Style>
+            <Style x:Key="ChangeCalendarViewFlyoutLastButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
+                <Setter Property="Margin" Value="14,0,14,20" />
+            </Style>
+            <!-- Program -->
+            <Style x:Key="EtsProgramItemTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size4}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsProgramItemSubTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsProgramItemGradeStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsProgramItemGridStyle" TargetType="Grid">
+                <Setter Property="Background" Value="{StaticResource EtsBackgroundBrush}" />
+            </Style>
+            <Brush x:Key="EtsProgramItemBrush">#b6b6b6</Brush>
+            <Brush x:Key="EtsProgramBackgroundBrush">#333333</Brush>
+            <Style x:Key="EtsProgramBorderStyle" TargetType="Border">
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="2,2,2,2" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <!-- Settings -->
+            <Style x:Key="EtsApplicationTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+            </Style>
+            <Style x:Key="EtsContributerTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+            </Style>
+            <Style x:Key="EtsSendCommentsHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+            </Style>
+            <Style x:Key="EtsAppletsWebsiteHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+            </Style>
+            <Style x:Key="EtsContributerHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+            </Style>
+            <Style x:Key="EtsConfidentialityTitle1TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsConfidentialityTitle2TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsConfidentialityTitle3TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="{StaticResource Size4}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0,5,0,0" />
+            </Style>
+            <Style x:Key="EtsConfidentialityRichTextBlockStyle" TargetType="RichTextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6"/>
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Arial Unicode MS" />
+                <Setter Property="TextAlignment" Value="Justify" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <!-- ListView                                       -->
+            <Style x:Key="EtsListViewHeaderItemStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
+            <!-- Main Fonts -->
+            <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
+            <!-- Sizes -->
+            <x:Double x:Key="Size1">36</x:Double>
+            <x:Double x:Key="Size2">30</x:Double>
+            <x:Double x:Key="Size3">24</x:Double>
+            <x:Double x:Key="Size3_5">20</x:Double>
+            <x:Double x:Key="Size4">18</x:Double>
+            <x:Double x:Key="Size5">14</x:Double>
+            <x:Double x:Key="Size6">12</x:Double>
+            <x:Double x:Key="Size7">10</x:Double>
+            <x:Double x:Key="Size8">8</x:Double>
+            <!-- Main Colors -->
+            <Color x:Key="EtsRedLowestColor">#680100</Color>
+            <Color x:Key="EtsRedMidColor">#7F0100</Color>
+            <Color x:Key="EtsRedMediumColor">#FF0200</Color>
+            <Color x:Key="EtsRedHighColor">#CC0100</Color>
+            <Color x:Key="EtsRedHighestColor">#FF4E4C</Color>
+            <Color x:Key="EtsBackgroundColor">#FFFFFFFF</Color>
+            <Color x:Key="EtsBackgroundMainColor">#f2f2f2</Color>
+            <Color x:Key="EtsBackgroundBodyColor">#e6e6e6</Color>
+            <Color x:Key="EtsSideNavigationBackgroundColor">#2b2b2b</Color>
+            <Color x:Key="EtsTextMainColor">#323232</Color>
+            <Color x:Key="EtsTextSecondaryColor">#666666</Color>
+            <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
+            <!-- Brush -->
+            <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
+            <Brush x:Key="EtsRedMidBrush">#7F0100</Brush>
+            <Brush x:Key="EtsRedMediumBrush">#FF0200</Brush>
+            <Brush x:Key="EtsRedHighBrush">#CC0100</Brush>
+            <Brush x:Key="EtsRedHighestBrush">#FF4E4C</Brush>
+            <Brush x:Key="EtsTextMainBrush">#323232</Brush>
+            <Brush x:Key="EtsTextBlackBrush">#000000</Brush>
+            <Brush x:Key="EtsTextWhiteBrush">#FFFFFF</Brush>
+            <Brush x:Key="EtsTextGrayBrush">#707070</Brush>
+            <Brush x:Key="EtsTextSecondaryBrush">#666666</Brush>
+            <Brush x:Key="EtsStateTextBrush">#a6a6a6</Brush>
+            <Brush x:Key="EtsSideNavigationBackgroundBrush">#2b2b2b</Brush>
+            <!-- Background -->
+            <Brush x:Key="EtsBackgroundBrush">#FFFFFFFF</Brush>
+            <Brush x:Key="EtsBackgroundMainBrush">#f2f2f2</Brush>
+            <Brush x:Key="EtsBackgroundBodyBrush">#e6e6e6</Brush>
+            <!-- Page Header and Side Navigation -->
+            <Brush x:Key="EtsMenuButtonBrush">#FF0200</Brush>
+            <Style x:Key="EtsPageHeaderTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <!-- Command Bar -->
+            <Brush x:Key="EtsCommandBarForegroundBrush">#6c6f73</Brush>
+            <Brush x:Key="EtsCommandBarBackgroundBrush">#f2f2f2</Brush>
+            <Brush x:Key="EtsCommandBarBrush">#FFFFFF</Brush>
+            <!-- Buttons -->
+            <Brush x:Key="EtsButtonPressedBrush">#680100</Brush>
+            <!-- Grades -->
+            <Brush x:Key="EtsGradeSummaryItemBrush">#d9d9d9</Brush>
+            <Style x:Key="EtsGradeSummaryTitleForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsGradeSummaryGradeForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsGradeItemTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsGradeItemGradeStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsGradeItemSubGradesForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size6}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <!-- Select Course For Grade -->
+            <Style x:Key="EtsCourseTitleForSelectingGradesStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsCourseDescriptionForSelectingGradesStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsCourseGradeForSelectingGradesStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <!-- Schedule -->
             <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
+            <Brush x:Key="EtsScheduleBackgroundBrush">#FFFFFF</Brush>
+            <Brush x:Key="SfScheduleChangeCalendarBackgroundBrush">#dddddd</Brush>
+            <Brush x:Key="SfScheduleCommandBrush">#000000</Brush>
+            <Style x:Key="FlyoutButtonStyle" TargetType="ButtonBase">
+                <Setter Property="Background"
+                    Value="Transparent" />
+                <Setter Property="Padding"
+                    Value="0" />
+                <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+                <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ButtonBase">
+                            <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition From="Pressed"
+                                                          To="PointerOver">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition From="PointerOver" To="Normal">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                            <VisualTransition From="Pressed" To="Normal">
+                                                <Storyboard>
+                                                    <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                                </Storyboard>
+                                            </VisualTransition>
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver" />
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="Container" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="Container" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          x:Name="Container"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="ChangeCalendarViewFlyoutButtonStyle" TargetType="Button" BasedOn="{StaticResource FlyoutButtonStyle}">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="Foreground" Value="{StaticResource SfScheduleCommandBrush}" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="Margin" Value="14,0,14,0" />
+            </Style>
+            <Style x:Key="ChangeCalendarViewFlyoutFirstButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
+                <Setter Property="Margin" Value="14,14,14,3" />
+            </Style>
+            <Style x:Key="ChangeCalendarViewFlyoutLastButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
+                <Setter Property="Margin" Value="14,0,14,20" />
+            </Style>
+            <!-- Program -->
+            <Style x:Key="EtsProgramItemTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size4}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsProgramItemSubTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsProgramItemGradeStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsProgramItemGridStyle" TargetType="Grid">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Margin" Value="20,5,0,5" />
+            </Style>
+            <Brush x:Key="EtsProgramItemBrush">#d9d9d9</Brush>
+            <Brush x:Key="EtsProgramBackgroundBrush">#FFFFFF</Brush>
+            <Style x:Key="EtsProgramBorderStyle" TargetType="Border">
+                <Setter Property="BorderBrush" Value="{StaticResource EtsProgramItemBrush}" />
+                <Setter Property="BorderThickness" Value="2,2,2,2" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+                <Setter Property="Background" Value="White" />
+            </Style>
+            <!-- Settings -->
+            <Style x:Key="EtsApplicationTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+            </Style>
+            <Style x:Key="EtsContributerTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+            </Style>
+            <Style x:Key="EtsSendCommentsHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedMediumBrush}" />
+            </Style>
+            <Style x:Key="EtsAppletsWebsiteHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedMediumBrush}" />
+            </Style>
+            <Style x:Key="EtsContributerHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedMediumBrush}" />
+            </Style>
+            <Style x:Key="EtsConfidentialityTitle1TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsConfidentialityTitle2TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsConfidentialityTitle3TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Trebuchet MS" />
+                <Setter Property="FontSize" Value="{StaticResource Size4}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0,5,0,0" />
+            </Style>
+            <Style x:Key="EtsConfidentialityRichTextBlockStyle" TargetType="RichTextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}"/>
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
+                <Setter Property="FontFamily" Value="Arial Unicode MS" />
+                <Setter Property="TextAlignment" Value="Justify" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <!-- ListView -->
+            <Style x:Key="EtsListViewHeaderItemStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
-
-    <!-- Main Colors                                    -->
-    <Color x:Key="EtsRedLowestColor">#680100</Color>
-    <Color x:Key="EtsRedMidColor">#7F0100</Color>
-    <Color x:Key="EtsRedMediumColor">#FF0200</Color>
-    <Color x:Key="EtsRedHighColor">#CC0100</Color>
-    <Color x:Key="EtsRedHighestColor">#FF4E4C</Color>
-
-    <Color x:Key="EtsBackgroundColor">#FFFFFFFF</Color>
-    <Color x:Key="EtsBackgroundMainColor">#f2f2f2</Color>
-    <Color x:Key="EtsBackgroundBodyColor">#e6e6e6</Color>
-    <Color x:Key="EtsSideNavigationBackgroundColor">#2b2b2b</Color>
-    <Color x:Key="EtsTextMainColor">#323232</Color>
-    <Color x:Key="EtsTextSecondaryColor">#666666</Color>
-    <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
-    
-    <Color x:Key="AppointmentDescriptionColor">#8c8c8c</Color>
-
-    <!-- Brush                                          -->
-    <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
-    <Brush x:Key="EtsRedMidBrush">#7F0100</Brush>
-    <Brush x:Key="EtsRedMediumBrush">#FF0200</Brush>
-    <Brush x:Key="EtsRedHighBrush">#CC0100</Brush>
-    <Brush x:Key="EtsRedHighestBrush">#FF4E4C</Brush>
-
-    <Brush x:Key="EtsCommandBarBrush">#FFFFFF</Brush>
-    <Brush x:Key="EtsMenuButtonBrush">#FF0200</Brush>
-    <Brush x:Key="EtsBackgroundBrush">#FFFFFFFF</Brush>
-    <Brush x:Key="EtsBackgroundMainBrush">#f2f2f2</Brush>
-    <Brush x:Key="EtsBackgroundBodyBrush">#e6e6e6</Brush>
-
-    <Brush x:Key="EtsTextMainBrush">#323232</Brush>
-    <Brush x:Key="EtsTextBlackBrush">#000000</Brush>
-    <Brush x:Key="EtsTextWhiteBrush">#FFFFFF</Brush>
-    <Brush x:Key="EtsTextGrayBrush">#707070</Brush>
-    <Brush x:Key="EtsTextSecondaryBrush">#666666</Brush>
-
-    <Brush x:Key="EtsBorderItemBrush">#d9d9d9</Brush>
-
-    <Brush x:Key="EtsSideNavigationBackgroundBrush">#2b2b2b</Brush>
-
-    <!-- Main Fonts                                     -->
-    <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
-
-    <!-- Sizes                                          -->
-    <x:Double x:Key="Size1">36</x:Double>
-    <x:Double x:Key="Size2">30</x:Double>
-    <x:Double x:Key="Size3">24</x:Double>
-    <x:Double x:Key="Size3_5">20</x:Double>
-    <x:Double x:Key="Size4">18</x:Double>
-    <x:Double x:Key="Size5">14</x:Double>
-    <x:Double x:Key="Size6">12</x:Double>
-    <x:Double x:Key="Size7">10</x:Double>
-    <x:Double x:Key="Size8">8</x:Double>
-
-    <!-- Command Bar                                    -->
-    <Brush x:Key="EtsCommandBarForeground">#6c6f73</Brush>
-    <Brush x:Key="EtsCommandBarBackground">#f2f2f2</Brush>
     
     <!-- Buttons                                        -->
     <Style x:Key="EtsButtonStyle" TargetType="Button">
@@ -81,6 +837,67 @@
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontWeight" Value="Thin" />
         <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="Grid" Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Pressed" To="PointerOver">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid"/>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="PointerOver" To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="Grid"/>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Pressed" To="Normal">
+                                        <Storyboard>
+                                            <!--<PointerUpThemeAnimation Storyboard.TargetName="Grid"/>-->
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="PointerOver"/>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <PointerDownThemeAnimation Storyboard.TargetName="Grid"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPressedForegroundThemeBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource EtsButtonPressedBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledForegroundThemeBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Border">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBorderThemeBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBackgroundThemeBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="{ThemeResource PhoneTouchTargetOverhang}">
+                            <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="EtsButtonRedLowestColor" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
@@ -98,7 +915,7 @@
     <Style x:Key="EtsButtonRedHighestColor" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
         <Setter Property="Background" Value="{StaticResource EtsRedHighestColor}" />
     </Style>
-    
+
     <Style x:Key="EtsLoginButton" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
         <Setter Property="Padding" Value="20" />
         <Setter Property="FontSize" Value="32" />
@@ -213,7 +1030,7 @@
         <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size5}" />
     </Style>
-
+    
     <!-- Gray TextBlock -->
     <Style x:Key="EtsGrayTextStyle" TargetType="TextBlock"  BasedOn="{StaticResource EtsTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource EtsTextGrayBrush}" />
@@ -249,7 +1066,7 @@
         <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
         <Setter Property="FontWeight" Value="Thin" />
     </Style>
-    
+
     <Style x:Key="EtsRichTextBlockGray1" TargetType="RichTextBlock" BasedOn="{StaticResource EtsRichTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource EtsTextGrayBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size1}" />
@@ -281,16 +1098,6 @@
     <Style x:Key="EtsRichTextBlockGray8" TargetType="RichTextBlock" BasedOn="{StaticResource EtsRichTextStyle}">
         <Setter Property="Foreground" Value="{StaticResource EtsTextGrayBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size8}" />
-    </Style>
-    
-    <!-- ListView                                       -->
-    <Style x:Key="EtsListViewHeaderItem" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
-        <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
-        <Setter Property="FontSize" Value="{StaticResource Size2}" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Margin" Value="0" />
-        <Setter Property="FontSize" Value="24" />
     </Style>
 
     <!-- CommandBar                                     -->
@@ -516,87 +1323,12 @@
     <!-- Schedule -->
     <Brush x:Key="SfScheduleTimelineBorder">#000000</Brush>
     <Brush x:Key="SfScheduleDayBorder">#000000</Brush>
-    <Brush x:Key="SfScheduleCommandBrush">#000000</Brush>
-    <Brush x:Key="SfScheduleChangeCalendarBackgroundBrush">#dddddd</Brush>
     <Brush x:Key="AppointmentDescriptionBrush">#8c8c8c</Brush>
     <Brush x:Key="AppointmentTypeBrush">#bbbbbb</Brush>
     <FontFamily x:Key="SfScheduleAppointmentFontFamily">Calibri</FontFamily>
-    <Style x:Key="FlyoutButtonStyle" TargetType="ButtonBase">
-        <Setter Property="Background"
-                    Value="Transparent" />
-        <Setter Property="Padding"
-                    Value="0" />
-        <Setter Property="HorizontalContentAlignment"
-                    Value="Stretch" />
-        <Setter Property="HorizontalAlignment"
-                    Value="Stretch" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ButtonBase">
-                    <Border Background="{TemplateBinding Background}"
-                            Padding="{TemplateBinding Padding}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition From="Pressed"
-                                                          To="PointerOver">
-                                        <Storyboard>
-                                            <PointerUpThemeAnimation Storyboard.TargetName="Container" />
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="PointerOver" To="Normal">
-                                        <Storyboard>
-                                            <PointerUpThemeAnimation Storyboard.TargetName="Container" />
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="Pressed" To="Normal">
-                                        <Storyboard>
-                                            <PointerUpThemeAnimation Storyboard.TargetName="Container" />
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="PointerOver" />
-                                <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <PointerDownThemeAnimation Storyboard.TargetName="Container" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Disabled">
-                                    <Storyboard>
-                                        <PointerUpThemeAnimation Storyboard.TargetName="Container" />
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Content="{TemplateBinding Content}"
-                                          x:Name="Container"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
     <Style x:Key="ChangeCalendarViewFlyoutPresenter" TargetType="FlyoutPresenter">
         <Setter Property="Background" Value="Transparent" />
     </Style>
-    <Style x:Key="ChangeCalendarViewFlyoutButtonStyle" TargetType="Button" BasedOn="{StaticResource FlyoutButtonStyle}">
-        <Setter Property="FontSize" Value="24" />
-        <Setter Property="Foreground" Value="{StaticResource SfScheduleCommandBrush}" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="Margin" Value="14,0,14,0" />
-    </Style>
-
-    <Style x:Key="ChangeCalendarViewFlyoutFirstButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
-        <Setter Property="Margin" Value="14,14,14,3" />
-    </Style>
-
-    <Style x:Key="ChangeCalendarViewFlyoutLastButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
-        <Setter Property="Margin" Value="14,0,14,20" />
-    </Style>
-
     <Style x:Key="AppointementStartTime" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
         <Setter Property="FontFamily" Value="{StaticResource SfScheduleAppointmentFontFamily}" />
@@ -610,7 +1342,7 @@
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="Margin" Value="0,-4,0,-4" />
     </Style>
-    
+
     <Style x:Key="AppointmentDescriptionStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource AppointmentDescriptionBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
@@ -823,5 +1555,22 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    
+    <!-- Extended Splash Screen -->
+    <Style x:Key="EtsTextBlockLoading" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource Size3_5}" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    <Style x:Key="EtsProgressRingLoading" TargetType="ProgressRing">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="IsActive" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <!-- Login -->
+    <Style x:Key="EtsTextBlockLoginTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource Size2}" />
+        <Setter Property="Foreground" Value="White" />
     </Style>
 </ResourceDictionary>

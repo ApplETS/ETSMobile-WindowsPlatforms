@@ -159,7 +159,7 @@
 			</Grid.Background>
             
 			<!--TitlePanel contains the name of the application and page title-->
-            <TextBlock x:Uid="ConnectUid" Text="CONNEXION" Margin="12,0,0,0" Grid.Row="1" FontSize="32" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock x:Uid="ConnectUid" Text="CONNEXION" Margin="12,0,0,0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource EtsTextBlockLoginTitle}"/>
 
 			<Grid Grid.Row="2" Margin="12,0,12,0">
 				<Grid.ColumnDefinitions>
@@ -178,13 +178,15 @@
                     x:Uid="UsernameUid"
                     Text="code universel"
                     Grid.Row="0"
+                    HorizontalAlignment="Left"
 					VerticalAlignment="Bottom"
 					TextWrapping="Wrap"
-					FontSize="18"
-                    HorizontalAlignment="Left"
-					Foreground="White" />
+                    FontWeight="Normal"
+                    Style="{StaticResource EtsTextBlockWhite4}" />
                 <TextBox Grid.Row="1"                         
 					x:Name="UserName"
+                    FontWeight="Normal"
+                    RequestedTheme="Dark"
 					Margin="0,3,0,0">
                 </TextBox>
 
@@ -195,11 +197,12 @@
                     HorizontalAlignment="Left"
 					VerticalAlignment="Bottom"
 					TextWrapping="Wrap" 
-					FontSize="18"
-					Foreground="White"/>
+                    FontWeight="Normal"
+					Style="{StaticResource EtsTextBlockWhite4}" />
 				<PasswordBox Grid.Row="3"
 					x:Name="Password"
-					Margin="0,2,0,0" />
+					Margin="0,2,0,0"
+                    RequestedTheme="Dark" />
 
                 <TextBlock Visibility="Collapsed" Grid.Row="4" x:Name="ErrorMessage"></TextBlock>
 

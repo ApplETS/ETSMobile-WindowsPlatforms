@@ -1,4 +1,5 @@
-﻿using Akavache;
+﻿using System.Linq;
+using Akavache;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Entities.Signets.Interfaces;

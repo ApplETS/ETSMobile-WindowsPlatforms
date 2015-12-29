@@ -62,7 +62,7 @@ namespace Ets.Mobile.Pages.Schedule
                 if (b != null)
                 {
                     b.IsEnabled = b.Name != Scheduler.ScheduleType.ToString();
-                    b.Foreground = b.IsEnabled ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.Gray);
+                    b.Foreground = b.IsEnabled ? Application.Current.RequestedTheme == ApplicationTheme.Light ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.White) : new SolidColorBrush(Colors.Gray);
                 }
             });
 
