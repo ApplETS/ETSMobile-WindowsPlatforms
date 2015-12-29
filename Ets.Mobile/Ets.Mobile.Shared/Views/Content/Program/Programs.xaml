@@ -13,38 +13,38 @@
     d:DesignWidth="400">
     <UserControl.Resources>
         <DataTemplate x:Name="ProgramTemplate">
-            <Border BorderBrush="{StaticResource EtsBorderItemBrush}" BorderThickness="2,2,2,2" Margin="0,0,0,10">
-                <Grid Background="{StaticResource EtsBackgroundBrush}">
-                    <StackPanel Margin="20,5,0,5">
-                        <TextBlock Foreground="{StaticResource EtsTextBlackBrush}" VerticalAlignment="Center" FontSize="{StaticResource Size4}" Text="{Binding Name}" TextWrapping="Wrap" />
-                        <TextBlock Foreground="{StaticResource EtsTextBlackBrush}" VerticalAlignment="Center" FontSize="{StaticResource Size5}" TextWrapping="Wrap" Margin="0,0,0,5">
+            <Border Style="{ThemeResource EtsProgramBorderStyle}">
+                <Grid Style="{ThemeResource EtsProgramItemGridStyle}">
+                    <StackPanel>
+                        <TextBlock Style="{ThemeResource EtsProgramItemTitleStyle}" VerticalAlignment="Center" Text="{Binding Name}" TextWrapping="Wrap" />
+                        <TextBlock Style="{ThemeResource EtsProgramItemSubTitleStyle}" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,0,5">
                                 <Run Text="{Binding SemesterStart}" />
                                 <Run Text="-" />
                                 <Run Text="{Binding SemesterEnd}" />
                         </TextBlock>
-                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="AverageUid" Text="Average" />: <Run Text="{Binding Average, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
+                        <Border BorderThickness="0,2,0,0" BorderBrush="{ThemeResource EtsProgramItemBrush}" Padding="0,5,0,7">
+                            <TextBlock FontStretch="ExtraCondensed" Style="{ThemeResource EtsProgramItemGradeStyle}"><Run x:Uid="AverageUid" Text="Average" />: <Run Text="{Binding Average, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
-                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="EquivalenceCountUid" Text="Equivalences" />: <Run Text="{Binding EquivalenceCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
+                        <Border BorderThickness="0,2,0,0" BorderBrush="{ThemeResource EtsProgramItemBrush}" Padding="0,5,0,7">
+                            <TextBlock FontStretch="ExtraCondensed" Style="{ThemeResource EtsProgramItemGradeStyle}"><Run x:Uid="EquivalenceCountUid" Text="Equivalences" />: <Run Text="{Binding EquivalenceCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
-                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="SuceededCreditsCountUid" Text="Suceeded credits" />: <Run Text="{Binding SuceededCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
+                        <Border BorderThickness="0,2,0,0" BorderBrush="{ThemeResource EtsProgramItemBrush}" Padding="0,5,0,7">
+                            <TextBlock FontStretch="ExtraCondensed" Style="{ThemeResource EtsProgramItemGradeStyle}"><Run x:Uid="SuceededCreditsCountUid" Text="Suceeded credits" />: <Run Text="{Binding SuceededCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
-                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="FailedCreditsCountUid" Text="Failed credits" />: <Run Text="{Binding FailedCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
+                        <Border BorderThickness="0,2,0,0" BorderBrush="{ThemeResource EtsProgramItemBrush}" Padding="0,5,0,7">
+                            <TextBlock FontStretch="ExtraCondensed" Style="{ThemeResource EtsProgramItemGradeStyle}"><Run x:Uid="FailedCreditsCountUid" Text="Failed credits" />: <Run Text="{Binding FailedCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
-                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="RegisteredCreditsUid" Text="Registered credits" />: <Run Text="{Binding RegisteredCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
+                        <Border BorderThickness="0,2,0,0" BorderBrush="{ThemeResource EtsProgramItemBrush}" Padding="0,5,0,7">
+                            <TextBlock FontStretch="ExtraCondensed" Style="{ThemeResource EtsProgramItemGradeStyle}"><Run x:Uid="RegisteredCreditsUid" Text="Registered credits" />: <Run Text="{Binding RegisteredCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
-                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="CompletedCreditsUid" Text="Completed credits" />: <Run Text="{Binding CompletedCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
+                        <Border BorderThickness="0,2,0,0" BorderBrush="{ThemeResource EtsProgramItemBrush}" Padding="0,5,0,7">
+                            <TextBlock FontStretch="ExtraCondensed" Style="{ThemeResource EtsProgramItemGradeStyle}"><Run x:Uid="CompletedCreditsUid" Text="Completed credits" />: <Run Text="{Binding CompletedCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
-                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,7">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="PotentialCreditsUid" Text="Potiental credits" />: <Run Text="{Binding PotentialCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
+                        <Border BorderThickness="0,2,0,0" BorderBrush="{ThemeResource EtsProgramItemBrush}" Padding="0,5,0,7">
+                            <TextBlock FontStretch="ExtraCondensed" Style="{ThemeResource EtsProgramItemGradeStyle}"><Run x:Uid="PotentialCreditsUid" Text="Potiental credits" />: <Run Text="{Binding PotentialCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
-                        <Border BorderThickness="0,2,0,0" BorderBrush="{StaticResource EtsBorderItemBrush}" Padding="0,5,0,5">
-                            <TextBlock FontStretch="ExtraCondensed" Foreground="{StaticResource EtsTextBlackBrush}" FontSize="{StaticResource Size5}"><Run x:Uid="ResearchCreditsUid" Text="Research credits" />: <Run Text="{Binding ResearchCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
+                        <Border BorderThickness="0,2,0,0" BorderBrush="{ThemeResource EtsProgramItemBrush}" Padding="0,5,0,5">
+                            <TextBlock FontStretch="ExtraCondensed" Style="{ThemeResource EtsProgramItemGradeStyle}"><Run x:Uid="ResearchCreditsUid" Text="Research credits" />: <Run Text="{Binding ResearchCreditsCount, Converter={StaticResource StringToTbdConverter}}" /></TextBlock>
                         </Border>
                     </StackPanel>
                 </Grid>

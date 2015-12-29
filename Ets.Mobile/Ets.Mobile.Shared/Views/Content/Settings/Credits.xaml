@@ -9,44 +9,44 @@
     <ScrollViewer>
         <StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Paul Betts" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Paul Betts" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="PaulBettsContributionsUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
-                <HyperlinkButton Pivot.SlideInAnimationGroup="3" Content="@paulcbetts" NavigateUri="https://github.com/paulcbetts" Foreground="{StaticResource EtsRedMediumBrush}" />
+                <HyperlinkButton Pivot.SlideInAnimationGroup="3" Content="@paulcbetts" NavigateUri="https://github.com/paulcbetts" Style="{ThemeResource EtsContributerHyperlinkStyle}" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ReactiveUI" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ReactiveUI" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="ReactiveUIDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Splat" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Splat" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="SplatDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Refit" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Refit" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="RefitDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Fusillade" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Fusillade" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="FusilladeDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Akavache" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Akavache" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="AkavacheDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ReactiveExtensions" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ReactiveExtensions" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="ReactiveExtensionsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Sqlite" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Sqlite" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="SqliteDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Crittercism" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Crittercism" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="CrittercismDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ModernHttpClient" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ModernHttpClient" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <RichTextBlock Pivot.SlideInAnimationGroup="2" Style="{StaticResource EtsRichTextBlockGray4}" TextWrapping="WrapWholeWords">
                     <Paragraph>
                         <Run x:Uid="ModernHttpClientDescriptionUid" />
@@ -57,11 +57,11 @@
                 </RichTextBlock>
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Newtonsoft.Json" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Newtonsoft.Json" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="NewtonsoftJsonDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
             <StackPanel>
-                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Syncfusion" Style="{StaticResource EtsTextBlockBlack2}" />
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Syncfusion" Style="{ThemeResource EtsContributerTitleStyle}" />
                 <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="SyncfusionDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             </StackPanel>
         </StackPanel>

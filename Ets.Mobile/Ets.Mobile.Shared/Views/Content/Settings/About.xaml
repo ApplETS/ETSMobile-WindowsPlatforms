@@ -15,8 +15,8 @@
                 <EdgeUIThemeTransition Edge="Bottom" />
             </TransitionCollection>
         </StackPanel.ChildrenTransitions>
-        
-        <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ApplicationNameUid" Margin="0,18,0,0" Style="{StaticResource EtsTextBlockBlack2}" />
+
+        <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ApplicationNameUid" Margin="0,18,0,0" Style="{ThemeResource EtsApplicationTitleStyle}" />
 
         <!-- Version and Publisher -->
         <StackPanel Margin="0,20">
@@ -35,13 +35,13 @@
         </StackPanel>
         
         <!-- Applets Website-->
-        <HyperlinkButton Pivot.SlideInAnimationGroup="1" x:Uid="AppletsWebsiteUid" Content="clubapplets.ca" Foreground="{StaticResource EtsRedMediumBrush}" />
+        <HyperlinkButton Pivot.SlideInAnimationGroup="1" x:Uid="AppletsWebsiteUid" Content="clubapplets.ca" Style="{ThemeResource EtsAppletsWebsiteHyperlinkStyle}" />
     
         <!-- Feedback -->
         <HyperlinkButton Pivot.SlideInAnimationGroup="2"
                          x:Uid="FeedbackButtonUid" 
                          Content="envoyer des commentaires"
                          NavigateUri="{Binding SendFeedbackUri}"
-                         Foreground="{StaticResource EtsRedMediumBrush}" />
+                         Style="{ThemeResource EtsSendCommentsHyperlinkStyle}" />
     </StackPanel>
 </UserControl>

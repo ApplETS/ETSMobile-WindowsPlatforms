@@ -5,9 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{StaticResource EtsRedMediumBrush}"
+    Background="{ThemeResource EtsMenuButtonBrush}"
     d:DesignHeight="60" d:DesignWidth="200">
-    <StackPanel  Orientation="Horizontal" Height="60">
+    <StackPanel Orientation="Horizontal" Height="60">
         <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" Text="" FontSize="{StaticResource SplitViewHamburgerButtonFontSize}" />
         <TextBlock x:Uid="ApplicationTitleUid" Text="ÉTS Mobile" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource EtsTextBlockWhite4}" FontWeight="Bold" />
     </StackPanel>

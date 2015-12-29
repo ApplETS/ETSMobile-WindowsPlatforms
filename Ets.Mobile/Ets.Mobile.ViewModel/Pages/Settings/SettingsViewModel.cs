@@ -8,7 +8,7 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
 {
     public class SettingsViewModel : ViewModelBase, ISettingsViewModel
     {
-        public string VersionNumber => $"{Package.Current.Id.Version.Major}.{Package.Current.Id.Version.Minor}.{Package.Current.Id.Version.Revision}.{Package.Current.Id.Version.Build}";
+        public string VersionNumber => $"{Package.Current.Id.Version.Major}.{Package.Current.Id.Version.Minor}.{Package.Current.Id.Version.Build}.{Package.Current.Id.Version.Revision}";
         public Uri SendFeedbackUri { get; private set; }
 
         public SettingsViewModel(IScreen screen) : base(screen, "Settings")

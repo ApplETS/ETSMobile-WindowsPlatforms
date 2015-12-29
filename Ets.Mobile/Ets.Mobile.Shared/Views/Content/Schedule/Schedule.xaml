@@ -12,7 +12,7 @@
     d:DesignWidth="400">
     <UserControl.Resources>
         <DataTemplate x:Key="ScheduleDataTemplate">
-            <Border BorderBrush="{StaticResource EtsBorderItemBrush}" BorderThickness="0,1,1,1" Margin="0,0,0,10">
+            <Border BorderBrush="{ThemeResource EtsGradeSummaryItemBrush}" BorderThickness="0,1,1,1" Margin="0,0,0,10">
                 <Border Width="Auto" BorderBrush="{Binding Color}" BorderThickness="3,0,0,0">
                     <Grid Background="White">
                         <!-- Course not incoming -->
@@ -72,7 +72,7 @@
                                     <GroupStyle.HeaderTemplate>
                                         <DataTemplate>
                                             <Grid Margin="0,0,12,5" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
-                                                <TextBlock Text="{Binding Key}" Style="{StaticResource EtsListViewHeaderItem}"  />
+                                                <TextBlock Text="{Binding Key}" Style="{ThemeResource EtsListViewHeaderItemStyle}"  />
                                             </Grid>
                                         </DataTemplate>
                                     </GroupStyle.HeaderTemplate>

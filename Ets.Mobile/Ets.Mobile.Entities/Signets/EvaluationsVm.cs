@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Windows.UI;
 using System.Runtime.Serialization;
 using Ets.Mobile.Entities.Signets.Interfaces;
@@ -97,6 +98,10 @@ namespace Ets.Mobile.Entities.Signets
             if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
             {
                 Color = color.HexColor;
+                foreach (var eval in Evaluations)
+                {
+                    eval.SetNewColor(color);
+                }
             }
         }
 

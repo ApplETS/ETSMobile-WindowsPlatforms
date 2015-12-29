@@ -12,17 +12,17 @@
     mc:Ignorable="d">
 
     <Grid DataContext="{Binding ElementName=P}" d:DataContext="{d:DesignInstance Type=designTime:GradeItemViewModelDt, IsDesignTimeCreatable=True}">
-        <Border Background="{StaticResource EtsBackgroundBrush}" BorderBrush="{StaticResource EtsBorderItemBrush}">
+        <Border Background="{ThemeResource EtsBackgroundBrush}" BorderBrush="{ThemeResource EtsGradeSummaryItemBrush}">
             <Border BorderThickness="1,1,0,0" BorderBrush="{Binding BackgroundBrush}">
-                <bordered:BorderedControl BackgroundBrush="{StaticResource EtsBackgroundBrush}">
+                <bordered:BorderedControl BackgroundBrush="{ThemeResource EtsBackgroundBrush}">
                     <bordered:BorderedControl.Body>
                         <Grid DataContext="{Binding DataContext}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80*" />
                                 <ColumnDefinition Width="20*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Style="{StaticResource EtsTextBlockBlack3}" Padding="10" Text="{Binding Title, Mode=TwoWay}" />
-                            <TextBlock Style="{StaticResource EtsTextBlockBlack3_5}" Padding="7" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Grade, Mode=TwoWay}" />
+                            <TextBlock Style="{ThemeResource EtsGradeSummaryTitleForegroundStyle}" Padding="10,5,10,10" Text="{Binding Title, Mode=TwoWay}" />
+                            <TextBlock Style="{ThemeResource EtsGradeSummaryGradeForegroundStyle}" Padding="7" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Grade, Mode=TwoWay}" />
                         </Grid>
                     </bordered:BorderedControl.Body>
                 </bordered:BorderedControl>
