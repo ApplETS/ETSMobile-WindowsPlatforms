@@ -35,7 +35,11 @@
         </StackPanel>
         
         <!-- Applets Website-->
-        <HyperlinkButton Pivot.SlideInAnimationGroup="1" x:Uid="AppletsWebsiteUid" Content="clubapplets.ca" Style="{ThemeResource EtsAppletsWebsiteHyperlinkStyle}" />
+        <HyperlinkButton 
+            Pivot.SlideInAnimationGroup="1" 
+            x:Uid="AppletsWebsiteUid" 
+            Content="clubapplets.ca" 
+            Style="{ThemeResource EtsAppletsWebsiteHyperlinkStyle}" />
     
         <!-- Feedback -->
         <HyperlinkButton Pivot.SlideInAnimationGroup="2"
@@ -43,5 +47,12 @@
                          Content="envoyer des commentaires"
                          NavigateUri="{Binding SendFeedbackUri}"
                          Style="{ThemeResource EtsSendCommentsHyperlinkStyle}" />
+        <!-- Send Logs -->
+        <HyperlinkButton 
+            Pivot.SlideInAnimationGroup="2"
+            x:Uid="SendLogsButtonUid" 
+            Content="envoyer les logs"
+            Style="{ThemeResource EtsSendCommentsHyperlinkStyle}"
+            Command="{Binding SendLogFiles}" />
     </StackPanel>
 </UserControl>

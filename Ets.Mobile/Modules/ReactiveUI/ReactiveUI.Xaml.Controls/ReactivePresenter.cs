@@ -3,11 +3,8 @@ using Messaging.Interfaces.Notifications;
 using ReactiveUI.Xaml.Controls.Handlers;
 using Splat;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -346,7 +343,6 @@ namespace ReactiveUI.Xaml.Controls
                 PreviousSource = previousValue != null && value != null && previousValue.GetType() != value.GetType() ? previousValue : null;
                 CurrentSource = value;
                 ReactiveState = ReactiveState.Value;
-                this.Log().Info($"[{typeof(ReactivePresenter)}]: Value ({value}) State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
             }).GetAwaiter().OnCompleted(() => { });
         }
 
@@ -357,7 +353,6 @@ namespace ReactiveUI.Xaml.Controls
                 if (ReactiveState != ReactiveState.Value)
                 {
                     ReactiveState = ReactiveState.Value;
-                    this.Log().Info($"[{typeof(ReactivePresenter)}]: Value State since it's ready for {Name}");
                 }
             }).GetAwaiter().OnCompleted(() => { });
         }
@@ -368,7 +363,6 @@ namespace ReactiveUI.Xaml.Controls
             {
                 CurrentIsEmpty = isEmpty;
                 ReactiveState = ReactiveState.Empty;
-                this.Log().Info($"[{typeof(ReactivePresenter)}]: IsEmpty State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
             }).GetAwaiter().OnCompleted(() => { });
         }
 
@@ -378,7 +372,6 @@ namespace ReactiveUI.Xaml.Controls
             {
                 CurrentIsRefreshing = true;
                 ReactiveState = ReactiveState.Refreshing;
-                this.Log().Info($"[{typeof (ReactivePresenter)}]: Refreshing (true) State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
             }).GetAwaiter().OnCompleted(() => { });
         }
 
@@ -388,7 +381,6 @@ namespace ReactiveUI.Xaml.Controls
             {
                 CurrentError = message;
                 ReactiveState = ReactiveState.Error;
-                this.Log().Error($"[{typeof (ReactivePresenter)}]: Error State for {Name}{(hasBeenInjected ? " has been injected" : "")}");
             }).GetAwaiter().OnCompleted(() => { });
         }
 
@@ -461,19 +453,16 @@ namespace ReactiveUI.Xaml.Controls
                 {
                     CurrentSource = getValue.Result;
                     ReactiveState = ReactiveState.Value;
-                    this.Log().Info($"[{typeof(ReactivePresenter)}]: Value ({getValue.Result}) State for {Name} has been injected");
                 }
                 else if (taskCompleted == getEmptyMessage)
                 {
                     CurrentIsEmpty = true;
                     ReactiveState = ReactiveState.Empty;
-                    this.Log().Info($"[{typeof(ReactivePresenter)}]: IsEmpty State for {Name} has been injected");
                 }
                 else if (taskCompleted == getThrownException)
                 {
                     CurrentError = getThrownException.Result.Message;
                     ReactiveState = ReactiveState.Error;
-                    this.Log().Error($"[{typeof(ReactivePresenter)}]: Error State for {Name} has been injected");
                 }
             }).GetAwaiter().OnCompleted(() => { });
         }

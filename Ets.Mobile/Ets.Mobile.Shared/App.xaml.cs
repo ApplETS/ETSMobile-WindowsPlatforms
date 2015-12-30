@@ -3,15 +3,16 @@ using Ets.Mobile.ViewModel;
 using ReactiveUI;
 using Splat;
 using System;
-using System.Reactive.Linq;
+using System.Diagnostics.Tracing;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using CrittercismSDK;
+using Ets.Mobile.Logger;
 using Ets.Mobile.TaskObservers;
-
+using Logger.SplatLog;
 #if WINDOWS_PHONE_APP
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
@@ -85,6 +86,19 @@ namespace Ets.Mobile
                 {
                     CacheSize = 1, // Size of 1 is okay for now.
                 };
+
+                // Initialize Loggers
+                var verboseListener = new StorageFileEventListener("ListenerVerbose");
+                var informationListener = new StorageFileEventListener("ListenerInformation");
+                var errorListener = new StorageFileEventListener("ListenerError");
+                var criticalListener = new StorageFileEventListener("ListenerCritical");
+                var warningListener = new StorageFileEventListener("ListenerWarning");
+
+                verboseListener.EnableEvents(SplatEventSource.Log, EventLevel.Verbose);
+                informationListener.EnableEvents(SplatEventSource.Log, EventLevel.Informational);
+                errorListener.EnableEvents(SplatEventSource.Log, EventLevel.Error);
+                criticalListener.EnableEvents(SplatEventSource.Log, EventLevel.Critical);
+                warningListener.EnableEvents(SplatEventSource.Log, EventLevel.Warning);
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;

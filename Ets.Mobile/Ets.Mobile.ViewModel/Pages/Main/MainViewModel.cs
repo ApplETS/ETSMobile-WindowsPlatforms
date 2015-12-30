@@ -3,11 +3,12 @@ using System.Runtime.Serialization;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts.Main;
 using ReactiveUI;
+using Splat;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
     [DataContract]
-    public partial class MainViewModel : ViewModelBase, IMainViewModel, IDisposable
+    public partial class MainViewModel : ViewModelBase, IMainViewModel, IEnableLogger, IDisposable
     {
         #region IDisposable
 

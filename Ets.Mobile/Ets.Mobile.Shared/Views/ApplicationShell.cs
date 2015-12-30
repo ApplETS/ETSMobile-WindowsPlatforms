@@ -152,8 +152,7 @@ namespace Ets.Mobile.ViewModel
 	                if (signetsAccountVm.IsLoginSuccessful)
 	                {
                         _resolver.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
-                        _resolver.GetService<IUserEnabledLogger>()
-	                        .SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
+                        _resolver.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
 	                    SideNavigation.UserDetails.LoadProfile.Execute(null);
                         navigateTo = new MainViewModel(this);
 	                }

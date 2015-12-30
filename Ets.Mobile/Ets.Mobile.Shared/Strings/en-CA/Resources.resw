@@ -360,4 +360,13 @@
   <data name="ExtendedSplashScreen" xml:space="preserve">
     <value />
   </data>
+  <data name="SendLogFilesBody" xml:space="preserve">
+    <value>You can write add comments if you like!</value>
+  </data>
+  <data name="SendLogFilesSubject" xml:space="preserve">
+    <value>Log files for {0}</value>
+  </data>
+  <data name="SendLogsButtonUid.Content" xml:space="preserve">
+    <value>send logs</value>
+  </data>
 </root>

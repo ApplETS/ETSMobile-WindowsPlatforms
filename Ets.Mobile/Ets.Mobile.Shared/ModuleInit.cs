@@ -7,8 +7,10 @@ using Ets.Mobile.Client.Factories.Implementations;
 using Ets.Mobile.Client.Services;
 using Ets.Mobile.Entities.ServiceInfo;
 using Ets.Mobile.Entities.Signets;
+using Ets.Mobile.Logger;
 using Logger;
 using Logger.CrittercismLog;
+using Logger.SplatLog;
 using Messaging.Interfaces.Notifications;
 using Messaging.Interfaces.Popup;
 using Messaging.Interfaces.ViewService;
@@ -47,7 +49,9 @@ namespace Ets.Mobile.Shared
             resolver.RegisterConstant(new NativeMessageHandler(), typeof(HttpMessageHandler));
 
             // Log 
-            resolver.RegisterLazySingleton(() => new CrittercismLogger(), typeof(IUserEnabledLogger));
+		    var logger = new CombinedLogger(new CrittercismLogger(), new SplatLogger());
+            resolver.RegisterLazySingleton(() => logger, typeof(IUserEnabledLogger));
+            resolver.RegisterLazySingleton(() => logger, typeof(ILogger));
 
             // View Services
             resolver.RegisterLazySingleton(() => new PopupManager(resolver.GetService<ResourceLoader>()), typeof(IPopupManager));

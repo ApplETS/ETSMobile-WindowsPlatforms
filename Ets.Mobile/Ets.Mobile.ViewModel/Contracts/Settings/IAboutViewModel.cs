@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reactive;
+using ReactiveUI;
 
 namespace Ets.Mobile.ViewModel.Contracts.Settings
 {
@@ -6,5 +8,6 @@ namespace Ets.Mobile.ViewModel.Contracts.Settings
     {
         string VersionNumber { get; }
         Uri SendFeedbackUri { get; }
+        ReactiveCommand<Unit> SendLogFiles { get; }
     }
 }

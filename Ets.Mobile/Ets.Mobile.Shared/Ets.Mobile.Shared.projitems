@@ -17,6 +17,8 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ViewModelAvailabilityToBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ViewModelAvailabilityToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\CombinedLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\StorageFileEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TaskObservers\AsyncSynchronizationContext .cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserErrorHandlers\UserErrorOfflineHandler.cs" />
