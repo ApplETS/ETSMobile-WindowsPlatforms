@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:grade="using:Ets.Mobile.Views.Content.Grade"
+    xmlns:grade="using:Ets.Mobile.Content.Grade"
     xmlns:controls="using:ReactiveUI.Xaml.Controls"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
     xmlns:shared="using:Ets.Mobile.Content.Shared"

@@ -88,6 +88,33 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Content\Grade\CourseChooserForGrades.xaml.cs">
+      <DependentUpon>CourseChooserForGrades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Grade\GradeItem.xaml.cs">
+      <DependentUpon>GradeItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Grade\GradeSummary.xaml.cs">
+      <DependentUpon>GradeSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Main\Today.xaml.cs">
+      <DependentUpon>Today.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Program\Programs.xaml.cs">
+      <DependentUpon>Programs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Schedule\Schedule.xaml.cs">
+      <DependentUpon>Schedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\Confidentiality.xaml.cs">
+      <DependentUpon>Confidentiality.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\Credits.xaml.cs">
+      <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Account\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -145,6 +172,42 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Content\Grade\CourseChooserForGrades.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Grade\GradeItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Grade\GradeSummary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Main\Today.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Program\Programs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Schedule\Schedule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\Confidentiality.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\Credits.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Account\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,7 +271,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
     <Folder Include="Pages\Shared\" />
   </ItemGroup>
   <ItemGroup>

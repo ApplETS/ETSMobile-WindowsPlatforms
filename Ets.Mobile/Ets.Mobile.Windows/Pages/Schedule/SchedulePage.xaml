@@ -5,14 +5,19 @@
     xmlns:local="using:Ets.Mobile.Pages.Schedule"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:s="using:Ets.Mobile.Views.Content.Schedule"
+    xmlns:s="using:Ets.Mobile.Content.Schedule"
     mc:Ignorable="d">
 
     <s:Schedule x:Name="Schedule" />
     <Page.BottomAppBar>
-        <CommandBar x:Name="BottomBar" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}">
+        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
+                <AppBarButton Label="View">
+                    <AppBarButton.Icon>
+                        <BitmapIcon Width="22" Height="22" MaxHeight="22" MaxWidth="22" UriSource="/Assets/AppBarButton/CalendarView.png"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

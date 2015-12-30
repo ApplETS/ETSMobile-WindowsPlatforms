@@ -5,9 +5,9 @@
     xmlns:local="using:Ets.Mobile.Pages.Settings"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:setting="using:Ets.Mobile.Views.Content.Setting"
+    xmlns:setting="using:Ets.Mobile.Content.Settings"
     xmlns:shell="using:Ets.Mobile.Shell"
-    xmlns:settings="using:Ets.Mobile.Views.Content.Settings"
+    xmlns:settings="using:Ets.Mobile.Content.Settings"
     mc:Ignorable="d"
     Background="{ThemeResource EtsProgramBackgroundBrush}">
 

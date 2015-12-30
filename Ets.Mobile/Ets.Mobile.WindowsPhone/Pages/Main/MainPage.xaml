@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"   
-    xmlns:main="using:Ets.Mobile.Views.Content.Main"
+    xmlns:main="using:Ets.Mobile.Content.Main"
     xmlns:grade="using:Ets.Mobile.Content.Grade"
     d:DataContext="{d:DesignInstance Type=designTime:MainViewModelDt, IsDesignTimeCreatable=True}"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
@@ -44,7 +44,7 @@
             </Pivot>
         </Grid>
     </Grid>
-    
+
     <Page.BottomAppBar>
         <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>

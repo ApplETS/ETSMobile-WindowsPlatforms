@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="Ets.Mobile.Content.Settings.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Content.Setting"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="800"
+    d:DesignWidth="400">
+
+    <StackPanel>
+        <StackPanel.ChildrenTransitions>
+            <TransitionCollection>
+                <EdgeUIThemeTransition Edge="Bottom" />
+            </TransitionCollection>
+        </StackPanel.ChildrenTransitions>
+
+        <TextBlock x:Uid="ApplicationNameUid" Margin="0,18,0,0" Style="{ThemeResource EtsApplicationTitleStyle}" />
+
+        <!-- Version and Publisher -->
+        <StackPanel Margin="0,20">
+            <TextBlock x:Uid="AppletsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" />
+            <TextBlock x:Uid="EcoledeTechnologieSuperieurUid" Style="{StaticResource EtsTextBlockGray4}" />
+            <TextBlock Style="{StaticResource EtsTextBlockGray4}" >
+                <Run Text="Version" />
+                <Run Text="{Binding VersionNumber}"/>
+            </TextBlock>
+        </StackPanel>
+
+        <!-- Applets Description-->
+        <StackPanel Margin="0,20">
+            <TextBlock x:Uid="ContributeDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
+            <TextBlock x:Uid="VisitAndJoinUsUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
+        </StackPanel>
+
+        <!-- Applets Website-->
+        <HyperlinkButton 
+            x:Uid="AppletsWebsiteUid" 
+            Content="clubapplets.ca" 
+            Style="{ThemeResource EtsAppletsWebsiteHyperlinkStyle}" />
+
+        <!-- Feedback -->
+        <HyperlinkButton x:Uid="FeedbackButtonUid" 
+                         Content="envoyer des commentaires"
+                         NavigateUri="{Binding SendFeedbackUri}"
+                         Style="{ThemeResource EtsSendCommentsHyperlinkStyle}" />
+        <!-- Send Logs -->
+        <HyperlinkButton 
+            x:Uid="SendLogsButtonUid" 
+            Content="envoyer les logs"
+            Style="{ThemeResource EtsSendCommentsHyperlinkStyle}"
+            Command="{Binding SendLogFiles}" />
+    </StackPanel>
+</UserControl>

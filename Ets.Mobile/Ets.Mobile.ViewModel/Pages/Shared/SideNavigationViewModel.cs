@@ -49,7 +49,9 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             {
                 IsSideNavigationVisibleSubject.OnNext(true);
                 IsSideNavigationVisible = true;
+#if WINDOWS_PHONE_APP
                 ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
+#endif
                 return Task.FromResult(IsSideNavigationVisible);
             });
 
@@ -57,7 +59,9 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             {
                 IsSideNavigationVisibleSubject.OnNext(false);
                 IsSideNavigationVisible = false;
+#if WINDOWS_PHONE_APP
                 SetCoreWindowBounds(CurrentViewModelType);
+#endif
                 return Task.FromResult(IsSideNavigationVisible);
             });
 
@@ -66,11 +70,9 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
                 // Current Page Set
                 CurrentPage = Locator.Current.GetService<ResourceLoader>().GetString(currentVm.UrlPathSegment);
                 CurrentViewModelType = currentVm.GetType();
-
 #if WINDOWS_PHONE_APP
                 SetCoreWindowBounds(CurrentViewModelType);
 #endif
-
                 // Highlights the corresponding current ViewModel
                 IsMain = MainTypes.Contains(CurrentViewModelType);
                 IsSchedule = ScheduleTypes.Contains(CurrentViewModelType);
@@ -103,6 +105,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             });
         }
 
+#if WINDOWS_PHONE_APP
         private void SetCoreWindowBounds(Type vmType)
         {
             try
@@ -116,10 +119,10 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             {
                 this.Log().Error($"Cannot set the application bounds: {ex.Message}");
             }
-            
         }
+#endif
 
-#region Properties
+        #region Properties
 
         private UserDetailsVm _profile;
         [DataMember]

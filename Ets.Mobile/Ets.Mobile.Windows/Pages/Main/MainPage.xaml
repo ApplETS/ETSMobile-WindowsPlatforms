@@ -34,4 +34,12 @@
             
         </Grid>
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="RefreshToday" Icon="Refresh" Label="Refresh" Command="{Binding LoadCoursesForToday}" />
+                <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" Command="{Binding LoadGrades}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

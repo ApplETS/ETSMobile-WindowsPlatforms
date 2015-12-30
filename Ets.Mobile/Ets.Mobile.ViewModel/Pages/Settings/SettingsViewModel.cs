@@ -8,7 +8,9 @@ using System.Reactive;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+#if WINDOWS_PHONE_APP
 using Windows.ApplicationModel.Email;
+#endif
 using Windows.Storage;
 using Windows.Storage.Streams;
 
@@ -65,7 +67,7 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
                 // Open the share contract with Mail only:
                 await EmailManager.ShowComposeNewEmailAsync(mail);
 #else
-                return Task.FromResult(Unit.Default);
+                return await Task.FromResult(Unit.Default);
 #endif
             });
 

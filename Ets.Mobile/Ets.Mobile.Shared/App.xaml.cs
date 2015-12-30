@@ -4,6 +4,7 @@ using ReactiveUI;
 using Splat;
 using System;
 using System.Diagnostics.Tracing;
+using System.Reactive.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Resources;
