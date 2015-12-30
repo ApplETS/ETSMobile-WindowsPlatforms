@@ -24,9 +24,9 @@
             <Color x:Key="EtsRedMediumColor">#FF0200</Color>
             <Color x:Key="EtsRedHighColor">#CC0100</Color>
             <Color x:Key="EtsRedHighestColor">#FF4E4C</Color>
-            <Color x:Key="EtsBackgroundColor">#FFFFFFFF</Color>
-            <Color x:Key="EtsBackgroundMainColor">#f2f2f2</Color>
-            <Color x:Key="EtsBackgroundBodyColor">#e6e6e6</Color>
+            <Color x:Key="EtsBackgroundColor">#00000000</Color>
+            <Color x:Key="EtsBackgroundMainColor">#404040</Color>
+            <Color x:Key="EtsBackgroundBodyColor">#333333</Color>
             <Color x:Key="EtsSideNavigationBackgroundColor">#2b2b2b</Color>
             <Color x:Key="EtsTextMainColor">#323232</Color>
             <Color x:Key="EtsTextSecondaryColor">#666666</Color>
@@ -115,6 +115,8 @@
                 <Setter Property="FontWeight" Value="Normal" />
             </Style>
             <!-- Schedule -->
+            <Brush x:Key="SfScheduleDayBackgroundBrush">#333333</Brush>
+            <Brush x:Key="SfScheduleTimelineBackgroundBrush">#333333</Brush>
             <Color x:Key="AppointmentDescriptionColor">#8c8c8c</Color>
             <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
             <Brush x:Key="EtsScheduleBackgroundBrush">#333333</Brush>
@@ -297,8 +299,8 @@
             <Color x:Key="EtsRedHighColor">#CC0100</Color>
             <Color x:Key="EtsRedHighestColor">#FF4E4C</Color>
             <Color x:Key="EtsBackgroundColor">#FFFFFFFF</Color>
-            <Color x:Key="EtsBackgroundMainColor">#f2f2f2</Color>
-            <Color x:Key="EtsBackgroundBodyColor">#e6e6e6</Color>
+            <Color x:Key="EtsBackgroundMainColor">#404040</Color>
+            <Color x:Key="EtsBackgroundBodyColor">#333333</Color>
             <Color x:Key="EtsSideNavigationBackgroundColor">#2b2b2b</Color>
             <Color x:Key="EtsTextMainColor">#323232</Color>
             <Color x:Key="EtsTextSecondaryColor">#666666</Color>
@@ -386,6 +388,8 @@
                 <Setter Property="FontWeight" Value="Normal" />
             </Style>
             <!-- Schedule -->
+            <Brush x:Key="SfScheduleDayBackgroundBrush">#333333</Brush>
+            <Brush x:Key="SfScheduleTimelineBackgroundBrush">#333333</Brush>
             <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
             <Brush x:Key="EtsScheduleBackgroundBrush">#333333</Brush>
             <Brush x:Key="SfScheduleChangeCalendarBackgroundBrush">#404040</Brush>
@@ -661,6 +665,8 @@
                 <Setter Property="FontWeight" Value="Normal" />
             </Style>
             <!-- Schedule -->
+            <Brush x:Key="SfScheduleDayBackgroundBrush">#FFFFFF</Brush>
+            <Brush x:Key="SfScheduleTimelineBackgroundBrush">#FFFFFF</Brush>
             <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
             <Brush x:Key="EtsScheduleBackgroundBrush">#FFFFFF</Brush>
             <Brush x:Key="SfScheduleChangeCalendarBackgroundBrush">#dddddd</Brush>

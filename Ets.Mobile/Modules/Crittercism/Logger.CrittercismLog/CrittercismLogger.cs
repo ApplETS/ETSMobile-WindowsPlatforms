@@ -1,6 +1,6 @@
-﻿using System;
-using CrittercismSDK;
+﻿using CrittercismSDK;
 using Splat;
+using System;
 
 namespace Logger.CrittercismLog
 {
@@ -8,7 +8,10 @@ namespace Logger.CrittercismLog
     {
         public void Write(string message, LogLevel logLevel)
         {
-            Crittercism.LogHandledException(new Exception($"[{DateTime.Now}] {message} ({logLevel})"));
+            if (logLevel == LogLevel.Error || logLevel == LogLevel.Fatal)
+            {
+                Crittercism.LogHandledException(new Exception($"[{DateTime.Now}] {message} ({logLevel})"));
+            }
         }
 
         public LogLevel Level { get; set; }
