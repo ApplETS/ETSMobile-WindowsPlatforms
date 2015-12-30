@@ -105,10 +105,18 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
 
         private void SetCoreWindowBounds(Type vmType)
         {
-            ApplicationView.GetForCurrentView()
+            try
+            {
+                ApplicationView.GetForCurrentView()
                     .SetDesiredBoundsMode(vmType == typeof(ScheduleViewModel)
                         ? ApplicationViewBoundsMode.UseCoreWindow
                         : ApplicationViewBoundsMode.UseVisible);
+            }
+            catch (Exception ex)
+            {
+                this.Log().Error($"Cannot set the application bounds: {ex.Message}");
+            }
+            
         }
 
 #region Properties

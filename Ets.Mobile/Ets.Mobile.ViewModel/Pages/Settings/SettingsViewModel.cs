@@ -2,7 +2,11 @@
 using Ets.Mobile.ViewModel.Contracts.Settings;
 using ReactiveUI;
 using System;
+using System.IO;
+using System.IO.Compression;
 using System.Reactive;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Email;
 using Windows.Storage;
@@ -50,15 +54,13 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
 
                 // Add recipients to the mail object
                 mail.To.Add(sendTo);
-
-                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("StorageFileEventListener");
-                foreach (var files in await folder.GetFilesAsync())
+                
+                var attachments = new EmailAttachment
                 {
-                    var attachments = new EmailAttachment {FileName = files.Name};
-                    var accessStream = await files.OpenAsync(FileAccessMode.Read);
-                    attachments.Data = RandomAccessStreamReference.CreateFromStream(accessStream);
-                    mail.Attachments.Add(attachments);
-                }
+                    FileName = "LogFiles.zip",
+                    Data = await SendLogFilesImpl()
+                };
+                mail.Attachments.Add(attachments);
 
                 // Open the share contract with Mail only:
                 await EmailManager.ShowComposeNewEmailAsync(mail);
@@ -67,7 +69,50 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
 #endif
             });
 
+            SendLogFiles.ThrownExceptions.Subscribe(ex =>
+            {
+                UserError.Throw(ex.Message, ex);
+            });
+        }
 
+        private async Task<IRandomAccessStreamReference> SendLogFilesImpl()
+        {
+            var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("StorageFileEventListener");
+            using (var zipStream = new MemoryStream())
+            {
+                var archive = new ZipArchive(zipStream, ZipArchiveMode.Create, true);
+                var files = await folder.GetFilesAsync();
+                foreach (var fileToCompress in files)
+                {
+                    var fileOpenAsync = await fileToCompress.OpenAsync(FileAccessMode.Read);
+                    if (fileOpenAsync.Size != 0)
+                    {
+                        var buffer = (await FileIO.ReadBufferAsync(fileToCompress)).ToArray();
+
+                        // Create a zip archive entry
+                        var entry = archive.CreateEntry(fileToCompress.Name);
+
+                        // And write the contents to it
+                        using (var entryStream = entry.Open())
+                        {
+                            await entryStream.WriteAsync(buffer, 0, buffer.Length);
+                        }
+                    }
+                }
+                var file = await SaveStreamToFile(zipStream, "LogFiles.zip");
+                return RandomAccessStreamReference.CreateFromFile(file);
+            }
+        }
+
+        private async Task<StorageFile> SaveStreamToFile(Stream streamToSave, string fileName)
+        {
+            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            using (var fileStream = await file.OpenStreamForWriteAsync())
+            {
+                streamToSave.Position = 0;
+                await streamToSave.CopyToAsync(fileStream);
+            }
+            return file;
         }
     }
 }
