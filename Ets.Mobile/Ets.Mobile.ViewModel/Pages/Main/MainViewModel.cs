@@ -8,7 +8,7 @@ using Splat;
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
     [DataContract]
-    public partial class MainViewModel : ViewModelBase, IMainViewModel, IEnableLogger, IDisposable
+    public partial class MainViewModel : ViewModelBase, IMainViewModel, IDisposable
     {
         #region IDisposable
 
