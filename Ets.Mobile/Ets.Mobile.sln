@@ -67,6 +67,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.WindowsPhone", "
 		{F30613AA-0EB9-4D44-B42F-ECAF50BDF7EC} = {F30613AA-0EB9-4D44-B42F-ECAF50BDF7EC}
 		{D940F3AC-B1BF-4D18-8924-D7348F6318EA} = {D940F3AC-B1BF-4D18-8924-D7348F6318EA}
 		{31018AC6-EBB8-4C95-80D8-B6529994E60B} = {31018AC6-EBB8-4C95-80D8-B6529994E60B}
+		{76ED68D4-C68A-480B-94B6-22F56CB16F5F} = {76ED68D4-C68A-480B-94B6-22F56CB16F5F}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Business.WinRT", "Ets.Mobile.Business.WinRT\Ets.Mobile.Business.WinRT.csproj", "{51D4C81F-AC59-4516-B307-AFF1A779E11F}"
@@ -244,15 +245,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.SplatLog.WinPhone", 
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.projitems*{82c93d76-299d-45c5-b90a-2c6c5e2fd8ef}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{82c93d76-299d-45c5-b90a-2c6c5e2fd8ef}*SharedItemsImports = 4
+		Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.projitems*{82c93d76-299d-45c5-b90a-2c6c5e2fd8ef}*SharedItemsImports = 4
 		Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems*{d3500b1e-2074-4e90-bcda-7bf56447bb2f}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{b9a9236c-1d52-458a-af63-2d3dae72ec3f}*SharedItemsImports = 13
 		Modules\Crittercism\Logger.CrittercismLog\Logger.CrittercismLog.projitems*{fad47ffe-d4b9-4670-beca-a4c144ce2cf1}*SharedItemsImports = 13
 		Modules\Splat\Logger.SplatLog\Logger.SplatLog.projitems*{76ed68d4-c68a-480b-94b6-22f56cb16f5f}*SharedItemsImports = 4
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{60a7d9b5-1117-4146-a27a-e5e5111df59d}*SharedItemsImports = 13
-		Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.projitems*{17769e85-f8b8-405a-a76a-7aadaf97bb69}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{17769e85-f8b8-405a-a76a-7aadaf97bb69}*SharedItemsImports = 4
+		Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.projitems*{17769e85-f8b8-405a-a76a-7aadaf97bb69}*SharedItemsImports = 4
 		Ets.Mobile.Entities\Ets.Mobile.Entities.projitems*{ce35f282-6085-4910-bfe2-38a93c50cd8b}*SharedItemsImports = 4
 		Ets.Mobile.Shared\Ets.Mobile.Shared.projitems*{d939c457-a5a0-4e43-9259-eb0ee2245c14}*SharedItemsImports = 4
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{28e2ee97-79f2-4149-8dc3-cf8c93542376}*SharedItemsImports = 4
@@ -260,8 +261,8 @@ Global
 		Ets.Mobile.Entities\Ets.Mobile.Entities.projitems*{bd887228-1e81-4ca3-aa3e-13b82248299b}*SharedItemsImports = 13
 		Modules\Messaging\UniversalApp\Messaging.UniversalApp\Messaging.UniversalApp.projitems*{3a40a61f-bbbf-4a75-b3e6-32d47f3db5d0}*SharedItemsImports = 13
 		Ets.Mobile.Agent\Ets.Mobile.Agent.projitems*{815430db-55ac-4981-bc24-61da853d094d}*SharedItemsImports = 4
-		Ets.Mobile.Tests\Ets.Mobile.Client.Shared.Tests\Ets.Mobile.Client.Shared.Tests.projitems*{7b938688-57a4-41f9-9239-c86a4fe330b2}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{7b938688-57a4-41f9-9239-c86a4fe330b2}*SharedItemsImports = 4
+		Ets.Mobile.Tests\Ets.Mobile.Client.Shared.Tests\Ets.Mobile.Client.Shared.Tests.projitems*{7b938688-57a4-41f9-9239-c86a4fe330b2}*SharedItemsImports = 4
 		Ets.Mobile.Business\Ets.Mobile.Business.projitems*{3c371094-033f-4f31-9e34-d52ab65de73c}*SharedItemsImports = 13
 		Ets.Mobile.Shared\Ets.Mobile.Shared.projitems*{3e659f3b-a23d-4d6a-ad9d-684eb0c51e91}*SharedItemsImports = 4
 		Modules\Splat\Logger.SplatLog\Logger.SplatLog.projitems*{b956c749-a748-428c-ad7a-e87d5ec29ebe}*SharedItemsImports = 13
@@ -269,8 +270,8 @@ Global
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{7b995881-1066-4b64-9b58-92fe40397667}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.projitems*{073cfbd8-a2fb-4e23-ba1f-afa6632cfc3e}*SharedItemsImports = 13
 		Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems*{c5a679b8-8f8e-451a-8a8e-45ddbeb3c57d}*SharedItemsImports = 13
-		Modules\Crittercism\Logger.CrittercismLog\Logger.CrittercismLog.projitems*{f14de3fe-015d-4d76-98a9-dc311afcdc9b}*SharedItemsImports = 4
 		Modules\Splat\Logger.SplatLog\Logger.SplatLog.projitems*{f14de3fe-015d-4d76-98a9-dc311afcdc9b}*SharedItemsImports = 4
+		Modules\Crittercism\Logger.CrittercismLog\Logger.CrittercismLog.projitems*{f14de3fe-015d-4d76-98a9-dc311afcdc9b}*SharedItemsImports = 4
 		Modules\Crittercism\Logger.CrittercismLog\Logger.CrittercismLog.projitems*{9ec2ed5e-1099-4d6c-a0ca-c6d53dfeffa4}*SharedItemsImports = 4
 		Modules\Messaging\UniversalApp\Messaging.UniversalApp\Messaging.UniversalApp.projitems*{f78a088c-306c-4c5d-b393-8ff9ea30ed8f}*SharedItemsImports = 4
 		Ets.Mobile.Business\Ets.Mobile.Business.projitems*{51d4c81f-ac59-4516-b307-aff1a779e11f}*SharedItemsImports = 4
