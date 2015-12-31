@@ -16,23 +16,6 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
@@ -103,8 +86,8 @@
       <Coding4Fun_Toolkit_Controls_Xr_Xml>$([System.IO.Path]::GetFullPath('..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\netcore451\Coding4Fun.Toolkit.Controls\Coding4Fun.Toolkit.Controls.xr.xml'))</Coding4Fun_Toolkit_Controls_Xr_Xml>
       <Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>$([System.IO.Path]::GetFullPath('..\..\..\..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\netcore451\Coding4Fun.Toolkit.Controls\Themes\Generic.xbf'))</Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>
     </PropertyGroup>
-    <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Xr_Xml)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls"/>
-    <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls/Themes"/>
+    <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Xr_Xml)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls" />
+    <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls/Themes" />
   </Target>
   <Target Name="Clean">
     <RemoveDir Directories="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls" />

@@ -52,7 +52,14 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
                 IsSideNavigationVisibleSubject.OnNext(true);
                 IsSideNavigationVisible = true;
 #if WINDOWS_PHONE_APP || WINDOWS_UWP
-                ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
+#if WINDOWS_UWP
+                if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.PhoneContract"))
+                {
+#endif
+                    ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
+#if WINDOWS_UWP
+                }
+#endif
 #endif
                 return Task.FromResult(IsSideNavigationVisible);
             });
