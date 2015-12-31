@@ -1,0 +1,30 @@
+<Application x:Class="Ets.Mobile.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="using:Ets.Mobile"
+             xmlns:localization="using:Localization"
+             xmlns:converters="using:Xaml.Converters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Skins/MainSkin.xaml" />
+                <ResourceDictionary Source="/Skins/ReactivePresenter.xaml" />
+                <ResourceDictionary Source="/Skins/SplitViewStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <x:String x:Key="AppName">ETS Mobile</x:String>
+            <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
+            <converters:StringToLowerConverter x:Key="StringToLowerConverter" />
+            <converters:StringToLocalizedStringConverter x:Key="StringToLocalizedStringConverter" />
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:InversedBooleanToVisibilityConverter x:Key="InversedBooleanToVisibilityConverter" />
+            <converters:AbridgedSemesterToFullNameConverter x:Key="AbridgedSemesterToFullNameConverter" />
+            <converters:StringToIntegerConverter x:Key="StringToIntegerConverter" />
+            <converters:SelectedPivotItemToVisibilityConverter x:Key="SelectedPivotItemToVisibilityConverter" />
+            <converters:InversedBooleanConverter x:Key="InversedBooleanConverter" />
+            <converters:MenuItemIsActiveToBackgroundColor  x:Key="MenuItemIsActiveToBackgroundColor" />
+            <converters:StringToTbdConverter x:Key="StringToTbdConverter" />
+            <converters:NullOrNotToFontSizeSelectorConverter x:Key="NullOrNotToFontSizeSelectorConverter" />
+            <converters:BooleanToOpacityConverter x:Key="BooleanToOpacityConverter" />
+            <localization:StringResources x:Key="LocalizedStrings" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

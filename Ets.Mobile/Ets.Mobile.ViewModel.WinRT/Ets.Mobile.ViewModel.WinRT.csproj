@@ -104,21 +104,21 @@
       <Project>{DB28D584-BA06-4FD9-BAA9-C593B8C57F8E}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Implementations\Messaging.UniversalApp.WinRT\Messaging.UniversalApp.WinRT.csproj">
+      <Project>{8fe53ee7-c620-4327-876a-bf2c2222cd7f}</Project>
+      <Name>Messaging.UniversalApp.WinRT</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
       <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
       <Name>Messaging.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modules\Messaging\UniversalApp\Messaging.UniversalApp.WinRT\Messaging.UniversalApp.WinRT.csproj">
-      <Project>{8fe53ee7-c620-4327-876a-bf2c2222cd7f}</Project>
-      <Name>Messaging.UniversalApp.WinRT</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Extensions\ReactiveUI.Extensions.csproj">
       <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
       <Name>ReactiveUI.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.csproj">
-      <Project>{6c59c015-597d-410a-99a4-5be537a8fb93}</Project>
-      <Name>ReactiveUI.Xaml.Controls</Name>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\UAP\ReactiveUI.Xaml.Controls.UAP\ReactiveUI.Xaml.Controls.UAP.csproj">
+      <Project>{c8329a73-199d-44de-b174-4d12189442cd}</Project>
+      <Name>ReactiveUI.Xaml.Controls.UAP</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Security\Security.csproj">
       <Project>{d940f3ac-b1bf-4d18-8924-d7348f6318ea}</Project>

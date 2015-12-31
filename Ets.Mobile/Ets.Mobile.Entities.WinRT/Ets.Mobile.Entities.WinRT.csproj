@@ -88,10 +88,6 @@
       <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
       <Name>ReactiveUI.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.csproj">
-      <Project>{6c59c015-597d-410a-99a4-5be537a8fb93}</Project>
-      <Name>ReactiveUI.Xaml.Controls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Modules\Themes\Themes.csproj">
       <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
       <Name>Themes</Name>

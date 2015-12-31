@@ -1,0 +1,184 @@
+﻿<Page xmlns:schedule="using:Syncfusion.UI.Xaml.Schedule" 
+    x:Class="Ets.Mobile.Pages.Schedule.SchedulePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Pages.Schedule"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sfSchedule="using:Ets.Mobile.SyncFusion.SfSchedule"
+    xmlns:shell="using:Ets.Mobile.Shell"
+    Background="{ThemeResource EtsScheduleBackgroundBrush}"
+    x:Name="ScheduleP"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- Flyout for changing Calendar View -->
+        <Flyout x:Key="ChangeCalendarViewFlyout" Placement="Full" FlyoutPresenterStyle="{ThemeResource ChangeCalendarViewFlyoutPresenter}" >
+            <Grid Background="Transparent">
+                <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource SfScheduleChangeCalendarBackgroundBrush}">
+                    <Button Content="day"
+                            x:Name="Day"
+                            IsEnabled="{Binding IsCurrentViewDay, ElementName=ScheduleP, Converter={StaticResource InversedBooleanConverter}}"
+                            Style="{ThemeResource ChangeCalendarViewFlyoutFirstButtonStyle}"
+                            Click="ChangeToDay" />
+                    <Button Content="week"
+                            x:Name="Week"
+                            IsEnabled="{Binding IsCurrentViewWeek, ElementName=ScheduleP, Converter={StaticResource InversedBooleanConverter}}"
+                            Style="{ThemeResource ChangeCalendarViewFlyoutButtonStyle}" 
+                            Click="ChangeToWeek" />
+                    <Button Content="month"
+                            x:Name="Month"
+                            IsEnabled="{Binding IsCurrentViewMonth, ElementName=ScheduleP, Converter={StaticResource InversedBooleanConverter}}"
+                            Style="{ThemeResource ChangeCalendarViewFlyoutButtonStyle}" 
+                            Click="ChangeToMonth" />
+                    <Button Content="timeline"
+                            x:Name="TimeLine"
+                            IsEnabled="{Binding IsCurrentViewTimeLine, ElementName=ScheduleP, Converter={StaticResource InversedBooleanConverter}}"
+                            Style="{ThemeResource ChangeCalendarViewFlyoutLastButtonStyle}" 
+                            Click="ChangeToTimeLine" />
+                </StackPanel>
+            </Grid>
+        </Flyout>
+
+        <Style TargetType="schedule:ScheduleHorizontalAppointmentViewControl">
+            <Setter Property="Margin" Value="0,-2,0,0"/>
+        </Style>
+
+        <!-- Schedule -->
+        <schedule:ExpandingAppointmentVisibility x:Key="Appvisibility"/>
+
+        <Style TargetType="schedule:ExpandingControl">
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="schedule:ExpandingControl">
+                        <Border BorderBrush="{ThemeResource ScheduleExpandingControlBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Margin="0,0,0,1" >
+                            <ScrollViewer VerticalContentAlignment="Top" 
+                                      VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto">
+                                <Grid>
+                                    <schedule:ExpandingItemControl DataContext="{TemplateBinding AppointmentCollection}" Margin="3,3,0,0"
+                                                            ItemsSource="{Binding}" AppointmentTemplate="{TemplateBinding AppointmentTemplate}"
+                                                            Visibility="{Binding Converter={StaticResource Appvisibility },ConverterParameter=Appointmentcollection}">
+                                    </schedule:ExpandingItemControl>
+
+                                    <TextBlock x:Name="EventsTextBlock" Text="no events" Margin="15,11,0,0" Foreground="Gray" 
+                                           FontSize="20"
+                                           FontWeight="Thin"
+                                           FontFamily="Calibri"
+                                           DataContext="{TemplateBinding AppointmentCollection}" 
+                                           Visibility="{Binding Converter={StaticResource Appvisibility}, ConverterParameter=Emptycollection}">
+                                    </TextBlock>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <sfSchedule:StartDateToStringConverter x:Key="StartDateToStringConverter" />
+        <sfSchedule:AppointmentToDescriptionConverter x:Key="AppointmentToDescriptionConverter" />
+        <Style TargetType="schedule:ExpandedAppointmentViewControl">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+        <DataTemplate x:Key="DayViewTemplate">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border BorderThickness="1" BorderBrush="{StaticResource SfScheduleDayBorder}">
+                    <Border Background="{ThemeResource SfScheduleDayBackgroundBrush}" BorderThickness="8,0,0,0" BorderBrush="{Binding Color}">
+                        <StackPanel Orientation="Vertical" Margin="5,1,5,5">
+                            <TextBlock Text="{Binding ActivityName}" Foreground="{Binding Color}" Style="{StaticResource AppointementSubject}"/>
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource AppointmentTypeStyle}" />
+                            <TextBlock Style="{StaticResource AppointmentDescriptionStyle}" Text="{Binding Location}" />
+                        </StackPanel>
+                    </Border>
+                </Border>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="TimelineViewTemplate">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border BorderThickness="1" BorderBrush="{StaticResource SfScheduleDayBorder}">
+                    <Border Background="{ThemeResource SfScheduleTimelineBackgroundBrush}" BorderThickness="0,8,0,0" BorderBrush="{Binding Color}">
+                        <StackPanel Orientation="Vertical" Margin="5,1,5,5">
+                            <TextBlock Text="{Binding ActivityName}" TextWrapping="WrapWholeWords" Foreground="{Binding Color}" Style="{StaticResource AppointementSubject}"/>
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource AppointmentTypeStyle}" />
+                            <TextBlock Style="{StaticResource AppointmentDescriptionStyle}" Text="{Binding Location}" />
+                        </StackPanel>
+                    </Border>
+                </Border>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="WeekViewTemplate">
+            <Grid Background="Transparent" HorizontalAlignment="Stretch" Margin="0,3,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="0.75*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource AppointementStartTime}" Text="{Binding StartDate, Converter={StaticResource StartDateToStringConverter}}" Grid.Column="0" />
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Text="{Binding ActivityName}" Style="{StaticResource AppointementSubject}" Foreground="{Binding Color}" />
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource AppointmentTypeStyle}" />
+                    <TextBlock Style="{StaticResource AppointmentDescriptionStyle}" Text="{Binding Converter={StaticResource AppointmentToDescriptionConverter}}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <local:AppointmentDataTemplateSelector x:Key="TemplateSelector"
+            TimelineViewTemplate="{StaticResource TimelineViewTemplate}"
+            DayViewTemplate="{StaticResource DayViewTemplate}" 
+            WeekViewTemplate="{StaticResource WeekViewTemplate}"
+            MonthViewTemplate="{StaticResource WeekViewTemplate}"
+            />
+    </Page.Resources>
+    <Grid HorizontalAlignment="Stretch" Margin="0,0,0,60">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Hamburger -->
+        <shell:PageHeader DataContext="{Binding}"/>
+        <!-- Content -->
+        <schedule:SfSchedule
+            ScheduleTypeChanging="schedule_ScheduleTypeChanging"
+            Loaded="schedule_Loaded"
+            VisibleDatesChanging="Scheduler_OnVisibleDatesChanging"
+            Grid.Row="1"
+            x:Name="Scheduler"
+            AllowEditing="False" 
+            ScheduleType="Week"
+            ItemsSource="{Binding ScheduleItems}">
+            <schedule:SfSchedule.Resources>
+                
+            </schedule:SfSchedule.Resources>
+            <schedule:SfSchedule.AppointmentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}" ContentTemplateSelector="{StaticResource TemplateSelector}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+
+
+                    </ContentControl>
+                </DataTemplate>
+            </schedule:SfSchedule.AppointmentTemplate>
+            <schedule:SfSchedule.AppointmentMapping>
+                <schedule:ScheduleAppointmentMapping
+                    AppointmentBackgroundMapping="Color"
+                    LocationMapping="Location"
+	                SubjectMapping="ActivityName"
+	                StartTimeMapping="StartDate"
+	                EndTimeMapping="EndDate"/>
+            </schedule:SfSchedule.AppointmentMapping>
+        </schedule:SfSchedule>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
+                <AppBarButton Label="View" Click="ChangeCalendarView_Click">
+                    <AppBarButton.Icon>
+                        <BitmapIcon Width="22" Height="22" MaxHeight="22" MaxWidth="22" UriSource="/Assets/AppBarButton/CalendarView.png"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

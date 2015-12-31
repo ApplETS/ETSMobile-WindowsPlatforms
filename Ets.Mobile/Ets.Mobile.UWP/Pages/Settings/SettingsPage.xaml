@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="Ets.Mobile.Pages.Settings.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Pages.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:setting="using:Ets.Mobile.Content.Settings"
+    xmlns:shell="using:Ets.Mobile.Shell"
+    xmlns:settings="using:Ets.Mobile.Content.Settings"
+    mc:Ignorable="d"
+    Background="{ThemeResource EtsProgramBackgroundBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Hamburger -->
+        <shell:PageHeader DataContext="{Binding}"/>
+        <!-- Content -->
+        <Pivot x:Name="SettingsPivot" Grid.Row="1">
+            <PivotItem Margin="15,0,15,0">
+                <PivotItem.Header>
+                    <TextBlock x:Uid="AboutUid" Text="À Propos" />
+                </PivotItem.Header>
+                <setting:About DataContext="{Binding}" Margin="0,10,0,25" />
+            </PivotItem>
+            <PivotItem Margin="15,0,15,0">
+                <PivotItem.Header>
+                    <TextBlock x:Uid="CreditsUid" Text="Crédits" />
+                </PivotItem.Header>
+                <settings:Credits Height="Auto" Margin="0,10,0,0" />
+            </PivotItem>
+            <PivotItem Margin="15,0,15,0">
+                <PivotItem.Header>
+                    <TextBlock x:Uid="ConfidentialityUid" Text="Confidentialité" />
+                </PivotItem.Header>
+                <settings:Confidentiality Height="Auto" Margin="0,10,0,0" />
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>

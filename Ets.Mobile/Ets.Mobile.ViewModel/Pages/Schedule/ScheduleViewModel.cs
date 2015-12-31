@@ -1,18 +1,16 @@
-﻿using Ets.Mobile.Entities.Signets;
+﻿using Akavache;
+using Ets.Mobile.Client.Mixins;
+using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
+using Messaging.Interfaces.Common;
 using ReactiveUI;
+using ReactiveUI.Extensions;
+using ReactiveUI.Xaml.Controls.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
-using Akavache;
-using Ets.Mobile.Client.Mixins;
-using Messaging.Interfaces.Common;
-using ReactiveUI.Extensions;
-using ReactiveUI.Xaml.Controls.Extensions;
-using Syncfusion.Data.Extensions;
 
 namespace Ets.Mobile.ViewModel.Pages.Schedule
 {

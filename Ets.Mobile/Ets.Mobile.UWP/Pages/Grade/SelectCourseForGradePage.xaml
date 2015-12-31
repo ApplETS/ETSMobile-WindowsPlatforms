@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="Ets.Mobile.Pages.Grade.SelectCourseForGradePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Pages.Grade"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:grade="using:Ets.Mobile.Content.Grade"
+    xmlns:shell="using:Ets.Mobile.Shell"
+    mc:Ignorable="d"
+    DataContext="{Binding}">
+    <Grid Background="{ThemeResource EtsBackgroundBodyBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Hamburger -->
+        <shell:PageHeader DataContext="{Binding}"/>
+        <Grid Grid.Row="1">
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Bottom" />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <grade:CourseChooserForGrades Margin="0,10,0,0" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+        </Grid>
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Refresh" Label="Refresh" Command="{Binding LoadGrades}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

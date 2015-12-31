@@ -19,7 +19,9 @@ using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
 using Windows.UI.ViewManagement;
+#endif
 
 namespace Ets.Mobile.ViewModel.Pages.Shared
 {
@@ -49,7 +51,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             {
                 IsSideNavigationVisibleSubject.OnNext(true);
                 IsSideNavigationVisible = true;
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
                 ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
 #endif
                 return Task.FromResult(IsSideNavigationVisible);
@@ -59,7 +61,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             {
                 IsSideNavigationVisibleSubject.OnNext(false);
                 IsSideNavigationVisible = false;
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
                 SetCoreWindowBounds(CurrentViewModelType);
 #endif
                 return Task.FromResult(IsSideNavigationVisible);
@@ -70,7 +72,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
                 // Current Page Set
                 CurrentPage = Locator.Current.GetService<ResourceLoader>().GetString(currentVm.UrlPathSegment);
                 CurrentViewModelType = currentVm.GetType();
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
                 SetCoreWindowBounds(CurrentViewModelType);
 #endif
                 // Highlights the corresponding current ViewModel
@@ -105,20 +107,27 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             });
         }
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
         private void SetCoreWindowBounds(Type vmType)
         {
-            try
+#if WINDOWS_UWP
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
             {
-                ApplicationView.GetForCurrentView()
-                    .SetDesiredBoundsMode(vmType == typeof(ScheduleViewModel)
-                        ? ApplicationViewBoundsMode.UseCoreWindow
-                        : ApplicationViewBoundsMode.UseVisible);
+#endif
+                try
+                {
+                    ApplicationView.GetForCurrentView()
+                        .SetDesiredBoundsMode(vmType == typeof(ScheduleViewModel)
+                            ? ApplicationViewBoundsMode.UseCoreWindow
+                            : ApplicationViewBoundsMode.UseVisible);
+                }
+                catch (Exception ex)
+                {
+                    this.Log().Error($"Cannot set the application bounds: {ex.Message}");
+                }
+#if WINDOWS_UWP
             }
-            catch (Exception ex)
-            {
-                this.Log().Error($"Cannot set the application bounds: {ex.Message}");
-            }
+#endif
         }
 #endif
 

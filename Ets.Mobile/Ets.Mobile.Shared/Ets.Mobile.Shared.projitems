@@ -9,12 +9,6 @@
     <Import_RootNamespace>Ets.Mobile</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ViewModelAvailabilityToBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ViewModelAvailabilityToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\CombinedLogger.cs" />
@@ -29,9 +23,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuButtonBar.xaml.cs">
       <DependentUpon>MenuButtonBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Content\Shared\SideNavigation.xaml.cs">
-      <DependentUpon>SideNavigation.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Account\LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Grade\GradePage.cs" />
@@ -51,19 +42,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Skins\SplitViewStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuButtonBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\Content\Shared\MenuButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\Content\Shared\SideNavigation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

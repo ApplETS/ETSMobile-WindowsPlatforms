@@ -109,6 +109,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\Grade\CourseChooserForGrades.xaml.cs">
       <DependentUpon>CourseChooserForGrades.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,9 @@
     </Compile>
     <Compile Include="Content\Settings\Credits.xaml.cs">
       <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Shared\SideNavigation.xaml.cs">
+      <DependentUpon>SideNavigation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Account\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -179,6 +185,9 @@
     <Content Include="Assets\WideLogo.scale-100.png" />
   </ItemGroup>
   <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Content\Grade\CourseChooserForGrades.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -212,6 +221,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Content\Settings\Credits.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Shared\SideNavigation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -258,6 +271,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Skins\SplitViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ets.Mobile.Agent.WinRT\Ets.Mobile.Agent.WinRT.csproj">
@@ -284,41 +301,41 @@
       <Project>{f30613aa-0eb9-4d44-b42f-ecaf50bdf7ec}</Project>
       <Name>Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Crittercism\Logger.CrittercismLog.WinRT\Logger.CrittercismLog.WinRT.csproj">
-      <Project>{9ec2ed5e-1099-4d6c-a0ca-c6d53dfeffa4}</Project>
-      <Name>Logger.CrittercismLog.WinRT</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Modules\Localization\Localization.csproj">
       <Project>{8070a42a-49a9-46a6-8bc1-daa063bc3832}</Project>
       <Name>Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger.Crittercism\Implementations\Logger.CrittercismLog.WinRT\Logger.CrittercismLog.WinRT.csproj">
+      <Project>{9ec2ed5e-1099-4d6c-a0ca-c6d53dfeffa4}</Project>
+      <Name>Logger.CrittercismLog.WinRT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger.SplatLog\Implementations\Logger.SplatLog.WinRT\Logger.SplatLog.WinRT.csproj">
+      <Project>{f14de3fe-015d-4d76-98a9-dc311afcdc9b}</Project>
+      <Name>Logger.SplatLog.WinRT</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Logger\Logger.csproj">
       <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Implementations\Messaging.UniversalApp.WinRT\Messaging.UniversalApp.WinRT.csproj">
+      <Project>{8fe53ee7-c620-4327-876a-bf2c2222cd7f}</Project>
+      <Name>Messaging.UniversalApp.WinRT</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
       <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
       <Name>Messaging.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modules\Messaging\UniversalApp\Messaging.UniversalApp.WinRT\Messaging.UniversalApp.WinRT.csproj">
-      <Project>{8fe53ee7-c620-4327-876a-bf2c2222cd7f}</Project>
-      <Name>Messaging.UniversalApp.WinRT</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Extensions\ReactiveUI.Extensions.csproj">
       <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
       <Name>ReactiveUI.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.csproj">
-      <Project>{6c59c015-597d-410a-99a4-5be537a8fb93}</Project>
-      <Name>ReactiveUI.Xaml.Controls</Name>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\UAP\ReactiveUI.Xaml.Controls.UAP\ReactiveUI.Xaml.Controls.UAP.csproj">
+      <Project>{c8329a73-199d-44de-b174-4d12189442cd}</Project>
+      <Name>ReactiveUI.Xaml.Controls.UAP</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Security\Security.csproj">
       <Project>{d940f3ac-b1bf-4d18-8924-d7348f6318ea}</Project>
       <Name>Security</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modules\Splat\Logger.SplatLog.WinRT\Logger.SplatLog.WinRT.csproj">
-      <Project>{f14de3fe-015d-4d76-98a9-dc311afcdc9b}</Project>
-      <Name>Logger.SplatLog.WinRT</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Themes\Themes.csproj">
       <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
