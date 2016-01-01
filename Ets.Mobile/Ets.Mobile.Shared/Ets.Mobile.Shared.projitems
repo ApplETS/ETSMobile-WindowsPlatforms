@@ -32,6 +32,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Schedule\SchedulePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Settings\SettingsPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Shell\ShellPage.cs" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppBarButton\CalendarView.big.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppBarButton\CalendarView.bigger.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppBarButton\CalendarView.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Credits\ModernHttpClient.png" />
     <Content Include="$(MSBuildThisFileDirectory)Fonts\segmdl2.ttf" />

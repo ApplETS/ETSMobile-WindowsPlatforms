@@ -130,55 +130,55 @@
             MonthViewTemplate="{StaticResource WeekViewTemplate}"
             />
     </Page.Resources>
-    <Grid HorizontalAlignment="Stretch" Margin="0,0,0,60">
+    <Grid HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <schedule:SfSchedule
+        <Grid Grid.Row="1" Style="{StaticResource EtsBodyGridStyle}">
+            <schedule:SfSchedule
             ScheduleTypeChanging="schedule_ScheduleTypeChanging"
             Loaded="schedule_Loaded"
             VisibleDatesChanging="Scheduler_OnVisibleDatesChanging"
-            Grid.Row="1"
             x:Name="Scheduler"
             AllowEditing="False" 
             ScheduleType="Week"
             ItemsSource="{Binding ScheduleItems}">
-            <schedule:SfSchedule.Resources>
-                
-            </schedule:SfSchedule.Resources>
-            <schedule:SfSchedule.AppointmentTemplate>
-                <DataTemplate>
-                    <ContentControl Content="{Binding}" ContentTemplateSelector="{StaticResource TemplateSelector}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <schedule:SfSchedule.Resources>
+
+                </schedule:SfSchedule.Resources>
+                <schedule:SfSchedule.AppointmentTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}" ContentTemplateSelector="{StaticResource TemplateSelector}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
 
 
-                    </ContentControl>
-                </DataTemplate>
-            </schedule:SfSchedule.AppointmentTemplate>
-            <schedule:SfSchedule.AppointmentMapping>
-                <schedule:ScheduleAppointmentMapping
+                        </ContentControl>
+                    </DataTemplate>
+                </schedule:SfSchedule.AppointmentTemplate>
+                <schedule:SfSchedule.AppointmentMapping>
+                    <schedule:ScheduleAppointmentMapping
                     AppointmentBackgroundMapping="Color"
                     LocationMapping="Location"
 	                SubjectMapping="ActivityName"
 	                StartTimeMapping="StartDate"
 	                EndTimeMapping="EndDate"/>
-            </schedule:SfSchedule.AppointmentMapping>
-        </schedule:SfSchedule>
-    </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+                </schedule:SfSchedule.AppointmentMapping>
+            </schedule:SfSchedule>
+        </Grid>
+        <!-- Command Bar -->
+        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
-                <AppBarButton Label="View" Click="ChangeCalendarView_Click">
+                <AppBarButton Label="View" Click="ChangeCalendarView_Click" Tapped="ChangeCalendarView_Click">
                     <AppBarButton.Icon>
-                        <BitmapIcon Width="22" Height="22" MaxHeight="22" MaxWidth="22" UriSource="/Assets/AppBarButton/CalendarView.png"/>
+                        <BitmapIcon UriSource="/Assets/AppBarButton/CalendarView.bigger.png"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Grid>
 </Page>

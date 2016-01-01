@@ -16,13 +16,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Style="{StaticResource EtsBodyGridStyle}">
             <Pivot x:Name="MainPivot" ContinuumNavigationTransitionInfo.IsEntranceElement="True">
-                <PivotItem>
+                <PivotItem Margin="12,0,12,0">
                     <PivotItem.Header>
                         <TextBlock x:Uid="TodayUid" Text="Aujourd'hui" />
                     </PivotItem.Header>
@@ -36,14 +37,12 @@
                 </PivotItem>
             </Pivot>
         </Grid>
-    </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}">
+        <!-- Command Bar -->
+        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshToday" Icon="Refresh" Label="Refresh" Command="{Binding LoadCoursesForToday}" />
                 <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" Command="{Binding LoadGrades}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Grid>
 </Page>

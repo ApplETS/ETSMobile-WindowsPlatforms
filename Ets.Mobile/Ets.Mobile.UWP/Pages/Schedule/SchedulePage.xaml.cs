@@ -26,7 +26,7 @@ namespace Ets.Mobile.Pages.Schedule
         private void ChangeCalendarView_Click(object sender, RoutedEventArgs e)
         {
             // Ensure we have an app bar
-            if (BottomAppBar == null) return;
+            if (CommandB == null) return;
 
             // Get the button just clicked
             var changeViewButton = sender as AppBarButton;

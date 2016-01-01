@@ -14,19 +14,19 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <program:Programs Grid.Row="1" Margin="0,10,0,0" DataContext="{Binding ProgramPresenter}" />
-    </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+        <Grid Grid.Row="1" Style="{StaticResource EtsBodyGridStyle}">
+            <program:Programs Margin="0,10,0,0" DataContext="{Binding ProgramPresenter}" />
+        </Grid>
+        <!-- Command Bar -->
+        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Refresh" Label="Refresh" Command="{Binding LoadProgram}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
-
+    </Grid>
 </Page>

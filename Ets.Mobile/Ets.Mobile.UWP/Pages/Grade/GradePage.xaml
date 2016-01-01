@@ -89,6 +89,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <!-- Hamburger -->
         <StackPanel Orientation="Horizontal" Background="{ThemeResource EtsBackgroundMainBrush}">
@@ -98,9 +99,8 @@
                 <TextBlock FontSize="{StaticResource Size5}" Margin="15,0,0,0" Text="{Binding Semester, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
             </StackPanel>
         </StackPanel>
-
         <!-- Content -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Style="{StaticResource EtsBodyGridStyle}">
             <Pivot x:Name="Pivot" HeaderTemplate="{StaticResource GradesHeader}" ItemTemplate="{StaticResource GradesPresenter}" ItemsSource="{Binding GradeItems}" >
                 <Pivot.Resources>
                     <Style TargetType="PivotItem">
@@ -109,13 +109,11 @@
                 </Pivot.Resources>
             </Pivot>
         </Grid>
-    </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar x:Name="BottomBar" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+        <!-- Command Bar -->
+        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Grid>
 </Page>
