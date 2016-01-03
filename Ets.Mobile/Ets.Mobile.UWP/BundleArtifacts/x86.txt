@@ -1,0 +1,2 @@
+MainPackage=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.UWP\bin\x86\Release\Ets.Mobile.UWP_1.0.2.0_x86.appx
+SymbolPackage=D:\Desktop\Output\UWP\Ets.Mobile.UWP_1.0.2.0_Test\Ets.Mobile.UWP_1.0.2.0_x86.appxsym
