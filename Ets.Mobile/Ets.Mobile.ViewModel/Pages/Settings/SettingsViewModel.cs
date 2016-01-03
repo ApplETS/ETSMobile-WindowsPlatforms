@@ -8,7 +8,7 @@ using System.Reactive;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
 using Windows.ApplicationModel.Email;
 #endif
 using Windows.Storage;
@@ -29,17 +29,19 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
 
         protected sealed override void OnViewModelCreation()
         {
-            SendFeedbackUri = new Uri("mailto:Club ApplETS<clubapplets@googlegroups.com>?subject=" +
+            SendFeedbackUri = new Uri("mailto:clubapplets@googlegroups.com?subject=" +
 #if WINDOWS_PHONE_APP
             "ÉtsMobile-WindowsPhone"
-#else
+#elif WINDOWS_APP
             "ÉtsMobile-Windows"
+#elif WINDOWS_UWP
+            "ÉtsMobile-UWP"
 #endif
             );
 
             SendLogFiles = ReactiveCommand.CreateAsyncTask(async _ =>
             {
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
                 // Define Recipient
                 var sendTo = new EmailRecipient
                 {

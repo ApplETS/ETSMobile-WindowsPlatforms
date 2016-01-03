@@ -83,7 +83,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
         }
     }
 
-    public class ReactiveDerivedListDesignTime<T> : IReactiveDerivedList<T>
+    public class ReactiveDerivedListDesignTime<T> : ReactiveObject, IReactiveDerivedList<T>
     {
         private readonly IEnumerable<T> _enumerable; 
 
@@ -122,12 +122,6 @@ namespace Ets.Mobile.ViewModel.DesignTime
         }
 
         public int Count => _enumerable.Count();
-
-        public IDisposable SuppressChangeNotifications()
-        {
-            return Disposable.Empty;
-        }
-
         public IObservable<T> ItemsAdded { get; }
         public IObservable<T> BeforeItemsAdded { get; }
         public IObservable<T> ItemsRemoved { get; }
@@ -145,47 +139,16 @@ namespace Ets.Mobile.ViewModel.DesignTime
         public bool ChangeTrackingEnabled { get; set; }
         public event NotifyCollectionChangedEventHandler CollectionChanged;
         public event NotifyCollectionChangedEventHandler CollectionChanging;
-        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
-        {
-            add { }
-            remove { }
-        }
-
-        public void RaisePropertyChanging(PropertyChangingEventArgs args)
-        {
-        }
-
-        public void RaisePropertyChanged(PropertyChangedEventArgs args)
-        {
-        }
-
-        event PropertyChangingEventHandler IReactiveObject.PropertyChanging
-        {
-            add { }
-            remove { }
-        }
-
-        event PropertyChangedEventHandler IReactiveObject.PropertyChanged
-        {
-            add { }
-            remove { }
-        }
-
-        event PropertyChangingEventHandler INotifyPropertyChanging.PropertyChanging
-        {
-            add { }
-            remove { }
-        }
 
         public T this[int index]
         {
             get { throw new NotImplementedException(); }
         }
 
-        public bool IsEmpty => !_enumerable.Any();
-
+        public bool IsEmpty { get; }
         public void Dispose()
         {
+            throw new NotImplementedException();
         }
     }
 }

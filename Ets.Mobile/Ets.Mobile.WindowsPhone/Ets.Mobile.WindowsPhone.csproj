@@ -24,25 +24,6 @@
     <AppxPackageDir>D:\Desktop\Output\</AppxPackageDir>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\ARM\Debug\</OutputPath>
@@ -88,6 +69,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\Grade\CourseChooserForGrades.xaml.cs">
       <DependentUpon>CourseChooserForGrades.xaml</DependentUpon>
     </Compile>
@@ -114,6 +98,9 @@
     </Compile>
     <Compile Include="Content\Settings\Credits.xaml.cs">
       <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Shared\SideNavigation.xaml.cs">
+      <DependentUpon>SideNavigation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Account\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -172,6 +159,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Content\Grade\CourseChooserForGrades.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -205,6 +195,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Content\Settings\Credits.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Shared\SideNavigation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -263,6 +257,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Skins\SplitViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -298,42 +296,41 @@
       <Project>{f30613aa-0eb9-4d44-b42f-ecaf50bdf7ec}</Project>
       <Name>Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Crittercism\Logger.CrittercismLog.WinPhone\Logger.CrittercismLog.WinPhone.csproj">
-      <Project>{9c143aa8-6734-4177-b131-510078ca8e12}</Project>
-      <Name>Logger.CrittercismLog.WinPhone</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Modules\Localization\Localization.csproj">
       <Project>{8070a42a-49a9-46a6-8bc1-daa063bc3832}</Project>
       <Name>Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger.Crittercism\Implementations\Logger.CrittercismLog.WinPhone\Logger.CrittercismLog.WinPhone.csproj">
+      <Project>{9c143aa8-6734-4177-b131-510078ca8e12}</Project>
+      <Name>Logger.CrittercismLog.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger.SplatLog\Implementations\Logger.SplatLog.WinPhone\Logger.SplatLog.WinPhone.csproj">
+      <Project>{76ed68d4-c68a-480b-94b6-22f56cb16f5f}</Project>
+      <Name>Logger.SplatLog.WinPhone</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Logger\Logger.csproj">
       <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Implementations\Messaging.UniversalApp.WinPhone\Messaging.UniversalApp.WinPhone.csproj">
+      <Project>{f78a088c-306c-4c5d-b393-8ff9ea30ed8f}</Project>
+      <Name>Messaging.UniversalApp.WinPhone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
       <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
       <Name>Messaging.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modules\Messaging\UniversalApp\Messaging.UniversalApp.WinPhone\Messaging.UniversalApp.WinPhone.csproj">
-      <Project>{f78a088c-306c-4c5d-b393-8ff9ea30ed8f}</Project>
-      <Name>Messaging.UniversalApp.WinPhone</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Extensions\ReactiveUI.Extensions.csproj">
       <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
       <Name>ReactiveUI.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.csproj">
-      <Project>{6c59c015-597d-410a-99a4-5be537a8fb93}</Project>
-      <Name>ReactiveUI.Xaml.Controls</Name>
-      <Private>False</Private>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\UAP\ReactiveUI.Xaml.Controls.UAP\ReactiveUI.Xaml.Controls.UAP.csproj">
+      <Project>{c8329a73-199d-44de-b174-4d12189442cd}</Project>
+      <Name>ReactiveUI.Xaml.Controls.UAP</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Security\Security.csproj">
       <Project>{d940f3ac-b1bf-4d18-8924-d7348f6318ea}</Project>
       <Name>Security</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modules\Splat\Logger.SplatLog.WinPhone\Logger.SplatLog.WinPhone.csproj">
-      <Project>{76ed68d4-c68a-480b-94b6-22f56cb16f5f}</Project>
-      <Name>Logger.SplatLog.WinPhone</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Themes\Themes.csproj">
       <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>

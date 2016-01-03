@@ -18,23 +18,6 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
@@ -109,22 +92,21 @@
       <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Implementations\Messaging.UniversalApp.WinPhone\Messaging.UniversalApp.WinPhone.csproj">
+      <Project>{f78a088c-306c-4c5d-b393-8ff9ea30ed8f}</Project>
+      <Name>Messaging.UniversalApp.WinPhone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
       <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
       <Name>Messaging.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modules\Messaging\UniversalApp\Messaging.UniversalApp.WinPhone\Messaging.UniversalApp.WinPhone.csproj">
-      <Project>{f78a088c-306c-4c5d-b393-8ff9ea30ed8f}</Project>
-      <Name>Messaging.UniversalApp.WinPhone</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Extensions\ReactiveUI.Extensions.csproj">
       <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
       <Name>ReactiveUI.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.csproj">
-      <Project>{6c59c015-597d-410a-99a4-5be537a8fb93}</Project>
-      <Name>ReactiveUI.Xaml.Controls</Name>
-      <Private>False</Private>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\UAP\ReactiveUI.Xaml.Controls.UAP\ReactiveUI.Xaml.Controls.UAP.csproj">
+      <Project>{c8329a73-199d-44de-b174-4d12189442cd}</Project>
+      <Name>ReactiveUI.Xaml.Controls.UAP</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Security\Security.csproj">
       <Project>{d940f3ac-b1bf-4d18-8924-d7348f6318ea}</Project>

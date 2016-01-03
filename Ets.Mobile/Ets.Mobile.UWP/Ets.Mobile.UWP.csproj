@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{3212927C-3021-4B62-8152-BCC2641E6E7A}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ets.Mobile</RootNamespace>
+    <AssemblyName>Ets.Mobile.UWP</AssemblyName>
+    <DefaultLanguage>fr-CA</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Ets.Mobile.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Assets\SplashScreen\OriginalSplashScreen.7z" />
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Grade\CourseChooserForGrades.xaml.cs">
+      <DependentUpon>CourseChooserForGrades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Grade\GradeItem.xaml.cs">
+      <DependentUpon>GradeItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Grade\GradeSummary.xaml.cs">
+      <DependentUpon>GradeSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Main\Today.xaml.cs">
+      <DependentUpon>Today.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Program\Programs.xaml.cs">
+      <DependentUpon>Programs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Schedule\Schedule.xaml.cs">
+      <DependentUpon>Schedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\Confidentiality.xaml.cs">
+      <DependentUpon>Confidentiality.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\Credits.xaml.cs">
+      <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Shared\SideNavigation.xaml.cs">
+      <DependentUpon>SideNavigation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Account\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ExtendedSplashScreen\ExtendedSplashScreenPage.xaml.cs">
+      <DependentUpon>ExtendedSplashScreenPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Grade\GradePage.xaml.cs">
+      <DependentUpon>GradePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Grade\SelectCourseForGradePage.xaml.cs">
+      <DependentUpon>SelectCourseForGradePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Main\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Program\ProgramPage.xaml.cs">
+      <DependentUpon>ProgramPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Schedule\SchedulePage.xaml.cs">
+      <DependentUpon>SchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shell\PageHeader.xaml.cs">
+      <DependentUpon>PageHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\ShellPage.xaml.cs">
+      <DependentUpon>ShellPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SyncFusion\SfSchedule\SfScheduleConverters.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="Ets.Mobile.UWP_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Account\Login\background_blur_cropped.jpg" />
+    <Content Include="Assets\Account\Login\background_blur_loading_cropped.jpg" />
+    <Content Include="Assets\Account\Login\ETS-Devise.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.Full.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-140.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-240.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Content\Grade\CourseChooserForGrades.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Grade\GradeItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Grade\GradeSummary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Main\Today.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Program\Programs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Schedule\Schedule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\Confidentiality.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\Credits.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Shared\SideNavigation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Account\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ExtendedSplashScreen\ExtendedSplashScreenPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Grade\GradePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Grade\SelectCourseForGradePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Main\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Program\ProgramPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Schedule\SchedulePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Settings\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shell\PageHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shell\ShellPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Skins\UWPSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Skins\ReactivePresenter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ets.Mobile.Agent.UWP\Ets.Mobile.Agent.UWP.csproj">
+      <Project>{d5c136f1-423d-4f8b-8fbd-a9f7056c7a5d}</Project>
+      <Name>Ets.Mobile.Agent.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Business.UWP\Ets.Mobile.Business.UWP.csproj">
+      <Project>{f4733142-7bb0-4896-9e9a-cb52b211ce77}</Project>
+      <Name>Ets.Mobile.Business.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Client.UWP\Ets.Mobile.Client.UWP.csproj">
+      <Project>{296f2129-d8d1-4609-9d8d-efbf28c8e136}</Project>
+      <Name>Ets.Mobile.Client.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Entities.UWP\Ets.Mobile.Entities.UWP.csproj">
+      <Project>{ca11f29b-31a9-4545-ae6f-5a5ee41fde72}</Project>
+      <Name>Ets.Mobile.Entities.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.ViewModel.UWP\Ets.Mobile.ViewModel.UWP.csproj">
+      <Project>{5fa26ca6-2d49-4b8a-9a64-7785b93842be}</Project>
+      <Name>Ets.Mobile.ViewModel.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Controls\Controls.csproj">
+      <Project>{f30613aa-0eb9-4d44-b42f-ecaf50bdf7ec}</Project>
+      <Name>Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Localization\Localization.csproj">
+      <Project>{8070a42a-49a9-46a6-8bc1-daa063bc3832}</Project>
+      <Name>Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger.Crittercism\Implementations\Logger.CrittercismLog.UWP\Logger.CrittercismLog.UWP.csproj">
+      <Project>{9433e83d-6018-4ebd-bc92-382cac0c0bae}</Project>
+      <Name>Logger.CrittercismLog.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger.SplatLog\Implementations\Logger.SplatLog.UWP\Logger.SplatLog.UWP.csproj">
+      <Project>{6cf638be-d231-42bc-8954-0326d3fd7e44}</Project>
+      <Name>Logger.SplatLog.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger\Logger.csproj">
+      <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Implementations\Messaging.UniversalApp.UWP\Messaging.UniversalApp.UWP.csproj">
+      <Project>{761a48f7-5e97-458b-8722-a09afc7e73be}</Project>
+      <Name>Messaging.UniversalApp.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
+      <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
+      <Name>Messaging.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Extensions\ReactiveUI.Extensions.csproj">
+      <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
+      <Name>ReactiveUI.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\UWP\ReactiveUI.Xaml.Controls.UWP\ReactiveUI.Xaml.Controls.UWP.csproj">
+      <Project>{8588bca2-d4e9-4b0b-b9d1-3572f03d0d64}</Project>
+      <Name>ReactiveUI.Xaml.Controls.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Security\Security.csproj">
+      <Project>{d940f3ac-b1bf-4d18-8924-d7348f6318ea}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Themes\Themes.csproj">
+      <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
+      <Name>Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Xaml.Converters\Xaml.Converters.csproj">
+      <Project>{d09cb47f-c41a-4121-b6d8-02dd70ba9410}</Project>
+      <Name>Xaml.Converters</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.NET.Native.Runtime.1.1, Version=1.1">
+      <Name>Microsoft .NET Native Runtime Package for Windows</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs.120, Version=14.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Universal</Name>
+    </SDKReference>
+    <SDKReference Include="SQLite.UAP.2015, Version=3.9.2">
+      <Name>SQLite for Universal App Platform</Name>
+    </SDKReference>
+    <SDKReference Include="SyncfusionUniversalWindows, Version=13.3.0.7">
+      <Name>Syncfusion Controls for UWP XAML</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
+      <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Shared\" />
+  </ItemGroup>
+  <Import Project="..\Ets.Mobile.Shared\Ets.Mobile.Shared.projitems" Label="Shared" />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

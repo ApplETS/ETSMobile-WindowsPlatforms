@@ -17,7 +17,6 @@ using Splat;
 
 namespace Ets.Mobile.Business.Shared.Tests.Services
 {
-//#if WINDOWS_PHONE_APP
     [TestClass]
 	public class SignetsBusinessServiceTest : DTBase, ISignetsBusinessServiceTest
 	{
@@ -189,5 +188,4 @@ namespace Ets.Mobile.Business.Shared.Tests.Services
 			Assert.IsNotNull(horaireEtProf);
 		}
 	}
-//#endif
 }

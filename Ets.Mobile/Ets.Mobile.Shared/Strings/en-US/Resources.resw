@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActualGrade" xml:space="preserve">
+    <value>Actual Grade</value>
+  </data>
+  <data name="ActualGradeUid.Text" xml:space="preserve">
+    <value>Actual Grade</value>
+  </data>
+  <data name="ApplicationNameUid.Text" xml:space="preserve">
+    <value>ÉTS Mobile</value>
+  </data>
+  <data name="ApplicationTitleUid.Text" xml:space="preserve">
+    <value>ETS Mobile</value>
+  </data>
+  <data name="Autumn" xml:space="preserve">
+    <value>Autumn</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="AverageUid.Text" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="ConnectButtonUid.Content" xml:space="preserve">
+    <value>CONNECT</value>
+  </data>
+  <data name="ConnectUid.Text" xml:space="preserve">
+    <value>CONNECT</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="GradesEmpty" xml:space="preserve">
+    <value>There are no results to show</value>
+  </data>
+  <data name="GradeUid.Text" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="Median" xml:space="preserve">
+    <value>Median</value>
+  </data>
+  <data name="MedianUid.Text" xml:space="preserve">
+    <value>Median</value>
+  </data>
+  <data name="MinutesRemainingUid.Text" xml:space="preserve">
+    <value>minutes remaining</value>
+  </data>
+  <data name="MyGradesUid.Text" xml:space="preserve">
+    <value>My grades</value>
+  </data>
+  <data name="NetworkError" xml:space="preserve">
+    <value>Make sure you're connected to a Wi-Fi or cellular network and try again.</value>
+  </data>
+  <data name="NetworkTitleError" xml:space="preserve">
+    <value>No network connection</value>
+  </data>
+  <data name="NewsHeaderUid.Text" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="PasswordUid.Text" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="Percentile" xml:space="preserve">
+    <value>Percentile</value>
+  </data>
+  <data name="PercentileUid.Text" xml:space="preserve">
+    <value>Percentile</value>
+  </data>
+  <data name="ProfileHeaderUid.Text" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ScheduleEmpty" xml:space="preserve">
+    <value>You do not have courses today</value>
+  </data>
+  <data name="StandardDeviation" xml:space="preserve">
+    <value>Standard Deviation</value>
+  </data>
+  <data name="StandardDeviationUid.Text" xml:space="preserve">
+    <value>Standard Deviation</value>
+  </data>
+  <data name="StudentIsInactiveInCurrentSemester" xml:space="preserve">
+    <value>You are not currently in an active semester</value>
+  </data>
+  <data name="SummaryUid.Text" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Summer" xml:space="preserve">
+    <value>Summer</value>
+  </data>
+  <data name="TodayEmpty" xml:space="preserve">
+    <value>You do not have courses today</value>
+  </data>
+  <data name="TodayUid.Text" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="UsernameUid.Text" xml:space="preserve">
+    <value>universal code</value>
+  </data>
+  <data name="WeightingUid.Text" xml:space="preserve">
+    <value>Weighting</value>
+  </data>
+  <data name="Winter" xml:space="preserve">
+    <value>Winter</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>minute</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="CalendarUid.Text" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="GradesUid.Text" xml:space="preserve">
+    <value>Grades</value>
+  </data>
+  <data name="ProgramUid.Text" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="ProgramEmpty" xml:space="preserve">
+    <value>You do not have programs</value>
+  </data>
+  <data name="HomeUid.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ScheduleUid.Text" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="SettingsUid.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Grades" xml:space="preserve">
+    <value>Grades</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="SelectCourse" xml:space="preserve">
+    <value>Select a course</value>
+  </data>
+  <data name="LogoutUid.Text" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="ToBeDetermined" xml:space="preserve">
+    <value>TBD</value>
+  </data>
+  <data name="AboutUid.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="AppletsDescriptionUid.Text" xml:space="preserve">
+    <value>ApplÉTS Scientific Club</value>
+  </data>
+  <data name="AppletsWebsiteUid.NavigateUri" xml:space="preserve">
+    <value>http://www.clubapplets.ca/</value>
+  </data>
+  <data name="ContributeDescriptionUid.Text" xml:space="preserve">
+    <value>You are a student at ÉTS and you would like to contribute to the development of the application?</value>
+  </data>
+  <data name="EcoledeTechnologieSuperieurUid.Text" xml:space="preserve">
+    <value>École de technologie supérieure</value>
+  </data>
+  <data name="VisitAndJoinUsUid.Text" xml:space="preserve">
+    <value>Visit our website and join our team !</value>
+  </data>
+  <data name="AkavacheDescriptionUid.Text" xml:space="preserve">
+    <value>Akavache is an asynchronous, persistent (i.e. writes to disk) key-value store created for writing desktop and mobile applications in C#, based on SQLite3</value>
+  </data>
+  <data name="CreditsUid.Text" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="CrittercismDescriptionUid.Text" xml:space="preserve">
+    <value>Crittercism measures performance and reliability of apps</value>
+  </data>
+  <data name="ModernHttpClientDescriptionUid.Text" xml:space="preserve">
+    <value>HttpClient implementations that use platform-native HTTP clients for </value>
+  </data>
+  <data name="NewtonsoftJsonDescriptionUid.Text" xml:space="preserve">
+    <value>Json.NET is a popular high-performance JSON framework for .NET</value>
+  </data>
+  <data name="ReactiveExtensionsDescriptionUid.Text" xml:space="preserve">
+    <value>The Reactive Extensions (Rx) is a library for composing asynchronous and event-based programs using observable sequences and LINQ-style query operators.</value>
+  </data>
+  <data name="ReactiveUIDescriptionUid.Text" xml:space="preserve">
+    <value>A MVVM framework that integrates with the Reactive Extensions for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform.</value>
+  </data>
+  <data name="RefitDescriptionUid.Text" xml:space="preserve">
+    <value>The automatic type-safe REST library for Xamarin and .NET</value>
+  </data>
+  <data name="SplatDescriptionUid.Text" xml:space="preserve">
+    <value>Service Locator, Logging, Cross-Platform image loading/saving</value>
+  </data>
+  <data name="SqliteDescriptionUid.Text" xml:space="preserve">
+    <value>SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.</value>
+  </data>
+  <data name="SyncfusionDescriptionUid.Text" xml:space="preserve">
+    <value>Controls and framework</value>
+  </data>
+  <data name="ConfidentialityUid.Text" xml:space="preserve">
+    <value>Confidentiality</value>
+  </data>
+  <data name="FeedbackButtonUid.Content" xml:space="preserve">
+    <value>send feedback</value>
+  </data>
+  <data name="GradesNotAvailable" xml:space="preserve">
+    <value>The grades for this course are not currently available. Alternatively, make sure you're connected to a Wi-Fi or cellular network and that the course is either in a current semester or within a past one.</value>
+  </data>
+  <data name="ScheduleEmptyMessage" xml:space="preserve">
+    <value>No courses were loaded since you are not within in a semester or registered to a course at the moment.</value>
+  </data>
+  <data name="ScheduleEmptyTitle" xml:space="preserve">
+    <value>No courses loaded</value>
+  </data>
+  <data name="PaulBettsContributionsUid.Text" xml:space="preserve">
+    <value>Maker of Splat, ModernHttpClient, Akavache, ReactiveUI, Refit, Fusillade amongst other Open Source Projects</value>
+  </data>
+  <data name="FusilladeDescriptionUid.Text" xml:space="preserve">
+    <value>An opinionated HTTP library for Mobile Development</value>
+  </data>
+  <data name="ApplicationLoadingUid.Text" xml:space="preserve">
+    <value>loading...</value>
+  </data>
+  <data name="ExtendedSplashScreen" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SendLogFilesBody" xml:space="preserve">
+    <value>You can write add comments if you like!</value>
+  </data>
+  <data name="SendLogFilesSubject" xml:space="preserve">
+    <value>Log files for {0}</value>
+  </data>
+  <data name="SendLogsButtonUid.Content" xml:space="preserve">
+    <value>send logs</value>
+  </data>
+</root>
