@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5FA26CA6-2D49-4B8A-9A64-7785B93842BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ets.Mobile.ViewModel.UWP</RootNamespace>
+    <AssemblyName>Ets.Mobile.ViewModel.UWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\ExtendedSplashScreen\ExtendedSplashScreenViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Ets.Mobile.ViewModel.UWP.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ets.Mobile.Business.UWP\Ets.Mobile.Business.UWP.csproj">
+      <Project>{f4733142-7bb0-4896-9e9a-cb52b211ce77}</Project>
+      <Name>Ets.Mobile.Business.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Client.UWP\Ets.Mobile.Client.UWP.csproj">
+      <Project>{296f2129-d8d1-4609-9d8d-efbf28c8e136}</Project>
+      <Name>Ets.Mobile.Client.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Entities.UWP\Ets.Mobile.Entities.UWP.csproj">
+      <Project>{ca11f29b-31a9-4545-ae6f-5a5ee41fde72}</Project>
+      <Name>Ets.Mobile.Entities.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger\Logger.csproj">
+      <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Implementations\Messaging.UniversalApp.UWP\Messaging.UniversalApp.UWP.csproj">
+      <Project>{761a48f7-5e97-458b-8722-a09afc7e73be}</Project>
+      <Name>Messaging.UniversalApp.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
+      <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
+      <Name>Messaging.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Extensions\ReactiveUI.Extensions.csproj">
+      <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
+      <Name>ReactiveUI.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\UWP\ReactiveUI.Xaml.Controls.UWP\ReactiveUI.Xaml.Controls.UWP.csproj">
+      <Project>{8588bca2-d4e9-4b0b-b9d1-3572f03d0d64}</Project>
+      <Name>ReactiveUI.Xaml.Controls.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Security\Security.csproj">
+      <Project>{d940f3ac-b1bf-4d18-8924-d7348f6318ea}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Themes\Themes.csproj">
+      <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
+      <Name>Themes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.NET.Native.Runtime.1.1, Version=1.1">
+      <Name>Microsoft .NET Native Runtime Package for Windows</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs.120, Version=14.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Universal</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
+      <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+  <Import Project="..\Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems" Label="Shared" />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

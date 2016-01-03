@@ -34,6 +34,9 @@ using Ets.Mobile.Shared;
 #if WINDOWS_PHONE_APP
 using Ets.Mobile.ViewModel.WinPhone.Pages.ExtendedSplashScreen;
 using Ets.Mobile.Pages.ExtendedSplashScreen;
+#elif WINDOWS_UWP
+using Ets.Mobile.ViewModel.UWP.Pages.ExtendedSplashScreen;
+using Ets.Mobile.Pages.ExtendedSplashScreen;
 #endif
 
 namespace Ets.Mobile.ViewModel
@@ -68,28 +71,44 @@ namespace Ets.Mobile.ViewModel
             _resolver.RegisterLazySingleton(() => new UserDetailsViewModel(this), typeof(IUserDetailsViewModel));
             _resolver.RegisterConstant(_sideNavigation = new SideNavigationViewModel(this), typeof(ISideNavigationViewModel));
 
-#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
             // Back Button Handling
-            Windows.Phone.UI.Input.HardwareButtons.BackPressed += (sender, e) =>
+#if WINDOWS_UWP
+            if(Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
-                if (SideNavigation.IsSideNavigationVisible)
+#endif
+                Windows.Phone.UI.Input.HardwareButtons.BackPressed += (sender, e) =>
                 {
-                    SideNavigation.CloseMenu.Execute(null);
-                    e.Handled = true;
-                    return;
-                }
-                if (Router.NavigationStack.Count > 1)
-                {
-                    Router.NavigateBack.Execute(null);
-                    e.Handled = true;
-                }
-            };
+                    if (SideNavigation.IsSideNavigationVisible)
+                    {
+                        SideNavigation.CloseMenu.Execute(null);
+                        e.Handled = true;
+                        return;
+                    }
+                    if (Router.NavigationStack.Count > 1)
+                    {
+                        Router.NavigateBack.Execute(null);
+                        e.Handled = true;
+                    }
+                };
 
-            // Register Extended SplashScreen for the Router
-            _resolver.Register(() => new ExtendedSplashScreenPage(), typeof(IViewFor<ExtendedSplashScreenViewModel>));
-            RxApp.MainThreadScheduler.Schedule(() => Router.NavigateAndReset.Execute(new ExtendedSplashScreenViewModel(this)));
-#elif WINDOWS_APP
-            LoadApplicationServices();
+                // Register Extended SplashScreen for the Router
+                _resolver.Register(() => new ExtendedSplashScreenPage(), typeof(IViewFor<ExtendedSplashScreenViewModel>));
+                RxApp.MainThreadScheduler.Schedule(() => Router.NavigateAndReset.Execute(new ExtendedSplashScreenViewModel(this)));
+#if WINDOWS_UWP
+            }
+#endif
+#endif
+
+#if WINDOWS_APP || WINDOWS_UWP
+#if WINDOWS_UWP
+            if (!Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.PhoneContract"))
+	        {
+#endif
+                LoadApplicationServices();
+#if WINDOWS_UWP
+            }
+#endif
 #endif
         }
 

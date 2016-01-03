@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="Ets.Mobile.Pages.Grade.SelectCourseForGradePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Pages.Grade"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:grade="using:Ets.Mobile.Content.Grade"
+    xmlns:shell="using:Ets.Mobile.Shell"
+    mc:Ignorable="d"
+    DataContext="{Binding}">
+    <Grid Background="{ThemeResource EtsBackgroundBodyBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <!-- Hamburger -->
+        <shell:PageHeader DataContext="{Binding}"/>
+        <!-- Content -->
+        <Grid Grid.Row="1" Style="{StaticResource EtsBodyGridStyle}">
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Bottom" />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <grade:CourseChooserForGrades Margin="0,10,0,0" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+        </Grid>
+        <!-- Command Bar -->
+        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Refresh" Label="Refresh" Command="{Binding LoadGrades}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Grid>
+</Page>

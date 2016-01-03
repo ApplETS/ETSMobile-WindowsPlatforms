@@ -5,12 +5,9 @@ using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
-using System.Reactive.Threading.Tasks;
-using Windows.UI;
 using Ets.Mobile.Client.Mixins;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
-using Refit;
 
 namespace Ets.Mobile.ViewModel.Content.Grade
 {

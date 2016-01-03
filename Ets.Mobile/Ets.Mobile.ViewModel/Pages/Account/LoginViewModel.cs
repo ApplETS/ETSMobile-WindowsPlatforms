@@ -1,16 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Reactive.Threading.Tasks;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Client;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
-using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Logger;
 using Messaging.UniversalApp.Common;
@@ -18,6 +11,11 @@ using ReactiveUI;
 using Refit;
 using Security.Algorithms;
 using Splat;
+using System;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
