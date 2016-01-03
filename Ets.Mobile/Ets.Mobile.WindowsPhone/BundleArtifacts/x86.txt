@@ -1,2 +1,2 @@
-MainPackage=C:\Users\Martin Gemme\Desktop\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\x86\Debug\Ets.Mobile.WindowsPhone_1.0.0.0_x86_Debug.appx
-SymbolPackage=C:\Users\Martin Gemme\Desktop\Ets.Mobile\Ets.Mobile.WindowsPhone\AppPackages\Ets.Mobile.WindowsPhone_1.0.0.0_Debug_Test\Ets.Mobile.WindowsPhone_1.0.0.0_x86_Debug.appxsym
+MainPackage=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\x86\Release\Ets.Mobile.WindowsPhone_1.0.0.0_x86.appx
+SymbolPackage=D:\Desktop\Output\Ets.Mobile.WindowsPhone_1.0.0.0_Test\Ets.Mobile.WindowsPhone_1.0.0.0_x86.appxsym

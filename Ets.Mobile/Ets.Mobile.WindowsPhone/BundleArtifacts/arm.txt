@@ -1,6 +1,4 @@
-MainPackage=C:\Users\Martin Gemme\Desktop\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Debug\Ets.Mobile.WindowsPhone_1.0.0.0_ARM_Debug.appx
-SymbolPackage=C:\Users\Martin Gemme\Desktop\Ets.Mobile\Ets.Mobile.WindowsPhone\AppPackages\Ets.Mobile.WindowsPhone_1.0.0.0_Debug_Test\Ets.Mobile.WindowsPhone_1.0.0.0_ARM_Debug.appxsym
-ResourcePack=C:\Users\Martin Gemme\Desktop\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Debug\Ets.Mobile.WindowsPhone_1.0.0.0_language-en.appx
-ResourcePack=C:\Users\Martin Gemme\Desktop\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Debug\Ets.Mobile.WindowsPhone_1.0.0.0_language-fr.appx
-ResourcePack=C:\Users\Martin Gemme\Desktop\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Debug\Ets.Mobile.WindowsPhone_1.0.0.0_scale-100.appx
-ResourcePack=C:\Users\Martin Gemme\Desktop\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Debug\Ets.Mobile.WindowsPhone_1.0.0.0_scale-140.appx
+MainPackage=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.10_ARM.appx
+ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.10_language-en.appx
+ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.10_scale-100.appx
+ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.10_scale-140.appx

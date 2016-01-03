@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="11738bff-3365-489b-88b3-aa38a3f72b92" Publisher="CN=martin.gemme" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="11738bff-3365-489b-88b3-aa38a3f72b92" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="11043Sypnotic.430246DD8D0A5" Publisher="CN=42E5AC80-142A-49C5-8662-130D8F1D0E52" Version="1.0.0.10" />
+  <mp:PhoneIdentity PhoneProductId="4862af8a-55d9-4dbd-9b33-ec384aa32755" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Ets.Mobile.WindowsPhone</DisplayName>
-    <PublisherDisplayName>martin.gemme</PublisherDisplayName>
+    <DisplayName>ÉTSMobile Beta</DisplayName>
+    <PublisherDisplayName>MartinG</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
