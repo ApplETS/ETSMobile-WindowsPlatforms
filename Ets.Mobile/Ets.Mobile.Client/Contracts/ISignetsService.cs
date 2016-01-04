@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
+using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.Client.Contracts
 {
     public interface ISignetsService
     {
-        void SetCredentials(SignetsAccountVm vm);
+        void SetCredentials(EtsUserCredentials vm);
 
         Task<bool> Login(string userName, string password);
 

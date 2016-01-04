@@ -9,6 +9,8 @@ using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Extensions.Signets;
 using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Client.Factories.Implementations;
+using Ets.Mobile.Client.Factories.Implementations.Signets;
+using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Signets;
 using Security.Algorithms;
 
@@ -17,7 +19,7 @@ namespace Ets.Mobile.Client.Services
     public class SignetsService : ISignetsService
     {
         private readonly ISignetsBusinessService _signetsService;
-        private SignetsAccountVm _userCredentials;
+        private EtsUserCredentials _userCredentials;
         private readonly SignetsAbstractFactory _factory;
 
         public SignetsService(ISignetsBusinessService signetsService, SignetsAbstractFactory factory)
@@ -26,14 +28,14 @@ namespace Ets.Mobile.Client.Services
             _factory = factory;
         }
 
-        public SignetsService(ISignetsBusinessService signetsService, SignetsAbstractFactory factory, SignetsAccountVm account)
+        public SignetsService(ISignetsBusinessService signetsService, SignetsAbstractFactory factory, EtsUserCredentials account)
         {
             _signetsService = signetsService;
             _factory = factory;
             _userCredentials = account;
         }
 
-        public void SetCredentials(SignetsAccountVm vm)
+        public void SetCredentials(EtsUserCredentials vm)
         {
             _userCredentials = vm;
         }

@@ -9,8 +9,15 @@
     <Import_RootNamespace>Ets.Mobile.Entities</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Auth\EtsUserCredentials.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Auth\UserCredentials.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ServiceInfo\SignetsServiceInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Moodle\MoodleClientInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Moodle\MoodleCourseContentVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Moodle\MoodleCourseModuleVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Moodle\MoodleCourseModuleContentVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Moodle\MoodleCourseVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Moodle\MoodleSiteInfoVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServiceInfo\IClientInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\CoursesForSemestersVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\CoursesIntervalSemestersVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\CoursesVm.cs" />
@@ -23,7 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Signets\ScheduleFinalExamsVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\SchedulesVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\SemestersVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Signets\SignetsAccountVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Signets\SignetsClientInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\TeammatesVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\UserDetailsVm.cs" />
   </ItemGroup>

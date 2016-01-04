@@ -1,4 +1,4 @@
-﻿using Ets.Mobile.Client.Factories.Interfaces;
+﻿using Ets.Mobile.Client.Factories.Interfaces.Signets;
 
 namespace Ets.Mobile.Client.Factories.Abstractions
 {
