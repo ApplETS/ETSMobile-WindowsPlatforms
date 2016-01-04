@@ -16,6 +16,7 @@ using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Ets.Mobile.Entities.Auth;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
@@ -72,7 +73,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
                     async () => {
                         var isLoginSuccessful = await ClientServices().SignetsService.Login(UserName, Password);
 
-                        return new SignetsAccountVm(UserName, Password, isLoginSuccessful);
+                        return new EtsUserCredentials(UserName, Password, isLoginSuccessful);
                     }
                 );
 
@@ -121,6 +122,6 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
         public ReactiveCommand<bool> SwitchToLogin { get; set; }
 
-        public ReactiveCommand<SignetsAccountVm> SubmitCommand { get; set; }
+        public ReactiveCommand<EtsUserCredentials> SubmitCommand { get; set; }
     }
 }
