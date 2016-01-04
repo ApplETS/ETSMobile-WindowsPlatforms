@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Business.Entities.Results.Signets.Converters;
 using Ets.Mobile.Business.Shared.Tests.Contracts;
+using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Shared.Tests;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using Ets.Mobile.Entities.ServiceInfo;
@@ -24,16 +25,16 @@ namespace Ets.Mobile.Business.Shared.Tests.Services
 		{
 			if (locator.GetService<ISignetsBusinessService>() == null)
 			{
-                locator.RegisterLazySingleton(() => new SignetsAccountVm(TestSettings.Username, TestSettings.Password), typeof(ICredentials));
+                locator.RegisterLazySingleton(() => new EtsUserCredentials(TestSettings.Username, TestSettings.Password), typeof(ICredentials));
                 locator.RegisterLazySingleton(() =>
-                    new SignetsServiceInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
-                    typeof(IClientInfo)
+                    new SignetsClientInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
+                    typeof(SignetsClientInfo)
                 );
 
                 // NetCache.UserInitiated
                 var client = new HttpClient(new NativeMessageHandler())
                 {
-                    BaseAddress = new Uri(locator.GetService<IClientInfo>().Url),
+                    BaseAddress = new Uri(locator.GetService<SignetsClientInfo>().Url),
                 };
 
                 var refitSettings = new RefitSettings

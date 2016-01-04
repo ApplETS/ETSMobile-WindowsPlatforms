@@ -30,6 +30,7 @@ using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 using CrittercismSDK;
+using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Shared;
 #if WINDOWS_PHONE_APP
 using Ets.Mobile.ViewModel.WinPhone.Pages.ExtendedSplashScreen;
@@ -154,17 +155,14 @@ namespace Ets.Mobile.ViewModel
         
         private void HandleApplicationExceptions()
         {
-            // Crittercism
-            Crittercism.Init("55e87dc18d4d8c0a00d07811");
-
             // Ensure unobserved task exceptions (unawaited async methods returning Task or Task<T>) are handled
             TaskScheduler.UnobservedTaskException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - observed:{e.Observed} - {e.Exception.Message}", e.Exception));
         }
 
         public void HandleAuthentificated()
 	    {
-	        BlobCache.UserAccount.GetObject<SignetsAccountVm>(ViewModelKeys.Login)
-                .Catch(Observable.Return(new SignetsAccountVm()))
+	        BlobCache.UserAccount.GetObject<EtsUserCredentials>(ViewModelKeys.Login)
+                .Catch(Observable.Return(new EtsUserCredentials()))
 	            .Subscribe(signetsAccountVm =>
 	            {
 	                object navigateTo;

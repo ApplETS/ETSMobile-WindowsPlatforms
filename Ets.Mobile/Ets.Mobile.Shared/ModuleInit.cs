@@ -1,11 +1,11 @@
 ﻿using Ets.Mobile.Business.Contracts;
-using Ets.Mobile.Business.DesignTime;
 using Ets.Mobile.Business.Entities.Results.Signets.Converters;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Factories.Abstractions;
-using Ets.Mobile.Client.Factories.Implementations;
+using Ets.Mobile.Client.Factories.Implementations.Signets;
 using Ets.Mobile.Client.Services;
-using Ets.Mobile.Entities.ServiceInfo;
+using Ets.Mobile.Entities.Auth;
+using Ets.Mobile.Entities.Moodle;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Logger;
 using Logger;
@@ -25,8 +25,8 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using Themes;
-using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
+using Ets.Mobile.Client.Factories.Implementations.Moodle;
 
 namespace Ets.Mobile.Shared
 {
@@ -59,44 +59,76 @@ namespace Ets.Mobile.Shared
             resolver.RegisterLazySingleton(() => new ViewService(), typeof(IViewService));
 
             // Business Services
-            resolver.RegisterLazySingleton(() => new SignetsAccountVm(), typeof(SignetsAccountVm));
-
-            if (DesignMode.DesignModeEnabled)
-            {
-                resolver.RegisterLazySingleton(() => new DtSignetsBusinessService(), typeof(ISignetsBusinessService));
-            }
-            else
-            {
-                resolver.RegisterLazySingleton(() =>
-                    new SignetsServiceInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
-                    typeof(IClientInfo)
-                );
-
-                // NetCache.UserInitiated
-                var client = new HttpClient(resolver.GetService<HttpMessageHandler>())
-                {
-                    BaseAddress = new Uri(resolver.GetService<IClientInfo>().Url),
-                };
-
-                var refitSettings = new RefitSettings
-                {
-                    JsonSerializerSettings = new JsonSerializerSettings
-                    {
-                        Converters = new List<JsonConverter> { new DecimalConverter(), new DoubleConverter() }
-                    }
-                };
-
-                resolver.RegisterLazySingleton(() => RestService.For<ISignetsBusinessService>(client, refitSettings), typeof(ISignetsBusinessService));
-            }
+		    InitializeBusinessServices(resolver);
 
             // Client Services
+            
+
+            // Custom Settings
+            resolver.RegisterLazySingleton(() => new CustomSettingsService(), typeof(ICustomSettingsService));
+        }
+
+        private static void InitializeBusinessServices(IMutableDependencyResolver resolver)
+        {
+            // Signets Services
+            //
+            resolver.RegisterLazySingleton(() => new EtsUserCredentials(), typeof(EtsUserCredentials));
+            
+            resolver.RegisterLazySingleton(() =>
+                new SignetsClientInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
+                typeof(SignetsClientInfo)
+            );
+            
+            var clientSignets = new HttpClient(resolver.GetService<HttpMessageHandler>())
+            {
+                BaseAddress = new Uri(resolver.GetService<SignetsClientInfo>().Url),
+            };
+
+            var refitSettingsSignets = new RefitSettings
+            {
+                JsonSerializerSettings = new JsonSerializerSettings
+                {
+                    Converters = new List<JsonConverter> { new DecimalConverter(), new DoubleConverter() }
+                }
+            };
+
+            resolver.RegisterLazySingleton(() => RestService.For<ISignetsBusinessService>(clientSignets, refitSettingsSignets), typeof(ISignetsBusinessService));
+
+            // Moodle Services
+            //
+            resolver.RegisterLazySingleton(() =>
+                new MoodleClientInfo { Url = "https://ena.etsmtl.ca/" },
+                typeof(MoodleClientInfo)
+            );
+            
+            var clientMoodle = new HttpClient(resolver.GetService<HttpMessageHandler>())
+            {
+                BaseAddress = new Uri(resolver.GetService<MoodleClientInfo>().Url)
+            };
+
+            resolver.RegisterLazySingleton(() => RestService.For<IMoodleBusinessService>(clientMoodle), typeof(IMoodleBusinessService));
+        }
+
+        private static void InitializeClientServices(IMutableDependencyResolver resolver)
+        {
+            // Signets Services
+            //
             resolver.RegisterLazySingleton(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
             var signetServiceInstance = new SignetsService(
                 resolver.GetService<ISignetsBusinessService>(),
                 resolver.GetService<SignetsAbstractFactory>()
             );
             resolver.RegisterLazySingleton(() => signetServiceInstance, typeof(ISignetsService));
-            resolver.RegisterLazySingleton(() => new CustomSettingsService(), typeof(ICustomSettingsService));
+
+            // Moodle Services
+            //
+            resolver.RegisterLazySingleton(() => new MoodleFactory(), typeof(MoodleAbstractFactory));
+            var moodleServiceInstance = new MoodleService(
+                resolver.GetService<IMoodleBusinessService>(),
+                resolver.GetService<MoodleAbstractFactory>()
+            );
+            resolver.RegisterLazySingleton(() => signetServiceInstance, typeof(ISignetsService));
         }
-	}
+
+    }
 }
