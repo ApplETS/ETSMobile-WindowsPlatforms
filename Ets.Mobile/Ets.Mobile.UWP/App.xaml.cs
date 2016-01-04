@@ -37,6 +37,9 @@ namespace Ets.Mobile
 
             Locator.CurrentMutable.RegisterLazySingleton(() => new ResourceLoader(), typeof(ResourceLoader));
 
+            // Crittercism
+            Crittercism.Init("55e87dc18d4d8c0a00d07811");
+
             InitializeComponent();
 
             UnhandledException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - wasHandled:{e.Handled} - {e.Message}", e.Exception));
