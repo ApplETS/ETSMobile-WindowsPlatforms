@@ -153,7 +153,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging.Interfaces", "Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj", "{B518CE6A-6381-4376-9023-D9A5710CC9DC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementation", "Implementation", "{AEB622F4-F0F2-47C0-8DA3-F2D5BEAFECD5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementations", "Implementations", "{AEB622F4-F0F2-47C0-8DA3-F2D5BEAFECD5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinPhone", "WinPhone", "{CE8FDDA8-7339-4B52-9D31-DCBB1612C2D4}"
 EndProject
@@ -228,11 +228,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Entities.UWP", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UWP", "UWP", "{1F9C80FB-B408-4B1B-820F-8BB39C0E68F5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementation", "Implementation", "{1A8CAF73-3795-48AD-A010-41FF03D20A14}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementations", "Implementations", "{1A8CAF73-3795-48AD-A010-41FF03D20A14}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UWP", "UWP", "{6BF9AE5F-2452-46BC-BAED-2AEE1716FCCE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementation", "Implementation", "{0CD997C2-42CF-49FA-8D99-6280D7977769}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementations", "Implementations", "{0CD997C2-42CF-49FA-8D99-6280D7977769}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UWP", "UWP", "{075DB658-629A-477B-B252-39102AF82DA8}"
 EndProject
