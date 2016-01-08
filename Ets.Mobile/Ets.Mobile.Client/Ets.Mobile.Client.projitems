@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISetCredentials.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISignetsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISsoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Moodle\MoodleExceptionHandlerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Signets\SignetsExceptionHandlerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Abstractions\MoodleAbstractFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Abstractions\SignetsAbstractFactory.cs" />

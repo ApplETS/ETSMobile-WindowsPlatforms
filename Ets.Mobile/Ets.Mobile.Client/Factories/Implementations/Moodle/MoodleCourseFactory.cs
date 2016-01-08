@@ -8,6 +8,12 @@ namespace Ets.Mobile.Client.Factories.Implementations.Moodle
 {
     public class MoodleCourseFactory : IMoodleCourseFactory
     {
+        private const string PatternGroup1 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})$";
+        private const string PatternGroup2 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})$";
+        private const string PatternGroup3 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})-(?<group3>\d{2})$";
+        private const string PatternGroup4 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})-(?<group3>\d{2})-(?<group4>\d{2})$";
+        private const string PatternGroup5 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})-(?<group3>\d{2})-(?<group4>\d{2})-(?<group5>\d{2})$";
+
         public MoodleCourseVm[] Create(MoodleCourse[] result)
         {
             return result.Select(mc =>
@@ -36,15 +42,9 @@ namespace Ets.Mobile.Client.Factories.Implementations.Moodle
 
         private static MoodleCourseDescription GetCourseDescriptionFromShortName(string shortName)
         {
-            var patternGroup1 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})$";
-            var patternGroup2 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})$";
-            var patternGroup3 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})-(?<group3>\d{2})$";
-            var patternGroup4 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})-(?<group3>\d{2})-(?<group4>\d{2})$";
-            var patternGroup5 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})-(?<group3>\d{2})-(?<group4>\d{2})-(?<group5>\d{2})$";
-
-            if (Regex.IsMatch(shortName, patternGroup5))
+            if (Regex.IsMatch(shortName, PatternGroup5))
             {
-                var groups = Regex.Match(shortName, patternGroup5);
+                var groups = Regex.Match(shortName, PatternGroup5);
                 return new MoodleCourseDescription
                 {
                     CourseName = groups.Groups["acronym"].Value,
@@ -53,9 +53,9 @@ namespace Ets.Mobile.Client.Factories.Implementations.Moodle
                 };
             }
 
-            if (Regex.IsMatch(shortName, patternGroup4))
+            if (Regex.IsMatch(shortName, PatternGroup4))
             {
-                var groups = Regex.Match(shortName, patternGroup4);
+                var groups = Regex.Match(shortName, PatternGroup4);
                 return new MoodleCourseDescription
                 {
                     CourseName = groups.Groups["acronym"].Value,
@@ -64,9 +64,9 @@ namespace Ets.Mobile.Client.Factories.Implementations.Moodle
                 };
             }
 
-            if (Regex.IsMatch(shortName, patternGroup3))
+            if (Regex.IsMatch(shortName, PatternGroup3))
             {
-                var groups = Regex.Match(shortName, patternGroup3);
+                var groups = Regex.Match(shortName, PatternGroup3);
                 return new MoodleCourseDescription
                 {
                     CourseName = groups.Groups["acronym"].Value,
@@ -75,9 +75,9 @@ namespace Ets.Mobile.Client.Factories.Implementations.Moodle
                 };
             }
 
-            if (Regex.IsMatch(shortName, patternGroup2))
+            if (Regex.IsMatch(shortName, PatternGroup2))
             {
-                var groups = Regex.Match(shortName, patternGroup2);
+                var groups = Regex.Match(shortName, PatternGroup2);
                 return new MoodleCourseDescription
                 {
                     CourseName = groups.Groups["acronym"].Value,
@@ -86,9 +86,9 @@ namespace Ets.Mobile.Client.Factories.Implementations.Moodle
                 };
             }
 
-            if (Regex.IsMatch(shortName, patternGroup1))
+            if (Regex.IsMatch(shortName, PatternGroup1))
             {
-                var groups = Regex.Match(shortName, patternGroup1);
+                var groups = Regex.Match(shortName, PatternGroup1);
                 return new MoodleCourseDescription
                 {
                     CourseName = groups.Groups["acronym"].Value,
