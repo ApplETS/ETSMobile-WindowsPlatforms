@@ -1,7 +1,7 @@
-﻿using System;
-using System.Runtime.Serialization;
-using Ets.Mobile.Entities.Signets;
+﻿using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
+using System;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.ViewModel.Content.Schedule
 {
@@ -16,6 +16,13 @@ namespace Ets.Mobile.ViewModel.Content.Schedule
 
         #endregion
 
+        public ScheduleViewModelItem(ScheduleVm vm)
+        {
+            Schedule = vm;
+        }
+
+        #region Properties
+
         private ScheduleVm _schedule;
         [DataMember]
         public ScheduleVm Schedule
@@ -24,9 +31,6 @@ namespace Ets.Mobile.ViewModel.Content.Schedule
             set { this.RaiseAndSetIfChanged(ref _schedule, value); }
         }
 
-        public ScheduleViewModelItem(ScheduleVm vm)
-        {
-            Schedule = vm;
-        }
+        #endregion
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Splat;
+using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
-using Splat;
 
 namespace Xaml.Converters
 {

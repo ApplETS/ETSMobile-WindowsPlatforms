@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Ets.Mobile.Entities.Signets;
+using System;
 using System.Collections.Generic;
-using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.ViewModel.Comparators
 {

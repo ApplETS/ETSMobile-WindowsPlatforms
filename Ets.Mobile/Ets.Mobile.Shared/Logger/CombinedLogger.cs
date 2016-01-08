@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using Logger;
+﻿using Logger;
 using Splat;
+using System;
+using System.Linq;
 
 namespace Ets.Mobile.Logger
 {

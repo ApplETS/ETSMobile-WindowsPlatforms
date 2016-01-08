@@ -1,5 +1,5 @@
-﻿using System;
-using Splat;
+﻿using Splat;
+using System;
 
 namespace Logger.SplatLog
 {

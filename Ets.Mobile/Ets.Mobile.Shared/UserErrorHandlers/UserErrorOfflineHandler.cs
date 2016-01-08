@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Agent;
 using Localization;
 using Messaging.Interfaces.Popup;
 using ReactiveUI;
 using Splat;
+using System;
+using System.Collections.Generic;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.UserErrorHandlers
 {

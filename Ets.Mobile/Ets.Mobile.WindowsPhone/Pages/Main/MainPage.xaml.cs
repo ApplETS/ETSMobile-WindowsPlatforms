@@ -1,6 +1,5 @@
-﻿using Windows.UI.Xaml;
-using ReactiveUI;
-using Splat;
+﻿using ReactiveUI;
+using Windows.UI.Xaml;
 
 namespace Ets.Mobile.Pages.Main
 {

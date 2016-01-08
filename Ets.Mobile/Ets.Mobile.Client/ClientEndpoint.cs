@@ -1,6 +1,6 @@
-﻿using System;
-using Ets.Mobile.Client.Contracts;
+﻿using Ets.Mobile.Client.Contracts;
 using Splat;
+using System;
 
 namespace Ets.Mobile.Client
 {

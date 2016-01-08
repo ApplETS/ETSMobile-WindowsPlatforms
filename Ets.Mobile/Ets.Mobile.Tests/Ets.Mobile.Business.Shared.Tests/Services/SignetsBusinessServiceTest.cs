@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Ets.Mobile.Business.Contracts;
+﻿using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Business.Entities.Results.Signets.Converters;
 using Ets.Mobile.Business.Shared.Tests.Contracts;
 using Ets.Mobile.Entities.Auth;
+using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Shared.Tests;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using Ets.Mobile.Entities.ServiceInfo;
-using Ets.Mobile.Entities.Signets;
 using ModernHttpClient;
 using Newtonsoft.Json;
 using Refit;
 using Splat;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.Business.Shared.Tests.Services
 {
     [TestClass]
-	public class SignetsBusinessServiceTest : DTBase, ISignetsBusinessServiceTest
+	public class SignetsBusinessServiceTest : MockBase, ISignetsBusinessServiceTest
 	{
 		public Task<ISignetsBusinessService> GetSignetsServices()
 		{

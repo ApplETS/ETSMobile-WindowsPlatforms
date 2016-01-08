@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using ReactiveUI;
-using System.Threading.Tasks;
 
 namespace Ets.Mobile.Pages.Account
 {
@@ -37,6 +37,7 @@ namespace Ets.Mobile.Pages.Account
                         return Task.FromResult(_isLoginShown);
                     });
                 });
+
             this.BindCommand(ViewModel, x => x.SwitchToLogin, x => x.SwitchToLogin);
         }
 

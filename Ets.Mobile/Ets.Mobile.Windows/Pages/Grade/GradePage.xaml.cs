@@ -6,7 +6,6 @@ namespace Ets.Mobile.Pages.Grade
     {
         partial void PartialInitialize()
         {
-            
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Ets.Mobile.Business.Entities.Results.Signets;
+﻿using Ets.Mobile.Business.Entities.Results.Signets;
 using Refit;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.Business.Contracts
 {

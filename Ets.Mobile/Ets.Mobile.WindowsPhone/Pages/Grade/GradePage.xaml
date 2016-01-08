@@ -13,9 +13,6 @@
 
     <Page.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Skins/PhoneSkin.xaml" />
-            </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Name="GradesHeader">
                 <StackPanel>
                     <TextBlock Text="{Binding Course.Acronym}" />
@@ -95,7 +92,7 @@
         </Grid.RowDefinitions>
         <!-- Hamburger -->
         <StackPanel Orientation="Horizontal" Background="{ThemeResource EtsBackgroundMainBrush}">
-            <shared:MenuButton Height="60" Command="{Binding SideNavigation.OpenMenu}" CommandParameter="{Binding}" />
+            <shared:MenuButton Height="60" Width="60" Command="{Binding SideNavigation.OpenMenu}" CommandParameter="{Binding}" />
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="{Binding SideNavigation.CurrentPage}" Margin="15,0,0,0" Style="{ThemeResource EtsPageHeaderTitleStyle}" FontWeight="Bold" />
                 <TextBlock FontSize="{StaticResource Size5}" Margin="15,0,0,0" Text="{Binding Semester, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Foreground="{StaticResource EtsTextSecondaryBrush}" />

@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     d:DesignHeight="800"
     d:DesignWidth="400">
-    
+
     <StackPanel>
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
@@ -27,20 +27,20 @@
                 <Run Text="{Binding VersionNumber}"/>
             </TextBlock>
         </StackPanel>
-        
+
         <!-- Applets Description-->
         <StackPanel Margin="0,20">
             <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ContributeDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
             <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="VisitAndJoinUsUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
         </StackPanel>
-        
+
         <!-- Applets Website-->
         <HyperlinkButton 
             Pivot.SlideInAnimationGroup="1" 
             x:Uid="AppletsWebsiteUid" 
             Content="clubapplets.ca" 
             Style="{ThemeResource EtsAppletsWebsiteHyperlinkStyle}" />
-    
+
         <!-- Feedback -->
         <HyperlinkButton Pivot.SlideInAnimationGroup="2"
                          x:Uid="FeedbackButtonUid" 

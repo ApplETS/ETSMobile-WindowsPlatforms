@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using Ets.Mobile.Client.Factories.Interfaces.Moodle;
+﻿using Ets.Mobile.Client.Factories.Interfaces.Moodle;
 using Ets.Mobile.Client.Factories.Interfaces.Shared;
+using System;
+using System.Reflection;
 
 namespace Ets.Mobile.Client.Factories.Abstractions
 {
@@ -13,8 +11,6 @@ namespace Ets.Mobile.Client.Factories.Abstractions
         public abstract IMoodleCourseFactory GetMoodleCourseFactory();
         public abstract IMoodleCourseContentFactory GetMoodleCourseContentFactory();
     }
-
-
 
     public static class MoodleFactoryExtensions
     {

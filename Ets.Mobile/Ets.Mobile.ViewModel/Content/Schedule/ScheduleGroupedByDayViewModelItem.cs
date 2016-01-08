@@ -33,6 +33,15 @@ namespace Ets.Mobile.ViewModel.Content.Schedule
         }
 
         #endregion
+        
+        public ScheduleGroupedByDayViewModelItem(DateTime key, IEnumerable<ScheduleVm> vm)
+        {
+            Key = key.ToString("D");
+            Date = key;
+            ScheduleItems = new ReactiveList<ScheduleVm>(vm);
+        }
+
+        #region Properties
 
         private DateTime _date;
         public DateTime Date
@@ -41,18 +50,13 @@ namespace Ets.Mobile.ViewModel.Content.Schedule
             set { this.RaiseAndSetIfChanged(ref _date, value); }
         }
 
-        private ReactiveList<ScheduleVm> _scheduleItems; 
+        private ReactiveList<ScheduleVm> _scheduleItems;
         public ReactiveList<ScheduleVm> ScheduleItems
         {
             get { return _scheduleItems; }
             set { this.RaiseAndSetIfChanged(ref _scheduleItems, value); }
-        } 
-
-        public ScheduleGroupedByDayViewModelItem(DateTime key, IList<ScheduleVm> vm)
-        {
-            Key = key.ToString("D");
-            Date = key;
-            ScheduleItems = new ReactiveList<ScheduleVm>(vm);
         }
+
+        #endregion
     }
 }

@@ -2,6 +2,7 @@
 using Ets.Mobile.Business.Entities.Results.Signets.Converters;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Factories.Abstractions;
+using Ets.Mobile.Client.Factories.Implementations.Moodle;
 using Ets.Mobile.Client.Factories.Implementations.Signets;
 using Ets.Mobile.Client.Services;
 using Ets.Mobile.Entities.Auth;
@@ -26,7 +27,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Themes;
 using Windows.ApplicationModel.Resources;
-using Ets.Mobile.Client.Factories.Implementations.Moodle;
 
 namespace Ets.Mobile.Shared
 {

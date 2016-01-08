@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Runtime.Serialization;
-using Ets.Mobile.Entities.Signets.Interfaces;
+﻿using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
 using ReactiveUI.Extensions;
+using System;
+using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Moodle
 {

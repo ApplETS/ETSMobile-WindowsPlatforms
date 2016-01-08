@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using Ets.Mobile.Client.Contracts;
+﻿using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Entities.Moodle;
 using Ets.Mobile.Entities.Signets;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.Client.Mixins
 {

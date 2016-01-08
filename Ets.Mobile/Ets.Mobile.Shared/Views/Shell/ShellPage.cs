@@ -1,10 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Ets.Mobile.ViewModel;
+using ReactiveUI;
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Ets.Mobile.ViewModel;
-using ReactiveUI;
 
 namespace Ets.Mobile.Shell
 {

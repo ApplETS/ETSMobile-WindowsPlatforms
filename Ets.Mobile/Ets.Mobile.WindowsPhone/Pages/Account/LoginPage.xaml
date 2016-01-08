@@ -39,9 +39,9 @@
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                             <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
-                            	<DiscreteObjectKeyFrame.Value>
-                            		<Visibility>Visible</Visibility>
-                            	</DiscreteObjectKeyFrame.Value>
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="LoginForm">
@@ -106,32 +106,32 @@
         <Image x:Name="EtsBuilding"
 			Source="/Assets/Account/Login/background_blur_cropped.jpg" 
 			Stretch="None" 
-			Margin="-40,-60,-900,0" RenderTransformOrigin="0.5,0.5">			
-			<Image.RenderTransform>
-				<CompositeTransform/>
-			</Image.RenderTransform>
-			<Image.Triggers>
+			Margin="-40,-60,-900,0" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <CompositeTransform/>
+            </Image.RenderTransform>
+            <Image.Triggers>
                 <EventTrigger RoutedEvent="Grid.Loaded">
-					<BeginStoryboard>
-						<Storyboard RepeatBehavior="Forever">
-							<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="EtsBuilding">
-								<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-								<EasingDoubleKeyFrame KeyTime="0:1:5" Value="-740"/>
-								<EasingDoubleKeyFrame KeyTime="0:3:0" Value="0"/>
-							</DoubleAnimationUsingKeyFrames>
-						</Storyboard>
-					</BeginStoryboard>
-				</EventTrigger>
-			</Image.Triggers>
-		</Image>
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="EtsBuilding">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:1:5" Value="-740"/>
+                                <EasingDoubleKeyFrame KeyTime="0:3:0" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
 
-		<Grid>
+        <Grid>
             <Grid.ChildrenTransitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Bottom" />
                 </TransitionCollection>
             </Grid.ChildrenTransitions>
-			<Image x:Name="BackgroundImage" VerticalAlignment="Top"
+            <Image x:Name="BackgroundImage" VerticalAlignment="Top"
 				Margin="30,60,30,0" 
 				Source="/Assets/Account/Login/Ets-Devise.png" />
 
@@ -143,38 +143,38 @@
 				    VerticalAlignment="Bottom" Margin="0,0,0,-11"
                     ClickMode="Press">
             </Button>
-		</Grid>
+        </Grid>
 
         <Grid x:Name="LoginForm" Margin="0,561,0,-611" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
-				<CompositeTransform/>
-			</Grid.RenderTransform>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="50"/>
-				<RowDefinition Height="70"/>
-				<RowDefinition Height="*"/>
-			</Grid.RowDefinitions>
-			<Grid.Background>
+                <CompositeTransform/>
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
                 <SolidColorBrush Color="{StaticResource EtsRedMediumColor}" Opacity="0.5"/>
-			</Grid.Background>
-            
-			<!--TitlePanel contains the name of the application and page title-->
+            </Grid.Background>
+
+            <!--TitlePanel contains the name of the application and page title-->
             <TextBlock x:Uid="ConnectUid" Text="CONNEXION" Margin="12,0,0,0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource EtsTextBlockLoginTitle}"/>
 
-			<Grid Grid.Row="2" Margin="12,0,12,0">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="100*" />
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="30" />
-					<RowDefinition Height="50" />
-					<RowDefinition Height="30" />
-					<RowDefinition Height="50" />
+            <Grid Grid.Row="2" Margin="12,0,12,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="50" />
                     <RowDefinition Height="20" />
-					<RowDefinition Height="70" />
-				</Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                </Grid.RowDefinitions>
 
-				<TextBlock 
+                <TextBlock 
                     x:Uid="UsernameUid"
                     Text="code universel"
                     Grid.Row="0"
@@ -199,14 +199,14 @@
 					TextWrapping="Wrap" 
                     FontWeight="Normal"
 					Style="{StaticResource EtsTextBlockWhite4}" />
-				<PasswordBox Grid.Row="3"
+                <PasswordBox Grid.Row="3"
 					x:Name="Password"
 					Margin="0,2,0,0"
                     RequestedTheme="Dark" />
 
                 <TextBlock Visibility="Collapsed" Grid.Row="4" x:Name="ErrorMessage"></TextBlock>
 
-				<StackPanel Grid.Row="5">
+                <StackPanel Grid.Row="5">
                     <Button x:Uid="ConnectButtonUid" 
                         Content="CONNEXION"
                         Height="40"
@@ -214,8 +214,8 @@
 						HorizontalAlignment="Stretch"
 						Style="{StaticResource EtsButtonRedLowestColor}" 
 						BorderThickness="0" />
-				</StackPanel>
-			</Grid>
-		</Grid>
-	</Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
 </Page>

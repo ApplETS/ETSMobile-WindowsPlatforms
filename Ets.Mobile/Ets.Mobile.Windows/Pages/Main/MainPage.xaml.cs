@@ -4,7 +4,6 @@
     {
         partial void PartialInitialize()
         {
-            
         }
     }
 }

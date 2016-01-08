@@ -1,14 +1,14 @@
-﻿using System.Linq;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Client.Contracts;
+using Ets.Mobile.Entities.Moodle;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Entities.Signets.Interfaces;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 using Themes;
 using Windows.UI;
-using Ets.Mobile.Entities.Moodle;
 
 namespace Ets.Mobile.Client.Services
 {

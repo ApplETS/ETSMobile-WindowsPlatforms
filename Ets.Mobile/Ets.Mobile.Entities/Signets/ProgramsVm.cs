@@ -1,7 +1,7 @@
-﻿using System;
-using System.Runtime.Serialization;
-using ReactiveUI;
+﻿using ReactiveUI;
 using ReactiveUI.Extensions;
+using System;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Signets
 {

@@ -1,6 +1,6 @@
-﻿using System;
-using Ets.Mobile.Business.Contracts;
+﻿using Ets.Mobile.Business.Contracts;
 using Splat;
+using System;
 
 namespace Ets.Mobile.Business
 {

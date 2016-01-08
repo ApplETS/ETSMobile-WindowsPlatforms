@@ -1,7 +1,7 @@
-using System.Runtime.Serialization;
-using Windows.UI.Xaml.Media;
 using ReactiveUI;
 using Splat;
+using System.Runtime.Serialization;
+using Windows.UI.Xaml.Media;
 
 namespace Ets.Mobile.Entities.Signets
 {

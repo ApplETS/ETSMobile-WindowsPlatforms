@@ -1,6 +1,6 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Reactive;
-using ReactiveUI;
 
 namespace Ets.Mobile.ViewModel.Contracts.Settings
 {

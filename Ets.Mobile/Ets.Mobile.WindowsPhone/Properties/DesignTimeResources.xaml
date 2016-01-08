@@ -6,5 +6,6 @@
         <ResourceDictionary Source="ms-appx:///Skins/MainSkin.xaml"/>
         <ResourceDictionary Source="ms-appx:///Skins/PhoneSkin.xaml"/>
         <ResourceDictionary Source="ms-appx:///Skins/SplitViewStyles.xaml"/>
+        <ResourceDictionary Source="ms-appx:///Skins/PhoneSkin.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

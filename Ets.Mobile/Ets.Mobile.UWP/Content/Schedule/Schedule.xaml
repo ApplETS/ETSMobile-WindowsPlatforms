@@ -123,5 +123,4 @@
             DefaultErrorMessage="{Binding NetworkError, Source={StaticResource LocalizedStrings}}"
             ValueTemplate="{StaticResource SchedulesPresenterValue}" />
     </Grid>
-   
 </UserControl>

@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Ets.Mobile.Client.Contracts;
+﻿using Ets.Mobile.Client.Contracts;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.Client.Shared.Tests.Contracts
 {

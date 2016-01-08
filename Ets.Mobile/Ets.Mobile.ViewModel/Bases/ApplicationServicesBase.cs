@@ -1,14 +1,14 @@
-﻿using System.Runtime.Serialization;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Resources;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Business;
 using Ets.Mobile.Client;
 using Ets.Mobile.Client.Contracts;
+using Ets.Mobile.ViewModel.Contracts.Shared;
 using Messaging.Interfaces.ViewService;
 using ReactiveUI;
 using Splat;
-using Ets.Mobile.ViewModel.Contracts.Shared;
+using System.Runtime.Serialization;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Resources;
 
 namespace Ets.Mobile.ViewModel.Bases
 {

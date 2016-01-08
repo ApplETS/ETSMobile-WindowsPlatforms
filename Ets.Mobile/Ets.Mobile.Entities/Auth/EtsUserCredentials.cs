@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ets.Mobile.Entities.Auth
+﻿namespace Ets.Mobile.Entities.Auth
 {
     public class EtsUserCredentials : UserCredentials
     {

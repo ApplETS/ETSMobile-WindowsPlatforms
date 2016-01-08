@@ -1,7 +1,7 @@
-﻿using System.Runtime.Serialization;
-using ReactiveUI;
+﻿using ReactiveUI;
 using ReactiveUI.Extensions;
 using Splat;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Moodle
 {

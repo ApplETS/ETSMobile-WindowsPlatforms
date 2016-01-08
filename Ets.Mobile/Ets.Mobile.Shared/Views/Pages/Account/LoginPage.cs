@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Ets.Mobile.ViewModel.Pages.Account;
+using ReactiveUI;
+using System;
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
-using Ets.Mobile.ViewModel.Pages.Account;
-using ReactiveUI;
+
 namespace Ets.Mobile.Pages.Account
 {
     public partial class LoginPage : IViewFor<LoginViewModel>

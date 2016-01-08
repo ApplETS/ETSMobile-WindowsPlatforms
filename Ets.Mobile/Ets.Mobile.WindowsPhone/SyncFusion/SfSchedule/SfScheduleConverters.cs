@@ -1,7 +1,7 @@
-﻿using System;
-using Windows.UI.Xaml.Data;
-using Ets.Mobile.Entities.Signets;
+﻿using Ets.Mobile.Entities.Signets;
 using Localization;
+using System;
+using Windows.UI.Xaml.Data;
 
 namespace Ets.Mobile.SyncFusion.SfSchedule
 {

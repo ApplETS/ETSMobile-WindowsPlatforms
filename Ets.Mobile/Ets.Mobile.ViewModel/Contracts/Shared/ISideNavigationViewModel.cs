@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Ets.Mobile.ViewModel.Contracts.UserDetails;
+using ReactiveUI;
+using System;
 using System.Reactive;
 using System.Reactive.Subjects;
-using ReactiveUI;
-using Ets.Mobile.ViewModel.Contracts.UserDetails;
 
 namespace Ets.Mobile.ViewModel.Contracts.Shared
 {
