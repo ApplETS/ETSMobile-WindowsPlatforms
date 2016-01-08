@@ -1,4 +1,5 @@
-﻿using Ets.Mobile.Business.Contracts;
+﻿using System;
+using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Business.Entities.Moodle.Courses;
 using Ets.Mobile.Business.Entities.Moodle.CoursesContent;
 using Ets.Mobile.Business.Entities.Moodle.SiteInfo;
@@ -7,10 +8,12 @@ using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Moodle;
 using Splat;
-using System;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Akavache;
 
 namespace Ets.Mobile.Client.Services
 {
@@ -26,53 +29,67 @@ namespace Ets.Mobile.Client.Services
             _factory = factory;
         }
 
-        public void SetCredentials(EtsUserCredentials userCredentials)
+        public void SetCredentials(EtsUserCredentials credentials)
         {
-            _userCredentials = userCredentials;
+            _userCredentials = credentials;
         }
 
-        private IObservable<string> GetToken()
+        private async  Task<string> GetToken()
         {
-            return _services.Token(_userCredentials.Username, _userCredentials.Password)
-                .Select(t =>
-                {
-                    HandleMoodleExceptions(Locator.Current.GetService<ResourceLoader>().GetString("MoodleInvalidToken"), t.Error, t.DebugInfo, t.ReproductionLink, t.StackTrace);
-                    return t.Token;
-                });
+            var token = await _services.Token(_userCredentials.Username, _userCredentials.Password);
+
+            HandleMoodleExceptions(Locator.Current.GetService<ResourceLoader>().GetString("MoodleInvalidToken"), token.Error, token.DebugInfo, token.ReproductionLink, token.StackTrace);
+
+            return token.Token;
         }
 
-        public IObservable<MoodleSiteInfoVm> SiteInfo()
+        public async Task<MoodleSiteInfoVm> SiteInfo(string token = "", bool loadUserPicture = false)
         {
-            return GetToken()
-                .SelectMany(token => _services.SiteInfo(token))
-                .Select(si =>
+            if (string.IsNullOrEmpty(token))
+            {
+                token = await GetToken();
+            }
+
+            var siteInfo = await _services.SiteInfo(token);
+
+            HandleMoodleExceptions(Locator.Current.GetService<ResourceLoader>().GetString("MoodleSiteInfoEmpty"), siteInfo.ErrorCode, siteInfo.Exception, siteInfo.Message);
+
+            var vm = _factory.CreateFor<MoodleSiteInfo, MoodleSiteInfoVm>(siteInfo);
+
+            if (loadUserPicture)
+            {
+                return await BlobCache.UserAccount.LoadImageFromUrl("moodle_userpicture", vm.UserPictureUrl, true).Select(image =>
                 {
-                    HandleMoodleExceptions(Locator.Current.GetService<ResourceLoader>().GetString("MoodleSiteInfoEmpty"), si.ErrorCode, si.Exception, si.Message);
-                    return _factory.CreateFor<MoodleSiteInfo, MoodleSiteInfoVm>(si);
-                });
+                    vm.UserPicture = image;
+                    return vm;
+                }).ToTask();
+            }
+
+            return vm;
         }
 
-        public IObservable<MoodleCourseVm[]> Courses()
+        public async Task<MoodleCourseVm[]> Courses()
         {
-            return GetToken()
-                .CombineLatest(SiteInfo(), (token, si) => new Tuple<string, MoodleSiteInfoVm>(token, si))
-                .SelectMany(tokenAndSiteInfo => _services.Courses(tokenAndSiteInfo.Item1, tokenAndSiteInfo.Item2.UserId))
-                .Select(si =>
-                {
-                    HandleMoodleExceptions(si, Locator.Current.GetService<ResourceLoader>().GetString("MoodleCourseEmpty"));
-                    return _factory.CreateFor<MoodleCourse[], MoodleCourseVm[]>(si);
-                });
+            var token = await GetToken();
+
+            var siteInfo = await SiteInfo(token);
+
+            var courses = await _services.Courses(token, siteInfo.UserId);
+
+            HandleMoodleExceptions(courses, Locator.Current.GetService<ResourceLoader>().GetString("MoodleCourseEmpty"));
+
+            return _factory.CreateFor<MoodleCourse[], MoodleCourseVm[]>(courses);
         }
 
-        public IObservable<MoodleCourseContentVm[]> CoursesContents(int courseId)
+        public async Task<MoodleCourseContentVm[]> CoursesContents(int courseId)
         {
-            return GetToken()
-                .SelectMany(token => _services.CoursesContents(token, courseId))
-                .Select(cc =>
-                {
-                    HandleMoodleExceptions(cc, Locator.Current.GetService<ResourceLoader>().GetString("MoodleCourseContentEmpty"));
-                    return _factory.CreateFor<MoodleCourseContent[], MoodleCourseContentVm[]>(cc);
-                });
+            var token = await GetToken();
+
+            var courseContents = await _services.CoursesContents(token, courseId);
+            
+            HandleMoodleExceptions(courseContents, Locator.Current.GetService<ResourceLoader>().GetString("MoodleCourseContentEmpty"));
+
+            return _factory.CreateFor<MoodleCourseContent[], MoodleCourseContentVm[]>(courseContents);
         }
 
         private void HandleMoodleExceptions(string exceptionMessage, params string[] strings)

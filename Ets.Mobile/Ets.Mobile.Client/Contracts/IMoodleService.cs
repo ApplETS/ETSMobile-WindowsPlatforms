@@ -1,14 +1,12 @@
-﻿using Ets.Mobile.Entities.Auth;
-using Ets.Mobile.Entities.Moodle;
-using System;
+﻿using Ets.Mobile.Entities.Moodle;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.Client.Contracts
 {
-    public interface IMoodleService
+    public interface IMoodleService : ISetCredentials
     {
-        void SetCredentials(EtsUserCredentials vm);
-        IObservable<MoodleSiteInfoVm> SiteInfo();
-        IObservable<MoodleCourseVm[]> Courses();
-        IObservable<MoodleCourseContentVm[]> CoursesContents(int courseId);
+        Task<MoodleSiteInfoVm> SiteInfo(string token = "", bool loadUserPicture = false);
+        Task<MoodleCourseVm[]> Courses();
+        Task<MoodleCourseContentVm[]> CoursesContents(int courseId);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using Ets.Mobile.Client.Factories.Interfaces.Moodle;
 using Ets.Mobile.Client.Factories.Interfaces.Shared;
@@ -36,6 +38,6 @@ namespace Ets.Mobile.Client.Factories.Abstractions
         }
 
         private const string GetTFactory = "Get{0}Factory";
-        private static readonly Func<Type, string> FormatGetFactory = type => string.Format(GetTFactory, type.Name);
+        private static readonly Func<Type, string> FormatGetFactory = type => string.Format(GetTFactory, type.Name.Replace("[]", ""));
     }
 }

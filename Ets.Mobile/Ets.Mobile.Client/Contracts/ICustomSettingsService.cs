@@ -1,5 +1,6 @@
 ﻿using Ets.Mobile.Entities.Signets;
 using System.Threading.Tasks;
+using Ets.Mobile.Entities.Moodle;
 
 namespace Ets.Mobile.Client.Contracts
 {
@@ -22,5 +23,15 @@ namespace Ets.Mobile.Client.Contracts
         /// Apply The Color of Each Evaluations items
         /// </summary>
         Task ApplyColorOnItemsForEvaluations(EvaluationsVm items, string semester, string courseAndGroup);
+
+        /// <summary>
+        /// Apply The Color of Each Moodle courses
+        /// </summary>
+        Task ApplyColorOnItemsForMoodleCourses(MoodleCourseVm[] items);
+
+        /// <summary>
+        /// Apply The Color of Each Moodle course's content
+        /// </summary>
+        Task ApplyColorOnItemsForMoodleCourseContents(MoodleCourseContentVm[] items, MoodleCourseVm course);
     }
 }

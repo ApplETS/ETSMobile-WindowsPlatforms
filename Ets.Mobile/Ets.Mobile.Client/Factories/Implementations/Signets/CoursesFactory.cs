@@ -14,7 +14,7 @@ namespace Ets.Mobile.Client.Factories.Implementations.Signets
                 courses.Courses.Select(course => new CourseVm
                 {
                     Acronym = course.Acronym,
-                    Semester = course.Semester,
+                    Semester = course.Semester == "s.o." ? "N/A" : course.Semester,
                     Name = course.Name,
                     Group = course.Group,
                     Program = course.Program,

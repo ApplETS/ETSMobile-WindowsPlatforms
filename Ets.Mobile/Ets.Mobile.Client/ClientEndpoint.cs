@@ -22,9 +22,16 @@ namespace Ets.Mobile.Client
 
 		#endregion
 
+        private ISignetsService _signetsService;
 		/// <summary>
 		/// Signets Endpoint
 		/// </summary>
-		public ISignetsService SignetsService => _serviceLocator.GetService<ISignetsService>();
+		public ISignetsService SignetsService => _signetsService ?? (_signetsService = _serviceLocator.GetService<ISignetsService>());
+
+        private IMoodleService _moodleService;
+        /// <summary>
+		/// Signets Endpoint
+		/// </summary>
+		public IMoodleService MoodleService => _moodleService ?? (_moodleService = _serviceLocator.GetService<IMoodleService>());
     }
 }

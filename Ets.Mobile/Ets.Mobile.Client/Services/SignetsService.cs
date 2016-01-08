@@ -8,7 +8,6 @@ using Ets.Mobile.Business.Entities.Results.Signets;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Extensions.Signets;
 using Ets.Mobile.Client.Factories.Abstractions;
-using Ets.Mobile.Client.Factories.Implementations;
 using Ets.Mobile.Client.Factories.Implementations.Signets;
 using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Signets;
@@ -70,7 +69,7 @@ namespace Ets.Mobile.Client.Services
 
             _signetsService.HandleError(coursesResult);
 
-            return _factory.CreateFor<CoursesResult, List<CourseVm>>(coursesResult).Where(x => x.Semester != "s.o.").ToArray();
+            return _factory.CreateFor<CoursesResult, List<CourseVm>>(coursesResult).ToArray();
         }
 
         public async Task<CourseIntervalVm[]> CoursesIntervalSemester(string startSemester, string endSemester)
@@ -111,7 +110,7 @@ namespace Ets.Mobile.Client.Services
 
         public async Task<EvaluationsVm> Evaluations(string courseAbridgedName, string group, string semesterAbridgedName)
         {
-            if (semesterAbridgedName == "s.o.") // s.o. are not recognized by the webservice
+            if (semesterAbridgedName == "s.o." || semesterAbridgedName == "N/A") // s.o. are not recognized by the webservice
             {
                 return new EvaluationsVm();
             }

@@ -1,7 +1,6 @@
 ﻿using Ets.Mobile.Business.Entities.Moodle.SiteInfo;
 using Ets.Mobile.Client.Factories.Interfaces.Moodle;
 using Ets.Mobile.Entities.Moodle;
-using System;
 
 namespace Ets.Mobile.Client.Factories.Implementations.Moodle
 {
@@ -9,7 +8,17 @@ namespace Ets.Mobile.Client.Factories.Implementations.Moodle
     {
         public MoodleSiteInfoVm Create(MoodleSiteInfo result)
         {
-            throw new NotImplementedException();
+            return new MoodleSiteInfoVm
+            {
+                SiteName = result.SiteName,
+                Username = result.Username,
+                FirstName = result.FirstName,
+                LastName = result.LastName,
+                FullName = result.FullName,
+                UserId = result.UserId,
+                SiteUrl = result.SiteUrl,
+                UserPictureUrl = result.UserPictureUrl
+            };
         }
     }
 }
