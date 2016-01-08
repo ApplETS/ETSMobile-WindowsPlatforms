@@ -14,6 +14,22 @@ namespace ReactiveUI.Xaml.Controls.Handlers
 {
     public static class ReactivePresenterMixins
     {
+        private class DefaultMessagingContent : IMessagingContent
+        {
+            public DefaultMessagingContent(string message)
+            {
+                Title = "";
+                Message = message;
+            }
+            public DefaultMessagingContent(string message, string title)
+            {
+                Title = title;
+                Message = message;
+            }
+            public string Title { get; }
+            public string Message { get; }
+        }
+
         private class ReactivePresenterHandler<T> : IReactivePresenterHandler<T>
         {
             public ReactivePresenterHandler([NotNull] IObservable<T> content, [NotNull] IObservable<bool> isRefreshing, [NotNull] IObservable<IMessagingContent> emptyMessage, [NotNull] IObservable<Exception> thrownErrors)
@@ -66,6 +82,16 @@ namespace ReactiveUI.Xaml.Controls.Handlers
                 IsReady.OnNext(isReady);
             }
 
+            public void OnNextEmptyMessage()
+            {
+                EmptyMessageSubject.OnNext(new DefaultMessagingContent(""));
+            }
+
+            public void OnNextEmptyMessage(IMessagingContent content)
+            {
+                EmptyMessageSubject.OnNext(content);
+            }
+
             private ISubject<T> ContentSubject { get; }
             private ISubject<IMessagingContent> EmptyMessageSubject { get; }
             private ISubject<Exception> ThrownExceptionSubject { get; }
@@ -110,9 +136,19 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             return new ReactivePresenterHandler<T>(command, command.IsExecuting, command.Messages, command.ThrownExceptions);
         }
 
-        public static IDisposable SubscribeCommandToReactiveListAndMerge<T>(ReactivePresenterCommand<List<T>> command, ReactiveList<T> reactiveList, IObserver<bool> isReady)
+        public static IDisposable SubscribeCommandToReactiveListAndMerge<T>(ReactivePresenterCommand<List<T>> command, [NotNull] ReactiveList<T> reactiveList, [NotNull] IObserver<bool> isReady)
             where T : ReactiveObject, IMergeableObject<T>
         {
+            if (reactiveList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveList));
+            }
+
+            if (isReady == null)
+            {
+                throw new ArgumentNullException(nameof(isReady));
+            }
+
             return command.Subscribe(list =>
             {
                 list.MergeWith(reactiveList);
@@ -121,9 +157,19 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             });
         }
 
-        public static IDisposable SubscribeCommandToReactiveListAndMerge<T>(ReactivePresenterCommand<T[]> command, ReactiveList<T> reactiveList, IObserver<bool> isReady)
+        public static IDisposable SubscribeCommandToReactiveListAndMerge<T>(ReactivePresenterCommand<T[]> command, [NotNull] ReactiveList<T> reactiveList, [NotNull] IObserver<bool> isReady)
             where T : ReactiveObject, IMergeableObject<T>
         {
+            if (reactiveList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveList));
+            }
+
+            if (isReady == null)
+            {
+                throw new ArgumentNullException(nameof(isReady));
+            }
+
             return command.Subscribe(list =>
             {
                 list.MergeWith(reactiveList);
@@ -132,9 +178,19 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             });
         }
 
-        public static IDisposable SubscribeCommandToReactiveListAndMerge<T>(ReactivePresenterCommand<IEnumerable<T>> command, ReactiveList<T> reactiveList, IObserver<bool> isReady)
+        public static IDisposable SubscribeCommandToReactiveListAndMerge<T>(ReactivePresenterCommand<IEnumerable<T>> command, [NotNull] ReactiveList<T> reactiveList, [NotNull] IObserver<bool> isReady)
             where T : ReactiveObject, IMergeableObject<T>
         {
+            if (reactiveList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveList));
+            }
+
+            if (isReady == null)
+            {
+                throw new ArgumentNullException(nameof(isReady));
+            }
+
             return command.Subscribe(enumerable =>
             {
                 enumerable.MergeWith(reactiveList);
@@ -143,9 +199,14 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             });
         }
 
-        public static IReactivePresenterHandler<ReactiveList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<List<T>> command, ReactiveList<T> reactiveList, bool mergeResults = false)
+        public static IReactivePresenterHandler<ReactiveList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<List<T>> command, [NotNull] ReactiveList<T> reactiveList, bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
+            if (reactiveList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveList));
+            }
+
             var presenter = new ReactivePresenterHandler<ReactiveList<T>>(Observable.Return(reactiveList), command.IsExecuting, command.Messages, command.ThrownExceptions);
 
             if (mergeResults)
@@ -164,9 +225,14 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             return presenter;
         }
 
-        public static IReactivePresenterHandler<ReactiveList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<T[]> command, ReactiveList<T> reactiveList, bool mergeResults = false)
+        public static IReactivePresenterHandler<ReactiveList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<T[]> command, [NotNull] ReactiveList<T> reactiveList, bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
+            if (reactiveList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveList));
+            }
+
             var presenter = new ReactivePresenterHandler<ReactiveList<T>>(Observable.Return(reactiveList), command.IsExecuting, command.Messages, command.ThrownExceptions);
 
             if (mergeResults)
@@ -185,9 +251,14 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             return presenter;
         }
 
-        public static IReactivePresenterHandler<ReactiveList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<IEnumerable<T>> command, ReactiveList<T> reactiveList, bool mergeResults = false)
+        public static IReactivePresenterHandler<ReactiveList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<IEnumerable<T>> command, [NotNull] ReactiveList<T> reactiveList, bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
+            if (reactiveList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveList));
+            }
+
             var presenter = new ReactivePresenterHandler<ReactiveList<T>>(Observable.Return(reactiveList), command.IsExecuting, command.Messages, command.ThrownExceptions);
 
             if (mergeResults)
@@ -206,7 +277,7 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             return presenter;
         }
 
-        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<List<T>> command, ReactiveList<T> reactiveList, IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
+        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<List<T>> command, [NotNull] ReactiveList<T> reactiveList, [NotNull] IReactiveDerivedList<T> reactiveDerivedList, [NotNull] bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
             var presenter = new ReactivePresenterHandler<IReactiveDerivedList<T>>(Observable.Return(reactiveDerivedList), command.IsExecuting, command.Messages, command.ThrownExceptions);
@@ -227,9 +298,19 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             return presenter;
         }
 
-        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<T[]> command, ReactiveList<T> reactiveList, IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
+        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<T[]> command, [NotNull] ReactiveList<T> reactiveList, [NotNull] IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
+            if (reactiveList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveList));
+            }
+
+            if (reactiveDerivedList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveDerivedList));
+            }
+
             var presenter = new ReactivePresenterHandler<IReactiveDerivedList<T>>(Observable.Return(reactiveDerivedList), command.IsExecuting, command.Messages, command.ThrownExceptions);
 
             if (mergeResults)
@@ -248,9 +329,19 @@ namespace ReactiveUI.Xaml.Controls.Handlers
             return presenter;
         }
 
-        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<IEnumerable<T>> command, ReactiveList<T> reactiveList, IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
+        public static IReactivePresenterHandler<IReactiveDerivedList<T>> CreateReactivePresenter<T>(this ReactivePresenterCommand<IEnumerable<T>> command, [NotNull] ReactiveList<T> reactiveList, [NotNull] IReactiveDerivedList<T> reactiveDerivedList, bool mergeResults = false)
             where T : ReactiveObject, IMergeableObject<T>
         {
+            if (reactiveList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveList));
+            }
+
+            if (reactiveDerivedList == null)
+            {
+                throw new ArgumentNullException(nameof(reactiveDerivedList));
+            }
+
             var presenter = new ReactivePresenterHandler<IReactiveDerivedList<T>>(Observable.Return(reactiveDerivedList), command.IsExecuting, command.Messages, command.ThrownExceptions);
 
             if (mergeResults)

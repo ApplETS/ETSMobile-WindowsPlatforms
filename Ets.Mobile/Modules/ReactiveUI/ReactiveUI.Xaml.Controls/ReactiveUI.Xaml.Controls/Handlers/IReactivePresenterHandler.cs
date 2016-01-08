@@ -22,5 +22,7 @@ namespace ReactiveUI.Xaml.Controls.Handlers
     {
         void OnNextValue(T obj);
         void OnNextIsReady(bool isReady);
+        void OnNextEmptyMessage();
+        void OnNextEmptyMessage(IMessagingContent messagingContent);
     }
 }

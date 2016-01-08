@@ -117,11 +117,14 @@ namespace ReactiveUI.Xaml.Controls
 
         public static readonly DependencyProperty DefaultErrorTitleKeyProperty =
             DependencyProperty.Register("DefaultErrorTitleKey", typeof(string), typeof(ReactivePresenter), new PropertyMetadata(null));
-        
+
+        public static readonly DependencyProperty UseEmptyMessagesProperty =
+            DependencyProperty.Register("UseEmptyMessages", typeof(bool), typeof(ReactivePresenter), new PropertyMetadata(null));
+
         #endregion
-        
+
         #region Properties
-        
+
         public DataTemplate RefreshingTemplate
         {
             get { return GetValue(RefreshingTemplateProperty) as DataTemplate; }
@@ -230,6 +233,12 @@ namespace ReactiveUI.Xaml.Controls
             set { SetValue(ReactiveStateProperty, value); }
         }
 
+        public bool UseEmptyMessages
+        {
+            get { return (bool)GetValue(UseEmptyMessagesProperty); }
+            set { SetValue(UseEmptyMessagesProperty, value); }
+        }
+
         #endregion
 
         #region _properties
@@ -326,7 +335,7 @@ namespace ReactiveUI.Xaml.Controls
                     source.EmptyMessage.Where(message => message != null)
                     .Subscribe(messagingContent =>
                     {
-                        SetIsEmpty(messagingContent);
+                        SetIsEmpty(true, messagingContent);
                     })
                 );
                 _subscriptions.Add(source.IsRefreshing.Where(isRefreshing => isRefreshing).Subscribe(SetIsRefreshing));
@@ -357,10 +366,14 @@ namespace ReactiveUI.Xaml.Controls
             }).GetAwaiter().OnCompleted(() => { });
         }
 
-        private void SetIsEmpty(object isEmpty, bool hasBeenInjected = false)
+        private void SetIsEmpty(bool isEmpty, IMessagingContent content = null, bool hasBeenInjected = false)
         {
             Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
+                if (UseEmptyMessages && content != null)
+                {
+                    DefaultEmptyMessage = content.Message;
+                }
                 CurrentIsEmpty = isEmpty;
                 ReactiveState = ReactiveState.Empty;
             }).GetAwaiter().OnCompleted(() => { });
@@ -413,7 +426,7 @@ namespace ReactiveUI.Xaml.Controls
                             var subSubTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException);
                             if (subSubTaskCompleted == getEmptyMessage)
                             {
-                                SetIsEmpty(true, true);
+                                SetIsEmpty(true, getEmptyMessage.Result, true);
                             }
                             else if (subTaskCompleted == getThrownException)
                             {
@@ -432,7 +445,7 @@ namespace ReactiveUI.Xaml.Controls
                             var subSubTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException);
                             if (subSubTaskCompleted == getEmptyMessage)
                             {
-                                SetIsEmpty(true, true);
+                                SetIsEmpty(true, getEmptyMessage.Result, hasBeenInjected:true);
                             }
                             else if (subTaskCompleted == getThrownException)
                             {
@@ -442,28 +455,45 @@ namespace ReactiveUI.Xaml.Controls
                     }
                     else if (subTaskCompleted == getEmptyMessage)
                     {
-                        SetIsEmpty(true, true);
+                        SetIsEmpty(true, getEmptyMessage.Result, hasBeenInjected: true);
                     }
                     else if (subTaskCompleted == getThrownException)
                     {
                         SetThrownException(getThrownException.Result.Message, true);
                     }
                 }
-                if (taskCompleted == getValue)
+                else
                 {
-                    CurrentSource = getValue.Result;
-                    ReactiveState = ReactiveState.Value;
+                    taskCompleted = await Task.WhenAny(getValue, getEmptyMessage, getThrownException);
+                    if (taskCompleted == getValue && getValue != null)
+                    {
+                        var derived = getValue.Result as IReactiveDerivedList<object>;
+                        var reactiveList = getValue.Result as IReactiveList<object>;
+                        if ((derived != null && derived.Count > 0) || (reactiveList != null && reactiveList.Count > 0))
+                        {
+                            SetContent(getValue.Result, hasBeenInjected: true);
+                        }
+
+                        var subSubTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException);
+                        if (subSubTaskCompleted == getEmptyMessage)
+                        {
+                            SetIsEmpty(true, getEmptyMessage.Result, true);
+                        }
+                        else if (subSubTaskCompleted == getThrownException)
+                        {
+                            SetThrownException(getThrownException.Result.Message, true);
+                        }
+                    }
+                    else if (taskCompleted == getEmptyMessage)
+                    {
+                        SetIsEmpty(true, getEmptyMessage.Result, true);
+                    }
+                    else if (taskCompleted == getThrownException)
+                    {
+                        SetThrownException(getThrownException.Result.Message, true);
+                    }
                 }
-                else if (taskCompleted == getEmptyMessage)
-                {
-                    CurrentIsEmpty = true;
-                    ReactiveState = ReactiveState.Empty;
-                }
-                else if (taskCompleted == getThrownException)
-                {
-                    CurrentError = getThrownException.Result.Message;
-                    ReactiveState = ReactiveState.Error;
-                }
+                
             }).GetAwaiter().OnCompleted(() => { });
         }
 
@@ -505,7 +535,14 @@ namespace ReactiveUI.Xaml.Controls
                     SetTemplate(_errorPresenter, ErrorTemplate, CurrentSource, CurrentError as Exception);
                     break;
                 case ReactiveState.Empty:
-                    SetTemplate(_emptyPresenter, EmptyTemplate ?? ValueTemplate);
+                    if (UseEmptyMessages)
+                    {
+                        SetTemplate(_emptyPresenter, EmptyTemplate);
+                    }
+                    else
+                    {
+                        SetTemplate(_emptyPresenter, EmptyTemplate ?? ValueTemplate);
+                    }
                     break;
                 case ReactiveState.Disposed:
                 case ReactiveState.Waiting: return;

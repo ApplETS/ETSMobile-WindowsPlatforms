@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Messaging.Interfaces.Common;
+using System;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Messaging.Interfaces.Common;
 
 namespace ReactiveUI.Xaml.Controls.Extensions
 {
@@ -20,10 +18,12 @@ namespace ReactiveUI.Xaml.Controls.Extensions
 
         public static IObservable<T> ThrowIfEmpty<T>(this IObservable<T> obs)
         {
-            return obs.Materialize()
+            return obs
+                .FirstOrDefaultAsync()
+                .Materialize()
                 .SelectMany(x =>
                 {
-                    if (!x.HasValue)
+                    if ((x.HasValue && x.Value == null && x.Kind == NotificationKind.OnNext) || (!x.HasValue && x.Exception != null))
                     {
                         return Observable.Throw<T>(new EmptyMessageContent("empty")).Materialize();
                     }
