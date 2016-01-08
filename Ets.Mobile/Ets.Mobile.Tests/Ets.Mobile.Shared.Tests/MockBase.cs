@@ -2,7 +2,7 @@
 
 namespace Ets.Mobile.Shared.Tests
 {
-    public class DTBase
+    public class MockBase
     {
         protected IMutableDependencyResolver locator = Locator.CurrentMutable;
     }

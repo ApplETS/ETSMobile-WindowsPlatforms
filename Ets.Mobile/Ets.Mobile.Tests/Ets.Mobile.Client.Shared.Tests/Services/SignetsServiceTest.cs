@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace Ets.Mobile.Client.Shared.Tests.Services
 {
     [TestClass]
-    public class SignetsServiceTest : DTBase, ISignetsServiceTest
+    public class SignetsServiceTest : MockBase, ISignetsServiceTest
     {
         public ISignetsService GetSignetsServices()
         {
