@@ -369,4 +369,43 @@
   <data name="SendLogsButtonUid.Content" xml:space="preserve">
     <value>send logs</value>
   </data>
+  <data name="MoodleMainPage" xml:space="preserve">
+    <value>Select a course</value>
+  </data>
+  <data name="MoodleCoursesEmpty" xml:space="preserve">
+    <value>There are no courses to show</value>
+  </data>
+  <data name="MoodleCourseContent" xml:space="preserve">
+    <value>Course Contents</value>
+  </data>
+  <data name="MoodleCoursesContentEmpty" xml:space="preserve">
+    <value>There is no content available for this course</value>
+  </data>
+  <data name="MoodleCoursesModuleEmpty" xml:space="preserve">
+    <value>There is no information to display at the moment</value>
+  </data>
+  <data name="MoodleCoursesModuleContentEmpty" xml:space="preserve">
+    <value>There is no content available for this module</value>
+  </data>
+  <data name="MoodleCourseModule" xml:space="preserve">
+    <value>Modules</value>
+  </data>
+  <data name="MoodleCourseModuleContent" xml:space="preserve">
+    <value>Contents of Module</value>
+  </data>
+  <data name="CourseModuleContentUid.Text" xml:space="preserve">
+    <value>Module contents</value>
+  </data>
+  <data name="CourseMoodleUrlUid.Source" xml:space="preserve">
+    <value>/Assets/Moodle/CourseMoodleUrl_Dark.24.png</value>
+  </data>
+  <data name="LinkToCourseModuleUid.Text" xml:space="preserve">
+    <value>Link to this module</value>
+  </data>
+  <data name="RefreshUid.Label" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="ViewCalendarUid.Label" xml:space="preserve">
+    <value>View</value>
+  </data>
 </root>
