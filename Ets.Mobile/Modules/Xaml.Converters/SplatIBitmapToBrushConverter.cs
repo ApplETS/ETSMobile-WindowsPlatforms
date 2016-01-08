@@ -1,14 +1,19 @@
-﻿using System;
+﻿using Splat;
+using System;
 using Windows.UI.Xaml.Data;
 
-namespace Ets.Mobile.Converters
+namespace Xaml.Converters
 {
-    public class ViewModelAvailabilityToBooleanConverter : IValueConverter
+    public class SplatIBitmapToBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var str = value as string;
-            return !string.IsNullOrEmpty(str);
+            var bitmap = value as IBitmap;
+            if (bitmap != null)
+            {
+                return bitmap.ToNative();
+            }
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

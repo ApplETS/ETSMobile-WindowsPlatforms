@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Splat;
+using System;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
-using Splat;
 
 namespace Xaml.Converters
 {
@@ -14,6 +14,11 @@ namespace Xaml.Converters
             if (string.IsNullOrEmpty(str))
             {
                 return null;
+            }
+
+            if (str == "N/A")
+            {
+                return str;
             }
 
             var semesterSeason = string.Empty;
