@@ -1,19 +1,25 @@
 ﻿using Akavache;
+using CrittercismSDK;
 using Ets.Mobile.Agent;
 using Ets.Mobile.Client.Contracts;
-using Ets.Mobile.Entities.Signets;
+using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Pages.Account;
 using Ets.Mobile.Pages.Grade;
 using Ets.Mobile.Pages.Main;
+using Ets.Mobile.Pages.Moodle;
+using Ets.Mobile.Pages.Moodle.Courses;
 using Ets.Mobile.Pages.Program;
 using Ets.Mobile.Pages.Schedule;
 using Ets.Mobile.Pages.Settings;
+using Ets.Mobile.Shared;
 using Ets.Mobile.UserErrorHandlers;
 using Ets.Mobile.ViewModel.Contracts.Shared;
 using Ets.Mobile.ViewModel.Contracts.UserDetails;
 using Ets.Mobile.ViewModel.Pages.Account;
 using Ets.Mobile.ViewModel.Pages.Grade;
 using Ets.Mobile.ViewModel.Pages.Main;
+using Ets.Mobile.ViewModel.Pages.Moodle;
+using Ets.Mobile.ViewModel.Pages.Moodle.Courses;
 using Ets.Mobile.ViewModel.Pages.Program;
 using Ets.Mobile.ViewModel.Pages.Schedule;
 using Ets.Mobile.ViewModel.Pages.Settings;
@@ -29,9 +35,6 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
-using CrittercismSDK;
-using Ets.Mobile.Entities.Auth;
-using Ets.Mobile.Shared;
 #if WINDOWS_PHONE_APP
 using Ets.Mobile.ViewModel.WinPhone.Pages.ExtendedSplashScreen;
 using Ets.Mobile.Pages.ExtendedSplashScreen;
@@ -168,7 +171,7 @@ namespace Ets.Mobile.ViewModel
 	                object navigateTo;
 	                if (signetsAccountVm.IsLoginSuccessful)
 	                {
-                        _resolver.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
+                        _resolver.GetService<ISsoService>().SetCredentials(signetsAccountVm);
                         _resolver.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
 	                    SideNavigation.UserDetails.LoadProfile.Execute(null);
                         navigateTo = new MainViewModel(this);
@@ -185,7 +188,7 @@ namespace Ets.Mobile.ViewModel
 	            });
         }
 
-#region Registration
+        #region Registration
 
         private static void RegisterContainer(IMutableDependencyResolver resolver)
 		{
@@ -202,6 +205,10 @@ namespace Ets.Mobile.ViewModel
             resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramViewModel>));
             resolver.Register(() => new SelectCourseForGradePage(), typeof(IViewFor<SelectCourseForGradeViewModel>));
             resolver.Register(() => new SettingsPage(), typeof(IViewFor<SettingsViewModel>));
+            resolver.Register(() => new MoodleMainPage(), typeof(IViewFor<MoodleMainPageViewModel>));
+            resolver.Register(() => new MoodleCourseContentPage(), typeof(IViewFor<MoodleCourseContentPageViewModel>));
+            resolver.Register(() => new MoodleCourseModulePage(), typeof(IViewFor<MoodleCourseModulePageViewModel>));
+            resolver.Register(() => new MoodleCourseModuleContentPage(), typeof(IViewFor<MoodleCourseModuleContentPageViewModel>));
         }
 
         private static async void RegisterBackgroundTasks()
@@ -211,6 +218,6 @@ namespace Ets.Mobile.ViewModel
             UserErrorOfflineHandler.ExceptionsHandled.Add(typeof(ApiException));
         }
 
-#endregion
+        #endregion
     }
 }
