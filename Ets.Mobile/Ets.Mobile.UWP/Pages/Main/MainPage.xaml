@@ -40,8 +40,8 @@
         <!-- Command Bar -->
         <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshToday" Icon="Refresh" Label="Refresh" Command="{Binding LoadCoursesForToday}" />
-                <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" Command="{Binding LoadGrades}" />
+                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshToday" Icon="Refresh" Label="Refresh" Command="{Binding LoadCoursesForToday}" />
+                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" Command="{Binding LoadGrades}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Grid>

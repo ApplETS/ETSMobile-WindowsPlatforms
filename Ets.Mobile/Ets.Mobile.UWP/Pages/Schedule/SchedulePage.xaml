@@ -172,8 +172,8 @@
         <!-- Command Bar -->
         <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
-                <AppBarButton Label="View" Click="ChangeCalendarView_Click" Tapped="ChangeCalendarView_Click">
+                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
+                <AppBarButton x:Uid="ViewCalendarUid" Label="View" Click="ChangeCalendarView_Click" Tapped="ChangeCalendarView_Click">
                     <AppBarButton.Icon>
                         <BitmapIcon UriSource="/Assets/AppBarButton/CalendarView.bigger.png"/>
                     </AppBarButton.Icon>

@@ -12,8 +12,8 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
-                <AppBarButton Label="View">
+                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshSchedule" Icon="Refresh" Label="Refresh" />
+                <AppBarButton x:Uid="ViewCalendarUid" Label="View">
                     <AppBarButton.Icon>
                         <BitmapIcon Width="22" Height="22" MaxHeight="22" MaxWidth="22" UriSource="/Assets/AppBarButton/CalendarView.png"/>
                     </AppBarButton.Icon>
