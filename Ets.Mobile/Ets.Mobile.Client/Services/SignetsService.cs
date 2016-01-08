@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Threading.Tasks;
-using System.Threading.Tasks;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Business.Entities.Results.Signets;
 using Ets.Mobile.Client.Contracts;
@@ -12,15 +8,15 @@ using Ets.Mobile.Client.Factories.Implementations.Signets;
 using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Signets;
 using Security.Algorithms;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Threading.Tasks;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.Client.Services
 {
     public class SignetsService : ISignetsService
     {
-        private readonly ISignetsBusinessService _signetsService;
-        private EtsUserCredentials _userCredentials;
-        private readonly SignetsAbstractFactory _factory;
-
         public SignetsService(ISignetsBusinessService signetsService, SignetsAbstractFactory factory)
         {
             _signetsService = signetsService;
@@ -50,7 +46,7 @@ namespace Ets.Mobile.Client.Services
         {
             var userDetailsResult = await _signetsService.UserDetails(_userCredentials.Username, _userCredentials.Password);
             
-            _signetsService.HandleError(userDetailsResult);
+            this.HandleError(userDetailsResult);
 
             var userDetailsVm = _factory.CreateFor<UserDetailsResult, UserDetailsVm>(userDetailsResult);
 
@@ -67,7 +63,7 @@ namespace Ets.Mobile.Client.Services
         {
             var coursesResult = await _signetsService.Courses(_userCredentials.Username, _userCredentials.Password);
 
-            _signetsService.HandleError(coursesResult);
+            this.HandleError(coursesResult);
 
             return _factory.CreateFor<CoursesResult, List<CourseVm>>(coursesResult).ToArray();
         }
@@ -76,7 +72,7 @@ namespace Ets.Mobile.Client.Services
         {
             var coursesIntervalResult = await _signetsService.CoursesIntervalSemester(_userCredentials.Username, _userCredentials.Password, startSemester, endSemester);
 
-            _signetsService.HandleError(coursesIntervalResult);
+            this.HandleError(coursesIntervalResult);
 
             return _factory.CreateFor<CoursesIntervalSemesterResult, List<CourseIntervalVm>>(coursesIntervalResult).ToArray();
         }
@@ -85,7 +81,7 @@ namespace Ets.Mobile.Client.Services
         {
             var semestersResult = await _signetsService.Semesters(_userCredentials.Username, _userCredentials.Password);
 
-            _signetsService.HandleError(semestersResult);
+            this.HandleError(semestersResult);
 
             return _factory.CreateFor<SemestersResult, List<SemesterVm>>(semestersResult).ToArray();
         }
@@ -94,7 +90,7 @@ namespace Ets.Mobile.Client.Services
         {
             var programsResult = await _signetsService.Programs(_userCredentials.Username, _userCredentials.Password);
 
-            _signetsService.HandleError(programsResult);
+            this.HandleError(programsResult);
 
             return _factory.CreateFor<ProgramsResult, List<ProgramVm>>(programsResult).ToArray();
         }
@@ -103,7 +99,7 @@ namespace Ets.Mobile.Client.Services
         {
             var teammatesResult = await _signetsService.Teammates(_userCredentials.Username, _userCredentials.Password, courseAbridgedName, group, semesterAbridgedName, evaluationElementName);
 
-            _signetsService.HandleError(teammatesResult);
+            this.HandleError(teammatesResult);
 
             return _factory.CreateFor<TeammatesResult, List<TeammateVm>>(teammatesResult).ToArray();
         }
@@ -118,7 +114,7 @@ namespace Ets.Mobile.Client.Services
             var evaluationsVm = await _signetsService.Evaluations(_userCredentials.Username, _userCredentials.Password,
                 courseAbridgedName, group, semesterAbridgedName);
 
-            _signetsService.HandleError(evaluationsVm);
+            this.HandleError(evaluationsVm);
 
             return _factory.CreateFor<EvaluationsResult, EvaluationsVm>(evaluationsVm);
         }
@@ -126,8 +122,8 @@ namespace Ets.Mobile.Client.Services
         public async Task<ScheduleAndTeachersVm> ScheduleAndTeachers(string semesterAbridgedName)
         {
             var scheduleAndTeachersResult = await _signetsService.ScheduleAndTeachers(_userCredentials.Username, _userCredentials.Password, semesterAbridgedName);
-            
-            _signetsService.HandleError(scheduleAndTeachersResult);
+
+            this.HandleError(scheduleAndTeachersResult);
 
             return _factory.CreateFor<ScheduleAndTeachersResult, ScheduleAndTeachersVm>(scheduleAndTeachersResult);
         }
@@ -136,7 +132,7 @@ namespace Ets.Mobile.Client.Services
         {
             var scheduleFinalExamsResult = await _signetsService.ScheduleFinalExams(_userCredentials.Username, _userCredentials.Password, semesterAbridgedName);
 
-            _signetsService.HandleError(scheduleFinalExamsResult);
+            this.HandleError(scheduleFinalExamsResult);
 
             return _factory.CreateFor<ScheduleFinalExamsResult, List<ScheduleFinalExamVm>>(scheduleFinalExamsResult).ToArray();
         }
@@ -145,7 +141,7 @@ namespace Ets.Mobile.Client.Services
         {
             var coursesForSemesterResult = await _signetsService.CoursesForSemester(_userCredentials.Username, _userCredentials.Password, semesterAbridgedName, courseAbridgedName);
 
-            _signetsService.HandleError(coursesForSemesterResult);
+            this.HandleError(coursesForSemesterResult);
 
             return _factory.CreateFor<CourseForSemesterResult, List<CourseForSemesterVm>>(coursesForSemesterResult).ToArray();
         }
@@ -154,7 +150,7 @@ namespace Ets.Mobile.Client.Services
         {
             var replacedDaysResult = await _signetsService.ReplacedDays(semesterAbridgedName);
 
-            _signetsService.HandleError(replacedDaysResult);
+            this.HandleError(replacedDaysResult);
 
             return _factory.CreateFor<ReplacedDaysResult, List<ReplacedDayVm>>(replacedDaysResult).ToArray();
         }
@@ -163,7 +159,7 @@ namespace Ets.Mobile.Client.Services
         {
             var scheduleResult = await _signetsService.Schedule(_userCredentials.Username, _userCredentials.Password, semesterAbridgedName, courseAbridgedNameAndGroup, startDate, endDate);
 
-            _signetsService.HandleError(scheduleResult);
+            this.HandleError(scheduleResult);
 
             return _factory.CreateFor<ScheduleResult, List<ScheduleVm>>(scheduleResult)
                 .Select(s => 
@@ -174,5 +170,13 @@ namespace Ets.Mobile.Client.Services
                 })
                 .ToArray();
         }
+
+        #region Properties
+
+        private readonly ISignetsBusinessService _signetsService;
+        private EtsUserCredentials _userCredentials;
+        private readonly SignetsAbstractFactory _factory;
+
+        #endregion
     }
 }
