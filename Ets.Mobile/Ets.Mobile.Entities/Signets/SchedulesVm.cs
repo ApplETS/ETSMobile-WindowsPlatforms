@@ -66,7 +66,7 @@ namespace Ets.Mobile.Entities.Signets
         [DataMember] public string CourseAndGroup
         {
         	get { return _courseAndGroup; }
-            set { this.RaiseAndSetIfChanged(ref _courseAndGroup, value); }
+            set { this.RaiseAndSetIfChanged(ref _courseAndGroup, value?.Trim()); }
         }
 
         private string _name;
@@ -98,6 +98,8 @@ namespace Ets.Mobile.Entities.Signets
         }
 
         public string Time => $"{StartDate.ToString(@"hh\:mm tt")}-{EndDate.ToString(@"hh\:mm tt")}";
+
+        public string Group => CourseAndGroup.Split('-')[1].Trim();
 
         [DataMember]
         public string ActivityName => $"{CourseAndGroup.Substring(0, CourseAndGroup.IndexOf("-", StringComparison.Ordinal))}: {Title}";
