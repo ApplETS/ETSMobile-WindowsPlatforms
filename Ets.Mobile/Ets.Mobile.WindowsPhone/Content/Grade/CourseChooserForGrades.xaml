@@ -88,7 +88,7 @@
                         <GroupStyle HidesIfEmpty="False">
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="5,0,0,5" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
+                                    <Grid Margin="-5,0,0,0" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
                                         <TextBlock Text="{Binding Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{ThemeResource EtsListViewHeaderItemStyle}"  />
                                     </Grid>
                                 </DataTemplate>

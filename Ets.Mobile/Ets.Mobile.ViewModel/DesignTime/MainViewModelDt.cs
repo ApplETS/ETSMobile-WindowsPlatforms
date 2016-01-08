@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Ets.Mobile.Entities.Signets;
-using System.Reactive;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using Windows.ApplicationModel;
-using Windows.UI;
+﻿using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Content.Main;
 using Ets.Mobile.ViewModel.Contracts.Main;
 using Ets.Mobile.ViewModel.Contracts.Shared;
@@ -15,7 +7,14 @@ using Ets.Mobile.ViewModel.Pages.UserDetails;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
+using System;
+using System.Collections.Generic;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Themes;
+using Windows.ApplicationModel;
+using Windows.UI;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
@@ -69,7 +68,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                 TodayPresenter = new ReactivePresenterHandlerDesignTime<IReactiveDerivedList<ScheduleVm>>(Observable.Return(new ReactiveDerivedListDesignTime<ScheduleVm>(todayItems)));
                 GradesPresenter = new ReactivePresenterHandlerDesignTime<IReactiveDerivedList<GradeSummaryViewModelGroup>>(Observable.Return(new ReactiveDerivedListDesignTime<GradeSummaryViewModelGroup>(gradeItems)));
                 LoadCoursesForToday = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new ScheduleVm[0]));
-                LoadGrades = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new List<GradeSummaryViewModelGroup>()));
+                LoadCoursesSummaries = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new List<GradeSummaryViewModelGroup>()));
                 NavigateToSchedule = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
                 NavigateToProgram = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
                 SideNavigation = new SideNavigationViewModel(null)
@@ -114,7 +113,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
         public ISideNavigationViewModel SideNavigation { get; }
 
         public ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; }
-        public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadGrades { get; }
+        public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadCoursesSummaries { get; }
         public ReactiveCommand<Unit> NavigateToSchedule { get; }
         public ReactiveCommand<Unit> NavigateToProgram { get; }
     }
