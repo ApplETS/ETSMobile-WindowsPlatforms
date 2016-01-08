@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="/Skins/SplitViewStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <x:String x:Key="AppName">ETS Mobile</x:String>
+            <converters:HtmlStringToStringConverter x:Key="HtmlStringToStringConverter" />
             <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
             <converters:StringToLowerConverter x:Key="StringToLowerConverter" />
             <converters:StringToLocalizedStringConverter x:Key="StringToLocalizedStringConverter" />

@@ -9,8 +9,6 @@
     <Import_RootNamespace>Ets.Mobile</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\ViewModelAvailabilityToBooleanConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\ViewModelAvailabilityToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\CombinedLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\StorageFileEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
@@ -28,6 +26,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Grade\GradePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Grade\SelectCourseForGradePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Main\MainPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Moodle\Courses\MoodleCourseContentPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Moodle\Courses\MoodleCourseModulePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Moodle\Courses\MoodleCourseModuleContentPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Moodle\MoodleMainPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Program\ProgramPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Schedule\SchedulePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Pages\Settings\SettingsPage.cs" />
@@ -38,6 +40,10 @@
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)Assets\AppBarButton\CalendarView.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Credits\ModernHttpClient.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Menu\Contacts-37.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Menu\MoodleLogo.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Moodle\CourseMoodleUrl_Dark.24.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Moodle\CourseMoodleUrl_White.24.png" />
     <Content Include="$(MSBuildThisFileDirectory)Fonts\segmdl2.ttf" />
   </ItemGroup>
   <ItemGroup>

@@ -71,6 +71,16 @@
                     <TextBlock Text="" />
                 </RadioButton.Tag>
             </RadioButton>
+
+            <!-- Moodle -->
+            <RadioButton IsChecked="{Binding IsMoodle, Mode=TwoWay}" Command="{Binding NavCommand}" GroupName="Nav" CommandParameter="{Binding Moodle, Source={StaticResource PageTypes}}">
+                <RadioButton.Content>
+                    <TextBlock x:Uid="MoodleUid" Text="Moodle" Height="25" />
+                </RadioButton.Content>
+                <RadioButton.Tag>
+                    <Image Source="/Assets/Menu/MoodleLogo.png" Width="25" Margin="-4,-4,0,0"/>
+                </RadioButton.Tag>
+            </RadioButton>
         </StackPanel>
 
         <StackPanel x:Name="BottomPane" Grid.Row="2">
@@ -87,7 +97,7 @@
                         <Border CornerRadius="25" Width="{StaticResource SplitViewUserImageSize}" Height="{StaticResource SplitViewUserImageSize}">
                             <Border.Background>
                                 <!--<TextBlock Text="" />-->
-                                <ImageBrush ImageSource="{Binding Profile.ImageSource, FallbackValue='/Assets/Menu/Contacts-64.png'}"  />
+                                <ImageBrush ImageSource="{Binding Profile.ImageSource, FallbackValue='/Assets/Menu/Contacts-37.png'}"  />
                             </Border.Background>
                         </Border>
                     </Border>
@@ -96,15 +106,15 @@
 
             <!-- Settings -->
             <RadioButton IsChecked="{Binding IsSettings, Mode=TwoWay}" Command="{Binding NavCommand}" GroupName="Nav" CommandParameter="{Binding Settings, Source={StaticResource PageTypes}}">
-            <RadioButton.Content>
-                <Grid Margin="0,-4,0,0">
-                    <TextBlock x:Uid="SettingsUid" Text="Paramètres" FontSize="{StaticResource Size3}" Height="25" />
-                </Grid>
-            </RadioButton.Content>
-            <RadioButton.Tag>
-                <TextBlock Text="" />
-            </RadioButton.Tag>
-        </RadioButton>
+                <RadioButton.Content>
+                    <Grid Margin="0,-4,0,0">
+                        <TextBlock x:Uid="SettingsUid" Text="Paramètres" FontSize="{StaticResource Size3}" Height="25" />
+                    </Grid>
+                </RadioButton.Content>
+                <RadioButton.Tag>
+                    <TextBlock Text="" />
+                </RadioButton.Tag>
+            </RadioButton>
         </StackPanel>
     </Grid>
 </UserControl>
