@@ -1,11 +1,12 @@
-﻿using System.Runtime.Serialization;
+﻿using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
 using ReactiveUI.Extensions;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Moodle
 {
     [DataContract]
-    public class MoodleCourseVm : ReactiveObject, IMergeableObject<MoodleCourseVm>
+    public class MoodleCourseVm : ReactiveObject, IMergeableObject<MoodleCourseVm>, ICustomColor
     {
         #region IMergeableObject
 
@@ -34,9 +35,33 @@ namespace Ets.Mobile.Entities.Moodle
             FullName = other.FullName;
             IdNumber = other.IdNumber;
             Summary = other.Summary;
+            SetNewColor(new ColorVm(other.Color));
         }
 
         #endregion
+
+        #region ICustomColor Implementation
+
+        private string _color;
+        [DataMember]
+        public string Color
+        {
+            get { return _color; }
+            set { this.RaiseAndSetIfChanged(ref _color, value); }
+        }
+
+        public void SetNewColor(ColorVm color)
+        {
+            // Set Value for Store
+            if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
+            {
+                Color = color.HexColor;
+            }
+        }
+
+        #endregion
+
+        #region Moodle Properties
 
         private int _id;
         [DataMember]
@@ -76,6 +101,30 @@ namespace Ets.Mobile.Entities.Moodle
         {
             get { return _summary; }
             set { this.RaiseAndSetIfChanged(ref _summary, value); }
+        }
+
+        #endregion
+
+        private string _semester;
+        [DataMember]
+        public string Semester
+        {
+            get { return _semester; }
+            set { this.RaiseAndSetIfChanged(ref _semester, value); }
+        }
+        private string _courseName;
+        [DataMember]
+        public string CourseName
+        {
+            get { return _courseName; }
+            set { this.RaiseAndSetIfChanged(ref _courseName, value); }
+        }
+        private string[] _groups;
+        [DataMember]
+        public string[] Groups
+        {
+            get { return _groups; }
+            set { this.RaiseAndSetIfChanged(ref _groups, value); }
         }
     }
 }

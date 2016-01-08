@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
 using System.Runtime.Serialization;
+using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
 using ReactiveUI.Extensions;
 
 namespace Ets.Mobile.Entities.Moodle
 {
-    public class MoodleCourseModuleVm : ReactiveObject, IMergeableObject<MoodleCourseModuleVm>
+    public class MoodleCourseModuleVm : ReactiveObject, IMergeableObject<MoodleCourseModuleVm>, ICustomColor
     {
         #region IMergeableObject
 
@@ -51,7 +53,40 @@ namespace Ets.Mobile.Entities.Moodle
             ModPlural = other.ModPlural;
             Indent = other.Indent;
             Url = other.Url;
-            Contents = other.Contents;
+            SetNewColor(new ColorVm(other.Color));
+
+            if (other.Contents != null && Contents != null)
+            {
+                foreach (var tuple in Contents.Where(c => other.Contents.Any(x => c.FileName == x.FileName)).Select(m => new Tuple<MoodleCourseModuleContentVm, MoodleCourseModuleContentVm>(m, other.Contents.First(x => m.FileName == x.FileName))))
+                {
+                    tuple.Item1.MergeWith(tuple.Item2);
+                }
+            }
+            if (Contents == null && other.Contents != null)
+            {
+                Contents = other.Contents;
+            }
+        }
+
+        #endregion
+
+        #region ICustomColor Implementation
+
+        private string _color;
+        [DataMember]
+        public string Color
+        {
+            get { return _color; }
+            set { this.RaiseAndSetIfChanged(ref _color, value); }
+        }
+
+        public void SetNewColor(ColorVm color)
+        {
+            // Set Value for Store
+            if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
+            {
+                Color = color.HexColor;
+            }
         }
 
         #endregion

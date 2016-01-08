@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using ReactiveUI;
 using ReactiveUI.Extensions;
+using Splat;
 
 namespace Ets.Mobile.Entities.Moodle
 {
@@ -102,6 +103,13 @@ namespace Ets.Mobile.Entities.Moodle
         {
             get { return _userPictureUrl; }
             set { this.RaiseAndSetIfChanged(ref _userPictureUrl, value); }
+        }
+
+        private IBitmap _userPicture;
+        public IBitmap UserPicture
+        {
+            get { return _userPicture; }
+            set { this.RaiseAndSetIfChanged(ref _userPicture, value); }
         }
     }
 }

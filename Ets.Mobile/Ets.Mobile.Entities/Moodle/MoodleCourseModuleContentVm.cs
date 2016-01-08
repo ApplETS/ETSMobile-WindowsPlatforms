@@ -10,7 +10,7 @@ namespace Ets.Mobile.Entities.Moodle
 
         public bool Equals(MoodleCourseModuleContentVm x, MoodleCourseModuleContentVm y)
         {
-            return x.Type == y.Type
+            return x.ModuleType == y.ModuleType
                 && x.FileName == y.FileName
                 && x.FilePath == y.FilePath
                 && x.FileSize == y.FileSize
@@ -25,7 +25,7 @@ namespace Ets.Mobile.Entities.Moodle
 
         public int GetHashCode(MoodleCourseModuleContentVm obj)
         {
-            return obj.Type.GetHashCode() ^
+            return obj.ModuleType.GetHashCode() ^
                    obj.FileName.GetHashCode() ^
                    obj.FilePath.GetHashCode() ^
                    obj.FileSize.GetHashCode() ^
@@ -40,7 +40,7 @@ namespace Ets.Mobile.Entities.Moodle
 
         public void MergeWith(MoodleCourseModuleContentVm other)
         {
-            Type = other.Type;
+            ModuleType = other.ModuleType;
             FileName = other.FileName;
             FilePath = other.FilePath;
             FileSize = other.FileSize;
@@ -55,13 +55,13 @@ namespace Ets.Mobile.Entities.Moodle
 
         #endregion
 
-        private string _type;
+        private string _moodleType;
 
         [DataMember]
-        public string Type
+        public string ModuleType
         {
-            get { return _type; }
-            set { this.RaiseAndSetIfChanged(ref _type, value); }
+            get { return _moodleType; }
+            set { this.RaiseAndSetIfChanged(ref _moodleType, value); }
         }
         private string _fileName;
 
