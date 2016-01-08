@@ -54,6 +54,12 @@ namespace Ets.Mobile.ViewModel.Content.Grade
                 )
             );
 
+            LoadGrade.ThrownExceptions
+                .Subscribe(x =>
+                {
+                    UserError.Throw(x.Message, x);
+                });
+
             GradesPresenter = LoadGrade.CreateReactivePresenter();
         }
     }
