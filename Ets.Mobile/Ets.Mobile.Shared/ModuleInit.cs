@@ -62,7 +62,7 @@ namespace Ets.Mobile.Shared
 		    InitializeBusinessServices(resolver);
 
             // Client Services
-            
+            InitializeClientServices(resolver);
 
             // Custom Settings
             resolver.RegisterLazySingleton(() => new CustomSettingsService(), typeof(ICustomSettingsService));
@@ -106,7 +106,14 @@ namespace Ets.Mobile.Shared
                 BaseAddress = new Uri(resolver.GetService<MoodleClientInfo>().Url)
             };
 
+
             resolver.RegisterLazySingleton(() => RestService.For<IMoodleBusinessService>(clientMoodle), typeof(IMoodleBusinessService));
+
+            resolver.RegisterLazySingleton(() => new MoodleService(resolver.GetService<IMoodleBusinessService>(), new MoodleFactory()), typeof(IMoodleService));
+
+            // SSO Service
+            //
+            resolver.RegisterLazySingleton(() => new SsoService(resolver.GetService<ISignetsService>(), resolver.GetService<IMoodleService>()), typeof(ISsoService));
         }
 
         private static void InitializeClientServices(IMutableDependencyResolver resolver)
