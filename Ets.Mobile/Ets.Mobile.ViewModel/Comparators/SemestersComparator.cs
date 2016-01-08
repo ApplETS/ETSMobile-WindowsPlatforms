@@ -7,7 +7,12 @@ namespace Ets.Mobile.ViewModel.Comparators
     {
         public static int Compare(string obj1, string obj2)
         {
-            if(int.Parse(obj1.Substring(1, 4)) != int.Parse(obj2.Substring(1, 4)))
+            if (obj1 == "N/A" || obj2 == "N/A")
+            {
+                return 1;
+            }
+
+            if (int.Parse(obj1.Substring(1, 4)) != int.Parse(obj2.Substring(1, 4)))
             {
                 return int.Parse(obj1.Substring(1, 4)).CompareTo(int.Parse(obj2.Substring(1, 4)));
             }
@@ -44,6 +49,11 @@ namespace Ets.Mobile.ViewModel.Comparators
 
         public static int ReversedCompare(string obj1, string obj2)
         {
+            if (obj1 == "N/A" || obj2 == "N/A")
+            {
+                return 1;
+            }
+
             if (int.Parse(obj1.Substring(1, 4)) != int.Parse(obj2.Substring(1, 4)))
             {
                 return -int.Parse(obj1.Substring(1, 4)).CompareTo(int.Parse(obj2.Substring(1, 4)));
