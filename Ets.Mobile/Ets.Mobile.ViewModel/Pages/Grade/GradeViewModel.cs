@@ -1,15 +1,15 @@
-﻿using System;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Grade;
 using ReactiveUI;
+using System;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
@@ -38,25 +38,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         {
             GradeItems = new ReactiveList<GradeViewModelItem>();
             
-            LoadGrade = ReactiveCommand.CreateAsyncObservable(_ =>
-                Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
-                    .Select(courses =>
-                        courses
-                            .OrderByDescending(x => x.Semester, new SemestersComparator())
-                            .ToList()
-                    )
-                    .Where(x => x != null
-                        && x.Any(y => !string.IsNullOrEmpty(y.Semester))
-                        && x.Any(y => y.Semester == Semester))
-                    .Select(x => x.Where(y => y.Semester == Semester))
-                    .Select(gradeItems => gradeItems.Select(y => new GradeViewModelItem(y)).ToArray())
-                    .Do(gradeItems =>
-                    {
-                        var selectedCourse = gradeItems.First(y => y.Course.Acronym == SelectedCourse.Acronym);
-                        selectedCourse.LoadGrade.ExecuteAsyncTask(null);
-                        selectedCourse.HasTriggeredLoadGradeOnce = true;
-                    })
-            );
+            LoadGrade = ReactiveCommand.CreateAsyncObservable(_ => FetchGradeItems());
 
             LoadGrade.ThrownExceptions
                 .Subscribe(x =>
@@ -73,6 +55,32 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
                 }
             });
         }
+
+        private IObservable<GradeViewModelItem[]> FetchGradeItems()
+        {
+            var getCourses = Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
+                    .Select(courses =>
+                        courses
+                            .OrderByDescending(x => x.Semester, new SemestersComparator())
+                            .ToList()
+                    )
+                    .Where(x => x != null
+                        && x.Any(y => !string.IsNullOrEmpty(y.Semester))
+                        && x.Any(y => y.Semester == Semester))
+                    .Select(x => x.Where(y => y.Semester == Semester));
+
+            var createSummariesAndFetchFirst = 
+                getCourses
+                .Select(gradeItems => gradeItems.Select(y => new GradeViewModelItem(y)).ToArray())
+                .Do(gradeItems =>
+                {
+                    var selectedCourse = gradeItems.First(y => y.Course.Acronym == SelectedCourse.Acronym);
+                    selectedCourse.LoadGrade.ExecuteAsyncTask();
+                    selectedCourse.HasTriggeredLoadGradeOnce = true;
+                });
+
+            return createSummariesAndFetchFirst;
+        } 
 
         private Task<CourseVm[]> FetchCourses()
         {

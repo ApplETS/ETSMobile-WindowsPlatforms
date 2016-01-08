@@ -5,6 +5,7 @@ using Ets.Mobile.ViewModel.Contracts.UserDetails;
 using Ets.Mobile.ViewModel.Pages.Account;
 using Ets.Mobile.ViewModel.Pages.Grade;
 using Ets.Mobile.ViewModel.Pages.Main;
+using Ets.Mobile.ViewModel.Pages.Moodle;
 using Ets.Mobile.ViewModel.Pages.Program;
 using Ets.Mobile.ViewModel.Pages.Schedule;
 using Ets.Mobile.ViewModel.Pages.Settings;
@@ -39,79 +40,92 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             IsSideNavigationVisibleSubject = new ReplaySubject<bool>();
             IsSideNavigationVisibleSubject.Subscribe(isSnVisible => IsSideNavigationVisible = isSnVisible);
 
-            Logout = ReactiveCommand.CreateAsyncTask(async _ =>
-            {
-                await BlobCache.UserAccount.InvalidateAll().ToTask();
-                IsSideNavigationVisibleSubject.OnNext(false);
-                Screen.Router.NavigateAndReset.Execute(new LoginViewModel(Locator.Current.GetService<IScreen>()));
-                return Unit.Default;
-            });
+            Logout = ReactiveCommand.CreateAsyncTask(_ => LogoutImpl());
             
-            OpenMenu = ReactiveCommand.CreateAsyncTask(_ =>
-            {
-                IsSideNavigationVisibleSubject.OnNext(true);
-                IsSideNavigationVisible = true;
-#if WINDOWS_PHONE_APP || WINDOWS_UWP
-#if WINDOWS_UWP
-                if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.PhoneContract"))
-                {
-#endif
-                    ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
-#if WINDOWS_UWP
-                }
-#endif
-#endif
-                return Task.FromResult(IsSideNavigationVisible);
-            });
+            OpenMenu = ReactiveCommand.CreateAsyncTask(_ => OpenMenuImpl());
 
-            CloseMenu = ReactiveCommand.CreateAsyncTask(_ =>
-            {
-                IsSideNavigationVisibleSubject.OnNext(false);
-                IsSideNavigationVisible = false;
-#if WINDOWS_PHONE_APP || WINDOWS_UWP
-                SetCoreWindowBounds(CurrentViewModelType);
-#endif
-                return Task.FromResult(IsSideNavigationVisible);
-            });
+            CloseMenu = ReactiveCommand.CreateAsyncTask(_ => CloseMenuImpl());
 
-            Screen.Router.CurrentViewModel.Where(viewModel => viewModel != null).ObserveOn(RxApp.MainThreadScheduler).Subscribe(currentVm =>
-            {
-                // Current Page Set
-                CurrentPage = Locator.Current.GetService<ResourceLoader>().GetString(currentVm.UrlPathSegment);
-                CurrentViewModelType = currentVm.GetType();
-#if WINDOWS_PHONE_APP || WINDOWS_UWP
-                SetCoreWindowBounds(CurrentViewModelType);
-#endif
-                // Highlights the corresponding current ViewModel
-                IsMain = MainTypes.Contains(CurrentViewModelType);
-                IsSchedule = ScheduleTypes.Contains(CurrentViewModelType);
-                IsGrade = GradeTypes.Contains(CurrentViewModelType);
-                IsProgram = ProgramTypes.Contains(CurrentViewModelType);
-            });
+            Screen.Router
+                .CurrentViewModel
+                .Where(viewModel => viewModel != null)
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(SetCurrentViewModelImpl);
             
             UserDetails.LoadProfile
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .SubscribeOn(RxApp.MainThreadScheduler)
-                .Subscribe(x =>
-            {
-                Profile = x;
-            });
+                .Subscribe(x => { Profile = x; });
 
-            NavCommand = ReactiveCommand.CreateAsyncObservable(type =>
-            {
-                var navType = type as Type;
-                if (navType != CurrentViewModelType)
-                {
-                    return Observable.Return(Activator.CreateInstance(navType, Screen));
-                }
-                return Observable.Empty<object>();
-            });
+            NavCommand = ReactiveCommand.CreateAsyncObservable(NavigateToViewModelImpl);
 
             NavCommand.Subscribe(viewModel =>
             {
                 IsSideNavigationVisible = false;
                 Screen.Router.Navigate.Execute(viewModel);
             });
+        }
+
+        private async Task<Unit> LogoutImpl()
+        {
+            await BlobCache.UserAccount.InvalidateAll().ToTask();
+            IsSideNavigationVisibleSubject.OnNext(false);
+            Screen.Router.NavigateAndReset.Execute(new LoginViewModel(Locator.Current.GetService<IScreen>()));
+            return Unit.Default;
+        }
+
+        private Task<bool> OpenMenuImpl()
+        {
+            IsSideNavigationVisibleSubject.OnNext(true);
+            IsSideNavigationVisible = true;
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
+#if WINDOWS_UWP
+                if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.PhoneContract"))
+                {
+#endif
+            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseVisible);
+#if WINDOWS_UWP
+                }
+#endif
+#endif
+            return Task.FromResult(IsSideNavigationVisible);
+        }
+        
+        private Task<bool> CloseMenuImpl()
+        {
+            IsSideNavigationVisibleSubject.OnNext(false);
+            IsSideNavigationVisible = false;
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
+            SetCoreWindowBounds(CurrentViewModelType);
+#endif
+            return Task.FromResult(IsSideNavigationVisible);
+        }
+
+        private void SetCurrentViewModelImpl(IRoutableViewModel currentVm)
+        {
+            // Current Page Set
+            CurrentPage = Locator.Current.GetService<ResourceLoader>().GetString(currentVm.UrlPathSegment);
+            CurrentViewModelType = currentVm.GetType();
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
+            SetCoreWindowBounds(CurrentViewModelType);
+#endif
+            // Highlights the corresponding current ViewModel
+            IsMain = MainTypes.Contains(CurrentViewModelType);
+            IsSchedule = ScheduleTypes.Contains(CurrentViewModelType);
+            IsGrade = GradeTypes.Contains(CurrentViewModelType);
+            IsProgram = ProgramTypes.Contains(CurrentViewModelType);
+            IsMoodle = MoodleTypes.Contains(CurrentViewModelType);
+            IsSettings = SettingsTypes.Contains(CurrentViewModelType);
+        }
+
+        private IObservable<object> NavigateToViewModelImpl(object type)
+        {
+            var navType = type as Type;
+            if (navType != CurrentViewModelType)
+            {
+                return Observable.Return(Activator.CreateInstance(navType, Screen));
+            }
+            return Observable.Empty<object>();
         }
 
 #if WINDOWS_PHONE_APP || WINDOWS_UWP
@@ -185,12 +199,13 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             get { return _isSideNavigationVisible; }
             set { this.RaiseAndSetIfChanged(ref _isSideNavigationVisible, value); }
         }
+
         /// <summary>
         /// Allows the Visibility of the sidenavigation to be observed and observable
         /// </summary>
         public ISubject<bool> IsSideNavigationVisibleSubject { get; set; }
 
-#region Menu Items
+        #region Menu Items
 
         private bool _isMain;
         public bool IsMain
@@ -228,6 +243,15 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
 
         public Type[] ProgramTypes { get; } = { typeof(ProgramViewModel) };
 
+        private bool _isMoodle;
+        public bool IsMoodle
+        {
+            get { return _isMoodle; }
+            set { this.RaiseAndSetIfChanged(ref _isMoodle, value); }
+        }
+
+        public Type[] MoodleTypes { get; } = { typeof(MoodleMainPageViewModel) };
+
         private bool _isSettings;
         public bool IsSettings
         {
@@ -237,8 +261,8 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
 
         public Type[] SettingsTypes { get; } = { typeof(SettingsViewModel) };
 
-#endregion
+    #endregion
 
-#endregion
+        #endregion
     }
 }

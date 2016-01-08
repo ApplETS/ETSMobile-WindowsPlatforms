@@ -1,22 +1,21 @@
-﻿using System;
+﻿using Akavache;
+using Ets.Mobile.Client.Mixins;
+using Ets.Mobile.Entities.Signets;
+using Ets.Mobile.ViewModel.Bases;
+using Ets.Mobile.ViewModel.Comparators;
+using Ets.Mobile.ViewModel.Content.Main;
+using Ets.Mobile.ViewModel.Contracts.Grade;
+using ReactiveUI;
+using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Handlers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using Ets.Mobile.ViewModel.Bases;
-using Ets.Mobile.ViewModel.Comparators;
-using Ets.Mobile.ViewModel.Content.Main;
-using ReactiveUI;
-using Ets.Mobile.ViewModel.Contracts.Grade;
-using ReactiveUI.Xaml.Controls.Core;
-using ReactiveUI.Xaml.Controls.Handlers;
-using Akavache;
-using Ets.Mobile.Client.Mixins;
-using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
@@ -29,28 +28,13 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
 
         protected sealed override void OnViewModelCreation()
         {
-            _navigateToGradeItem = ReactiveCommand.CreateAsyncTask(param =>
-            {
-                var selectedItem = param as GradeSummaryViewModelItem;
-                if (selectedItem != null)
-                {
-                    RxApp.MainThreadScheduler.Schedule(() =>
-                    {
-                        HostScreen.Router.Navigate.Execute(new GradeViewModel(HostScreen, selectedItem.Course));
-                    });
-                }
-                return Task.FromResult(Unit.Default);
-            });
+            _navigateToGradeItem = ReactiveCommand.CreateAsyncTask(NavigateToGradeItemImpl);
 
             GradesItems = new ReactiveList<GradeSummaryViewModelGroup>();
 
-            LoadGrades = ReactivePresenterCommand.CreateAsyncObservable(_ => {
-                return Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
-                .Select(y => y.OrderByDescending(x => x.Semester, new SemestersComparator()).ToList())
-                .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)).ToList());
-            });
+            LoadCoursesSummaries = ReactivePresenterCommand.CreateAsyncObservable(_ => FetchCoursesWithSummariesImpl());
 
-            LoadGrades.ThrownExceptions
+            LoadCoursesSummaries.ThrownExceptions
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
@@ -59,12 +43,37 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
             Grades = GradesItems.CreateDerivedCollection(x => x, x => x.Dispose(),
                 orderer: (x, y) => SemestersComparatorMethod.ReversedCompare(x.Semester, y.Semester));
 
-            GradesPresenter = LoadGrades.CreateReactivePresenter(GradesItems, Grades, true);
+            GradesPresenter = LoadCoursesSummaries.CreateReactivePresenter(GradesItems, Grades, true);
+        }
+
+        private IObservable<List<GradeSummaryViewModelGroup>> FetchCoursesWithSummariesImpl()
+        {
+            var fetchCoursesAndSort = Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
+                .Select(y => y.OrderByDescending(x => x.Semester, new SemestersComparator()).ToList());
+
+            var createCoursesSummaries = 
+                fetchCoursesAndSort
+                .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)).ToList());
+
+            return createCoursesSummaries;
         }
 
         private Task<CourseVm[]> FetchCourses()
         {
             return ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService());
+        }
+
+        private Task<Unit> NavigateToGradeItemImpl(object param)
+        {
+            var selectedItem = param as GradeSummaryViewModelItem;
+            if (selectedItem != null)
+            {
+                RxApp.MainThreadScheduler.Schedule(() =>
+                {
+                    HostScreen.Router.Navigate.Execute(new GradeViewModel(HostScreen, selectedItem.Course));
+                });
+            }
+            return Task.FromResult(Unit.Default);
         }
 
         #region Properties
@@ -74,7 +83,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         private ReactiveCommand<Unit> _navigateToGradeItem;
         public IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; protected set; }
         public IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> GradesPresenter { get; protected set; }
-        public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadGrades { get; protected set; }
+        public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadCoursesSummaries { get; protected set; }
 
         #endregion
     }

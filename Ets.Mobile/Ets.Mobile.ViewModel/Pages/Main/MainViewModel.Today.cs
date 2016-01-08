@@ -1,16 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
-using System.Reactive.Threading.Tasks;
-using System.Runtime.Serialization;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Extensions;
 using ReactiveUI.Xaml.Controls.Handlers;
+using System;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.ViewModel.Pages.Main
 {
@@ -20,21 +18,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         {
             TodayItems = new ReactiveList<ScheduleVm>();
 
-            LoadCoursesForToday = ReactivePresenterCommand.CreateAsyncObservable(_ =>
-            {
-                return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
-                    .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
-                    .ThrowIfEmpty()
-                    .SelectMany(x => x)
-                    .FirstAsync(x => x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now)
-                    .ThrowIfEmpty()
-                    .SelectMany(currentSemester => 
-                        Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService()))
-                    )
-                    .Where(x => x != null)
-                    .Select(x => x)
-                    .ThrowIfEmpty();
-            });
+            LoadCoursesForToday = ReactivePresenterCommand.CreateAsyncObservable(_ => FetchCoursesForTodayImpl());
 
             LoadCoursesForToday.ThrownExceptions
                 .Subscribe(x =>
@@ -51,13 +35,31 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             TodayPresenter = LoadCoursesForToday.CreateReactivePresenter(TodayItems, Today, true);
         }
 
+        private IObservable<ScheduleVm[]> FetchCoursesForTodayImpl()
+        {
+            return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
+                    .Where(x => x.FirstOrDefault(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now) != null)
+                    .Select(semesters => semesters.FirstOrDefault(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now))
+                    .SelectMany(GetScheduleForSemester)
+                    .ThrowIfEmpty();
+        } 
+
+        private IObservable<ScheduleVm[]> GetScheduleForSemester(SemesterVm currentSemester)
+        {
+            return Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName),
+                async () =>
+                    await
+                        ClientServices()
+                            .SignetsService.Schedule(currentSemester.AbridgedName)
+                            .ApplyCustomColors(SettingsService()));
+        } 
+
         #region Properties
 
         [DataMember] public ReactiveList<ScheduleVm> TodayItems { get; protected set; }
         [DataMember] public IReactiveDerivedList<ScheduleVm> Today { get; protected set; }
         public IReactivePresenterHandler<IReactiveDerivedList<ScheduleVm>> TodayPresenter { get; protected set; }
         public ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; protected set; }
-        private readonly ReplaySubject<Exception> _scheduleExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion
     }

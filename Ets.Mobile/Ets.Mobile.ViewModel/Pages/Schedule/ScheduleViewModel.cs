@@ -26,19 +26,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
         {
             ScheduleItems = new ReactiveList<ScheduleVm>();
 
-            LoadSchedule = ReactiveCommand.CreateAsyncObservable(_ =>
-            {
-                return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
-                    .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
-                    .ThrowIfEmpty()
-                    .SelectMany(x => x)
-                    .FirstAsync(x => (x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now) || (x.StartDate > DateTime.Now))
-                    .SelectMany(currentSemester =>
-                        Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService()))
-                    )
-                    .Where(x => x != null)
-                    .Select(x => x.AsEnumerable());
-            });
+            LoadSchedule = ReactiveCommand.CreateAsyncObservable(_ => FetchScheduleImpl());
 
             LoadSchedule.ThrownExceptions
                 .Subscribe(x =>
@@ -56,6 +44,28 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
             {
                 ScheduleItems.MergeWith(scheduleVms);
             });
+        }
+
+        public IObservable<IEnumerable<ScheduleVm>> FetchScheduleImpl()
+        {
+            var fetchSemesters =
+                Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
+                    .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
+                    .SelectMany(x => x);
+
+            var getCurrentSemesterOrFollowing =
+                fetchSemesters
+                    .FirstAsync(x => (x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now) || (x.StartDate > DateTime.Now));
+
+            var fetchSchedule = 
+                getCurrentSemesterOrFollowing
+                    .SelectMany(currentSemester =>
+                        Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService()))
+                    )
+                    .Where(x => x != null)
+                    .Select(x => x.AsEnumerable());
+
+            return fetchSchedule.ThrowIfEmpty();
         }
 
         #region Properties
