@@ -561,5 +561,82 @@ namespace Localization
                 return _resourceLoader.GetString("FusilladeDescriptionUid");
             }
         } 
+        public static string ApplicationLoadingUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ApplicationLoadingUid");
+            }
+        } 
+        public static string ExtendedSplashScreen  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ExtendedSplashScreen");
+            }
+        } 
+        public static string SendLogFilesBody  
+        {
+            get
+            {
+                return _resourceLoader.GetString("SendLogFilesBody");
+            }
+        } 
+        public static string SendLogFilesSubject  
+        {
+            get
+            {
+                return _resourceLoader.GetString("SendLogFilesSubject");
+            }
+        } 
+        public static string SendLogsButtonUid_Content  
+        {
+            get
+            {
+                return _resourceLoader.GetString("SendLogsButtonUid");
+            }
+        } 
+        public static string MoodleMainPage  
+        {
+            get
+            {
+                return _resourceLoader.GetString("MoodleMainPage");
+            }
+        } 
+        public static string MoodleCoursesEmpty  
+        {
+            get
+            {
+                return _resourceLoader.GetString("MoodleCoursesEmpty");
+            }
+        } 
+        public static string MoodleCourseContent  
+        {
+            get
+            {
+                return _resourceLoader.GetString("MoodleCourseContent");
+            }
+        } 
+        public static string MoodleCoursesContentEmpty  
+        {
+            get
+            {
+                return _resourceLoader.GetString("MoodleCoursesContentEmpty");
+            }
+        } 
+        public static string MoodleCoursesModuleEmpty  
+        {
+            get
+            {
+                return _resourceLoader.GetString("MoodleCoursesModuleEmpty");
+            }
+        } 
+        public static string MoodleCoursesModuleContentEmpty  
+        {
+            get
+            {
+                return _resourceLoader.GetString("MoodleCoursesModuleContentEmpty");
+            }
+        } 
     }
 }

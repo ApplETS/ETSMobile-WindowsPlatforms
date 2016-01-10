@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
-using System.Runtime.Serialization;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts.UserDetails;
 using ReactiveUI;
 using Splat;
+using System;
+using System.Collections.Generic;
+using System.Reactive.Linq;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.ViewModel.Pages.UserDetails
 {
@@ -22,15 +21,7 @@ namespace Ets.Mobile.ViewModel.Pages.UserDetails
         
         protected sealed override void OnViewModelCreation()
         {
-            LoadProfile = ReactiveCommand.CreateAsyncObservable(_ =>
-            {
-                return Cache.GetAndFetchLatest(ViewModelKeys.UserProfile, () => ClientServices().SignetsService.UserDetails())
-                    .Do(ud => Cache.LoadImage(ViewModelKeys.Gravatar)
-                        .ObserveOn(RxApp.MainThreadScheduler)
-                        .Catch<IBitmap, KeyNotFoundException>(x => Observable.Empty<IBitmap>())
-                        .Where(x => x != null)
-                        .Subscribe(image => ud.Image = image));
-            });
+            LoadProfile = ReactiveCommand.CreateAsyncObservable(_ => FetchProfileImpl());
 
             LoadProfile.ThrownExceptions
                 .Subscribe(x =>
@@ -44,6 +35,21 @@ namespace Ets.Mobile.ViewModel.Pages.UserDetails
             });
         }
 
+        private IObservable<UserDetailsVm> FetchProfileImpl()
+        {
+            var fetchProfile = Cache.GetAndFetchLatest(ViewModelKeys.UserProfile, () => ClientServices().SignetsService.UserDetails());
+
+            var loadProfileUserImage =
+                fetchProfile
+                    .Do(ud => Cache.LoadImage(ViewModelKeys.Gravatar)
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .Catch<IBitmap, KeyNotFoundException>(x => Observable.Empty<IBitmap>())
+                    .Where(x => x != null)
+                    .Subscribe(image => ud.Image = image));
+
+            return loadProfileUserImage;
+        }
+
         #region Properties
 
         private UserDetailsVm _profile;
@@ -53,9 +59,7 @@ namespace Ets.Mobile.ViewModel.Pages.UserDetails
             get { return _profile; }
             set { _profile = value; this.RaisePropertyChanged(); }
         }
-        //public IReactivePresenterViewModel<UserDetailsVm> UserDetailsPresenter { get; protected set; }
         public ReactiveCommand<UserDetailsVm> LoadProfile { get; protected set; }
-        private readonly ReplaySubject<Exception> _profileExceptionSubject = new ReplaySubject<Exception>();
 
         #endregion
     }

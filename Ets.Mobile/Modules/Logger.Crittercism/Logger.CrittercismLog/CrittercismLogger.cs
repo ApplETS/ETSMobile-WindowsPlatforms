@@ -4,7 +4,7 @@ using System;
 
 namespace Logger.CrittercismLog
 {
-    public sealed class CrittercismLogger : IUserEnabledLogger
+    public sealed class CrittercismLogger : ILogger, IUserEnabledLogger
     {
         public void Write(string message, LogLevel logLevel)
         {

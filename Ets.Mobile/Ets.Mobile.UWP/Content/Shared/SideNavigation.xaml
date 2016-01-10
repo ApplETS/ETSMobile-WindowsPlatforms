@@ -93,15 +93,15 @@
 
             <!-- Settings -->
             <RadioButton IsChecked="{Binding IsSettings, Mode=TwoWay}" Command="{Binding NavCommand}" GroupName="Nav" CommandParameter="{Binding Settings, Source={StaticResource PageTypes}}">
-            <RadioButton.Content>
-                <Grid Margin="0,-4,0,0">
-                    <TextBlock x:Uid="SettingsUid" Text="Paramètres" FontSize="{StaticResource Size3}" Height="25" />
-                </Grid>
-            </RadioButton.Content>
-            <RadioButton.Tag>
-                <TextBlock Text="" />
-            </RadioButton.Tag>
-        </RadioButton>
+                <RadioButton.Content>
+                    <Grid Margin="0,-4,0,0">
+                        <TextBlock x:Uid="SettingsUid" Text="Paramètres" FontSize="{StaticResource Size3}" Height="25" />
+                    </Grid>
+                </RadioButton.Content>
+                <RadioButton.Tag>
+                    <TextBlock Text="" />
+                </RadioButton.Tag>
+            </RadioButton>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,6 +1,4 @@
-﻿using Windows.ApplicationModel.Resources;
-using ReactiveUI;
-using Splat;
+﻿using ReactiveUI;
 
 namespace Ets.Mobile.Shell
 {

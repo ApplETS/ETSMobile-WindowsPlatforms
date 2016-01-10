@@ -1,6 +1,4 @@
-﻿using Windows.UI;
-
-namespace Ets.Mobile.Entities.Signets.Interfaces
+﻿namespace Ets.Mobile.Entities.Signets.Interfaces
 {
     public interface ICustomColor
     {

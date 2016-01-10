@@ -1,9 +1,9 @@
-﻿using System.Reactive.Linq;
-using Windows.UI;
-using Windows.UI.Xaml.Media;
-using Ets.Mobile.Entities.Signets;
+﻿using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Handlers;
+using System.Reactive.Linq;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {

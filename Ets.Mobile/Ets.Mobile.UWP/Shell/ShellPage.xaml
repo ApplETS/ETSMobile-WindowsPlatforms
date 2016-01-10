@@ -6,16 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:reactiveUi="using:ReactiveUI"
     xmlns:shared="using:Ets.Mobile.Content.Shared"
-    xmlns:converters="using:Ets.Mobile.Converters"
     mc:Ignorable="d"
     x:Name="Shell"
     Background="{StaticResource EtsBackgroundMainBrush}">
-    <Page.Resources>
-        <ResourceDictionary>
-            <converters:ViewModelAvailabilityToBooleanConverter x:Name="ViewModelAvailabilityToBooleanConverter" />
-            <converters:ViewModelAvailabilityToVisibilityConverter x:Name="ViewModelAvailabilityToVisibilityConverter" />
-        </ResourceDictionary>
-    </Page.Resources>
     <Page.Transitions>
         <TransitionCollection>
         </TransitionCollection>

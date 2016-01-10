@@ -1,6 +1,6 @@
-﻿using System.Runtime.Serialization;
-using ReactiveUI;
+﻿using ReactiveUI;
 using Splat;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.ViewModel.Bases
 {

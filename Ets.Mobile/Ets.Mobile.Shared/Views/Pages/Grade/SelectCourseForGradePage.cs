@@ -1,7 +1,7 @@
-﻿using System.Reactive.Linq;
-using Windows.UI.Xaml;
-using Ets.Mobile.ViewModel.Pages.Grade;
+﻿using Ets.Mobile.ViewModel.Pages.Grade;
 using ReactiveUI;
+using System.Reactive.Linq;
+using Windows.UI.Xaml;
 
 namespace Ets.Mobile.Pages.Grade
 {
@@ -35,7 +35,11 @@ namespace Ets.Mobile.Pages.Grade
             subscriptionForViewModel.BindTo(this, x => x.DataContext);
 
             subscriptionForViewModel
-                .InvokeCommand(this, x => x.ViewModel.LoadGrades);
+                .InvokeCommand(this, x => x.ViewModel.LoadCoursesSummaries);
+
+            PartialInitialize();
         }
+
+        partial void PartialInitialize();
     }
 }

@@ -29,7 +29,7 @@
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.7">
                         <StackPanel VerticalAlignment="Center">
-                            <ProgressRing Pivot.SlideInAnimationGroup="1" IsActive="True" Foreground="{StaticResource EtsTextMainBrush}" Background="Transparent" />
+                            <ProgressRing Pivot.SlideInAnimationGroup="1" IsActive="True" Foreground="{ThemeResource EtsTextMainBrush}" Background="Transparent" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Windows.UI;
-using System.Runtime.Serialization;
-using Ets.Mobile.Entities.Signets.Interfaces;
+﻿using Ets.Mobile.Entities.Signets.Interfaces;
 using ReactiveUI;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Signets
 {

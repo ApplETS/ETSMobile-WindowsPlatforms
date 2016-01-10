@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Ets.Mobile.ViewModel.Pages.Schedule;
+using ReactiveUI;
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Ets.Mobile.ViewModel.Pages.Schedule;
-using ReactiveUI;
 
 namespace Ets.Mobile.Pages.Schedule
 {

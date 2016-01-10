@@ -10,9 +10,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BusinessEndpoint.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DtSignetsBusinessService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IMoodleBusinessService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISignetsBusinessService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\CoursesContent\MoodleCourseContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\CoursesContent\MoodleCourseModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\CoursesContent\MoodleCourseModuleContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\Courses\MoodleCourse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\SiteInfo\MoodleAdvancedFeature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\SiteInfo\MoodleFunction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\SiteInfo\MoodleSiteInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\Token\MoodleToken.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Results\Signets\Converters\DecimalConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Results\Signets\Converters\DoubleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Results\Signets\Converters\GenericConverter.cs" />

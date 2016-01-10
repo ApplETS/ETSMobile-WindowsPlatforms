@@ -38,7 +38,7 @@
             <Brush x:Key="EtsRedMediumBrush">#FF0200</Brush>
             <Brush x:Key="EtsRedHighBrush">#CC0100</Brush>
             <Brush x:Key="EtsRedHighestBrush">#FF4E4C</Brush>
-            <Brush x:Key="EtsTextMainBrush">#323232</Brush>
+            <Brush x:Key="EtsTextMainBrush">#a6a6a6</Brush>
             <Brush x:Key="EtsTextBlackBrush">#000000</Brush>
             <Brush x:Key="EtsTextWhiteBrush">#FFFFFF</Brush>
             <Brush x:Key="EtsTextGrayBrush">#707070</Brush>
@@ -63,6 +63,22 @@
             <Brush x:Key="EtsCommandBarBrush">#404040</Brush>
             <!-- Buttons -->
             <Brush x:Key="EtsButtonPressedBrush">#FF0200</Brush>
+            <!-- Today -->
+            <Style x:Key="EtsTodayItemActivityNameStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+            <Style x:Key="EtsTodayItemDescriptionStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#8c8c8c" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <Style x:Key="EtsTodayItemTimeStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6" />
+                <Setter Property="FontSize" Value="17" />
+            </Style>
+            <Color x:Key="EtsTodayBackgroundColor">#333333</Color>
+            <Color x:Key="EtsTodayBackgroundTransparentColor">#00333333</Color>
+            <Brush x:Key="EtsTodayBackgroundBrush">#333333</Brush>
             <!-- Grades -->
             <Brush x:Key="EtsGradeSummaryItemBrush">Transparent</Brush>
             <Style x:Key="EtsGradeSummaryTitleForegroundStyle" TargetType="TextBlock">
@@ -270,6 +286,38 @@
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
+            <!-- Moodle -->
+            <Brush x:Key="EtsCourseSummaryItemBrush">Transparent</Brush>
+            <Style x:Key="EtsCourseSummaryTitleForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsCourseTitleStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsCourseDescriptionStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsCourseModuleContentStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+            <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+            </Style>
             <!-- ListView                                       -->
             <Style x:Key="EtsListViewHeaderItemStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
@@ -338,6 +386,22 @@
             <Brush x:Key="EtsCommandBarBrush">#404040</Brush>
             <!-- Buttons -->
             <Brush x:Key="EtsButtonPressedBrush">#FF0200</Brush>
+            <!-- Today -->
+            <Style x:Key="EtsTodayItemActivityNameStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+            <Style x:Key="EtsTodayItemDescriptionStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#8c8c8c" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <Style x:Key="EtsTodayItemTimeStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#a6a6a6" />
+                <Setter Property="FontSize" Value="17" />
+            </Style>
+            <Color x:Key="EtsTodayBackgroundColor">#333333</Color>
+            <Color x:Key="EtsTodayBackgroundTransparentColor">#00333333</Color>
+            <Brush x:Key="EtsTodayBackgroundBrush">#333333</Brush>
             <!-- Grades -->
             <Brush x:Key="EtsGradeSummaryItemBrush">Transparent</Brush>
             <Style x:Key="EtsGradeSummaryTitleForegroundStyle" TargetType="TextBlock">
@@ -548,6 +612,38 @@
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
+            <!-- Moodle -->
+            <Brush x:Key="EtsCourseSummaryItemBrush">Transparent</Brush>
+            <Style x:Key="EtsCourseSummaryTitleForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsCourseTitleStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsCourseDescriptionStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsCourseModuleContentStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+            <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+            </Style>
             <!-- ListView                                       -->
             <Style x:Key="EtsListViewHeaderItemStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
@@ -616,6 +712,22 @@
             <Brush x:Key="EtsCommandBarBrush">#FFFFFF</Brush>
             <!-- Buttons -->
             <Brush x:Key="EtsButtonPressedBrush">#680100</Brush>
+            <!-- Today -->
+            <Style x:Key="EtsTodayItemActivityNameStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+            <Style x:Key="EtsTodayItemDescriptionStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <Style x:Key="EtsTodayItemTimeStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
+                <Setter Property="FontSize" Value="17" />
+            </Style>
+            <Color x:Key="EtsTodayBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="EtsTodayBackgroundTransparentColor">#00FFFFFF</Color>
+            <Brush x:Key="EtsTodayBackgroundBrush">#FFFFFF</Brush>
             <!-- Grades -->
             <Brush x:Key="EtsGradeSummaryItemBrush">#d9d9d9</Brush>
             <Style x:Key="EtsGradeSummaryTitleForegroundStyle" TargetType="TextBlock">
@@ -826,6 +938,38 @@
                 <Setter Property="TextAlignment" Value="Justify" />
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
                 <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <!-- Moodle -->
+            <Brush x:Key="EtsCourseSummaryItemBrush">Transparent</Brush>
+            <Style x:Key="EtsCourseSummaryTitleForegroundStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="EtsCourseTitleStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style x:Key="EtsCourseDescriptionStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Thin" />
+            </Style>
+            <Style x:Key="EtsCourseModuleContentStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="FontSize" Value="24" />
+            </Style>
+            <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedMediumBrush}" />
             </Style>
             <!-- ListView -->
             <Style x:Key="EtsListViewHeaderItemStyle" TargetType="TextBlock">

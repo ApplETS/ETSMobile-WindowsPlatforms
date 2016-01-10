@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Contracts.Program;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Extensions;
 using ReactiveUI.Xaml.Controls.Handlers;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.ViewModel.Pages.Program
 {
@@ -22,27 +23,18 @@ namespace Ets.Mobile.ViewModel.Pages.Program
         protected sealed override void OnViewModelCreation()
         {
             ProgramItems = new ReactiveList<ProgramVm>();
-            LoadProgram = ReactivePresenterCommand.CreateAsyncObservable(_ =>
-            {
-                return Cache.GetAndFetchLatest(ViewModelKeys.Program, () => ClientServices().SignetsService.Programs());
-            });
+            LoadProgram = ReactivePresenterCommand.CreateAsyncObservable(_ => Cache.GetAndFetchLatest(ViewModelKeys.Program, () => ClientServices().SignetsService.Programs()).ThrowIfEmpty());
 
             LoadProgram.ThrownExceptions
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
                 });
-
-            LoadProgram.Subscribe(x =>
-            {
-                ProgramItems.Clear();
-                ProgramItems.AddRange(x);
-            });
-
+            
             Program = ProgramItems.CreateDerivedCollection(
                 x => x,
                 x => x.Dispose(),
-                orderer: (x, y) => _programComparer.Compare(x, y)
+                orderer: (p1, p2) => _programComparer.Compare(p1, p2)
             );
 
             ProgramPresenter = LoadProgram.CreateReactivePresenter(ProgramItems, Program, true);

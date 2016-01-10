@@ -1,40 +1,40 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Ets.Mobile.Business.Contracts;
+﻿using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Factories.Abstractions;
-using Ets.Mobile.Client.Factories.Implementations;
+using Ets.Mobile.Client.Factories.Implementations.Signets;
 using Ets.Mobile.Client.Services;
 using Ets.Mobile.Client.Shared.Tests.Contracts;
-using Ets.Mobile.Entities.ServiceInfo;
+using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Shared.Tests;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using ModernHttpClient;
 using Refit;
 using Splat;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.Client.Shared.Tests.Services
 {
     [TestClass]
-    public class SignetsServiceTest : DTBase, ISignetsServiceTest
+    public class SignetsServiceTest : MockBase, ISignetsServiceTest
     {
         public ISignetsService GetSignetsServices()
         {
             if(locator.GetService<ISignetsService>() == null)
             {
                 locator.RegisterLazySingleton(() =>
-                    new SignetsServiceInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
-                    typeof(SignetsServiceInfo)
+                    new SignetsClientInfo { Url = "https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx" },
+                    typeof(SignetsClientInfo)
                 );
                 var client = new HttpClient(new NativeMessageHandler())
                 {
-                    BaseAddress = new Uri("https://signets-ens.etsmtl.ca/Secure/WebServices/SignetsMobile.asmx"),
+                    BaseAddress = new Uri(locator.GetService<SignetsClientInfo>().Url)
                 };
                 locator.RegisterLazySingleton(() => RestService.For<ISignetsBusinessService>(client), typeof(ISignetsBusinessService));
                 locator.RegisterLazySingleton(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
-                locator.RegisterLazySingleton(() => new SignetsService(locator.GetService<ISignetsBusinessService>(), locator.GetService<SignetsAbstractFactory>(), new SignetsAccountVm(TestSettings.Username, TestSettings.Password)), typeof(ISignetsService));
+                locator.RegisterLazySingleton(() => new SignetsService(locator.GetService<ISignetsBusinessService>(), locator.GetService<SignetsAbstractFactory>(), new EtsUserCredentials(TestSettings.Username, TestSettings.Password)), typeof(ISignetsService));
             }
             return locator.GetService<ISignetsService>();
         }

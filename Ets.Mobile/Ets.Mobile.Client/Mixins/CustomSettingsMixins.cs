@@ -1,7 +1,8 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Ets.Mobile.Client.Contracts;
+﻿using Ets.Mobile.Client.Contracts;
+using Ets.Mobile.Entities.Moodle;
 using Ets.Mobile.Entities.Signets;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.Client.Mixins
 {
@@ -15,6 +16,20 @@ namespace Ets.Mobile.Client.Mixins
             {
                 await service.ApplyColorOnItemsForCoursesInitial(group.ToArray());
             }
+            return c;
+        }
+
+        public static async Task<MoodleCourseVm[]> ApplyCustomColors(this Task<MoodleCourseVm[]> courses, ICustomSettingsService service)
+        {
+            var c = await courses;
+            await service.ApplyColorOnItemsForMoodleCourses(c);
+            return c;
+        }
+
+        public static async Task<MoodleCourseContentVm[]> ApplyCustomColors(this Task<MoodleCourseContentVm[]> courses, MoodleCourseVm course, ICustomSettingsService service)
+        {
+            var c = await courses;
+            await service.ApplyColorOnItemsForMoodleCourseContents(c, course);
             return c;
         }
 

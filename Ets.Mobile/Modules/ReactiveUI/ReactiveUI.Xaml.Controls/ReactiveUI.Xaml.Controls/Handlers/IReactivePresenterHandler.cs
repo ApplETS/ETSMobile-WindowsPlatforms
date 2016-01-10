@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Messaging.Interfaces.Common;
+using System;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
-using Messaging.Interfaces.Common;
 
 namespace ReactiveUI.Xaml.Controls.Handlers
 {
@@ -22,5 +22,7 @@ namespace ReactiveUI.Xaml.Controls.Handlers
     {
         void OnNextValue(T obj);
         void OnNextIsReady(bool isReady);
+        void OnNextEmptyMessage();
+        void OnNextEmptyMessage(IMessagingContent messagingContent);
     }
 }

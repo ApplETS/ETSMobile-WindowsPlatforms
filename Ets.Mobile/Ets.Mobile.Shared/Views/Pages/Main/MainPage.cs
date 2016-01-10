@@ -45,7 +45,7 @@ namespace Ets.Mobile.Pages.Main
                 .InvokeCommand(this, x => x.ViewModel.LoadCoursesForToday);
 
             subscriptionForViewModel
-                .InvokeCommand(this, x => x.ViewModel.LoadGrades);
+                .InvokeCommand(this, x => x.ViewModel.LoadCoursesSummaries);
 
             PartialInitialize();
         }

@@ -1,7 +1,7 @@
-﻿using System.Reactive.Linq;
-using Windows.UI.Xaml;
-using Ets.Mobile.ViewModel.Pages.Program;
+﻿using Ets.Mobile.ViewModel.Pages.Program;
 using ReactiveUI;
+using System.Reactive.Linq;
+using Windows.UI.Xaml;
 
 namespace Ets.Mobile.Pages.Program
 {

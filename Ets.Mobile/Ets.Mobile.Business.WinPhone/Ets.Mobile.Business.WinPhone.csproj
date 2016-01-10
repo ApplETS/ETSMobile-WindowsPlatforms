@@ -64,10 +64,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RefitStubs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ets.Mobile.Entities.WinPhone\Ets.Mobile.Entities.WinPhone.csproj">
@@ -81,12 +81,13 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Refit, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\refit.2.4.1\lib\Portable-Win81+Wpa81\Refit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Splat">
       <HintPath>..\packages\Splat.1.6.2\lib\Portable-Win81+Wpa81\Splat.dll</HintPath>
@@ -95,6 +96,13 @@
   <Import Project="..\Ets.Mobile.Business\Ets.Mobile.Business.projitems" Label="Shared" Condition="Exists('..\Ets.Mobile.Business\Ets.Mobile.Business.projitems')" />
   <Import Project="..\Ets.Mobile.Resources\Ets.Mobile.Resources.projitems" Label="Shared" Condition="Exists('..\Ets.Mobile.Resources\Ets.Mobile.Resources.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets" Condition="Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

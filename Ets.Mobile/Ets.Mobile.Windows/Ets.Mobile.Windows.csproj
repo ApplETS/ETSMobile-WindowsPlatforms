@@ -83,6 +83,18 @@
     <Compile Include="Content\Main\Today.xaml.cs">
       <DependentUpon>Today.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\Moodle\Courses\Courses.xaml.cs">
+      <DependentUpon>Courses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Moodle\Courses\CoursesContent.xaml.cs">
+      <DependentUpon>CoursesContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Moodle\Courses\CoursesModule.xaml.cs">
+      <DependentUpon>CoursesModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Moodle\Courses\CoursesModuleContent.xaml.cs">
+      <DependentUpon>CoursesModuleContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\Program\Programs.xaml.cs">
       <DependentUpon>Programs.xaml</DependentUpon>
     </Compile>
@@ -112,6 +124,18 @@
     </Compile>
     <Compile Include="Pages\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Moodle\Courses\MoodleCourseContentPage.xaml.cs">
+      <DependentUpon>MoodleCourseContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Moodle\Courses\MoodleCourseModuleContentPage.xaml.cs">
+      <DependentUpon>MoodleCourseModuleContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Moodle\Courses\MoodleCourseModulePage.xaml.cs">
+      <DependentUpon>MoodleCourseModulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Moodle\MoodleMainPage.xaml.cs">
+      <DependentUpon>MoodleMainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Program\ProgramPage.xaml.cs">
       <DependentUpon>ProgramPage.xaml</DependentUpon>
@@ -163,6 +187,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Content\Moodle\Courses\Courses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Moodle\Courses\CoursesContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Moodle\Courses\CoursesModule.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Moodle\Courses\CoursesModuleContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Content\Program\Programs.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -202,6 +242,22 @@
     <Page Include="Pages\Main\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Moodle\Courses\MoodleCourseContentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Moodle\Courses\MoodleCourseModuleContentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Moodle\Courses\MoodleCourseModulePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Moodle\MoodleMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Program\ProgramPage.xaml">
       <SubType>Designer</SubType>

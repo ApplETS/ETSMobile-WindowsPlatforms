@@ -1,11 +1,11 @@
-﻿using Ets.Mobile.ViewModel.WinPhone.Pages.ExtendedSplashScreen;
+﻿using Ets.Mobile.ViewModel;
+using Ets.Mobile.ViewModel.WinPhone.Pages.ExtendedSplashScreen;
 using ReactiveUI;
 using System;
+using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Ets.Mobile.ViewModel;
-using System.Reactive.Concurrency;
 
 namespace Ets.Mobile.Pages.ExtendedSplashScreen
 {

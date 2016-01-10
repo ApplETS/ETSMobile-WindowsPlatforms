@@ -15,7 +15,7 @@ namespace Logger.SplatLog
         [Event(2, Level = EventLevel.Informational)]
         public void Info(string message)
         {
-            WriteEvent(2, message);
+            //WriteEvent(2, message);
         }
 
         [Event(3, Level = EventLevel.Warning)]

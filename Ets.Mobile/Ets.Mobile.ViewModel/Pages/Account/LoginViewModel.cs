@@ -2,7 +2,7 @@
 using Ets.Mobile.Client;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Mixins;
-using Ets.Mobile.Entities.Signets;
+using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Logger;
@@ -51,10 +51,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
         protected sealed override void OnViewModelCreation()
         {
             UserName = Password = string.Empty;
-#if DEBUG
-            UserName = "";
-            Password = "";
-#endif
+
             _isValidating = false;
 
             SetupSubmitCommand();
@@ -65,40 +62,10 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             // Submit Command
             var canLogin = this.WhenAny(x => x.Password, x => !string.IsNullOrWhiteSpace(x.Value)).CombineLatest(this.WhenAny(x => x.UserName, x => !string.IsNullOrEmpty(x.Value)), this.WhenAny(x => x._isValidating, x => !x.Value), (x, y, z) => x & y & z);
             
-            SubmitCommand = ReactiveCommand.CreateAsyncTask(canLogin, async _ =>
-            {
-                _isValidating = true;
-                var signetsAccountVm = await Cache.GetAndFetchLatest(ViewModelKeys.Login,
-                    async () => {
-                        var isLoginSuccessful = await ClientServices().SignetsService.Login(UserName, Password);
-
-                        return new SignetsAccountVm(UserName, Password, isLoginSuccessful);
-                    }
-                );
-
-                if (!signetsAccountVm.IsLoginSuccessful)
-                {
-                    throw new SignetsException("Nom d'usager ou mot de passe invalide.");
-                }
-
-                // Set the credentials of the User
-                Locator.Current.GetService<ISignetsService>().SetCredentials(signetsAccountVm);
-                // Username encrypted
-                Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
-                // Load The Side Navigation Profile
-                SideNavigation.UserDetails.LoadProfile.Execute(null);
-                // Preload courses to have the colors ready on all pages
-                var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
-                Task.WaitAll(coursesTask);
-                await Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result).ToTask();
-
-                _isValidating = false;
-
-                return signetsAccountVm;
-            });
+            SubmitCommand = ReactiveCommand.CreateAsyncTask(canLogin, async _ => await LoginImpl());
 
             SubmitCommand.Subscribe(accountVm => {
-                // Navigate to the next screen
+                this.Log().Info("Navigate to MainViewModel");
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });
 
@@ -119,8 +86,47 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             });
         }
 
+        private async Task<EtsUserCredentials> LoginImpl()
+        {
+            _isValidating = true;
+            this.Log().Info("Start Loging In");
+            var signetsAccountVm = await Cache.GetAndFetchLatest(ViewModelKeys.Login,
+                async () => {
+                    this.Log().Info($"Send Request to Login for {UserName}");
+                    var isLoginSuccessful = await ClientServices().SignetsService.Login(UserName, Password);
+                    this.Log().Info($"Received Response for and {UserName} " + (isLoginSuccessful ? "has been authentificated sucessfully" : "has invalid credentials"));
+                    return new EtsUserCredentials(UserName, Password, isLoginSuccessful);
+                }
+            );
+
+            if (!signetsAccountVm.IsLoginSuccessful)
+            {
+                throw new SignetsException("Nom d'usager ou mot de passe invalide.");
+            }
+
+            this.Log().Info("Set the credentials of the User in the Sso Service");
+            Locator.Current.GetService<ISsoService>().SetCredentials(signetsAccountVm);
+
+            this.Log().Info("Set the credentials of the User in the logger");
+            Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
+
+            this.Log().Info("Load details about the logged user");
+            SideNavigation.UserDetails.LoadProfile.Execute(null);
+
+            this.Log().Info("Preload courses to have the colors ready on all pages");
+            var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
+            Task.WaitAll(coursesTask);
+            await Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result).ToTask();
+
+            this.Log().Info("Completed login flow");
+
+            _isValidating = false;
+
+            return signetsAccountVm;
+        }
+
         public ReactiveCommand<bool> SwitchToLogin { get; set; }
 
-        public ReactiveCommand<SignetsAccountVm> SubmitCommand { get; set; }
+        public ReactiveCommand<EtsUserCredentials> SubmitCommand { get; set; }
     }
 }

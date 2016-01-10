@@ -7,7 +7,6 @@
     xmlns:reactiveUi="using:ReactiveUI"
     xmlns:controls="using:Universal.UI.Xaml.Controls"
     xmlns:shared="using:Ets.Mobile.Content.Shared"
-    xmlns:converters="using:Ets.Mobile.Converters"
     mc:Ignorable="d"
     x:Name="Shell"
     Background="{StaticResource EtsBackgroundMainBrush}">
@@ -16,8 +15,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Universal.UI.Xaml.Controls/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converters:ViewModelAvailabilityToBooleanConverter x:Name="ViewModelAvailabilityToBooleanConverter" />
-            <converters:ViewModelAvailabilityToVisibilityConverter x:Name="ViewModelAvailabilityToVisibilityConverter" />
         </ResourceDictionary>
     </Page.Resources>
     <Page.Transitions>

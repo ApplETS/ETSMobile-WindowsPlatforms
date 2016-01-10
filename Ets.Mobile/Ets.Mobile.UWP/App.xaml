@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Skins/ReactivePresenter.xaml" />
                 <ResourceDictionary Source="/Skins/UWPSkin.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:HtmlStringToStringConverter x:Key="HtmlStringToStringConverter" />
             <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
             <converters:StringToLowerConverter x:Key="StringToLowerConverter" />
             <converters:StringToLocalizedStringConverter x:Key="StringToLocalizedStringConverter" />

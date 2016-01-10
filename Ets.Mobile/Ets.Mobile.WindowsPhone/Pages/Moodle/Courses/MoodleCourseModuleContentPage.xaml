@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="Ets.Mobile.Pages.Moodle.Courses.MoodleCourseModuleContentPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Pages.Moodle.Courses"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shared="using:Ets.Mobile.Content.Shared"
+    xmlns:courses="using:Ets.Mobile.Content.Moodle.Courses"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource EtsBackgroundBodyBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Hamburger -->
+        <StackPanel Orientation="Horizontal" Background="{ThemeResource EtsBackgroundMainBrush}">
+            <shared:MenuButton Height="60" Width="60" Command="{Binding SideNavigation.OpenMenu}" CommandParameter="{Binding}" />
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="{Binding CourseModule.Name}" Margin="15,0,0,0" Style="{ThemeResource EtsPageHeaderTitleStyle}" FontWeight="Bold" />
+                <TextBlock FontSize="{StaticResource Size5}" Margin="15,0,0,0" Foreground="{StaticResource EtsTextSecondaryBrush}">
+                    <Run Text="{Binding Course.CourseName}" />
+                    <Run Text=">"/>
+                    <Run Text="{Binding CourseContent.Name}"/>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <!-- Content -->
+        <StackPanel Grid.Row="1">
+            <HyperlinkButton 
+                Margin="15,6,15,0"
+                Pivot.SlideInAnimationGroup="2"
+                Style="{ThemeResource EtsMoodleCourseContentHyperlinkStyle}"
+                NavigateUri="{Binding CourseModule.Url}">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Uid="CourseMoodleUrlUid" Margin="0,0,5,0" Height="24" Width="24" />
+                    <StackPanel>
+                        <TextBlock x:Uid="LinkToCourseModuleUid" Text="Lien vers ce module" />
+                    </StackPanel>
+                </StackPanel>
+            </HyperlinkButton>
+            <TextBlock Text="{Binding CourseModule.Description, Converter={StaticResource HtmlStringToStringConverter}}" />
+
+            <TextBlock Margin="15,0,15,0" x:Uid="CourseModuleContentUid" Text="Module Contents" Style="{ThemeResource EtsCourseModuleContentStyle}" />
+            <courses:CoursesModuleContent Margin="15,10,15,0" DataContext="{Binding CoursesModuleContentPresenter}" />
+        </StackPanel>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Refresh" Command="{Binding LoadCoursesModuleContent}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

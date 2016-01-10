@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Ets.Mobile.Entities.Signets;
+using Ets.Mobile.ViewModel.Contracts.Program;
+using ReactiveUI;
+using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Handlers;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Ets.Mobile.Entities.Signets;
-using Ets.Mobile.ViewModel.Contracts.Program;
-using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Core;
-using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {

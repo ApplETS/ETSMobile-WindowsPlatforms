@@ -14,6 +14,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Content\Grade\GradeViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeSummaryViewModelGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeSummaryViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\Content\MoodleCourseModuleContentViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\Content\MoodleCourseModuleSummaryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\Content\MoodleCourseContentSummaryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\MoodleCourseSummaryViewModelGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\MoodleCourseSummaryViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleGroupedByDayViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\ISelectCourseForGradeViewModel.cs" />
@@ -32,6 +37,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Account\LoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\GradeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\SelectCourseForGradeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseModuleContentPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseModulePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseContentPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\MoodleMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Program\ProgramViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Schedule\ScheduleViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.cs" />
@@ -43,9 +52,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationServicesBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ViewModelBase.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Account\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Program\" />
   </ItemGroup>
 </Project>

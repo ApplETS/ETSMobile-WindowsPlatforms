@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Messaging.Interfaces.Common;
+using ReactiveUI;
+using ReactiveUI.Xaml.Controls.Handlers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive;
-using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
-using Messaging.Interfaces.Common;
-using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
@@ -79,6 +78,14 @@ namespace Ets.Mobile.ViewModel.DesignTime
         }
 
         public void Dispose()
+        {
+        }
+
+        public void OnNextEmptyMessage()
+        {
+        }
+
+        public void OnNextEmptyMessage(IMessagingContent messagingContent)
         {
         }
     }

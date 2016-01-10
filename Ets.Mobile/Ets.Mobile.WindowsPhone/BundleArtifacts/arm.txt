@@ -1,4 +1,6 @@
-MainPackage=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.10_ARM.appx
-ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.10_language-en.appx
-ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.10_scale-100.appx
-ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.10_scale-140.appx
+MainPackage=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.13_ARM.appx
+SymbolPackage=D:\Desktop\Output\UAP\Ets.Mobile.WindowsPhone_1.0.0.13_Test\Ets.Mobile.WindowsPhone_1.0.0.13_ARM.appxsym
+ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.13_language-en.appx
+ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.13_language-fr.appx
+ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.13_scale-100.appx
+ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.WindowsPhone\bin\ARM\Release\Ets.Mobile.WindowsPhone_1.0.0.13_scale-140.appx

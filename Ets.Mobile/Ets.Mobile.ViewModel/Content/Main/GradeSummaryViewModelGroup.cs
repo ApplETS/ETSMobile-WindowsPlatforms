@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Ets.Mobile.Entities.Signets;
+using ReactiveUI;
+using ReactiveUI.Extensions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
-using Ets.Mobile.Entities.Signets;
-using ReactiveUI;
-using ReactiveUI.Extensions;
 
 namespace Ets.Mobile.ViewModel.Content.Main
 {
@@ -46,17 +46,14 @@ namespace Ets.Mobile.ViewModel.Content.Main
 
         #endregion
 
-        private string _semester;
-        public string Semester {
-            get { return _semester; }
-            set { this.RaiseAndSetIfChanged(ref _semester, value); }
+        #region IDisposable implementation
+
+        public void Dispose()
+        {
+            GradesItems?.Clear();
         }
 
-        private ReactiveList<GradeSummaryViewModelItem> _gradesItems;
-        public ReactiveList<GradeSummaryViewModelItem> GradesItems {
-            get { return _gradesItems; }
-            set { this.RaiseAndSetIfChanged(ref _gradesItems, value); }
-        }
+        #endregion
 
         public GradeSummaryViewModelGroup(string semester, IEnumerable<CourseVm> courses, ReactiveCommand<Unit> navigateToGradeCommand)
         {
@@ -71,9 +68,22 @@ namespace Ets.Mobile.ViewModel.Content.Main
             GradesItems.AddRange(courses.Select(y => new GradeSummaryViewModelItem(semester, y, navigateToGradeCommand)));
         }
 
-        public void Dispose()
+        #region Properties
+
+        private string _semester;
+        public string Semester
         {
-            GradesItems?.Clear();
+            get { return _semester; }
+            set { this.RaiseAndSetIfChanged(ref _semester, value); }
         }
+
+        private ReactiveList<GradeSummaryViewModelItem> _gradesItems;
+        public ReactiveList<GradeSummaryViewModelItem> GradesItems
+        {
+            get { return _gradesItems; }
+            set { this.RaiseAndSetIfChanged(ref _gradesItems, value); }
+        }
+
+        #endregion
     }
 }

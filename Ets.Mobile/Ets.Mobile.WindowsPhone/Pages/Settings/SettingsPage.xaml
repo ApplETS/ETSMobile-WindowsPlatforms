@@ -11,14 +11,6 @@
     mc:Ignorable="d"
     Background="{ThemeResource EtsProgramBackgroundBrush}">
 
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Skins/PhoneSkin.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
