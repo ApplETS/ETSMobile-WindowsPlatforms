@@ -49,9 +49,16 @@ namespace Ets.Mobile.Shared
             resolver.RegisterConstant(new NativeMessageHandler(), typeof(HttpMessageHandler));
 
             // Log 
-		    var logger = new CombinedLogger(new CrittercismLogger(), new SplatLogger());
+		    var splatLogger = new SplatLogger();
+		    
+            resolver.RegisterLazySingleton(() => splatLogger, typeof(IFullLogger));
+            resolver.RegisterLazySingleton(() => splatLogger, typeof(ILogger));
+            resolver.RegisterLazySingleton(() => new SplatLogManager(splatLogger), typeof(ILogManager));
+
+            var logger = new CombinedLogger(new CrittercismLogger(), splatLogger);
             resolver.RegisterLazySingleton(() => logger, typeof(IUserEnabledLogger));
-            resolver.RegisterLazySingleton(() => logger, typeof(ILogger));
+            
+            
 
             // View Services
             resolver.RegisterLazySingleton(() => new PopupManager(resolver.GetService<ResourceLoader>()), typeof(IPopupManager));

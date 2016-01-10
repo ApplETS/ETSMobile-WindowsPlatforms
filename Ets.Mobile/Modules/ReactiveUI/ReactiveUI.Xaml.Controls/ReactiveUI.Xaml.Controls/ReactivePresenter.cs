@@ -12,6 +12,7 @@ using Windows.ApplicationModel;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Reactive.Concurrency;
 using Windows.UI.Xaml.Markup;
 
 namespace ReactiveUI.Xaml.Controls
@@ -406,13 +407,17 @@ namespace ReactiveUI.Xaml.Controls
                 var getEmptyMessage = source.GetLastEmptyMessage();
                 var getThrownException = source.GetLastThrownException();
                 var getRefreshing = source.GetLastRefreshing();
-                var taskCompleted = await Task.WhenAny(getRefreshing, Task.WhenAny(getValue, getEmptyMessage, getThrownException));
+
+                RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] Recoverering State"));
+                var taskCompleted = await Task.WhenAny(getRefreshing, getValue, getEmptyMessage, getThrownException);
                 if (taskCompleted == getRefreshing && getRefreshing.Result)
                 {
+                    RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 1- State Recovered: Refreshing"));
                     SetIsRefreshing(true);
                     var subTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException, getValue);
                     if (subTaskCompleted == getValue)
                     {
+                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Value"));
                         if (getValue.Result is IReactiveDerivedList<object> || getValue.Result is IReactiveList<object>)
                         {
                             // it's a reactivelist
@@ -445,28 +450,34 @@ namespace ReactiveUI.Xaml.Controls
                             var subSubTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException);
                             if (subSubTaskCompleted == getEmptyMessage)
                             {
+                                RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 3- State Recovered: Empty"));
                                 SetIsEmpty(true, getEmptyMessage.Result, hasBeenInjected:true);
                             }
                             else if (subTaskCompleted == getThrownException)
                             {
+                                RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 3- State Recovered: Thrown Exception"));
                                 SetThrownException(getThrownException.Result.Message, true);
                             }
                         }
                     }
                     else if (subTaskCompleted == getEmptyMessage)
                     {
+                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Empty"));
                         SetIsEmpty(true, getEmptyMessage.Result, hasBeenInjected: true);
                     }
                     else if (subTaskCompleted == getThrownException)
                     {
+                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Thrown Exception"));
                         SetThrownException(getThrownException.Result.Message, true);
                     }
                 }
                 else
                 {
+                    RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 1- State Recovered: Not Refreshing"));
                     taskCompleted = await Task.WhenAny(getValue, getEmptyMessage, getThrownException);
-                    if (taskCompleted == getValue && getValue != null)
+                    if (taskCompleted == getValue && getValue.Result != null)
                     {
+                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Value"));
                         var derived = getValue.Result as IReactiveDerivedList<object>;
                         var reactiveList = getValue.Result as IReactiveList<object>;
                         if ((derived != null && derived.Count > 0) || (reactiveList != null && reactiveList.Count > 0))
@@ -484,12 +495,14 @@ namespace ReactiveUI.Xaml.Controls
                             SetThrownException(getThrownException.Result.Message, true);
                         }
                     }
-                    else if (taskCompleted == getEmptyMessage)
+                    else if (taskCompleted == getEmptyMessage && getEmptyMessage.Result != null)
                     {
+                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Empty"));
                         SetIsEmpty(true, getEmptyMessage.Result, true);
                     }
-                    else if (taskCompleted == getThrownException)
+                    else if (taskCompleted == getThrownException && getThrownException.Result != null)
                     {
+                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Thrown Exception"));
                         SetThrownException(getThrownException.Result.Message, true);
                     }
                 }

@@ -1,8 +1,6 @@
-﻿using Splat;
-
-namespace Logger
+﻿namespace Logger
 {
-    public interface IUserEnabledLogger : ILogger
+    public interface IUserEnabledLogger
     {
         void SetUser(string username);
     }
