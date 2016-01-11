@@ -12,10 +12,18 @@ using Refit;
 using Security.Algorithms;
 using Splat;
 using System;
+using System.IO;
+using System.IO.Compression;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Email;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using Ets.Mobile.ViewModel.Helpers;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
@@ -69,6 +77,20 @@ namespace Ets.Mobile.ViewModel.Pages.Account
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });
 
+            SendLogsWhenPressedFiveTimesCommand = ReactiveCommand.CreateAsyncTask(async _ =>
+            {
+                if (!_hasSentLogFiles)
+                {
+                    if (_countBeforeSendingLogs >= 6)
+                    {
+                        var isExecuting = await SubmitCommand.IsExecuting.FirstAsync().ToTask();
+                        await LogHelper.ZipApplicationLogsAndSendEmail($"Login Submit Command Status (isExecuting): {isExecuting}");
+                        _hasSentLogFiles = true;
+                    }
+                    _countBeforeSendingLogs++;
+                }
+            });
+
             SubmitCommand.ThrownExceptions.Subscribe(ex => {
                 var apiException = ex as ApiException;
                 var exception = apiException != null ? new ErrorMessageContent(Resources().GetString("NetworkError"), Resources().GetString("NetworkTitleError"), apiException) : new ErrorMessageContent(ex.Message, ex);
@@ -90,25 +112,24 @@ namespace Ets.Mobile.ViewModel.Pages.Account
         {
             _isValidating = true;
             this.Log().Info("Start Loging In");
-            var signetsAccountVm = await Cache.GetAndFetchLatest(ViewModelKeys.Login,
-                async () => {
-                    this.Log().Info($"Send Request to Login for {UserName}");
-                    var isLoginSuccessful = await ClientServices().SignetsService.Login(UserName, Password);
-                    this.Log().Info($"Received Response for and {UserName} " + (isLoginSuccessful ? "has been authentificated sucessfully" : "has invalid credentials"));
-                    return new EtsUserCredentials(UserName, Password, isLoginSuccessful);
-                }
-            );
 
-            if (!signetsAccountVm.IsLoginSuccessful)
+            this.Log().Info($"Send Request to Login for {UserName}");
+            var isLoginSuccessful = await ClientServices().SignetsService.Login(UserName, Password);
+            this.Log().Info($"Received Response for and {UserName} " + (isLoginSuccessful ? "has been authentificated sucessfully" : "has invalid credentials"));
+            
+            if (!isLoginSuccessful)
             {
                 throw new SignetsException("Nom d'usager ou mot de passe invalide.");
             }
 
+            var credentials = new EtsUserCredentials(UserName, Password);
+            await Cache.InsertObject(ViewModelKeys.Login, credentials).ToTask();
+
             this.Log().Info("Set the credentials of the User in the Sso Service");
-            Locator.Current.GetService<ISsoService>().SetCredentials(signetsAccountVm);
+            Locator.Current.GetService<ISsoService>().SetCredentials(credentials);
 
             this.Log().Info("Set the credentials of the User in the logger");
-            Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
+            Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(credentials.Username));
 
             this.Log().Info("Load details about the logged user");
             SideNavigation.UserDetails.LoadProfile.Execute(null);
@@ -122,11 +143,24 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             _isValidating = false;
 
-            return signetsAccountVm;
+            return credentials;
         }
+
+        #region Send Log Files
+
+        private bool _hasSentLogFiles;
+        private int _countBeforeSendingLogs;
+
+        #endregion
+
+        #region Properties
 
         public ReactiveCommand<bool> SwitchToLogin { get; set; }
 
         public ReactiveCommand<EtsUserCredentials> SubmitCommand { get; set; }
+
+        public ReactiveCommand<Unit> SendLogsWhenPressedFiveTimesCommand { get; set; }
+
+        #endregion
     }
 }

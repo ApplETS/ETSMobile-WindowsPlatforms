@@ -3,6 +3,7 @@ using Messaging.Interfaces.Notifications;
 using ReactiveUI.Xaml.Controls.Handlers;
 using Splat;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Disposables;
@@ -376,6 +377,7 @@ namespace ReactiveUI.Xaml.Controls
                     DefaultEmptyMessage = content.Message;
                 }
                 CurrentIsEmpty = isEmpty;
+                CurrentSource = null;
                 ReactiveState = ReactiveState.Empty;
             }).GetAwaiter().OnCompleted(() => { });
         }
@@ -403,111 +405,93 @@ namespace ReactiveUI.Xaml.Controls
             // This puts the right content/state
             Task.Run(async () =>
             {
+                var eventsList = new List<string>();
+                
                 var getValue = source.GetLastValue();
                 var getEmptyMessage = source.GetLastEmptyMessage();
                 var getThrownException = source.GetLastThrownException();
                 var getRefreshing = source.GetLastRefreshing();
 
-                RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] Recoverering State"));
+                Action checkForEmptyOrThrownException = async () =>
+                {
+                    var subSubTaskCompleted = await Task.WhenAny(Task.WhenAny(getEmptyMessage, getThrownException), Task.Delay(TimeSpan.FromSeconds(10)));
+                    if (subSubTaskCompleted == getEmptyMessage && getEmptyMessage.Result != null)
+                    {
+                        SetIsEmpty(true, getEmptyMessage.Result, true);
+                    }
+                    else if (subSubTaskCompleted == getThrownException && getThrownException.Result != null)
+                    {
+                        SetThrownException(getThrownException.Result.Message, true);
+                    }
+                };
+
+                Action checkForCollectionCount = () =>
+                {
+                    var reactiveCollection = getValue.Result as IReactiveCollection<object>;
+                    if (reactiveCollection != null)
+                    {
+                        // it's a reactivelist or reactiveDerivedList
+                        if (!reactiveCollection.Any())
+                        {
+                            SetIsEmpty(true, hasBeenInjected: true);
+                        }
+                    }
+
+                    checkForEmptyOrThrownException();
+                };
+
+                eventsList.Add("Recoverering State");
                 var taskCompleted = await Task.WhenAny(getRefreshing, getValue, getEmptyMessage, getThrownException);
                 if (taskCompleted == getRefreshing && getRefreshing.Result)
                 {
-                    RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 1- State Recovered: Refreshing"));
+                    eventsList.Add("1- State Recovered: Refreshing");
                     SetIsRefreshing(true);
                     var subTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException, getValue);
                     if (subTaskCompleted == getValue)
                     {
-                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Value"));
-                        if (getValue.Result is IReactiveDerivedList<object> || getValue.Result is IReactiveList<object>)
-                        {
-                            // it's a reactivelist
-                            var derived = getValue.Result as IReactiveDerivedList<object>;
-                            var reactiveList = getValue.Result as IReactiveList<object>;
-                            if ((reactiveList != null && reactiveList.Any()) || (derived != null && derived.Any()))
-                            {
-                                //SetContent(getValue.Result, hasBeenInjected: true);
-                            }
-
-                            var subSubTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException);
-                            if (subSubTaskCompleted == getEmptyMessage)
-                            {
-                                SetIsEmpty(true, getEmptyMessage.Result, true);
-                            }
-                            else if (subTaskCompleted == getThrownException)
-                            {
-                                SetThrownException(getThrownException.Result.Message, true);
-                            }
-                        }
-                        else
-                        {
-                            // It's an object
-                            if (getValue.Result != null)
-                            {
-                                //SetContent(getValue.Result, null, true);
-                            }
-                            
-                            // Verify that it is not an "empty" object
-                            var subSubTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException);
-                            if (subSubTaskCompleted == getEmptyMessage)
-                            {
-                                RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 3- State Recovered: Empty"));
-                                SetIsEmpty(true, getEmptyMessage.Result, hasBeenInjected:true);
-                            }
-                            else if (subTaskCompleted == getThrownException)
-                            {
-                                RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 3- State Recovered: Thrown Exception"));
-                                SetThrownException(getThrownException.Result.Message, true);
-                            }
-                        }
+                        eventsList.Add("2- State Recovered: Value");
+                        checkForCollectionCount();
                     }
                     else if (subTaskCompleted == getEmptyMessage)
                     {
-                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Empty"));
+                        eventsList.Add("2- State Recovered: Empty");
                         SetIsEmpty(true, getEmptyMessage.Result, hasBeenInjected: true);
                     }
                     else if (subTaskCompleted == getThrownException)
                     {
-                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Thrown Exception"));
+                        eventsList.Add("2- State Recovered: Thrown Exception");
                         SetThrownException(getThrownException.Result.Message, true);
                     }
                 }
                 else
                 {
-                    RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 1- State Recovered: Not Refreshing"));
+                    eventsList.Add("1- State Recovered: Not Refreshing");
                     taskCompleted = await Task.WhenAny(getValue, getEmptyMessage, getThrownException);
                     if (taskCompleted == getValue && getValue.Result != null)
                     {
-                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Value"));
-                        var derived = getValue.Result as IReactiveDerivedList<object>;
-                        var reactiveList = getValue.Result as IReactiveList<object>;
-                        if ((derived != null && derived.Count > 0) || (reactiveList != null && reactiveList.Count > 0))
-                        {
-                            SetContent(getValue.Result, hasBeenInjected: true);
-                        }
-
-                        var subSubTaskCompleted = await Task.WhenAny(getEmptyMessage, getThrownException);
-                        if (subSubTaskCompleted == getEmptyMessage)
-                        {
-                            SetIsEmpty(true, getEmptyMessage.Result, true);
-                        }
-                        else if (subSubTaskCompleted == getThrownException)
-                        {
-                            SetThrownException(getThrownException.Result.Message, true);
-                        }
+                        eventsList.Add("2- State Recovered: Value");
+                        checkForCollectionCount();
                     }
                     else if (taskCompleted == getEmptyMessage && getEmptyMessage.Result != null)
                     {
-                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Empty"));
+                        eventsList.Add("2- State Recovered: Empty");
                         SetIsEmpty(true, getEmptyMessage.Result, true);
                     }
                     else if (taskCompleted == getThrownException && getThrownException.Result != null)
                     {
-                        RxApp.MainThreadScheduler.Schedule(() => this.Log().Info($"ReactivePresenter[{Name}] 2- State Recovered: Thrown Exception"));
+                        eventsList.Add("2- State Recovered: Thrown Exception");
                         SetThrownException(getThrownException.Result.Message, true);
                     }
                 }
-                
-            }).GetAwaiter().OnCompleted(() => { });
+
+                RxApp.MainThreadScheduler.Schedule(() =>
+                {
+                    foreach (var e in eventsList)
+                    {
+                        this.Log().Info($"ReactivePresenter[{Name}]" + e);
+                    }
+                });
+            });
         }
 
         private static void DataStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

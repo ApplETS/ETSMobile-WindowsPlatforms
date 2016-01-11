@@ -47,11 +47,8 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         private IObservable<ScheduleVm[]> GetScheduleForSemester(SemesterVm currentSemester)
         {
             return Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName),
-                async () =>
-                    await
-                        ClientServices()
-                            .SignetsService.Schedule(currentSemester.AbridgedName)
-                            .ApplyCustomColors(SettingsService()));
+                async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService()))
+                .Select(courses => courses.Where(c => c.StartDate.Date == DateTime.Now.Date).ToArray());
         } 
 
         #region Properties
