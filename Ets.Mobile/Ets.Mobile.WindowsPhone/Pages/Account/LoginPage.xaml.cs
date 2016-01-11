@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace Ets.Mobile.Pages.Account
 {
@@ -67,6 +68,11 @@ namespace Ets.Mobile.Pages.Account
         private void OnLoginShown(object sender, object e)
         {
             UserName.Focus(FocusState.Keyboard);
+        }
+
+        private void LoginForm_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            ViewModel.SendLogsWhenPressedFiveTimesCommand.Execute(null);
         }
     }
 }
