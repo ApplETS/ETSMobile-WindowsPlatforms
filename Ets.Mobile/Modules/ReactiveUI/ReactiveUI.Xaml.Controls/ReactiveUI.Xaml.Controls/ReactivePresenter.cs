@@ -377,7 +377,6 @@ namespace ReactiveUI.Xaml.Controls
                     DefaultEmptyMessage = content.Message;
                 }
                 CurrentIsEmpty = isEmpty;
-                CurrentSource = null;
                 ReactiveState = ReactiveState.Empty;
             }).GetAwaiter().OnCompleted(() => { });
         }
@@ -435,6 +434,10 @@ namespace ReactiveUI.Xaml.Controls
                         {
                             SetIsEmpty(true, hasBeenInjected: true);
                         }
+                        else
+                        {
+                            SetContent(reactiveCollection, hasBeenInjected:true);
+                        }
                     }
 
                     checkForEmptyOrThrownException();
@@ -488,7 +491,7 @@ namespace ReactiveUI.Xaml.Controls
                 {
                     foreach (var e in eventsList)
                     {
-                        this.Log().Info($"ReactivePresenter[{Name}]" + e);
+                        this.Log().Debug($"ReactivePresenter[{Name}]" + e);
                     }
                 });
             });
@@ -551,7 +554,7 @@ namespace ReactiveUI.Xaml.Controls
                 PreviousReactiveState = ReactiveState;
                 ReactiveState = ReactiveState.Waiting;
             }
-            Debug.WriteLine("State({0}) StateNavigated({1}) : HasNavigated({2})", state, stateToNavigateTo, hasNavigated);
+            Debug.WriteLine($"{Name} -> State({state}) StateNavigated({stateToNavigateTo}) : HasNavigated({hasNavigated})");
         }
 
         private void SetTemplate(ContentPresenter presenter, DataTemplate template, object data = null,
