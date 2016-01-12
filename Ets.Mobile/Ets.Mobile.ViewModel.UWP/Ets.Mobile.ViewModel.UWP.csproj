@@ -71,6 +71,10 @@
     <EmbeddedResource Include="Properties\Ets.Mobile.ViewModel.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ets.Mobile.Agent.UWP\Ets.Mobile.Agent.UWP.csproj">
+      <Project>{d5c136f1-423d-4f8b-8fbd-a9f7056c7a5d}</Project>
+      <Name>Ets.Mobile.Agent.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ets.Mobile.Business.UWP\Ets.Mobile.Business.UWP.csproj">
       <Project>{f4733142-7bb0-4896-9e9a-cb52b211ce77}</Project>
       <Name>Ets.Mobile.Business.UWP</Name>
