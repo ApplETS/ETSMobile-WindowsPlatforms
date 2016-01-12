@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D5C136F1-423D-4F8B-8FBD-A9F7056C7A5D}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ets.Mobile.Agent.UWP</RootNamespace>
     <AssemblyName>Ets.Mobile.Agent.UWP</AssemblyName>
@@ -61,6 +61,9 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
@@ -76,6 +79,16 @@
     <SDKReference Include="Microsoft.VCLibs.120, Version=14.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Universal</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ets.Mobile.Client.UWP\Ets.Mobile.Client.UWP.csproj">
+      <Project>{296f2129-d8d1-4609-9d8d-efbf28c8e136}</Project>
+      <Name>Ets.Mobile.Client.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Entities.UWP\Ets.Mobile.Entities.UWP.csproj">
+      <Project>{ca11f29b-31a9-4545-ae6f-5a5ee41fde72}</Project>
+      <Name>Ets.Mobile.Entities.UWP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Ets.Mobile.Agent\Ets.Mobile.Agent.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

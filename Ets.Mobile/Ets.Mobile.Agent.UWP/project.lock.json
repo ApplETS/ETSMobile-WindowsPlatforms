@@ -233,12 +233,42 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.3": {
+      "Newtonsoft.Json/6.0.5": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "reactiveui/6.5.0": {
+        "dependencies": {
+          "reactiveui-core": "[6.5.0, 6.5.0]"
+        }
+      },
+      "reactiveui-core/6.5.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "Rx-WinRT": "[2.2.5, )",
+          "Rx-Xaml": "[2.2.5, )",
+          "Splat": "[1.0.0, 2.0.0)"
+        },
+        "compile": {
+          "lib/Win8/ReactiveUI.dll": {}
+        },
+        "runtime": {
+          "lib/Win8/ReactiveUI.dll": {}
+        }
+      },
+      "refit/2.4.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.5, )"
+        },
+        "compile": {
+          "lib/NetCore45/Refit.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -314,7 +344,7 @@
           "lib/windows8/System.Reactive.Windows.Threading.dll": {}
         }
       },
-      "Splat/1.3.3": {
+      "Splat/1.6.2": {
         "compile": {
           "lib/NetCore45/Splat.dll": {}
         },
@@ -1940,12 +1970,42 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.3": {
+      "Newtonsoft.Json/6.0.5": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "reactiveui/6.5.0": {
+        "dependencies": {
+          "reactiveui-core": "[6.5.0, 6.5.0]"
+        }
+      },
+      "reactiveui-core/6.5.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "Rx-WinRT": "[2.2.5, )",
+          "Rx-Xaml": "[2.2.5, )",
+          "Splat": "[1.0.0, 2.0.0)"
+        },
+        "compile": {
+          "lib/Win8/ReactiveUI.dll": {}
+        },
+        "runtime": {
+          "lib/Win8/ReactiveUI.dll": {}
+        }
+      },
+      "refit/2.4.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.5, )"
+        },
+        "compile": {
+          "lib/NetCore45/Refit.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -2021,7 +2081,7 @@
           "lib/windows8/System.Reactive.Windows.Threading.dll": {}
         }
       },
-      "Splat/1.3.3": {
+      "Splat/1.6.2": {
         "compile": {
           "lib/NetCore45/Splat.dll": {}
         },
@@ -3680,12 +3740,42 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.3": {
+      "Newtonsoft.Json/6.0.5": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "reactiveui/6.5.0": {
+        "dependencies": {
+          "reactiveui-core": "[6.5.0, 6.5.0]"
+        }
+      },
+      "reactiveui-core/6.5.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "Rx-WinRT": "[2.2.5, )",
+          "Rx-Xaml": "[2.2.5, )",
+          "Splat": "[1.0.0, 2.0.0)"
+        },
+        "compile": {
+          "lib/Win8/ReactiveUI.dll": {}
+        },
+        "runtime": {
+          "lib/Win8/ReactiveUI.dll": {}
+        }
+      },
+      "refit/2.4.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.5, )"
+        },
+        "compile": {
+          "lib/NetCore45/Refit.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -3761,7 +3851,7 @@
           "lib/windows8/System.Reactive.Windows.Threading.dll": {}
         }
       },
-      "Splat/1.3.3": {
+      "Splat/1.6.2": {
         "compile": {
           "lib/NetCore45/Splat.dll": {}
         },
@@ -5425,12 +5515,42 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.3": {
+      "Newtonsoft.Json/6.0.5": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "reactiveui/6.5.0": {
+        "dependencies": {
+          "reactiveui-core": "[6.5.0, 6.5.0]"
+        }
+      },
+      "reactiveui-core/6.5.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "Rx-WinRT": "[2.2.5, )",
+          "Rx-Xaml": "[2.2.5, )",
+          "Splat": "[1.0.0, 2.0.0)"
+        },
+        "compile": {
+          "lib/Win8/ReactiveUI.dll": {}
+        },
+        "runtime": {
+          "lib/Win8/ReactiveUI.dll": {}
+        }
+      },
+      "refit/2.4.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.5, )"
+        },
+        "compile": {
+          "lib/NetCore45/Refit.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -5506,7 +5626,7 @@
           "lib/windows8/System.Reactive.Windows.Threading.dll": {}
         }
       },
-      "Splat/1.3.3": {
+      "Splat/1.6.2": {
         "compile": {
           "lib/NetCore45/Splat.dll": {}
         },
@@ -7165,12 +7285,42 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.3": {
+      "Newtonsoft.Json/6.0.5": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "reactiveui/6.5.0": {
+        "dependencies": {
+          "reactiveui-core": "[6.5.0, 6.5.0]"
+        }
+      },
+      "reactiveui-core/6.5.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "Rx-WinRT": "[2.2.5, )",
+          "Rx-Xaml": "[2.2.5, )",
+          "Splat": "[1.0.0, 2.0.0)"
+        },
+        "compile": {
+          "lib/Win8/ReactiveUI.dll": {}
+        },
+        "runtime": {
+          "lib/Win8/ReactiveUI.dll": {}
+        }
+      },
+      "refit/2.4.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.5, )"
+        },
+        "compile": {
+          "lib/NetCore45/Refit.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -7246,7 +7396,7 @@
           "lib/windows8/System.Reactive.Windows.Threading.dll": {}
         }
       },
-      "Splat/1.3.3": {
+      "Splat/1.6.2": {
         "compile": {
           "lib/NetCore45/Splat.dll": {}
         },
@@ -8910,12 +9060,42 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.3": {
+      "Newtonsoft.Json/6.0.5": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "reactiveui/6.5.0": {
+        "dependencies": {
+          "reactiveui-core": "[6.5.0, 6.5.0]"
+        }
+      },
+      "reactiveui-core/6.5.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "Rx-WinRT": "[2.2.5, )",
+          "Rx-Xaml": "[2.2.5, )",
+          "Splat": "[1.0.0, 2.0.0)"
+        },
+        "compile": {
+          "lib/Win8/ReactiveUI.dll": {}
+        },
+        "runtime": {
+          "lib/Win8/ReactiveUI.dll": {}
+        }
+      },
+      "refit/2.4.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.5, )"
+        },
+        "compile": {
+          "lib/NetCore45/Refit.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -8991,7 +9171,7 @@
           "lib/windows8/System.Reactive.Windows.Threading.dll": {}
         }
       },
-      "Splat/1.3.3": {
+      "Splat/1.6.2": {
         "compile": {
           "lib/NetCore45/Splat.dll": {}
         },
@@ -10650,12 +10830,42 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.3": {
+      "Newtonsoft.Json/6.0.5": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "reactiveui/6.5.0": {
+        "dependencies": {
+          "reactiveui-core": "[6.5.0, 6.5.0]"
+        }
+      },
+      "reactiveui-core/6.5.0": {
+        "dependencies": {
+          "Rx-Main": "[2.2.5, )",
+          "Rx-WinRT": "[2.2.5, )",
+          "Rx-Xaml": "[2.2.5, )",
+          "Splat": "[1.0.0, 2.0.0)"
+        },
+        "compile": {
+          "lib/Win8/ReactiveUI.dll": {}
+        },
+        "runtime": {
+          "lib/Win8/ReactiveUI.dll": {}
+        }
+      },
+      "refit/2.4.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.5, )"
+        },
+        "compile": {
+          "lib/NetCore45/Refit.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -10731,7 +10941,7 @@
           "lib/windows8/System.Reactive.Windows.Threading.dll": {}
         }
       },
-      "Splat/1.3.3": {
+      "Splat/1.6.2": {
         "compile": {
           "lib/NetCore45/Splat.dll": {}
         },
@@ -12822,8 +13032,8 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "Newtonsoft.Json/6.0.3": {
-      "sha512": "kN7Xp8vjnSEiLsyo5ZiKrRFgBU4P8CvcdxGSUBQ3W2OLqDK5rIABHkgN9Yjzh6kZ7BD58Ge19fz5GvfCnwmyGA==",
+    "Newtonsoft.Json/6.0.5": {
+      "sha512": "gPrmi+71KZJ3oNJfbpCaFW0xMZQ/eT60fnOgULgoqPrmnuuoEzxxSNDkTrOC9MlnfQPhUnL3yUSkG34MbykMIA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12838,13 +13048,101 @@
         "lib/net45/Newtonsoft.Json.xml",
         "lib/netcore45/Newtonsoft.Json.dll",
         "lib/netcore45/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl4+wp7+win8/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl4+wp7+win8/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "Newtonsoft.Json.nuspec",
-        "package/services/metadata/core-properties/461b1ced7b6e4e6da9908e24495599dd.psmdcp",
+        "package/services/metadata/core-properties/0abdbb176a984c66b7fe1ef90c24dd27.psmdcp",
         "tools/install.ps1"
+      ]
+    },
+    "reactiveui/6.5.0": {
+      "sha512": "ur5Z7oNa8B3OL1Hh/4Fk8+Va0pHxzD4YXZu+3uw7mSvNQG6RT1NAjGn9SuL8iXH/D3a2LiqU0S/3ZPuw4QCFhw==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "package/services/metadata/core-properties/e8299ae2e16749b7a90e0d4ddfee95a6.psmdcp",
+        "reactiveui.nuspec"
+      ]
+    },
+    "reactiveui-core/6.5.0": {
+      "sha512": "6zmfsHKP2WDQaJQcny2jalPIZg3yYosVxt4zQH5KqcsKiIBlyr1pLcsS/l+eE0giTL8ziuG9EE/QmBOalze+Ag==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/MonoAndroid/ReactiveUI.dll",
+        "lib/MonoAndroid/ReactiveUI.dll.mdb",
+        "lib/MonoAndroid/ReactiveUI.xml",
+        "lib/MonoMac/ReactiveUI.dll",
+        "lib/MonoMac/ReactiveUI.dll.mdb",
+        "lib/MonoMac/ReactiveUI.xml",
+        "lib/Monotouch/ReactiveUI.dll",
+        "lib/Monotouch/ReactiveUI.dll.mdb",
+        "lib/Monotouch/ReactiveUI.xml",
+        "lib/Net45/ReactiveUI.dll",
+        "lib/Net45/ReactiveUI.xml",
+        "lib/Portable-Net45+Win8+WP8+WPA81/ReactiveUI.dll",
+        "lib/Portable-Net45+Win8+WP8+WPA81/ReactiveUI.XML",
+        "lib/Portable-Win81+WPA81/ReactiveUI.dll",
+        "lib/Portable-Win81+WPA81/ReactiveUI.pri",
+        "lib/Portable-Win81+WPA81/ReactiveUI.xml",
+        "lib/Portable-Win81+WPA81/ReactiveUI/ReactiveUI.xr.xml",
+        "lib/Portable-Win81+WPA81/ReactiveUI/Themes/generic-winrt.xbf",
+        "lib/Win8/ReactiveUI.dll",
+        "lib/Win8/ReactiveUI.pri",
+        "lib/Win8/ReactiveUI.xml",
+        "lib/Win8/ReactiveUI/Themes/generic-winrt.xaml",
+        "lib/WP8/ReactiveUI.dll",
+        "lib/WP8/ReactiveUI.xml",
+        "lib/Xamarin.iOS10/ReactiveUI.dll",
+        "lib/Xamarin.iOS10/ReactiveUI.dll.mdb",
+        "lib/Xamarin.iOS10/ReactiveUI.xml",
+        "lib/Xamarin.Mac10/ReactiveUI.dll",
+        "lib/Xamarin.Mac10/ReactiveUI.dll.mdb",
+        "lib/Xamarin.Mac10/ReactiveUI.xml",
+        "package/services/metadata/core-properties/2481ef13a213498ea7051ba23cebedc0.psmdcp",
+        "reactiveui-core.nuspec"
+      ]
+    },
+    "refit/2.4.1": {
+      "sha512": "jbSjxOFrXAFkOtlig4ac1Jaf8pYsTivJRdgxp8xfWTC4Gq5k5K/3jQ/lGVzo3YgqCnils0MgWng3Wt18zfHeYQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "build/portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10/refit.targets",
+        "lib/MonoAndroid/Refit.dll",
+        "lib/MonoAndroid/Refit.dll.mdb",
+        "lib/Net45/Refit.dll",
+        "lib/Net45/Refit.dll.config",
+        "lib/Net45/Refit.dll.mdb",
+        "lib/Net45/Refit.pdb",
+        "lib/NetCore45/Refit.dll",
+        "lib/NetCore45/Refit.pdb",
+        "lib/NetCore45/Refit.pri",
+        "lib/Portable-Net45+NetCore45+WP8+WPA81/Refit.dll",
+        "lib/Portable-Net45+NetCore45+WP8+WPA81/Refit.dll.config",
+        "lib/Portable-Net45+NetCore45+WP8+WPA81/Refit.dll.mdb",
+        "lib/Portable-Net45+NetCore45+WP8+WPA81/Refit.pdb",
+        "lib/Portable-Win81+Wpa81/Refit.dll",
+        "lib/Portable-Win81+Wpa81/Refit.pdb",
+        "lib/Portable-Win81+Wpa81/Refit.pri",
+        "lib/WP8/Refit.dll",
+        "lib/WP8/Refit.pdb",
+        "lib/Xamarin.iOS10/Refit.dll",
+        "lib/Xamarin.iOS10/Refit.dll.mdb",
+        "package/services/metadata/core-properties/bea1ddbffcb446f5abe2aa01264453fb.psmdcp",
+        "refit.nuspec",
+        "tools/GeneratedInterfaceStubTemplate.mustache",
+        "tools/InterfaceStubGenerator.exe",
+        "tools/Microsoft.CodeAnalysis.CSharp.dll",
+        "tools/Microsoft.CodeAnalysis.dll",
+        "tools/Nustache.Core.dll",
+        "tools/System.Collections.Immutable.dll",
+        "tools/System.Reflection.Metadata.dll"
       ]
     },
     "Rx-Core/2.2.5": {
@@ -13017,8 +13315,8 @@
         "Rx-XAML.nuspec"
       ]
     },
-    "Splat/1.3.3": {
-      "sha512": "cZbdtOEAVvek92VLP3ApGGUjlB3oBVH35y9qU+yDZbccVuh5TAi8ozIXXpsldXr/oMJI0zHhEffGTRaPNPZcag==",
+    "Splat/1.6.2": {
+      "sha512": "DeH0MxPU+D4JchkIDPYG4vUT+hsWs9S41cFle0/4K5EJMXWurx5DzAkj2366DfK14/XKNhsu6tCl4dZXJ3CD4w==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -13036,10 +13334,16 @@
         "lib/NetCore45/Splat.pri",
         "lib/Portable-net45+win+wpa81+wp80/Splat.dll",
         "lib/Portable-Win81+Wpa81/Splat.dll",
+        "lib/Portable-Win81+Wpa81/Splat.pdb",
         "lib/Portable-Win81+Wpa81/Splat.pri",
         "lib/wp8/Splat.dll",
         "lib/wp8/Splat.pdb",
-        "package/services/metadata/core-properties/b1ec77e8aff349e8a77f3c763a860c6a.psmdcp",
+        "lib/Xamarin.iOS10/Splat.dll",
+        "lib/Xamarin.iOS10/Splat.dll.mdb",
+        "lib/Xamarin.Mac10/Splat.dll",
+        "lib/Xamarin.Mac10/Splat.dll.mdb",
+        "lib/Xamarin.Mac10/Splat-XamarinMac.csproj.FilesWrittenAbsolute.txt",
+        "package/services/metadata/core-properties/807e3bdc9da2465cb88816aeacf7cdd8.psmdcp",
         "Splat.nuspec"
       ]
     },
