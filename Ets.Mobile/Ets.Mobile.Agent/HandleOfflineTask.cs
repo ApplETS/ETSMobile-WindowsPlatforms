@@ -35,7 +35,6 @@ namespace Ets.Mobile.Agent
                         TaskEntryPoint = TaskEntryPoint
                     };
                     taskBuilder.SetTrigger(new SystemTrigger(SystemTriggerType.NetworkStateChange, false));
-                    taskBuilder.AddCondition(new SystemCondition(SystemConditionType.InternetAvailable));
                     taskBuilder.Register();
                 }
             }).AsAsyncAction();
