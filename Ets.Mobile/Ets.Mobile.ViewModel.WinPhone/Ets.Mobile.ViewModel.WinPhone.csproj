@@ -71,6 +71,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ets.Mobile.Agent.WinPhone\Ets.Mobile.Agent.WinPhone.csproj">
+      <Project>{de843c4e-2ebd-43be-bc0a-9055631ad9dd}</Project>
+      <Name>Ets.Mobile.Agent.WinPhone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ets.Mobile.Business.WinPhone\Ets.Mobile.Business.WinPhone.csproj">
       <Project>{e222ab54-2f09-4b90-846f-b2a3eb893233}</Project>
       <Name>Ets.Mobile.Business.WinPhone</Name>
