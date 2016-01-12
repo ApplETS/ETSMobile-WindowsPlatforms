@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISetCredentials.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISignetsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISsoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Schedule\ScheduleForLiveTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Moodle\MoodleExceptionHandlerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Signets\SignetsExceptionHandlerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Abstractions\MoodleAbstractFactory.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Mixins\CustomSettingsMixins.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MoodleException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\CustomSettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LiveTileAndLockScreenService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MoodleService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\SignetsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\SsoService.cs" />
