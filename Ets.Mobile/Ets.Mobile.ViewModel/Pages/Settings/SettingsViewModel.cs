@@ -37,6 +37,7 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
                 .Subscribe(isActive => HandleScheduleBackgroundService.Execute(isActive.Value));
 
             Cache.GetObject<bool>(ViewModelKeys.ScheduleTileUpdaterActive)
+                .Catch(Observable.Return(false))
                 .Subscribe(isActive => IsScheduleBackgroundServiceActive = isActive);
 
             SendFeedbackUri = new Uri("mailto:applets@ens.etsmtl.ca?subject=" +
