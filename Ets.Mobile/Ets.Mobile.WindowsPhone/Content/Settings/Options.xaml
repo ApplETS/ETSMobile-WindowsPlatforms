@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignHeight="600"
+    d:DesignWidth="600">
     <StackPanel>
         <TextBlock x:Uid="LiveTileAndLockScreenUid" Margin="0,0,0,10" Pivot.SlideInAnimationGroup="1" Style="{ThemeResource EtsOptionsTitleStyle}" Text="Vignette dynamique et Écran de verrouillage" />
         <ToggleSwitch x:Name="ShowSchedule" x:Uid="LiveTileAndLockScreenToggleSwitchUid" OnContent="Montrer l'horaire" OffContent="Montrer l'horaire" IsOn="{Binding IsScheduleBackgroundServiceActive, FallbackValue=true, Mode=TwoWay}" Style="{ThemeResource EtsToggleSwitchStyle}" />
@@ -21,6 +21,28 @@
                     <Run x:Uid="LiveTileAndLockScreenLinkToLockScreenUid" Text="paramètres de l'écran de verrouillage" />
                 </Hyperlink>
                 <Run x:Uid="LiveTileAndLockScreenDescription2Uid" Text=" afin d'afficher l'horaire sur l'écran de verrouillage" />
+            </Paragraph>
+        </RichTextBlock>
+
+        <TextBlock x:Uid="CalendarIntegrationUid" Margin="0,40,0,10" Pivot.SlideInAnimationGroup="1" Style="{ThemeResource EtsOptionsTitleStyle}" Text="Intégrez votre horaire au calendrier" />
+            <StackPanel Orientation="Horizontal">
+                <Button x:Uid="ScheduleIntegrationButtonUid" 
+                        Content="intégrer au calendrier"
+                        Height="40"
+						Style="{StaticResource EtsButtonRedLowestColor}" 
+						BorderThickness="0"
+                        Margin="0,0,15,0"
+                        Command="{Binding IntegrateScheduleToCalendar}"/>
+                <Button x:Uid="RemoveScheduleIntegrationButtonUid" 
+                        Content="retirer du calendrier"
+                        Height="40"
+						Style="{StaticResource EtsButtonRedLowestColor}" 
+						BorderThickness="0"
+                        Command="{Binding RemoveScheduleFromCalendar}"/>
+            </StackPanel>
+            <RichTextBlock Style="{ThemeResource EtsOptionsDescriptionStyle}">
+            <Paragraph Foreground="{ThemeResource EtsTextSecondaryBrush}" >
+                <Run x:Uid="CalendarIntegrationDescriptionUid" Text="Utilisez le bouton 'intégrer l'horaire' ci-dessus pour intégrer votre horaire au calendrier. Lorsque l'horaire est intégré, vous pouvez mettre à jour l'horaire (au besoin) en utilisant le même bouton ('intégrer l'horaire'). Pour enlever l'intégration au calendrier de l'horaire, utilisez le bouton 'retirer du calendrier." />
             </Paragraph>
         </RichTextBlock>
     </StackPanel>

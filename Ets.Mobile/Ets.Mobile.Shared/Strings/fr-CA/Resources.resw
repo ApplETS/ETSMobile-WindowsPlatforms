@@ -429,4 +429,61 @@
   <data name="OptionsUid.Text" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="CalendarIntegrationDescriptionUid.Text" xml:space="preserve">
+    <value>Utilisez le bouton 'intégrer l'horaire' ci-dessus pour intégrer votre horaire au calendrier. Lorsque l'horaire est intégré, vous pouvez mettre à jour l'horaire (au besoin) en utilisant le même bouton ('intégrer l'horaire'). Pour enlever l'intégration au calendrier de l'horaire, utilisez le bouton 'retirer du calendrier.</value>
+  </data>
+  <data name="CalendarIntegrationUid.Text" xml:space="preserve">
+    <value>Intégrez votre horaire au calendrier</value>
+  </data>
+  <data name="RemoveScheduleIntegrationButtonUid.Content" xml:space="preserve">
+    <value>retirer du calendrier</value>
+  </data>
+  <data name="RemoveScheduleIntegrationMessageCompleted" xml:space="preserve">
+    <value>L'horaire a été supprimé du calendrier.</value>
+  </data>
+  <data name="RemoveScheduleIntegrationMessageException" xml:space="preserve">
+    <value>Nous ne pouvons pas supprimer l'horaire du calendrier pour le moment. Si le problème persiste, vous pouvez nous contacter via 'envoyer des commentaires' dans la section À Propos ou ré-installez l'application.</value>
+  </data>
+  <data name="RemoveScheduleIntegrationMessageNoCalendar" xml:space="preserve">
+    <value>Il n'y a pas d'horaire à enlever du calendrier. S'il y a toujours votre horaire dans le calendrier, vous pouvez nous contacter via 'envoyer des commentaires' dans la section À Propos ou ré-installez l'application directement.</value>
+  </data>
+  <data name="RemoveScheduleIntegrationTitleCompleted" xml:space="preserve">
+    <value>Succès!</value>
+  </data>
+  <data name="RemoveScheduleIntegrationTitleException" xml:space="preserve">
+    <value>Échec de la suppression</value>
+  </data>
+  <data name="RemoveScheduleIntegrationTitleNoCalendar" xml:space="preserve">
+    <value>Pas d'horaire dans le calendrier</value>
+  </data>
+  <data name="ScheduleCalendarName" xml:space="preserve">
+    <value>Horaire</value>
+  </data>
+  <data name="ScheduleIntegrationButtonUid.Content" xml:space="preserve">
+    <value>intégrer l'horaire au calendrier</value>
+  </data>
+  <data name="ScheduleIntegrationDescriptionUid.Text" xml:space="preserve">
+    <value>Utilisez le bouton ci-dessus pour intégrer votre horaire au calendrier.</value>
+  </data>
+  <data name="ScheduleIntegrationMessageCompleted" xml:space="preserve">
+    <value>L'horaire a été intégré correctement au calendrier.</value>
+  </data>
+  <data name="ScheduleIntegrationMessageEmpty" xml:space="preserve">
+    <value>Nous ne pouvons pas intégrer d'horaire puisqu'il semble que vous n'avez pas de cours actuellement ou dans le futur. Si le problème persiste, vous pouvez nous contacter via 'envoyer des commentaires' dans la section À Propos.</value>
+  </data>
+  <data name="ScheduleIntegrationMessageException" xml:space="preserve">
+    <value>Nous n'avons pas été en mesure d'intégrer l'horaire à votre calendrier. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez nous contacter via 'envoyer des commentaires' dans la section À Propos.</value>
+  </data>
+  <data name="ScheduleIntegrationTitleCompleted" xml:space="preserve">
+    <value>C'est fait!</value>
+  </data>
+  <data name="ScheduleIntegrationTitleEmpty" xml:space="preserve">
+    <value>Pas d'horaire</value>
+  </data>
+  <data name="ScheduleIntegrationTitleException" xml:space="preserve">
+    <value>Échec de l'intégration</value>
+  </data>
+  <data name="ScheduleIntegrationUid.Text" xml:space="preserve">
+    <value>Intégrer votre horaire au calendrier</value>
+  </data>
 </root>

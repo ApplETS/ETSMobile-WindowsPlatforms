@@ -58,24 +58,19 @@ namespace Ets.Mobile.Shared
             var logger = new CombinedLogger(new CrittercismLogger(), splatLogger);
             resolver.RegisterLazySingleton(() => logger, typeof(IUserEnabledLogger));
             
-            
-
             // View Services
             resolver.RegisterLazySingleton(() => new PopupManager(resolver.GetService<ResourceLoader>()), typeof(IPopupManager));
             resolver.RegisterLazySingleton(() => new InAppNotificationManager(AppBrushes.MediumBrush), typeof(INotificationManager), "InApp");
             resolver.RegisterLazySingleton(() => new ViewService(), typeof(IViewService));
 
-            // Business Services
-		    InitializeBusinessServices(resolver);
-
-            // Client Services
-            InitializeClientServices(resolver);
-
+            // Register Services
+		    InitializeServices(resolver);
+            
             // Custom Settings
             resolver.RegisterLazySingleton(() => new CustomSettingsService(), typeof(ICustomSettingsService));
         }
 
-        private static void InitializeBusinessServices(IMutableDependencyResolver resolver)
+        private static void InitializeServices(IMutableDependencyResolver resolver)
         {
             // Signets Services
             //
@@ -101,48 +96,31 @@ namespace Ets.Mobile.Shared
 
             resolver.RegisterLazySingleton(() => RestService.For<ISignetsBusinessService>(clientSignets, refitSettingsSignets), typeof(ISignetsBusinessService));
 
+            // Signets Services
+            //
+            resolver.RegisterLazySingleton(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
+            resolver.RegisterLazySingleton(() => new SignetsService(resolver.GetService<ISignetsBusinessService>(), resolver.GetService<SignetsAbstractFactory>()), typeof(ISignetsService));
+
             // Moodle Services
             //
             resolver.RegisterLazySingleton(() =>
                 new MoodleClientInfo { Url = "https://ena.etsmtl.ca/" },
                 typeof(MoodleClientInfo)
             );
-            
             var clientMoodle = new HttpClient(resolver.GetService<HttpMessageHandler>())
             {
                 BaseAddress = new Uri(resolver.GetService<MoodleClientInfo>().Url)
             };
-
-
+            resolver.RegisterLazySingleton(() => new MoodleFactory(), typeof(MoodleAbstractFactory));
             resolver.RegisterLazySingleton(() => RestService.For<IMoodleBusinessService>(clientMoodle), typeof(IMoodleBusinessService));
-
-            resolver.RegisterLazySingleton(() => new MoodleService(resolver.GetService<IMoodleBusinessService>(), new MoodleFactory()), typeof(IMoodleService));
+            resolver.RegisterLazySingleton(() => new MoodleService(resolver.GetService<IMoodleBusinessService>(), resolver.GetService<MoodleAbstractFactory>()), typeof(IMoodleService));
 
             // SSO Service
             //
             resolver.RegisterLazySingleton(() => new SsoService(resolver.GetService<ISignetsService>(), resolver.GetService<IMoodleService>()), typeof(ISsoService));
+            
+            // Calendar Services
+            resolver.RegisterLazySingleton(() => new CalendarService(), typeof(ICalendarService));
         }
-
-        private static void InitializeClientServices(IMutableDependencyResolver resolver)
-        {
-            // Signets Services
-            //
-            resolver.RegisterLazySingleton(() => new SignetsFactory(), typeof(SignetsAbstractFactory));
-            var signetServiceInstance = new SignetsService(
-                resolver.GetService<ISignetsBusinessService>(),
-                resolver.GetService<SignetsAbstractFactory>()
-            );
-            resolver.RegisterLazySingleton(() => signetServiceInstance, typeof(ISignetsService));
-
-            // Moodle Services
-            //
-            resolver.RegisterLazySingleton(() => new MoodleFactory(), typeof(MoodleAbstractFactory));
-            var moodleServiceInstance = new MoodleService(
-                resolver.GetService<IMoodleBusinessService>(),
-                resolver.GetService<MoodleAbstractFactory>()
-            );
-            resolver.RegisterLazySingleton(() => signetServiceInstance, typeof(ISignetsService));
-        }
-
     }
 }

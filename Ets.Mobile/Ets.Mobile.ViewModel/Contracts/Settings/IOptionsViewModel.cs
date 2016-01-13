@@ -1,4 +1,6 @@
-﻿using ReactiveUI;
+﻿using System.Reactive;
+using ReactiveUI;
+using ReactiveUI.Xaml.Controls.Core;
 
 namespace Ets.Mobile.ViewModel.Contracts.Settings
 {
@@ -10,5 +12,15 @@ namespace Ets.Mobile.ViewModel.Contracts.Settings
         /// </summary>
         ReactiveCommand<bool> HandleScheduleBackgroundService { get; set; }
         bool IsScheduleBackgroundServiceActive { get; set; }
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
+        /// <summary>
+        /// Integrate the schedule to the device's calendar
+        /// </summary>
+        ReactivePresenterCommand<Unit> IntegrateScheduleToCalendar { get; set; }
+        /// <summary>
+        /// Remove the schedule from the device's calendar
+        /// </summary>
+        ReactiveCommand<bool> RemoveScheduleFromCalendar { get; set; }
+#endif
     }
 }

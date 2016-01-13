@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ClientEndpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ClientKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\ICalendarService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ICustomSettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\IMoodleService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISetCredentials.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Signets\IUserDetailsFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mixins\CustomSettingsMixins.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MoodleException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\CalendarService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\CustomSettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\LiveTileAndLockScreenService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MoodleService.cs" />
