@@ -10,19 +10,23 @@
     d:DesignWidth="600">
     <StackPanel>
         <TextBlock x:Uid="LiveTileAndLockScreenUid" Margin="0,0,0,10" Pivot.SlideInAnimationGroup="1" Style="{ThemeResource EtsOptionsTitleStyle}" Text="Vignette dynamique et Écran de verrouillage" />
-        <ToggleSwitch x:Name="ShowSchedule" x:Uid="LiveTileAndLockScreenToggleSwitchUid" OnContent="Montrer l'horaire" OffContent="Montrer l'horaire" IsOn="{Binding IsScheduleBackgroundServiceActive, FallbackValue=true, Mode=TwoWay}" Style="{ThemeResource EtsToggleSwitchStyle}" />
-        <Canvas Visibility="Collapsed" x:Name="LoadingShowScheduleChanged" Background="Transparent" ZIndex="10" HorizontalAlignment="Right" Height="50" Width="50" Margin="0,-55,15,0">
-            <ProgressRing Background="Transparent" IsActive="True" Visibility="Visible" Foreground="{ThemeResource EtsOptionsProgressRingForeground}" />
-        </Canvas>
-        <RichTextBlock Style="{ThemeResource EtsOptionsDescriptionStyle}">
-            <Paragraph Foreground="{ThemeResource EtsTextSecondaryBrush}" >
-                <Run x:Uid="LiveTileAndLockScreenDescription1Uid" Text="Vous pouvez sélectionner cette application dans les " />
-                <Hyperlink Foreground="{ThemeResource EtsOptionsDescriptionLinkForeground}" FontSize="{ThemeResource EtsOptionsDescriptionLinkFontSize}" NavigateUri="ms-settings-lock:" >
-                    <Run x:Uid="LiveTileAndLockScreenLinkToLockScreenUid" Text="paramètres de l'écran de verrouillage" />
-                </Hyperlink>
-                <Run x:Uid="LiveTileAndLockScreenDescription2Uid" Text=" afin d'afficher l'horaire sur l'écran de verrouillage" />
-            </Paragraph>
-        </RichTextBlock>
+            <ToggleSwitch x:Name="ShowSchedule" x:Uid="LiveTileAndLockScreenToggleSwitchUid" OnContent="Montrer l'horaire" OffContent="Montrer l'horaire" IsOn="{Binding IsScheduleBackgroundServiceActive, FallbackValue=true, Mode=TwoWay}" Style="{ThemeResource EtsToggleSwitchStyle}" />
+            <Canvas Visibility="Collapsed" x:Name="LoadingShowScheduleChanged" Background="Transparent" ZIndex="10" HorizontalAlignment="Right" Height="50" Width="50" Margin="0,-55,15,0">
+                <ProgressRing Background="Transparent" IsActive="True" Visibility="Visible" Foreground="{ThemeResource EtsOptionsProgressRingForeground}" />
+            </Canvas>
+            <RichTextBlock Style="{ThemeResource EtsOptionsDescriptionStyle}">
+                <Paragraph Foreground="{ThemeResource EtsTextSecondaryBrush}" >
+                    <Run x:Uid="LiveTileAndLockScreenDescription1Uid" Text="Vous pouvez sélectionner cette application dans les " />
+                    <Hyperlink Foreground="{ThemeResource EtsOptionsDescriptionLinkForeground}" FontSize="{ThemeResource EtsOptionsDescriptionLinkFontSize}" NavigateUri="ms-settings-lock:" >
+                        <Run x:Uid="LiveTileAndLockScreenLinkToLockScreenUid" Text="paramètres de l'écran de verrouillage" />
+                    </Hyperlink>
+                    <Run x:Uid="LiveTileAndLockScreenDescription2Uid" Text=" afin d'afficher l'horaire sur l'écran de verrouillage" />
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph Foreground="{ThemeResource EtsTextSecondaryBrush}" >
+                <Run x:Uid="PinAppToStartDescriptionUid" Text="Quand l'option ci-dessus 'Montrer l'horaire' est activé, l'application affiche dans la vignette (moyenne ou large) l'horaire (le cours actuel ou prochain dans le jour courant)." />
+                </Paragraph>
+            </RichTextBlock>
 
         <TextBlock x:Uid="CalendarIntegrationUid" Margin="0,40,0,10" Pivot.SlideInAnimationGroup="1" Style="{ThemeResource EtsOptionsTitleStyle}" Text="Intégrez votre horaire au calendrier" />
             <StackPanel Orientation="Horizontal">
@@ -41,9 +45,9 @@
                         Command="{Binding RemoveScheduleFromCalendar}"/>
             </StackPanel>
             <RichTextBlock Style="{ThemeResource EtsOptionsDescriptionStyle}">
-            <Paragraph Foreground="{ThemeResource EtsTextSecondaryBrush}" >
-                <Run x:Uid="CalendarIntegrationDescriptionUid" Text="Utilisez le bouton 'intégrer l'horaire' ci-dessus pour intégrer votre horaire au calendrier. Lorsque l'horaire est intégré, vous pouvez mettre à jour l'horaire (au besoin) en utilisant le même bouton ('intégrer l'horaire'). Pour enlever l'intégration au calendrier de l'horaire, utilisez le bouton 'retirer du calendrier." />
-            </Paragraph>
-        </RichTextBlock>
+                <Paragraph Foreground="{ThemeResource EtsTextSecondaryBrush}" >
+                    <Run x:Uid="CalendarIntegrationDescriptionUid" Text="Utilisez le bouton 'intégrer l'horaire' ci-dessus pour intégrer votre horaire au calendrier. Lorsque l'horaire est intégré, vous pouvez mettre à jour l'horaire (au besoin) en utilisant le même bouton ('intégrer l'horaire'). Pour enlever l'intégration au calendrier de l'horaire, utilisez le bouton 'retirer du calendrier." />
+                </Paragraph>
+            </RichTextBlock>
     </StackPanel>
 </UserControl>

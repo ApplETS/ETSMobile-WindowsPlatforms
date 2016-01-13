@@ -486,4 +486,10 @@
   <data name="ScheduleIntegrationUid.Text" xml:space="preserve">
     <value>Integrate your schedule to the calendar</value>
   </data>
+  <data name="PinAppToStartDescriptionUid.Text" xml:space="preserve">
+    <value>When the setting above 'Show Schedule' is activated, the application shows in the live tile (medium or large) the schedule (current or next course of the current day).</value>
+  </data>
+  <data name="PinAppToStartUid.Text" xml:space="preserve">
+    <value>Pin the application to start</value>
+  </data>
 </root>

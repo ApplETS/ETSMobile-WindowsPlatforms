@@ -486,4 +486,10 @@
   <data name="ScheduleIntegrationUid.Text" xml:space="preserve">
     <value>Intégrer votre horaire au calendrier</value>
   </data>
+  <data name="PinAppToStartDescriptionUid.Text" xml:space="preserve">
+    <value>Quand l'option ci-dessus 'Montrer l'horaire' est activé, l'application affiche dans la vignette (moyenne ou large) l'horaire (le cours actuel ou prochain dans le jour courant).</value>
+  </data>
+  <data name="PinAppToStartUid.Text" xml:space="preserve">
+    <value>Éplinglez l'application au menu démarrer</value>
+  </data>
 </root>
