@@ -1,6 +1,6 @@
 ﻿namespace Ets.Mobile.ViewModel.Contracts.Settings
 {
-    public interface ISettingsViewModel : IAboutViewModel
+    public interface ISettingsViewModel : IAboutViewModel, IOptionsViewModel
     {
     }
 }

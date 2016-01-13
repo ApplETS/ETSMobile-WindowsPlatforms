@@ -4,6 +4,7 @@ using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.ViewModel.Bases;
+using Ets.Mobile.ViewModel.Helpers;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Logger;
 using Messaging.UniversalApp.Common;
@@ -12,18 +13,11 @@ using Refit;
 using Security.Algorithms;
 using Splat;
 using System;
-using System.IO;
-using System.IO.Compression;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Email;
-using Windows.Storage;
-using Windows.Storage.Streams;
-using Ets.Mobile.ViewModel.Helpers;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
@@ -138,6 +132,9 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
             Task.WaitAll(coursesTask);
             await Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result).ToTask();
+
+            this.Log().Info("Register Schedule Tile and LockScreen Updater");
+            await Agent.ScheduleTileUpdaterBackgroundTask.Register();
 
             this.Log().Info("Completed login flow");
 
