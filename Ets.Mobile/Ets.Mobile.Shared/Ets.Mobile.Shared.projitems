@@ -44,6 +44,9 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Menu\MoodleLogo.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Moodle\CourseMoodleUrl_Dark.24.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Moodle\CourseMoodleUrl_White.24.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\TileImage\Badge.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\TileImage\Badge.scale-140.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\TileImage\Badge.scale-240.png" />
     <Content Include="$(MSBuildThisFileDirectory)Fonts\segmdl2.ttf" />
   </ItemGroup>
   <ItemGroup>

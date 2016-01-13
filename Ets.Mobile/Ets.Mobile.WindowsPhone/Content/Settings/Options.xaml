@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="Ets.Mobile.Content.Settings.Options"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Content.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <StackPanel>
+        <TextBlock x:Uid="LiveTileAndLockScreenUid" Margin="0,0,0,10" Pivot.SlideInAnimationGroup="1" Style="{ThemeResource EtsOptionsTitleStyle}" Text="Vignette dynamique et Écran de verrouillage" />
+        <ToggleSwitch x:Name="ShowSchedule" x:Uid="LiveTileAndLockScreenToggleSwitchUid" OnContent="Montrer l'horaire" OffContent="Montrer l'horaire" IsOn="{Binding IsScheduleBackgroundServiceActive, FallbackValue=true, Mode=TwoWay}" Style="{ThemeResource EtsToggleSwitchStyle}" />
+        <Canvas Visibility="Collapsed" x:Name="LoadingShowScheduleChanged" Background="Transparent" ZIndex="10" HorizontalAlignment="Right" Height="50" Width="50" Margin="0,-55,15,0">
+            <ProgressRing Background="Transparent" IsActive="True" Visibility="Visible" Foreground="{ThemeResource EtsOptionsProgressRingForeground}" />
+        </Canvas>
+        <RichTextBlock Style="{ThemeResource EtsOptionsDescriptionStyle}">
+            <Paragraph Foreground="{ThemeResource EtsTextSecondaryBrush}" >
+                <Run x:Uid="LiveTileAndLockScreenDescription1Uid" Text="Vous pouvez sélectionner cette application dans les " />
+                <Hyperlink Foreground="{ThemeResource EtsOptionsDescriptionLinkForeground}" FontSize="{ThemeResource EtsOptionsDescriptionLinkFontSize}" NavigateUri="ms-settings-lock:" >
+                    <Run x:Uid="LiveTileAndLockScreenLinkToLockScreenUid" Text="paramètres de l'écran de verrouillage" />
+                </Hyperlink>
+                <Run x:Uid="LiveTileAndLockScreenDescription2Uid" Text=" afin d'afficher l'horaire sur l'écran de verrouillage" />
+            </Paragraph>
+        </RichTextBlock>
+    </StackPanel>
+</UserControl>

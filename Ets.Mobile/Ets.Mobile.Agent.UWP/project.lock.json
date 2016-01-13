@@ -233,7 +233,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.5": {
+      "Newtonsoft.Json/6.0.3": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
@@ -258,17 +258,6 @@
         },
         "runtime": {
           "lib/Win8/ReactiveUI.dll": {}
-        }
-      },
-      "refit/2.4.1": {
-        "dependencies": {
-          "Newtonsoft.Json": "[6.0.5, )"
-        },
-        "compile": {
-          "lib/NetCore45/Refit.dll": {}
-        },
-        "runtime": {
-          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -1970,7 +1959,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.5": {
+      "Newtonsoft.Json/6.0.3": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
@@ -1995,17 +1984,6 @@
         },
         "runtime": {
           "lib/Win8/ReactiveUI.dll": {}
-        }
-      },
-      "refit/2.4.1": {
-        "dependencies": {
-          "Newtonsoft.Json": "[6.0.5, )"
-        },
-        "compile": {
-          "lib/NetCore45/Refit.dll": {}
-        },
-        "runtime": {
-          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -3740,7 +3718,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.5": {
+      "Newtonsoft.Json/6.0.3": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
@@ -3765,17 +3743,6 @@
         },
         "runtime": {
           "lib/Win8/ReactiveUI.dll": {}
-        }
-      },
-      "refit/2.4.1": {
-        "dependencies": {
-          "Newtonsoft.Json": "[6.0.5, )"
-        },
-        "compile": {
-          "lib/NetCore45/Refit.dll": {}
-        },
-        "runtime": {
-          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -5515,7 +5482,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.5": {
+      "Newtonsoft.Json/6.0.3": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
@@ -5540,17 +5507,6 @@
         },
         "runtime": {
           "lib/Win8/ReactiveUI.dll": {}
-        }
-      },
-      "refit/2.4.1": {
-        "dependencies": {
-          "Newtonsoft.Json": "[6.0.5, )"
-        },
-        "compile": {
-          "lib/NetCore45/Refit.dll": {}
-        },
-        "runtime": {
-          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -7285,7 +7241,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.5": {
+      "Newtonsoft.Json/6.0.3": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
@@ -7310,17 +7266,6 @@
         },
         "runtime": {
           "lib/Win8/ReactiveUI.dll": {}
-        }
-      },
-      "refit/2.4.1": {
-        "dependencies": {
-          "Newtonsoft.Json": "[6.0.5, )"
-        },
-        "compile": {
-          "lib/NetCore45/Refit.dll": {}
-        },
-        "runtime": {
-          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -9060,7 +9005,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.5": {
+      "Newtonsoft.Json/6.0.3": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
@@ -9085,17 +9030,6 @@
         },
         "runtime": {
           "lib/Win8/ReactiveUI.dll": {}
-        }
-      },
-      "refit/2.4.1": {
-        "dependencies": {
-          "Newtonsoft.Json": "[6.0.5, )"
-        },
-        "compile": {
-          "lib/NetCore45/Refit.dll": {}
-        },
-        "runtime": {
-          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -10830,7 +10764,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Newtonsoft.Json/6.0.5": {
+      "Newtonsoft.Json/6.0.3": {
         "compile": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
         },
@@ -10855,17 +10789,6 @@
         },
         "runtime": {
           "lib/Win8/ReactiveUI.dll": {}
-        }
-      },
-      "refit/2.4.1": {
-        "dependencies": {
-          "Newtonsoft.Json": "[6.0.5, )"
-        },
-        "compile": {
-          "lib/NetCore45/Refit.dll": {}
-        },
-        "runtime": {
-          "lib/NetCore45/Refit.dll": {}
         }
       },
       "Rx-Core/2.2.5": {
@@ -13032,8 +12955,8 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "Newtonsoft.Json/6.0.5": {
-      "sha512": "gPrmi+71KZJ3oNJfbpCaFW0xMZQ/eT60fnOgULgoqPrmnuuoEzxxSNDkTrOC9MlnfQPhUnL3yUSkG34MbykMIA==",
+    "Newtonsoft.Json/6.0.3": {
+      "sha512": "kN7Xp8vjnSEiLsyo5ZiKrRFgBU4P8CvcdxGSUBQ3W2OLqDK5rIABHkgN9Yjzh6kZ7BD58Ge19fz5GvfCnwmyGA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -13048,12 +12971,12 @@
         "lib/net45/Newtonsoft.Json.xml",
         "lib/netcore45/Newtonsoft.Json.dll",
         "lib/netcore45/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl4+wp7+win8/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl4+wp7+win8/Newtonsoft.Json.xml",
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "Newtonsoft.Json.nuspec",
-        "package/services/metadata/core-properties/0abdbb176a984c66b7fe1ef90c24dd27.psmdcp",
+        "package/services/metadata/core-properties/461b1ced7b6e4e6da9908e24495599dd.psmdcp",
         "tools/install.ps1"
       ]
     },
@@ -13105,44 +13028,6 @@
         "lib/Xamarin.Mac10/ReactiveUI.xml",
         "package/services/metadata/core-properties/2481ef13a213498ea7051ba23cebedc0.psmdcp",
         "reactiveui-core.nuspec"
-      ]
-    },
-    "refit/2.4.1": {
-      "sha512": "jbSjxOFrXAFkOtlig4ac1Jaf8pYsTivJRdgxp8xfWTC4Gq5k5K/3jQ/lGVzo3YgqCnils0MgWng3Wt18zfHeYQ==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "build/portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10/refit.targets",
-        "lib/MonoAndroid/Refit.dll",
-        "lib/MonoAndroid/Refit.dll.mdb",
-        "lib/Net45/Refit.dll",
-        "lib/Net45/Refit.dll.config",
-        "lib/Net45/Refit.dll.mdb",
-        "lib/Net45/Refit.pdb",
-        "lib/NetCore45/Refit.dll",
-        "lib/NetCore45/Refit.pdb",
-        "lib/NetCore45/Refit.pri",
-        "lib/Portable-Net45+NetCore45+WP8+WPA81/Refit.dll",
-        "lib/Portable-Net45+NetCore45+WP8+WPA81/Refit.dll.config",
-        "lib/Portable-Net45+NetCore45+WP8+WPA81/Refit.dll.mdb",
-        "lib/Portable-Net45+NetCore45+WP8+WPA81/Refit.pdb",
-        "lib/Portable-Win81+Wpa81/Refit.dll",
-        "lib/Portable-Win81+Wpa81/Refit.pdb",
-        "lib/Portable-Win81+Wpa81/Refit.pri",
-        "lib/WP8/Refit.dll",
-        "lib/WP8/Refit.pdb",
-        "lib/Xamarin.iOS10/Refit.dll",
-        "lib/Xamarin.iOS10/Refit.dll.mdb",
-        "package/services/metadata/core-properties/bea1ddbffcb446f5abe2aa01264453fb.psmdcp",
-        "refit.nuspec",
-        "tools/GeneratedInterfaceStubTemplate.mustache",
-        "tools/InterfaceStubGenerator.exe",
-        "tools/Microsoft.CodeAnalysis.CSharp.dll",
-        "tools/Microsoft.CodeAnalysis.dll",
-        "tools/Nustache.Core.dll",
-        "tools/System.Collections.Immutable.dll",
-        "tools/System.Reflection.Metadata.dll"
       ]
     },
     "Rx-Core/2.2.5": {
