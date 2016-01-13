@@ -211,7 +211,7 @@
                     <Button x:Uid="ConnectButtonUid" 
                         Content="CONNEXION"
                         Height="50"
-                        Name="SubmitCommand"
+                        Name="Login"
 						HorizontalAlignment="Stretch"
 						Style="{StaticResource EtsButtonRedLowestColor}" 
 						BorderThickness="0" />

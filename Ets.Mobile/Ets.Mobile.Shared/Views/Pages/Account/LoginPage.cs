@@ -39,7 +39,7 @@ namespace Ets.Mobile.Pages.Account
                     ViewModel.UserName = "";
                     ViewModel.Password = "";
 #endif
-                    SubmitCommand.Click += (sender, arg) => { ErrorMessage.Visibility = Visibility.Collapsed; };
+                    Login.Click += (sender, arg) => { ErrorMessage.Visibility = Visibility.Collapsed; };
                 });
 
             // Error Handling
@@ -51,7 +51,7 @@ namespace Ets.Mobile.Pages.Account
                 return Observable.Return(RecoveryOptionResult.CancelOperation);
             });
 
-            this.BindCommand(ViewModel, x => x.SubmitCommand, x => x.SubmitCommand);
+            this.BindCommand(ViewModel, x => x.Login, x => x.Login);
 
             PartialInitialize();
         }

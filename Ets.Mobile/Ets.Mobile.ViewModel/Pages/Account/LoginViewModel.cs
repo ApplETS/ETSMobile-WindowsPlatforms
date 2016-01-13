@@ -22,24 +22,6 @@ namespace Ets.Mobile.ViewModel.Pages.Account
     [DataContract]
     public class LoginViewModel : ViewModelBase
     {
-        #region VM Properties
-        
-        [DataMember] private string _userName;
-        [DataMember] public string UserName {
-            get { return _userName; }
-            set { this.RaiseAndSetIfChanged(ref _userName, value); }
-        }
-
-        [IgnoreDataMember] private string _password;
-        [IgnoreDataMember] public string Password {
-            get { return _password; }
-            set { this.RaiseAndSetIfChanged(ref _password, value); }
-        }
-        
-        #endregion
-
-        private bool _isValidating;
-
         /// <summary>
         /// Constructor LoginViewModel
         /// </summary>
@@ -50,40 +32,27 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
         protected sealed override void OnViewModelCreation()
         {
-            UserName = Password = string.Empty;
+            UserName = string.Empty;
+            Password = string.Empty;
 
             _isValidating = false;
 
-            SetupSubmitCommand();
-        }
-
-        private void SetupSubmitCommand()
-        {
-            // Submit Command
-            var canLogin = this.WhenAny(x => x.Password, x => !string.IsNullOrWhiteSpace(x.Value)).CombineLatest(this.WhenAny(x => x.UserName, x => !string.IsNullOrEmpty(x.Value)), this.WhenAny(x => x._isValidating, x => !x.Value), (x, y, z) => x & y & z);
+            // Can Login Execute
+            var userNameChanged = this.WhenAny(vm => vm.UserName, x => !string.IsNullOrEmpty(x.Value));
+            var passwordChanged = this.WhenAny(vm => vm.Password, changed => !string.IsNullOrWhiteSpace(changed.Value));
+            var isValidatingChanged = this.WhenAny(vm => vm._isValidating, changed => !changed.Value);
+            var canLoginExecute = passwordChanged.CombineLatest(userNameChanged, isValidatingChanged, 
+                (validPass, validUserName, isNotValidating) => validPass & validUserName & isNotValidating
+            );
             
-            SubmitCommand = ReactiveCommand.CreateAsyncTask(canLogin, async _ => await LoginImpl());
+            Login = ReactiveCommand.CreateAsyncTask(canLoginExecute, async _ => await LoginImpl());
 
-            SubmitCommand.Subscribe(accountVm => {
+            Login.Subscribe(accountVm => {
                 this.Log().Info("Navigate to MainViewModel");
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });
 
-            SubmitCommand.ThrownExceptions.Subscribe(ex => {
-                var apiException = ex as ApiException;
-                var exception = apiException != null ? new ErrorMessageContent(Resources().GetString("NetworkError"), Resources().GetString("NetworkTitleError"), apiException) : new ErrorMessageContent(ex.Message, ex);
-                
-                if (apiException == null)
-                {
-                    ViewServices().Popup.ShowMessage(exception);
-                }
-                else
-                {
-                    ViewServices().Popup.ShowMessage(exception.Message, exception.Title);
-                }
-
-                UserError.Throw(exception.Message, ex);
-            });
+            Login.ThrownExceptions.Subscribe(LoginThrownExceptionImpl);
         }
 
         private async Task<EtsUserCredentials> LoginImpl()
@@ -136,11 +105,48 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             return credentials;
         }
 
+        private void LoginThrownExceptionImpl(Exception ex)
+        {
+            var apiException = ex as ApiException;
+            var exception = apiException != null ? new ErrorMessageContent(Resources().GetString("NetworkError"), Resources().GetString("NetworkTitleError"), apiException) : new ErrorMessageContent(ex.Message, ex);
+
+            if (apiException == null)
+            {
+                ViewServices().Popup.ShowMessage(exception);
+            }
+            else
+            {
+                ViewServices().Popup.ShowMessage(exception.Message, exception.Title);
+            }
+
+            UserError.Throw(exception.Message, ex);
+        }
+
         #region Properties
+
+        [DataMember]
+        private string _userName;
+        [DataMember]
+        public string UserName
+        {
+            get { return _userName; }
+            set { this.RaiseAndSetIfChanged(ref _userName, value); }
+        }
+
+        [IgnoreDataMember]
+        private string _password;
+        [IgnoreDataMember]
+        public string Password
+        {
+            get { return _password; }
+            set { this.RaiseAndSetIfChanged(ref _password, value); }
+        }
+
+        private bool _isValidating;
 
         public ReactiveCommand<bool> SwitchToLogin { get; set; }
 
-        public ReactiveCommand<EtsUserCredentials> SubmitCommand { get; set; }
+        public ReactiveCommand<EtsUserCredentials> Login { get; set; }
 
         private const int LoginTimeoutMs = 5000;
 
