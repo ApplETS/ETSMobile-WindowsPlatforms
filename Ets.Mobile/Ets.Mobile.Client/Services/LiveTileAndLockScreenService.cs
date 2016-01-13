@@ -15,7 +15,7 @@ namespace Ets.Mobile.Client.Services
         {
             BlobCache.ApplicationName = "EtsMobile";
             var cache = BlobCache.UserAccount;
-            var now = new DateTime(2016, 01, 11, 16, 30, 00);
+            var now = DateTime.Now;
             return
                 await cache.GetObject<SemesterVm[]>("semesters")
                     .Where(x => x.FirstOrDefault(y => y.StartDate <= now && y.EndDate > now) != null)
