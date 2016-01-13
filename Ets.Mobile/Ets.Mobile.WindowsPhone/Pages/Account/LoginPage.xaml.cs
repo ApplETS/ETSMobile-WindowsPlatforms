@@ -69,10 +69,5 @@ namespace Ets.Mobile.Pages.Account
         {
             UserName.Focus(FocusState.Keyboard);
         }
-
-        private void LoginForm_OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            ViewModel.SendLogsWhenPressedFiveTimesCommand.Execute(null);
-        }
     }
 }

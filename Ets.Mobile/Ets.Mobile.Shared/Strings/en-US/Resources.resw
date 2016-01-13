@@ -492,4 +492,10 @@
   <data name="PinAppToStartUid.Text" xml:space="preserve">
     <value>Pin the application to start</value>
   </data>
+  <data name="LoginInvalidCredentialsMessage" xml:space="preserve">
+    <value>Invalid username or password</value>
+  </data>
+  <data name="LoginTimeoutMessage" xml:space="preserve">
+    <value>The request took way longer than it should! Try again.</value>
+  </data>
 </root>

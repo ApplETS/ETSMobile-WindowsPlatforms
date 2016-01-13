@@ -14,7 +14,9 @@ using Security.Algorithms;
 using Splat;
 using System;
 using System.Reactive;
+using System.Reactive.Concurrency;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -68,21 +70,8 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             SubmitCommand.Subscribe(accountVm => {
                 this.Log().Info("Navigate to MainViewModel");
+                RxApp.MainThreadScheduler.Schedule(() => { DebugMessages.OnNext("Navigate to MainViewModel"); });
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
-            });
-
-            SendLogsWhenPressedFiveTimesCommand = ReactiveCommand.CreateAsyncTask(async _ =>
-            {
-                if (!_hasSentLogFiles)
-                {
-                    if (_countBeforeSendingLogs >= 6)
-                    {
-                        var isExecuting = await SubmitCommand.IsExecuting.FirstAsync().ToTask();
-                        await LogHelper.ZipApplicationLogsAndSendEmail($"Login Submit Command Status (isExecuting): {isExecuting}");
-                        _hasSentLogFiles = true;
-                    }
-                    _countBeforeSendingLogs++;
-                }
             });
 
             SubmitCommand.ThrownExceptions.Subscribe(ex => {
@@ -108,12 +97,21 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             this.Log().Info("Start Loging In");
 
             this.Log().Info($"Send Request to Login for {UserName}");
-            var isLoginSuccessful = await ClientServices().SignetsService.Login(UserName, Password);
-            this.Log().Info($"Received Response for and {UserName} " + (isLoginSuccessful ? "has been authentificated sucessfully" : "has invalid credentials"));
-            
-            if (!isLoginSuccessful)
+
+            var checkCredentialsTask = ClientServices().SignetsService.Login(UserName, Password);
+            // The Login sometimes takes way too long to return a value (more than 5 minutes sometimes, when other times it takes under a second
+            var fetchLogin = await Task.WhenAny(checkCredentialsTask, Task.Delay(10000));
+            if (fetchLogin != checkCredentialsTask)
             {
-                throw new SignetsException("Nom d'usager ou mot de passe invalide.");
+                // Operation has timed out
+                throw new SignetsException(Resources().GetString("LoginTimeoutMessage"));
+            }
+            this.Log().Info($"Received Response for and {UserName} " + (checkCredentialsTask.Result ? "has been authentificated sucessfully" : "has invalid credentials"));
+
+            if (!checkCredentialsTask.Result)
+            {
+                // invalid credentials
+                throw new SignetsException(Resources().GetString("LoginInvalidCredentialsMessage"));
             }
 
             var credentials = new EtsUserCredentials(UserName, Password);
@@ -127,7 +125,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             this.Log().Info("Load details about the logged user");
             SideNavigation.UserDetails.LoadProfile.Execute(null);
-
+            
             this.Log().Info("Preload courses to have the colors ready on all pages");
             var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
             Task.WaitAll(coursesTask);
@@ -135,17 +133,16 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             this.Log().Info("Register Schedule Tile and LockScreen Updater");
             await Agent.ScheduleTileUpdaterBackgroundTask.Register();
+            await Cache.InsertObject(ViewModelKeys.ScheduleTileUpdaterActive, true);
 
             this.Log().Info("Completed login flow");
-
             _isValidating = false;
 
             return credentials;
         }
 
         #region Send Log Files
-
-        private bool _hasSentLogFiles;
+        
         private int _countBeforeSendingLogs;
 
         #endregion
@@ -155,8 +152,6 @@ namespace Ets.Mobile.ViewModel.Pages.Account
         public ReactiveCommand<bool> SwitchToLogin { get; set; }
 
         public ReactiveCommand<EtsUserCredentials> SubmitCommand { get; set; }
-
-        public ReactiveCommand<Unit> SendLogsWhenPressedFiveTimesCommand { get; set; }
 
         #endregion
     }
