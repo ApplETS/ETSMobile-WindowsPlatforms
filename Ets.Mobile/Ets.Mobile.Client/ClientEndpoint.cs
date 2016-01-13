@@ -33,5 +33,11 @@ namespace Ets.Mobile.Client
 		/// Signets Endpoint
 		/// </summary>
 		public IMoodleService MoodleService => _moodleService ?? (_moodleService = _serviceLocator.GetService<IMoodleService>());
+
+        private ICalendarService _calendarService;
+        /// <summary>
+		/// Calendar Services Endpoint
+		/// </summary>
+		public ICalendarService CalendarService => _calendarService ?? (_calendarService = _serviceLocator.GetService<ICalendarService>());
     }
 }
