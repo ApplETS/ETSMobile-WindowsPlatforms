@@ -408,4 +408,25 @@
   <data name="ViewCalendarUid.Label" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="LiveTileAndLockScreenUid.Text" xml:space="preserve">
+    <value>Live Tile and Lock Screen</value>
+  </data>
+  <data name="LiveTileAndLockScreenToggleSwitchUid.OffContent" xml:space="preserve">
+    <value>Show Schedule</value>
+  </data>
+  <data name="LiveTileAndLockScreenToggleSwitchUid.OnContent" xml:space="preserve">
+    <value>Show Schedule</value>
+  </data>
+  <data name="LiveTileAndLockScreenDescription1Uid.Text" xml:space="preserve">
+    <value>You can select this application in the </value>
+  </data>
+  <data name="LiveTileAndLockScreenDescription2Uid.Text" xml:space="preserve">
+    <value> to have your schedule showing in the lock screen.</value>
+  </data>
+  <data name="LiveTileAndLockScreenLinkToLockScreenUid.Text" xml:space="preserve">
+    <value>lock screen settings</value>
+  </data>
+  <data name="OptionsUid.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
 </root>

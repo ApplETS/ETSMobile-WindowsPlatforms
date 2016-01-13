@@ -111,6 +111,9 @@
     <Compile Include="Content\Settings\Credits.xaml.cs">
       <DependentUpon>Credits.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\Settings\Options.xaml.cs">
+      <DependentUpon>Options.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Content\Shared\SideNavigation.xaml.cs">
       <DependentUpon>SideNavigation.xaml</DependentUpon>
     </Compile>
@@ -237,6 +240,10 @@
     <Page Include="Content\Settings\Credits.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\Options.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Content\Shared\SideNavigation.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -448,6 +455,10 @@
     </Reference>
     <Reference Include="ReactiveUI, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReactiveUI.Events, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reactiveui-events.6.5.0\lib\WPA81\ReactiveUI.Events.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Refit, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">

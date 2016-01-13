@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Main\IMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Program\IProgramViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IAboutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IOptionsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\ISettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Shared\IManageAppBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Shared\ISideNavigationViewModel.cs" />
@@ -53,5 +54,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationServicesBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)EqualityComparers\" />
   </ItemGroup>
 </Project>

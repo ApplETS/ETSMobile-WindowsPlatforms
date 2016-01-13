@@ -67,6 +67,10 @@
     <Compile Include="RefitStubs.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ets.Mobile.Agent.WinRT\Ets.Mobile.Agent.WinRT.csproj">
+      <Project>{b4966a53-1581-4daf-8a8a-f7e062cc8f05}</Project>
+      <Name>Ets.Mobile.Agent.WinRT</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ets.Mobile.Business.WinRT\Ets.Mobile.Business.WinRT.csproj">
       <Project>{51d4c81f-ac59-4516-b307-aff1a779e11f}</Project>
       <Name>Ets.Mobile.Business.WinRT</Name>

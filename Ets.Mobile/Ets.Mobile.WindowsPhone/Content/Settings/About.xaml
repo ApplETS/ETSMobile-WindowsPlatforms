@@ -16,7 +16,7 @@
             </TransitionCollection>
         </StackPanel.ChildrenTransitions>
 
-        <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ApplicationNameUid" Margin="0,18,0,0" Style="{ThemeResource EtsApplicationTitleStyle}" />
+        <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ApplicationNameUid" Text="ÉTS Mobile" Margin="0,18,0,0" Style="{ThemeResource EtsApplicationTitleStyle}" />
 
         <!-- Version and Publisher -->
         <StackPanel Margin="0,20">

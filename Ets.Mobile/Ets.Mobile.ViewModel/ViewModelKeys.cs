@@ -20,5 +20,8 @@ namespace Ets.Mobile.ViewModel
         // Moodle
         public static string MoodleCourses = "moodle_courses";
         public static Func<int, string> MoodleCoursesContentForCourse = courseId => $"moodle_courses_content_for_{courseId}";
+
+        // Settings
+        public static string ScheduleTileUpdaterActive = "schedule_tile_updater_active";
     }
 }

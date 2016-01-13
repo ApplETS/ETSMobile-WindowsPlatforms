@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="11043Sypnotic.430246DD8D0A5" Publisher="CN=42E5AC80-142A-49C5-8662-130D8F1D0E52" Version="1.0.0.13" />
+  <Identity Name="11043Sypnotic.430246DD8D0A5" Publisher="CN=42E5AC80-142A-49C5-8662-130D8F1D0E52" Version="1.0.0.15" />
   <mp:PhoneIdentity PhoneProductId="4862af8a-55d9-4dbd-9b33-ec384aa32755" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ÉTSMobile Beta</DisplayName>
@@ -17,6 +17,7 @@
   <Applications>
     <Application Id="App" Executable="Ets.Mobile.WindowsPhone.exe" EntryPoint="Ets.Mobile.WindowsPhone.App">
       <m3:VisualElements DisplayName="Ets Mobile" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="Ets Mobile for Windows Phone 8.1" ForegroundText="light" BackgroundColor="transparent" ToastCapable="true">
+        <m3:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\TileImage\Badge.png" />
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
         </m3:DefaultTile>
         <m3:SplashScreen Image="Assets\SplashScreen\SplashScreen.png" BackgroundColor="#950a11" />
@@ -28,6 +29,11 @@
         <Extension Category="windows.backgroundTasks" EntryPoint="Ets.Mobile.Agent.HandleOfflineTask">
           <BackgroundTasks>
             <Task Type="systemEvent" />
+          </BackgroundTasks>
+        </Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="Ets.Mobile.Agent.ScheduleTileUpdaterBackgroundTask">
+          <BackgroundTasks>
+            <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
       </Extensions>
