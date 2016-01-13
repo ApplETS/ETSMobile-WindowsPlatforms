@@ -638,5 +638,236 @@ namespace Localization
                 return _resourceLoader.GetString("MoodleCoursesModuleContentEmpty");
             }
         } 
+        public static string MoodleCourseModule  
+        {
+            get
+            {
+                return _resourceLoader.GetString("MoodleCourseModule");
+            }
+        } 
+        public static string MoodleCourseModuleContent  
+        {
+            get
+            {
+                return _resourceLoader.GetString("MoodleCourseModuleContent");
+            }
+        } 
+        public static string CourseModuleContentUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("CourseModuleContentUid");
+            }
+        } 
+        public static string CourseMoodleUrlUid_Source  
+        {
+            get
+            {
+                return _resourceLoader.GetString("CourseMoodleUrlUid");
+            }
+        } 
+        public static string LinkToCourseModuleUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("LinkToCourseModuleUid");
+            }
+        } 
+        public static string RefreshUid_Label  
+        {
+            get
+            {
+                return _resourceLoader.GetString("RefreshUid");
+            }
+        } 
+        public static string ViewCalendarUid_Label  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ViewCalendarUid");
+            }
+        } 
+        public static string LiveTileAndLockScreenUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("LiveTileAndLockScreenUid");
+            }
+        } 
+        public static string LiveTileAndLockScreenToggleSwitchUid_OffContent  
+        {
+            get
+            {
+                return _resourceLoader.GetString("LiveTileAndLockScreenToggleSwitchUid");
+            }
+        } 
+        public static string LiveTileAndLockScreenToggleSwitchUid_OnContent  
+        {
+            get
+            {
+                return _resourceLoader.GetString("LiveTileAndLockScreenToggleSwitchUid");
+            }
+        } 
+        public static string LiveTileAndLockScreenDescription1Uid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("LiveTileAndLockScreenDescription1Uid");
+            }
+        } 
+        public static string LiveTileAndLockScreenDescription2Uid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("LiveTileAndLockScreenDescription2Uid");
+            }
+        } 
+        public static string LiveTileAndLockScreenLinkToLockScreenUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("LiveTileAndLockScreenLinkToLockScreenUid");
+            }
+        } 
+        public static string OptionsUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("OptionsUid");
+            }
+        } 
+        public static string CalendarIntegrationDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("CalendarIntegrationDescriptionUid");
+            }
+        } 
+        public static string CalendarIntegrationUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("CalendarIntegrationUid");
+            }
+        } 
+        public static string RemoveScheduleIntegrationButtonUid_Content  
+        {
+            get
+            {
+                return _resourceLoader.GetString("RemoveScheduleIntegrationButtonUid");
+            }
+        } 
+        public static string RemoveScheduleIntegrationMessageCompleted  
+        {
+            get
+            {
+                return _resourceLoader.GetString("RemoveScheduleIntegrationMessageCompleted");
+            }
+        } 
+        public static string RemoveScheduleIntegrationMessageException  
+        {
+            get
+            {
+                return _resourceLoader.GetString("RemoveScheduleIntegrationMessageException");
+            }
+        } 
+        public static string RemoveScheduleIntegrationMessageNoCalendar  
+        {
+            get
+            {
+                return _resourceLoader.GetString("RemoveScheduleIntegrationMessageNoCalendar");
+            }
+        } 
+        public static string RemoveScheduleIntegrationTitleCompleted  
+        {
+            get
+            {
+                return _resourceLoader.GetString("RemoveScheduleIntegrationTitleCompleted");
+            }
+        } 
+        public static string RemoveScheduleIntegrationTitleException  
+        {
+            get
+            {
+                return _resourceLoader.GetString("RemoveScheduleIntegrationTitleException");
+            }
+        } 
+        public static string RemoveScheduleIntegrationTitleNoCalendar  
+        {
+            get
+            {
+                return _resourceLoader.GetString("RemoveScheduleIntegrationTitleNoCalendar");
+            }
+        } 
+        public static string ScheduleCalendarName  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleCalendarName");
+            }
+        } 
+        public static string ScheduleIntegrationButtonUid_Content  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleIntegrationButtonUid");
+            }
+        } 
+        public static string ScheduleIntegrationDescriptionUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleIntegrationDescriptionUid");
+            }
+        } 
+        public static string ScheduleIntegrationMessageCompleted  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleIntegrationMessageCompleted");
+            }
+        } 
+        public static string ScheduleIntegrationMessageEmpty  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleIntegrationMessageEmpty");
+            }
+        } 
+        public static string ScheduleIntegrationMessageException  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleIntegrationMessageException");
+            }
+        } 
+        public static string ScheduleIntegrationTitleCompleted  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleIntegrationTitleCompleted");
+            }
+        } 
+        public static string ScheduleIntegrationTitleEmpty  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleIntegrationTitleEmpty");
+            }
+        } 
+        public static string ScheduleIntegrationTitleException  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleIntegrationTitleException");
+            }
+        } 
+        public static string ScheduleIntegrationUid_Text  
+        {
+            get
+            {
+                return _resourceLoader.GetString("ScheduleIntegrationUid");
+            }
+        } 
     }
 }

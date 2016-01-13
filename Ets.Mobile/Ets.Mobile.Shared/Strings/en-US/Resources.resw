@@ -429,4 +429,61 @@
   <data name="OptionsUid.Text" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="CalendarIntegrationDescriptionUid.Text" xml:space="preserve">
+    <value>Use the 'integrate schedule' button above to integrate your schedule to the calendar. When integrated, you can update the schedule (if needed) using the same button ('integrate schedule'). To remove the integration, use the 'remove from calendar' button.</value>
+  </data>
+  <data name="CalendarIntegrationUid.Text" xml:space="preserve">
+    <value>Integrate your schedule to the calendar</value>
+  </data>
+  <data name="RemoveScheduleIntegrationButtonUid.Content" xml:space="preserve">
+    <value>remove from calendar</value>
+  </data>
+  <data name="RemoveScheduleIntegrationMessageCompleted" xml:space="preserve">
+    <value>The schedule has been removed from the calendar successfully.</value>
+  </data>
+  <data name="RemoveScheduleIntegrationMessageException" xml:space="preserve">
+    <value>We couldn't remove the schedule from the calendar. Please try again later. If the problem persists, you can use the 'send feedback' feature located in the About section or re-install the application.</value>
+  </data>
+  <data name="RemoveScheduleIntegrationMessageNoCalendar" xml:space="preserve">
+    <value>There was no schedule to remove from the calendar. If there is still the schedule in the calendar, you can use the 'send feedback' feature located in the About section or re-install the application directly.</value>
+  </data>
+  <data name="RemoveScheduleIntegrationTitleCompleted" xml:space="preserve">
+    <value>Removed!</value>
+  </data>
+  <data name="RemoveScheduleIntegrationTitleException" xml:space="preserve">
+    <value>Couldn't remove the calendar</value>
+  </data>
+  <data name="RemoveScheduleIntegrationTitleNoCalendar" xml:space="preserve">
+    <value>No schedule</value>
+  </data>
+  <data name="ScheduleCalendarName" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="ScheduleIntegrationButtonUid.Content" xml:space="preserve">
+    <value>integrate schedule</value>
+  </data>
+  <data name="ScheduleIntegrationDescriptionUid.Text" xml:space="preserve">
+    <value>Use the button above to integrate your schedule to the calendar.</value>
+  </data>
+  <data name="ScheduleIntegrationMessageCompleted" xml:space="preserve">
+    <value>The schedule has been integrated to the calendar successfully.</value>
+  </data>
+  <data name="ScheduleIntegrationMessageEmpty" xml:space="preserve">
+    <value>We couldn't integrate the schedule to the calendar since it seems that you do not have any courses now or in the near future. If the problem persists, you can use the 'send feedback' feature located in the About section.</value>
+  </data>
+  <data name="ScheduleIntegrationMessageException" xml:space="preserve">
+    <value>We couldn't integrate the schedule to your calendar. Please try again later. If the problem persists, you can use the 'send feedback' feature located in the About section.</value>
+  </data>
+  <data name="ScheduleIntegrationTitleCompleted" xml:space="preserve">
+    <value>Integrated!</value>
+  </data>
+  <data name="ScheduleIntegrationTitleEmpty" xml:space="preserve">
+    <value>No schedule</value>
+  </data>
+  <data name="ScheduleIntegrationTitleException" xml:space="preserve">
+    <value>Couldn't integrate</value>
+  </data>
+  <data name="ScheduleIntegrationUid.Text" xml:space="preserve">
+    <value>Integrate your schedule to the calendar</value>
+  </data>
 </root>
