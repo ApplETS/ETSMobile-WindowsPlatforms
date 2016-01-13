@@ -23,5 +23,6 @@ namespace Ets.Mobile.ViewModel
 
         // Settings
         public static string ScheduleTileUpdaterActive = "schedule_tile_updater_active";
+        public static string CalendarIdStoreKey = "schedule_integration_calendar_localid";
     }
 }

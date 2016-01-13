@@ -20,6 +20,7 @@ using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Ets.Mobile.Client.Contracts;
 #if WINDOWS_PHONE_APP || WINDOWS_UWP
 using Windows.UI.ViewManagement;
 #endif
@@ -68,6 +69,8 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
 
         private async Task<Unit> LogoutImpl()
         {
+            await Locator.Current.GetService<ICalendarService>().RemoveScheduleFromCalendar();
+            await Agent.ScheduleTileUpdaterBackgroundTask.Unregister();
             await BlobCache.UserAccount.InvalidateAll().ToTask();
             IsSideNavigationVisibleSubject.OnNext(false);
             Screen.Router.NavigateAndReset.Execute(new LoginViewModel(Locator.Current.GetService<IScreen>()));
