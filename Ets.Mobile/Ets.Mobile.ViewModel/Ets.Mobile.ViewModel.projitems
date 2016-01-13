@@ -55,7 +55,4 @@
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationServicesBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ViewModelBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)EqualityComparers\" />
-  </ItemGroup>
 </Project>
