@@ -52,7 +52,6 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
             HandleScheduleBackgroundService = ReactiveCommand.CreateAsyncTask(async b =>
             {
                 var registerScheduleBgService = b as bool?;
-                await Task.Delay(2000);
                 if (registerScheduleBgService.HasValue && registerScheduleBgService.Value)
                 {
                     await Agent.ScheduleTileUpdaterBackgroundTask.Register();
