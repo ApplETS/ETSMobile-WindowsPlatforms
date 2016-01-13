@@ -4,7 +4,6 @@ using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.ViewModel.Bases;
-using Ets.Mobile.ViewModel.Helpers;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Logger;
 using Messaging.UniversalApp.Common;
@@ -13,10 +12,7 @@ using Refit;
 using Security.Algorithms;
 using Splat;
 using System;
-using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -70,7 +66,6 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             SubmitCommand.Subscribe(accountVm => {
                 this.Log().Info("Navigate to MainViewModel");
-                RxApp.MainThreadScheduler.Schedule(() => { DebugMessages.OnNext("Navigate to MainViewModel"); });
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });
 
@@ -99,8 +94,8 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             this.Log().Info($"Send Request to Login for {UserName}");
 
             var checkCredentialsTask = ClientServices().SignetsService.Login(UserName, Password);
-            // The Login sometimes takes way too long to return a value (more than 5 minutes sometimes, when other times it takes under a second
-            var fetchLogin = await Task.WhenAny(checkCredentialsTask, Task.Delay(10000));
+            // The Login sometimes takes way too long to return a value (more than 5 minutes sometimes, when other times it takes under a second)
+            var fetchLogin = await Task.WhenAny(checkCredentialsTask, Task.Delay(LoginTimeoutMs));
             if (fetchLogin != checkCredentialsTask)
             {
                 // Operation has timed out
@@ -133,7 +128,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             this.Log().Info("Register Schedule Tile and LockScreen Updater");
             await Agent.ScheduleTileUpdaterBackgroundTask.Register();
-            await Cache.InsertObject(ViewModelKeys.ScheduleTileUpdaterActive, true);
+            await Cache.InsertObject(ViewModelKeys.ScheduleTileUpdaterActive, true).ToTask();
 
             this.Log().Info("Completed login flow");
             _isValidating = false;
@@ -141,17 +136,13 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             return credentials;
         }
 
-        #region Send Log Files
-        
-        private int _countBeforeSendingLogs;
-
-        #endregion
-
         #region Properties
 
         public ReactiveCommand<bool> SwitchToLogin { get; set; }
 
         public ReactiveCommand<EtsUserCredentials> SubmitCommand { get; set; }
+
+        private const int LoginTimeoutMs = 5000;
 
         #endregion
     }
