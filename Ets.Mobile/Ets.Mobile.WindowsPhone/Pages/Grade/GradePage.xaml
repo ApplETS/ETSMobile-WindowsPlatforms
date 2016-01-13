@@ -114,7 +114,7 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="BottomBar" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshGrade" x:Uid="RefreshUid" Icon="Refresh" Label="Refresh" />
+                <AppBarButton x:Name="RefreshGrade" x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
