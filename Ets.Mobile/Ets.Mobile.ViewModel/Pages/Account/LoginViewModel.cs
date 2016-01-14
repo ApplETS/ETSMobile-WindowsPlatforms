@@ -13,11 +13,13 @@ using Refit;
 using Security.Algorithms;
 using Splat;
 using System;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
@@ -130,9 +132,21 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             this.Log().Info("Preload courses to have the colors ready on all pages");
             var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
-            Task.WaitAll(coursesTask);
+            this.Log().Info("Get the current schedule for the background service");
+            var getCurrentScheduleTask = Task.Run(async () =>
+            {
+                var semesters = await ClientServices().SignetsService.Semesters();
+                await Cache.InsertObject(ViewModelKeys.Semesters, semesters).ToTask();
+                var currentSemester = semesters.FirstOrDefault(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now);
+                if (currentSemester != null)
+                {
+                    var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService());
+                    await Cache.InsertObject(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), schedule).ToTask();
+                }
+            });
+            Task.WaitAll(coursesTask, getCurrentScheduleTask);
             await Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result).ToTask();
-
+            
             this.Log().Info("Register Schedule Tile and LockScreen Updater");
             await Agent.ScheduleTileUpdaterBackgroundTask.Register();
 
