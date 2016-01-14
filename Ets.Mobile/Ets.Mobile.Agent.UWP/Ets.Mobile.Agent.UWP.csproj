@@ -7,7 +7,7 @@
     <ProjectGuid>{D5C136F1-423D-4F8B-8FBD-A9F7056C7A5D}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ets.Mobile.Agent.UWP</RootNamespace>
+    <RootNamespace>Ets.Mobile.Agent</RootNamespace>
     <AssemblyName>Ets.Mobile.Agent.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
