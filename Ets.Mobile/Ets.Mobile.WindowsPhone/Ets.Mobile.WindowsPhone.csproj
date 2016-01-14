@@ -21,7 +21,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
-    <AppxPackageDir>C:\Users\Martin Gemme\Desktop\Output\UAP\</AppxPackageDir>
+    <AppxPackageDir>D:\Desktop\Output\UAP\</AppxPackageDir>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
