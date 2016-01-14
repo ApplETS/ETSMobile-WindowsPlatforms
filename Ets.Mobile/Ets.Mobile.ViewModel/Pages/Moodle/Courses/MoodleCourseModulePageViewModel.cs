@@ -10,8 +10,6 @@ using ReactiveUI.Xaml.Controls.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -30,7 +28,8 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
 
         protected sealed override void OnViewModelCreation()
         {
-            _navigateToModuleItem = ReactiveCommand.CreateAsyncTask(NavigateToModuleItemImpl);
+            _navigateToModuleItem = ReactiveCommand.CreateAsyncObservable(NavigateToModuleItemImpl);
+            _navigateToModuleItem.Subscribe(selectedItem => HostScreen.Router.Navigate.Execute(selectedItem));
 
             CoursesModulesItems = new ReactiveList<MoodleCourseModuleSummaryViewModel>(
                 CourseContent.Modules.Any() ? CourseContent.Modules.Select(m => new MoodleCourseModuleSummaryViewModel(Course, CourseContent, m, _navigateToModuleItem)) : new List<MoodleCourseModuleSummaryViewModel>()
@@ -54,20 +53,17 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
             }
         }
 
-        private Task<Unit> NavigateToModuleItemImpl(object param)
+        private IObservable<MoodleCourseModuleContentPageViewModel> NavigateToModuleItemImpl(object param)
         {
             var selectedItem = param as MoodleCourseModuleSummaryViewModel;
             if (selectedItem != null)
             {
                 if (!string.IsNullOrEmpty(selectedItem.CourseModule.Url))
                 {
-                    RxApp.MainThreadScheduler.Schedule(() =>
-                    {
-                        HostScreen.Router.Navigate.Execute(new MoodleCourseModuleContentPageViewModel(HostScreen, selectedItem.Course, selectedItem.CourseContent, selectedItem.CourseModule));
-                    });
+                    return Observable.Return(new MoodleCourseModuleContentPageViewModel(HostScreen, selectedItem.Course, selectedItem.CourseContent, selectedItem.CourseModule));
                 }
             }
-            return Task.FromResult(Unit.Default);
+            return Observable.Empty<MoodleCourseModuleContentPageViewModel>();
         }
 
         private IObservable<List<MoodleCourseModuleSummaryViewModel>> FetchCoursesModulesImpl()
@@ -107,7 +103,7 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
             set { this.RaiseAndSetIfChanged(ref _courseContent, value); }
         }
 
-        private ReactiveCommand<Unit> _navigateToModuleItem;
+        private ReactiveCommand<MoodleCourseModuleContentPageViewModel> _navigateToModuleItem;
         public IReactiveDerivedList<MoodleCourseModuleSummaryViewModel> CoursesModules { get; protected set; }
         public ReactivePresenterCommand<List<MoodleCourseModuleSummaryViewModel>> LoadCoursesModule { get; set; }
         public IReactivePresenterHandler<IReactiveDerivedList<MoodleCourseModuleSummaryViewModel>> CoursesModulePresenter { get; set; }

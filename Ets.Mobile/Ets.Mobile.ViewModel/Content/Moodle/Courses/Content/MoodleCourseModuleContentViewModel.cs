@@ -1,7 +1,6 @@
 ﻿using Ets.Mobile.Entities.Moodle;
 using ReactiveUI;
 using ReactiveUI.Extensions;
-using System.Reactive;
 using System.Runtime.Serialization;
 
 namespace Ets.Mobile.ViewModel.Content.Moodle.Courses.Content
@@ -49,7 +48,7 @@ namespace Ets.Mobile.ViewModel.Content.Moodle.Courses.Content
 
         #endregion
 
-        public MoodleCourseModuleContentSummaryViewModel(MoodleCourseVm course, MoodleCourseContentVm courseContent, MoodleCourseModuleVm courseModule, MoodleCourseModuleContentVm courseModuleContent, ReactiveCommand<Unit> navigateToCourseModuleContentUrl)
+        public MoodleCourseModuleContentSummaryViewModel(MoodleCourseVm course, MoodleCourseContentVm courseContent, MoodleCourseModuleVm courseModule, MoodleCourseModuleContentVm courseModuleContent, ReactiveCommand<MoodleCourseModuleContentSummaryViewModel> navigateToCourseModuleContentUrl)
         {
             Course = course;
             CourseContent = courseContent;
@@ -92,8 +91,8 @@ namespace Ets.Mobile.ViewModel.Content.Moodle.Courses.Content
             set { this.RaiseAndSetIfChanged(ref _courseModuleContent, value); }
         }
 
-        private ReactiveCommand<Unit> _navigateToCourseModuleContentUrl;
-        public ReactiveCommand<Unit> NavigateToCourseModuleContentUrl
+        private ReactiveCommand<MoodleCourseModuleContentSummaryViewModel> _navigateToCourseModuleContentUrl;
+        public ReactiveCommand<MoodleCourseModuleContentSummaryViewModel> NavigateToCourseModuleContentUrl
         {
             get { return _navigateToCourseModuleContentUrl; }
             set { this.RaiseAndSetIfChanged(ref _navigateToCourseModuleContentUrl, value); }
