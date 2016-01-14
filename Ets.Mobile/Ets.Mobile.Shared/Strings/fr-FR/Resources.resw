@@ -247,7 +247,7 @@
     <value>Programme</value>
   </data>
   <data name="ProgramEmpty" xml:space="preserve">
-    <value>Vous ne semblez pas avoir de programme</value>
+    <value>Il n'y a pas de programmes à afficher</value>
   </data>
   <data name="HomeUid.Text" xml:space="preserve">
     <value>Accueil</value>
