@@ -32,7 +32,7 @@ namespace Ets.Mobile.ViewModel.Content.Grade
 
         private void OnViewModelCreation()
         {
-            LoadGrade = ReactivePresenterCommand.CreateAsyncObservable(_ => FetchGrades());
+            LoadGrade = ReactivePresenterCommand.CreateAsyncObservable(_ => FetchGradesImpl());
 
             LoadGrade.ThrownExceptions
                 .Subscribe(x =>
@@ -43,7 +43,7 @@ namespace Ets.Mobile.ViewModel.Content.Grade
             GradesPresenter = LoadGrade.CreateReactivePresenter();
         }
 
-        private IObservable<EvaluationsVm> FetchGrades()
+        private IObservable<EvaluationsVm> FetchGradesImpl()
         {
             return Cache.GetAndFetchLatest(ViewModelKeys.GradesForSemesterAndCourse(Course.Semester, Course.Name),
                 () => ClientServices()

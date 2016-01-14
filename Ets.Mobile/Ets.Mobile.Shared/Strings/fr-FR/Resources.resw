@@ -247,7 +247,7 @@
     <value>Programme</value>
   </data>
   <data name="ProgramEmpty" xml:space="preserve">
-    <value>Vous ne semblez pas avoir de programme</value>
+    <value>Il n'y a pas de programmes à afficher</value>
   </data>
   <data name="HomeUid.Text" xml:space="preserve">
     <value>Accueil</value>
@@ -491,5 +491,11 @@
   </data>
   <data name="PinAppToStartUid.Text" xml:space="preserve">
     <value>Éplinglez l'application au menu démarrer</value>
+  </data>
+  <data name="LoginInvalidCredentialsMessage" xml:space="preserve">
+    <value>Nom d'usager ou mot de passe invalide.</value>
+  </data>
+  <data name="LoginTimeoutMessage" xml:space="preserve">
+    <value>La requête prend plus de temps que prévu. Veuillez réessayer.</value>
   </data>
 </root>

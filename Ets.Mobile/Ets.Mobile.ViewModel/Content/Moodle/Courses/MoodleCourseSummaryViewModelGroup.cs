@@ -1,11 +1,11 @@
 ﻿using Ets.Mobile.Entities.Moodle;
+using Ets.Mobile.ViewModel.Pages.Moodle.Courses;
 using ReactiveUI;
 using ReactiveUI.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
 
 namespace Ets.Mobile.ViewModel.Content.Moodle.Courses
 {
@@ -55,7 +55,7 @@ namespace Ets.Mobile.ViewModel.Content.Moodle.Courses
 
         #endregion
 
-        public MoodleCourseSummaryViewModelGroup(string semester, IEnumerable<MoodleCourseVm> courses, ReactiveCommand<Unit> navigateToCourseCommand)
+        public MoodleCourseSummaryViewModelGroup(string semester, IEnumerable<MoodleCourseVm> courses, ReactiveCommand<MoodleCourseContentPageViewModel> navigateToCourseCommand)
         {
             // Semester
             Semester = semester;

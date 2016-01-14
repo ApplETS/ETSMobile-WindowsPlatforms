@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Messaging.Interfaces.Common;
+using Messaging.Interfaces.Popup;
+using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.UI.Popups;
-using Messaging.Interfaces.Common;
-using Messaging.Interfaces.Popup;
 
 #if WINDOWS_PHONE_APP
 using Windows.UI.ViewManagement;

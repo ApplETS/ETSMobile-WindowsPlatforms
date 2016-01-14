@@ -88,7 +88,7 @@
             <RadioButton Checked="DontCheck" Command="{Binding Logout}" GroupName="Nav">
                 <RadioButton.Content>
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock HorizontalAlignment="Left" Text="{Binding Profile.Email, Converter={StaticResource StringToLowerConverter}}" FontSize="{StaticResource Size4}" />
+                        <TextBlock HorizontalAlignment="Left" Text="{Binding Profile.Email, Converter={StaticResource StringToLowerConverter}}" FontSize="{StaticResource Size5}" />
                         <TextBlock x:Uid="LogoutUid" Margin="0,0,0,0" HorizontalAlignment="Left" Text="Se déconnecter" FontSize="{StaticResource Size3}" />
                     </StackPanel>
                 </RadioButton.Content>

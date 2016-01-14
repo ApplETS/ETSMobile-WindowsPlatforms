@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
 
 namespace Ets.Mobile.ViewModel.Content.Main
 {
@@ -55,7 +54,7 @@ namespace Ets.Mobile.ViewModel.Content.Main
 
         #endregion
 
-        public GradeSummaryViewModelGroup(string semester, IEnumerable<CourseVm> courses, ReactiveCommand<Unit> navigateToGradeCommand)
+        public GradeSummaryViewModelGroup(string semester, IEnumerable<CourseVm> courses, ReactiveCommand<GradeSummaryViewModelItem> navigateToGradeCommand)
         {
             // Semester
             Semester = semester;

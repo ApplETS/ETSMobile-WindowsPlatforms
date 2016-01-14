@@ -25,7 +25,7 @@
         <!-- Command Bar -->
         <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Refresh" Command="{Binding LoadProgram}" />
+                <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadProgram}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Grid>

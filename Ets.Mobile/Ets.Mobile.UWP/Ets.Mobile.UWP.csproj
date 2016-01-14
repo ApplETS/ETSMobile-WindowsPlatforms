@@ -397,9 +397,6 @@
     <SDKReference Include="Microsoft.VCLibs.120, Version=14.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Universal</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.9.2">
-      <Name>SQLite for Universal App Platform</Name>
-    </SDKReference>
     <SDKReference Include="SyncfusionUniversalWindows, Version=13.3.0.7">
       <Name>Syncfusion Controls for UWP XAML</Name>
     </SDKReference>

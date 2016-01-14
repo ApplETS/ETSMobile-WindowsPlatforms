@@ -3,6 +3,8 @@ using ReactiveUI;
 using System;
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Ets.Mobile.Pages.Account
 {
@@ -35,11 +37,7 @@ namespace Ets.Mobile.Pages.Account
                 .Where(x => x != null)
                 .Subscribe(x =>
                 {
-#if DEBUG
-                    ViewModel.UserName = "";
-                    ViewModel.Password = "";
-#endif
-                    SubmitCommand.Click += (sender, arg) => { ErrorMessage.Visibility = Visibility.Collapsed; };
+                    Login.Events().Click.Subscribe(arg => ErrorMessage.Visibility = Visibility.Collapsed);
                 });
 
             // Error Handling
@@ -50,9 +48,7 @@ namespace Ets.Mobile.Pages.Account
 
                 return Observable.Return(RecoveryOptionResult.CancelOperation);
             });
-
-            this.BindCommand(ViewModel, x => x.SubmitCommand, x => x.SubmitCommand);
-
+            
             PartialInitialize();
         }
 

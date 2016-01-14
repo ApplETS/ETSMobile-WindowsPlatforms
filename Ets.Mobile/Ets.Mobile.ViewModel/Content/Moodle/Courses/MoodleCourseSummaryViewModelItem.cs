@@ -1,7 +1,7 @@
 ﻿using Ets.Mobile.Entities.Moodle;
+using Ets.Mobile.ViewModel.Pages.Moodle.Courses;
 using ReactiveUI;
 using ReactiveUI.Extensions;
-using System.Reactive;
 
 namespace Ets.Mobile.ViewModel.Content.Moodle.Courses
 {
@@ -28,11 +28,11 @@ namespace Ets.Mobile.ViewModel.Content.Moodle.Courses
 
         #endregion
 
-        public MoodleCourseSummaryViewModelItem(string semester, MoodleCourseVm course, ReactiveCommand<Unit> command)
+        public MoodleCourseSummaryViewModelItem(string semester, MoodleCourseVm course, ReactiveCommand<MoodleCourseContentPageViewModel> navigateToCourse)
         {
             Semester = semester;
             Course = course;
-            NavigateToCourse = command;
+            NavigateToCourse = navigateToCourse;
         }
 
         #region Properties
@@ -51,7 +51,7 @@ namespace Ets.Mobile.ViewModel.Content.Moodle.Courses
             set { this.RaiseAndSetIfChanged(ref _semester, value); }
         }
 
-        public ReactiveCommand<Unit> NavigateToCourse { get; protected set; }
+        public ReactiveCommand<MoodleCourseContentPageViewModel> NavigateToCourse { get; protected set; }
 
         #endregion
     }

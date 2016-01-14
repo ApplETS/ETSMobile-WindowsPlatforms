@@ -3,8 +3,6 @@ using System;
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using ReactiveUI;
-using System.Reactive.Concurrency;
 
 namespace Ets.Mobile.Content.Settings
 {

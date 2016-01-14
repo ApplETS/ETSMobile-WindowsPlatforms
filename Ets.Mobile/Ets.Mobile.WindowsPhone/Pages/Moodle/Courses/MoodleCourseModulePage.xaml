@@ -19,7 +19,7 @@
             <shared:MenuButton Height="60" Width="60" Command="{Binding SideNavigation.OpenMenu}" CommandParameter="{Binding}" />
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="{Binding CourseContent.Name}" Margin="15,0,0,0" Style="{ThemeResource EtsPageHeaderTitleStyle}" FontWeight="Bold" />
-                <TextBlock FontSize="{StaticResource Size5}" Margin="15,0,0,0" Text="{Binding Course.CourseName}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
+                <TextBlock FontSize="{StaticResource Size7}" Margin="15,0,0,0" Text="{Binding Course.CourseName}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
             </StackPanel>
         </StackPanel>
         <!-- Content -->
@@ -31,7 +31,7 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Refresh" Command="{Binding LoadCoursesModule}" />
+                <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadCoursesModule}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

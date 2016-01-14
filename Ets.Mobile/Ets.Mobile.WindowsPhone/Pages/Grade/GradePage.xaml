@@ -9,7 +9,8 @@
     xmlns:controls="using:ReactiveUI.Xaml.Controls"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
     xmlns:shared="using:Ets.Mobile.Content.Shared"
-    xmlns:converters="using:Xaml.Converters">
+    xmlns:converters="using:Xaml.Converters"
+    DataContext="{Binding}">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -95,7 +96,7 @@
             <shared:MenuButton Height="60" Width="60" Command="{Binding SideNavigation.OpenMenu}" CommandParameter="{Binding}" />
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="{Binding SideNavigation.CurrentPage}" Margin="15,0,0,0" Style="{ThemeResource EtsPageHeaderTitleStyle}" FontWeight="Bold" />
-                <TextBlock FontSize="{StaticResource Size5}" Margin="15,0,0,0" Text="{Binding Semester, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
+                <TextBlock FontSize="{StaticResource Size7}" Margin="15,0,0,0" Text="{Binding Semester, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
             </StackPanel>
         </StackPanel>
 
@@ -114,7 +115,7 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="BottomBar" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshGrade" x:Uid="RefreshUid" Icon="Refresh" Label="Refresh" />
+                <AppBarButton x:Name="RefreshGrade" x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

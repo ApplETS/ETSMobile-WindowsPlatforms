@@ -5,16 +5,14 @@ using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Content.Moodle.Courses.Content;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Extensions;
 using ReactiveUI.Xaml.Controls.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using ReactiveUI.Xaml.Controls.Extensions;
 
 namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
 {
@@ -29,7 +27,8 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
 
         protected sealed override void OnViewModelCreation()
         {
-            _navigateToCourseModuleItem = ReactiveCommand.CreateAsyncTask(NavigateToCourseModuleItemImpl);
+            _navigateToCourseModuleItem = ReactiveCommand.CreateAsyncObservable(NavigateToCourseModuleItemImpl);
+            _navigateToCourseModuleItem.Subscribe(selectedItem => HostScreen.Router.Navigate.Execute(new MoodleCourseModulePageViewModel(HostScreen, selectedItem.Course, selectedItem.CourseContent)));
 
             CoursesContentItems = new ReactiveList<MoodleCourseContentSummaryViewModel>();
 
@@ -46,17 +45,14 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
             CoursesContentPresenter = LoadCoursesContent.CreateReactivePresenter(CoursesContentItems, CoursesContent, true);
         }
 
-        private Task<Unit> NavigateToCourseModuleItemImpl(object param)
+        private IObservable<MoodleCourseModulePageViewModel> NavigateToCourseModuleItemImpl(object param)
         {
             var selectedItem = param as MoodleCourseContentSummaryViewModel;
             if (selectedItem != null)
             {
-                RxApp.MainThreadScheduler.Schedule(() =>
-                {
-                    HostScreen.Router.Navigate.Execute(new MoodleCourseModulePageViewModel(HostScreen, selectedItem.Course, selectedItem.CourseContent));
-                });
+                return Observable.Return(new MoodleCourseModulePageViewModel(HostScreen, selectedItem.Course, selectedItem.CourseContent));
             }
-            return Task.FromResult(Unit.Default);
+            return Observable.Empty<MoodleCourseModulePageViewModel>();
         }
 
         private IObservable<List<MoodleCourseContentSummaryViewModel>> FetchMoodleCoursesImpl()
@@ -86,7 +82,7 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
             set { this.RaiseAndSetIfChanged(ref _course, value); }
         }
 
-        private ReactiveCommand<Unit> _navigateToCourseModuleItem;
+        private ReactiveCommand<MoodleCourseModulePageViewModel> _navigateToCourseModuleItem;
         public IReactiveDerivedList<MoodleCourseContentSummaryViewModel> CoursesContent { get; protected set; }
         public ReactivePresenterCommand<List<MoodleCourseContentSummaryViewModel>> LoadCoursesContent { get; set; }
         public IReactivePresenterHandler<IReactiveDerivedList<MoodleCourseContentSummaryViewModel>> CoursesContentPresenter { get; set; }

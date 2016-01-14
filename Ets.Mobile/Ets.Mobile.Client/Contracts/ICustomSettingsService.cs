@@ -1,6 +1,6 @@
-﻿using Ets.Mobile.Entities.Signets;
+﻿using Ets.Mobile.Entities.Moodle;
+using Ets.Mobile.Entities.Signets;
 using System.Threading.Tasks;
-using Ets.Mobile.Entities.Moodle;
 
 namespace Ets.Mobile.Client.Contracts
 {

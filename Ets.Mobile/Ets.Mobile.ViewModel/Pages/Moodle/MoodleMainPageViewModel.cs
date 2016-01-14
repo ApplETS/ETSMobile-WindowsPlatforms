@@ -12,8 +12,6 @@ using ReactiveUI.Xaml.Controls.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 
@@ -28,7 +26,8 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle
 
         protected sealed override void OnViewModelCreation()
         {
-            _navigateToCourseItem = ReactiveCommand.CreateAsyncTask(NavigateToCourseItemImpl);
+            _navigateToCourseItem = ReactiveCommand.CreateAsyncObservable(NavigateToCourseItemImpl);
+            _navigateToCourseItem.Subscribe(selectedItem => HostScreen.Router.Navigate.Execute(selectedItem));
 
             CoursesItems = new ReactiveList<MoodleCourseSummaryViewModelGroup>();
 
@@ -46,17 +45,14 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle
             CoursesPresenter = LoadCourses.CreateReactivePresenter(CoursesItems, Courses, true);
         }
 
-        private Task<Unit> NavigateToCourseItemImpl(object param)
+        private IObservable<MoodleCourseContentPageViewModel> NavigateToCourseItemImpl(object param)
         {
             var selectedItem = param as MoodleCourseSummaryViewModelItem;
             if (selectedItem != null)
             {
-                RxApp.MainThreadScheduler.Schedule(() =>
-                {
-                    HostScreen.Router.Navigate.Execute(new MoodleCourseContentPageViewModel(HostScreen, selectedItem.Course));
-                });
+                return Observable.Return(new MoodleCourseContentPageViewModel(HostScreen, selectedItem.Course));
             }
-            return Task.FromResult(Unit.Default);
+            return Observable.Empty<MoodleCourseContentPageViewModel>();
         }
 
         private IObservable<List<MoodleCourseSummaryViewModelGroup>> FetchMoodleCoursesImpl()
@@ -76,7 +72,7 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle
 
         #region Properties
 
-        private ReactiveCommand<Unit> _navigateToCourseItem;
+        private ReactiveCommand<MoodleCourseContentPageViewModel> _navigateToCourseItem;
         public IReactiveDerivedList<MoodleCourseSummaryViewModelGroup> Courses { get; protected set; }
         public ReactivePresenterCommand<List<MoodleCourseSummaryViewModelGroup>> LoadCourses { get; set; }
         public IReactivePresenterHandler<IReactiveDerivedList<MoodleCourseSummaryViewModelGroup>> CoursesPresenter { get; set; }

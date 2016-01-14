@@ -38,13 +38,13 @@
                                     <Run x:Uid="AverageUid" Text="Moyenne" />
                                     <Run Text=":" />
                                     <Run Text="{Binding Average}" />
-                                    <Run Text="%" FontSize="{StaticResource Size8}" />
+                                    <Run Text="%" FontSize="{StaticResource Size10}" />
                                 </TextBlock>
                                 <TextBlock Pivot.SlideInAnimationGroup="2" Style="{ThemeResource EtsGradeItemSubGradesForegroundStyle}">
                                     <Run x:Uid="MedianUid" Text="Médiane" />
                                     <Run Text=":" />
                                     <Run Text="{Binding Median}" />
-                                    <Run Text="%" FontSize="{StaticResource Size8}" />
+                                    <Run Text="%" FontSize="{StaticResource Size10}" />
                                 </TextBlock>
                                 <TextBlock Pivot.SlideInAnimationGroup="2" Style="{ThemeResource EtsGradeItemSubGradesForegroundStyle}">
                                     <Run x:Uid="PercentileUid" Text="Rang centile" />
@@ -61,7 +61,7 @@
                                 <Run x:Uid="WeightingUid" Text="Pondération" />
                                 <Run Text=":" />
                                 <Run Text="{Binding Weighting}" />
-                                <Run Text="%" FontSize="{StaticResource Size8}" />
+                                <Run Text="%" FontSize="{StaticResource Size10}" />
                             </TextBlock>
                         </Grid>
                     </bordered:BorderedControl.Body>

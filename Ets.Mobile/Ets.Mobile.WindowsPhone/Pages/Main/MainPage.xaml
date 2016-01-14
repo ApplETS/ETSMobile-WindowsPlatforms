@@ -41,8 +41,8 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshToday" Icon="Refresh" Label="Refresh" Command="{Binding LoadCoursesForToday}" />
-                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" Command="{Binding LoadCoursesSummaries}" />
+                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshToday" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadCoursesForToday}" />
+                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshGrade" Icon="Refresh" Label="Rafraîchir" Visibility="Collapsed" Command="{Binding LoadCoursesSummaries}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

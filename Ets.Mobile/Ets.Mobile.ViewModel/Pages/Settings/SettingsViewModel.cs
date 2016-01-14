@@ -18,7 +18,6 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 #if WINDOWS_PHONE_APP || WINDOWS_UWP
-using Windows.ApplicationModel.Email;
 #endif
 
 namespace Ets.Mobile.ViewModel.Pages.Settings

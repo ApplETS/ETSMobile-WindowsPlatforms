@@ -5,9 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.Resources>
-        <ResourceDictionary Source="/Skins/MainSkin.xaml" />
-    </Page.Resources>
     <Page.Transitions>
         <TransitionCollection>
         </TransitionCollection>
@@ -139,13 +136,13 @@
                     x:Uid="ConnectButtonUid" 
                     Content="CONNEXION"
 				    HorizontalAlignment="Stretch"
-				    Style="{StaticResource EtsLoginButton}"
+				    Style="{StaticResource EtsSwitchToLoginButtonStyle}"
 				    VerticalAlignment="Bottom" Margin="0,0,0,-11"
-                    ClickMode="Press">
-            </Button>
+                    ClickMode="Press"
+                    Command="{Binding SwitchToLogin}" />
         </Grid>
 
-        <Grid x:Name="LoginForm" Margin="0,561,0,-611" Visibility="Collapsed" Tapped="LoginForm_OnTapped" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="LoginForm" Margin="0,561,0,-611" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <CompositeTransform/>
             </Grid.RenderTransform>
@@ -182,12 +179,13 @@
 					VerticalAlignment="Bottom"
 					TextWrapping="Wrap"
                     FontWeight="Normal"
-                    Style="{StaticResource EtsTextBlockWhite4}" />
-                <TextBox Grid.Row="1"                         
-					x:Name="UserName"
+                    Style="{ThemeResource EtsUsernameTextBlockStyle}" />
+                <TextBox Grid.Row="1"
                     FontWeight="Normal"
                     RequestedTheme="Dark"
-					Margin="0,3,0,0">
+					Margin="0,3,0,0"
+                    x:Name="UserName"
+                    Text="{Binding UserName, Mode=TwoWay}">
                 </TextBox>
 
                 <TextBlock 
@@ -198,11 +196,11 @@
 					VerticalAlignment="Bottom"
 					TextWrapping="Wrap" 
                     FontWeight="Normal"
-					Style="{StaticResource EtsTextBlockWhite4}" />
+					Style="{ThemeResource EtsPasswordTextBlockStyle}" />
                 <PasswordBox Grid.Row="3"
-					x:Name="Password"
 					Margin="0,2,0,0"
-                    RequestedTheme="Dark" />
+                    RequestedTheme="Dark"
+                    Password="{Binding Password, Mode=TwoWay}" />
 
                 <TextBlock Visibility="Collapsed" Grid.Row="4" x:Name="ErrorMessage"></TextBlock>
 
@@ -210,10 +208,11 @@
                     <Button x:Uid="ConnectButtonUid" 
                         Content="CONNEXION"
                         Height="40"
-                        Name="SubmitCommand"
+                        Name="Login"
 						HorizontalAlignment="Stretch"
-						Style="{StaticResource EtsButtonRedLowestColor}" 
-						BorderThickness="0" />
+						Style="{StaticResource EtsButtonDefaultStyle}" 
+						BorderThickness="0"
+                        Command="{Binding Login}" />
                 </StackPanel>
             </Grid>
         </Grid>

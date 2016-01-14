@@ -1,5 +1,5 @@
-﻿using System;
-using Messaging.Interfaces.Common;
+﻿using Messaging.Interfaces.Common;
+using System;
 
 namespace Messaging.UniversalApp.Common
 {

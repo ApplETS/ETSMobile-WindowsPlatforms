@@ -60,23 +60,21 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         {
             var getCourses = Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
                     .Select(courses =>
-                        courses
-                            .OrderByDescending(x => x.Semester, new SemestersComparator())
-                            .ToList()
+                        courses.OrderByDescending(x => x.Semester, new SemestersComparator()).ToList()
                     )
-                    .Where(x => x != null
-                        && x.Any(y => !string.IsNullOrEmpty(y.Semester))
-                        && x.Any(y => y.Semester == Semester))
                     .Select(x => x.Where(y => y.Semester == Semester));
 
             var createSummariesAndFetchFirst = 
                 getCourses
-                .Select(gradeItems => gradeItems.Select(y => new GradeViewModelItem(y)).ToArray())
-                .Do(gradeItems =>
+                .Select(gradeItems => gradeItems.Select(g => new GradeViewModelItem(g)).ToArray())
+                .Do(async gradeItems =>
                 {
-                    var selectedCourse = gradeItems.First(y => y.Course.Acronym == SelectedCourse.Acronym);
-                    selectedCourse.LoadGrade.ExecuteAsyncTask();
-                    selectedCourse.HasTriggeredLoadGradeOnce = true;
+                    var selectedCourse = gradeItems.FirstOrDefault(y => y.Course.Acronym == SelectedCourse.Acronym);
+                    if (selectedCourse != null && !selectedCourse.HasTriggeredLoadGradeOnce)
+                    {
+                        await selectedCourse.LoadGrade.ExecuteAsyncTask();
+                        selectedCourse.HasTriggeredLoadGradeOnce = true;
+                    }
                 });
 
             return createSummariesAndFetchFirst;

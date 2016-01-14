@@ -247,7 +247,7 @@
     <value>Program</value>
   </data>
   <data name="ProgramEmpty" xml:space="preserve">
-    <value>You do not have programs</value>
+    <value>There are no programs to display</value>
   </data>
   <data name="HomeUid.Text" xml:space="preserve">
     <value>Home</value>
@@ -491,5 +491,11 @@
   </data>
   <data name="PinAppToStartUid.Text" xml:space="preserve">
     <value>Pin the application to start</value>
+  </data>
+  <data name="LoginInvalidCredentialsMessage" xml:space="preserve">
+    <value>Invalid username or password</value>
+  </data>
+  <data name="LoginTimeoutMessage" xml:space="preserve">
+    <value>The request took way longer than it should! Try again.</value>
   </data>
 </root>
