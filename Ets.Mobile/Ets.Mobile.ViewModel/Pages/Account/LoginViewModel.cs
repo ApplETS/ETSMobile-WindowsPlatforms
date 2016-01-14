@@ -144,7 +144,12 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
         private bool _isValidating;
 
-        public ReactiveCommand<bool> SwitchToLogin { get; set; }
+        private ReactiveCommand<bool> _switchToLogin;
+        public ReactiveCommand<bool> SwitchToLogin
+        {
+            get { return _switchToLogin; }
+            set { this.RaiseAndSetIfChanged(ref _switchToLogin, value); }
+        }
 
         public ReactiveCommand<EtsUserCredentials> Login { get; set; }
 
