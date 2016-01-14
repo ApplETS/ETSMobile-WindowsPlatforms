@@ -1,5 +1,6 @@
-﻿using ReactiveUI;
+﻿using System;
 using Windows.UI.Xaml;
+using EventsMixin = Windows.UI.Xaml.Controls.EventsMixin;
 
 namespace Ets.Mobile.Pages.Main
 {
@@ -11,15 +12,11 @@ namespace Ets.Mobile.Pages.Main
             var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
             statusBar.BackgroundOpacity = 0;
             statusBar.HideAsync().GetResults();
-
-            // Grade Presenter
-            // NOTE: Do not remove this code, can't bind to the presenter's source
-            this.OneWayBind(ViewModel, x => x.GradesPresenter, x => x.Grade.DataContext);
             
             // Handle the button visibility according to Pivot Context (SelectedIndex)
-            Loaded += (s, e) =>
+            this.Events().Loaded.Subscribe(e =>
             {
-                MainPivot.SelectionChanged += (sender, e2) =>
+                EventsMixin.Events(MainPivot).SelectionChanged.Subscribe(e2 =>
                 {
                     RefreshToday.Visibility = Visibility.Collapsed;
                     RefreshGrade.Visibility = Visibility.Collapsed;
@@ -33,8 +30,8 @@ namespace Ets.Mobile.Pages.Main
                             RefreshGrade.Visibility = Visibility.Visible;
                             break;
                     }
-                };
-            };
+                });
+            });
         }
     }
 }
