@@ -29,6 +29,7 @@ namespace Ets.Mobile.Agent
                     };
                     taskBuilder.SetTrigger(new TimeTrigger(30, false));
                     taskBuilder.Register();
+                    await RunTaskAsync();
                 }
             }).AsAsyncAction();
         }
@@ -48,6 +49,13 @@ namespace Ets.Mobile.Agent
         {
             var deferal = taskInstance.GetDeferral();
 
+            await RunTaskAsync();
+
+            deferal.Complete();
+        }
+
+        private static async Task RunTaskAsync()
+        {
             var scheduleItem =
                 await LiveTileAndLockScreenService.GetCurrentOrIncomingCourse();
 
@@ -55,8 +63,6 @@ namespace Ets.Mobile.Agent
             {
                 UpdateTile(scheduleItem.ActivityName, scheduleItem.Location, scheduleItem.Name, scheduleItem.Group, scheduleItem.StartDate, scheduleItem.EndDate);
             }
-
-            deferal.Complete();
         }
 
         private static void UpdateTile(string courseName, string location, string activityName, string group, DateTimeOffset startTime, DateTimeOffset endTime)
@@ -153,6 +159,7 @@ namespace Ets.Mobile.Agent
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueueForSquare150x150(true);
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueueForSquare310x310(true);
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueueForWide310x150(true);
+            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 #if WINDOWS_APP || WINDOWS_UWP
             TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(ContentWide));
 #elif WINDOWS_PHONE_APP

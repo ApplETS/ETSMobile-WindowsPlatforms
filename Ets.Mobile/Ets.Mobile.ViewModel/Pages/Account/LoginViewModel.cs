@@ -12,6 +12,7 @@ using Refit;
 using Security.Algorithms;
 using Splat;
 using System;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
@@ -44,7 +45,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             var canLoginExecute = passwordChanged.CombineLatest(userNameChanged, isValidatingChanged, 
                 (validPass, validUserName, isNotValidating) => validPass & validUserName & isNotValidating
             );
-            
+
             Login = ReactiveCommand.CreateAsyncTask(canLoginExecute, async _ => await LoginImpl());
 
             Login.Subscribe(accountVm => {
@@ -53,7 +54,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             });
 
             Login.ThrownExceptions.Subscribe(LoginThrownExceptionImpl);
-        }
+                }
 
         private async Task<EtsUserCredentials> LoginImpl()
         {
@@ -61,7 +62,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             this.Log().Info("Start Loging In");
 
             this.Log().Info($"Send Request to Login for {UserName}");
-
+            
             var checkCredentialsTask = ClientServices().SignetsService.Login(UserName, Password);
             // The Login sometimes takes way too long to return a value (more than 5 minutes sometimes, when other times it takes under a second)
             var fetchLogin = await Task.WhenAny(checkCredentialsTask, Task.Delay(LoginTimeoutMs));
@@ -89,10 +90,24 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             this.Log().Info("Load details about the logged user");
             SideNavigation.UserDetails.LoadProfile.Execute(null);
-            
+
             this.Log().Info("Preload courses to have the colors ready on all pages");
             var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
-            Task.WaitAll(coursesTask);
+
+            this.Log().Info("Get the current schedule for the background service");
+            var getCurrentScheduleTask = Task.Run(async () =>
+            {
+                var semesters = await ClientServices().SignetsService.Semesters();
+                await Cache.InsertObject(ViewModelKeys.Semesters, semesters).ToTask();
+                var currentSemester = semesters.FirstOrDefault(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now);
+                if (currentSemester != null)
+                {
+                    var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService());
+                    await Cache.InsertObject(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), schedule).ToTask();
+                }
+            });
+
+            Task.WaitAll(coursesTask, getCurrentScheduleTask);
             await Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result).ToTask();
 
             this.Log().Info("Register Schedule Tile and LockScreen Updater");
