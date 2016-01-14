@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 
 namespace Ets.Mobile.Pages.Account
 {
@@ -22,14 +21,13 @@ namespace Ets.Mobile.Pages.Account
             // View ModelGroup
             //RxApp.SuspensionHost.ObserveAppState<LoginViewModel>()
             //    .BindTo(this, x => x.ViewModel);
+            
+            var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
+                .Where(x => x != null);
 
-            // Form
-            this.Bind(ViewModel, x => x.UserName, x => x.UserName.Text);
-            this.Bind(ViewModel, x => x.Password, x => x.Password.Password);
+            subscriptionForViewModel.BindTo(this, x => x.DataContext);
 
-            // Handle Login Animation State
-            this.WhenAnyValue(x => x.ViewModel)
-                .Where(x => x != null)
+            subscriptionForViewModel
                 .Subscribe(x =>
                 {
                     ViewModel.SwitchToLogin = ReactiveCommand.CreateAsyncTask(_ =>
@@ -38,8 +36,6 @@ namespace Ets.Mobile.Pages.Account
                         return Task.FromResult(_isLoginShown);
                     });
                 });
-
-            this.BindCommand(ViewModel, x => x.SwitchToLogin, x => x.SwitchToLogin);
         }
 
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
