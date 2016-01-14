@@ -10,8 +10,6 @@ using ReactiveUI.Xaml.Controls.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -22,7 +20,8 @@ namespace Ets.Mobile.ViewModel.Pages.Main
     {
         private void InitializeGrade()
         {
-            _navigateToGradeItem = ReactiveCommand.CreateAsyncTask(NavigateToGradeItemImpl);
+            _navigateToGradeItem = ReactiveCommand.CreateAsyncObservable(NavigateToGradeItemImpl);
+            _navigateToGradeItem.Subscribe(selectedItem => HostScreen.Router.Navigate.Execute(new GradeViewModel(HostScreen, selectedItem.Course)));
 
             GradesItems = new ReactiveList<GradeSummaryViewModelGroup>();
 
@@ -57,24 +56,21 @@ namespace Ets.Mobile.ViewModel.Pages.Main
             return ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService());
         }
 
-        private Task<Unit> NavigateToGradeItemImpl(object param)
+        private IObservable<GradeSummaryViewModelItem> NavigateToGradeItemImpl(object param)
         {
             var selectedItem = param as GradeSummaryViewModelItem;
             if (selectedItem != null)
             {
-                RxApp.MainThreadScheduler.Schedule(() =>
-                {
-                    HostScreen.Router.Navigate.Execute(new GradeViewModel(HostScreen, selectedItem.Course));
-                });
+                return Observable.Return(selectedItem);
             }
-            return Task.FromResult(Unit.Default);
+            return Observable.Empty<GradeSummaryViewModelItem>();
         }
 
         #region Properties
 
         [DataMember]
         public ReactiveList<GradeSummaryViewModelGroup> GradesItems { get; protected set; }
-        private ReactiveCommand<Unit> _navigateToGradeItem;
+        private ReactiveCommand<GradeSummaryViewModelItem> _navigateToGradeItem;
         public IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; protected set; }
         public IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> GradesPresenter { get; protected set; }
         public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadCoursesSummaries { get; protected set; }
