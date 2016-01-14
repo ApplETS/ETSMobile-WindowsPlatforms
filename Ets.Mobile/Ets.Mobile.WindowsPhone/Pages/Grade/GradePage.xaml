@@ -9,7 +9,8 @@
     xmlns:controls="using:ReactiveUI.Xaml.Controls"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
     xmlns:shared="using:Ets.Mobile.Content.Shared"
-    xmlns:converters="using:Xaml.Converters">
+    xmlns:converters="using:Xaml.Converters"
+    DataContext="{Binding}">
 
     <Page.Resources>
         <ResourceDictionary>
