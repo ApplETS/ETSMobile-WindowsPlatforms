@@ -4,6 +4,8 @@
 // Description: The exiplicit Observable (as a property): Messages allows the dev
 // to handle a message compared to analyze a thrown exception with numerous if's.
 
+using Messaging.Interfaces.Common;
+using Splat;
 using System;
 using System.Linq;
 using System.Reactive;
@@ -15,8 +17,6 @@ using System.Reactive.Threading.Tasks;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Messaging.Interfaces.Common;
-using Splat;
 
 namespace ReactiveUI.Xaml.Controls.Core
 {

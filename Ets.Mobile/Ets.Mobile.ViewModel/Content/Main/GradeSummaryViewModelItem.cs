@@ -1,7 +1,6 @@
 ﻿using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
 using ReactiveUI.Extensions;
-using System.Reactive;
 
 namespace Ets.Mobile.ViewModel.Content.Main
 {

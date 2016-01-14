@@ -2,7 +2,6 @@
 using System;
 using System.IO;
 using System.IO.Compression;
-using System.Reactive;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Email;

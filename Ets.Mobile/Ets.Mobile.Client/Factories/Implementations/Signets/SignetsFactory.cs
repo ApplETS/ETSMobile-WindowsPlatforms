@@ -1,8 +1,8 @@
-﻿using System;
-using System.Reflection;
-using Ets.Mobile.Client.Factories.Abstractions;
+﻿using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Client.Factories.Interfaces.Shared;
 using Ets.Mobile.Client.Factories.Interfaces.Signets;
+using System;
+using System.Reflection;
 
 namespace Ets.Mobile.Client.Factories.Implementations.Signets
 {

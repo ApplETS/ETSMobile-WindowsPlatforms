@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Ets.Mobile.Entities.Signets;
+using ReactiveUI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Ets.Mobile.Entities.Signets;
-using ReactiveUI;
 
 namespace Ets.Mobile.ViewModel.Content.Schedule
 {

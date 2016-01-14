@@ -2,7 +2,7 @@
 
 namespace Ets.Mobile.Entities.Auth
 {
-	public class UserCredentials : ICredentials
+    public class UserCredentials : ICredentials
 	{
 		public string Username { get; set; }
 		public string Password { get; set; }
