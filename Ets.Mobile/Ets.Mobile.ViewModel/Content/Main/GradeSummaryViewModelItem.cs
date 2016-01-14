@@ -28,7 +28,7 @@ namespace Ets.Mobile.ViewModel.Content.Main
 
         #endregion
 
-        public GradeSummaryViewModelItem(string semester, CourseVm course, ReactiveCommand<Unit> command)
+        public GradeSummaryViewModelItem(string semester, CourseVm course, ReactiveCommand<GradeSummaryViewModelItem> command)
         {
             Semester = semester;
             Course = course;
@@ -54,7 +54,7 @@ namespace Ets.Mobile.ViewModel.Content.Main
             set { this.RaiseAndSetIfChanged(ref _semester, value); }
         }
 
-        public ReactiveCommand<Unit> NavigateToGrade { get; protected set; }
+        public ReactiveCommand<GradeSummaryViewModelItem> NavigateToGrade { get; protected set; }
 
         #endregion
     }
