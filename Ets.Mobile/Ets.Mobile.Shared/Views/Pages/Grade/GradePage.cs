@@ -1,6 +1,5 @@
 ﻿using Ets.Mobile.ViewModel.Pages.Grade;
 using ReactiveUI;
-using System;
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
 
@@ -34,7 +33,7 @@ namespace Ets.Mobile.Pages.Grade
                 .Where(x => x != null);
 
             subscriptionForViewModel
-                .Subscribe(x => Root.DataContext = x);
+                .BindTo(this, x => x.DataContext);
 
             PartialInitialize();
         }
