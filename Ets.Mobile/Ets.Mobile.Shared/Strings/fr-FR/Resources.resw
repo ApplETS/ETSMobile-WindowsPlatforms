@@ -498,4 +498,25 @@
   <data name="LoginTimeoutMessage" xml:space="preserve">
     <value>La requête prend plus de temps que prévu. Veuillez réessayer.</value>
   </data>
+  <data name="CompletedCreditsUid.Text" xml:space="preserve">
+    <value>Crédits complétés</value>
+  </data>
+  <data name="EquivalenceCountUid.Text" xml:space="preserve">
+    <value>Équivalences</value>
+  </data>
+  <data name="FailedCreditsCountUid.Text" xml:space="preserve">
+    <value>Crédits échoués</value>
+  </data>
+  <data name="PotentialCreditsUid.Text" xml:space="preserve">
+    <value>Crédits espérés</value>
+  </data>
+  <data name="RegisteredCreditsUid.Text" xml:space="preserve">
+    <value>Crédits inscrits</value>
+  </data>
+  <data name="ResearchCreditsUid.Text" xml:space="preserve">
+    <value>Crédits de recherche</value>
+  </data>
+  <data name="SuceededCreditsCountUid.Text" xml:space="preserve">
+    <value>Crédits réussis</value>
+  </data>
 </root>

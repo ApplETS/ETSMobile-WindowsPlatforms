@@ -498,4 +498,25 @@
   <data name="LoginTimeoutMessage" xml:space="preserve">
     <value>The request took way longer than it should! Try again.</value>
   </data>
+  <data name="CompletedCreditsUid.Text" xml:space="preserve">
+    <value>Completed credits</value>
+  </data>
+  <data name="EquivalenceCountUid.Text" xml:space="preserve">
+    <value>Equivalences</value>
+  </data>
+  <data name="FailedCreditsCountUid.Text" xml:space="preserve">
+    <value>Failed credits</value>
+  </data>
+  <data name="PotentialCreditsUid.Text" xml:space="preserve">
+    <value>Potential credits</value>
+  </data>
+  <data name="RegisteredCreditsUid.Text" xml:space="preserve">
+    <value>Registered credits</value>
+  </data>
+  <data name="ResearchCreditsUid.Text" xml:space="preserve">
+    <value>Research credits</value>
+  </data>
+  <data name="SuceededCreditsCountUid.Text" xml:space="preserve">
+    <value>Suceeded credits</value>
+  </data>
 </root>
