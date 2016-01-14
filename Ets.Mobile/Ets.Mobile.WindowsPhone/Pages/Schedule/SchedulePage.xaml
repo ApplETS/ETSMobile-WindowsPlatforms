@@ -5,7 +5,7 @@
     xmlns:local="using:Ets.Mobile.Pages.Schedule"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sfSchedule="using:Ets.Mobile.SyncFusion.SfSchedule"
+    xmlns:sfSchedule="using:Ets.Mobile.Converters.SfSchedule"
     xmlns:shell="using:Ets.Mobile.Shell"
     Background="{ThemeResource EtsScheduleBackgroundBrush}"
     x:Name="ScheduleP"
