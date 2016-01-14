@@ -9,6 +9,6 @@
     d:DesignHeight="60" d:DesignWidth="200" Height="60">
     <StackPanel Orientation="Horizontal">
         <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" Text="" FontSize="{StaticResource SplitViewHamburgerButtonFontSize}" />
-        <TextBlock x:Uid="ApplicationTitleUid" Text="ÉTS Mobile" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource EtsTextBlockWhite4}" FontWeight="Bold" />
+        <TextBlock x:Uid="ApplicationTitleUid" Text="ÉTS Mobile" VerticalAlignment="Center" Margin="20,0,0,0" Style="{ThemeResource EtsMenuButtonBarTextBlockStyle}" FontWeight="Bold" />
     </StackPanel>
 </HyperlinkButton>

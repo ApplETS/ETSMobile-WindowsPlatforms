@@ -20,9 +20,9 @@
 
         <!-- Version and Publisher -->
         <StackPanel Margin="0,20">
-            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="AppletsDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" />
-            <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="EcoledeTechnologieSuperieurUid" Style="{StaticResource EtsTextBlockGray4}" />
-            <TextBlock Pivot.SlideInAnimationGroup="3" Style="{StaticResource EtsTextBlockGray4}" >
+            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="AppletsDescriptionUid" Style="{StaticResource EtsAboutAboutTextBlockStyle}" />
+            <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="EcoledeTechnologieSuperieurUid" Style="{StaticResource EtsAboutAboutTextBlockStyle}" />
+            <TextBlock Pivot.SlideInAnimationGroup="3" Style="{StaticResource EtsAboutAboutTextBlockStyle}" >
                 <Run Text="Version" />
                 <Run Text="{Binding VersionNumber}"/>
             </TextBlock>
@@ -30,8 +30,8 @@
 
         <!-- Applets Description-->
         <StackPanel Margin="0,20">
-            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ContributeDescriptionUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords" />
-            <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="VisitAndJoinUsUid" Style="{StaticResource EtsTextBlockGray4}" TextWrapping="WrapWholeWords"/>
+            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ContributeDescriptionUid" Style="{StaticResource EtsAboutAboutTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="VisitAndJoinUsUid" Style="{StaticResource EtsAboutAboutTextBlockStyle}" TextWrapping="WrapWholeWords"/>
         </StackPanel>
 
         <!-- Applets Website-->

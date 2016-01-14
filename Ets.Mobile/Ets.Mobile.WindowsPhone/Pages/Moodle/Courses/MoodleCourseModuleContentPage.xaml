@@ -19,7 +19,7 @@
             <shared:MenuButton Height="60" Width="60" Command="{Binding SideNavigation.OpenMenu}" CommandParameter="{Binding}" />
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="{Binding CourseModule.Name}" Margin="15,0,0,0" Style="{ThemeResource EtsPageHeaderTitleStyle}" FontWeight="Bold" />
-                <TextBlock FontSize="{StaticResource Size5}" Margin="15,0,0,0" Foreground="{StaticResource EtsTextSecondaryBrush}">
+                <TextBlock FontSize="{StaticResource Size7}" Margin="15,0,0,0" Foreground="{StaticResource EtsTextSecondaryBrush}">
                     <Run Text="{Binding Course.CourseName}" />
                     <Run Text=">"/>
                     <Run Text="{Binding CourseContent.Name}"/>

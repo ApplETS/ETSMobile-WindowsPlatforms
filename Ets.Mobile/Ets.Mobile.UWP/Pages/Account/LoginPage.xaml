@@ -139,7 +139,7 @@
                     x:Uid="ConnectButtonUid" 
                     Content="CONNEXION"
 				    HorizontalAlignment="Stretch"
-				    Style="{StaticResource EtsLoginButton}"
+				    Style="{StaticResource EtsSwitchToLoginButtonStyle}"
 				    VerticalAlignment="Bottom" Margin="0,0,0,-11"
                     ClickMode="Press">
             </Button>
@@ -182,7 +182,7 @@
 					VerticalAlignment="Bottom"
 					TextWrapping="Wrap"
                     FontWeight="Normal"
-                    Style="{StaticResource EtsTextBlockWhite4}" />
+                    Style="{ThemeResource EtsUsernameTextBlockStyle}" />
                 <TextBox Grid.Row="1"                         
 					x:Name="UserName"
                     FontWeight="Normal"
@@ -198,7 +198,7 @@
                     HorizontalAlignment="Left"
 					VerticalAlignment="Bottom"
                     FontWeight="Normal"
-					Style="{StaticResource EtsTextBlockWhite4}" />
+					Style="{ThemeResource EtsPasswordTextBlockStyle}" />
                 <PasswordBox Grid.Row="3"
 					x:Name="Password"
                     Height="35"
@@ -213,7 +213,7 @@
                         Height="50"
                         Name="Login"
 						HorizontalAlignment="Stretch"
-						Style="{StaticResource EtsButtonRedLowestColor}" 
+						Style="{StaticResource EtsButtonDefaultStyle}" 
 						BorderThickness="0" />
                 </StackPanel>
             </Grid>

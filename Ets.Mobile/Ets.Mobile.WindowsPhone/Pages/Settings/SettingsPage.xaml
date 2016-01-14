@@ -9,7 +9,7 @@
     xmlns:shell="using:Ets.Mobile.Shell"
     xmlns:settings="using:Ets.Mobile.Content.Settings"
     mc:Ignorable="d"
-    Background="{ThemeResource EtsProgramBackgroundBrush}">
+    Background="{ThemeResource EtsBackgroundBodyBrush}">
 
     <Grid>
         <Grid.RowDefinitions>

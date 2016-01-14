@@ -96,7 +96,7 @@
             <shared:MenuButton Height="60" Width="60" Command="{Binding SideNavigation.OpenMenu}" CommandParameter="{Binding}" />
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="{Binding SideNavigation.CurrentPage}" Margin="15,0,0,0" Style="{ThemeResource EtsPageHeaderTitleStyle}" FontWeight="Bold" />
-                <TextBlock FontSize="{StaticResource Size5}" Margin="15,0,0,0" Text="{Binding Semester, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
+                <TextBlock FontSize="{StaticResource Size7}" Margin="15,0,0,0" Text="{Binding Semester, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
             </StackPanel>
         </StackPanel>
         <!-- Content -->

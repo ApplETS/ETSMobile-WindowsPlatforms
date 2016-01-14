@@ -10,7 +10,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Pivot.SlideInAnimationGroup="1" Text="{Binding DefaultErrorMessage}" TextWrapping="WrapWholeWords" Style="{StaticResource EtsTextBlockMainColor3}" Foreground="#a6a6a6" />
+                        <TextBlock Pivot.SlideInAnimationGroup="1" Text="{Binding DefaultErrorMessage}" TextWrapping="WrapWholeWords" Style="{StaticResource ReactivePresenterTextBlockStyle}" />
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>
@@ -19,7 +19,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Pivot.SlideInAnimationGroup="1" Text="{Binding DefaultEmptyMessage}" TextWrapping="WrapWholeWords" Style="{StaticResource EtsTextBlockMainColor3}" Foreground="#a6a6a6" />
+                        <TextBlock Pivot.SlideInAnimationGroup="1" Text="{Binding DefaultEmptyMessage}" TextWrapping="WrapWholeWords" Style="{StaticResource ReactivePresenterTextBlockStyle}" />
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>
