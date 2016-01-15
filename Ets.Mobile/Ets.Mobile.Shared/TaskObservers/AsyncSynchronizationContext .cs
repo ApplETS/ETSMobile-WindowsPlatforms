@@ -71,7 +71,9 @@ namespace Ets.Mobile.TaskObservers
                 }
 
                 if (exception != null)
-                    Crittercism.LogUnhandledException(new Exception($"[WrapCallback][{DateTime.Now}] {exception.Message} -> {exception?.InnerException?.Message}, StackTrace:{exception.StackTrace}", exception.InnerException));
+                {
+                    Crittercism.LogUnhandledException(new Exception($"[SynchronizationContext][{DateTime.Now}] {exception.Message} -> {exception?.InnerException?.Message}, StackTrace:{exception.StackTrace}", exception.InnerException));
+                }
             };
         }
     }
