@@ -42,6 +42,7 @@ namespace Ets.Mobile.Agent
                 {
                     task.Value.Unregister(true);
                 }
+                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
             }).AsAsyncAction();
         }
 
