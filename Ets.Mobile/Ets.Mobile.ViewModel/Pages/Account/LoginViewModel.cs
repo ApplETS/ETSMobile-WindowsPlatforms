@@ -14,6 +14,7 @@ using Splat;
 using System;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -35,6 +36,8 @@ namespace Ets.Mobile.ViewModel.Pages.Account
         {
             UserName = string.Empty;
             Password = string.Empty;
+            LogSubject = new ReplaySubject<string>(1);
+            LogSubject.Subscribe(message => this.Log().Info(message));
 
             _isValidating = false;
 
@@ -49,7 +52,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             Login = ReactiveCommand.CreateAsyncTask(canLoginExecute, async _ => await LoginImpl());
 
             Login.Subscribe(accountVm => {
-                this.Log().Info("Navigate to MainViewModel");
+                LogSubject.OnNext("Navigate to MainViewModel");
                 HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
             });
 
@@ -59,10 +62,10 @@ namespace Ets.Mobile.ViewModel.Pages.Account
         private async Task<EtsUserCredentials> LoginImpl()
         {
             _isValidating = true;
-            this.Log().Info("Start Loging In");
 
-            this.Log().Info($"Send Request to Login for {UserName}");
-            
+            LogSubject.OnNext("Start Loging In");
+            LogSubject.OnNext($"Send Request to Login for {UserName}");
+
             var checkCredentialsTask = ClientServices().SignetsService.Login(UserName, Password);
             // The Login sometimes takes way too long to return a value (more than 5 minutes sometimes, when other times it takes under a second)
             var fetchLogin = await Task.WhenAny(checkCredentialsTask, Task.Delay(LoginTimeoutMs));
@@ -71,7 +74,8 @@ namespace Ets.Mobile.ViewModel.Pages.Account
                 // Operation has timed out
                 throw new SignetsException(Resources().GetString("LoginTimeoutMessage"));
             }
-            this.Log().Info($"Received Response for and {UserName} " + (checkCredentialsTask.Result ? "has been authentificated sucessfully" : "has invalid credentials"));
+
+            LogSubject.OnNext(checkCredentialsTask.Result ? "Authentificated sucessfully" : "Invalid credentials");
 
             if (!checkCredentialsTask.Result)
             {
@@ -79,42 +83,41 @@ namespace Ets.Mobile.ViewModel.Pages.Account
                 throw new SignetsException(Resources().GetString("LoginInvalidCredentialsMessage"));
             }
 
+            LogSubject.OnNext("Storing your credentials securely");
             var credentials = new EtsUserCredentials(UserName, Password);
             await Cache.InsertObject(ViewModelKeys.Login, credentials).ToTask();
 
-            this.Log().Info("Set the credentials of the User in the Sso Service");
+            LogSubject.OnNext("Set credentials in the services");
             Locator.Current.GetService<ISsoService>().SetCredentials(credentials);
 
-            this.Log().Info("Set the credentials of the User in the logger");
+            LogSubject.OnNext("Save the credentials for logging");
             Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(credentials.Username));
 
-            this.Log().Info("Load details about the logged user");
+            LogSubject.OnNext("Load details about the logged user");
             SideNavigation.UserDetails.LoadProfile.Execute(null);
 
-            this.Log().Info("Preload courses to have the colors ready on all pages");
-            var coursesTask = Task.Run(async () => await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService()));
+            LogSubject.OnNext("Preload courses to have the colors ready on all pages");
+            var coursesTask = await ClientServices().SignetsService.Courses().ApplyCustomColors(SettingsService());
+            await Cache.InsertObject(ViewModelKeys.Courses, coursesTask).ToTask();
 
-            this.Log().Info("Get the current schedule for the background service");
-            var getCurrentScheduleTask = Task.Run(async () =>
+            LogSubject.OnNext("Retrieving schedule");
+            var semesters = await ClientServices().SignetsService.Semesters();
+            await Cache.InsertObject(ViewModelKeys.Semesters, semesters).ToTask();
+            var currentSemester = semesters.FirstOrDefault(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now);
+            if (currentSemester != null)
             {
-                var semesters = await ClientServices().SignetsService.Semesters();
-                await Cache.InsertObject(ViewModelKeys.Semesters, semesters).ToTask();
-                var currentSemester = semesters.FirstOrDefault(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now);
-                if (currentSemester != null)
-                {
-                    var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService());
-                    await Cache.InsertObject(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), schedule).ToTask();
-                }
-            });
+                var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService());
 
-            Task.WaitAll(coursesTask, getCurrentScheduleTask);
-            await Cache.InsertObject(ViewModelKeys.Courses, coursesTask.Result).ToTask();
+                await Cache.InsertObject(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), schedule).ToTask();
+                LogSubject.OnNext("Saved the schedule");
+            }
 
-            this.Log().Info("Register Schedule Tile and LockScreen Updater");
+            LogSubject.OnNext("Register Schedule Tile and LockScreen Updater");
             await Agent.ScheduleTileUpdaterBackgroundTask.Register();
             await Cache.InsertObject(ViewModelKeys.ScheduleTileUpdaterActive, true).ToTask();
 
-            this.Log().Info("Completed login flow");
+            LogSubject.OnNext("Completed login flow");
+            
             _isValidating = false;
 
             return credentials;
@@ -169,6 +172,8 @@ namespace Ets.Mobile.ViewModel.Pages.Account
         public ReactiveCommand<EtsUserCredentials> Login { get; set; }
 
         private const int LoginTimeoutMs = 5000;
+
+        public ISubject<string> LogSubject { get; set; } 
 
         #endregion
     }
