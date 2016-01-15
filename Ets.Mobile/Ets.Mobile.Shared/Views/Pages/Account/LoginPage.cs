@@ -32,13 +32,11 @@ namespace Ets.Mobile.Pages.Account
         {
             InitializeComponent();
 
-            // When ViewModel is set
-            this.WhenAnyValue(x => x.ViewModel)
-                .Where(x => x != null)
-                .Subscribe(x =>
-                {
-                    Login.Events().Click.Subscribe(arg => ErrorMessage.Visibility = Visibility.Collapsed);
-                });
+            Login.Events().Click.Subscribe(arg =>
+            {
+                ErrorMessage.Visibility = Visibility.Collapsed;
+                Logs.Text = string.Empty;
+            });
 
             // Error Handling
             UserError.RegisterHandler(ue =>
