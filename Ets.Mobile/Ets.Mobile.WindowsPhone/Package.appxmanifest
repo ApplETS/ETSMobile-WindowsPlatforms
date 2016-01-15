@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="11043Sypnotic.430246DD8D0A5" Publisher="CN=42E5AC80-142A-49C5-8662-130D8F1D0E52" Version="1.0.0.21" />
+  <Identity Name="11043Sypnotic.430246DD8D0A5" Publisher="CN=42E5AC80-142A-49C5-8662-130D8F1D0E52" Version="1.0.0.22" />
   <mp:PhoneIdentity PhoneProductId="4862af8a-55d9-4dbd-9b33-ec384aa32755" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ÉTSMobile Beta</DisplayName>

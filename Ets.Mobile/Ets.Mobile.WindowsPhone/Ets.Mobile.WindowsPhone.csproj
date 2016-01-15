@@ -21,7 +21,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
-    <AppxPackageDir>D:\Desktop\Output\UAP\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\Martin Gemme\Desktop\Output\</AppxPackageDir>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
@@ -420,8 +420,8 @@
     <SDKReference Include="Microsoft.VCLibs, Version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
     </SDKReference>
-    <SDKReference Include="Syncfusion 8.1 controls for Universal XAML, Version=13.3.0.7">
-      <Name>Syncfusion 8.1 controls for Universal XAML</Name>
+    <SDKReference Include="Syncfusion 8.1 Controls for WP XAML, Version=13.4.0.53">
+      <Name>Syncfusion 8.1 Controls for WP XAML</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>

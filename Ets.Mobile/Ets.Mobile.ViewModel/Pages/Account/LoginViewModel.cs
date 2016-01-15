@@ -54,7 +54,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             });
 
             Login.ThrownExceptions.Subscribe(LoginThrownExceptionImpl);
-                }
+        }
 
         private async Task<EtsUserCredentials> LoginImpl()
         {
