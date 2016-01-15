@@ -36,7 +36,7 @@ namespace Ets.Mobile
             // Crittercism
             Crittercism.Init("55e87dc18d4d8c0a00d07811");
 
-            UnhandledException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {sender.ToString()} - wasHandled:{e.Handled} - {e.Message}", e.Exception));
+            UnhandledException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[UnhandledException][{DateTime.Now}] {sender.ToString()} - wasHandled:{e.Handled} - {e.Message}, StackTrace:{e.Exception.StackTrace}", e.Exception));
             
             // Default Universal Behavior
             Suspending += OnSuspending;
@@ -115,7 +115,7 @@ namespace Ets.Mobile
                 // parameter
                 if (!rootFrame.Navigate(typeof (ShellPage), e.Arguments))
                 {
-                    Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] Failed to create initial page"));
+                    Crittercism.LogUnhandledException(new Exception($"[UnhandledException][{DateTime.Now}] Failed to create initial page"));
                     throw new Exception("Failed to create initial page");
                 }
             }
