@@ -28,9 +28,9 @@ namespace Ets.Mobile.Pages.Account
             subscriptionForViewModel.BindTo(this, x => x.DataContext);
 
             subscriptionForViewModel
-                .Subscribe(x =>
+                .Subscribe(vm =>
                 {
-                    ViewModel.SwitchToLogin = ReactiveCommand.CreateAsyncTask(_ =>
+                    vm.SwitchToLogin = ReactiveCommand.CreateAsyncTask(_ =>
                     {
                         NavigateToVisualState(ShowLogin.Name, true);
                         return Task.FromResult(_isLoginShown);
