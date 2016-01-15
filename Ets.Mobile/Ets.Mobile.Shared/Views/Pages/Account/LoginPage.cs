@@ -35,7 +35,6 @@ namespace Ets.Mobile.Pages.Account
             Login.Events().Click.Subscribe(arg =>
             {
                 ErrorMessage.Visibility = Visibility.Collapsed;
-                Logs.Text = string.Empty;
             });
 
             // Error Handling
