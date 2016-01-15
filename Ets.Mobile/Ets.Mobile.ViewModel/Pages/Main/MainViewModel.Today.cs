@@ -37,11 +37,16 @@ namespace Ets.Mobile.ViewModel.Pages.Main
 
         private IObservable<ScheduleVm[]> FetchCoursesForTodayImpl()
         {
-            return Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
+            var fetchCoursesForToday =
+                Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
                     .Where(x => x.FirstOrDefault(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now) != null)
                     .Select(semesters => semesters.FirstOrDefault(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now))
                     .SelectMany(GetScheduleForSemester)
-                    .ThrowIfEmpty();
+                    .Publish();
+
+            fetchCoursesForToday.Connect();
+
+            return fetchCoursesForToday.ThrowIfEmpty();
         } 
 
         private IObservable<ScheduleVm[]> GetScheduleForSemester(SemesterVm currentSemester)

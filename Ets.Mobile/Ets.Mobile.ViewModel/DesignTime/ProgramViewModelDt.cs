@@ -45,7 +45,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                     }
                 }).AsEnumerable())
             );
-            LoadProgram = ReactivePresenterCommand.CreateAsyncTask(x => Task.FromResult(default(ProgramVm[])));
+            FetchPrograms = ReactivePresenterCommand.CreateAsyncTask(x => Task.FromResult(default(ProgramVm[])));
         }
 
         private IReactivePresenterHandler<IReactiveDerivedList<ProgramVm>> _programPresenter;
@@ -59,6 +59,6 @@ namespace Ets.Mobile.ViewModel.DesignTime
             }
         }
 
-        public ReactivePresenterCommand<ProgramVm[]> LoadProgram { get; }
+        public ReactivePresenterCommand<ProgramVm[]> FetchPrograms { get; }
     }
 }

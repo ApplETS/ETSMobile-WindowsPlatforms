@@ -13,6 +13,7 @@ namespace Ets.Mobile.Client.Factories.Implementations.Moodle
         private const string PatternGroup3 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})-(?<group3>\d{2})$";
         private const string PatternGroup4 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})-(?<group3>\d{2})-(?<group4>\d{2})$";
         private const string PatternGroup5 = @"^S(?<year>\d{4})(?<season>\d{1})-(?<acronym>\w{6})-(?<group1>\d{2})-(?<group2>\d{2})-(?<group3>\d{2})-(?<group4>\d{2})-(?<group5>\d{2})$";
+        private const string CourseEmptySummary = "<p>{Ce résumé apparaît dans la liste des cours. Mettez ici une description concise mais PAS la description de l'annuaire.}</p>";
 
         public MoodleCourseVm[] Create(MoodleCourse[] result)
         {
@@ -25,7 +26,7 @@ namespace Ets.Mobile.Client.Factories.Implementations.Moodle
                     ShortName = mc.ShortName,
                     FullName = mc.FullName,
                     IdNumber = mc.IdNumber,
-                    Summary = mc.Summary,
+                    Summary = !string.IsNullOrEmpty(mc.Summary) && mc.Summary != CourseEmptySummary ? mc.Summary : string.Empty,
                     Semester = courseDesc.Semester,
                     CourseName = courseDesc.CourseName,
                     Groups = courseDesc.Groups

@@ -9,6 +9,7 @@ using ReactiveUI.Xaml.Controls.Extensions;
 using ReactiveUI.Xaml.Controls.Handlers;
 using System;
 using System.Collections.Generic;
+using System.Reactive.Linq;
 using System.Runtime.Serialization;
 
 namespace Ets.Mobile.ViewModel.Pages.Program
@@ -23,9 +24,9 @@ namespace Ets.Mobile.ViewModel.Pages.Program
         protected sealed override void OnViewModelCreation()
         {
             ProgramItems = new ReactiveList<ProgramVm>();
-            LoadProgram = ReactivePresenterCommand.CreateAsyncObservable(_ => Cache.GetAndFetchLatest(ViewModelKeys.Program, () => ClientServices().SignetsService.Programs()).ThrowIfEmpty());
+            FetchPrograms = ReactivePresenterCommand.CreateAsyncObservable(_ => FetchProgramsImpl());
 
-            LoadProgram.ThrownExceptions
+            FetchPrograms.ThrownExceptions
                 .Subscribe(x =>
                 {
                     UserError.Throw(x.Message, x);
@@ -37,7 +38,18 @@ namespace Ets.Mobile.ViewModel.Pages.Program
                 orderer: (p1, p2) => _programComparer.Compare(p1, p2)
             );
 
-            ProgramPresenter = LoadProgram.CreateReactivePresenter(ProgramItems, Program, true);
+            ProgramPresenter = FetchPrograms.CreateReactivePresenter(ProgramItems, Program, true);
+        }
+
+        private IObservable<ProgramVm[]> FetchProgramsImpl()
+        {
+            var fetchPrograms =
+                Cache.GetAndFetchLatest(ViewModelKeys.Program, () => ClientServices().SignetsService.Programs())
+                    .Publish();
+
+            fetchPrograms.Connect();
+
+            return fetchPrograms.ThrowIfEmpty();
         }
 
         #region Properties
@@ -48,7 +60,7 @@ namespace Ets.Mobile.ViewModel.Pages.Program
         [DataMember]
         public IReactiveDerivedList<ProgramVm> Program { get; protected set; }
         public IReactivePresenterHandler<IReactiveDerivedList<ProgramVm>> ProgramPresenter { get; protected set; }
-        public ReactivePresenterCommand<ProgramVm[]> LoadProgram { get; protected set; }
+        public ReactivePresenterCommand<ProgramVm[]> FetchPrograms { get; protected set; }
 
         #endregion
     }

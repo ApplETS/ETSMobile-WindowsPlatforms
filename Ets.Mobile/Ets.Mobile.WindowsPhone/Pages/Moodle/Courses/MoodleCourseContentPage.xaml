@@ -9,10 +9,13 @@
     xmlns:shell="using:Ets.Mobile.Shell"
     xmlns:shared="using:Ets.Mobile.Content.Shared"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <x:String x:Key="MoodleCourseSummaryEmpty"></x:String>
+    </Page.Resources>
     <Grid Background="{ThemeResource EtsBackgroundBodyBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!-- Hamburger -->
@@ -24,7 +27,23 @@
             </StackPanel>
         </StackPanel>
         <!-- Content -->
-        <Grid Grid.Row="1">
+        <StackPanel Grid.Row="1">
+            <HyperlinkButton 
+                Margin="15,6,15,0"
+                Pivot.SlideInAnimationGroup="2"
+                Style="{ThemeResource EtsMoodleCourseContentHyperlinkStyle}"
+                NavigateUri="{Binding Course.Url}">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Uid="CourseMoodleUrlUid" Margin="0,0,5,0" Height="24" Width="24" />
+                    <StackPanel>
+                        <TextBlock x:Uid="LinkToCourseUid" Text="Lien vers ce cours" />
+                    </StackPanel>
+                </StackPanel>
+            </HyperlinkButton>
+            <TextBlock Margin="15,0,15,0" Style="{ThemeResource MoodleCourseDescriptionStyle}" Text="{Binding Course.Summary, Converter={StaticResource HtmlStringToStringExcludingParameterConverter}, ConverterParameter={Binding MoodleCourseSummaryEmpty}}" />
+            <TextBlock Margin="15,0,15,0" x:Uid="CourseContentsUid" Text="Contenu du cours" Style="{ThemeResource EtsCourseModuleContentStyle}" />
+        </StackPanel>
+        <Grid Grid.Row="2">
             <courses:CoursesContent Margin="15,10,15,0" DataContext="{Binding CoursesContentPresenter}" />
         </Grid>
     </Grid>

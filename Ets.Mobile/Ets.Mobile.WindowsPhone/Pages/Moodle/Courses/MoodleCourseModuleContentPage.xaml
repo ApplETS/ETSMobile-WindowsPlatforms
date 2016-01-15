@@ -12,6 +12,7 @@
     <Grid Background="{ThemeResource EtsBackgroundBodyBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!-- Hamburger -->
@@ -43,8 +44,10 @@
             <TextBlock Text="{Binding CourseModule.Description, Converter={StaticResource HtmlStringToStringConverter}}" />
 
             <TextBlock Margin="15,0,15,0" x:Uid="CourseModuleContentUid" Text="Module Contents" Style="{ThemeResource EtsCourseModuleContentStyle}" />
-            <courses:CoursesModuleContent Margin="15,10,15,0" DataContext="{Binding CoursesModuleContentPresenter}" />
         </StackPanel>
+        <Grid Grid.Row="2">
+            <courses:CoursesModuleContent Margin="15,10,15,0" DataContext="{Binding CoursesModuleContentPresenter}" />
+        </Grid>
     </Grid>
 
     <Page.BottomAppBar>

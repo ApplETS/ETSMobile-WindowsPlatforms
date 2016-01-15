@@ -519,4 +519,10 @@
   <data name="SuceededCreditsCountUid.Text" xml:space="preserve">
     <value>Suceeded credits</value>
   </data>
+  <data name="LinkToCourseUid.Text" xml:space="preserve">
+    <value>Link to this course</value>
+  </data>
+  <data name="CourseContentsUid.Text" xml:space="preserve">
+    <value>Course contents</value>
+  </data>
 </root>

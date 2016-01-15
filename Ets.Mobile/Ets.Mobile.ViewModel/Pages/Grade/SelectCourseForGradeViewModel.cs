@@ -14,6 +14,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using ReactiveUI.Xaml.Controls.Extensions;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
@@ -48,13 +49,13 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         private IObservable<List<GradeSummaryViewModelGroup>> FetchCoursesWithSummariesImpl()
         {
             var fetchCoursesAndSort = Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
-                .Select(y => y.OrderByDescending(x => x.Semester, new SemestersComparator()).ToList());
+                .Select(y => y.OrderByDescending(x => x.Semester, new SemestersComparator()).ToList())
+                .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)).ToList())
+                .Publish();
 
-            var createCoursesSummaries =
-                fetchCoursesAndSort
-                .Select(courses => courses.GroupBy(course => course.Semester).Select(course => new GradeSummaryViewModelGroup(course.Key, course.ToList(), _navigateToGradeItem)).ToList());
+            fetchCoursesAndSort.Connect();
 
-            return createCoursesSummaries;
+            return fetchCoursesAndSort.ThrowIfEmpty();
         }
 
         private Task<CourseVm[]> FetchCourses()

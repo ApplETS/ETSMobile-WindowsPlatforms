@@ -35,7 +35,7 @@ namespace Ets.Mobile.Pages.Program
             subscriptionForViewModel.BindTo(this, x => x.DataContext);
 
             subscriptionForViewModel
-                .InvokeCommand(this, x => x.ViewModel.LoadProgram);
+                .InvokeCommand(this, x => x.ViewModel.FetchPrograms);
         }
     }
 }

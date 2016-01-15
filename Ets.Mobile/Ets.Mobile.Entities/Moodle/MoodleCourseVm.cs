@@ -126,5 +126,7 @@ namespace Ets.Mobile.Entities.Moodle
             get { return _groups; }
             set { this.RaiseAndSetIfChanged(ref _groups, value); }
         }
+
+        public string Url => $"https://ena.etsmtl.ca/course/view.php?id={Id}";
     }
 }

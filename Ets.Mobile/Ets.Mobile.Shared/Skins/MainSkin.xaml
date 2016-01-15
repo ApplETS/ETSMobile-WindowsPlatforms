@@ -307,13 +307,13 @@
             <Brush x:Key="EtsProgramItemBrush">#b6b6b6</Brush>
             <!-- Select Course For Grade -->
             <Style x:Key="EtsCourseTitleForSelectingGradesStyle" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
                 <Setter Property="FontWeight" Value="SemiBold" />
             </Style>
             <Style x:Key="EtsCourseDescriptionForSelectingGradesStyle" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontSize" Value="{StaticResource Size7}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Thin" />
@@ -499,6 +499,13 @@
                 <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="MoodleCourseDescriptionStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
             </Style>
             <Style x:Key="EtsCourseTitleStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="{StaticResource Size2}" />
@@ -825,13 +832,13 @@
             <Brush x:Key="EtsProgramItemBrush">#b6b6b6</Brush>
             <!-- Select Course For Grade -->
             <Style x:Key="EtsCourseTitleForSelectingGradesStyle" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
                 <Setter Property="FontWeight" Value="SemiBold" />
             </Style>
             <Style x:Key="EtsCourseDescriptionForSelectingGradesStyle" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontSize" Value="{StaticResource Size7}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Thin" />
@@ -1017,6 +1024,13 @@
                 <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="MoodleCourseDescriptionStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
             </Style>
             <Style x:Key="EtsCourseTitleStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="{StaticResource Size2}" />
@@ -1341,13 +1355,13 @@
             </Style>
             <!-- Select Course For Grade -->
             <Style x:Key="EtsCourseTitleForSelectingGradesStyle" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
             <Style x:Key="EtsCourseDescriptionForSelectingGradesStyle" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="{StaticResource Size2}" />
+                <Setter Property="FontSize" Value="{StaticResource Size7}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Thin" />
@@ -1539,6 +1553,13 @@
                 <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="MoodleCourseDescriptionStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
+                <Setter Property="FontSize" Value="{StaticResource Size5}" />
+                <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="TextWrapping" Value="WrapWholeWords" />
             </Style>
             <Style x:Key="EtsCourseTitleStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="{StaticResource Size2}" />

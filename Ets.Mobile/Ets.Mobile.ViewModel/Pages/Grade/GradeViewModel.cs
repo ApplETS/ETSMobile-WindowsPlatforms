@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using ReactiveUI.Xaml.Controls.Extensions;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
@@ -58,26 +59,15 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
 
         private IObservable<GradeViewModelItem[]> FetchGradeItems()
         {
-            var getCourses = Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
-                    .Select(courses =>
-                        courses.OrderByDescending(x => x.Semester, new SemestersComparator()).ToList()
-                    )
-                    .Select(x => x.Where(y => y.Semester == Semester));
+            var fetchGradeItems = Cache.GetAndFetchLatest(ViewModelKeys.Courses, FetchCourses)
+                    .Select(courses => courses.OrderByDescending(x => x.Semester, new SemestersComparator()).ToList())
+                    .Select(x => x.Where(y => y.Semester == Semester))
+                    .Select(gradeItems => gradeItems.Select(g => new GradeViewModelItem(g)).ToArray())
+                    .Publish();
 
-            var createSummariesAndFetchFirst = 
-                getCourses
-                .Select(gradeItems => gradeItems.Select(g => new GradeViewModelItem(g)).ToArray())
-                .Do(async gradeItems =>
-                {
-                    var selectedCourse = gradeItems.FirstOrDefault(y => y.Course.Acronym == SelectedCourse.Acronym);
-                    if (selectedCourse != null && !selectedCourse.HasTriggeredLoadGradeOnce)
-                    {
-                        await selectedCourse.LoadGrade.ExecuteAsyncTask();
-                        selectedCourse.HasTriggeredLoadGradeOnce = true;
-                    }
-                });
+            fetchGradeItems.Connect();
 
-            return createSummariesAndFetchFirst;
+            return fetchGradeItems;
         } 
 
         private Task<CourseVm[]> FetchCourses()

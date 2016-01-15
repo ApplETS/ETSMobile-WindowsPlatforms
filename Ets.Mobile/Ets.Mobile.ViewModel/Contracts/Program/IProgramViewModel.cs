@@ -8,6 +8,6 @@ namespace Ets.Mobile.ViewModel.Contracts.Program
     public interface IProgramViewModel
     {
         IReactivePresenterHandler<IReactiveDerivedList<ProgramVm>> ProgramPresenter { get; }
-        ReactivePresenterCommand<ProgramVm[]> LoadProgram { get; }
+        ReactivePresenterCommand<ProgramVm[]> FetchPrograms { get; }
     }
 }

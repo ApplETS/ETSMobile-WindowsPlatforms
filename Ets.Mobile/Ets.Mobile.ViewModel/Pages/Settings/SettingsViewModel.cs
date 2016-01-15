@@ -147,23 +147,20 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
 #if WINDOWS_UWP || WINDOWS_PHONE_APP
         public IObservable<IEnumerable<ScheduleVm>> FetchScheduleImpl()
         {
-            var fetchSemesters =
+            var fetchSchedule =
                 Cache.GetAndFetchLatest(ViewModelKeys.Semesters, () => ClientServices().SignetsService.Semesters())
                     .Where(x => x != null && x.Any(y => !string.IsNullOrEmpty(y.AbridgedName)))
-                    .SelectMany(x => x);
-
-            var getCurrentSemesterOrFollowing =
-                fetchSemesters
-                    .FirstAsync(x => (x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now) || (x.StartDate > DateTime.Now));
-
-            var fetchSchedule =
-                getCurrentSemesterOrFollowing
+                    .SelectMany(x => x)
+                    .Where(x => (x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now) || (x.StartDate > DateTime.Now))
                     .SelectMany(currentSemester =>
                         Cache.GetAndFetchLatest(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), async () => await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService()))
                     )
                     .Where(x => x != null)
-                    .Select(x => x.AsEnumerable());
-            
+                    .Select(x => x.AsEnumerable())
+                    .Publish();
+
+            fetchSchedule.Connect();
+
             return fetchSchedule.ThrowIfEmpty();
         }
 #endif

@@ -70,17 +70,14 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
 
         private IObservable<List<MoodleCourseModuleContentSummaryViewModel>> FetchCourseModuleContentsImpl()
         {
-            var fetchCoursesContents = Cache.GetAndFetchLatest(ViewModelKeys.MoodleCoursesContentForCourse(Course.Id), FetchMoodleCoursesContents);
+            var fetchCoursesContents = Cache.GetAndFetchLatest(ViewModelKeys.MoodleCoursesContentForCourse(Course.Id), FetchMoodleCoursesContents)
+                    .Where(s => s.Any(sc => sc.Id == CourseContent.Id && sc.Modules.Any(m => m.Id == CourseModule.Id) && sc.Modules.First(m => m.Id == CourseModule.Id).Contents.Length > 0))
+                    .Select(sc => sc.First(s => s.Id == CourseContent.Id).Modules.First(m => m.Id == CourseModule.Id).Contents.Select(courseModuleContent => new MoodleCourseModuleContentSummaryViewModel(Course, CourseContent, CourseModule, courseModuleContent, _navigateToModuleContentItem)).ToList())
+                    .Publish();
 
-            var getModuleContents = 
-                fetchCoursesContents
-                    .FirstAsync(s => s.Any(sc => sc.Id == CourseContent.Id && sc.Modules.Any(m => m.Id == CourseModule.Id) && sc.Modules.First(m => m.Id == CourseModule.Id).Contents.Length > 0));
+            fetchCoursesContents.Connect();
 
-            var createSummaries =
-                getModuleContents
-                    .Select(sc => sc.First(s => s.Id == CourseContent.Id).Modules.First(m => m.Id == CourseModule.Id).Contents.Select(courseModuleContent => new MoodleCourseModuleContentSummaryViewModel(Course, CourseContent, CourseModule, courseModuleContent, _navigateToModuleContentItem)).ToList());
-
-            return createSummaries.ThrowIfEmpty();
+            return fetchCoursesContents.ThrowIfEmpty();
         }
 
         private Task<MoodleCourseContentVm[]> FetchMoodleCoursesContents()

@@ -69,13 +69,13 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
         private IObservable<List<MoodleCourseModuleSummaryViewModel>> FetchCoursesModulesImpl()
         {
             var fetchCoursesContent = Cache.GetAndFetchLatest(ViewModelKeys.MoodleCoursesContentForCourse(Course.Id), FetchMoodleCoursesContents)
-                .FirstAsync(s => s.Any(sc => sc.Id == CourseContent.Id && sc.Modules.Length > 0));
-                
-            var createSummaries = 
-                fetchCoursesContent
-                    .Select(sc => sc.First(s => s.Id == CourseContent.Id).Modules.Select(m => new MoodleCourseModuleSummaryViewModel(Course, CourseContent, m, _navigateToModuleItem)).ToList());
+                .Where(s => s.Any(sc => sc.Id == CourseContent.Id && sc.Modules.Length > 0))
+                .Select(sc => sc.First(s => s.Id == CourseContent.Id).Modules.Select(m => new MoodleCourseModuleSummaryViewModel(Course, CourseContent, m, _navigateToModuleItem)).ToList())
+                .Publish();
 
-            return createSummaries.ThrowIfEmpty();
+            fetchCoursesContent.Connect();
+
+            return fetchCoursesContent.ThrowIfEmpty();
         }
 
         private Task<MoodleCourseContentVm[]> FetchMoodleCoursesContents()
