@@ -57,15 +57,17 @@ namespace Ets.Mobile.Agent
 
         private static async Task RunTaskAsync()
         {
-            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-
             var scheduleItem =
                 await LiveTileAndLockScreenService.GetCurrentOrIncomingCourse();
-            
+
             if (scheduleItem != null)
             {
                 UpdateTile(scheduleItem.ActivityName, scheduleItem.Location, scheduleItem.Name, scheduleItem.Group,
                     scheduleItem.StartDate, scheduleItem.EndDate);
+            }
+            else
+            {
+                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
             }
         }
 
