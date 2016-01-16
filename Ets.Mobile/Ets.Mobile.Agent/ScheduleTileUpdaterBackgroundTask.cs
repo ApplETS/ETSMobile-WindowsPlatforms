@@ -38,11 +38,11 @@ namespace Ets.Mobile.Agent
         {
             return Task.Run(() =>
             {
+                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
                 foreach (var task in BackgroundTaskRegistration.AllTasks.Where(task => task.Value.Name == TaskName))
                 {
                     task.Value.Unregister(true);
                 }
-                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
             }).AsAsyncAction();
         }
 
@@ -57,12 +57,15 @@ namespace Ets.Mobile.Agent
 
         private static async Task RunTaskAsync()
         {
+            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+
             var scheduleItem =
                 await LiveTileAndLockScreenService.GetCurrentOrIncomingCourse();
-
+            
             if (scheduleItem != null)
             {
-                UpdateTile(scheduleItem.ActivityName, scheduleItem.Location, scheduleItem.Name, scheduleItem.Group, scheduleItem.StartDate, scheduleItem.EndDate);
+                UpdateTile(scheduleItem.ActivityName, scheduleItem.Location, scheduleItem.Name, scheduleItem.Group,
+                    scheduleItem.StartDate, scheduleItem.EndDate);
             }
         }
 
@@ -160,7 +163,6 @@ namespace Ets.Mobile.Agent
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueueForSquare150x150(true);
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueueForSquare310x310(true);
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueueForWide310x150(true);
-            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 #if WINDOWS_APP || WINDOWS_UWP
             TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(ContentWide));
 #elif WINDOWS_PHONE_APP
