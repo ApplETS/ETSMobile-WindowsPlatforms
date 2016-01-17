@@ -1,6 +1,7 @@
 ﻿using Akavache;
 using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Business.Entities.Results.Signets;
+using Ets.Mobile.Business.Extensions;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Extensions.Signets;
 using Ets.Mobile.Client.Factories.Abstractions;
