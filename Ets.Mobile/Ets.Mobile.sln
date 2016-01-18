@@ -108,14 +108,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ets.Mobile.Shared.Tests", "
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ets.Mobile.Client.Shared.Tests", "Ets.Mobile.Tests\Ets.Mobile.Client.Shared.Tests\Ets.Mobile.Client.Shared.Tests.shproj", "{781EE956-C158-4CA0-96B0-CDAD31210026}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ets.Mobile.Business.Shared.Tests", "Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.shproj", "{073CFBD8-A2FB-4E23-BA1F-AFA6632CFC3E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Business.WinPhone.Tests", "Ets.Mobile.Tests\Ets.Mobile.Business.WinPhone.Tests\Ets.Mobile.Business.WinPhone.Tests.csproj", "{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}"
-	ProjectSection(ProjectDependencies) = postProject
-		{7B995881-1066-4B64-9B58-92FE40397667} = {7B995881-1066-4B64-9B58-92FE40397667}
-		{31018AC6-EBB8-4C95-80D8-B6529994E60B} = {31018AC6-EBB8-4C95-80D8-B6529994E60B}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.UI.Xaml.Controls", "Modules\Universal.UI.Xaml.Controls\Universal.UI.Xaml.Controls.csproj", "{AD458C94-DA3A-4940-BC31-A370AA0ADB5E}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Ets.Mobile.Agent", "Ets.Mobile.Agent\Ets.Mobile.Agent.shproj", "{9D64D1F6-EF5F-44FD-AE78-174506B81399}"
@@ -184,8 +176,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UWP", "UWP", "{6AEEFC7D-101
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.projitems*{82c93d76-299d-45c5-b90a-2c6c5e2fd8ef}*SharedItemsImports = 4
-		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{82c93d76-299d-45c5-b90a-2c6c5e2fd8ef}*SharedItemsImports = 4
 		Modules\Messaging\Implementations\Messaging.UniversalApp\Messaging.UniversalApp.projitems*{761a48f7-5e97-458b-8722-a09afc7e73be}*SharedItemsImports = 4
 		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{b9a9236c-1d52-458a-af63-2d3dae72ec3f}*SharedItemsImports = 13
 		Modules\Logger.Crittercism\Logger.CrittercismLog\Logger.CrittercismLog.projitems*{fad47ffe-d4b9-4670-beca-a4c144ce2cf1}*SharedItemsImports = 13
@@ -206,7 +196,6 @@ Global
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{7b995881-1066-4b64-9b58-92fe40397667}*SharedItemsImports = 4
 		Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.projitems*{69fe6da9-0059-4835-9a82-931d20486470}*SharedItemsImports = 13
 		Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems*{5fa26ca6-2d49-4b8a-9a64-7785b93842be}*SharedItemsImports = 4
-		Ets.Mobile.Tests\Ets.Mobile.Business.Shared.Tests\Ets.Mobile.Business.Shared.Tests.projitems*{073cfbd8-a2fb-4e23-ba1f-afa6632cfc3e}*SharedItemsImports = 13
 		Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems*{c5a679b8-8f8e-451a-8a8e-45ddbeb3c57d}*SharedItemsImports = 13
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{296f2129-d8d1-4609-9d8d-efbf28c8e136}*SharedItemsImports = 4
 		Ets.Mobile.Agent\Ets.Mobile.Agent.projitems*{d5c136f1-423d-4f8b-8fbd-a9f7056c7a5d}*SharedItemsImports = 4
@@ -335,18 +324,6 @@ Global
 		{31018AC6-EBB8-4C95-80D8-B6529994E60B}.Release|ARM.Build.0 = Release|ARM
 		{31018AC6-EBB8-4C95-80D8-B6529994E60B}.Release|x86.ActiveCfg = Release|x86
 		{31018AC6-EBB8-4C95-80D8-B6529994E60B}.Release|x86.Build.0 = Release|x86
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Debug|ARM.ActiveCfg = Debug|ARM
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Debug|ARM.Build.0 = Debug|ARM
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Debug|ARM.Deploy.0 = Debug|ARM
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Debug|x86.ActiveCfg = Debug|x86
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Debug|x86.Build.0 = Debug|x86
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Debug|x86.Deploy.0 = Debug|x86
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Release|ARM.ActiveCfg = Release|ARM
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Release|ARM.Build.0 = Release|ARM
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Release|ARM.Deploy.0 = Release|ARM
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Release|x86.ActiveCfg = Release|x86
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Release|x86.Build.0 = Release|x86
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF}.Release|x86.Deploy.0 = Release|x86
 		{AD458C94-DA3A-4940-BC31-A370AA0ADB5E}.Debug|ARM.ActiveCfg = Debug|ARM
 		{AD458C94-DA3A-4940-BC31-A370AA0ADB5E}.Debug|ARM.Build.0 = Debug|ARM
 		{AD458C94-DA3A-4940-BC31-A370AA0ADB5E}.Debug|x86.ActiveCfg = Debug|x86
@@ -512,8 +489,6 @@ Global
 		{31018AC6-EBB8-4C95-80D8-B6529994E60B} = {0C6989AF-0235-40E5-8AA9-743684FBCA70}
 		{B9A9236C-1D52-458A-AF63-2D3DAE72EC3F} = {8E1D2687-AEF7-4FB6-A155-9A550615E128}
 		{781EE956-C158-4CA0-96B0-CDAD31210026} = {8E1D2687-AEF7-4FB6-A155-9A550615E128}
-		{073CFBD8-A2FB-4E23-BA1F-AFA6632CFC3E} = {8E1D2687-AEF7-4FB6-A155-9A550615E128}
-		{82C93D76-299D-45C5-B90A-2C6C5E2FD8EF} = {A03B0B09-D1F6-4017-9F46-EDBEC09D045A}
 		{AD458C94-DA3A-4940-BC31-A370AA0ADB5E} = {0C6989AF-0235-40E5-8AA9-743684FBCA70}
 		{9D64D1F6-EF5F-44FD-AE78-174506B81399} = {71327AB8-5D30-486D-85AD-2F4A6A24D3BA}
 		{DE843C4E-2EBD-43BE-BC0A-9055631AD9DD} = {CEC614B8-402F-48C7-94A2-DE460F355A01}
