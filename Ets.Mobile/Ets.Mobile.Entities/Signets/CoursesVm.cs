@@ -1,4 +1,4 @@
-﻿using Ets.Mobile.Entities.Signets.Interfaces;
+﻿using Ets.Mobile.Entities.Shared;
 using ReactiveUI;
 using ReactiveUI.Extensions;
 using System.Runtime.Serialization;

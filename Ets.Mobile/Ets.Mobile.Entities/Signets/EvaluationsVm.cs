@@ -1,4 +1,4 @@
-﻿using Ets.Mobile.Entities.Signets.Interfaces;
+﻿using Ets.Mobile.Entities.Shared;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
