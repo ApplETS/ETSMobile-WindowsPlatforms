@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Ets.Mobile.Client.Factories.Implementations.Signets
 {
-    public class CoursesForSemesterFactory : ICoursesForSemesterFactory
+    public class CourseForSemesterFactory : ICourseForSemesterFactory
     {
         public List<CourseForSemesterVm> Create(CourseForSemesterResult courseForSemester)
         {

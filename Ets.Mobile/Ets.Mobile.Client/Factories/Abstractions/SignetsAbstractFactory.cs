@@ -5,8 +5,8 @@ namespace Ets.Mobile.Client.Factories.Abstractions
     public abstract class SignetsAbstractFactory
     {
         public abstract ICoursesFactory GetCoursesFactory();
-        public abstract ICoursesForSemesterFactory GetCoursesForSemesterFactory();
-        public abstract ICoursesIntervalSemestersFactory GetCoursesIntervalSemestersFactory();
+        public abstract ICourseForSemesterFactory GetCourseForSemesterFactory();
+        public abstract ICoursesIntervalSemesterFactory GetCoursesIntervalSemesterFactory();
         public abstract IEvaluationsFactory GetEvaluationsFactory();
         public abstract IProgramsFactory GetProgramsFactory();
         public abstract IReplacedDaysFactory GetReplacedDaysFactory();

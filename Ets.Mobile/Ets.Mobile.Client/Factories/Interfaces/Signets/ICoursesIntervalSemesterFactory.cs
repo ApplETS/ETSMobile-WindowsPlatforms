@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Ets.Mobile.Client.Factories.Interfaces.Signets
 {
-    public interface ICoursesForSemesterFactory : IFactory<CourseForSemesterResult, List<CourseForSemesterVm>>
+    public interface ICoursesIntervalSemesterFactory : IFactory<CoursesIntervalSemesterResult, List<CourseIntervalVm>>
     {
     }
 }
