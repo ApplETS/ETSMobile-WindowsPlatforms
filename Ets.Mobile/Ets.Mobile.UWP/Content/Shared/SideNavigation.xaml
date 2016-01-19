@@ -84,7 +84,7 @@
                         <Border CornerRadius="25" Width="{StaticResource SplitViewUserImageSize}" Height="{StaticResource SplitViewUserImageSize}">
                             <Border.Background>
                                 <!--<TextBlock Text="" />-->
-                                <ImageBrush ImageSource="{Binding Profile.ImageSource, FallbackValue='/Assets/Menu/Contacts-64.png'}"  />
+                                <ImageBrush ImageSource="{Binding Profile.Image, FallbackValue='/Assets/Menu/Contacts-64.png', Converter={StaticResource SplatBitmapToBrushConverter}, ConverterParameter='/Assets/Menu/Contacts-64.png'}"  />
                             </Border.Background>
                         </Border>
                     </Border>
