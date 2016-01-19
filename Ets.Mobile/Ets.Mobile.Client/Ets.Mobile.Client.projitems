@@ -27,8 +27,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Moodle\MoodleFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Moodle\MoodleSiteInfoFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Signets\CoursesFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Signets\CoursesForSemesterFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Signets\CoursesIntervalSemestersFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Signets\CourseForSemesterFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Signets\CoursesIntervalSemesterFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Signets\EvaluationsFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Signets\ProgramsFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Signets\ReplacedDaysFactory.cs" />
@@ -44,8 +44,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Moodle\IMoodleSiteInfoFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Shared\IFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Signets\ICoursesFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Signets\ICoursesForSemesterFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Signets\ICoursesIntervalSemestersFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Signets\ICourseForSemesterFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Signets\ICoursesIntervalSemesterFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Signets\IEvaluationsFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Signets\IProgramsFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Interfaces\Signets\IReplacedDaysFactory.cs" />

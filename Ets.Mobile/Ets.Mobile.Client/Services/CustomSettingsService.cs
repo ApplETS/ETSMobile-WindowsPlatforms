@@ -1,14 +1,15 @@
 ﻿using Akavache;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Entities.Moodle;
+using Ets.Mobile.Entities.Shared;
 using Ets.Mobile.Entities.Signets;
-using Ets.Mobile.Entities.Signets.Interfaces;
+using Splat;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
-using Themes;
-using Windows.UI;
+using Themes.Contracts;
+using Themes.Entities;
 
 namespace Ets.Mobile.Client.Services
 {
@@ -16,7 +17,7 @@ namespace Ets.Mobile.Client.Services
     {
         public async Task ApplyColorOnItemsForCoursesInitial(CourseVm[] items)
         {
-            var colors = AppColors.GetColors(items.Length);
+            var colors = Locator.Current.GetService<IAppColors>().GetColors(items.Length);
 
             var ind = 0;
             foreach (var item in items)
@@ -51,7 +52,7 @@ namespace Ets.Mobile.Client.Services
                 }
                 else
                 {
-                    await InnerApplyColorOnCoursesWithoutKeys(item, $"colorsFor_{item.Semester}_{item.CourseName}", Colors.Black);
+                    await InnerApplyColorOnCoursesWithoutKeys(item, $"colorsFor_{item.Semester}_{item.CourseName}", new ColorAsString("#000000"));
                 }
             }
         }
@@ -74,7 +75,7 @@ namespace Ets.Mobile.Client.Services
                 }
                 else
                 {
-                    await InnerApplyColorOnCoursesWithoutKeys(item, $"colorsFor_{course.Semester}_{course.CourseName}", Colors.Black);
+                    await InnerApplyColorOnCoursesWithoutKeys(item, $"colorsFor_{course.Semester}_{course.CourseName}", new ColorAsString("#000000"));
                 }
             }
         }
@@ -96,15 +97,15 @@ namespace Ets.Mobile.Client.Services
             customColorObj.SetNewColor(colorOfSchedule);
         }
 
-        private async Task ApplyColorOnCoursesWithinSemester(ICustomColor customColorObj, string semester, string courseWithGroup, Color color)
+        private async Task ApplyColorOnCoursesWithinSemester(ICustomColor customColorObj, string semester, string courseWithGroup, ColorAsString color)
         {
-            var colorVm = await BlobCache.UserAccount.GetOrCreateObject(ClientKeys.ColorCourseForSemester(semester, courseWithGroup), () => new ColorVm(color)).ToTask();
+            var colorVm = await BlobCache.UserAccount.GetOrCreateObject(ClientKeys.ColorCourseForSemester(semester, courseWithGroup), () => new ColorVm(color.HexColor)).ToTask();
             customColorObj.SetNewColor(colorVm);
         }
 
-        private async Task InnerApplyColorOnCoursesWithoutKeys<T>(T customColorObj, string key, Color color) where T : ICustomColor
+        private async Task InnerApplyColorOnCoursesWithoutKeys<T>(T customColorObj, string key, ColorAsString color) where T : ICustomColor
         {
-            var colorOfSchedule = await BlobCache.UserAccount.GetOrCreateObject(key, () => new ColorVm(color));
+            var colorOfSchedule = await BlobCache.UserAccount.GetOrCreateObject(key, () => new ColorVm(color.HexColor));
             customColorObj.SetNewColor(colorOfSchedule);
         }
     }
