@@ -35,11 +35,13 @@
                         Content="intégrer au calendrier"
 						Style="{StaticResource EtsButtonDefaultStyle}" 
 						BorderThickness="0"
+                        x:Name="IntegrateScheduleToCalendar"
                         Command="{Binding IntegrateScheduleToCalendar}"/>
                 <Button x:Uid="RemoveScheduleIntegrationButtonUid" 
                         Content="retirer du calendrier"
 						Style="{StaticResource EtsButtonDefaultStyle}" 
 						BorderThickness="0"
+                        x:Name="RemoveScheduleFromCalendar"
                         Command="{Binding RemoveScheduleFromCalendar}"/>
             </StackPanel>
             <RichTextBlock Pivot.SlideInAnimationGroup="3" Style="{ThemeResource EtsOptionsDescriptionStyle}">

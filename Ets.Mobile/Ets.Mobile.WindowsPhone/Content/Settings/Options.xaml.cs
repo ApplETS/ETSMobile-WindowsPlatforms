@@ -1,6 +1,5 @@
 ﻿using Ets.Mobile.ViewModel.Contracts.Settings;
 using System;
-using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -20,6 +19,16 @@ namespace Ets.Mobile.Content.Settings
                     {
                         ShowSchedule.IsEnabled = !isExecuting;
                         LoadingShowScheduleChanged.Visibility = isExecuting ? Visibility.Visible : Visibility.Collapsed;
+                    });
+
+                    options.IntegrateScheduleToCalendar.IsExecuting.Subscribe(isIntegrating =>
+                    {
+                        RemoveScheduleFromCalendar.IsEnabled = !isIntegrating;
+                    });
+
+                    options.RemoveScheduleFromCalendar.IsExecuting.Subscribe(isRemovingIntegration =>
+                    {
+                        IntegrateScheduleToCalendar.IsEnabled = !isRemovingIntegration;
                     });
                 }
             });
