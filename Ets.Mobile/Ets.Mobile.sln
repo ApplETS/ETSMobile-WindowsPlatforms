@@ -185,8 +185,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization.Interface", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization", "Modules\Localization\Implementations\Localization\Localization.csproj", "{8070A42A-49A9-46A6-8BC1-DAA063BC3832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Client.Mocks", "Ets.Mobile.Tests\Ets.Mobile.Client.Mocks\Ets.Mobile.Client.Mocks.csproj", "{16C6F969-E626-48A4-925A-9AE78BE7263C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Business.Mocks", "Ets.Mobile.Tests\Ets.Mobile.Business.Mocks\Ets.Mobile.Business.Mocks.csproj", "{3C0000EE-95B7-41C0-BFAF-FBCE30C1CBD5}"
 EndProject
 Global
@@ -227,9 +225,6 @@ Global
 		Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems*{a059e0a6-8a78-4a53-b2a9-4ec0efdff71b}*SharedItemsImports = 4
 		Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.projitems*{8588bca2-d4e9-4b0b-b9d1-3572f03d0d64}*SharedItemsImports = 4
 		Ets.Mobile.Agent\Ets.Mobile.Agent.projitems*{9d64d1f6-ef5f-44fd-ae78-174506b81399}*SharedItemsImports = 13
-		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{16c6f969-e626-48a4-925a-9ae78be7263c}*SharedItemsImports = 4
-		Ets.Mobile.Business\Ets.Mobile.Business.projitems*{16c6f969-e626-48a4-925a-9ae78be7263c}*SharedItemsImports = 4
-		Ets.Mobile.Entities\Ets.Mobile.Entities.projitems*{16c6f969-e626-48a4-925a-9ae78be7263c}*SharedItemsImports = 4
 		Ets.Mobile.Shared\Ets.Mobile.Shared.projitems*{8439660c-1ae2-4c77-b6c3-f12f1e66036f}*SharedItemsImports = 13
 		Ets.Mobile.Business\Ets.Mobile.Business.projitems*{e222ab54-2f09-4b90-846f-b2a3eb893233}*SharedItemsImports = 4
 	EndGlobalSection
@@ -651,18 +646,6 @@ Global
 		{8070A42A-49A9-46A6-8BC1-DAA063BC3832}.Test|ARM.Build.0 = Test|ARM
 		{8070A42A-49A9-46A6-8BC1-DAA063BC3832}.Test|x86.ActiveCfg = Test|x86
 		{8070A42A-49A9-46A6-8BC1-DAA063BC3832}.Test|x86.Build.0 = Test|x86
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Debug|ARM.ActiveCfg = Debug|ARM
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Debug|ARM.Build.0 = Debug|ARM
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Debug|x86.ActiveCfg = Debug|x86
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Debug|x86.Build.0 = Debug|x86
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Release|ARM.ActiveCfg = Release|ARM
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Release|ARM.Build.0 = Release|ARM
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Release|x86.ActiveCfg = Release|x86
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Release|x86.Build.0 = Release|x86
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Test|ARM.ActiveCfg = Test|ARM
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Test|ARM.Build.0 = Test|ARM
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Test|x86.ActiveCfg = Test|x86
-		{16C6F969-E626-48A4-925A-9AE78BE7263C}.Test|x86.Build.0 = Test|x86
 		{3C0000EE-95B7-41C0-BFAF-FBCE30C1CBD5}.Debug|ARM.ActiveCfg = Debug|ARM
 		{3C0000EE-95B7-41C0-BFAF-FBCE30C1CBD5}.Debug|ARM.Build.0 = Debug|ARM
 		{3C0000EE-95B7-41C0-BFAF-FBCE30C1CBD5}.Debug|x86.ActiveCfg = Debug|x86
@@ -748,7 +731,6 @@ Global
 		{A6E3C690-A089-4E61-82FA-1A37A1C95DA9} = {E9AD15BC-5DC4-4F1C-9B93-BCA1AD94D92D}
 		{826AAD69-11C1-43C4-BE7E-B1D8C3B45CB9} = {E9AD15BC-5DC4-4F1C-9B93-BCA1AD94D92D}
 		{8070A42A-49A9-46A6-8BC1-DAA063BC3832} = {A6E3C690-A089-4E61-82FA-1A37A1C95DA9}
-		{16C6F969-E626-48A4-925A-9AE78BE7263C} = {8E1D2687-AEF7-4FB6-A155-9A550615E128}
 		{3C0000EE-95B7-41C0-BFAF-FBCE30C1CBD5} = {8E1D2687-AEF7-4FB6-A155-9A550615E128}
 	EndGlobalSection
 EndGlobal
