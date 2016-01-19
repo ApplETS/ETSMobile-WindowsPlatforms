@@ -6,7 +6,10 @@ using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
 using System;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
+using ReactiveUI.Xaml.Controls.Extensions;
 
 namespace Ets.Mobile.ViewModel.Content.Grade
 {
@@ -45,11 +48,18 @@ namespace Ets.Mobile.ViewModel.Content.Grade
 
         private IObservable<EvaluationsVm> FetchGradesImpl()
         {
-            return Cache.GetAndFetchLatest(ViewModelKeys.GradesForSemesterAndCourse(Course.Semester, Course.Name),
+            var fetchGrades = Cache.GetAndFetchLatest(ViewModelKeys.GradesForSemesterAndCourse(Course.Semester, Course.Name),
                 () => ClientServices()
                         .SignetsService.Evaluations(Course.Acronym, Course.Group, Course.Semester)
                         .ApplyCustomColors(SettingsService(), Course)
-            );
+                        .ToObservable()
+                        .Do(x => x.LetterGrade = Course.Grade)
+                )
+                .Publish();
+
+            fetchGrades.Connect();
+
+            return fetchGrades.ThrowIfEmpty();
         } 
 
         #region Properties
