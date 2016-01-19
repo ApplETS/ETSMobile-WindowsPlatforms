@@ -69,6 +69,32 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="ApplicationInsights.config">
@@ -345,9 +371,13 @@
       <Project>{f30613aa-0eb9-4d44-b42f-ecaf50bdf7ec}</Project>
       <Name>Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Localization\Localization.csproj">
+    <ProjectReference Include="..\Modules\Localization\Implementations\Localization\Localization.csproj">
       <Project>{8070a42a-49a9-46a6-8bc1-daa063bc3832}</Project>
       <Name>Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Localization\Localization.Interface\Localization.Interface.csproj">
+      <Project>{826aad69-11c1-43c4-be7e-b1d8c3b45cb9}</Project>
+      <Name>Localization.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Logger.Crittercism\Implementations\Logger.CrittercismLog.UWP\Logger.CrittercismLog.UWP.csproj">
       <Project>{9433e83d-6018-4ebd-bc92-382cac0c0bae}</Project>
@@ -377,9 +407,13 @@
       <Project>{8588bca2-d4e9-4b0b-b9d1-3572f03d0d64}</Project>
       <Name>ReactiveUI.Xaml.Controls.UWP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Security\Security.csproj">
-      <Project>{d940f3ac-b1bf-4d18-8924-d7348f6318ea}</Project>
-      <Name>Security</Name>
+    <ProjectReference Include="..\Modules\Security\Implementations\Security.UWP\Security.UWP.csproj">
+      <Project>{a01141e5-7a3e-4d82-94ef-8b05c183a339}</Project>
+      <Name>Security.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Security\Security.Interface\Security.Interface.csproj">
+      <Project>{548f134e-64d7-4699-9672-62f98287d62c}</Project>
+      <Name>Security.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Themes\Themes.csproj">
       <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>

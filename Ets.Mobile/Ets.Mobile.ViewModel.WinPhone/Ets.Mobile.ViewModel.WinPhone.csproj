@@ -62,6 +62,28 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_PHONE_APP;TEST</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Pages\ExtendedSplashScreen\ExtendedSplashScreenViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,9 +109,9 @@
       <Project>{ce35f282-6085-4910-bfe2-38a93c50cd8b}</Project>
       <Name>Ets.Mobile.Entities.WinPhone</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Localization\Localization.csproj">
-      <Project>{8070a42a-49a9-46a6-8bc1-daa063bc3832}</Project>
-      <Name>Localization</Name>
+    <ProjectReference Include="..\Modules\Localization\Localization.Interface\Localization.Interface.csproj">
+      <Project>{826aad69-11c1-43c4-be7e-b1d8c3b45cb9}</Project>
+      <Name>Localization.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Logger\Logger.csproj">
       <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
@@ -111,9 +133,9 @@
       <Project>{c8329a73-199d-44de-b174-4d12189442cd}</Project>
       <Name>ReactiveUI.Xaml.Controls.UAP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Security\Security.csproj">
-      <Project>{d940f3ac-b1bf-4d18-8924-d7348f6318ea}</Project>
-      <Name>Security</Name>
+    <ProjectReference Include="..\Modules\Security\Security.Interface\Security.Interface.csproj">
+      <Project>{548f134e-64d7-4699-9672-62f98287d62c}</Project>
+      <Name>Security.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Themes\Themes.csproj">
       <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>

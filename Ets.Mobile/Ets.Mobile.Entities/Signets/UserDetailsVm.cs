@@ -1,7 +1,6 @@
 using ReactiveUI;
 using Splat;
 using System.Runtime.Serialization;
-using Windows.UI.Xaml.Media;
 
 namespace Ets.Mobile.Entities.Signets
 {
@@ -66,18 +65,7 @@ namespace Ets.Mobile.Entities.Signets
         public IBitmap Image
         {
             get { return _imageSource; }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _imageSource, value);
-                ImageSource = value.ToNative();
-            }
-        }
-
-        private ImageSource _imgSource;
-        public ImageSource ImageSource
-        {
-            get { return _imgSource; }
-            set { this.RaiseAndSetIfChanged(ref _imgSource, value); }
+            set { this.RaiseAndSetIfChanged(ref _imageSource, value); }
         }
     }
 }

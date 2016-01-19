@@ -1,4 +1,5 @@
-﻿using Windows.UI;
+﻿using System.Globalization;
+using Windows.UI;
 using Messaging.Interfaces.Common;
 using Messaging.Interfaces.Notifications;
 using Windows.UI.Xaml.Media;
@@ -12,9 +13,15 @@ namespace Messaging.UniversalApp.Notifications
     {
         private Color DefaultBackground { get; }
 
-        public InAppNotificationManager(Color color)
+        public InAppNotificationManager(string hexColor)
         {
-            DefaultBackground = color;
+            DefaultBackground = new Color
+            {
+                A = byte.Parse(hexColor.Substring(7, 2), NumberStyles.AllowHexSpecifier),
+                R = byte.Parse(hexColor.Substring(1, 2), NumberStyles.AllowHexSpecifier),
+                G = byte.Parse(hexColor.Substring(3, 2), NumberStyles.AllowHexSpecifier),
+                B = byte.Parse(hexColor.Substring(5, 2), NumberStyles.AllowHexSpecifier)
+            };
         }
 
         public void Notify(IMessagingContent messageContent)

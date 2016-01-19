@@ -9,7 +9,7 @@ using Logger;
 using Messaging.UniversalApp.Common;
 using ReactiveUI;
 using Refit;
-using Security.Algorithms;
+using Security.Contracts;
 using Splat;
 using System;
 using System.Linq;
@@ -72,7 +72,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             if (fetchLogin != checkCredentialsTask)
             {
                 // Operation has timed out
-                throw new SignetsException(Resources().GetString("LoginTimeoutMessage"));
+                throw new SignetsException(Resources().GetStringForKey("LoginTimeoutMessage"));
             }
 
             LogSubject.OnNext(checkCredentialsTask.Result ? "Authentificated sucessfully" : "Invalid credentials");
@@ -80,7 +80,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             if (!checkCredentialsTask.Result)
             {
                 // invalid credentials
-                throw new SignetsException(Resources().GetString("LoginInvalidCredentialsMessage"));
+                throw new SignetsException(Resources().GetStringForKey("LoginInvalidCredentialsMessage"));
             }
 
             LogSubject.OnNext("Storing your credentials securely");
@@ -91,7 +91,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             Locator.Current.GetService<ISsoService>().SetCredentials(credentials);
 
             LogSubject.OnNext("Save the credentials for logging");
-            Locator.Current.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(credentials.Username));
+            Locator.Current.GetService<IUserEnabledLogger>().SetUser(Locator.Current.GetService<ISecurityProvider>().HashMd5(credentials.Username));
 
             LogSubject.OnNext("Load details about the logged user");
             SideNavigation.UserDetails.LoadProfile.Execute(null);
@@ -126,7 +126,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
         private void LoginThrownExceptionImpl(Exception ex)
         {
             var apiException = ex as ApiException;
-            var exception = apiException != null ? new ErrorMessageContent(Resources().GetString("NetworkError"), Resources().GetString("NetworkTitleError"), apiException) : new ErrorMessageContent(ex.Message, ex);
+            var exception = apiException != null ? new ErrorMessageContent(Resources().GetStringForKey("NetworkError"), Resources().GetStringForKey("NetworkTitleError"), apiException) : new ErrorMessageContent(ex.Message, ex);
 
             if (apiException == null)
             {

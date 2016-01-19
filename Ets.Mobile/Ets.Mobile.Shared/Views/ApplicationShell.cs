@@ -28,7 +28,7 @@ using Ets.Mobile.ViewModel.Pages.UserDetails;
 using Logger;
 using ReactiveUI;
 using Refit;
-using Security.Algorithms;
+using Security.Contracts;
 using Splat;
 using System;
 using System.Reactive.Concurrency;
@@ -172,7 +172,7 @@ namespace Ets.Mobile.ViewModel
 	                if (signetsAccountVm.IsLoginSuccessful)
 	                {
                         _resolver.GetService<ISsoService>().SetCredentials(signetsAccountVm);
-                        _resolver.GetService<IUserEnabledLogger>().SetUser(Md5Hash.GetHashString(signetsAccountVm.Username));
+                        _resolver.GetService<IUserEnabledLogger>().SetUser(Locator.Current.GetService<ISecurityProvider>().HashMd5(signetsAccountVm.Username));
 	                    SideNavigation.UserDetails.LoadProfile.Execute(null);
                         navigateTo = new MainViewModel(this);
 	                }

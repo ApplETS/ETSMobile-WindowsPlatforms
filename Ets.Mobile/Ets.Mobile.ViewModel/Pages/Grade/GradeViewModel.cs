@@ -10,7 +10,6 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using ReactiveUI.Xaml.Controls.Extensions;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {

@@ -7,6 +7,7 @@ using Ets.Mobile.ViewModel.Content.Main;
 using Ets.Mobile.ViewModel.Contracts.Grade;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Extensions;
 using ReactiveUI.Xaml.Controls.Handlers;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,6 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using ReactiveUI.Xaml.Controls.Extensions;
 
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {

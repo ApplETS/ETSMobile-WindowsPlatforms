@@ -8,7 +8,8 @@ using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Client.Factories.Implementations.Signets;
 using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Signets;
-using Security.Algorithms;
+using Security.Contracts;
+using Splat;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Threading.Tasks;
@@ -53,9 +54,11 @@ namespace Ets.Mobile.Client.Services
 
             userDetailsVm.Username = _userCredentials.Username;
 
+#if !TEST
             userDetailsVm.Image = await BlobCache.UserAccount.LoadImageFromUrl("gravatar",
                 "http://www.gravatar.com/avatar/" +
-                $"{Md5Hash.GetHashString(userDetailsVm.Email.ToLower())}", true).ToTask();
+                $"{Locator.Current.GetService<ISecurityProvider>().HashMd5(userDetailsVm.Email.ToLower())}", true).ToTask();
+#endif
 
             return userDetailsVm;
         }

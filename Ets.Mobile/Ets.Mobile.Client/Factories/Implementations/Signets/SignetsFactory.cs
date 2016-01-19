@@ -14,16 +14,16 @@ namespace Ets.Mobile.Client.Factories.Implementations.Signets
             return _coursesFactory ?? (_coursesFactory = new CoursesFactory());
         }
 
-        private ICoursesForSemesterFactory _coursesForSemesterFactory;
-        public override ICoursesForSemesterFactory GetCoursesForSemesterFactory()
+        private ICourseForSemesterFactory _courseForSemesterFactory;
+        public override ICourseForSemesterFactory GetCourseForSemesterFactory()
         {
-            return _coursesForSemesterFactory ?? (_coursesForSemesterFactory = new CoursesForSemesterFactory());
+            return _courseForSemesterFactory ?? (_courseForSemesterFactory = new CourseForSemesterFactory());
         }
 
-        private ICoursesIntervalSemestersFactory _coursesIntervalSemestersFactory;
-        public override ICoursesIntervalSemestersFactory GetCoursesIntervalSemestersFactory()
+        private ICoursesIntervalSemesterFactory _coursesIntervalSemesterFactory;
+        public override ICoursesIntervalSemesterFactory GetCoursesIntervalSemesterFactory()
         {
-            return _coursesIntervalSemestersFactory ?? (_coursesIntervalSemestersFactory = new CoursesIntervalSemestersFactory());
+            return _coursesIntervalSemesterFactory ?? (_coursesIntervalSemesterFactory = new CoursesIntervalSemesterFactory());
         }
 
         private IEvaluationsFactory _evaluationsFactory;

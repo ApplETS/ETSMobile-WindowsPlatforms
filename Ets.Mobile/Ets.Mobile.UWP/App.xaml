@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Skins/ReactivePresenter.xaml" />
                 <ResourceDictionary Source="/Skins/UWPSkin.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:SplatBitmapToBrushConverter x:Key="SplatBitmapToBrushConverter" />
             <converters:HtmlStringToStringConverter x:Key="HtmlStringToStringConverter" />
             <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
             <converters:StringToLowerConverter x:Key="StringToLowerConverter" />

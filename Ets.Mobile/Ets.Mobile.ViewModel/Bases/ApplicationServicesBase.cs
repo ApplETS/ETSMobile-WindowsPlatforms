@@ -3,12 +3,12 @@ using Ets.Mobile.Business;
 using Ets.Mobile.Client;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.ViewModel.Contracts.Shared;
+using Localization.Interface.Contracts;
 using Messaging.Interfaces.ViewService;
 using ReactiveUI;
 using Splat;
 using System.Runtime.Serialization;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Resources;
 
 namespace Ets.Mobile.ViewModel.Bases
 {
@@ -37,10 +37,10 @@ namespace Ets.Mobile.ViewModel.Bases
         }
 
         [IgnoreDataMember]
-        private ResourceLoader _rl;
-        protected ResourceLoader Resources()
+        private IResourceContainer _rl;
+        protected IResourceContainer Resources()
         {
-            return _rl ?? (_rl = _serviceLocator.GetService<ResourceLoader>());
+            return _rl ?? (_rl = _serviceLocator.GetService<IResourceContainer>());
         }
 
         [IgnoreDataMember]

@@ -8,9 +8,13 @@ namespace Logger.CrittercismLog
     {
         public void Write(string message, LogLevel logLevel)
         {
-            if (logLevel == LogLevel.Error || logLevel == LogLevel.Fatal)
+            if (logLevel == LogLevel.Error)
             {
                 Crittercism.LogHandledException(new Exception($"[{DateTime.Now}] {message} ({logLevel})"));
+            }
+            else if (logLevel == LogLevel.Fatal)
+            {
+                Crittercism.LogUnhandledException(new Exception($"[{DateTime.Now}] {message} ({logLevel})"));
             }
         }
 

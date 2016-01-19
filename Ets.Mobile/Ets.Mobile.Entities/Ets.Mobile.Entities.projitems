@@ -18,12 +18,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Moodle\MoodleCourseVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Moodle\MoodleSiteInfoVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServiceInfo\IClientInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shared\ColorVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shared\ICustomColor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\CoursesForSemestersVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\CoursesIntervalSemestersVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\CoursesVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\EvaluationsVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Signets\Interfaces\ColorVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Signets\Interfaces\ICustomColor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\ProgramsVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\ReplacedDaysVm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Signets\ScheduleAndTeachersVm.cs" />

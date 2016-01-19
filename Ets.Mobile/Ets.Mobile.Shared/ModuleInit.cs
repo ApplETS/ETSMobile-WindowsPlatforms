@@ -9,6 +9,7 @@ using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Moodle;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.Logger;
+using Ets.Mobile.Skins;
 using Logger;
 using Logger.CrittercismLog;
 using Logger.SplatLog;
@@ -21,11 +22,14 @@ using Messaging.UniversalApp.ViewService;
 using ModernHttpClient;
 using Newtonsoft.Json;
 using Refit;
+using Security.Contracts;
+using Security.Services;
 using Splat;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using Themes;
+using Themes.Contracts;
 using Windows.ApplicationModel.Resources;
 
 namespace Ets.Mobile.Shared
@@ -57,11 +61,18 @@ namespace Ets.Mobile.Shared
 
             var logger = new CombinedLogger(new CrittercismLogger(), splatLogger);
             resolver.RegisterLazySingleton(() => logger, typeof(IUserEnabledLogger));
-            
+
+            // Theming Services
+            resolver.RegisterLazySingleton(() => new EtsAppBrushes(), typeof(IAppBrush));
+            resolver.RegisterLazySingleton(() => new EtsAppColors(), typeof(IAppColors));
+
             // View Services
             resolver.RegisterLazySingleton(() => new PopupManager(resolver.GetService<ResourceLoader>()), typeof(IPopupManager));
-            resolver.RegisterLazySingleton(() => new InAppNotificationManager(AppBrushes.MediumBrush), typeof(INotificationManager), "InApp");
+            resolver.RegisterLazySingleton(() => new InAppNotificationManager(resolver.GetService<IAppBrush>().MediumBrush.HexColor), typeof(INotificationManager), "InApp");
             resolver.RegisterLazySingleton(() => new ViewService(), typeof(IViewService));
+
+            // Security Services
+            resolver.RegisterLazySingleton(() => new DefaultSecurityProvider(), typeof(ISecurityProvider));
 
             // Register Services
 		    InitializeServices(resolver);

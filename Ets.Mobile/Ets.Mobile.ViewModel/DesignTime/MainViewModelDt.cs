@@ -12,9 +12,7 @@ using System.Collections.Generic;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using Themes;
 using Windows.ApplicationModel;
-using Windows.UI;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
@@ -35,7 +33,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                         Description = "Description",
                         StartDate = DateTime.Now.AddMinutes(2),
                         EndDate = DateTime.Now.AddMinutes(62),
-                        Color = AppColors.Orange.ToString()
+                        Color = "#ea7635"
                     },
                     new ScheduleVm
                     {
@@ -46,7 +44,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                         Description = "Description",
                         StartDate = DateTime.Now.AddMinutes(2),
                         EndDate = DateTime.Now.AddMinutes(62),
-                        Color = AppColors.Orange.ToString()
+                        Color = "#ea7635"
                     }
                 });
 
@@ -60,7 +58,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                             Name = "Architecture",
                             Semester = "H2015",
                             Program = "",
-                            Color = Colors.Orange.ToString()
+                            Color = "#ea7635"
                         }
                     }, null)
                 });
