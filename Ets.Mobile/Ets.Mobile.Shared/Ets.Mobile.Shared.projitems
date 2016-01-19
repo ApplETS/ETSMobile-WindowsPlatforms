@@ -12,6 +12,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Logger\CombinedLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\StorageFileEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Skins\EtsAppBrushes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Skins\EtsAppColors.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TaskObservers\AsyncSynchronizationContext .cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserErrorHandlers\UserErrorOfflineHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ApplicationViewModelsTypes.cs" />
