@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="/Skins/PhoneSkin.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <x:String x:Key="AppName">ETS Mobile</x:String>
-            <converters:SplatIBitmapToBrushConverter x:Key="SplatIBitmapToBrushConverter" />
+            <converters:SplatBitmapToBrushConverter x:Key="SplatBitmapToBrushConverter" />
             <converters:HtmlStringToStringConverter x:Key="HtmlStringToStringConverter" />
             <converters:HtmlStringToStringExcludingParameterConverter x:Key="HtmlStringToStringExcludingParameterConverter" />
             <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
