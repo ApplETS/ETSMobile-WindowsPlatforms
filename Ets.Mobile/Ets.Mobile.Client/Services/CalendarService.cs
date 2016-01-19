@@ -6,8 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
 using Windows.ApplicationModel.Appointments;
 using Windows.ApplicationModel.Resources;
+#endif
 
 namespace Ets.Mobile.Client.Services
 {
@@ -17,6 +19,7 @@ namespace Ets.Mobile.Client.Services
 
         public async Task IntegrateScheduleToCalendar(ScheduleVm[] currentOrNextSemesterSchedule)
         {
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
             var store = await AppointmentManager.RequestStoreAsync(AppointmentStoreAccessType.AppCalendarsReadWrite);
 
             // Delete all existing calendar that is named CalendarName
@@ -69,10 +72,12 @@ namespace Ets.Mobile.Client.Services
 
                 await calendar.SaveAppointmentAsync(appToStore);
             }
+#endif
         }
 
         public async Task<Tuple<bool, string>> RemoveScheduleFromCalendar()
         {
+#if WINDOWS_PHONE_APP || WINDOWS_UWP
             var store = await AppointmentManager.RequestStoreAsync(AppointmentStoreAccessType.AppCalendarsReadWrite);
 
             string localId;
@@ -94,7 +99,7 @@ namespace Ets.Mobile.Client.Services
                 }
             }
             await BlobCache.UserAccount.Invalidate(CalendarIdStoreKey).ToTask();
-
+#endif
             return new Tuple<bool, string>(true, string.Empty);
         }
     }
