@@ -1,0 +1,41 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ include file="VisualStudioHelper.ttinclude" #>
+<# var i = 0; var str3 = ""; var project =  VisualStudioHelper.GetAllSolutionItems().First(x => x.FileCount > 0 && x.Name == "<Ets.Mobile.Shared>").ContainingProject;
+string resourcePath = project.FullName.Replace("Ets.Mobile.WindowsPhone", "Ets.Mobile.Shared").Replace("Ets.Mobile.Shared.csproj", "\\Strings\\en-US\\Resources.resw");
+System.Xml.Linq.XElement resXml = System.Xml.Linq.XElement.Load(resourcePath);
+IEnumerable<XElement> appElement = (from dataElements in resXml.Descendants("data") select dataElements); #>
+using Localization.Interface.Contracts;
+using Splat;
+namespace Localization
+{
+    public sealed class StringResources
+    {
+        private static readonly IResourceContainer ResourceLoader = Locator.Current.GetService<IResourceContainer>(); 
+
+<# foreach (var element in appElement) 
+{ 
+var currentElement = element.Attribute("name").Value;
+var currentPropertyName = element.Attribute("name").Value.Replace(".","_");
+if(currentPropertyName.Contains("_"))
+{
+    currentElement = currentPropertyName.Substring(0, currentPropertyName.IndexOf('_'));
+}
+#>
+        public static string <#= currentPropertyName#>  
+        {
+            get
+            {
+                return ResourceLoader.GetStringForKey("<#= currentElement#>");
+            }
+        } 
+<# } #>
+    }
+}
