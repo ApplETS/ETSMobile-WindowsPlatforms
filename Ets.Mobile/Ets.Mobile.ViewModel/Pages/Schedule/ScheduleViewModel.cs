@@ -34,7 +34,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
                     var empty = x is IMessagingContent;
                     if (empty)
                     {
-                        ViewServices().Popup.ShowMessage(Resources().GetString("ScheduleEmptyMessage"), Resources().GetString("ScheduleEmptyTitle"));
+                        ViewServices().Popup.ShowMessage(Resources().GetStringForKey("ScheduleEmptyMessage"), Resources().GetStringForKey("ScheduleEmptyTitle"));
                     }
 
                     UserError.Throw(x.Message, x);

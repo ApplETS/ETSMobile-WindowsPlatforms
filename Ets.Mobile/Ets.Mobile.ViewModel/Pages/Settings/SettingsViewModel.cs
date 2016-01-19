@@ -91,18 +91,18 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
                 UserError.Throw(ex.Message, ex);
                 if (!(ex is ApiException))
                 {
-                    ViewServices().Popup.ShowMessage(Resources().GetString("ScheduleIntegrationMessageException"), Resources().GetString("ScheduleIntegrationTitleException"));
+                    ViewServices().Popup.ShowMessage(Resources().GetStringForKey("ScheduleIntegrationMessageException"), Resources().GetStringForKey("ScheduleIntegrationTitleException"));
                 }
             });
 
             IntegrateScheduleToCalendar.Messages.Subscribe(x =>
             {
-                ViewServices().Popup.ShowMessage(Resources().GetString("ScheduleIntegrationMessageEmpty"), Resources().GetString("ScheduleIntegrationTitleEmpty"));
+                ViewServices().Popup.ShowMessage(Resources().GetStringForKey("ScheduleIntegrationMessageEmpty"), Resources().GetStringForKey("ScheduleIntegrationTitleEmpty"));
             });
 
             IntegrateScheduleToCalendar.Subscribe(unit =>
             {
-                ViewServices().Popup.ShowMessage(Resources().GetString("ScheduleIntegrationMessageCompleted"), Resources().GetString("ScheduleIntegrationTitleCompleted"));
+                ViewServices().Popup.ShowMessage(Resources().GetStringForKey("ScheduleIntegrationMessageCompleted"), Resources().GetStringForKey("ScheduleIntegrationTitleCompleted"));
             });
 
             RemoveScheduleFromCalendar = ReactiveCommand.CreateAsyncTask(async _ =>
@@ -112,7 +112,7 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
                 {
                     if (result.Item2 == "key_not_found")
                     {
-                        ViewServices().Popup.ShowMessage(Resources().GetString("RemoveScheduleIntegrationMessageNoCalendar"), Resources().GetString("RemoveScheduleIntegrationTitleNoCalendar"));
+                        ViewServices().Popup.ShowMessage(Resources().GetStringForKey("RemoveScheduleIntegrationMessageNoCalendar"), Resources().GetStringForKey("RemoveScheduleIntegrationTitleNoCalendar"));
                     }
                     return false;
                 }
@@ -124,7 +124,7 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
                 UserError.Throw(ex.Message, ex);
                 if (!(ex is ApiException))
                 {
-                    ViewServices().Popup.ShowMessage(Resources().GetString("RemoveScheduleIntegrationMessageException"), Resources().GetString("RemoveScheduleIntegrationTitleException"));
+                    ViewServices().Popup.ShowMessage(Resources().GetStringForKey("RemoveScheduleIntegrationMessageException"), Resources().GetStringForKey("RemoveScheduleIntegrationTitleException"));
                 }
             });
 
@@ -132,7 +132,7 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
             {
                 if (hasBeenRemoved)
                 {
-                    ViewServices().Popup.ShowMessage(Resources().GetString("RemoveScheduleIntegrationMessageCompleted"), Resources().GetString("RemoveScheduleIntegrationTitleCompleted"));
+                    ViewServices().Popup.ShowMessage(Resources().GetStringForKey("RemoveScheduleIntegrationMessageCompleted"), Resources().GetStringForKey("RemoveScheduleIntegrationTitleCompleted"));
                 }
             });
 #endif
@@ -140,7 +140,7 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
 
         private async Task<Unit> SendLogFilesImpl()
         {
-            await LogHelper.ZipApplicationLogsAndSendEmail(Resources().GetString("SendLogFilesBody"));
+            await LogHelper.ZipApplicationLogsAndSendEmail(Resources().GetStringForKey("SendLogFilesBody"));
             return Unit.Default;
         }
 
