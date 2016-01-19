@@ -3,6 +3,8 @@ using Ets.Mobile.Logger;
 using Ets.Mobile.Shell;
 using Ets.Mobile.TaskObservers;
 using Ets.Mobile.ViewModel;
+using Localization.Interface.Contracts;
+using Localization.Services;
 using Logger.SplatLog;
 using ReactiveUI;
 using Splat;
@@ -29,8 +31,10 @@ namespace Ets.Mobile
         /// </summary>
         public App()
         {
-            Locator.CurrentMutable.RegisterLazySingleton(() => new ResourceLoader(), typeof(ResourceLoader));
-            
+            var resourceLoader = new ResourceLoader();
+            Locator.CurrentMutable.RegisterLazySingleton(() => resourceLoader, typeof(ResourceLoader));
+            Locator.CurrentMutable.RegisterLazySingleton(() => new ResourceLoaderContainer(resourceLoader), typeof(IResourceContainer));
+
             InitializeComponent();
 
             // Crittercism

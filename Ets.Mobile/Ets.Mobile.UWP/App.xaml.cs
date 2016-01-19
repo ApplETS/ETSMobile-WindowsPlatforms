@@ -1,4 +1,14 @@
-﻿using System;
+﻿using CrittercismSDK;
+using Ets.Mobile.Logger;
+using Ets.Mobile.Shell;
+using Ets.Mobile.TaskObservers;
+using Ets.Mobile.ViewModel;
+using Localization.Interface.Contracts;
+using Localization.Services;
+using Logger.SplatLog;
+using ReactiveUI;
+using Splat;
+using System;
 using System.Diagnostics.Tracing;
 using System.Reactive.Linq;
 using Windows.ApplicationModel;
@@ -7,14 +17,6 @@ using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using CrittercismSDK;
-using Ets.Mobile.Logger;
-using Ets.Mobile.Shell;
-using Ets.Mobile.TaskObservers;
-using Ets.Mobile.ViewModel;
-using Logger.SplatLog;
-using ReactiveUI;
-using Splat;
 
 namespace Ets.Mobile
 {
@@ -35,7 +37,9 @@ namespace Ets.Mobile
                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
 
-            Locator.CurrentMutable.RegisterLazySingleton(() => new ResourceLoader(), typeof(ResourceLoader));
+            var resourceLoader = new ResourceLoader();
+            Locator.CurrentMutable.RegisterLazySingleton(() => resourceLoader, typeof(ResourceLoader));
+            Locator.CurrentMutable.RegisterLazySingleton(() => new ResourceLoaderContainer(resourceLoader), typeof(IResourceContainer));
 
             // Crittercism
             Crittercism.Init("55e87dc18d4d8c0a00d07811");
