@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <!-- PivotItem -->
+    <!-- Region PivotItem -->
     <Style TargetType="controls:PivotItem">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Margin" Value="{ThemeResource PivotItemMargin}"/>
@@ -45,8 +45,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!-- EndRegion -->
 
-    <!-- PivotHeaderItem -->
+    <!-- Region PivotHeaderItem -->
     <x:Int32 x:Key="EtsPivotHeaderItemFontSize">22</x:Int32>
     <x:String x:Key="EtsPivotHeaderItemMargin">15,10,10,10</x:String>
     <Style TargetType="primitives:PivotHeaderItem">
@@ -96,7 +97,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!-- EndRegion -->
 
+    <!-- Region Pivot -->
     <x:String x:Key="PivotPortraitThemePadding">19,10,0,0</x:String>
     <!-- Default style for Windows.UI.Xaml.Controls.Pivot -->
     <Style TargetType="controls:Pivot">
@@ -176,4 +179,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!-- EndRegion -->
 </ResourceDictionary>

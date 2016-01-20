@@ -7,11 +7,12 @@
     mc:Ignorable="d">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <!-- Main Fonts -->
+            <!-- Region Main Fonts -->
             <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
             <FontFamily x:Key="EtsConfidentialityTitleFont">Trebuchet MS</FontFamily>
             <FontFamily x:Key="EtsConfidentialityDescriptionFont">Arial Unicode MS</FontFamily>
-            <!-- Sizes -->
+            <!-- EndRegion -->
+            <!-- Region Sizes -->
             <x:Double x:Key="Size1">36</x:Double>
             <x:Double x:Key="Size2">30</x:Double>
             <x:Double x:Key="Size3">24</x:Double>
@@ -22,7 +23,8 @@
             <x:Double x:Key="Size8">12</x:Double>
             <x:Double x:Key="Size9">10</x:Double>
             <x:Double x:Key="Size10">8</x:Double>
-            <!-- Main Colors -->
+            <!-- EndRegion -->
+            <!-- Region Main Colors -->
             <Color x:Key="EtsRedLowestColor">#680100</Color>
             <Color x:Key="EtsRedMidColor">#7F0100</Color>
             <Color x:Key="EtsRedMediumColor">#FF0200</Color>
@@ -35,7 +37,8 @@
             <Color x:Key="EtsTextMainColor">#323232</Color>
             <Color x:Key="EtsTextSecondaryColor">#666666</Color>
             <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
-            <!-- Brush -->
+            <!-- EndRegion -->
+            <!-- Region Brush -->
             <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
             <Brush x:Key="EtsRedMidBrush">#7F0100</Brush>
             <Brush x:Key="EtsRedMediumBrush">#FF0200</Brush>
@@ -49,11 +52,13 @@
             <Brush x:Key="EtsStateTextBrush">#a6a6a6</Brush>
             <Brush x:Key="EtsSideNavigationBackgroundBrush">#2b2b2b</Brush>
             <Brush x:Key="EtsScheduleItemDescriptionBrush">#8c8c8c</Brush>
-            <!-- Backgrounds -->
+            <!-- EndRegion -->
+            <!-- Region Backgrounds -->
             <Brush x:Key="EtsBackgroundBrush">#00000000</Brush>
             <Brush x:Key="EtsBackgroundMainBrush">#404040</Brush>
             <Brush x:Key="EtsBackgroundBodyBrush">#333333</Brush>
-            <!-- Page Header and Side Navigation -->
+            <!-- EndRegion -->
+            <!-- Region Page Header and Side Navigation -->
             <Brush x:Key="EtsMenuButtonBrush">#680100</Brush>
             <Style x:Key="EtsPageHeaderTitleStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -67,13 +72,16 @@
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
-            <!-- Command Bar -->
+            <!-- EndRegion -->
+            <!-- Region Command Bar -->
             <Brush x:Key="EtsCommandBarForegroundBrush">#FFFFFFFF</Brush>
             <Brush x:Key="EtsCommandBarBackgroundBrush">#404040</Brush>
             <Brush x:Key="EtsCommandBarBrush">#404040</Brush>
-            <!-- Buttons -->
+            <!-- EndRegion -->
+            <!-- Region Buttons -->
             <Brush x:Key="EtsButtonPressedBrush">#FF0200</Brush>
-            <!-- ToggleSwitch -->
+            <!-- EndRegion -->
+            <!-- Region ToggleSwitch -->
             <Style x:Key="EtsToggleSwitchStyle" TargetType="ToggleSwitch">
                 <Setter Property="VerticalContentAlignment" Value="Top" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}"/>
@@ -230,7 +238,8 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!-- ListView                                       -->
+            <!-- EndRegion -->
+            <!-- Region ListView -->
             <Style x:Key="EtsListViewHeaderItemStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
@@ -239,7 +248,8 @@
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
             </Style>
-            <!-- Login -->
+            <!-- EndRegion -->
+            <!-- Region Login -->
             <Style x:Key="EtsTextBlockLoginTitle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="{StaticResource Size2}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -256,7 +266,8 @@
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
-            <!-- Today -->
+            <!-- EndRegion -->
+            <!-- Region Today -->
             <Style x:Key="EtsTodayItemActivityNameStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
                 <Setter Property="FontSize" Value="{StaticResource Size4}" />
@@ -272,7 +283,8 @@
             <Color x:Key="EtsTodayBackgroundColor">#333333</Color>
             <Color x:Key="EtsTodayBackgroundTransparentColor">#00333333</Color>
             <Brush x:Key="EtsTodayBackgroundBrush">#333333</Brush>
-            <!-- Grades -->
+            <!-- EndRegion -->
+            <!-- Region Grades -->
             <Brush x:Key="EtsGradeSummaryItemBrush">Transparent</Brush>
             <Style x:Key="EtsGradeSummaryTitleForegroundStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -305,7 +317,8 @@
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
             <Brush x:Key="EtsProgramItemBrush">#b6b6b6</Brush>
-            <!-- Select Course For Grade -->
+            <!-- EndRegion -->
+            <!-- Region Select Course For Grade -->
             <Style x:Key="EtsCourseTitleForSelectingGradesStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
@@ -324,7 +337,8 @@
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Style>
-            <!-- Schedule -->
+            <!-- EndRegion -->
+            <!-- Region Schedule -->
             <Brush x:Key="SfScheduleDayBackgroundBrush">#333333</Brush>
             <Brush x:Key="SfScheduleTimelineBackgroundBrush">#333333</Brush>
             <Color x:Key="AppointmentDescriptionColor">#8c8c8c</Color>
@@ -398,7 +412,8 @@
             <Style x:Key="ChangeCalendarViewFlyoutLastButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
                 <Setter Property="Margin" Value="14,0,14,20" />
             </Style>
-            <!-- Program -->
+            <!-- EndRegion -->
+            <!-- Region Program -->
             <Style x:Key="EtsProgramItemTitleStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
@@ -426,7 +441,8 @@
                 <Setter Property="Margin" Value="0,0,0,10" />
                 <Setter Property="Background" Value="Transparent" />
             </Style>
-            <!-- Settings -->
+            <!-- EndRegion -->
+            <!-- Region Settings -->
             <Style x:Key="EtsApplicationTitleStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
@@ -492,7 +508,8 @@
             <Brush x:Key="EtsOptionsDescriptionLinkForeground">#CC0100</Brush>
             <x:Double x:Key="EtsOptionsDescriptionLinkFontSize">14</x:Double>
             <Brush x:Key="EtsOptionsProgressRingForeground">#FFFFFF</Brush>
-            <!-- Moodle -->
+            <!-- EndRegion -->
+            <!-- Region Moodle -->
             <Brush x:Key="EtsCourseSummaryItemBrush">Transparent</Brush>
             <Style x:Key="EtsCourseSummaryTitleForegroundStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -530,13 +547,15 @@
             <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
             </Style>
+            <!-- EndRegion -->
         </ResourceDictionary>
         <ResourceDictionary x:Key="HighContrast">
-            <!-- Main Fonts -->
+            <!-- Region Main Fonts -->
             <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
             <FontFamily x:Key="EtsConfidentialityTitleFont">Trebuchet MS</FontFamily>
             <FontFamily x:Key="EtsConfidentialityDescriptionFont">Arial Unicode MS</FontFamily>
-            <!-- Sizes -->
+            <!-- EndRegion -->
+            <!-- Region Sizes -->
             <x:Double x:Key="Size1">36</x:Double>
             <x:Double x:Key="Size2">30</x:Double>
             <x:Double x:Key="Size3">24</x:Double>
@@ -547,7 +566,8 @@
             <x:Double x:Key="Size8">12</x:Double>
             <x:Double x:Key="Size9">10</x:Double>
             <x:Double x:Key="Size10">8</x:Double>
-            <!-- Main Colors -->
+            <!-- EndRegion -->
+            <!-- Region Main Colors -->
             <Color x:Key="EtsRedLowestColor">#680100</Color>
             <Color x:Key="EtsRedMidColor">#7F0100</Color>
             <Color x:Key="EtsRedMediumColor">#FF0200</Color>
@@ -560,7 +580,8 @@
             <Color x:Key="EtsTextMainColor">#323232</Color>
             <Color x:Key="EtsTextSecondaryColor">#666666</Color>
             <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
-            <!-- Brush -->
+            <!-- EndRegion -->
+            <!-- Region Brush -->
             <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
             <Brush x:Key="EtsRedMidBrush">#7F0100</Brush>
             <Brush x:Key="EtsRedMediumBrush">#FF0200</Brush>
@@ -574,11 +595,13 @@
             <Brush x:Key="EtsStateTextBrush">#a6a6a6</Brush>
             <Brush x:Key="EtsSideNavigationBackgroundBrush">#2b2b2b</Brush>
             <Brush x:Key="EtsScheduleItemDescriptionBrush">#8c8c8c</Brush>
-            <!-- Backgrounds -->
+            <!-- EndRegion -->
+            <!-- Region Backgrounds -->
             <Brush x:Key="EtsBackgroundBrush">#00000000</Brush>
             <Brush x:Key="EtsBackgroundMainBrush">#404040</Brush>
             <Brush x:Key="EtsBackgroundBodyBrush">#333333</Brush>
-            <!-- Page Header and Side Navigation -->
+            <!-- EndRegion -->
+            <!-- Region Page Header and Side Navigation -->
             <Brush x:Key="EtsMenuButtonBrush">#680100</Brush>
             <Style x:Key="EtsPageHeaderTitleStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -592,13 +615,16 @@
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
-            <!-- Command Bar -->
+            <!-- EndRegion -->
+            <!-- Region Command Bar -->
             <Brush x:Key="EtsCommandBarForegroundBrush">#FFFFFFFF</Brush>
             <Brush x:Key="EtsCommandBarBackgroundBrush">#404040</Brush>
             <Brush x:Key="EtsCommandBarBrush">#404040</Brush>
-            <!-- Buttons -->
+            <!-- EndRegion -->
+            <!-- Region Buttons -->
             <Brush x:Key="EtsButtonPressedBrush">#FF0200</Brush>
-            <!-- ToggleSwitch -->
+            <!-- EndRegion -->
+            <!-- Region ToggleSwitch -->
             <Style x:Key="EtsToggleSwitchStyle" TargetType="ToggleSwitch">
                 <Setter Property="VerticalContentAlignment" Value="Top" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}"/>
@@ -755,7 +781,8 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!-- ListView                                       -->
+            <!-- EndRegion -->
+            <!-- Region ListView -->
             <Style x:Key="EtsListViewHeaderItemStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsStateTextBrush}" />
@@ -764,7 +791,8 @@
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
             </Style>
-            <!-- Login -->
+            <!-- EndRegion -->
+            <!-- Region Login -->
             <Style x:Key="EtsTextBlockLoginTitle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="{StaticResource Size2}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -781,7 +809,8 @@
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
-            <!-- Today -->
+            <!-- EndRegion -->
+            <!-- Region Today -->
             <Style x:Key="EtsTodayItemActivityNameStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
                 <Setter Property="FontSize" Value="{StaticResource Size4}" />
@@ -797,7 +826,8 @@
             <Color x:Key="EtsTodayBackgroundColor">#333333</Color>
             <Color x:Key="EtsTodayBackgroundTransparentColor">#00333333</Color>
             <Brush x:Key="EtsTodayBackgroundBrush">#333333</Brush>
-            <!-- Grades -->
+            <!-- EndRegion -->
+            <!-- Region Grades -->
             <Brush x:Key="EtsGradeSummaryItemBrush">Transparent</Brush>
             <Style x:Key="EtsGradeSummaryTitleForegroundStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -830,7 +860,8 @@
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
             <Brush x:Key="EtsProgramItemBrush">#b6b6b6</Brush>
-            <!-- Select Course For Grade -->
+            <!-- EndRegion -->
+            <!-- Region Select Course For Grade -->
             <Style x:Key="EtsCourseTitleForSelectingGradesStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
@@ -849,7 +880,8 @@
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Style>
-            <!-- Schedule -->
+            <!-- EndRegion -->
+            <!-- Region Schedule -->
             <Brush x:Key="SfScheduleDayBackgroundBrush">#333333</Brush>
             <Brush x:Key="SfScheduleTimelineBackgroundBrush">#333333</Brush>
             <Color x:Key="AppointmentDescriptionColor">#8c8c8c</Color>
@@ -923,7 +955,8 @@
             <Style x:Key="ChangeCalendarViewFlyoutLastButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
                 <Setter Property="Margin" Value="14,0,14,20" />
             </Style>
-            <!-- Program -->
+            <!-- EndRegion -->
+            <!-- Region Program -->
             <Style x:Key="EtsProgramItemTitleStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
@@ -951,7 +984,8 @@
                 <Setter Property="Margin" Value="0,0,0,10" />
                 <Setter Property="Background" Value="Transparent" />
             </Style>
-            <!-- Settings -->
+            <!-- EndRegion -->
+            <!-- Region Settings -->
             <Style x:Key="EtsApplicationTitleStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
@@ -1017,7 +1051,8 @@
             <Brush x:Key="EtsOptionsDescriptionLinkForeground">#CC0100</Brush>
             <x:Double x:Key="EtsOptionsDescriptionLinkFontSize">14</x:Double>
             <Brush x:Key="EtsOptionsProgressRingForeground">#FFFFFF</Brush>
-            <!-- Moodle -->
+            <!-- EndRegion -->
+            <!-- Region Moodle -->
             <Brush x:Key="EtsCourseSummaryItemBrush">Transparent</Brush>
             <Style x:Key="EtsCourseSummaryTitleForegroundStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -1055,13 +1090,15 @@
             <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
             </Style>
+            <!-- EndRegion -->
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
-            <!-- Main Fonts -->
+            <!-- Region Main Fonts -->
             <FontFamily x:Key="EtsMainFont">Segoe WP</FontFamily>
             <FontFamily x:Key="EtsConfidentialityTitleFont">Trebuchet MS</FontFamily>
             <FontFamily x:Key="EtsConfidentialityDescriptionFont">Arial Unicode MS</FontFamily>
-            <!-- Sizes -->
+            <!-- EndRegion -->
+            <!-- Region Sizes -->
             <x:Double x:Key="Size1">36</x:Double>
             <x:Double x:Key="Size2">30</x:Double>
             <x:Double x:Key="Size3">24</x:Double>
@@ -1072,7 +1109,8 @@
             <x:Double x:Key="Size8">12</x:Double>
             <x:Double x:Key="Size9">10</x:Double>
             <x:Double x:Key="Size10">8</x:Double>
-            <!-- Main Colors -->
+            <!-- EndRegion -->
+            <!-- Region Main Colors -->
             <Color x:Key="EtsRedLowestColor">#680100</Color>
             <Color x:Key="EtsRedMidColor">#7F0100</Color>
             <Color x:Key="EtsRedMediumColor">#FF0200</Color>
@@ -1085,7 +1123,8 @@
             <Color x:Key="EtsTextMainColor">#323232</Color>
             <Color x:Key="EtsTextSecondaryColor">#666666</Color>
             <Color x:Key="EtsStateTextColor">#a6a6a6</Color>
-            <!-- Brush -->
+            <!-- EndRegion -->
+            <!-- Region Brush -->
             <Brush x:Key="EtsRedLowestBrush">#680100</Brush>
             <Brush x:Key="EtsRedMidBrush">#7F0100</Brush>
             <Brush x:Key="EtsRedMediumBrush">#FF0200</Brush>
@@ -1098,11 +1137,13 @@
             <Brush x:Key="EtsTextSecondaryBrush">#666666</Brush>
             <Brush x:Key="EtsStateTextBrush">#a6a6a6</Brush>
             <Brush x:Key="EtsSideNavigationBackgroundBrush">#2b2b2b</Brush>
-            <!-- Background -->
+            <!-- EndRegion -->
+            <!-- Region Background -->
             <Brush x:Key="EtsBackgroundBrush">#FFFFFFFF</Brush>
             <Brush x:Key="EtsBackgroundMainBrush">#f2f2f2</Brush>
             <Brush x:Key="EtsBackgroundBodyBrush">#e6e6e6</Brush>
-            <!-- Page Header and Side Navigation -->
+            <!-- EndRegion -->
+            <!-- Region Page Header and Side Navigation -->
             <Brush x:Key="EtsMenuButtonBrush">#FF0200</Brush>
             <Style x:Key="EtsPageHeaderTitleStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
@@ -1116,13 +1157,16 @@
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
-            <!-- Command Bar -->
+            <!-- EndRegion -->
+            <!-- Region Command Bar -->
             <Brush x:Key="EtsCommandBarForegroundBrush">#6c6f73</Brush>
             <Brush x:Key="EtsCommandBarBackgroundBrush">#f2f2f2</Brush>
             <Brush x:Key="EtsCommandBarBrush">#FFFFFF</Brush>
-            <!-- Buttons -->
+            <!-- EndRegion -->
+            <!-- Region Buttons -->
             <Brush x:Key="EtsButtonPressedBrush">#680100</Brush>
-            <!-- ToggleSwitch -->
+            <!-- EndRegion -->
+            <!-- Region ToggleSwitch -->
             <Style x:Key="EtsToggleSwitchStyle" TargetType="ToggleSwitch">
                 <Setter Property="VerticalContentAlignment" Value="Top" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}"/>
@@ -1279,7 +1323,8 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!-- ListView -->
+            <!-- EndRegion -->
+            <!-- Region ListView -->
             <Style x:Key="EtsListViewHeaderItemStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextMainBrush}" />
@@ -1288,7 +1333,8 @@
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
             </Style>
-            <!-- Login -->
+            <!-- EndRegion -->
+            <!-- Region Login -->
             <Style x:Key="EtsTextBlockLoginTitle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="{StaticResource Size2}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -1305,7 +1351,8 @@
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
             </Style>
-            <!-- Today -->
+            <!-- EndRegion -->
+            <!-- Region Today -->
             <Style x:Key="EtsTodayItemActivityNameStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
                 <Setter Property="FontSize" Value="{StaticResource Size4}" />
@@ -1321,7 +1368,8 @@
             <Color x:Key="EtsTodayBackgroundColor">#FFFFFF</Color>
             <Color x:Key="EtsTodayBackgroundTransparentColor">#00FFFFFF</Color>
             <Brush x:Key="EtsTodayBackgroundBrush">#FFFFFF</Brush>
-            <!-- Grades -->
+            <!-- EndRegion -->
+            <!-- Region Grades -->
             <Brush x:Key="EtsGradeSummaryItemBrush">#d9d9d9</Brush>
             <Style x:Key="EtsGradeSummaryTitleForegroundStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
@@ -1353,7 +1401,8 @@
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
-            <!-- Select Course For Grade -->
+            <!-- EndRegion -->
+            <!-- Region Select Course For Grade -->
             <Style x:Key="EtsCourseTitleForSelectingGradesStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
@@ -1372,7 +1421,8 @@
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Style>
-            <!-- Schedule -->
+            <!-- EndRegion -->
+            <!-- Region Schedule -->
             <Brush x:Key="SfScheduleDayBackgroundBrush">#FFFFFF</Brush>
             <Brush x:Key="SfScheduleTimelineBackgroundBrush">#FFFFFF</Brush>
             <Brush x:Key="ScheduleExpandingControlBorderBrush">#FF000000</Brush>
@@ -1449,7 +1499,8 @@
             <Style x:Key="ChangeCalendarViewFlyoutLastButtonStyle" TargetType="Button" BasedOn="{StaticResource ChangeCalendarViewFlyoutButtonStyle}">
                 <Setter Property="Margin" Value="14,0,14,20" />
             </Style>
-            <!-- Program -->
+            <!-- EndRegion -->
+            <!-- Region Program -->
             <Style x:Key="EtsProgramItemTitleStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
                 <Setter Property="FontSize" Value="{StaticResource Size5}" />
@@ -1479,7 +1530,8 @@
                 <Setter Property="BorderThickness" Value="2,2,2,2" />
                 <Setter Property="Margin" Value="0,0,0,10" />
             </Style>
-            <!-- Settings -->
+            <!-- EndRegion -->
+            <!-- Region Settings -->
             <Style x:Key="EtsApplicationTitleStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
@@ -1546,7 +1598,8 @@
             <Brush x:Key="EtsOptionsDescriptionLinkForeground">#FF0200</Brush>
             <x:Double x:Key="EtsOptionsDescriptionLinkFontSize">14</x:Double>
             <Brush x:Key="EtsOptionsProgressRingForeground">#000000</Brush>
-            <!-- Moodle -->
+            <!-- EndRegion -->
+            <!-- Region Moodle -->
             <Brush x:Key="EtsCourseSummaryItemBrush">Transparent</Brush>
             <Style x:Key="EtsCourseSummaryTitleForegroundStyle" TargetType="TextBlock">
                 <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -1585,15 +1638,18 @@
             <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedMediumBrush}" />
             </Style>
+            <!-- EndRegion -->
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
+    <!-- Region List View Header Item -->
     <Style TargetType="ListViewHeaderItem">
         <Setter Property="Padding" Value="12,0,0,0" />
         <Setter Property="Margin" Value="0,0,0,6" />
     </Style>
+    <!-- EndRegion -->
     
-    <!-- SplitView -->
+    <!-- Region SplitView -->
     <FontFamily x:Key="SymbolThemeFontFamily">/Fonts/segmdl2.ttf#Segoe MDL2 Assets</FontFamily>
     <x:Double x:Key="SplitViewHamburgerButtonFontSize">25</x:Double>
     <x:Double x:Key="SplitViewUserImageSize">37</x:Double>
@@ -1711,8 +1767,7 @@
                                 </Style>
                             </Grid.Resources>
 
-                            <!-- background -->
-
+                            <!-- Region Background -->
                             <Grid x:Name="NotCheckedBackground" Grid.ColumnSpan="4">
                                 <Rectangle x:Name="PressedBackground" Visibility="Collapsed" Fill="{StaticResource NavButtonPressedBackgroundBrush}"/>
                                 <Rectangle x:Name="HoverBackground" Visibility="Collapsed" Fill="{StaticResource NavButtonHoverBackgroundBrush}"/>
@@ -1721,15 +1776,18 @@
                                 <Rectangle x:Name="CheckedPressedBackground" Visibility="Collapsed" Fill="{StaticResource NavButtonCheckedPressedBackgroundBrush}"/>
                                 <Rectangle x:Name="CheckedHoverBackground" Visibility="Collapsed" Fill="{StaticResource NavButtonCheckedHoverBackgroundBrush}"/>
                             </Grid>
+                            <!-- EndRegion -->
 
-                            <!-- focus -->
+                            <!-- Region focus -->
                             <Rectangle x:Name="FocusVisualWhite" Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashOffset="1.5" Style="{StaticResource FocusVisual}" />
                             <Rectangle x:Name="FocusVisualBlack" Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}" StrokeDashOffset="0.5" Style="{StaticResource FocusVisual}" />
-
-                            <!-- glyph -->
+                            <!-- EndRegion -->
+                            
+                            <!-- Region Glyph -->
                             <ContentPresenter x:Name="NixonGlyph" Content="{TemplateBinding Tag}" />
-
-                            <!-- text -->
+                            <!-- EndRegion -->
+                            
+                            <!-- Region Text -->
                             <ContentPresenter x:Name="ContentPresenter"
                         			Grid.Column="1"
                         			Margin="{TemplateBinding Padding}"
@@ -1739,6 +1797,7 @@
                         			Content="{TemplateBinding Content}"
                         			ContentTemplate="{TemplateBinding ContentTemplate}"
                         			ContentTransitions="{TemplateBinding ContentTransitions}" />
+                            <!-- EndRegion -->
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -1752,8 +1811,9 @@
         <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}" />
         <Setter Property="FontSize" Value="{ThemeResource SplitViewNormalNavFontSize}" />
     </Style>
+    <!-- EndRegion -->
 
-    <!-- Menu Button Style-->
+    <!-- Region Menu Button Style-->
     <Style TargetType="shared:MenuButton">
         <Setter Property="Template">
             <Setter.Value>
@@ -1794,8 +1854,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <!-- MenuBar Button Style-->
+    <!-- EndRegion -->
+    
+    <!-- Region MenuBar Button Style-->
     <Style TargetType="shared:MenuButtonBar">
         <Setter Property="Template">
             <Setter.Value>
@@ -1834,8 +1895,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!-- EndRegion -->
     
-    <!-- Buttons                                        -->
+    <!-- Region Buttons -->
     <Style x:Key="EtsButtonStyle" TargetType="Button">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
@@ -1916,17 +1978,19 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!-- EndRegion -->
     
-    <!-- Reactive Presenter -->
+    <!-- Region Reactive Presenter -->
     <Style x:Key="ReactivePresenterTextBlockStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
         <Setter Property="Foreground" Value="{ThemeResource EtsStateTextBrush}" />
         <Setter Property="FontSize" Value="{ThemeResource Size3}" />
         <Setter Property="FontWeight" Value="Thin" />
     </Style>
+    <!-- EndRegion -->
 
-    <!-- Settings -->
-    <!-- About -->
+    <!-- Region Settings -->
+    <!-- Region About -->
     <Style x:Key="EtsAboutAboutTextBlockStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
         <Setter Property="FontWeight" Value="Thin" />
@@ -1934,7 +1998,8 @@
         <Setter Property="FontSize" Value="{ThemeResource Size3}" />
         <Setter Property="FontSize" Value="{StaticResource Size5}" />
     </Style>
-    <!-- Credits -->
+    <!-- EndRegion-->
+    <!-- Region Credits -->
     <Style x:Key="EtsCreditDescriptionTextBlockStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
         <Setter Property="FontWeight" Value="Thin" />
@@ -1948,8 +2013,10 @@
         <Setter Property="Foreground" Value="{StaticResource EtsTextGrayBrush}" />
         <Setter Property="FontSize" Value="{StaticResource Size5}" />
     </Style>
-
-    <!-- Schedule -->
+    <!-- EndRegion-->
+    <!-- EndRegion -->
+    
+    <!-- Region Schedule -->
     <Brush x:Key="SfScheduleDayBorder">#000000</Brush>
     <Brush x:Key="AppointmentDescriptionBrush">#8c8c8c</Brush>
     <Brush x:Key="AppointmentTypeBrush">#bbbbbb</Brush>
@@ -1983,8 +2050,9 @@
         <Setter Property="FontFamily" Value="{StaticResource SfScheduleAppointmentFontFamily}" />
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
+    <!-- EndRegion-->
 
-    <!-- ListView -->
+    <!-- Region ListView -->
     <Style x:Key="ListViewItemWithoutPressedStyle"  TargetType="ListViewItem">
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
         <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
@@ -2185,8 +2253,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!-- EndRegion -->
     
-    <!-- Extended Splash Screen -->
+    <!-- Region Extended Splash Screen -->
     <Style x:Key="EtsTextBlockLoading" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource Size4}" />
         <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
@@ -2196,4 +2265,5 @@
         <Setter Property="IsActive" Value="True" />
         <Setter Property="Background" Value="Transparent" />
     </Style>
+    <!-- EndRegion-->
 </ResourceDictionary>

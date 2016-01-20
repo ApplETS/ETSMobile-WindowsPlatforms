@@ -6,6 +6,7 @@
 	xmlns:controls="using:ReactiveUI.Xaml.Controls"
 	mc:Ignorable="d">
     <Style TargetType="controls:ReactivePresenter">
+        <!-- Region Default State Templates-->
         <Setter Property="ErrorTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -35,6 +36,7 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+        <!-- EndRegion -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ReactivePresenter">
