@@ -17,7 +17,8 @@
     </ResourceDictionary.ThemeDictionaries>
 
     <!-- design reference http://osguni/?id=19359&Background=19361 -->
-
+    
+    <!-- Region Brushes-->
     <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush" Color="#FF0200" />
     <SolidColorBrush x:Key="SplitViewBackgroundBrush" Color="{ThemeResource SystemBaseMediumColor}" Opacity="1" />
     <SolidColorBrush x:Key="NavButtonHoverBackgroundBrush" Color="{ThemeResource SystemListLowColor}" />
@@ -25,13 +26,17 @@
     <SolidColorBrush x:Key="NavButtonCheckedPressedBackgroundBrush" Color="{StaticResource EtsRedLowestColor}" Opacity="0.3" />
     <SolidColorBrush x:Key="NavButtonCheckedHoverBackgroundBrush" Color="{StaticResource EtsRedLowestColor}" Opacity="0.3" />
     <!-- SystemListAccentHighColor -->
+    <!-- EndRegion -->
 
+    <!-- Region Measurements and Icons-->
     <x:Double x:Key="SplitViewBackButtonHeight">32</x:Double>
     <x:Double x:Key="SplitViewListItemHeight">60</x:Double>
     <x:String x:Key="BackButtonText"></x:String>
     <x:String x:Key="ForwardButtonText"></x:String>
     <x:String x:Key="MenuButtonText"></x:String>
+    <!-- EndRegion -->
 
+    <!-- Region SplitView -->
     <Style TargetType="controls:SplitView">
         <Setter Property="IsPaneOpen" Value="False" />
         <Setter Property="OpenPaneLength" Value="320" />
@@ -40,4 +45,5 @@
         <Setter Property="DisplayMode" Value="CompactOverlay" />
         <Setter Property="RequestedTheme" Value="Dark" />
     </Style>
+    <!-- EndRegion -->
 </ResourceDictionary>
