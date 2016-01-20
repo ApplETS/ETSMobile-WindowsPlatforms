@@ -9,6 +9,8 @@
     <Import_RootNamespace>Ets.Mobile</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SfSchedule\AppointmentToDescriptionConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SfSchedule\StartDateToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\CombinedLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logger\StorageFileEventListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
