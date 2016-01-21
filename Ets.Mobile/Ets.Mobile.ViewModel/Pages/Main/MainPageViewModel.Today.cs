@@ -58,8 +58,8 @@ namespace Ets.Mobile.ViewModel.Pages.Main
 
         #region Properties
 
-        [DataMember] public ReactiveList<ScheduleVm> TodayItems { get; protected set; }
-        [DataMember] public IReactiveDerivedList<ScheduleVm> Today { get; protected set; }
+        [DataMember] public ReactiveList<ScheduleVm> TodayItems { get; set; }
+        [DataMember] public IReactiveDerivedList<ScheduleVm> Today { get; set; }
         public IReactivePresenterHandler<IReactiveDerivedList<ScheduleVm>> TodayPresenter { get; protected set; }
         public ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; protected set; }
 

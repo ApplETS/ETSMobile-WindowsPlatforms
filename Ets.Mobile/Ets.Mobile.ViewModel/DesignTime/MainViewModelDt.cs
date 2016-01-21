@@ -111,7 +111,11 @@ namespace Ets.Mobile.ViewModel.DesignTime
         public ISideNavigationPaneViewModel SideNavigation { get; }
 
         public ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; }
+        public IReactiveDerivedList<ScheduleVm> Today { get; }
+        public ReactiveList<ScheduleVm> TodayItems { get; }
         public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadCoursesSummaries { get; }
+        public IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; }
+        public ReactiveList<GradeSummaryViewModelGroup> GradesItems { get; }
         public ReactiveCommand<Unit> NavigateToSchedule { get; }
         public ReactiveCommand<Unit> NavigateToProgram { get; }
     }

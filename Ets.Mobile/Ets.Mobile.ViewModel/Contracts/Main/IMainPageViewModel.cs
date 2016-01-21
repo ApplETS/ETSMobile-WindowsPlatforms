@@ -2,7 +2,6 @@
 using Ets.Mobile.ViewModel.Content.Main;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
-using ReactiveUI.Xaml.Controls.Handlers;
 using System.Collections.Generic;
 
 namespace Ets.Mobile.ViewModel.Contracts.Main
@@ -10,8 +9,11 @@ namespace Ets.Mobile.ViewModel.Contracts.Main
     public interface IMainPageViewModel
     {
         ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; }
+        IReactiveDerivedList<ScheduleVm> Today { get; }
+        ReactiveList<ScheduleVm> TodayItems { get; }
         ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadCoursesSummaries { get; }
-        IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> GradesPresenter { get; }
-        IReactivePresenterHandler<IReactiveDerivedList<ScheduleVm>> TodayPresenter { get; }
+        IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; }
+        ReactiveList<GradeSummaryViewModelGroup> GradesItems { get; }
+
     }
 }

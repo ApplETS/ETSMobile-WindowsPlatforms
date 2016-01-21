@@ -68,10 +68,9 @@ namespace Ets.Mobile.ViewModel.Pages.Main
 
         #region Properties
 
-        [DataMember]
-        public ReactiveList<GradeSummaryViewModelGroup> GradesItems { get; protected set; }
         private ReactiveCommand<GradeSummaryViewModelItem> _navigateToGradeItem;
-        public IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; protected set; }
+        [DataMember] public ReactiveList<GradeSummaryViewModelGroup> GradesItems { get; set; }
+        [DataMember] public IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; set; }
         public IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> GradesPresenter { get; protected set; }
         public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadCoursesSummaries { get; protected set; }
 
