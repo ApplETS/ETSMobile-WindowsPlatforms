@@ -73,7 +73,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             await Agent.ScheduleTileUpdaterBackgroundTask.Unregister();
             await BlobCache.UserAccount.InvalidateAll().ToTask();
             IsSideNavigationVisibleSubject.OnNext(false);
-            Screen.Router.NavigateAndReset.Execute(new LoginViewModel(Locator.Current.GetService<IScreen>()));
+            Screen.Router.NavigateAndReset.Execute(new LoginPageViewModel(Locator.Current.GetService<IScreen>()));
             return Unit.Default;
         }
 

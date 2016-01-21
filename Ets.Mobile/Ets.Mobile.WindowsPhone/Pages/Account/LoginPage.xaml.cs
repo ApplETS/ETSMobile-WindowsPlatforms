@@ -19,7 +19,7 @@ namespace Ets.Mobile.Pages.Account
             statusBar.HideAsync().GetResults();
 
             // View ModelGroup
-            //RxApp.SuspensionHost.ObserveAppState<LoginViewModel>()
+            //RxApp.SuspensionHost.ObserveAppState<LoginPageViewModel>()
             //    .BindTo(this, x => x.ViewModel);
             
             var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)

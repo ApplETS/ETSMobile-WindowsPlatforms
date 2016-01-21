@@ -178,7 +178,7 @@ namespace Ets.Mobile.ViewModel
 	                }
 	                else
 	                {
-                        navigateTo = new LoginViewModel(this);
+                        navigateTo = new LoginPageViewModel(this);
                     }
 
 	                RxApp.MainThreadScheduler.Schedule(() =>
@@ -198,7 +198,7 @@ namespace Ets.Mobile.ViewModel
         private void RegisterViewModelAndPages(IMutableDependencyResolver resolver)
         {
             // Register Views for the Router
-            resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginViewModel>));
+            resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginPageViewModel>));
             resolver.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
             resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
             resolver.Register(() => new GradePage(), typeof(IViewFor<GradeViewModel>));
