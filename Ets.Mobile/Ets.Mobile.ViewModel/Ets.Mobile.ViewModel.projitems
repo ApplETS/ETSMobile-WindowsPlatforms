@@ -38,7 +38,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Account\LoginPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\GradePageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\SelectCourseForGradeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\SelectCourseForGradePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseModuleContentPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseModulePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseContentPageViewModel.cs" />
