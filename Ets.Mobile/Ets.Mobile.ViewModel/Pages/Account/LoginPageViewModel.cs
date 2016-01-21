@@ -4,6 +4,7 @@ using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.ViewModel.Bases;
+using Ets.Mobile.ViewModel.Contracts.Account;
 using Ets.Mobile.ViewModel.Pages.Main;
 using Logger;
 using Messaging.UniversalApp.Common;
@@ -22,7 +23,7 @@ using System.Threading.Tasks;
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
     [DataContract]
-    public class LoginPageViewModel : ViewModelBase
+    public class LoginPageViewModel : ViewModelBase, ILoginPageViewModel
     {
         /// <summary>
         /// Constructor LoginPageViewModel

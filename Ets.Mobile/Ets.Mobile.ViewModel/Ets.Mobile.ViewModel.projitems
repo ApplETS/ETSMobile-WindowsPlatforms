@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\MoodleCourseSummaryViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleGroupedByDayViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Account\ILoginPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\ISelectCourseForGradePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Main\IMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Program\IProgramPageViewModel.cs" />
@@ -53,5 +54,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationServicesBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Contracts\Moodle\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Contracts\Schedule\" />
   </ItemGroup>
 </Project>
