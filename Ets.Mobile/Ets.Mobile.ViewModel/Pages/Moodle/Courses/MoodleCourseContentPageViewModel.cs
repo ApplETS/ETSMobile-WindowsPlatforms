@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
 {
     [DataContract]
-    public class MoodleCourseContentPageViewModel : ViewModelBase
+    public class MoodleCourseContentPageViewModel : ViewModelBase, IMoodleCourseContentPageViewModel
     {
         public MoodleCourseContentPageViewModel(IScreen screen, MoodleCourseVm course) : base(screen, "MoodleCourseContent")
         {

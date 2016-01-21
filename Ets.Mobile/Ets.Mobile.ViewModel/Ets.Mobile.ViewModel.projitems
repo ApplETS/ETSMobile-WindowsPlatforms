@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\IGradePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\ISelectCourseForGradePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Main\IMainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Moodle\Courses\IMoodleCourseContentPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Moodle\IMoodleMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Program\IProgramPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IAboutViewModel.cs" />
@@ -58,7 +59,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Contracts\Moodle\Courses\" />
     <Folder Include="$(MSBuildThisFileDirectory)Contracts\Schedule\" />
   </ItemGroup>
 </Project>
