@@ -438,14 +438,20 @@ namespace ReactiveUI.Xaml.Controls
                         {
                             SetContent(reactiveCollection, hasBeenInjected:true);
                         }
+                        return;
+                    }
+                    if (getValue.Result != null)
+                    {
+                        SetContent(getValue.Result, hasBeenInjected: true);
+                        return;
                     }
 
                     checkForEmptyOrThrownException();
                 };
 
                 eventsList.Add("Recoverering State");
-                var taskCompleted = await Task.WhenAny(getRefreshing, getValue, getEmptyMessage, getThrownException);
-                if (taskCompleted == getRefreshing && getRefreshing.Result)
+                await getRefreshing;
+                if (getRefreshing.Result)
                 {
                     eventsList.Add("1- State Recovered: Refreshing");
                     SetIsRefreshing(true);
@@ -469,7 +475,7 @@ namespace ReactiveUI.Xaml.Controls
                 else
                 {
                     eventsList.Add("1- State Recovered: Not Refreshing");
-                    taskCompleted = await Task.WhenAny(getValue, getEmptyMessage, getThrownException);
+                    var taskCompleted = await Task.WhenAny(getValue, getEmptyMessage, getThrownException);
                     if (taskCompleted == getValue && getValue.Result != null)
                     {
                         eventsList.Add("2- State Recovered: Value");
