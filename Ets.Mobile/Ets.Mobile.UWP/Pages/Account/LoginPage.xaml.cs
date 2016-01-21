@@ -24,23 +24,21 @@ namespace Ets.Mobile.Pages.Account
             // View ModelGroup
             //RxApp.SuspensionHost.ObserveAppState<LoginViewModel>()
             //    .BindTo(this, x => x.ViewModel);
+            
+            var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
+                .Where(x => x != null);
 
-            // Form
-            this.Bind(ViewModel, x => x.UserName, x => x.UserName.Text);
-            this.Bind(ViewModel, x => x.Password, x => x.Password.Password);
+            subscriptionForViewModel.BindTo(this, x => x.DataContext);
 
-            // Handle Login Animation State
-            this.WhenAnyValue(x => x.ViewModel)
-                .Where(x => x != null)
-                .Subscribe(x =>
+            subscriptionForViewModel
+                .Subscribe(vm =>
                 {
-                    ViewModel.SwitchToLogin = ReactiveCommand.CreateAsyncTask(_ =>
+                    vm.SwitchToLogin = ReactiveCommand.CreateAsyncTask(_ =>
                     {
                         NavigateToVisualState(ShowLogin.Name, true);
                         return Task.FromResult(_isLoginShown);
                     });
                 });
-            this.BindCommand(ViewModel, x => x.SwitchToLogin, x => x.SwitchToLogin);
         }
 
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
@@ -56,16 +54,13 @@ namespace Ets.Mobile.Pages.Account
         {
             VisualStateManager.GoToState(this, key, true);
             _isLoginShown = navigateToLogin;
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            if (_isLoginShown)
             {
-                if (_isLoginShown)
-                {
-                    HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-                }
-                else
-                {
-                    HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
-                }
+                HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            }
+            else
+            {
+                HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
             }
         }
 
