@@ -257,7 +257,7 @@ namespace Ets.Mobile.ViewModel.Panes.SideNavigation
 
         public Type[] SettingsTypes { get; } = { typeof(SettingsPageViewModel) };
 
-    #endregion
+        #endregion
 
         #endregion
     }
