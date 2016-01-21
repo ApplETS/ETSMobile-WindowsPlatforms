@@ -18,16 +18,16 @@
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <Grid Grid.Row="1" Style="{StaticResource EtsBodyGridStyle}">
+        <Grid Grid.Row="1" Margin="{StaticResource EtsPageWithBottomAppBarMargin}">
             <Grid.ChildrenTransitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Bottom" />
                 </TransitionCollection>
             </Grid.ChildrenTransitions>
-            <grade:CourseChooserForGrades Margin="0,10,0,0" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+            <grade:CourseChooserForGrades Margin="{StaticResource EtsPageContentMargin}" x:Name="Grade" DataContext="{Binding GradesPresenter}" />
         </Grid>
         <!-- Command Bar -->
-        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
+        <CommandBar Grid.Row="2"  x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadCoursesSummaries}" />
             </CommandBar.PrimaryCommands>
