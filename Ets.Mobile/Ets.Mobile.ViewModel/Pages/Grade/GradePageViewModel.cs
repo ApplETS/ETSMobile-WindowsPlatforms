@@ -4,6 +4,7 @@ using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Grade;
+using Ets.Mobile.ViewModel.Contracts.Grade;
 using ReactiveUI;
 using System;
 using System.Linq;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
     [DataContract]
-    public class GradePageViewModel : ViewModelBase, IDisposable
+    public class GradePageViewModel : ViewModelBase, IDisposable, IGradePageViewModel
     {
         #region IDisposable
 
