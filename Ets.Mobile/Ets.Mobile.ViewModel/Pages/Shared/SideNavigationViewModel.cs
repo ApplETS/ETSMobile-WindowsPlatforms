@@ -237,7 +237,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             set { this.RaiseAndSetIfChanged(ref _isProgram, value); }
         }
 
-        public Type[] ProgramTypes { get; } = { typeof(ProgramViewModel) };
+        public Type[] ProgramTypes { get; } = { typeof(ProgramPageViewModel) };
 
         private bool _isMoodle;
         public bool IsMoodle

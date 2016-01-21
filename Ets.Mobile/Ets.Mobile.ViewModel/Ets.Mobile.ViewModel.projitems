@@ -23,7 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\ISelectCourseForGradeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Main\IMainViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Program\IProgramViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Program\IProgramPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IAboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IOptionsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\ISettingsViewModel.cs" />
