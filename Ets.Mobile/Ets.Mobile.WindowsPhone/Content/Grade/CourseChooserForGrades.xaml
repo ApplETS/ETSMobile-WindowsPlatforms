@@ -9,14 +9,12 @@
 	xmlns:controls="using:ReactiveUI.Xaml.Controls"
 	xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
 	xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-	xmlns:data="using:Windows.UI.Xaml.Data"
-	xmlns:converters="using:Xaml.Converters"
-	xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
+    xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
 	d:DesignHeight="800"
 	d:DesignWidth="400">
     <UserControl.Resources>
         <DataTemplate x:Key="GradeDataTemplate">
-            <Border Margin="5,0,3,10" BorderThickness="0,0,1,1" Background="{ThemeResource EtsBackgroundBrush}" BorderBrush="{ThemeResource EtsGradeSummaryItemBrush}">
+            <Border Style="{StaticResource EtsCourseChooserForGradesItemBorderStyle}">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Tapped">
                         <core:InvokeCommandAction Command="{Binding NavigateToGrade}" CommandParameter="{Binding}"/>
@@ -62,10 +60,8 @@
                         ItemsPath="GradesItems"
                         d:Source="{Binding GradesItems}"
 						Source="{Binding}" />
-                    <converters:ScreenWidthMultiplier x:Key="ScreenWidth" />
                 </Grid.Resources>
                 <ListView
-                    Margin="-5,0,0,0"
                     ItemsSource="{Binding Source={StaticResource GradeCollectionViewSource}}"
 	                ItemTemplate="{StaticResource GradeDataTemplate}"
 		            ScrollViewer.HorizontalScrollMode="Disabled"
@@ -78,16 +74,15 @@
                         </TransitionCollection>
                     </ListView.ItemContainerTransitions>
                     <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource FullWidthListViewItem}">
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
                         <GroupStyle HidesIfEmpty="False">
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="-5,0,0,0" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
-                                        <TextBlock Text="{Binding Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{ThemeResource EtsListViewHeaderItemStyle}"  />
+                                    <Grid>
+                                        <TextBlock Text="{Binding Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{StaticResource EtsDefaultListViewHeaderItemStyle}"  />
                                     </Grid>
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
