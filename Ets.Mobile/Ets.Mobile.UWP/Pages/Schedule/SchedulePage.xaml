@@ -5,7 +5,7 @@
     xmlns:local="using:Ets.Mobile.Pages.Schedule"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sfSchedule="using:Ets.Mobile.SyncFusion.SfSchedule"
+    xmlns:sfSchedule="using:Ets.Mobile.Converters.SfSchedule"
     xmlns:shell="using:Ets.Mobile.Shell"
     Background="{ThemeResource EtsScheduleBackgroundBrush}"
     x:Name="ScheduleP"
@@ -88,7 +88,10 @@
                     <Border Background="{ThemeResource SfScheduleDayBackgroundBrush}" BorderThickness="8,0,0,0" BorderBrush="{Binding Color}">
                         <StackPanel Orientation="Vertical" Margin="5,1,5,5">
                             <TextBlock Text="{Binding ActivityName}" Foreground="{Binding Color}" Style="{StaticResource AppointementSubject}"/>
-                            <TextBlock Text="{Binding Name}" Style="{StaticResource AppointmentTypeStyle}" />
+                            <TextBlock Style="{StaticResource AppointmentTypeStyle}" TextWrapping="WrapWholeWords">
+                                <Run Text="{Binding Name}" />
+                                <Run Text="(Gr:" /><Run Text="{Binding Group}" /><Run Text=")" />
+                            </TextBlock>
                             <TextBlock Style="{StaticResource AppointmentDescriptionStyle}" Text="{Binding Location}" />
                         </StackPanel>
                     </Border>
@@ -101,7 +104,10 @@
                     <Border Background="{ThemeResource SfScheduleTimelineBackgroundBrush}" BorderThickness="0,8,0,0" BorderBrush="{Binding Color}">
                         <StackPanel Orientation="Vertical" Margin="5,1,5,5">
                             <TextBlock Text="{Binding ActivityName}" TextWrapping="WrapWholeWords" Foreground="{Binding Color}" Style="{StaticResource AppointementSubject}"/>
-                            <TextBlock Text="{Binding Name}" Style="{StaticResource AppointmentTypeStyle}" />
+                            <TextBlock Style="{StaticResource AppointmentTypeStyle}" TextWrapping="WrapWholeWords">
+                                <Run Text="{Binding Name}" />
+                                <Run Text="(Gr:" /><Run Text="{Binding Group}" /><Run Text=")" />
+                            </TextBlock>
                             <TextBlock Style="{StaticResource AppointmentDescriptionStyle}" Text="{Binding Location}" />
                         </StackPanel>
                     </Border>
@@ -117,12 +123,17 @@
                 <TextBlock Style="{StaticResource AppointementStartTime}" Text="{Binding StartDate, Converter={StaticResource StartDateToStringConverter}}" Grid.Column="0" />
                 <StackPanel Grid.Column="1" Orientation="Vertical">
                     <TextBlock Text="{Binding ActivityName}" Style="{StaticResource AppointementSubject}" Foreground="{Binding Color}" />
-                    <TextBlock Text="{Binding Name}" Style="{StaticResource AppointmentTypeStyle}" />
+                    <TextBlock Style="{StaticResource AppointmentTypeStyle}" TextWrapping="WrapWholeWords">
+                                <Run Text="{Binding Name}" />
+                                <Run Text="(Gr:" /><Run Text="{Binding Group}" /><Run Text=")" />
+                    </TextBlock>
                     <TextBlock Style="{StaticResource AppointmentDescriptionStyle}" Text="{Binding Converter={StaticResource AppointmentToDescriptionConverter}}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>
-
+        <Style TargetType="schedule:HeaderTitleBarView">
+            <Setter Property="Height" Value="55"/>
+        </Style>
         <local:AppointmentDataTemplateSelector x:Key="TemplateSelector"
             TimelineViewTemplate="{StaticResource TimelineViewTemplate}"
             DayViewTemplate="{StaticResource DayViewTemplate}" 
@@ -130,7 +141,7 @@
             MonthViewTemplate="{StaticResource WeekViewTemplate}"
             />
     </Page.Resources>
-    <Grid HorizontalAlignment="Stretch">
+    <Grid HorizontalAlignment="Stretch" Margin="{StaticResource ScheduleMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
@@ -139,7 +150,7 @@
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <Grid Grid.Row="1" Style="{StaticResource EtsBodyGridStyle}">
+        <Grid Grid.Row="1" Margin="{StaticResource EtsPageWithBottomAppBarMargin}">
             <schedule:SfSchedule
             ScheduleTypeChanging="schedule_ScheduleTypeChanging"
             Loaded="schedule_Loaded"
@@ -148,15 +159,9 @@
             AllowEditing="False" 
             ScheduleType="Week"
             ItemsSource="{Binding ScheduleItems}">
-                <schedule:SfSchedule.Resources>
-
-                </schedule:SfSchedule.Resources>
                 <schedule:SfSchedule.AppointmentTemplate>
                     <DataTemplate>
-                        <ContentControl Content="{Binding}" ContentTemplateSelector="{StaticResource TemplateSelector}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-
-
-                        </ContentControl>
+                        <ContentControl Content="{Binding}" ContentTemplateSelector="{StaticResource TemplateSelector}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
                     </DataTemplate>
                 </schedule:SfSchedule.AppointmentTemplate>
                 <schedule:SfSchedule.AppointmentMapping>
@@ -170,12 +175,12 @@
             </schedule:SfSchedule>
         </Grid>
         <!-- Command Bar -->
-        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
+        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="RefreshUid" x:Name="RefreshSchedule" Icon="Refresh" Label="Rafraîchir" />
-                <AppBarButton x:Uid="ViewCalendarUid" Label="View" Click="ChangeCalendarView_Click" Tapped="ChangeCalendarView_Click">
+                <AppBarButton x:Uid="ViewCalendarUid" Label="View" Click="ChangeCalendarView_Click">
                     <AppBarButton.Icon>
-                        <BitmapIcon UriSource="/Assets/AppBarButton/CalendarView.bigger.png"/>
+                        <BitmapIcon Style="{StaticResource ScheduleViewIconStyle}" UriSource="/Assets/AppBarButton/CalendarView.bigger.png"/>
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
