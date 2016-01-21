@@ -133,6 +133,7 @@
         </DataTemplate>
         <Style TargetType="schedule:HeaderTitleBarView">
             <Setter Property="Height" Value="55"/>
+            <Setter Property="Margin" Value="0,-2,0,-18"/>
         </Style>
         <local:AppointmentDataTemplateSelector x:Key="TemplateSelector"
             TimelineViewTemplate="{StaticResource TimelineViewTemplate}"
