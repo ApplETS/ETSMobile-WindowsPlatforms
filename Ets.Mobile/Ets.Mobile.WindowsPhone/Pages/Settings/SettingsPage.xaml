@@ -19,31 +19,33 @@
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <Pivot x:Name="SettingsPivot" Grid.Row="1">
-            <PivotItem Margin="15,0,15,0">
-                <PivotItem.Header>
-                    <TextBlock x:Uid="OptionsUid" Text="Options" />
-                </PivotItem.Header>
-                <setting:Options DataContext="{Binding}" Margin="0,10,0,25" />
-            </PivotItem>
-            <PivotItem Margin="15,0,15,0">
-                <PivotItem.Header>
-                    <TextBlock x:Uid="AboutUid" Text="À Propos" />
-                </PivotItem.Header>
-                <setting:About DataContext="{Binding}" Margin="0,10,0,25" />
-            </PivotItem>
-            <PivotItem Margin="15,0,15,0">
-                <PivotItem.Header>
-                    <TextBlock x:Uid="CreditsUid" Text="Crédits" />
-                </PivotItem.Header>
-                <settings:Credits Height="Auto" Margin="0,10,0,0" />
-            </PivotItem>
-            <PivotItem Margin="15,0,15,0">
-                <PivotItem.Header>
-                    <TextBlock x:Uid="ConfidentialityUid" Text="Confidentialité" />
-                </PivotItem.Header>
-                <settings:Confidentiality Height="Auto" Margin="0,10,0,0" />
-            </PivotItem>
-        </Pivot>
+        <Grid Grid.Row="1">
+            <Pivot x:Name="SettingsPivot">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock x:Uid="OptionsUid" Text="Options" />
+                    </PivotItem.Header>
+                    <setting:Options DataContext="{Binding}" />
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock x:Uid="AboutUid" Text="À Propos" />
+                    </PivotItem.Header>
+                    <setting:About DataContext="{Binding}" Margin="0,10,0,25" />
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock x:Uid="CreditsUid" Text="Crédits" />
+                    </PivotItem.Header>
+                    <settings:Credits Height="Auto" />
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock x:Uid="ConfidentialityUid" Text="Confidentialité" />
+                    </PivotItem.Header>
+                    <settings:Confidentiality Height="Auto" />
+                </PivotItem>
+            </Pivot>
+        </Grid>
     </Grid>
 </Page>
