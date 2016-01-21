@@ -18,11 +18,13 @@
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <program:Programs Grid.Row="1" Margin="15,10,15,0" DataContext="{Binding ProgramPresenter}" />
+        <Grid Grid.Row="1">
+            <program:Programs Margin="{StaticResource EtsPageContentMargin}" DataContext="{Binding ProgramPresenter}" />
+        </Grid>
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+        <CommandBar x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" Command="{Binding FetchPrograms}" />
             </CommandBar.PrimaryCommands>
