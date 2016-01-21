@@ -135,9 +135,6 @@
     <Compile Include="Content\Program\Programs.xaml.cs">
       <DependentUpon>Programs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\Schedule\Schedule.xaml.cs">
-      <DependentUpon>Schedule.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Content\Settings\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -146,6 +143,9 @@
     </Compile>
     <Compile Include="Content\Settings\Credits.xaml.cs">
       <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\Options.xaml.cs">
+      <DependentUpon>Options.xaml</DependentUpon>
     </Compile>
     <Compile Include="Content\Shared\SideNavigation.xaml.cs">
       <DependentUpon>SideNavigation.xaml</DependentUpon>
@@ -261,10 +261,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Content\Schedule\Schedule.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Content\Settings\About.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -274,6 +270,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Content\Settings\Credits.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\Options.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

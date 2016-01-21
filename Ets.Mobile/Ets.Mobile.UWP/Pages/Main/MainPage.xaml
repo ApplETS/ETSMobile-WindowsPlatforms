@@ -11,7 +11,7 @@
     xmlns:shell="using:Ets.Mobile.Shell"
     x:Name="MainP"
     mc:Ignorable="d">
-
+    
     <Grid Background="{ThemeResource EtsBackgroundBodyBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -21,24 +21,25 @@
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <Grid Grid.Row="1" Style="{StaticResource EtsBodyGridStyle}">
+        <Grid Grid.Row="1" Margin="{StaticResource EtsPageWithBottomAppBarMargin}">
             <Pivot x:Name="MainPivot" ContinuumNavigationTransitionInfo.IsEntranceElement="True">
-                <PivotItem Margin="12,0,12,0">
+                <PivotItem>
                     <PivotItem.Header>
                         <TextBlock x:Uid="TodayUid" Text="Aujourd'hui" />
                     </PivotItem.Header>
-                    <main:Today DataContext="{Binding TodayPresenter}" Margin="0,10,0,0" />
+                    <main:Today DataContext="{Binding TodayPresenter}" />
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header>
                         <TextBlock x:Uid="GradesUid" Text="Résultats" />
                     </PivotItem.Header>
-                    <grade:CourseChooserForGrades x:Name="Grade" DataContext="{Binding GradesPresenter}" Margin="0,10,0,0" />
+                    <grade:CourseChooserForGrades x:Name="Grade" DataContext="{Binding GradesPresenter}" />
                 </PivotItem>
             </Pivot>
         </Grid>
+        
         <!-- Command Bar -->
-        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}">
+        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="RefreshUid" x:Name="RefreshToday" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadCoursesForToday}" />
                 <AppBarButton x:Uid="RefreshUid" x:Name="RefreshGrade" Icon="Refresh" Label="Rafraîchir" Visibility="Collapsed" Command="{Binding LoadCoursesSummaries}" />

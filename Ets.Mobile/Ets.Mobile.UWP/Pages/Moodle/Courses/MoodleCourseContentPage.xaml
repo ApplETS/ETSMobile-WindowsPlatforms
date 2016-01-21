@@ -9,11 +9,12 @@
     xmlns:shell="using:Ets.Mobile.Shell"
     xmlns:shared="using:Ets.Mobile.Content.Shared"
     mc:Ignorable="d">
-
     <Grid Background="{ThemeResource EtsBackgroundBodyBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <!-- Hamburger -->
         <StackPanel Orientation="Horizontal" Background="{ThemeResource EtsBackgroundMainBrush}">
@@ -24,16 +25,34 @@
             </StackPanel>
         </StackPanel>
         <!-- Content -->
-        <Grid Grid.Row="1">
-            <courses:CoursesContent Margin="15,10,15,0" DataContext="{Binding CoursesContentPresenter}" />
+        <StackPanel Grid.Row="1">
+            <HyperlinkButton 
+                Margin="{StaticResource EtsMoodleLinkMargin}"
+                Pivot.SlideInAnimationGroup="2"
+                Style="{ThemeResource EtsMoodleCourseContentHyperlinkStyle}"
+                NavigateUri="{Binding Course.Url}">
+                <HyperlinkButton.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Uid="CourseMoodleUrlUid" Margin="0,0,5,0" Height="24" Width="24" />
+                            <StackPanel>
+                                <TextBlock x:Uid="LinkToCourseUid" Text="Lien vers ce cours" FontSize="{ThemeResource Size3}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </HyperlinkButton.ContentTemplate>
+            </HyperlinkButton>
+            <TextBlock Margin="{StaticResource EtsMoodleMargin}" Style="{ThemeResource MoodleCourseDescriptionStyle}" Visibility="{Binding Course.Summary, Converter={StaticResource StringToVisibilityConverter}}" Text="{Binding Course.Summary, Converter={StaticResource HtmlStringToStringExcludingParameterConverter}, ConverterParameter={Binding MoodleCourseSummaryEmpty}}" />
+            <TextBlock Margin="{StaticResource EtsMoodleMargin}" x:Uid="CourseContentsUid" Text="Contenu du cours" Style="{ThemeResource EtsCourseModuleContentStyle}" />
+        </StackPanel>
+        <Grid Grid.Row="2" Margin="{StaticResource EtsPageWithBottomAppBarMargin}">
+            <courses:CoursesContent Margin="{StaticResource EtsPageContentMargin}" DataContext="{Binding CoursesContentPresenter}" />
         </Grid>
-    </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+        <!-- Command Bar -->
+        <CommandBar Grid.Row="3" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadCoursesContent}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Grid>
 </Page>

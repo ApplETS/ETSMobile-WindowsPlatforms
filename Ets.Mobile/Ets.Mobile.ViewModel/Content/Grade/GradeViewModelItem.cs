@@ -4,12 +4,12 @@ using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Extensions;
 using ReactiveUI.Xaml.Controls.Handlers;
 using System;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
-using ReactiveUI.Xaml.Controls.Extensions;
 
 namespace Ets.Mobile.ViewModel.Content.Grade
 {

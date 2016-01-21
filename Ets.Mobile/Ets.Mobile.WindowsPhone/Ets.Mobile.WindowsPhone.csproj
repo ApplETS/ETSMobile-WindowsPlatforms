@@ -114,8 +114,6 @@
     <Compile Include="Content\Shared\SideNavigation.xaml.cs">
       <DependentUpon>SideNavigation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\SfSchedule\AppointmentToDescriptionConverter.cs" />
-    <Compile Include="Converters\SfSchedule\StartDateToStringConverter.cs" />
     <Compile Include="Pages\Account\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

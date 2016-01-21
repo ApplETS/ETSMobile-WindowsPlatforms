@@ -15,6 +15,7 @@
             <converters:SplatBitmapToBrushConverter x:Key="SplatBitmapToBrushConverter" />
             <converters:HtmlStringToStringConverter x:Key="HtmlStringToStringConverter" />
             <converters:HtmlStringToStringExcludingParameterConverter x:Key="HtmlStringToStringExcludingParameterConverter" />
+            <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
             <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
             <converters:StringToLowerConverter x:Key="StringToLowerConverter" />
             <converters:StringToLocalizedStringConverter x:Key="StringToLocalizedStringConverter" />

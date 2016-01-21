@@ -23,9 +23,6 @@ namespace Ets.Mobile.Pages.Schedule
 
         private void ChangeCalendarView_Click(object sender, RoutedEventArgs e)
         {
-            // Ensure we have an app bar
-            if (BottomAppBar == null) return;
-
             // Get the button just clicked
             var changeViewButton = sender as AppBarButton;
             if (changeViewButton == null) return;
@@ -118,8 +115,8 @@ namespace Ets.Mobile.Pages.Schedule
 
         private void schedule_ScheduleTypeChanging(object sender, ScheduleTypeChangingEventArgs e)
         {
-            var sel = Scheduler?.Resources["TemplateSelector"] as AppointmentDataTemplateSelector;
-            if (sel != null)
+            var sel = Resources?["TemplateSelector"] as AppointmentDataTemplateSelector;
+            if (sel != null && Scheduler != null)
             {
                 sel.Type = Scheduler.ScheduleType;
             }
@@ -127,8 +124,8 @@ namespace Ets.Mobile.Pages.Schedule
 
         private void schedule_Loaded(object sender, RoutedEventArgs e)
         {
-            var sel = Scheduler?.Resources["TemplateSelector"] as AppointmentDataTemplateSelector;
-            if (sel != null)
+            var sel = Resources?["TemplateSelector"] as AppointmentDataTemplateSelector;
+            if (sel != null && Scheduler != null)
             {
                 sel.Type = Scheduler.ScheduleType;
             }

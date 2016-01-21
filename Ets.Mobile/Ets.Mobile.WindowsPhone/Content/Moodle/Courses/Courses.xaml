@@ -13,7 +13,7 @@
     d:DesignWidth="400">
     <UserControl.Resources>
         <DataTemplate x:Key="CoursesDataTemplate">
-            <Border Margin="5,0,3,10" BorderThickness="0,0,1,1" Background="{ThemeResource EtsBackgroundBrush}" BorderBrush="{ThemeResource EtsCourseSummaryItemBrush}">
+            <Border Style="{StaticResource EtsCourseChooserForGradesItemBorderStyle}">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Tapped">
                         <core:InvokeCommandAction Command="{Binding NavigateToCourse}" CommandParameter="{Binding}"/>
@@ -40,10 +40,8 @@
                         ItemsPath="CoursesItems"
                         d:Source="{Binding CoursesItems}"
 						Source="{Binding}" />
-                    <converters:ScreenWidthMultiplier x:Key="ScreenWidth" />
                 </Grid.Resources>
                 <ListView
-                    Margin="-5,0,0,0"
                     ItemsSource="{Binding Source={StaticResource CoursesCollectionViewSource}}"
 	                ItemTemplate="{StaticResource CoursesDataTemplate}"
 		            ScrollViewer.HorizontalScrollMode="Disabled"
@@ -56,16 +54,15 @@
                         </TransitionCollection>
                     </ListView.ItemContainerTransitions>
                     <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource FullWidthListViewItem}">
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
                         <GroupStyle HidesIfEmpty="False">
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="-5,0,0,0" HorizontalAlignment="Stretch" Width="{Binding Converter={StaticResource ScreenWidth}, ConverterParameter=1}">
-                                        <TextBlock Text="{Binding Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{ThemeResource EtsListViewHeaderItemStyle}"  />
+                                    <Grid>
+                                        <TextBlock Text="{Binding Key, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Style="{StaticResource EtsDefaultListViewHeaderItemStyle}"  />
                                     </Grid>
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>

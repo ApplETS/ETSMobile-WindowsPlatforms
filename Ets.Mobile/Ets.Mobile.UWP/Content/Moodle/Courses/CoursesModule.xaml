@@ -20,13 +20,12 @@
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
                 <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource FullWidthListViewItem}">
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="{ThemeResource EtsCourseSummaryItemBrush}" BorderThickness="0,1,1,1" Margin="0,0,0,10">
+                        <Border BorderBrush="{ThemeResource EtsCourseSummaryItemBrush}" Background="{ThemeResource EtsBackgroundBrush}" BorderThickness="0,1,1,1" Margin="0,0,0,10">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
                                     <core:InvokeCommandAction Command="{Binding NavigateToCourseModule}" CommandParameter="{Binding}"/>

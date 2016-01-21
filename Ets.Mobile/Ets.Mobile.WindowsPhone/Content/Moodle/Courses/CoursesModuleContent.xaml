@@ -21,8 +21,7 @@
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
                 <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource FullWidthListViewItem}">
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
@@ -39,15 +38,8 @@
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.RowSpan="2" Grid.Column="0" Source="{Binding CourseModuleContent.ModIcon}" />
-
                                     <TextBlock
                                         Grid.Row="0"
-                                        Grid.Column="1"
                                         FontSize="24"
                                         Margin="3,0,0,0"
                                         TextWrapping="Wrap"
@@ -55,7 +47,6 @@
                                         Style="{ThemeResource EtsCourseTitleStyle}" />
                                     <TextBlock
                                         Grid.Row="1"
-                                        Grid.Column="1"
                                         FontSize="14"
                                         Margin="3,0,0,0"
                                         TextWrapping="Wrap"

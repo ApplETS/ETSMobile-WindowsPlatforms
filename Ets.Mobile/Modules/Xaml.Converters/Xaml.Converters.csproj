@@ -87,7 +87,6 @@
     <Compile Include="MenuItemIsActiveToBackgroundColor.cs" />
     <Compile Include="NullOrNotToFontSizeSelectorConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScreenWidthMultiplier.cs" />
     <Compile Include="SelectedPivotItemToVisibilityConverter.cs" />
     <Compile Include="SplatBitmapToBrushConverter.cs" />
     <Compile Include="StringToIntegerConverter.cs" />
@@ -95,6 +94,7 @@
     <Compile Include="StringToLowerConverter.cs" />
     <Compile Include="StringToTbdConverter.cs" />
     <Compile Include="StringToUpperConverter.cs" />
+    <Compile Include="StringToVisibilityConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">

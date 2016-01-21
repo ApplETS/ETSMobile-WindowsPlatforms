@@ -23,8 +23,8 @@
             <DataTemplate x:Name="GradesPresenterValue">
                 <ScrollViewer>
                     <StackPanel>
-                        <Grid Margin="5" >
-                            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="SummaryUid" Text="Sommaire" Style="{ThemeResource EtsListViewHeaderItemStyle}"/>
+                        <Grid Margin="0,0,0,5">
+                            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="SummaryUid" Text="Sommaire" Style="{StaticResource EtsGradeItemTitleStyle}"/>
                         </Grid>
 
                         <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Color}" Title="{Binding Grade, FallbackValue='Cote', Source={StaticResource LocalizedStrings}}" Grade="{Binding LetterGrade, Converter={StaticResource StringToTbdConverter}}" />
@@ -39,9 +39,7 @@
 
                         <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Color}" Title="{Binding Percentile, FallbackValue='Rang centile', Source={StaticResource LocalizedStrings}}" Grade="{Binding Percentile, Converter={StaticResource StringToTbdConverter}}" />
 
-                        <Grid Margin="5">
-                            <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="MyGradesUid" Text="Mes notes" Style="{ThemeResource EtsListViewHeaderItemStyle}" />
-                        </Grid>
+                        <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="MyGradesUid" Text="Mes notes" Style="{StaticResource EtsGradeItemTitleStyle}" />
 
                         <ListView ItemsSource="{Binding Evaluations}" Margin="0,10,0,0" IsItemClickEnabled="False">
                             <ListView.ItemContainerTransitions>
@@ -50,8 +48,7 @@
                                 </TransitionCollection>
                             </ListView.ItemContainerTransitions>
                             <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemWithoutPressedStyle}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemWithoutPressedFullWidthStyle}">
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
@@ -99,13 +96,12 @@
                 <TextBlock FontSize="{StaticResource Size7}" Margin="15,0,0,0" Text="{Binding Semester, Converter={StaticResource AbridgedSemesterToFullNameConverter}}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
             </StackPanel>
         </StackPanel>
-
         <!-- Content -->
         <Grid Grid.Row="1">
             <Pivot x:Name="Pivot" HeaderTemplate="{StaticResource GradesHeader}" ItemTemplate="{StaticResource GradesPresenter}" ItemsSource="{Binding GradeItems}" >
                 <Pivot.Resources>
                     <Style TargetType="PivotItem">
-                        <Setter Property="Margin" Value="10,10,10,10" />
+                        <Setter Property="Margin" Value="{StaticResource EtsPageContentMargin}" />
                     </Style>
                 </Pivot.Resources>
             </Pivot>
@@ -113,7 +109,7 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar x:Name="BottomBar" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+        <CommandBar x:Name="BottomBar" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="RefreshGrade" x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" />
             </CommandBar.PrimaryCommands>

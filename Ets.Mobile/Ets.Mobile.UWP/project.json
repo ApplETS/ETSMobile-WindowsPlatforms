@@ -15,7 +15,7 @@
     "reactiveui": "6.5.0",
     "reactiveui-events": "6.5.0",
     "Splat": "1.6.2",
-    "SQLitePCL.raw_basic": "0.7.0"
+    "SQLitePCL.raw_basic": "0.8.6"
   },
   "frameworks": {
     "uap10.0": {}

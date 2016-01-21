@@ -4,6 +4,7 @@ using Ets.Mobile.Entities.Signets;
 using Splat;
 using System;
 using System.Collections.Generic;
+using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 #if WINDOWS_UWP || WINDOWS_PHONE_APP
@@ -25,7 +26,7 @@ namespace Ets.Mobile.Client.Services
             // Delete all existing calendar that is named CalendarName
             try
             {
-                var localId = await BlobCache.UserAccount.GetObject<string>(CalendarIdStoreKey).ToTask();
+                var localId = await BlobCache.UserAccount.GetObject<string>(CalendarIdStoreKey).Catch(Observable.Return(string.Empty)).ToTask();
                 if (!string.IsNullOrEmpty(localId))
                 {
                     var calendarToRemove = await store.GetAppointmentCalendarAsync(localId);

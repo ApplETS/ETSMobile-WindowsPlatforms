@@ -1,7 +1,0 @@
-MainPackage=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.UWP\bin\ARM\Release\Ets.Mobile.UWP_1.0.2.0_ARM.appx
-SymbolPackage=D:\Desktop\Output\UWP\ARM\Ets.Mobile.UWP_1.0.2.0_Test\Ets.Mobile.UWP_1.0.2.0_ARM.appxsym
-ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.UWP\bin\ARM\Release\Ets.Mobile.UWP_1.0.2.0_language-en.appx
-ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.UWP\bin\ARM\Release\Ets.Mobile.UWP_1.0.2.0_language-fr.appx
-ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.UWP\bin\ARM\Release\Ets.Mobile.UWP_1.0.2.0_scale-100.appx
-ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.UWP\bin\ARM\Release\Ets.Mobile.UWP_1.0.2.0_scale-140.appx
-ResourcePack=D:\Ets Mobile\ETSMobile-WindowsPhone\Ets.Mobile\Ets.Mobile.UWP\bin\ARM\Release\Ets.Mobile.UWP_1.0.2.0_scale-240.appx

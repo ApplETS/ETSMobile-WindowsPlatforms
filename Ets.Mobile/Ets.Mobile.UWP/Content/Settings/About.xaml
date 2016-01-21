@@ -16,7 +16,7 @@
             </TransitionCollection>
         </StackPanel.ChildrenTransitions>
 
-        <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ApplicationNameUid" Margin="0,18,0,0" Style="{ThemeResource EtsApplicationTitleStyle}" />
+        <TextBlock Pivot.SlideInAnimationGroup="1" x:Uid="ApplicationNameUid" Text="ÉTS Mobile" Margin="0,18,0,0" Style="{ThemeResource EtsApplicationTitleStyle}" />
 
         <!-- Version and Publisher -->
         <StackPanel Margin="0,20">
@@ -47,9 +47,10 @@
                          Content="envoyer des commentaires"
                          NavigateUri="{Binding SendFeedbackUri}"
                          Style="{ThemeResource EtsSendCommentsHyperlinkStyle}" />
+        
         <!-- Send Logs -->
         <HyperlinkButton 
-            Pivot.SlideInAnimationGroup="2"
+            Pivot.SlideInAnimationGroup="3"
             x:Uid="SendLogsButtonUid" 
             Content="envoyer les logs"
             Style="{ThemeResource EtsSendCommentsHyperlinkStyle}"

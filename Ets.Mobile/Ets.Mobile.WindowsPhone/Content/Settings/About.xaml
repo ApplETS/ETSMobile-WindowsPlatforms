@@ -49,7 +49,7 @@
                          Style="{ThemeResource EtsSendCommentsHyperlinkStyle}" />
         <!-- Send Logs -->
         <HyperlinkButton 
-            Pivot.SlideInAnimationGroup="2"
+            Pivot.SlideInAnimationGroup="3"
             x:Uid="SendLogsButtonUid" 
             Content="envoyer les logs"
             Style="{ThemeResource EtsSendCommentsHyperlinkStyle}"
