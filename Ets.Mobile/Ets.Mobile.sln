@@ -27,6 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Business.WinPhon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Client.WinPhone", "Ets.Mobile.Client.WinPhone\Ets.Mobile.Client.WinPhone.csproj", "{7B995881-1066-4B64-9B58-92FE40397667}"
 	ProjectSection(ProjectDependencies) = postProject
+		{548F134E-64D7-4699-9672-62F98287D62C} = {548F134E-64D7-4699-9672-62F98287D62C}
 		{B518CE6A-6381-4376-9023-D9A5710CC9DC} = {B518CE6A-6381-4376-9023-D9A5710CC9DC}
 		{F78A088C-306C-4C5D-B393-8FF9EA30ED8F} = {F78A088C-306C-4C5D-B393-8FF9EA30ED8F}
 	EndProjectSection
@@ -45,6 +46,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Entities.WinPhon
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.ViewModel.WinPhone", "Ets.Mobile.ViewModel.WinPhone\Ets.Mobile.ViewModel.WinPhone.csproj", "{A059E0A6-8A78-4A53-B2A9-4EC0EFDFF71B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DE843C4E-2EBD-43BE-BC0A-9055631AD9DD} = {DE843C4E-2EBD-43BE-BC0A-9055631AD9DD}
+		{C8329A73-199D-44DE-B174-4D12189442CD} = {C8329A73-199D-44DE-B174-4D12189442CD}
+		{DB28D584-BA06-4FD9-BAA9-C593B8C57F8E} = {DB28D584-BA06-4FD9-BAA9-C593B8C57F8E}
+		{F78A088C-306C-4C5D-B393-8FF9EA30ED8F} = {F78A088C-306C-4C5D-B393-8FF9EA30ED8F}
+		{9C143AA8-6734-4177-B131-510078CA8E12} = {9C143AA8-6734-4177-B131-510078CA8E12}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.WindowsPhone", "Ets.Mobile.WindowsPhone\Ets.Mobile.WindowsPhone.csproj", "{3E659F3B-A23D-4D6A-AD9D-684EB0C51E91}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -54,6 +62,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.WindowsPhone", "
 		{DB28D584-BA06-4FD9-BAA9-C593B8C57F8E} = {DB28D584-BA06-4FD9-BAA9-C593B8C57F8E}
 		{F78A088C-306C-4C5D-B393-8FF9EA30ED8F} = {F78A088C-306C-4C5D-B393-8FF9EA30ED8F}
 		{AD458C94-DA3A-4940-BC31-A370AA0ADB5E} = {AD458C94-DA3A-4940-BC31-A370AA0ADB5E}
+		{506B409B-90CE-4CFF-B683-5A5F7C29F610} = {506B409B-90CE-4CFF-B683-5A5F7C29F610}
 		{9413FC9E-7F92-41E5-BA27-3B29ED02FC42} = {9413FC9E-7F92-41E5-BA27-3B29ED02FC42}
 		{9C143AA8-6734-4177-B131-510078CA8E12} = {9C143AA8-6734-4177-B131-510078CA8E12}
 		{F30613AA-0EB9-4D44-B42F-ECAF50BDF7EC} = {F30613AA-0EB9-4D44-B42F-ECAF50BDF7EC}
@@ -110,14 +119,30 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UWP", "UWP", "{6AC5EB5F-7CE8-45FD-AB80-58F60F871069}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Agent.UWP", "Ets.Mobile.Agent.UWP\Ets.Mobile.Agent.UWP.csproj", "{D5C136F1-423D-4F8B-8FBD-A9F7056C7A5D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{296F2129-D8D1-4609-9D8D-EFBF28C8E136} = {296F2129-D8D1-4609-9D8D-EFBF28C8E136}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Business.UWP", "Ets.Mobile.Business.UWP\Ets.Mobile.Business.UWP.csproj", "{F4733142-7BB0-4896-9E9A-CB52B211CE77}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Client.UWP", "Ets.Mobile.Client.UWP\Ets.Mobile.Client.UWP.csproj", "{296F2129-D8D1-4609-9D8D-EFBF28C8E136}"
+	ProjectSection(ProjectDependencies) = postProject
+		{548F134E-64D7-4699-9672-62F98287D62C} = {548F134E-64D7-4699-9672-62F98287D62C}
+		{CA11F29B-31A9-4545-AE6F-5A5EE41FDE72} = {CA11F29B-31A9-4545-AE6F-5A5EE41FDE72}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.UWP", "Ets.Mobile.UWP\Ets.Mobile.UWP.csproj", "{3212927C-3021-4B62-8152-BCC2641E6E7A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9433E83D-6018-4EBD-BC92-382CAC0C0BAE} = {9433E83D-6018-4EBD-BC92-382CAC0C0BAE}
+		{6CF638BE-D231-42BC-8954-0326D3FD7E44} = {6CF638BE-D231-42BC-8954-0326D3FD7E44}
+		{A01141E5-7A3E-4D82-94EF-8B05C183A339} = {A01141E5-7A3E-4D82-94EF-8B05C183A339}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.ViewModel.UWP", "Ets.Mobile.ViewModel.UWP\Ets.Mobile.ViewModel.UWP.csproj", "{5FA26CA6-2D49-4B8A-9A64-7785B93842BE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8588BCA2-D4E9-4B0B-B9D1-3572F03D0D64} = {8588BCA2-D4E9-4B0B-B9D1-3572F03D0D64}
+		{761A48F7-5E97-458B-8722-A09AFC7E73BE} = {761A48F7-5E97-458B-8722-A09AFC7E73BE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Entities.UWP", "Ets.Mobile.Entities.UWP\Ets.Mobile.Entities.UWP.csproj", "{CA11F29B-31A9-4545-AE6F-5A5EE41FDE72}"
 EndProject
@@ -162,6 +187,10 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ReactiveUI.Xaml.Controls", "Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.shproj", "{69FE6DA9-0059-4835-9A82-931D20486470}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Client.Tests", "Ets.Mobile.Tests\Ets.Mobile.Client.Tests\Ets.Mobile.Client.Tests.csproj", "{7389B959-DCC6-4C29-BC14-5382F76FE2ED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{548F134E-64D7-4699-9672-62F98287D62C} = {548F134E-64D7-4699-9672-62F98287D62C}
+		{826AAD69-11C1-43C4-BE7E-B1D8C3B45CB9} = {826AAD69-11C1-43C4-BE7E-B1D8C3B45CB9}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{D7627491-FAE1-45DA-B961-3F6926A46264}"
 EndProject
@@ -210,8 +239,8 @@ Global
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{7b995881-1066-4b64-9b58-92fe40397667}*SharedItemsImports = 4
 		Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.projitems*{69fe6da9-0059-4835-9a82-931d20486470}*SharedItemsImports = 13
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{7389b959-dcc6-4c29-bc14-5382f76fe2ed}*SharedItemsImports = 4
-		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{7389b959-dcc6-4c29-bc14-5382f76fe2ed}*SharedItemsImports = 4
 		Ets.Mobile.Entities\Ets.Mobile.Entities.projitems*{7389b959-dcc6-4c29-bc14-5382f76fe2ed}*SharedItemsImports = 4
+		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{7389b959-dcc6-4c29-bc14-5382f76fe2ed}*SharedItemsImports = 4
 		Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems*{5fa26ca6-2d49-4b8a-9a64-7785b93842be}*SharedItemsImports = 4
 		Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems*{c5a679b8-8f8e-451a-8a8e-45ddbeb3c57d}*SharedItemsImports = 13
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{296f2129-d8d1-4609-9d8d-efbf28c8e136}*SharedItemsImports = 4
@@ -619,7 +648,6 @@ Global
 		{A01141E5-7A3E-4D82-94EF-8B05C183A339}.Release|x86.Build.0 = Release|x86
 		{A01141E5-7A3E-4D82-94EF-8B05C183A339}.Test|ARM.ActiveCfg = Test|Any CPU
 		{A01141E5-7A3E-4D82-94EF-8B05C183A339}.Test|ARM.Build.0 = Test|ARM
-		{A01141E5-7A3E-4D82-94EF-8B05C183A339}.Test|ARM.Build.2 = Test|Any CPU
 		{A01141E5-7A3E-4D82-94EF-8B05C183A339}.Test|x86.ActiveCfg = Test|x86
 		{A01141E5-7A3E-4D82-94EF-8B05C183A339}.Test|x86.Build.0 = Test|x86
 		{826AAD69-11C1-43C4-BE7E-B1D8C3B45CB9}.Debug|ARM.ActiveCfg = Debug|ARM
