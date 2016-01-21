@@ -1,19 +1,37 @@
-﻿using System;
+﻿using Ets.Mobile.Entities.Moodle;
+using Ets.Mobile.Entities.Signets;
 using System.Threading.Tasks;
-using Ets.Mobile.Entities.Signets.Interfaces;
 
 namespace Ets.Mobile.Client.Contracts
 {
     public interface ICustomSettingsService
     {
         /// <summary>
-        /// Apply The Color of Each schedule items according
-        /// to the Course's Name and Semester
+        /// Apply the colors on the courses upon
+        /// a successful login
         /// </summary>
-        /// <param name="schedules">Schedule Items</param>
-        /// <param name="semester">Semester in-which the class are</param>
-        /// <param name="courseNameSelector">Course name Selector</param>
+        /// <param name="items"></param>
         /// <returns></returns>
-        Task<T[]> ApplyColorOnCoursesForSemester<T>(T[] schedules, string semester, Func<T, object> courseNameSelector) where T : class, ICustomColor;
+        Task ApplyColorOnItemsForCoursesInitial(CourseVm[] items);
+        
+        /// <summary>
+        /// Apply The Color of Each Schedule items
+        /// </summary>
+        Task ApplyColorOnItemsForSchedule(ScheduleVm[] items);
+
+        /// <summary>
+        /// Apply The Color of Each Evaluations items
+        /// </summary>
+        Task ApplyColorOnItemsForEvaluations(EvaluationsVm items, string semester, string courseAndGroup);
+
+        /// <summary>
+        /// Apply The Color of Each Moodle courses
+        /// </summary>
+        Task ApplyColorOnItemsForMoodleCourses(MoodleCourseVm[] items);
+
+        /// <summary>
+        /// Apply The Color of Each Moodle course's content
+        /// </summary>
+        Task ApplyColorOnItemsForMoodleCourseContents(MoodleCourseContentVm[] items, MoodleCourseVm course);
     }
 }

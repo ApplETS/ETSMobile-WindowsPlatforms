@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="Ets.Mobile.Shell.ShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:reactiveUi="using:ReactiveUI"
+    xmlns:shared="using:Ets.Mobile.Content.Shared"
+    mc:Ignorable="d"
+    x:Name="Shell"
+    Background="{StaticResource EtsBackgroundMainBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+        </TransitionCollection>
+    </Page.Transitions>
+    <SplitView OpenPaneLength="{Binding ActualWidth, ElementName=Shell}" x:Name="ShellSplitView" DisplayMode="Overlay">
+        <SplitView.Pane>
+            <shared:SideNavigation x:Name="SideNavigation" />
+        </SplitView.Pane>
+        <SplitView.Content>
+            <reactiveUi:RoutedViewHost x:Name="RoutedViewModelHost" HorizontalAlignment="Stretch" />
+        </SplitView.Content>
+    </SplitView>
+</Page>

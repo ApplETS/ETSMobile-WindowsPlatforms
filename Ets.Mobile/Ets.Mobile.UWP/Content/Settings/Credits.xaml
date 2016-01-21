@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="Ets.Mobile.Content.Settings.Credits"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Ets.Mobile.Content.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ScrollViewer>
+        <StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Paul Betts" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="PaulBettsContributionsUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+                <HyperlinkButton Pivot.SlideInAnimationGroup="3" Content="@paulcbetts" NavigateUri="https://github.com/paulcbetts" Style="{ThemeResource EtsContributerHyperlinkStyle}" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ReactiveUI" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="ReactiveUIDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Splat" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="SplatDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Refit" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="RefitDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Fusillade" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="FusilladeDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Akavache" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="AkavacheDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ReactiveExtensions" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="ReactiveExtensionsDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Sqlite" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="SqliteDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Crittercism" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="CrittercismDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="ModernHttpClient" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <RichTextBlock Pivot.SlideInAnimationGroup="2" Style="{StaticResource EtsCreditDescriptionRichTextBlockStyle}" TextWrapping="WrapWholeWords">
+                    <Paragraph>
+                        <Run x:Uid="ModernHttpClientDescriptionUid" />
+                        <InlineUIContainer>
+                            <Image Source="/Assets/Credits/ModernHttpClient.png" Height="20" />
+                        </InlineUIContainer>
+                    </Paragraph>
+                </RichTextBlock>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Newtonsoft.Json" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="NewtonsoftJsonDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Pivot.SlideInAnimationGroup="1" Text="Syncfusion" Style="{ThemeResource EtsContributerTitleStyle}" />
+                <TextBlock Pivot.SlideInAnimationGroup="2" x:Uid="SyncfusionDescriptionUid" Style="{StaticResource EtsCreditDescriptionTextBlockStyle}" TextWrapping="WrapWholeWords" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -1,31 +1,38 @@
-﻿using System.Collections.Generic;
-using System.Reactive.Threading.Tasks;
-using System.Threading.Tasks;
-using Akavache;
+﻿using Akavache;
 using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Business.Entities.Results.Signets;
+using Ets.Mobile.Business.Extensions;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Extensions.Signets;
 using Ets.Mobile.Client.Factories.Abstractions;
-using Ets.Mobile.Client.Factories.Implementations;
+using Ets.Mobile.Client.Factories.Implementations.Signets;
+using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Signets;
-using StoreFramework.Security;
+using Security.Contracts;
+using Splat;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Threading.Tasks;
+using System.Threading.Tasks;
 
 namespace Ets.Mobile.Client.Services
 {
     public class SignetsService : ISignetsService
     {
-        private readonly ISignetsBusinessService _signetsService;
-        private SignetsAccountVm _userCredentials;
-        private readonly SignetsAbstractFactory _factory;
-
         public SignetsService(ISignetsBusinessService signetsService, SignetsAbstractFactory factory)
         {
             _signetsService = signetsService;
             _factory = factory;
         }
 
-        public void SetCredentials(SignetsAccountVm vm)
+        public SignetsService(ISignetsBusinessService signetsService, SignetsAbstractFactory factory, EtsUserCredentials account)
+        {
+            _signetsService = signetsService;
+            _factory = factory;
+            _userCredentials = account;
+        }
+
+        public void SetCredentials(EtsUserCredentials vm)
         {
             _userCredentials = vm;
         }
@@ -41,64 +48,69 @@ namespace Ets.Mobile.Client.Services
         {
             var userDetailsResult = await _signetsService.UserDetails(_userCredentials.Username, _userCredentials.Password);
             
-            _signetsService.HandleError(userDetailsResult);
+            this.HandleError(userDetailsResult);
 
             var userDetailsVm = _factory.CreateFor<UserDetailsResult, UserDetailsVm>(userDetailsResult);
-            
+
+            userDetailsVm.Username = _userCredentials.Username;
+
+#if !TEST
             userDetailsVm.Image = await BlobCache.UserAccount.LoadImageFromUrl("gravatar",
-                $"http://www.gravatar.com/avatar/{Md5Provider.GetHashString($"{_userCredentials.Username}@ens.etsmtl.ca".ToLower())}", true).ToTask();
+                "http://www.gravatar.com/avatar/" +
+                $"{Locator.Current.GetService<ISecurityProvider>().HashMd5(userDetailsVm.Email.ToLower())}", true).ToTask();
+#endif
 
             return userDetailsVm;
         }
 
-        public async Task<List<CourseVm>> Courses()
+        public async Task<CourseVm[]> Courses()
         {
             var coursesResult = await _signetsService.Courses(_userCredentials.Username, _userCredentials.Password);
 
-            _signetsService.HandleError(coursesResult);
+            this.HandleError(coursesResult);
 
-            return _factory.CreateFor<CoursesResult, List<CourseVm>>(coursesResult);
+            return _factory.CreateFor<CoursesResult, List<CourseVm>>(coursesResult).ToArray();
         }
 
-        public async Task<List<CourseIntervalVm>> CoursesIntervalSemester(string startSemester, string endSemester)
+        public async Task<CourseIntervalVm[]> CoursesIntervalSemester(string startSemester, string endSemester)
         {
             var coursesIntervalResult = await _signetsService.CoursesIntervalSemester(_userCredentials.Username, _userCredentials.Password, startSemester, endSemester);
 
-            _signetsService.HandleError(coursesIntervalResult);
+            this.HandleError(coursesIntervalResult);
 
-            return _factory.CreateFor<CoursesIntervalSemesterResult, List<CourseIntervalVm>>(coursesIntervalResult);
+            return _factory.CreateFor<CoursesIntervalSemesterResult, List<CourseIntervalVm>>(coursesIntervalResult).ToArray();
         }
 
-        public async Task<List<SemesterVm>> Semesters()
+        public async Task<SemesterVm[]> Semesters()
         {
             var semestersResult = await _signetsService.Semesters(_userCredentials.Username, _userCredentials.Password);
 
-            _signetsService.HandleError(semestersResult);
+            this.HandleError(semestersResult);
 
-            return _factory.CreateFor<SemestersResult, List<SemesterVm>>(semestersResult);
+            return _factory.CreateFor<SemestersResult, List<SemesterVm>>(semestersResult).ToArray();
         }
 
-        public async Task<List<ProgramVm>> Programs()
+        public async Task<ProgramVm[]> Programs()
         {
             var programsResult = await _signetsService.Programs(_userCredentials.Username, _userCredentials.Password);
 
-            _signetsService.HandleError(programsResult);
+            this.HandleError(programsResult);
 
-            return _factory.CreateFor<ProgramsResult, List<ProgramVm>>(programsResult);
+            return _factory.CreateFor<ProgramsResult, List<ProgramVm>>(programsResult).ToArray();
         }
 
-        public async Task<List<TeammateVm>> Teammates(string courseAbridgedName, string group, string semesterAbridgedName, string evaluationElementName = "")
+        public async Task<TeammateVm[]> Teammates(string courseAbridgedName, string group, string semesterAbridgedName, string evaluationElementName = "")
         {
             var teammatesResult = await _signetsService.Teammates(_userCredentials.Username, _userCredentials.Password, courseAbridgedName, group, semesterAbridgedName, evaluationElementName);
 
-            _signetsService.HandleError(teammatesResult);
+            this.HandleError(teammatesResult);
 
-            return _factory.CreateFor<TeammatesResult, List<TeammateVm>>(teammatesResult);
+            return _factory.CreateFor<TeammatesResult, List<TeammateVm>>(teammatesResult).ToArray();
         }
 
         public async Task<EvaluationsVm> Evaluations(string courseAbridgedName, string group, string semesterAbridgedName)
         {
-            if (semesterAbridgedName == "s.o.")
+            if (semesterAbridgedName == "s.o." || semesterAbridgedName == "N/A") // s.o. are not recognized by the webservice
             {
                 return new EvaluationsVm();
             }
@@ -106,7 +118,7 @@ namespace Ets.Mobile.Client.Services
             var evaluationsVm = await _signetsService.Evaluations(_userCredentials.Username, _userCredentials.Password,
                 courseAbridgedName, group, semesterAbridgedName);
 
-            _signetsService.HandleError(evaluationsVm);
+            this.HandleError(evaluationsVm);
 
             return _factory.CreateFor<EvaluationsResult, EvaluationsVm>(evaluationsVm);
         }
@@ -114,46 +126,61 @@ namespace Ets.Mobile.Client.Services
         public async Task<ScheduleAndTeachersVm> ScheduleAndTeachers(string semesterAbridgedName)
         {
             var scheduleAndTeachersResult = await _signetsService.ScheduleAndTeachers(_userCredentials.Username, _userCredentials.Password, semesterAbridgedName);
-            
-            _signetsService.HandleError(scheduleAndTeachersResult);
+
+            this.HandleError(scheduleAndTeachersResult);
 
             return _factory.CreateFor<ScheduleAndTeachersResult, ScheduleAndTeachersVm>(scheduleAndTeachersResult);
         }
 
-        public async Task<List<ScheduleFinalExamVm>> ScheduleFinalExams(string semesterAbridgedName)
+        public async Task<ScheduleFinalExamVm[]> ScheduleFinalExams(string semesterAbridgedName)
         {
             var scheduleFinalExamsResult = await _signetsService.ScheduleFinalExams(_userCredentials.Username, _userCredentials.Password, semesterAbridgedName);
 
-            _signetsService.HandleError(scheduleFinalExamsResult);
+            this.HandleError(scheduleFinalExamsResult);
 
-            return _factory.CreateFor<ScheduleFinalExamsResult, List<ScheduleFinalExamVm>>(scheduleFinalExamsResult);
+            return _factory.CreateFor<ScheduleFinalExamsResult, List<ScheduleFinalExamVm>>(scheduleFinalExamsResult).ToArray();
         }
 
-        public async Task<List<CourseForSemesterVm>> CoursesForSemester(string semesterAbridgedName, string courseAbridgedName)
+        public async Task<CourseForSemesterVm[]> CoursesForSemester(string semesterAbridgedName, string courseAbridgedName)
         {
             var coursesForSemesterResult = await _signetsService.CoursesForSemester(_userCredentials.Username, _userCredentials.Password, semesterAbridgedName, courseAbridgedName);
 
-            _signetsService.HandleError(coursesForSemesterResult);
+            this.HandleError(coursesForSemesterResult);
 
-            return _factory.CreateFor<CourseForSemesterResult, List<CourseForSemesterVm>>(coursesForSemesterResult);
+            return _factory.CreateFor<CourseForSemesterResult, List<CourseForSemesterVm>>(coursesForSemesterResult).ToArray();
         }
 
-        public async Task<List<ReplacedDayVm>> ReplacedDays(string semesterAbridgedName)
+        public async Task<ReplacedDayVm[]> ReplacedDays(string semesterAbridgedName)
         {
             var replacedDaysResult = await _signetsService.ReplacedDays(semesterAbridgedName);
 
-            _signetsService.HandleError(replacedDaysResult);
+            this.HandleError(replacedDaysResult);
 
-            return _factory.CreateFor<ReplacedDaysResult, List<ReplacedDayVm>>(replacedDaysResult);
+            return _factory.CreateFor<ReplacedDaysResult, List<ReplacedDayVm>>(replacedDaysResult).ToArray();
         }
 
-        public async Task<List<ScheduleVm>> Schedule(string semesterAbridgedName, string courseAbridgedNameAndGroup = "", string startDate = "", string endDate = "")
+        public async Task<ScheduleVm[]> Schedule(string semesterAbridgedName, string courseAbridgedNameAndGroup = "", string startDate = "", string endDate = "")
         {
             var scheduleResult = await _signetsService.Schedule(_userCredentials.Username, _userCredentials.Password, semesterAbridgedName, courseAbridgedNameAndGroup, startDate, endDate);
 
-            _signetsService.HandleError(scheduleResult);
+            this.HandleError(scheduleResult);
 
-            return _factory.CreateFor<ScheduleResult, List<ScheduleVm>>(scheduleResult);
+            return _factory.CreateFor<ScheduleResult, List<ScheduleVm>>(scheduleResult)
+                .Select(s => 
+                {
+                    // Embed Semester
+                    s.Semester = semesterAbridgedName;
+                    return s;
+                })
+                .ToArray();
         }
+
+        #region Properties
+
+        private readonly ISignetsBusinessService _signetsService;
+        private EtsUserCredentials _userCredentials;
+        private readonly SignetsAbstractFactory _factory;
+
+        #endregion
     }
 }

@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActualGrade" xml:space="preserve">
+    <value>Note à ce jour</value>
+  </data>
+  <data name="ActualGradeUid.Text" xml:space="preserve">
+    <value>Note à ce jour</value>
+  </data>
+  <data name="ApplicationNameUid.Text" xml:space="preserve">
+    <value>ÉTS Mobile</value>
+  </data>
+  <data name="ApplicationTitleUid.Text" xml:space="preserve">
+    <value>ÉTS Mobile</value>
+  </data>
+  <data name="Autumn" xml:space="preserve">
+    <value>Automne</value>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>Moyenne</value>
+  </data>
+  <data name="AverageUid.Text" xml:space="preserve">
+    <value>Moyenne</value>
+  </data>
+  <data name="ConnectButtonUid.Content" xml:space="preserve">
+    <value>CONNEXION</value>
+  </data>
+  <data name="ConnectUid.Text" xml:space="preserve">
+    <value>CONNEXION</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Cote</value>
+  </data>
+  <data name="GradesEmpty" xml:space="preserve">
+    <value>Il n'y a pas de résultats à afficher</value>
+  </data>
+  <data name="GradeUid.Text" xml:space="preserve">
+    <value>Cote</value>
+  </data>
+  <data name="Median" xml:space="preserve">
+    <value>Médiane</value>
+  </data>
+  <data name="MedianUid.Text" xml:space="preserve">
+    <value>Médiane</value>
+  </data>
+  <data name="MinutesRemainingUid.Text" xml:space="preserve">
+    <value>minutes restantes</value>
+  </data>
+  <data name="MyGradesUid.Text" xml:space="preserve">
+    <value>Mes notes</value>
+  </data>
+  <data name="NetworkError" xml:space="preserve">
+    <value>Assurez-vous que vous êtes connecté à un réseau Wi-Fi ou réseau cellulaire et réessayez à nouveau.</value>
+  </data>
+  <data name="NetworkTitleError" xml:space="preserve">
+    <value>Hors ligne</value>
+  </data>
+  <data name="NewsHeaderUid.Text" xml:space="preserve">
+    <value>Nouvelles</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="PasswordUid.Text" xml:space="preserve">
+    <value>mot de passe</value>
+  </data>
+  <data name="Percentile" xml:space="preserve">
+    <value>Rang centile</value>
+  </data>
+  <data name="PercentileUid.Text" xml:space="preserve">
+    <value>Rang centile</value>
+  </data>
+  <data name="ProfileHeaderUid.Text" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ScheduleEmpty" xml:space="preserve">
+    <value>Vous n'avez pas de cours</value>
+  </data>
+  <data name="StandardDeviation" xml:space="preserve">
+    <value>Écart-type</value>
+  </data>
+  <data name="StandardDeviationUid.Text" xml:space="preserve">
+    <value>Écart-type</value>
+  </data>
+  <data name="StudentIsInactiveInCurrentSemester" xml:space="preserve">
+    <value>Vous n'êtes pas en session active</value>
+  </data>
+  <data name="SummaryUid.Text" xml:space="preserve">
+    <value>Sommaire</value>
+  </data>
+  <data name="Summer" xml:space="preserve">
+    <value>Été</value>
+  </data>
+  <data name="TodayEmpty" xml:space="preserve">
+    <value>Vous ne semblez pas avoir de cours aujourd'hui</value>
+  </data>
+  <data name="TodayUid.Text" xml:space="preserve">
+    <value>Aujourd'hui</value>
+  </data>
+  <data name="UsernameUid.Text" xml:space="preserve">
+    <value>code universel</value>
+  </data>
+  <data name="WeightingUid.Text" xml:space="preserve">
+    <value>Pondération</value>
+  </data>
+  <data name="Winter" xml:space="preserve">
+    <value>Hiver</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>heure</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>heures</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>minute</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="CalendarUid.Text" xml:space="preserve">
+    <value>Calendrier</value>
+  </data>
+  <data name="GradesUid.Text" xml:space="preserve">
+    <value>Résultats</value>
+  </data>
+  <data name="ProgramUid.Text" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="ProgramEmpty" xml:space="preserve">
+    <value>Il n'y a pas de programmes à afficher</value>
+  </data>
+  <data name="HomeUid.Text" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="ScheduleUid.Text" xml:space="preserve">
+    <value>Horaire</value>
+  </data>
+  <data name="SettingsUid.Text" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Grades" xml:space="preserve">
+    <value>Résultats</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Programme</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>Horaire</value>
+  </data>
+  <data name="SelectCourse" xml:space="preserve">
+    <value>Sélection d'un cours</value>
+  </data>
+  <data name="LogoutUid.Text" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="ToBeDetermined" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="AboutUid.Text" xml:space="preserve">
+    <value>À Propos</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="AppletsDescriptionUid.Text" xml:space="preserve">
+    <value>Club scientifique ApplÉTS</value>
+  </data>
+  <data name="AppletsWebsiteUid.NavigateUri" xml:space="preserve">
+    <value>http://www.clubapplets.ca/</value>
+  </data>
+  <data name="ContributeDescriptionUid.Text" xml:space="preserve">
+    <value>Vous êtes étudiant à l'ÉTS et souhaitez contribuer au développement de l'application?</value>
+  </data>
+  <data name="EcoledeTechnologieSuperieurUid.Text" xml:space="preserve">
+    <value>École de technologie supérieure</value>
+  </data>
+  <data name="VisitAndJoinUsUid.Text" xml:space="preserve">
+    <value>Visitez notre site et rejoignez notre équipe !</value>
+  </data>
+  <data name="AkavacheDescriptionUid.Text" xml:space="preserve">
+    <value>Akavache est un conteneur clé-valeur qui persiste les données de manière asynchrone</value>
+  </data>
+  <data name="CreditsUid.Text" xml:space="preserve">
+    <value>Crédits</value>
+  </data>
+  <data name="CrittercismDescriptionUid.Text" xml:space="preserve">
+    <value>Crittercism assure la performance et la fiabilité des applications</value>
+  </data>
+  <data name="ModernHttpClientDescriptionUid.Text" xml:space="preserve">
+    <value>Implémentation du HttpClient par plateforme pour</value>
+  </data>
+  <data name="NewtonsoftJsonDescriptionUid.Text" xml:space="preserve">
+    <value>Json.NET est un framework JSON pour .NET</value>
+  </data>
+  <data name="ReactiveExtensionsDescriptionUid.Text" xml:space="preserve">
+    <value>Une librairie pour composer des applications par événements et asynchrones en utilisant des séquences observables</value>
+  </data>
+  <data name="ReactiveUIDescriptionUid.Text" xml:space="preserve">
+    <value>Un framework MVVM qui intègre Reactive Extensions pour .NET afin de créer des applications élégantes et testable</value>
+  </data>
+  <data name="RefitDescriptionUid.Text" xml:space="preserve">
+    <value>Librairie REST automatique pour Xamarin et .NET</value>
+  </data>
+  <data name="SplatDescriptionUid.Text" xml:space="preserve">
+    <value>Localisation de services, Gestionnaire d'événements, Mise en cache d'images</value>
+  </data>
+  <data name="SqliteDescriptionUid.Text" xml:space="preserve">
+    <value>SQLite est une librairie qui implémente une base de donnée par transaction</value>
+  </data>
+  <data name="SyncfusionDescriptionUid.Text" xml:space="preserve">
+    <value>Composants et librairies logiciel</value>
+  </data>
+  <data name="ConfidentialityUid.Text" xml:space="preserve">
+    <value>Confidentialité</value>
+  </data>
+  <data name="FeedbackButtonUid.Content" xml:space="preserve">
+    <value>envoyer des commentaires</value>
+  </data>
+  <data name="GradesNotAvailable" xml:space="preserve">
+    <value>Les résultats de ce cours ne sont pas actuellement disponibles. Alternativement, vérifiez que vous êtes connecté à internet et que le cours est soit dans le semestre courant ou passé.</value>
+  </data>
+  <data name="ScheduleEmptyMessage" xml:space="preserve">
+    <value>Il n'y a pas de cours puisque vous n'êtes pas actuellement dans une session ou que vous n'êtes pas inscrit à au moins un cours.</value>
+  </data>
+  <data name="ScheduleEmptyTitle" xml:space="preserve">
+    <value>Pas de cours à afficher</value>
+  </data>
+  <data name="PaulBettsContributionsUid.Text" xml:space="preserve">
+    <value>Créateur de Splat, ModernHttpClient, Akavache, ReactiveUI, Refit, Fusillade en plus de plusieurs autres projets Open Source</value>
+  </data>
+  <data name="FusilladeDescriptionUid.Text" xml:space="preserve">
+    <value>Librairie HTTP pour développement mobile</value>
+  </data>
+  <data name="ApplicationLoadingUid.Text" xml:space="preserve">
+    <value>chargement en cours...</value>
+  </data>
+  <data name="ExtendedSplashScreen" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SendLogFilesBody" xml:space="preserve">
+    <value>Vous pouvez écrire un message supplémentaire si vous le souhaitez.</value>
+  </data>
+  <data name="SendLogFilesSubject" xml:space="preserve">
+    <value>Fichiers d'historique d'évènements pour {0}</value>
+  </data>
+  <data name="SendLogsButtonUid.Content" xml:space="preserve">
+    <value>envoyer les logs</value>
+  </data>
+  <data name="MoodleMainPage" xml:space="preserve">
+    <value>Sélectionner un cours</value>
+  </data>
+  <data name="MoodleCoursesEmpty" xml:space="preserve">
+    <value>Il n'y a pas de cours à afficher</value>
+  </data>
+  <data name="MoodleCourseContent" xml:space="preserve">
+    <value>Contenu de cours</value>
+  </data>
+  <data name="MoodleCoursesContentEmpty" xml:space="preserve">
+    <value>Il n'y a pas de contenu pour ce cours</value>
+  </data>
+  <data name="MoodleCoursesModuleEmpty" xml:space="preserve">
+    <value>Il n'y a pas d'informations à afficher pour le moment</value>
+  </data>
+  <data name="MoodleCoursesModuleContentEmpty" xml:space="preserve">
+    <value>Il n'y a pas de contenu pour ce module</value>
+  </data>
+  <data name="MoodleCourseModule" xml:space="preserve">
+    <value>Modules</value>
+  </data>
+  <data name="MoodleCourseModuleContent" xml:space="preserve">
+    <value>Contenu du Module</value>
+  </data>
+  <data name="CourseModuleContentUid.Text" xml:space="preserve">
+    <value>Contenu du module</value>
+  </data>
+  <data name="CourseMoodleUrlUid.Source" xml:space="preserve">
+    <value>/Assets/Moodle/CourseMoodleUrl_White.24.png</value>
+  </data>
+  <data name="LinkToCourseModuleUid.Text" xml:space="preserve">
+    <value>Lien vers ce module</value>
+  </data>
+  <data name="RefreshUid.Label" xml:space="preserve">
+    <value>Rafraîchir</value>
+  </data>
+  <data name="ViewCalendarUid.Label" xml:space="preserve">
+    <value>Vue</value>
+  </data>
+  <data name="LiveTileAndLockScreenUid.Text" xml:space="preserve">
+    <value>Vignette dynamique et Écran de verrouillage</value>
+  </data>
+  <data name="LiveTileAndLockScreenToggleSwitchUid.OffContent" xml:space="preserve">
+    <value>Montrer l'horaire</value>
+  </data>
+  <data name="LiveTileAndLockScreenToggleSwitchUid.OnContent" xml:space="preserve">
+    <value>Montrer l'horaire</value>
+  </data>
+  <data name="LiveTileAndLockScreenDescription1Uid.Text" xml:space="preserve">
+    <value>Vous pouvez sélectionner cette application dans les </value>
+  </data>
+  <data name="LiveTileAndLockScreenDescription2Uid.Text" xml:space="preserve">
+    <value> afin d'afficher l'horaire sur l'écran de verrouillage</value>
+  </data>
+  <data name="LiveTileAndLockScreenLinkToLockScreenUid.Text" xml:space="preserve">
+    <value>paramètres de l'écran de verrouillage</value>
+  </data>
+  <data name="OptionsUid.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="CalendarIntegrationDescriptionUid.Text" xml:space="preserve">
+    <value>Utilisez le bouton 'intégrer l'horaire' ci-dessus pour intégrer votre horaire au calendrier. Lorsque l'horaire est intégré, vous pouvez mettre à jour l'horaire (au besoin) en utilisant le même bouton ('intégrer l'horaire'). Pour enlever l'intégration au calendrier de l'horaire, utilisez le bouton 'retirer du calendrier.</value>
+  </data>
+  <data name="CalendarIntegrationUid.Text" xml:space="preserve">
+    <value>Intégrez votre horaire au calendrier</value>
+  </data>
+  <data name="RemoveScheduleIntegrationButtonUid.Content" xml:space="preserve">
+    <value>retirer du calendrier</value>
+  </data>
+  <data name="RemoveScheduleIntegrationMessageCompleted" xml:space="preserve">
+    <value>L'horaire a été supprimé du calendrier.</value>
+  </data>
+  <data name="RemoveScheduleIntegrationMessageException" xml:space="preserve">
+    <value>Nous ne pouvons pas supprimer l'horaire du calendrier pour le moment. Si le problème persiste, vous pouvez nous contacter via 'envoyer des commentaires' dans la section À Propos ou ré-installez l'application.</value>
+  </data>
+  <data name="RemoveScheduleIntegrationMessageNoCalendar" xml:space="preserve">
+    <value>Il n'y a pas d'horaire à enlever du calendrier. S'il y a toujours votre horaire dans le calendrier, vous pouvez nous contacter via 'envoyer des commentaires' dans la section À Propos ou ré-installez l'application directement.</value>
+  </data>
+  <data name="RemoveScheduleIntegrationTitleCompleted" xml:space="preserve">
+    <value>Succès!</value>
+  </data>
+  <data name="RemoveScheduleIntegrationTitleException" xml:space="preserve">
+    <value>Échec de la suppression</value>
+  </data>
+  <data name="RemoveScheduleIntegrationTitleNoCalendar" xml:space="preserve">
+    <value>Pas d'horaire dans le calendrier</value>
+  </data>
+  <data name="ScheduleCalendarName" xml:space="preserve">
+    <value>Horaire</value>
+  </data>
+  <data name="ScheduleIntegrationButtonUid.Content" xml:space="preserve">
+    <value>intégrer l'horaire</value>
+  </data>
+  <data name="ScheduleIntegrationDescriptionUid.Text" xml:space="preserve">
+    <value>Utilisez le bouton ci-dessus pour intégrer votre horaire au calendrier.</value>
+  </data>
+  <data name="ScheduleIntegrationMessageCompleted" xml:space="preserve">
+    <value>L'horaire a été intégré correctement au calendrier.</value>
+  </data>
+  <data name="ScheduleIntegrationMessageEmpty" xml:space="preserve">
+    <value>Nous ne pouvons pas intégrer d'horaire puisqu'il semble que vous n'avez pas de cours actuellement ou dans le futur. Si le problème persiste, vous pouvez nous contacter via 'envoyer des commentaires' dans la section À Propos.</value>
+  </data>
+  <data name="ScheduleIntegrationMessageException" xml:space="preserve">
+    <value>Nous n'avons pas été en mesure d'intégrer l'horaire à votre calendrier. Veuillez réessayer plus tard. Si le problème persiste, vous pouvez nous contacter via 'envoyer des commentaires' dans la section À Propos.</value>
+  </data>
+  <data name="ScheduleIntegrationTitleCompleted" xml:space="preserve">
+    <value>C'est fait!</value>
+  </data>
+  <data name="ScheduleIntegrationTitleEmpty" xml:space="preserve">
+    <value>Pas d'horaire</value>
+  </data>
+  <data name="ScheduleIntegrationTitleException" xml:space="preserve">
+    <value>Échec de l'intégration</value>
+  </data>
+  <data name="ScheduleIntegrationUid.Text" xml:space="preserve">
+    <value>Intégrer votre horaire au calendrier</value>
+  </data>
+  <data name="PinAppToStartDescriptionUid.Text" xml:space="preserve">
+    <value>Quand l'option ci-dessus 'Montrer l'horaire' est activé, l'application affiche dans la vignette (moyenne ou large) l'horaire (le cours actuel ou prochain dans le jour courant).</value>
+  </data>
+  <data name="PinAppToStartUid.Text" xml:space="preserve">
+    <value>Éplinglez l'application au menu démarrer</value>
+  </data>
+  <data name="LoginInvalidCredentialsMessage" xml:space="preserve">
+    <value>Nom d'usager ou mot de passe invalide.</value>
+  </data>
+  <data name="LoginTimeoutMessage" xml:space="preserve">
+    <value>La requête prend plus de temps que prévu. Veuillez réessayer.</value>
+  </data>
+  <data name="CompletedCreditsUid.Text" xml:space="preserve">
+    <value>Crédits complétés</value>
+  </data>
+  <data name="EquivalenceCountUid.Text" xml:space="preserve">
+    <value>Équivalences</value>
+  </data>
+  <data name="FailedCreditsCountUid.Text" xml:space="preserve">
+    <value>Crédits échoués</value>
+  </data>
+  <data name="PotentialCreditsUid.Text" xml:space="preserve">
+    <value>Crédits espérés</value>
+  </data>
+  <data name="RegisteredCreditsUid.Text" xml:space="preserve">
+    <value>Crédits inscrits</value>
+  </data>
+  <data name="ResearchCreditsUid.Text" xml:space="preserve">
+    <value>Crédits de recherche</value>
+  </data>
+  <data name="SuceededCreditsCountUid.Text" xml:space="preserve">
+    <value>Crédits réussis</value>
+  </data>
+  <data name="LinkToCourseUid.Text" xml:space="preserve">
+    <value>Lien vers ce cours</value>
+  </data>
+  <data name="CourseContentsUid.Text" xml:space="preserve">
+    <value>Contenu du cours</value>
+  </data>
+</root>

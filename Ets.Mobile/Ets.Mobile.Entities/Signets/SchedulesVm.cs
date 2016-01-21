@@ -1,86 +1,145 @@
-﻿using System;
-using System.Runtime.Serialization;
-using Windows.UI;
-using Windows.UI.Xaml.Media;
-using Ets.Mobile.Entities.Signets.Interfaces;
+﻿using Ets.Mobile.Entities.Shared;
 using ReactiveUI;
+using ReactiveUI.Extensions;
+using System;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Signets
 {
-    public class ScheduleVm : ReactiveObject, ICustomColor
+    [DataContract]
+    public class ScheduleVm : ReactiveObject, ICustomColor, IMergeableObject<ScheduleVm>, IDisposable
     {
-    	private DateTime _startDate;
-        public DateTime StartDate
+        #region IMergeableObject
+
+        public bool Equals(ScheduleVm x, ScheduleVm y)
+        {
+            return x.Name == y.Name
+                && x.StartDate == y.StartDate
+                && x.EndDate == y.EndDate
+                && x.CourseAndGroup == y.CourseAndGroup;
+        }
+
+        public int GetHashCode(ScheduleVm obj)
+        {
+            return obj.Name.GetHashCode() ^
+                   obj.StartDate.ToString("O").GetHashCode() ^
+                   obj.EndDate.ToString("O").GetHashCode() ^
+                   obj.CourseAndGroup.GetHashCode();
+        }
+
+        public void MergeWith(ScheduleVm other)
+        {
+            StartDate = other.StartDate;
+            EndDate = other.EndDate;
+            CourseAndGroup = other.CourseAndGroup;
+            Location = other.Location;
+            Description = other.Description;
+            SetNewColor(new ColorVm(other.Color));
+        }
+
+        #endregion
+
+        private string _semester;
+        [DataMember]
+        public string Semester
+        {
+            get { return _semester; }
+            set { this.RaiseAndSetIfChanged(ref _semester, value); }
+        }
+
+        private DateTime _startDate;
+        [DataMember] public DateTime StartDate
         {
         	get { return _startDate; }
-        	set { this.RaiseAndSetIfChanged(ref _startDate, value); }
+        	set { this.RaiseAndSetIfChanged(ref _startDate, value.ToLocalTime()); }
         }
 
         private DateTime _endDate;
-        public DateTime EndDate
+        [DataMember] public DateTime EndDate
         {
         	get { return _endDate; }
-            set { this.RaiseAndSetIfChanged(ref _endDate, value); }
+            set { this.RaiseAndSetIfChanged(ref _endDate, value.ToLocalTime()); }
         }
 
         private string _courseAndGroup;
-        public string CourseAndGroup
+        [DataMember] public string CourseAndGroup
         {
         	get { return _courseAndGroup; }
-            set { this.RaiseAndSetIfChanged(ref _courseAndGroup, value); }
+            set { this.RaiseAndSetIfChanged(ref _courseAndGroup, value?.Trim()); }
         }
 
         private string _name;
-        public string Name
+        [DataMember] public string Name
         {
         	get { return _name; }
             set { this.RaiseAndSetIfChanged(ref _name, value); }
         }
 
         private string _location;
-        public string Location
+        [DataMember] public string Location
         {
         	get { return _location; }
             set { this.RaiseAndSetIfChanged(ref _location, value); }
         }
 
         private string _description;
-        public string Description
+        [DataMember] public string Description
         {
         	get { return _description; }
             set { this.RaiseAndSetIfChanged(ref _description, value); }
         }
 
         private string _title;
-        public string Title
+        [DataMember] public string Title
         {
         	get { return _title; }
             set { this.RaiseAndSetIfChanged(ref _title, value); }
         }
 
+        public string Time => $"{StartDate.ToString(@"hh\:mm tt")}-{EndDate.ToString(@"hh\:mm tt")}";
+
+        public string Group => CourseAndGroup.Split('-')[1].Trim();
+
+        [DataMember]
+        public string ActivityName => $"{CourseAndGroup.Substring(0, CourseAndGroup.IndexOf("-", StringComparison.Ordinal))}: {Title}";
+
+        // TODO : Make this work so that the user can see the time remaining before his class occurs
+        public bool _isTimeRemainingVisible = false;
+        public bool IsTimeRemainingVisible
+        {
+            get { return _isTimeRemainingVisible; }
+            set { this.RaiseAndSetIfChanged(ref _isTimeRemainingVisible, value); }
+        }
+
+        // TODO : Make this work so that the user can see the time remaining before his class occurs
+        public string _timeRemaining = "0";
+        public string TimeRemaining
+        {
+            get { return _timeRemaining; }
+            set { this.RaiseAndSetIfChanged(ref _timeRemaining, value); }
+        }
+
         #region ICustomColor Implementation
 
-        [DataMember] public byte A { get; set; }
-        [DataMember] public byte R { get; set; }
-        [DataMember] public byte G { get; set; }
-        [DataMember] public byte B { get; set; }
-
-        private Color _color;
-        public Color Color
+        private string _color;
+        [DataMember]
+        public string Color
         {
-            get { return Color.FromArgb(A, R, G, B); }
-            set
+            get { return _color; }
+            set { this.RaiseAndSetIfChanged(ref _color, value); }
+        }
+
+        public void SetNewColor(ColorVm color)
+        {
+            // Set Value for Store
+            if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
             {
-                _color = value;
-                A = _color.A;
-                R = _color.R;
-                G = _color.G;
-                B = _color.B;
+                Color = color.HexColor;
             }
         }
 
-        public SolidColorBrush Brush => new SolidColorBrush(Color);
-
         #endregion
+
+        public void Dispose() {}
     }
 }

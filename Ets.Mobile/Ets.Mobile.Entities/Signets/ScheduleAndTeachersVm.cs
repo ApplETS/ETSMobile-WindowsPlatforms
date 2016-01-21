@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using Windows.UI;
-using Windows.UI.Xaml.Media;
-using Ets.Mobile.Entities.Signets.Interfaces;
+﻿using Ets.Mobile.Entities.Shared;
 using ReactiveUI;
+using System;
 using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Signets
 {
+    [DataContract]
     public class ScheduleAndTeachersVm : ReactiveObject
     {
-        public List<ActivityVm> Activities { get; set; }
+        [DataMember]
+        public ActivityVm[] Activities { get; set; }
 
-        public List<TeacherVm> Teachers { get; set; }
+        public TeacherVm[] Teachers { get; set; }
     }
 
     [DataContract]
-    public class ActivityVm : ICustomColor
+    public class ActivityVm : ReactiveObject, ICustomColor
     {
         [DataMember]
         public string Acronym { get; set; }
@@ -58,26 +57,22 @@ namespace Ets.Mobile.Entities.Signets
 
         #region ICustomColor Implementation
 
-        [DataMember] public byte A { get; set; }
-        [DataMember] public byte R { get; set; }
-        [DataMember] public byte G { get; set; }
-        [DataMember] public byte B { get; set; }
-
-        private Color _color;
-        public Color Color
+        private string _color;
+        [DataMember]
+        public string Color
         {
-            get { return Color.FromArgb(A, R, G, B); }
-            set
+            get { return _color; }
+            set { this.RaiseAndSetIfChanged(ref _color, value); }
+        }
+
+        public void SetNewColor(ColorVm color)
+        {
+            // Set Value for Store
+            if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
             {
-                _color = value;
-                A = _color.A;
-                R = _color.R;
-                G = _color.G;
-                B = _color.B;
+                Color = color.HexColor;
             }
         }
-        
-        public SolidColorBrush Brush => new SolidColorBrush(Color);
 
         #endregion
     }

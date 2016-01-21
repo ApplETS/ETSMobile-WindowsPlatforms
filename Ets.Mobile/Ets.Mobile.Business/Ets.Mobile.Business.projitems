@@ -10,9 +10,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BusinessEndpoint.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DtSignetsBusinessService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IMoodleBusinessService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\ISignetsBusinessService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\CoursesContent\MoodleCourseContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\CoursesContent\MoodleCourseModule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\CoursesContent\MoodleCourseModuleContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\Courses\MoodleCourse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\SiteInfo\MoodleAdvancedFeature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\SiteInfo\MoodleFunction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\SiteInfo\MoodleSiteInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Moodle\Token\MoodleToken.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Results\Signets\Converters\DecimalConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Results\Signets\Converters\DoubleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Results\Signets\Converters\GenericConverter.cs" />
@@ -54,10 +61,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Signets\Teacher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Signets\Teammate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EtsBusinessException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Entities\Signets\Interfaces\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Extensions\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SignetsExtensions.cs" />
   </ItemGroup>
 </Project>

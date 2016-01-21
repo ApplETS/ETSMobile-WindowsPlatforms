@@ -1,14 +1,38 @@
-﻿using System.Runtime.Serialization;
-using Windows.UI;
-using Windows.UI.Xaml.Media;
-using Ets.Mobile.Entities.Signets.Interfaces;
+﻿using Ets.Mobile.Entities.Shared;
 using ReactiveUI;
+using ReactiveUI.Extensions;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Signets
 {
     [DataContract]
-    public class CourseVm : ReactiveObject, ICustomColor
+    public class CourseVm : ReactiveObject, ICustomColor, IMergeableObject<CourseVm>
     {
+        #region IMergeableObject
+
+        public bool Equals(CourseVm x, CourseVm y)
+        {
+            return x.Acronym == y.Acronym
+                && x.Semester == y.Semester;
+        }
+
+        public int GetHashCode(CourseVm obj)
+        {
+            return obj.Acronym.GetHashCode() ^ obj.Semester.GetHashCode();
+        }
+
+        public void MergeWith(CourseVm other)
+        {
+            Acronym = other.Acronym;
+            Semester = other.Semester;
+            Group = other.Group;
+            Grade = other.Grade;
+            Name = other.Name;
+            SetNewColor(new ColorVm(other.Color));
+        }
+
+        #endregion
+
         private string _acronym;
         [DataMember] public string Acronym
         {
@@ -60,26 +84,22 @@ namespace Ets.Mobile.Entities.Signets
 
         #region ICustomColor Implementation
 
-        [DataMember] public byte A { get; set; }
-        [DataMember] public byte R { get; set; }
-        [DataMember] public byte G { get; set; }
-        [DataMember] public byte B { get; set; }
-
-        private Color _color;
-        public Color Color
+        private string _color;
+        [DataMember]
+        public string Color
         {
-            get { return Color.FromArgb(A, R, G, B); }
-            set
-            {
-                _color = value;
-                A = _color.A;
-                R = _color.R;
-                G = _color.G;
-                B = _color.B;
-            }
+            get { return _color; }
+            set { this.RaiseAndSetIfChanged(ref _color, value); }
         }
 
-        public SolidColorBrush Brush => new SolidColorBrush(Color);
+        public void SetNewColor(ColorVm color)
+        {
+            // Set Value for Store
+            if (string.IsNullOrEmpty(Color) || Color != color.HexColor)
+            {
+                Color = color.HexColor;
+            }
+        }
 
         #endregion
     }

@@ -3,76 +3,46 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
-    xmlns:menu="using:Ets.Mobile.Pages.Shared"
-    xmlns:c="using:StoreFramework.Controls"
-    xmlns:main="using:Ets.Mobile.Views.Content.Main"
-    xmlns:controls="using:ReactiveUI.Xaml.Controls"
-    DataContext="{Binding}"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"   
+    xmlns:main="using:Ets.Mobile.Content.Main"
+    xmlns:grade="using:Ets.Mobile.Content.Grade"
     d:DataContext="{d:DesignInstance Type=designTime:MainViewModelDt, IsDesignTimeCreatable=True}"
     xmlns:designTime="using:Ets.Mobile.ViewModel.DesignTime"
-    xmlns:views="using:StoreFramework.Views"
-    xmlns:slideView="using:SlideView.Library"
-    xmlns:shared="using:Ets.Mobile.Views.Content.Shared"
+    xmlns:shell="using:Ets.Mobile.Shell"
+    x:Name="MainP"
     mc:Ignorable="d">
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../Skins/PhoneSkin.xaml" />
-                <ResourceDictionary Source="/Skins/MainSkin.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-    <Grid>
-        <Grid Background="{StaticResource EtsBackgroundBrush}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="70" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Border Grid.Row="0">
-                <StackPanel Margin="0,5,0,0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <menu:MenuButton x:Name="SideViewButton" Height="60" Width="60"/>
-                    <c:LocalizedTextBlock VerticalAlignment="Center" Margin="10,-7,0,0" Key="ApplicationTitle" DefaultValue="Ets Mobile" Style="{StaticResource EtsLocalizedTextBlockMainColor2}" />
-                </StackPanel>
-            </Border>
-
-            <Grid Grid.Row="1" Background="#f2f2f2">
-                <slideView:SlideView x:Name="SlideView" IsSlideEnabled="False" SelectedIndex="1">
-                    <Grid Background="#f2f2f2">
-                        <shared:SideNavigation x:Name="SideNavigation" />
-                    </Grid>
-                    <Grid Background="#f2f2f2">
-                        <Pivot x:Name="MainPivot">
-                            <PivotItem>
-                                <PivotItem.Header>
-                                    <c:LocalizedTextBlock Key="TodayHeader" DefaultValue="Aujourd'hui" CharacterCase="Upper" Background="#f2f2f2" />
-                                </PivotItem.Header>
-                                <main:Today x:Name="Today" />
-                            </PivotItem>
-                            <PivotItem>
-                                <PivotItem.Header>
-                                    <c:LocalizedTextBlock Key="GradesHeader" DefaultValue="Résultats" CharacterCase="Upper" />
-                                </PivotItem.Header>
-                                <main:Grades x:Name="Grade" />
-                            </PivotItem>
-                            <!--<PivotItem>
-                                <PivotItem.Header>
-                                    <c:LocalizedTextBlock Key="NewsHeader" DefaultValue="Nouvelles" CharacterCase="Upper" />
-                                </PivotItem.Header>
-                            </PivotItem>-->
-                        </Pivot>
-                    </Grid>
-                </slideView:SlideView>
-            </Grid>
+    
+    <Grid Background="{ThemeResource EtsBackgroundBodyBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Hamburger -->
+        <shell:PageHeader DataContext="{Binding}"/>
+        <!-- Content -->
+        <Grid Grid.Row="1">
+            <Pivot x:Name="MainPivot" ContinuumNavigationTransitionInfo.IsEntranceElement="True">
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock x:Uid="TodayUid" Text="Aujourd'hui" />
+                    </PivotItem.Header>
+                    <main:Today DataContext="{Binding TodayPresenter}" />
+                </PivotItem>
+                <PivotItem>
+                    <PivotItem.Header>
+                        <TextBlock x:Uid="GradesUid" Text="Résultats" />
+                    </PivotItem.Header>
+                    <grade:CourseChooserForGrades x:Name="Grade" DataContext="{Binding GradesPresenter}" />
+                </PivotItem>
+            </Pivot>
         </Grid>
     </Grid>
-    
+
     <Page.BottomAppBar>
-        <CommandBar x:Name="BottomBar" Background="White" Foreground="{StaticResource EtsRedHighBrush}" Opacity="0.7">
+        <CommandBar x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="RefreshToday" Icon="Refresh" Label="Refresh" />
-                <AppBarButton x:Name="RefreshGrade" Icon="Refresh" Label="Refresh" Visibility="Collapsed" />
+                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshToday" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadCoursesForToday}" />
+                <AppBarButton x:Uid="RefreshUid" x:Name="RefreshGrade" Icon="Refresh" Label="Rafraîchir" Visibility="Collapsed" Command="{Binding LoadCoursesSummaries}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

@@ -1,6 +1,6 @@
-﻿using System;
-using Ets.Mobile.Business.Contracts;
+﻿using Ets.Mobile.Business.Contracts;
 using Splat;
+using System;
 
 namespace Ets.Mobile.Business
 {
@@ -8,20 +8,16 @@ namespace Ets.Mobile.Business
     {
 		#region Extension Point
 
-        public IMutableDependencyResolver _serviceLocator
-		{
-			get;
-			private set;
-		}
+        public IMutableDependencyResolver ServiceLocator { get; }
 
         public BusinessEndpoint(IMutableDependencyResolver serviceLocator)
 		{
             if (serviceLocator == null)
 			{
-                throw new ArgumentNullException("serviceLocator");	
+                throw new ArgumentNullException(nameof(serviceLocator));	
 			}
 
-			_serviceLocator = serviceLocator;
+			ServiceLocator = serviceLocator;
 		}
 
 		#endregion
@@ -29,6 +25,6 @@ namespace Ets.Mobile.Business
 		/// <summary>
 		/// Signets Endpoint
 		/// </summary>
-		public ISignetsBusinessService SignetsService => _serviceLocator.GetService<ISignetsBusinessService>();
+		public ISignetsBusinessService SignetsService => ServiceLocator.GetService<ISignetsBusinessService>();
     }
 }

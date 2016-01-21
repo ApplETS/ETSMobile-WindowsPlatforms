@@ -9,25 +9,56 @@
     <Import_RootNamespace>Ets.Mobile.ViewModel</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ApplicationPages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Comparators\ProgramsComparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Comparators\SemestersComparator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeViewModelGroup.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeViewModelItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IMainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Grade\GradeViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeSummaryViewModelGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Main\GradeSummaryViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\Content\MoodleCourseModuleContentViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\Content\MoodleCourseModuleSummaryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\Content\MoodleCourseContentSummaryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\MoodleCourseSummaryViewModelGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\MoodleCourseSummaryViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleGroupedByDayViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleViewModelItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Account\ILoginPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\IGradePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\ISelectCourseForGradePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Main\IMainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Moodle\Courses\IMoodleCourseContentPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Moodle\Courses\IMoodleCourseModuleContentPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Moodle\Courses\IMoodleCourseModulePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Moodle\IMoodleMainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Program\IProgramPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Schedule\ISchedulePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IAboutViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IOptionsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\ISettingsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Shared\ISideNavigationPaneViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\UserDetails\IUserDetailsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DesignTimeHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\GradeViewModelDt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\MainViewModelDt.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ScheduleException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ModuleInit.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Account\LoginViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Grade.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.SideNavigation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Today.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\ProgramViewModelDt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesignTime\SelectCourseForGradeViewModelDt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\LogHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Account\LoginPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\GradePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Grade\SelectCourseForGradePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseModuleContentPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseModulePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseContentPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\MoodleMainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Program\ProgramViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Schedule\SchedulePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.Grade.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.Today.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Settings\SettingsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\UserDetails\UserDetailsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Panes\SideNavigation\SideNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationViewModelBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Bases\PageViewModelBase.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Content\Account\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationServicesBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bases\ViewModelBase.cs" />
   </ItemGroup>
 </Project>

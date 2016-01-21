@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using StoreFramework.ViewModel;
 
 namespace Ets.Mobile.ViewModel.Authentification
 {
@@ -9,7 +8,7 @@ namespace Ets.Mobile.ViewModel.Authentification
     {
         public LoginViewModel()
         {
-            
+
         }
 
         public void Authentificate(string userName, string password)

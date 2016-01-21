@@ -3,16 +3,30 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Windows.UI.Xaml.Controls"
     xmlns:primitives="using:Windows.UI.Xaml.Controls.Primitives"
-    xmlns:local="using:Ets.Mobile.Skins">
+    xmlns:xaml="using:Windows.UI.Xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Skins/MainSkin.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="White" />
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundUnselectedBrush" Color="{StaticResource EtsTextSecondaryColor}" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="White" />
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundUnselectedBrush" Color="{StaticResource EtsTextSecondaryColor}" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="Black" />
+            <SolidColorBrush x:Key="EtsPivotHeaderForegroundUnselectedBrush" Color="{StaticResource EtsTextSecondaryColor}" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
 
-    <!-- Pivot                                                     -->
-    <SolidColorBrush x:Key="EtsPivotHeaderForegroundSelectedBrush" Color="{StaticResource EtsRedMediumColor}" />
-    <SolidColorBrush x:Key="EtsPivotHeaderForegroundUnselectedBrush" Color="{StaticResource EtsTextSecondaryColor}" />
-    
-    <!-- PivotItem -->
+    <!-- Region PivotItem -->
+    <xaml:Thickness x:Key="EtsPivotItemMargin">15,10,15,0</xaml:Thickness>
     <Style TargetType="controls:PivotItem">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Margin" Value="{ThemeResource PivotItemMargin}"/>
+        <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
@@ -27,16 +41,16 @@
                                 <VisualState x:Name="Center" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" />
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Margin="{StaticResource EtsPivotItemMargin}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
-    <!-- PivotHeaderItem -->
-    <x:Int32 x:Key="EtsPivotHeaderItemFontSize">16</x:Int32>
-    <Thickness x:Key="EtsPivotHeaderItemMargin">16,0,0,0</Thickness>
+    <!-- EndRegion -->
+    <!-- Region PivotHeaderItem -->
+    <x:Int32 x:Key="EtsPivotHeaderItemFontSize">22</x:Int32>
+    <x:String x:Key="EtsPivotHeaderItemMargin">15,10,10,10</x:String>
     <Style TargetType="primitives:PivotHeaderItem">
         <Setter Property="FontSize" Value="{ThemeResource EtsPivotHeaderItemFontSize}" />
         <Setter Property="FontFamily" Value="{ThemeResource PivotHeaderItemFontFamily}" />
@@ -67,6 +81,9 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource EtsPivotHeaderForegroundSelectedBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="FontWeight" Storyboard.TargetName="ContentPresenter">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="SemiBold" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -81,5 +98,146 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <!-- EndRegion -->
+    <!-- Region Pivot -->
+    <x:String x:Key="PivotPortraitThemePadding">19,10,0,0</x:String>
+    <!-- Default style for Windows.UI.Xaml.Controls.Pivot -->
+    <Style TargetType="controls:Pivot">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Foreground" Value="{ThemeResource PhoneForegroundBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <Grid />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:Pivot">
+                    <Grid x:Name="RootElement"
+                          HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                          Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="Orientation">
+                                <VisualState x:Name="Portrait">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TitleContentControl" Storyboard.TargetProperty="Margin">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PivotPortraitThemePadding}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Landscape">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TitleContentControl" Storyboard.TargetProperty="Margin">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PivotLandscapeThemePadding}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <ContentControl x:Name="TitleContentControl"
+                            Style="{StaticResource PivotTitleContentControlStyle}"
+                            Content="{TemplateBinding Title}"
+                            ContentTemplate="{TemplateBinding TitleTemplate}"
+                            Visibility="Collapsed"/>
+                        <ScrollViewer
+                              x:Name="ScrollViewer"
+                              Margin="0,0,0,0"
+                              Grid.Row="1"
+                              HorizontalSnapPointsType="MandatorySingle"
+                              HorizontalSnapPointsAlignment="Center"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollMode="Disabled"
+                              VerticalScrollBarVisibility="Disabled"
+                              VerticalSnapPointsType="None"
+                              VerticalContentAlignment="Stretch"
+                              ZoomMode="Disabled"
+                              Template="{StaticResource ScrollViewerScrollBarlessTemplate}">
+                            <primitives:PivotPanel x:Name="Panel" VerticalAlignment="Stretch">
+                                <primitives:PivotHeaderPanel x:Name="Header" Background="{ThemeResource EtsBackgroundMainBrush}">
+                                    <primitives:PivotHeaderPanel.RenderTransform>
+                                        <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0" />
+                                    </primitives:PivotHeaderPanel.RenderTransform>
+                                </primitives:PivotHeaderPanel>
+                                <ItemsPresenter x:Name="PivotItemPresenter">
+                                    <ItemsPresenter.RenderTransform>
+                                        <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0" />
+                                    </ItemsPresenter.RenderTransform>
+                                </ItemsPresenter>
+                            </primitives:PivotPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- EndRegion -->
+    <!-- Region Grouped ListView -->
+    <Style x:Key="EtsCourseChooserForGradesItemBorderStyle" TargetType="Border">
+        <Setter Property="Margin" Value="5,0,3,10" />
+        <Setter Property="BorderThickness" Value="0,0,1,1" />
+        <Setter Property="Background" Value="{ThemeResource EtsBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource EtsGradeSummaryItemBrush}" />
+    </Style>
+    <Style TargetType="TextBlock" BasedOn="{StaticResource EtsListViewHeaderItemStyle}" x:Key="EtsDefaultListViewHeaderItemStyle">
+        <Setter Property="Margin" Value="-7,0,0,0" />
+    </Style>
+    <!-- EndRegion -->
+    <!-- Region Page Properties -->
+    <!-- General -->
+    <xaml:Thickness x:Key="EtsPageContentMargin">15,10,15,0</xaml:Thickness>
+    <!-- Reactive Presenter -->
+    <Style TargetType="ProgressRing" x:Key="ReactivePresenterProgressRingStyle">
+        <Setter Property="IsActive" Value="True" />
+        <Setter Property="Foreground" Value="{ThemeResource EtsTextMainBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="100" />
+        <Setter Property="Height" Value="100" />
+    </Style>
+    <Style x:Key="ReactivePresenterTextBlockDefaultStyle" TargetType="TextBlock" BasedOn="{StaticResource ReactivePresenterTextBlockStyle}">
+        <Setter Property="FontFamily" Value="{ThemeResource EtsMainFont}" />
+        <Setter Property="Foreground" Value="{ThemeResource EtsStateTextBrush}" />
+        <Setter Property="FontSize" Value="{ThemeResource Size3}" />
+        <Setter Property="FontWeight" Value="Thin" />
+    </Style>
+    <!-- Grades -->
+    <Style TargetType="TextBlock" BasedOn="{StaticResource EtsListViewHeaderItemStyle}" x:Key="EtsGradeItemTitleStyle">
+        <Setter Property="Margin" Value="0" />
+    </Style>
+    <!-- Moodle -->
+    <xaml:Thickness x:Key="EtsMoodleLinkMargin">15,6,15,0</xaml:Thickness>
+    <xaml:Thickness x:Key="EtsMoodleMargin">15,0,15,0</xaml:Thickness>
+    <!-- Schedule -->
+    <xaml:Thickness x:Key="ScheduleMargin">0,0,0,60</xaml:Thickness>
+    <Style x:Key="ScheduleViewIconStyle" TargetType="BitmapIcon">
+        <Setter Property="Width" Value="22" />
+        <Setter Property="Height" Value="22" />
+        <Setter Property="MaxHeight" Value="22" />
+        <Setter Property="MaxWidth" Value="22" />
+    </Style>
+    <!-- Settings -->
+    <xaml:Thickness x:Key="EtsSettingsPageContentMargin">15,6,15,0</xaml:Thickness>
+    <!-- EndRegion -->
+    <!-- Region Extended Splash Screen -->
+    <Style x:Key="EtsTextBlockLoading" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource Size4}" />
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+    </Style>
+    <Style x:Key="EtsProgressRingLoading" TargetType="ProgressRing">
+        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+        <Setter Property="IsActive" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="100" />
+        <Setter Property="Height" Value="100" />
+        <Setter Property="Margin" Value="25" />
+    </Style>
+    <!-- EndRegion-->
 </ResourceDictionary>

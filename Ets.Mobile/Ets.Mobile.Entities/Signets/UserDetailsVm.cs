@@ -1,7 +1,6 @@
-using System.Runtime.Serialization;
-using Windows.UI.Xaml.Media;
 using ReactiveUI;
 using Splat;
+using System.Runtime.Serialization;
 
 namespace Ets.Mobile.Entities.Signets
 {
@@ -47,7 +46,19 @@ namespace Ets.Mobile.Entities.Signets
         [DataMember] public string Username
         {
             get { return _username; }
-            set { this.RaiseAndSetIfChanged(ref _username, value); }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _username, value);
+                Email = _username + "@ens.etsmtl.ca";
+            }
+        }
+
+        private string _email;
+        [DataMember]
+        public string Email
+        {
+            get { return _email; }
+            set { this.RaiseAndSetIfChanged(ref _email, value); }
         }
 
         private IBitmap _imageSource;
@@ -56,7 +67,5 @@ namespace Ets.Mobile.Entities.Signets
             get { return _imageSource; }
             set { this.RaiseAndSetIfChanged(ref _imageSource, value); }
         }
-
-        public ImageSource ImageSource => Image?.ToNative();
     }
 }

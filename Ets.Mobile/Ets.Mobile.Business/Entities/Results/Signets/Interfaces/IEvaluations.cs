@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Ets.Mobile.Business.Entities.Signets;
+﻿using Ets.Mobile.Business.Entities.Signets;
+using System.Collections.Generic;
 
 namespace Ets.Mobile.Business.Entities.Results.Signets.Interfaces
 {
@@ -7,10 +7,10 @@ namespace Ets.Mobile.Business.Entities.Results.Signets.Interfaces
     {
         double? ActualGrade { get; set; }
         double? FinalGradeOnHundred { get; set; }
-        double? AverageOfClass { get; set; }
-        double? StandardDeviationOfClass { get; set; }
-        double? MedianOfClass { get; set; }
-        double? PercentileOfClass { get; set; }
+        double? Average { get; set; }
+        double? StandardDeviation { get; set; }
+        double? Median { get; set; }
+        double? Percentile { get; set; }
         double? ActualGradeOfIndividualElements { get; set; }
         double? GradeOnHundredOfIndividualElements { get; set; }
         List<Evaluation> Evaluations { get; set; }

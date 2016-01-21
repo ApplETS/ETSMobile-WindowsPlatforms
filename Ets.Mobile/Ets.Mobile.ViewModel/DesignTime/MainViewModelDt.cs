@@ -1,139 +1,91 @@
-﻿using System;
-using System.Collections.Generic;
-using Ets.Mobile.Entities.Signets;
-using System.ComponentModel;
-using System.Reactive.Linq;
-using System.Runtime.CompilerServices;
-using Windows.ApplicationModel;
+﻿using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Content.Main;
-using Ets.Mobile.ViewModel.Contracts;
+using Ets.Mobile.ViewModel.Contracts.Main;
+using Ets.Mobile.ViewModel.Contracts.Shared;
+using Ets.Mobile.ViewModel.Pages.UserDetails;
+using Ets.Mobile.ViewModel.Panes.SideNavigation;
 using ReactiveUI;
-using ReactiveUI.Xaml.Controls.Presenter;
-using StoreFramework.Themes;
+using ReactiveUI.Xaml.Controls.Core;
+using ReactiveUI.Xaml.Controls.Handlers;
+using System;
+using System.Collections.Generic;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using Windows.ApplicationModel;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
-    public class MainViewModelDt : IMainViewModel, INotifyPropertyChanged
+    public class MainViewModelDt : DesignTimeBase, IMainPageViewModel
     {
-        public class TodayTileVm
-        {
-            public ActivityVm Model { get; set; }
-            public bool IsTimeRemainingVisible { get; set; }
-            public string TimeRemaining { get; set; }
-        }
-
-        public class GradeTileVm
-        {
-            public GradeViewModelGroup ModelGroup { get; set; }
-        }
-
         public MainViewModelDt()
         {
             if (DesignMode.DesignModeEnabled)
             {
-                var todayItems = new List<TodayTileVm>
+                var todayItems = new ReactiveList<ScheduleVm>(new List<ScheduleVm>
                 {
-                    new TodayTileVm
+                    new ScheduleVm
                     {
-                        Model = new ActivityVm
-                        {
-                            Group = "01",
-                            Acronym = "LOG240",
-                            Title = "Analyse et conception de logiciels",
-                            IsPrincipalActivity = true,
-                            Type = "C",
-                            StartHour = DateTime.Now.TimeOfDay,
-                            EndHour = DateTime.Now.AddMinutes(90).TimeOfDay,
-                            Day = Convert.ToInt32("5"),
-                            DayName = "Friday",
-                            Location = "A-1300",
-                            Name = "Activité de cours",
-                            Color = AppColors.Green,
-                        
-                        },
-                        IsTimeRemainingVisible = true,
-                        TimeRemaining = "39"
-                    },
-                    new TodayTileVm {Model = new ActivityVm
-                    {
-                        Group = "01",
-                        Acronym = "LOG210",
                         Title = "Analyse et conception de logiciels",
-                        IsPrincipalActivity = true,
-                        Type = "C",
-                        StartHour = DateTime.Now.AddMinutes(120).TimeOfDay,
-                        EndHour = DateTime.Now.AddMinutes(120).AddMinutes(90).TimeOfDay,
-                        Day = Convert.ToInt32("5"),
-                        DayName = "Friday",
                         Location = "A-1300",
                         Name = "Activité de cours",
-                        Color = AppColors.Red
-                    }},
-                    new TodayTileVm {Model = new ActivityVm
+                        CourseAndGroup = "LOG430-01",
+                        Description = "Description",
+                        StartDate = DateTime.Now.AddMinutes(2),
+                        EndDate = DateTime.Now.AddMinutes(62),
+                        Color = "#ea7635"
+                    },
+                    new ScheduleVm
                     {
-                        Group = "01",
-                        Acronym = "LOG330",
-                        Title = "Assurance de la qualité des logiciels",
-                        IsPrincipalActivity = true,
-                        Type = "C",
-                        StartHour = DateTime.Now.AddMinutes(240).TimeOfDay,
-                        EndHour = DateTime.Now.AddMinutes(240).AddMinutes(90).TimeOfDay,
-                        Day = Convert.ToInt32("5"),
-                        DayName = "Friday",
+                        Title = "Analyse et conception de logiciels",
                         Location = "A-1300",
                         Name = "Activité de cours",
-                        Color = AppColors.Orange
-                    }},
-                };
+                        CourseAndGroup = "LOG430-01",
+                        Description = "Description",
+                        StartDate = DateTime.Now.AddMinutes(2),
+                        EndDate = DateTime.Now.AddMinutes(62),
+                        Color = "#ea7635"
+                    }
+                });
 
-                var gradeItems = new List<GradeTileVm>
+                var gradeItems = new ReactiveList<GradeSummaryViewModelGroup>(new List<GradeSummaryViewModelGroup>
                 {
-                    new GradeTileVm
+                    new GradeSummaryViewModelGroup("H2015", new [] {
+                        new CourseVm
+                        {
+                            Acronym = "LOG430",
+                            Grade = "A",
+                            Name = "Architecture",
+                            Semester = "H2015",
+                            Program = "",
+                            Color = "#ea7635"
+                        }
+                    }, null)
+                });
+
+                TodayPresenter = new ReactivePresenterHandlerDesignTime<IReactiveDerivedList<ScheduleVm>>(Observable.Return(new ReactiveDerivedListDesignTime<ScheduleVm>(todayItems)));
+                GradesPresenter = new ReactivePresenterHandlerDesignTime<IReactiveDerivedList<GradeSummaryViewModelGroup>>(Observable.Return(new ReactiveDerivedListDesignTime<GradeSummaryViewModelGroup>(gradeItems)));
+                LoadCoursesForToday = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new ScheduleVm[0]));
+                LoadCoursesSummaries = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new List<GradeSummaryViewModelGroup>()));
+                NavigateToSchedule = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
+                NavigateToProgram = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
+                SideNavigation = new SideNavigationPaneViewModel(null)
+                {
+                    UserDetails = new UserDetailsPageViewModel(null)
                     {
-                        ModelGroup = new GradeViewModelGroup("H2015", new List<CourseVm>
+                        Profile = new UserDetailsVm
                         {
-                            new CourseVm
-                            {
-                                Group = "01",
-                                Acronym = "LOG210",
-                                Name = "Activité de cours",
-                                Color = AppColors.Red
-                            }
-                        }, _ =>
-                        {
-                            _.Evaluations = new EvaluationsVm
-                            {
-                                ActualGrade = 80
-                            };
-                        })
-                        {
-                            Key = "H2015",
-                            GradesItems = new ReactiveList<GradeViewModelItem>
-                            {
-                                new GradeViewModelItem("H2015", new CourseVm
-                                {
-                                    Group = "01",
-                                    Acronym = "LOG210",
-                                    Name = "Activité de cours",
-                                    Color = AppColors.Red,
-                                    A = AppColors.Red.A,
-                                    R = AppColors.Red.R,
-                                    G = AppColors.Red.G,
-                                    B = AppColors.Red.B,
-                                })
-                            }
+                            Username = "AK83510"
                         }
                     }
                 };
 
-                TodayPresenter = ReactivePresenterViewModel<List<TodayTileVm>>.Create(Observable.Return(todayItems));
-                GradePresenter = ReactivePresenterViewModel<List<GradeTileVm>>.Create(Observable.Return(gradeItems));
+                IsAppBarVisible = true;
             }
         }
 
-        private IReactivePresenterViewModel<List<TodayTileVm>> _todayPresenter;
-
-        public IReactivePresenterViewModel<List<TodayTileVm>> TodayPresenter
+        private IReactivePresenterHandler<IReactiveDerivedList<ScheduleVm>> _todayPresenter;
+        public IReactivePresenterHandler<IReactiveDerivedList<ScheduleVm>> TodayPresenter
         {
             get { return _todayPresenter; }
             set
@@ -143,9 +95,10 @@ namespace Ets.Mobile.ViewModel.DesignTime
             }
         }
 
-        private IReactivePresenterViewModel<List<GradeTileVm>> _gradePresenter;
+        public bool IsAppBarVisible { get; set; }
 
-        public IReactivePresenterViewModel<List<GradeTileVm>> GradePresenter
+        private IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> _gradePresenter;
+        public IReactivePresenterHandler<IReactiveDerivedList<GradeSummaryViewModelGroup>> GradesPresenter
         {
             get { return _gradePresenter; }
             set
@@ -155,16 +108,15 @@ namespace Ets.Mobile.ViewModel.DesignTime
             }
         }
 
-        #region PropertyChanged
+        public ISideNavigationPaneViewModel SideNavigation { get; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var handler = PropertyChanged;
-            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
+        public ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; }
+        public IReactiveDerivedList<ScheduleVm> Today { get; }
+        public ReactiveList<ScheduleVm> TodayItems { get; }
+        public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadCoursesSummaries { get; }
+        public IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; }
+        public ReactiveList<GradeSummaryViewModelGroup> GradesItems { get; }
+        public ReactiveCommand<Unit> NavigateToSchedule { get; }
+        public ReactiveCommand<Unit> NavigateToProgram { get; }
     }
 }

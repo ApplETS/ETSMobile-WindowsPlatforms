@@ -1,27 +1,27 @@
-﻿using System.Reactive.Linq;
+﻿using Ets.Mobile.ViewModel.Pages.Main;
+using ReactiveUI;
+using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Ets.Mobile.ViewModel.Pages.Main;
-using ReactiveUI;
 
 namespace Ets.Mobile.Pages.Main
 {
-    public partial class MainPage : Page, IViewFor<MainViewModel>
+    public partial class MainPage : Page, IViewFor<MainPageViewModel>
     {
         #region IViewFor<T>
 
-        public MainViewModel ViewModel
+        public MainPageViewModel ViewModel
         {
-            get { return (MainViewModel)GetValue(ViewModelProperty); }
+            get { return (MainPageViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(MainViewModel), typeof(MainPage), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(MainPageViewModel), typeof(MainPage), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (MainViewModel)value; }
+            set { ViewModel = (MainPageViewModel)value; }
         }
 
         #endregion
@@ -39,14 +39,13 @@ namespace Ets.Mobile.Pages.Main
             var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
                 .Where(x => x != null);
 
-            subscriptionForViewModel
-                .InvokeCommand(this, x => x.ViewModel.GetProfile);
+            subscriptionForViewModel.BindTo(this, x => x.DataContext);
 
             subscriptionForViewModel
                 .InvokeCommand(this, x => x.ViewModel.LoadCoursesForToday);
 
             subscriptionForViewModel
-                .InvokeCommand(this, x => x.ViewModel.LoadGrades);
+                .InvokeCommand(this, x => x.ViewModel.LoadCoursesSummaries);
 
             PartialInitialize();
         }

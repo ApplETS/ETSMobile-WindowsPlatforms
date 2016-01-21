@@ -18,25 +18,11 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <AppxBundle>Always</AppxBundle>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <AppxPackageDir>C:\Users\Martin Gemme\Desktop\Output\UAP\</AppxPackageDir>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -83,17 +69,92 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Grade\CourseChooserForGrades.xaml.cs">
+      <DependentUpon>CourseChooserForGrades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Grade\GradeItem.xaml.cs">
+      <DependentUpon>GradeItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Grade\GradeSummary.xaml.cs">
+      <DependentUpon>GradeSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Main\Today.xaml.cs">
+      <DependentUpon>Today.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Moodle\Courses\Courses.xaml.cs">
+      <DependentUpon>Courses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Moodle\Courses\CoursesContent.xaml.cs">
+      <DependentUpon>CoursesContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Moodle\Courses\CoursesModule.xaml.cs">
+      <DependentUpon>CoursesModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Moodle\Courses\CoursesModuleContent.xaml.cs">
+      <DependentUpon>CoursesModuleContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Program\Programs.xaml.cs">
+      <DependentUpon>Programs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\Confidentiality.xaml.cs">
+      <DependentUpon>Confidentiality.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\Credits.xaml.cs">
+      <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Settings\Options.xaml.cs">
+      <DependentUpon>Options.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Shared\SideNavigation.xaml.cs">
+      <DependentUpon>SideNavigation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Account\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ExtendedSplashScreen\ExtendedSplashScreenPage.xaml.cs">
+      <DependentUpon>ExtendedSplashScreenPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Grade\GradePage.xaml.cs">
+      <DependentUpon>GradePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Grade\SelectCourseForGradePage.xaml.cs">
+      <DependentUpon>SelectCourseForGradePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Shared\MenuButton.xaml.cs">
-      <DependentUpon>MenuButton.xaml</DependentUpon>
+    <Compile Include="Pages\Moodle\Courses\MoodleCourseContentPage.xaml.cs">
+      <DependentUpon>MoodleCourseContentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Moodle\Courses\MoodleCourseModuleContentPage.xaml.cs">
+      <DependentUpon>MoodleCourseModuleContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Moodle\Courses\MoodleCourseModulePage.xaml.cs">
+      <DependentUpon>MoodleCourseModulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Moodle\MoodleMainPage.xaml.cs">
+      <DependentUpon>MoodleMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Program\ProgramPage.xaml.cs">
+      <DependentUpon>ProgramPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Schedule\SchedulePage.xaml.cs">
+      <DependentUpon>SchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RefitStubs.cs" />
+    <Compile Include="Shell\PageHeader.xaml.cs">
+      <DependentUpon>PageHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Shell\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
@@ -104,20 +165,106 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Account\Login\background_blur.jpg" />
+    <Content Include="Assets\Account\Login\background_blur_cropped.jpg" />
+    <Content Include="Assets\Account\Login\background_blur_loading_cropped.jpg" />
     <Content Include="Assets\Account\Login\ETS-Devise.png" />
-    <Content Include="Assets\Logo.scale-240.png" />
-    <Content Include="Assets\SmallLogo.scale-240.png" />
-    <Content Include="Assets\SplashScreen.scale-100.png" />
-    <Content Include="Assets\SplashScreen.scale-140.png" />
-    <Content Include="Assets\SplashScreen.scale-240.png" />
+    <Content Include="Assets\AppStoreLogo.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.Full.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-140.png" />
+    <Content Include="Assets\SplashScreen\SplashScreen.scale-240.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-140.png" />
+    <Content Include="Assets\Square150x150Logo.scale-240.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-140.png" />
+    <Content Include="Assets\Square44x44Logo.scale-240.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-140.png" />
     <Content Include="Assets\Square71x71Logo.scale-240.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-140.png" />
     <Content Include="Assets\StoreLogo.scale-240.png" />
-    <Content Include="Assets\WideLogo.scale-240.png" />
-    <Content Include="ReadMe.Coding4Fun.Toolkit.txt" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-140.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-240.png" />
+    <None Include="Package.StoreAssociation.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Content\Grade\CourseChooserForGrades.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Grade\GradeItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Grade\GradeSummary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Main\Today.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Moodle\Courses\Courses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\Moodle\Courses\CoursesContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\Moodle\Courses\CoursesModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\Moodle\Courses\CoursesModuleContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\Program\Programs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\Confidentiality.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\Credits.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Content\Settings\Options.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Content\Shared\SideNavigation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Account\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ExtendedSplashScreen\ExtendedSplashScreenPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Grade\GradePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Grade\SelectCourseForGradePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,7 +272,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Shared\MenuButton.xaml">
+    <Page Include="Pages\Moodle\Courses\MoodleCourseContentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Moodle\Courses\MoodleCourseModuleContentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Moodle\Courses\MoodleCourseModulePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Moodle\MoodleMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Program\ProgramPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Schedule\SchedulePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,6 +304,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="Shell\PageHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Shell\ShellPage.xaml">
       <SubType>Designer</SubType>
@@ -143,49 +318,162 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Skins\ReactivePresenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Skins\SplitViewStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Akavache, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\akavache.core.4.1.1\lib\Portable-Win81+Wpa81\Akavache.dll</HintPath>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ets.Mobile.Agent.WinPhone\Ets.Mobile.Agent.WinPhone.csproj">
+      <Project>{de843c4e-2ebd-43be-bc0a-9055631ad9dd}</Project>
+      <Name>Ets.Mobile.Agent.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Business.WinPhone\Ets.Mobile.Business.WinPhone.csproj">
+      <Project>{e222ab54-2f09-4b90-846f-b2a3eb893233}</Project>
+      <Name>Ets.Mobile.Business.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Client.WinPhone\Ets.Mobile.Client.WinPhone.csproj">
+      <Project>{7b995881-1066-4b64-9b58-92fe40397667}</Project>
+      <Name>Ets.Mobile.Client.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.Entities.WinPhone\Ets.Mobile.Entities.WinPhone.csproj">
+      <Project>{ce35f282-6085-4910-bfe2-38a93c50cd8b}</Project>
+      <Name>Ets.Mobile.Entities.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ets.Mobile.ViewModel.WinPhone\Ets.Mobile.ViewModel.WinPhone.csproj">
+      <Project>{a059e0a6-8a78-4a53-b2a9-4ec0efdff71b}</Project>
+      <Name>Ets.Mobile.ViewModel.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Controls\Controls.csproj">
+      <Project>{f30613aa-0eb9-4d44-b42f-ecaf50bdf7ec}</Project>
+      <Name>Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Localization\Implementations\Localization\Localization.csproj">
+      <Project>{8070a42a-49a9-46a6-8bc1-daa063bc3832}</Project>
+      <Name>Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Localization\Localization.Interface\Localization.Interface.csproj">
+      <Project>{826aad69-11c1-43c4-be7e-b1d8c3b45cb9}</Project>
+      <Name>Localization.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger.Crittercism\Implementations\Logger.CrittercismLog.WinPhone\Logger.CrittercismLog.WinPhone.csproj">
+      <Project>{9c143aa8-6734-4177-b131-510078ca8e12}</Project>
+      <Name>Logger.CrittercismLog.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger.SplatLog\Implementations\Logger.SplatLog.WinPhone\Logger.SplatLog.WinPhone.csproj">
+      <Project>{76ed68d4-c68a-480b-94b6-22f56cb16f5f}</Project>
+      <Name>Logger.SplatLog.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Logger\Logger.csproj">
+      <Project>{db28d584-ba06-4fd9-baa9-c593b8c57f8e}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Implementations\Messaging.UniversalApp.WinPhone\Messaging.UniversalApp.WinPhone.csproj">
+      <Project>{f78a088c-306c-4c5d-b393-8ff9ea30ed8f}</Project>
+      <Name>Messaging.UniversalApp.WinPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Messaging\Messaging.Interfaces\Messaging.Interfaces.csproj">
+      <Project>{b518ce6a-6381-4376-9023-d9a5710cc9dc}</Project>
+      <Name>Messaging.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Extensions\ReactiveUI.Extensions.csproj">
+      <Project>{9413fc9e-7f92-41e5-ba27-3b29ed02fc42}</Project>
+      <Name>ReactiveUI.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\ReactiveUI\ReactiveUI.Xaml.Controls\UAP\ReactiveUI.Xaml.Controls.UAP\ReactiveUI.Xaml.Controls.UAP.csproj">
+      <Project>{c8329a73-199d-44de-b174-4d12189442cd}</Project>
+      <Name>ReactiveUI.Xaml.Controls.UAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Security\Implementations\Security.UAP\Security.UAP.csproj">
+      <Project>{506b409b-90ce-4cff-b683-5a5f7c29f610}</Project>
+      <Name>Security.UAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Security\Security.Interface\Security.Interface.csproj">
+      <Project>{548f134e-64d7-4699-9672-62f98287d62c}</Project>
+      <Name>Security.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Themes\Themes.csproj">
+      <Project>{31018ac6-ebb8-4c95-80d8-b6529994e60b}</Project>
+      <Name>Themes</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Universal.UI.Xaml.Controls\Universal.UI.Xaml.Controls.csproj">
+      <Project>{ad458c94-da3a-4940-bc31-a370aa0adb5e}</Project>
+      <Name>Universal.UI.Xaml.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Xaml.Converters\Xaml.Converters.csproj">
+      <Project>{d09cb47f-c41a-4121-b6d8-02dd70ba9410}</Project>
+      <Name>Xaml.Converters</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs, Version=12.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
+    </SDKReference>
+    <SDKReference Include="Syncfusion 8.1 Controls for WP XAML, Version=13.4.0.53">
+      <Name>Syncfusion 8.1 Controls for WP XAML</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Akavache, Version=4.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\akavache.core.4.1.2\lib\Portable-Win81+Wpa81\Akavache.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Akavache.Sqlite3, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\akavache.sqlite3.4.1.1\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.Sqlite3.dll</HintPath>
+    <Reference Include="Akavache.Mobile, Version=4.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\akavache.mobile.4.1.2\lib\Portable-Win81+Wpa81\Akavache.Mobile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Akavache.Sqlite3, Version=4.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\akavache.sqlite3.4.1.2\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.Sqlite3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Coding4Fun.Toolkit, Version=2.0.8.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.1.0.4-beta\lib\wpa81\Coding4Fun.Toolkit.dll</HintPath>
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\wpa81\Coding4Fun.Toolkit.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.1.0.4-beta\lib\wpa81\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\wpa81\Coding4Fun.Toolkit.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fusillade, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\fusillade.0.6.0\lib\Portable-net45+win+wpa81+wp80\Fusillade.dll</HintPath>
+    <Reference Include="CrittercismSDK, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Crittercism.2.2.4\lib\wpa81\CrittercismSDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ModernHttpClient">
+    <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Punchclock, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Punchclock.1.1.1\lib\Portable-net45+win+wpa81+wp80\Punchclock.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ReactiveUI, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Refit, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\refit.2.3.0\lib\Portable-Win81+Wpa81\Refit.dll</HintPath>
+    <Reference Include="ReactiveUI.Events, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reactiveui-events.6.5.0\lib\WPA81\ReactiveUI.Events.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SlideView.Library, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SlideView.1.4.2\lib\wpa81\SlideView.Library.dll</HintPath>
+    <Reference Include="Refit, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\refit.2.4.1\lib\Portable-Win81+Wpa81\Refit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -196,7 +484,7 @@
       <HintPath>..\packages\SQLitePCL.raw_basic.0.7.0\lib\wpa81\SQLitePCL.raw.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Reactive.Core">
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Rx-Core.2.2.5\lib\portable-win81+wpa81\System.Reactive.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -213,50 +501,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rx-Xaml.2.2.5\lib\portable-win81+wpa81\System.Reactive.Windows.Threading.dll</HintPath>
+      <HintPath>..\packages\Rx-XAML.2.2.5\lib\portable-win81+wpa81\System.Reactive.Windows.Threading.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Reactive.WindowsRuntime">
+    <Reference Include="System.Reactive.WindowsRuntime, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Rx-WinRT.2.2.5\lib\portable-win81+wpa81\System.Reactive.WindowsRuntime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Main\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Ets.Mobile.Business.WinPhone\Ets.Mobile.Business.WinPhone.csproj">
-      <Project>{e222ab54-2f09-4b90-846f-b2a3eb893233}</Project>
-      <Name>Ets.Mobile.Business.WinPhone</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.Client.WinPhone\Ets.Mobile.Client.WinPhone.csproj">
-      <Project>{7b995881-1066-4b64-9b58-92fe40397667}</Project>
-      <Name>Ets.Mobile.Client.WinPhone</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.Entities.WinPhone\Ets.Mobile.Entities.WinPhone.csproj">
-      <Project>{ce35f282-6085-4910-bfe2-38a93c50cd8b}</Project>
-      <Name>Ets.Mobile.Entities.WinPhone</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.StoreFramework.WinPhone\Ets.Mobile.StoreFramework.WinPhone.csproj">
-      <Project>{36c64212-92f6-47cc-b21b-d5bf1bf47fee}</Project>
-      <Name>Ets.Mobile.StoreFramework.WinPhone</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ets.Mobile.ViewModel.WinPhone\Ets.Mobile.ViewModel.WinPhone.csproj">
-      <Project>{a059e0a6-8a78-4a53-b2a9-4ec0efdff71b}</Project>
-      <Name>Ets.Mobile.ViewModel.WinPhone</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
-      <Name>Behaviors SDK %28XAML%29</Name>
-    </SDKReference>
-    <SDKReference Include="Microsoft.VCLibs, Version=12.0">
-      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
-    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
@@ -264,18 +515,64 @@
   <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
     <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>send</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <Import Project="..\Ets.Mobile.Shared\Ets.Mobile.Shared.projitems" Label="Shared" Condition="Exists('..\Ets.Mobile.Shared\Ets.Mobile.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <Import Project="..\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets" Condition="Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets')" />
+  <Target Name="BeforeBuild">
+    <ItemGroup>
+      <Files Include="..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI\ReactiveUI.xr.xml" />
+      <Files Include="..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI\Themes\generic-winrt.xbf" />
+    </ItemGroup>
+  </Target>
+  <Target Name="BeforeBuild">
+    <PropertyGroup>
+      <Coding4Fun_Toolkit_Controls_Xr_Xml>$([System.IO.Path]::GetFullPath('..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\netcore451\Coding4Fun.Toolkit.Controls\Coding4Fun.Toolkit.Controls.xr.xml'))</Coding4Fun_Toolkit_Controls_Xr_Xml>
+      <Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>$([System.IO.Path]::GetFullPath('..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\netcore451\Coding4Fun.Toolkit.Controls\Themes\Generic.xbf'))</Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf>
+      <ReactiveUI_Xr_Xml>$([System.IO.Path]::GetFullPath('..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI\ReactiveUI.xr.xml'))</ReactiveUI_Xr_Xml>
+      <Generic_Winrt_Xbf>$([System.IO.Path]::GetFullPath('..\packages\reactiveui-core.6.5.0\lib\Portable-Win81+WPA81\ReactiveUI\Themes\generic-winrt.xbf'))</Generic_Winrt_Xbf>
+    </PropertyGroup>
+    <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Xr_Xml)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls" />
+    <Copy SourceFiles="$(Coding4Fun_Toolkit_Controls_Generic_Winrt_Xbf)" DestinationFolder="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls/Themes" />
+    <Copy SourceFiles="$(ReactiveUI_Xr_Xml)" DestinationFolder="bin/$(Platform)/$(Configuration)/ReactiveUI" />
+    <Copy SourceFiles="$(Generic_Winrt_Xbf)" DestinationFolder="bin/$(Platform)/$(Configuration)/ReactiveUI/Themes" />
+  </Target>
+  <Target Name="Clean">
+    <RemoveDir Directories="bin/$(Platform)/$(Configuration)/Coding4Fun.Toolkit.Controls" />
+    <RemoveDir Directories="bin/$(Platform)/$(Configuration)/ReactiveUI" />
+  </Target>
+  <Import Project="..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets" Condition="Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets'))" />
     <Error Condition="!Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets'))" />
-    <Error Condition="!Exists('..\packages\refit.2.3.0\build\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\refit.2.3.0\build\refit.targets'))" />
   </Target>
-  <Import Project="..\packages\refit.2.3.0\build\refit.targets" Condition="Exists('..\packages\refit.2.3.0\build\refit.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <Import Project="..\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets" Condition="Exists('..\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

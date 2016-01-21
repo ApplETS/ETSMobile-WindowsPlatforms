@@ -1,26 +1,29 @@
-﻿using System;
+﻿using Ets.Mobile.ViewModel.Pages.Account;
+using ReactiveUI;
+using System;
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
-using Ets.Mobile.ViewModel.Pages.Account;
-using ReactiveUI;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+
 namespace Ets.Mobile.Pages.Account
 {
-    public partial class LoginPage : IViewFor<LoginViewModel>
+    public partial class LoginPage : IViewFor<LoginPageViewModel>
     {
         #region IViewFor<T>
 
-        public LoginViewModel ViewModel
+        public LoginPageViewModel ViewModel
         {
-            get { return (LoginViewModel)GetValue(ViewModelProperty); }
+            get { return (LoginPageViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(LoginViewModel), typeof(LoginPage), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(LoginPageViewModel), typeof(LoginPage), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (LoginViewModel)value; }
+            set { ViewModel = (LoginPageViewModel)value; }
         }
 
         #endregion
@@ -29,17 +32,10 @@ namespace Ets.Mobile.Pages.Account
         {
             InitializeComponent();
 
-            // When ViewModel is set
-            this.WhenAnyValue(x => x.ViewModel)
-                .Where(x => x != null)
-                .Subscribe(x =>
-                {
-#if DEBUG
-                    ViewModel.UserName = "";
-                    ViewModel.Password = "";
-#endif
-                    SubmitCommand.Click += (sender, arg) => { ErrorMessage.Visibility = Visibility.Collapsed; };
-                });
+            Login.Events().Click.Subscribe(arg =>
+            {
+                ErrorMessage.Visibility = Visibility.Collapsed;
+            });
 
             // Error Handling
             UserError.RegisterHandler(ue =>
@@ -49,12 +45,10 @@ namespace Ets.Mobile.Pages.Account
 
                 return Observable.Return(RecoveryOptionResult.CancelOperation);
             });
-
-            this.BindCommand(ViewModel, x => x.SubmitCommand, x => x.SubmitCommand);
-
-            PartialRegisterBindings();
+            
+            PartialInitialize();
         }
 
-        partial void PartialRegisterBindings();
+        partial void PartialInitialize();
     }
 }

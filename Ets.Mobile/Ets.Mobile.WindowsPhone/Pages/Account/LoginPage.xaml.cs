@@ -1,11 +1,10 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Ets.Mobile.ViewModel.Pages.Account;
-using ReactiveUI;
-using System.Threading.Tasks;
 
 namespace Ets.Mobile.Pages.Account
 {
@@ -13,33 +12,30 @@ namespace Ets.Mobile.Pages.Account
     {
         private bool _isLoginShown;
 
-        partial void PartialRegisterBindings()
+        partial void PartialInitialize()
         {
             var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
             statusBar.BackgroundOpacity = 0;
+            statusBar.HideAsync().GetResults();
 
             // View ModelGroup
-            RxApp.SuspensionHost.ObserveAppState<LoginViewModel>()
-                .BindTo(this, x => x.ViewModel);
-            //this.OneWayBind(ViewModel, x => x.HostScreen, x => x.LoginRoutedViewHost);
+            //RxApp.SuspensionHost.ObserveAppState<LoginPageViewModel>()
+            //    .BindTo(this, x => x.ViewModel);
+            
+            var subscriptionForViewModel = this.WhenAnyValue(x => x.ViewModel)
+                .Where(x => x != null);
 
-            // Form
-            this.Bind(ViewModel, x => x.UserName, x => x.UserName.Text);
-            this.Bind(ViewModel, x => x.Password, x => x.Password.Password);
+            subscriptionForViewModel.BindTo(this, x => x.DataContext);
 
-            // Handle Login Animation State
-            this.WhenAnyValue(x => x.ViewModel)
-                .Where(x => x != null)
-                .Subscribe(x =>
+            subscriptionForViewModel
+                .Subscribe(vm =>
                 {
-                    ViewModel.SwitchToLogin = ReactiveCommand.CreateAsyncTask(_ =>
+                    vm.SwitchToLogin = ReactiveCommand.CreateAsyncTask(_ =>
                     {
                         NavigateToVisualState(ShowLogin.Name, true);
                         return Task.FromResult(_isLoginShown);
                     });
                 });
-
-            this.BindCommand(ViewModel, x => x.SwitchToLogin, x => x.SwitchToLogin);
         }
 
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
