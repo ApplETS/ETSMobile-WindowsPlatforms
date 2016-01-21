@@ -52,8 +52,8 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             Login = ReactiveCommand.CreateAsyncTask(canLoginExecute, async _ => await LoginImpl());
 
             Login.Subscribe(accountVm => {
-                LogSubject.OnNext("Navigate to MainViewModel");
-                HostScreen.Router.NavigateAndReset.Execute(new MainViewModel(HostScreen));
+                LogSubject.OnNext("Navigate to MainPageViewModel");
+                HostScreen.Router.NavigateAndReset.Execute(new MainPageViewModel(HostScreen));
             });
 
             Login.ThrownExceptions.Subscribe(LoginThrownExceptionImpl);

@@ -45,9 +45,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\MoodleMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Program\ProgramViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Schedule\ScheduleViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Grade.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainViewModel.Today.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.Grade.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.Today.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Settings\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Shared\SideNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\UserDetails\UserDetailsViewModel.cs" />

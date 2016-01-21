@@ -10,7 +10,7 @@ namespace Ets.Mobile.Views
 {
     public class ApplicationViewModelsTypes
     {
-        public Type Main { get; set; } = typeof(MainViewModel);
+        public Type Main { get; set; } = typeof(MainPageViewModel);
         public Type Schedule { get; set; } = typeof(ScheduleViewModel);
         public Type SelectCourseForGrade { get; set; } = typeof(SelectCourseForGradePageViewModel);
         public Type Program { get; set; } = typeof(ProgramViewModel);

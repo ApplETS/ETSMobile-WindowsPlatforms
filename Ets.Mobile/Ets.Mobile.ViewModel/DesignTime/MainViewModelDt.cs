@@ -16,7 +16,7 @@ using Windows.ApplicationModel;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
-    public class MainViewModelDt : DesignTimeBase, IMainViewModel
+    public class MainViewModelDt : DesignTimeBase, IMainPageViewModel
     {
         public MainViewModelDt()
         {

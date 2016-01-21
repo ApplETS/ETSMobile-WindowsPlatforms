@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Ets.Mobile.ViewModel.Contracts.Main
 {
-    public interface IMainViewModel
+    public interface IMainPageViewModel
     {
         ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; }
         ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadCoursesSummaries { get; }

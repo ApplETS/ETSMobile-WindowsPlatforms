@@ -210,7 +210,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             set { this.RaiseAndSetIfChanged(ref _isMain, value); }
         }
 
-        public Type[] MainTypes { get; } = { typeof (MainViewModel) };
+        public Type[] MainTypes { get; } = { typeof (MainPageViewModel) };
 
         private bool _isSchedule;
         public bool IsSchedule

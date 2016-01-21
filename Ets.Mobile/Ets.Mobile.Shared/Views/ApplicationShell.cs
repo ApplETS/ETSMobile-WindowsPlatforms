@@ -174,7 +174,7 @@ namespace Ets.Mobile.ViewModel
                         _resolver.GetService<ISsoService>().SetCredentials(signetsAccountVm);
                         _resolver.GetService<IUserEnabledLogger>().SetUser(Locator.Current.GetService<ISecurityProvider>().HashMd5(signetsAccountVm.Username));
 	                    SideNavigation.UserDetails.LoadProfile.Execute(null);
-                        navigateTo = new MainViewModel(this);
+                        navigateTo = new MainPageViewModel(this);
 	                }
 	                else
 	                {
@@ -199,7 +199,7 @@ namespace Ets.Mobile.ViewModel
         {
             // Register Views for the Router
             resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginPageViewModel>));
-            resolver.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
+            resolver.Register(() => new MainPage(), typeof(IViewFor<MainPageViewModel>));
             resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
             resolver.Register(() => new GradePage(), typeof(IViewFor<GradePageViewModel>));
             resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramViewModel>));
