@@ -21,7 +21,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
-    <AppxPackageDir>D:\Desktop\Output\UAP\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\Martin Gemme\Desktop\Output\UAP\</AppxPackageDir>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
@@ -168,6 +168,7 @@
     <Content Include="Assets\Account\Login\background_blur_cropped.jpg" />
     <Content Include="Assets\Account\Login\background_blur_loading_cropped.jpg" />
     <Content Include="Assets\Account\Login\ETS-Devise.png" />
+    <Content Include="Assets\AppStoreLogo.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.Full.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.scale-140.png" />

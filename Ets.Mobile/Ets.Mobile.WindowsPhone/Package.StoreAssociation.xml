@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
-  <Publisher>CN=42E5AC80-142A-49C5-8662-130D8F1D0E52</Publisher>
-  <PublisherDisplayName>MartinG</PublisherDisplayName>
+  <Publisher>CN=AD96D700-7CE9-4E92-877E-2A09FC6127D3</Publisher>
+  <PublisherDisplayName>École de Technologie Supérieure</PublisherDisplayName>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
     <Language Code="af" InMinimumRequirementSet="true" />
@@ -358,11 +358,11 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>11043Sypnotic.430246DD8D0A5</MainPackageIdentityName>
+    <MainPackageIdentityName>coledeTechnologieSuprieur.TSMobile</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>ÉTSMobile Beta</ReservedName>
+      <ReservedName>ÉTSMobile</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames />
-  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH58RVJ" />
+  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH6J3RC" />
 </StoreAssociation>
