@@ -1,13 +1,13 @@
 ﻿using Ets.Mobile.Entities.Signets;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
-using ReactiveUI.Xaml.Controls.Handlers;
 
 namespace Ets.Mobile.ViewModel.Contracts.Program
 {
     public interface IProgramPageViewModel
     {
-        IReactivePresenterHandler<IReactiveDerivedList<ProgramVm>> ProgramPresenter { get; }
+        ReactiveList<ProgramVm> ProgramItems { get; }
+        IReactiveDerivedList<ProgramVm> Program { get; }
         ReactivePresenterCommand<ProgramVm[]> FetchPrograms { get; }
     }
 }
