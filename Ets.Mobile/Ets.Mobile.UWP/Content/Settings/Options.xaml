@@ -18,10 +18,8 @@
             <RichTextBlock Pivot.SlideInAnimationGroup="3" Style="{ThemeResource EtsOptionsDescriptionStyle}">
                 <Paragraph Foreground="{ThemeResource EtsTextSecondaryBrush}" >
                     <Run x:Uid="LiveTileAndLockScreenDescription1Uid" Text="Vous pouvez sélectionner cette application dans les " />
-                    <Hyperlink Foreground="{ThemeResource EtsOptionsDescriptionLinkForeground}" FontSize="{ThemeResource EtsOptionsDescriptionLinkFontSize}" NavigateUri="ms-settings-lock:" >
-                        <Hyperlink.Inlines>
-                            <Run x:Uid="LiveTileAndLockScreenLinkToLockScreenUid" Text="paramètres de l'écran de verrouillage" />
-                        </Hyperlink.Inlines>
+                    <Hyperlink UnderlineStyle="None" Foreground="{ThemeResource EtsOptionsDescriptionLinkForeground}" FontSize="{ThemeResource EtsOptionsDescriptionLinkFontSize}" NavigateUri="ms-settings-lock:">
+                        <Run x:Uid="LiveTileAndLockScreenLinkToLockScreenUid" Text="paramètres de l'écran de verrouillage" />
                     </Hyperlink>
                     <Run x:Uid="LiveTileAndLockScreenDescription2Uid" Text=" afin d'afficher l'horaire sur l'écran de verrouillage" />
                 </Paragraph>
