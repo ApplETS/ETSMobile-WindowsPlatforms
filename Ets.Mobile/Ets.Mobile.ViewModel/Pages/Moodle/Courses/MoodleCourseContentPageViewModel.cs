@@ -3,6 +3,7 @@ using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Moodle;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Content.Moodle.Courses.Content;
+using Ets.Mobile.ViewModel.Contracts.Moodle.Courses;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Extensions;
