@@ -60,13 +60,13 @@ namespace Ets.Mobile.ViewModel.Bases
             return _vs ?? (_vs = _serviceLocator.GetService<IViewService>());
         }
 
-        private ISideNavigationViewModel _sideNavigation;
+        private ISideNavigationPaneViewModel _sideNavigation;
 
         // ReSharper disable once MemberCanBeProtected.Global
         // The side navigation needs to be accessible in the views
-        public ISideNavigationViewModel SideNavigation
+        public ISideNavigationPaneViewModel SideNavigation
         {
-            get { return _sideNavigation ?? (_sideNavigation = _serviceLocator.GetService<ISideNavigationViewModel>()); }
+            get { return _sideNavigation ?? (_sideNavigation = _serviceLocator.GetService<ISideNavigationPaneViewModel>()); }
         }
 
         /// <summary>

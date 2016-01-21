@@ -23,8 +23,8 @@ using Ets.Mobile.ViewModel.Pages.Moodle.Courses;
 using Ets.Mobile.ViewModel.Pages.Program;
 using Ets.Mobile.ViewModel.Pages.Schedule;
 using Ets.Mobile.ViewModel.Pages.Settings;
-using Ets.Mobile.ViewModel.Pages.Shared;
 using Ets.Mobile.ViewModel.Pages.UserDetails;
+using Ets.Mobile.ViewModel.Panes.SideNavigation;
 using Logger;
 using ReactiveUI;
 using Refit;
@@ -47,7 +47,7 @@ namespace Ets.Mobile.ViewModel
 {
     public interface IApplicationShell : IScreen
     {
-        ISideNavigationViewModel SideNavigation { get; }
+        ISideNavigationPaneViewModel SideNavigation { get; }
         void HandleAuthentificated();
         void LoadApplicationServices();
     }
@@ -60,8 +60,8 @@ namespace Ets.Mobile.ViewModel
 
         private readonly IMutableDependencyResolver _resolver;
         
-	    private ISideNavigationViewModel _sideNavigation;
-	    public ISideNavigationViewModel SideNavigation => _sideNavigation ?? (_sideNavigation = Locator.Current.GetService<ISideNavigationViewModel>());
+	    private ISideNavigationPaneViewModel _sideNavigation;
+	    public ISideNavigationPaneViewModel SideNavigation => _sideNavigation ?? (_sideNavigation = Locator.Current.GetService<ISideNavigationPaneViewModel>());
 
 	    public ApplicationShell()
 	    {
@@ -73,7 +73,7 @@ namespace Ets.Mobile.ViewModel
             // Register this screen
             _resolver.RegisterConstant(this, typeof(IScreen));
             _resolver.RegisterLazySingleton(() => new UserDetailsViewModel(this), typeof(IUserDetailsViewModel));
-            _resolver.RegisterConstant(_sideNavigation = new SideNavigationViewModel(this), typeof(ISideNavigationViewModel));
+            _resolver.RegisterConstant(_sideNavigation = new SideNavigationPaneViewModel(this), typeof(ISideNavigationPaneViewModel));
 
 #if WINDOWS_PHONE_APP || WINDOWS_UWP
             // Back Button Handling
