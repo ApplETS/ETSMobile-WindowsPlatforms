@@ -17,14 +17,13 @@
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
                 <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem"  BasedOn="{StaticResource ListViewItemWithoutPressedStyle}">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemWithoutPressedFullWidthStyle}">
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="{ThemeResource EtsGradeSummaryItemBrush}" BorderThickness="0,1,1,1" Margin="0,0,0,10">
-                            <Border Width="Auto" BorderBrush="{Binding Color}" BorderThickness="3,0,0,0">
+                            <Border BorderBrush="{Binding Color}" BorderThickness="3,0,0,0">
                                 <Grid Background="{ThemeResource EtsTodayBackgroundBrush}">
                                     <!-- Course not incoming -->
                                     <Grid Visibility="{Binding IsTimeRemainingVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}" Margin="5,5,0,5">

@@ -17,33 +17,38 @@
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
                 <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem"  BasedOn="{StaticResource ListViewItemWithoutPressedStyle}">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Style TargetType="ListViewItem"  BasedOn="{StaticResource ListViewItemWithoutPressedFullWidthStyle}">
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="{ThemeResource EtsGradeSummaryItemBrush}" BorderThickness="0,1,1,1" Margin="0,0,0,10">
                             <Border Width="Auto" BorderBrush="{Binding Color}" BorderThickness="3,0,0,0">
-                                <Grid Background="White">
+                                <Grid Background="{ThemeResource EtsTodayBackgroundBrush}">
                                     <!-- Course not incoming -->
                                     <Grid Visibility="{Binding IsTimeRemainingVisible, Converter={StaticResource InversedBooleanToVisibilityConverter}}" Margin="5,5,0,5">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="35" />
                                             <RowDefinition Height="30" />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Pivot.SlideInAnimationGroup="1" VerticalAlignment="Center" TextWrapping="NoWrap" Grid.Row="0" FontSize="20" Text="{Binding ActivityName}" Foreground="{StaticResource EtsTextSecondaryBrush}" />
+                                        <TextBlock Pivot.SlideInAnimationGroup="1" VerticalAlignment="Center" TextWrapping="NoWrap" Grid.Row="0" Text="{Binding ActivityName}" Style="{ThemeResource EtsTodayItemActivityNameStyle}" />
                                         <Border Canvas.ZIndex="1" Grid.Row="0" Padding="23,0,15,0" HorizontalAlignment="Right" Margin="0,2,0,0">
                                             <Border.Background>
-                                                <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                                                    <GradientStop Color="Transparent" Offset="0"/>
-                                                    <GradientStop Color="White" Offset="0.1"/>
-                                                    <GradientStop Color="White" Offset="1"/>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                    <GradientStop Color="{ThemeResource EtsTodayBackgroundTransparentColor}" Offset="0"/>
+                                                    <GradientStop Color="{ThemeResource EtsTodayBackgroundColor}" Offset="0.1"/>
+                                                    <GradientStop Color="{ThemeResource EtsTodayBackgroundColor}" Offset="1"/>
                                                 </LinearGradientBrush>
                                             </Border.Background>
-                                            <TextBlock Pivot.SlideInAnimationGroup="2" Foreground="{StaticResource EtsTextSecondaryBrush}" FontSize="17" Text="{Binding Time}" TextWrapping="Wrap" />
+                                            <TextBlock Pivot.SlideInAnimationGroup="2" VerticalAlignment="Center" Margin="0,-1,0,0" Style="{ThemeResource EtsTodayItemTimeStyle}" Text="{Binding Time}" TextWrapping="Wrap" />
                                         </Border>
-                                        <TextBlock Pivot.SlideInAnimationGroup="3" VerticalAlignment="Center" Grid.Row="1" FontSize="16" Foreground="{StaticResource EtsTextSecondaryBrush}" Text="{Binding Location}" TextWrapping="Wrap" />
+                                        <TextBlock Pivot.SlideInAnimationGroup="3" VerticalAlignment="Center" Grid.Row="1" Style="{ThemeResource EtsTodayItemDescriptionStyle}" TextWrapping="Wrap">
+                                            <Run Text="{Binding Location}" />
+                                        </TextBlock>
+                                        <TextBlock Pivot.SlideInAnimationGroup="3" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" Style="{ThemeResource EtsTodayItemDescriptionStyle}" TextWrapping="NoWrap" Margin="0,0,15,0">
+                                            <Run Text="{Binding Name}" />
+                                            <Run Text="(Gr:" /><Run Text="{Binding Group}" /><Run Text=")" />
+                                        </TextBlock>
                                     </Grid>
                                     <!-- Course incoming -->
                                     <StackPanel Visibility="{Binding IsTimeRemainingVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal" Margin="5,10,0,10">
