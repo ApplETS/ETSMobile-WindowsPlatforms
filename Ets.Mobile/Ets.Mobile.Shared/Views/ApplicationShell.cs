@@ -72,7 +72,7 @@ namespace Ets.Mobile.ViewModel
 
             // Register this screen
             _resolver.RegisterConstant(this, typeof(IScreen));
-            _resolver.RegisterLazySingleton(() => new UserDetailsViewModel(this), typeof(IUserDetailsViewModel));
+            _resolver.RegisterLazySingleton(() => new UserDetailsPageViewModel(this), typeof(IUserDetailsPageViewModel));
             _resolver.RegisterConstant(_sideNavigation = new SideNavigationPaneViewModel(this), typeof(ISideNavigationPaneViewModel));
 
 #if WINDOWS_PHONE_APP || WINDOWS_UWP

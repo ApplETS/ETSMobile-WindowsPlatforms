@@ -9,7 +9,7 @@ namespace Ets.Mobile.ViewModel.Contracts.Shared
     public interface ISideNavigationPaneViewModel
     {
         ReactiveCommand<Unit> Logout { get; set; }
-        IUserDetailsViewModel UserDetails { get; set; }
+        IUserDetailsPageViewModel UserDetails { get; set; }
         string CurrentPage { get; set; }
         Type CurrentViewModelType { get; set; }
         bool IsSideNavigationVisible { get; set; }

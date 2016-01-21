@@ -28,7 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IOptionsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\ISettingsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Shared\ISideNavigationPaneViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Contracts\UserDetails\IUserDetailsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\UserDetails\IUserDetailsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\DesignTimeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\GradeViewModelDt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignTime\MainViewModelDt.cs" />
@@ -48,7 +48,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.Grade.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.Today.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Settings\SettingsPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\UserDetails\UserDetailsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\UserDetails\UserDetailsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Panes\SideNavigation\SideNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationServicesBase.cs" />

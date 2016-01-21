@@ -32,7 +32,7 @@ namespace Ets.Mobile.ViewModel.Panes.SideNavigation
         public SideNavigationPaneViewModel(IScreen screen)
         {
             Screen = screen ?? Locator.Current.GetService<IScreen>();
-            UserDetails = Locator.Current.GetService<IUserDetailsViewModel>();
+            UserDetails = Locator.Current.GetService<IUserDetailsPageViewModel>();
             OnViewModelCreation();
         }
 
@@ -168,8 +168,8 @@ namespace Ets.Mobile.ViewModel.Panes.SideNavigation
         
         public ReactiveCommand<object> NavCommand { get; private set; }
 
-        private IUserDetailsViewModel _userDetails;
-        public IUserDetailsViewModel UserDetails
+        private IUserDetailsPageViewModel _userDetails;
+        public IUserDetailsPageViewModel UserDetails
         {
             get { return _userDetails; }
             set { this.RaiseAndSetIfChanged(ref _userDetails, value); }

@@ -71,7 +71,7 @@ namespace Ets.Mobile.ViewModel.DesignTime
                 NavigateToProgram = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
                 SideNavigation = new SideNavigationPaneViewModel(null)
                 {
-                    UserDetails = new UserDetailsViewModel(null)
+                    UserDetails = new UserDetailsPageViewModel(null)
                     {
                         Profile = new UserDetailsVm
                         {
