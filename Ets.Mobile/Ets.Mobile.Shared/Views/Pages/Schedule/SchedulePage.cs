@@ -35,9 +35,9 @@ namespace Ets.Mobile.Pages.Schedule
             subscriptionForViewModel.BindTo(this, x => x.DataContext);
 
             subscriptionForViewModel
-                .InvokeCommand(this, x => x.ViewModel.LoadSchedule);
+                .InvokeCommand(this, x => x.ViewModel.FetchSchedule);
             
-            this.OneWayBind(ViewModel, x => x.LoadSchedule, x => x.RefreshSchedule.Command);
+            this.OneWayBind(ViewModel, x => x.FetchSchedule, x => x.RefreshSchedule.Command);
 
             PartialInitialize();
         }

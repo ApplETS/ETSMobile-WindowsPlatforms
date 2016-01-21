@@ -15,7 +15,7 @@ using System.Runtime.Serialization;
 namespace Ets.Mobile.ViewModel.Pages.Schedule
 {
     [DataContract]
-    public class SchedulePageViewModel : ViewModelBase
+    public class SchedulePageViewModel : ViewModelBase, ISchedulePageViewModel
     {
         public SchedulePageViewModel(IScreen screen = null) : base(screen, "Schedule")
         {
@@ -26,9 +26,9 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
         {
             ScheduleItems = new ReactiveList<ScheduleVm>();
 
-            LoadSchedule = ReactiveCommand.CreateAsyncObservable(_ => FetchScheduleImpl());
+            FetchSchedule = ReactiveCommand.CreateAsyncObservable(_ => FetchScheduleImpl());
 
-            LoadSchedule.ThrownExceptions
+            FetchSchedule.ThrownExceptions
                 .Subscribe(x =>
                 {
                     var empty = x is IMessagingContent;
@@ -40,7 +40,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
                     UserError.Throw(x.Message, x);
                 });
 
-            LoadSchedule.Subscribe(scheduleVms =>
+            FetchSchedule.Subscribe(scheduleVms =>
             {
                 ScheduleItems.MergeWith(scheduleVms);
             });
@@ -69,7 +69,7 @@ namespace Ets.Mobile.ViewModel.Pages.Schedule
 
         [DataMember]
         public ReactiveList<ScheduleVm> ScheduleItems { get; protected set; }
-        public ReactiveCommand<IEnumerable<ScheduleVm>> LoadSchedule { get; protected set; }
+        public ReactiveCommand<IEnumerable<ScheduleVm>> FetchSchedule { get; protected set; }
 
         #endregion
     }

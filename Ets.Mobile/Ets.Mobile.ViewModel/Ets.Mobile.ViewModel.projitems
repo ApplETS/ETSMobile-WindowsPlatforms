@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Moodle\Courses\IMoodleCourseModulePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Moodle\IMoodleMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Program\IProgramPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Schedule\ISchedulePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IAboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IOptionsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\ISettingsPageViewModel.cs" />
@@ -59,8 +60,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationServicesBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ViewModelBase.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Contracts\Schedule\" />
   </ItemGroup>
 </Project>
