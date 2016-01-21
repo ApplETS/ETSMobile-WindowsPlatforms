@@ -4,6 +4,7 @@ using Ets.Mobile.Entities.Moodle;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Comparators;
 using Ets.Mobile.ViewModel.Content.Moodle.Courses;
+using Ets.Mobile.ViewModel.Contracts.Moodle;
 using Ets.Mobile.ViewModel.Pages.Moodle.Courses;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;

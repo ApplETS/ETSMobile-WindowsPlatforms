@@ -2,6 +2,7 @@
 using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
+using Ets.Mobile.ViewModel.Contracts.Schedule;
 using Messaging.Interfaces.Common;
 using ReactiveUI;
 using ReactiveUI.Extensions;
