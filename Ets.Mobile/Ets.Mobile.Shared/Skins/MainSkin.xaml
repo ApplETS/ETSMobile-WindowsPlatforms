@@ -76,7 +76,6 @@
             <!-- Region Command Bar -->
             <Brush x:Key="EtsCommandBarForegroundBrush">#FFFFFFFF</Brush>
             <Brush x:Key="EtsCommandBarBackgroundBrush">#404040</Brush>
-            <Brush x:Key="EtsCommandBarBrush">#404040</Brush>
             <!-- EndRegion -->
             <!-- Region Buttons -->
             <Brush x:Key="EtsButtonPressedBrush">#FF0200</Brush>
@@ -247,6 +246,17 @@
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
+            </Style>
+            <!-- EndRegion -->
+            <!-- Region HyperlinkButton -->
+            <Style x:Key="HyperlinkButtonWithoutUnderlineStyle" TargetType="HyperlinkButton">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="{StaticResource Size3}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
             <!-- EndRegion -->
             <!-- Region Login -->
@@ -455,13 +465,14 @@
                 <Setter Property="FontSize" Value="{StaticResource Size2}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
-            <Style x:Key="EtsSendCommentsHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsSendCommentsHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
+                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
+                
+            </Style>
+            <Style x:Key="EtsAppletsWebsiteHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
             </Style>
-            <Style x:Key="EtsAppletsWebsiteHyperlinkStyle" TargetType="HyperlinkButton">
-                <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
-            </Style>
-            <Style x:Key="EtsContributerHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsContributerHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
             </Style>
             <Style x:Key="EtsConfidentialityTitle1TextBlockStyle" TargetType="TextBlock">
@@ -542,9 +553,9 @@
                 <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="Margin" Value="0" />
-                <Setter Property="Padding" Value="0" />
+                <Setter Property="Padding" Value="0,5,0,0" />
             </Style>
-            <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
             </Style>
             <!-- EndRegion -->
@@ -619,7 +630,6 @@
             <!-- Region Command Bar -->
             <Brush x:Key="EtsCommandBarForegroundBrush">#FFFFFFFF</Brush>
             <Brush x:Key="EtsCommandBarBackgroundBrush">#404040</Brush>
-            <Brush x:Key="EtsCommandBarBrush">#404040</Brush>
             <!-- EndRegion -->
             <!-- Region Buttons -->
             <Brush x:Key="EtsButtonPressedBrush">#FF0200</Brush>
@@ -790,6 +800,17 @@
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
+            </Style>
+            <!-- EndRegion -->
+            <!-- Region HyperlinkButton -->
+            <Style x:Key="HyperlinkButtonWithoutUnderlineStyle" TargetType="HyperlinkButton">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="{StaticResource Size3}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
             <!-- EndRegion -->
             <!-- Region Login -->
@@ -998,13 +1019,13 @@
                 <Setter Property="FontSize" Value="{StaticResource Size2}" />
                 <Setter Property="FontWeight" Value="Thin" />
             </Style>
-            <Style x:Key="EtsSendCommentsHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsSendCommentsHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
             </Style>
-            <Style x:Key="EtsAppletsWebsiteHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsAppletsWebsiteHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
             </Style>
-            <Style x:Key="EtsContributerHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsContributerHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
             </Style>
             <Style x:Key="EtsConfidentialityTitle1TextBlockStyle" TargetType="TextBlock">
@@ -1085,9 +1106,9 @@
                 <Setter Property="FontSize" Value="{StaticResource Size3}" />
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="Margin" Value="0" />
-                <Setter Property="Padding" Value="0" />
+                <Setter Property="Padding" Value="0,5,0,0" />
             </Style>
-            <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedHighBrush}" />
             </Style>
             <!-- EndRegion -->
@@ -1161,7 +1182,6 @@
             <!-- Region Command Bar -->
             <Brush x:Key="EtsCommandBarForegroundBrush">#6c6f73</Brush>
             <Brush x:Key="EtsCommandBarBackgroundBrush">#f2f2f2</Brush>
-            <Brush x:Key="EtsCommandBarBrush">#FFFFFF</Brush>
             <!-- EndRegion -->
             <!-- Region Buttons -->
             <Brush x:Key="EtsButtonPressedBrush">#680100</Brush>
@@ -1332,6 +1352,17 @@
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="Margin" Value="0" />
                 <Setter Property="Padding" Value="0" />
+            </Style>
+            <!-- EndRegion -->
+            <!-- Region HyperlinkButton -->
+            <Style x:Key="HyperlinkButtonWithoutUnderlineStyle" TargetType="HyperlinkButton">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontSize="{StaticResource Size3}"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
             <!-- EndRegion -->
             <!-- Region Login -->
@@ -1544,13 +1575,13 @@
                 <Setter Property="FontWeight" Value="Thin" />
                 <Setter Property="FontSize" Value="{StaticResource Size2}" />
             </Style>
-            <Style x:Key="EtsSendCommentsHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsSendCommentsHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedMediumBrush}" />
             </Style>
-            <Style x:Key="EtsAppletsWebsiteHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsAppletsWebsiteHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedMediumBrush}" />
             </Style>
-            <Style x:Key="EtsContributerHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsContributerHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedMediumBrush}" />
             </Style>
             <Style x:Key="EtsConfidentialityTitle1TextBlockStyle" TargetType="TextBlock">
@@ -1629,26 +1660,25 @@
             <Style x:Key="EtsCourseModuleContentStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
                 <Setter Property="Foreground" Value="{StaticResource EtsTextBlackBrush}" />
-                <Setter Property="FontSize" Value="{StaticResource Size2}" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="Margin" Value="0" />
-                <Setter Property="Padding" Value="0" />
                 <Setter Property="FontSize" Value="{StaticResource Size3}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Padding" Value="0,5,0,0" />
+                <Setter Property="Padding" Value="0" />
             </Style>
-            <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton">
+            <Style x:Key="EtsMoodleCourseContentHyperlinkStyle" TargetType="HyperlinkButton" BasedOn="{StaticResource HyperlinkButtonWithoutUnderlineStyle}">
                 <Setter Property="Foreground" Value="{StaticResource EtsRedMediumBrush}" />
             </Style>
             <!-- EndRegion -->
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
-
+    
     <!-- Region List View Header Item -->
     <Style TargetType="ListViewHeaderItem">
         <Setter Property="Padding" Value="12,0,0,0" />
         <Setter Property="Margin" Value="0,0,0,6" />
     </Style>
     <!-- EndRegion -->
-    
+
     <!-- Region SplitView -->
     <FontFamily x:Key="SymbolThemeFontFamily">/Fonts/segmdl2.ttf#Segoe MDL2 Assets</FontFamily>
     <x:Double x:Key="SplitViewHamburgerButtonFontSize">25</x:Double>
@@ -1782,11 +1812,11 @@
                             <Rectangle x:Name="FocusVisualWhite" Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashOffset="1.5" Style="{StaticResource FocusVisual}" />
                             <Rectangle x:Name="FocusVisualBlack" Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}" StrokeDashOffset="0.5" Style="{StaticResource FocusVisual}" />
                             <!-- EndRegion -->
-                            
+
                             <!-- Region Glyph -->
                             <ContentPresenter x:Name="NixonGlyph" Content="{TemplateBinding Tag}" />
                             <!-- EndRegion -->
-                            
+
                             <!-- Region Text -->
                             <ContentPresenter x:Name="ContentPresenter"
                         			Grid.Column="1"
@@ -1855,7 +1885,7 @@
         </Setter>
     </Style>
     <!-- EndRegion -->
-    
+
     <!-- Region MenuBar Button Style-->
     <Style TargetType="shared:MenuButtonBar">
         <Setter Property="Template">
@@ -1896,7 +1926,7 @@
         </Setter>
     </Style>
     <!-- EndRegion -->
-    
+
     <!-- Region Buttons -->
     <Style x:Key="EtsButtonStyle" TargetType="Button">
         <Setter Property="BorderThickness" Value="0" />
@@ -1968,6 +1998,7 @@
     </Style>
     <Style x:Key="EtsButtonDefaultStyle" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
         <Setter Property="Background" Value="{StaticResource EtsRedLowestColor}" />
+        <Setter Property="Padding" Value="12,8,12,8" />
     </Style>
     <Style x:Key="EtsSwitchToLoginButtonStyle" TargetType="Button" BasedOn="{StaticResource EtsButtonStyle}">
         <Setter Property="Padding" Value="20" />
@@ -1979,7 +2010,7 @@
         </Setter>
     </Style>
     <!-- EndRegion -->
-    
+
     <!-- Region Reactive Presenter -->
     <Style x:Key="ReactivePresenterTextBlockStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource EtsMainFont}" />
@@ -2015,7 +2046,7 @@
     </Style>
     <!-- EndRegion-->
     <!-- EndRegion -->
-    
+
     <!-- Region Schedule -->
     <Brush x:Key="SfScheduleDayBorder">#000000</Brush>
     <Brush x:Key="AppointmentDescriptionBrush">#8c8c8c</Brush>
@@ -2053,7 +2084,12 @@
     <!-- EndRegion-->
 
     <!-- Region ListView -->
-    <Style x:Key="ListViewItemWithoutPressedStyle"  TargetType="ListViewItem">
+    <Style x:Key="FullWidthListViewItem" TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+    <Style x:Key="ListViewItemWithoutPressedStyle" TargetType="ListViewItem">
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
         <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -2253,17 +2289,211 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="ListViewItemWithoutPressedFullWidthStyle"  TargetType="ListViewItem" BasedOn="{StaticResource FullWidthListViewItem}">
+        <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+        <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="TabNavigation" Value="Local"/>
+        <Setter Property="IsHoldingEnabled" Value="False"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="OuterContainer" RenderTransformOrigin="0.5,0.5">
+                        <Border.RenderTransform>
+                            <ScaleTransform x:Name="ContentScaleTransform"/>
+                        </Border.RenderTransform>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Pressed" To="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="TiltContainer"/>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="Pressed">
+                                    <!--<Storyboard>
+                                        <PointerDownThemeAnimation Storyboard.TargetName="TiltContainer"/>
+                                    </Storyboard>-->
+                                </VisualState>
+                                <VisualState x:Name="CheckboxPressed">
+                                    <Storyboard>
+                                        <PointerDownThemeAnimation Storyboard.TargetName="CheckboxTiltContainer"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="NormalRectangle">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CheckBoxPressedBackgroundThemeBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="CheckGlyph">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CheckBoxPressedForegroundThemeBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="{ThemeResource ListViewItemDisabledThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="contentPresenter"/>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Stroke" Storyboard.TargetName="NormalRectangle">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CheckBoxDisabledBorderThemeBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Fill" Storyboard.TargetName="CheckGlyph">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource CheckBoxDisabledForegroundThemeBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="SelectedBorder">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectedEarmark">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectedGlyph">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualState x:Name="Unselected"/>
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="CheckGlyph"/>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedCheckMark"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="SelectedUnfocused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="CheckGlyph"/>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedCheckMark"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="DataVirtualizationStates">
+                                <VisualState x:Name="DataAvailable"/>
+                                <VisualState x:Name="DataPlaceholder">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PlaceholderTextBlock">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PlaceholderRect">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="MultiSelectStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="ListMultiSelect" GeneratedDuration="0:0:0.15" To="NoMultiSelect"/>
+                                    <VisualTransition From="NoMultiSelect" GeneratedDuration="0:0:0.15" To="ListMultiSelect"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="NoMultiSelect"/>
+                                <VisualState x:Name="ListMultiSelect">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="X" Storyboard.TargetName="CheckboxContainerTranslateTransform"/>
+                                        <DoubleAnimation Duration="0" To="{ThemeResource ListViewItemContentTranslateX}" Storyboard.TargetProperty="X" Storyboard.TargetName="ContentBorderTranslateTransform"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="GridMultiSelect">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBorder"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ReorderModeStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="ReorderEnabled" GeneratedDuration="00:00:00.2" To="ReorderDisabled"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="ReorderEnabled">
+                                    <Storyboard>
+                                        <DropTargetItemThemeAnimation Storyboard.TargetName="OuterContainer"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Reorderable">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="ContentScaleTransform">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.075" Value="1.05"/>
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.2" Value="1.0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="ContentScaleTransform">
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.075" Value="1.05"/>
+                                            <LinearDoubleKeyFrame KeyTime="00:00:00.2" Value="1.0"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="ReorderDisabled"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ReorderHintStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.2" To="NoReorderHint"/>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="NoReorderHint"/>
+                                <VisualState x:Name="BottomReorderHint">
+                                    <Storyboard>
+                                        <DragOverThemeAnimation Direction="Bottom" ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}" Storyboard.TargetName="ReorderHintContent"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="RightReorderHint">
+                                    <Storyboard>
+                                        <DragOverThemeAnimation Direction="Right" ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}" Storyboard.TargetName="ReorderHintContent"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="TopReorderHint">
+                                    <Storyboard>
+                                        <DragOverThemeAnimation Direction="Top" ToOffset="0" Storyboard.TargetName="ReorderHintContent"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="LeftReorderHint">
+                                    <Storyboard>
+                                        <DragOverThemeAnimation Direction="Left" ToOffset="0" Storyboard.TargetName="ReorderHintContent"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="ReorderHintContent" Background="Transparent">
+                            <Border x:Name="CheckboxTiltContainer" HorizontalAlignment="Left" Margin="0,9.5,0,0" VerticalAlignment="Top">
+                                <Border x:Name="CheckboxOuterContainer">
+                                    <Border.Clip>
+                                        <RectangleGeometry Rect="0,0,25.5,25.5"/>
+                                    </Border.Clip>
+                                    <Grid x:Name="CheckboxContainer">
+                                        <Grid.RenderTransform>
+                                            <TranslateTransform x:Name="CheckboxContainerTranslateTransform" X="{ThemeResource ListViewItemContentOffsetX}"/>
+                                        </Grid.RenderTransform>
+                                        <Rectangle x:Name="NormalRectangle" Fill="{ThemeResource CheckBoxBackgroundThemeBrush}" Height="25.5" Stroke="{ThemeResource CheckBoxBorderThemeBrush}" StrokeThickness="{ThemeResource CheckBoxBorderThemeThickness}" Width="25.5"/>
+                                        <Path x:Name="CheckGlyph" Data="M0,123 L39,93 L124,164 L256,18 L295,49 L124,240 z" Fill="{ThemeResource CheckBoxForegroundThemeBrush}" FlowDirection="LeftToRight" HorizontalAlignment="Center" Height="17" IsHitTestVisible="False" Opacity="0" Stretch="Fill" StrokeThickness="2.5" StrokeLineJoin="Round" VerticalAlignment="Center" Width="18.5"/>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                            <Border x:Name="ContentContainer">
+                                <Border x:Name="TiltContainer">
+                                    <Border x:Name="ContentBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                                        <Border.RenderTransform>
+                                            <TranslateTransform x:Name="ContentBorderTranslateTransform"/>
+                                        </Border.RenderTransform>
+                                        <Grid>
+                                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Margin}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            <TextBlock x:Name="PlaceholderTextBlock" AutomationProperties.AccessibilityView="Raw" Foreground="{x:Null}" IsHitTestVisible="False" Margin="{TemplateBinding Padding}" Opacity="0" Text="Xg"/>
+                                            <Rectangle x:Name="PlaceholderRect" Fill="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" IsHitTestVisible="False" Visibility="Collapsed"/>
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <Border x:Name="SelectedBorder" BorderBrush="{ThemeResource ListViewItemSelectedBackgroundThemeBrush}" BorderThickness="{ThemeResource GridViewItemMultiselectBorderThickness}" IsHitTestVisible="False" Opacity="0">
+                                <Grid x:Name="SelectedCheckMark" HorizontalAlignment="Right" Height="34" Opacity="0" VerticalAlignment="Top" Width="34">
+                                    <Path x:Name="SelectedEarmark" Data="M0,0 L40,0 L40,40 z" Fill="{ThemeResource ListViewItemSelectedBackgroundThemeBrush}" Stretch="Fill"/>
+                                    <Path x:Name="SelectedGlyph" Data="M0,123 L39,93 L124,164 L256,18 L295,49 L124,240 z" Fill="{ThemeResource ListViewItemCheckThemeBrush}" FlowDirection="LeftToRight" HorizontalAlignment="Right" Height="14.5" Margin="0,1,1,0" Stretch="Fill" VerticalAlignment="Top" Width="17"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!-- EndRegion -->
-    
-    <!-- Region Extended Splash Screen -->
-    <Style x:Key="EtsTextBlockLoading" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="{StaticResource Size4}" />
-        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
+
+    <!-- Region Command Bar -->
+    <Style x:Key="EtsCommandBarStyle" TargetType="CommandBar">
+        <Setter Property="Foreground" Value="{ThemeResource EtsCommandBarForegroundBrush}" />
+        <Setter Property="Background" Value="{ThemeResource EtsCommandBarBackgroundBrush}" />
     </Style>
-    <Style x:Key="EtsProgressRingLoading" TargetType="ProgressRing">
-        <Setter Property="Foreground" Value="{StaticResource EtsTextWhiteBrush}" />
-        <Setter Property="IsActive" Value="True" />
-        <Setter Property="Background" Value="Transparent" />
-    </Style>
-    <!-- EndRegion-->
+    <!-- Endregion -->
 </ResourceDictionary>
