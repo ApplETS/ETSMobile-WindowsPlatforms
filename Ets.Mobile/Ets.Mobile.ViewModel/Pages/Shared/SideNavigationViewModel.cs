@@ -137,7 +137,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             try
             {
                 ApplicationView.GetForCurrentView()
-                    .SetDesiredBoundsMode(vmType == typeof(ScheduleViewModel)
+                    .SetDesiredBoundsMode(vmType == typeof(SchedulePageViewModel)
                         ? ApplicationViewBoundsMode.UseCoreWindow
                         : ApplicationViewBoundsMode.UseVisible);
             }
@@ -219,7 +219,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             set { this.RaiseAndSetIfChanged(ref _isSchedule, value); }
         }
 
-        public Type[] ScheduleTypes { get; } = { typeof(ScheduleViewModel) };
+        public Type[] ScheduleTypes { get; } = { typeof(SchedulePageViewModel) };
 
         private bool _isGrade;
         public bool IsGrade

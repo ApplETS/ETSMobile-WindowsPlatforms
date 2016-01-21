@@ -44,7 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\Courses\MoodleCourseContentPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Moodle\MoodleMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Program\ProgramViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pages\Schedule\ScheduleViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Schedule\SchedulePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.Grade.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.Today.cs" />

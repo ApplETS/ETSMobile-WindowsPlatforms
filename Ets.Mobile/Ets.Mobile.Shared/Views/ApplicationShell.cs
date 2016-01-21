@@ -200,7 +200,7 @@ namespace Ets.Mobile.ViewModel
             // Register Views for the Router
             resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginPageViewModel>));
             resolver.Register(() => new MainPage(), typeof(IViewFor<MainPageViewModel>));
-            resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
+            resolver.Register(() => new SchedulePage(), typeof(IViewFor<SchedulePageViewModel>));
             resolver.Register(() => new GradePage(), typeof(IViewFor<GradePageViewModel>));
             resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramPageViewModel>));
             resolver.Register(() => new SelectCourseForGradePage(), typeof(IViewFor<SelectCourseForGradePageViewModel>));

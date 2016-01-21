@@ -6,22 +6,22 @@ using Windows.UI.Xaml.Controls;
 
 namespace Ets.Mobile.Pages.Schedule
 {
-    public partial class SchedulePage : Page, IViewFor<ScheduleViewModel>
+    public partial class SchedulePage : Page, IViewFor<SchedulePageViewModel>
     {
         #region IViewFor<T>
 
-        public ScheduleViewModel ViewModel
+        public SchedulePageViewModel ViewModel
         {
-            get { return (ScheduleViewModel)GetValue(ViewModelProperty); }
+            get { return (SchedulePageViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(ScheduleViewModel), typeof(SchedulePage), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(SchedulePageViewModel), typeof(SchedulePage), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (ScheduleViewModel)value; }
+            set { ViewModel = (SchedulePageViewModel)value; }
         }
 
         #endregion
