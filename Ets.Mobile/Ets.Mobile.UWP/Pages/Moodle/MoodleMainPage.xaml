@@ -8,27 +8,25 @@
     xmlns:shell="using:Ets.Mobile.Shell"
     xmlns:moodle="using:Ets.Mobile.Content.Moodle"
     xmlns:moodleCourses="using:Ets.Mobile.Content.Moodle.Courses"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     <Grid Background="{ThemeResource EtsBackgroundBodyBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <!-- Hamburger -->
         <shell:PageHeader DataContext="{Binding}"/>
         <!-- Content -->
-        <Grid Grid.Row="1">
-            <moodleCourses:Courses Margin="15,10,15,0" DataContext="{Binding CoursesPresenter}" />
+        <Grid Grid.Row="1" Margin="{StaticResource EtsPageWithBottomAppBarMargin}">
+            <moodleCourses:Courses Margin="{StaticResource EtsPageContentMargin}" DataContext="{Binding CoursesPresenter}" />
         </Grid>
-    </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+        <!-- Command Bar -->
+        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadCourses}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Grid>
 </Page>
