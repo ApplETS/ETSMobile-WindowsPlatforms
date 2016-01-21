@@ -21,8 +21,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Content\Moodle\Courses\MoodleCourseSummaryViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleGroupedByDayViewModelItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\Schedule\ScheduleViewModelItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\ISelectCourseForGradeViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Main\IMainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Grade\ISelectCourseForGradePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\Main\IMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Program\IProgramPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IAboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\Settings\IOptionsViewModel.cs" />
