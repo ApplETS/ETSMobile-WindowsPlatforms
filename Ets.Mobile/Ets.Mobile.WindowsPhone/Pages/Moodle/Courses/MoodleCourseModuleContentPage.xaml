@@ -30,28 +30,32 @@
         <!-- Content -->
         <StackPanel Grid.Row="1">
             <HyperlinkButton 
-                Margin="15,6,15,0"
+                Margin="{StaticResource EtsMoodleMargin}"
                 Pivot.SlideInAnimationGroup="2"
                 Style="{ThemeResource EtsMoodleCourseContentHyperlinkStyle}"
                 NavigateUri="{Binding CourseModule.Url}">
-                <StackPanel Orientation="Horizontal">
-                    <Image x:Uid="CourseMoodleUrlUid" Margin="0,0,5,0" Height="24" Width="24" />
-                    <StackPanel>
-                        <TextBlock x:Uid="LinkToCourseModuleUid" Text="Lien vers ce module" />
-                    </StackPanel>
-                </StackPanel>
+                <HyperlinkButton.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Uid="CourseMoodleUrlUid" Margin="0,0,5,0" Height="24" Width="24" />
+                            <StackPanel>
+                                <TextBlock x:Uid="LinkToCourseModuleUid" Text="Lien vers ce module" FontSize="{ThemeResource Size3}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </HyperlinkButton.ContentTemplate>
             </HyperlinkButton>
-            <TextBlock Text="{Binding CourseModule.Description, Converter={StaticResource HtmlStringToStringConverter}}" />
+            <TextBlock Style="{ThemeResource MoodleCourseDescriptionStyle}" Visibility="{Binding CourseModule.Description, Converter={StaticResource StringToVisibilityConverter}}" Text="{Binding CourseModule.Description, Converter={StaticResource HtmlStringToStringConverter}}" />
 
-            <TextBlock Margin="15,0,15,0" x:Uid="CourseModuleContentUid" Text="Module Contents" Style="{ThemeResource EtsCourseModuleContentStyle}" />
+            <TextBlock Margin="{StaticResource EtsMoodleMargin}" x:Uid="CourseModuleContentUid" Text="Module Contents" Style="{ThemeResource EtsCourseModuleContentStyle}" />
         </StackPanel>
         <Grid Grid.Row="2">
-            <courses:CoursesModuleContent Margin="15,10,15,0" DataContext="{Binding CoursesModuleContentPresenter}" />
+            <courses:CoursesModuleContent Margin="{StaticResource EtsPageContentMargin}" DataContext="{Binding CoursesModuleContentPresenter}" />
         </Grid>
     </Grid>
 
     <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+        <CommandBar x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadCoursesModuleContent}" />
             </CommandBar.PrimaryCommands>
