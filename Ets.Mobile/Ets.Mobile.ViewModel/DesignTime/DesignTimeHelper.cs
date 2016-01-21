@@ -135,8 +135,13 @@ namespace Ets.Mobile.ViewModel.DesignTime
         public IObservable<T> BeforeItemsRemoved { get; }
         public IObservable<IMoveInfo<T>> BeforeItemsMoved { get; }
         public IObservable<IMoveInfo<T>> ItemsMoved { get; }
+#if WINDOWS_PHONE_APP
+        public new IObservable<NotifyCollectionChangedEventArgs> Changing { get; }
+        public new IObservable<NotifyCollectionChangedEventArgs> Changed { get; }
+#elif WINDOWS_UWP
         public IObservable<NotifyCollectionChangedEventArgs> Changing { get; }
         public IObservable<NotifyCollectionChangedEventArgs> Changed { get; }
+#endif
         public IObservable<int> CountChanging { get; }
         public IObservable<int> CountChanged { get; }
         public IObservable<bool> IsEmptyChanged { get; }

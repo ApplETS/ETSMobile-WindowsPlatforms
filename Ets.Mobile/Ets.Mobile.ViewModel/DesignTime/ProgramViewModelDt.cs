@@ -3,6 +3,7 @@ using Ets.Mobile.ViewModel.Contracts.Program;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -60,5 +61,21 @@ namespace Ets.Mobile.ViewModel.DesignTime
         }
 
         public ReactivePresenterCommand<ProgramVm[]> FetchPrograms { get; }
+
+        public ReactiveList<ProgramVm> ProgramItems
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReactiveDerivedList<ProgramVm> Program
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
