@@ -5,22 +5,22 @@ using Windows.UI.Xaml;
 
 namespace Ets.Mobile.Pages.Grade
 {
-    public partial class SelectCourseForGradePage : IViewFor<SelectCourseForGradeViewModel>
+    public partial class SelectCourseForGradePage : IViewFor<SelectCourseForGradePageViewModel>
     {
         #region IViewFor<T>
 
-        public SelectCourseForGradeViewModel ViewModel
+        public SelectCourseForGradePageViewModel ViewModel
         {
-            get { return (SelectCourseForGradeViewModel)GetValue(ViewModelProperty); }
+            get { return (SelectCourseForGradePageViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(SelectCourseForGradeViewModel), typeof(SelectCourseForGradePage), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(SelectCourseForGradePageViewModel), typeof(SelectCourseForGradePage), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (SelectCourseForGradeViewModel)value; }
+            set { ViewModel = (SelectCourseForGradePageViewModel)value; }
         }
 
         #endregion

@@ -6,22 +6,22 @@ using Windows.UI.Xaml.Controls;
 
 namespace Ets.Mobile.Pages.Main
 {
-    public partial class MainPage : Page, IViewFor<MainViewModel>
+    public partial class MainPage : Page, IViewFor<MainPageViewModel>
     {
         #region IViewFor<T>
 
-        public MainViewModel ViewModel
+        public MainPageViewModel ViewModel
         {
-            get { return (MainViewModel)GetValue(ViewModelProperty); }
+            get { return (MainPageViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(MainViewModel), typeof(MainPage), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(MainPageViewModel), typeof(MainPage), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (MainViewModel)value; }
+            set { ViewModel = (MainPageViewModel)value; }
         }
 
         #endregion

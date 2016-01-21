@@ -23,8 +23,8 @@ using Ets.Mobile.ViewModel.Pages.Moodle.Courses;
 using Ets.Mobile.ViewModel.Pages.Program;
 using Ets.Mobile.ViewModel.Pages.Schedule;
 using Ets.Mobile.ViewModel.Pages.Settings;
-using Ets.Mobile.ViewModel.Pages.Shared;
 using Ets.Mobile.ViewModel.Pages.UserDetails;
+using Ets.Mobile.ViewModel.Panes.SideNavigation;
 using Logger;
 using ReactiveUI;
 using Refit;
@@ -47,7 +47,7 @@ namespace Ets.Mobile.ViewModel
 {
     public interface IApplicationShell : IScreen
     {
-        ISideNavigationViewModel SideNavigation { get; }
+        ISideNavigationPaneViewModel SideNavigation { get; }
         void HandleAuthentificated();
         void LoadApplicationServices();
     }
@@ -60,8 +60,8 @@ namespace Ets.Mobile.ViewModel
 
         private readonly IMutableDependencyResolver _resolver;
         
-	    private ISideNavigationViewModel _sideNavigation;
-	    public ISideNavigationViewModel SideNavigation => _sideNavigation ?? (_sideNavigation = Locator.Current.GetService<ISideNavigationViewModel>());
+	    private ISideNavigationPaneViewModel _sideNavigation;
+	    public ISideNavigationPaneViewModel SideNavigation => _sideNavigation ?? (_sideNavigation = Locator.Current.GetService<ISideNavigationPaneViewModel>());
 
 	    public ApplicationShell()
 	    {
@@ -72,8 +72,8 @@ namespace Ets.Mobile.ViewModel
 
             // Register this screen
             _resolver.RegisterConstant(this, typeof(IScreen));
-            _resolver.RegisterLazySingleton(() => new UserDetailsViewModel(this), typeof(IUserDetailsViewModel));
-            _resolver.RegisterConstant(_sideNavigation = new SideNavigationViewModel(this), typeof(ISideNavigationViewModel));
+            _resolver.RegisterLazySingleton(() => new UserDetailsPageViewModel(this), typeof(IUserDetailsPageViewModel));
+            _resolver.RegisterConstant(_sideNavigation = new SideNavigationPaneViewModel(this), typeof(ISideNavigationPaneViewModel));
 
 #if WINDOWS_PHONE_APP || WINDOWS_UWP
             // Back Button Handling
@@ -174,11 +174,11 @@ namespace Ets.Mobile.ViewModel
                         _resolver.GetService<ISsoService>().SetCredentials(signetsAccountVm);
                         _resolver.GetService<IUserEnabledLogger>().SetUser(Locator.Current.GetService<ISecurityProvider>().HashMd5(signetsAccountVm.Username));
 	                    SideNavigation.UserDetails.LoadProfile.Execute(null);
-                        navigateTo = new MainViewModel(this);
+                        navigateTo = new MainPageViewModel(this);
 	                }
 	                else
 	                {
-                        navigateTo = new LoginViewModel(this);
+                        navigateTo = new LoginPageViewModel(this);
                     }
 
 	                RxApp.MainThreadScheduler.Schedule(() =>
@@ -198,13 +198,13 @@ namespace Ets.Mobile.ViewModel
         private void RegisterViewModelAndPages(IMutableDependencyResolver resolver)
         {
             // Register Views for the Router
-            resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginViewModel>));
-            resolver.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
-            resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
-            resolver.Register(() => new GradePage(), typeof(IViewFor<GradeViewModel>));
-            resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramViewModel>));
-            resolver.Register(() => new SelectCourseForGradePage(), typeof(IViewFor<SelectCourseForGradeViewModel>));
-            resolver.Register(() => new SettingsPage(), typeof(IViewFor<SettingsViewModel>));
+            resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginPageViewModel>));
+            resolver.Register(() => new MainPage(), typeof(IViewFor<MainPageViewModel>));
+            resolver.Register(() => new SchedulePage(), typeof(IViewFor<SchedulePageViewModel>));
+            resolver.Register(() => new GradePage(), typeof(IViewFor<GradePageViewModel>));
+            resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramPageViewModel>));
+            resolver.Register(() => new SelectCourseForGradePage(), typeof(IViewFor<SelectCourseForGradePageViewModel>));
+            resolver.Register(() => new SettingsPage(), typeof(IViewFor<SettingsPageViewModel>));
             resolver.Register(() => new MoodleMainPage(), typeof(IViewFor<MoodleMainPageViewModel>));
             resolver.Register(() => new MoodleCourseContentPage(), typeof(IViewFor<MoodleCourseContentPageViewModel>));
             resolver.Register(() => new MoodleCourseModulePage(), typeof(IViewFor<MoodleCourseModulePageViewModel>));

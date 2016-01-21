@@ -14,9 +14,9 @@ using System.Runtime.Serialization;
 
 namespace Ets.Mobile.ViewModel.Pages.Program
 {
-    public class ProgramViewModel : ViewModelBase, IProgramViewModel
+    public class ProgramPageViewModel : ViewModelBase, IProgramPageViewModel
     {
-        public ProgramViewModel(IScreen screen) : base(screen, "Program")
+        public ProgramPageViewModel(IScreen screen) : base(screen, "Program")
         {
             OnViewModelCreation();
         }

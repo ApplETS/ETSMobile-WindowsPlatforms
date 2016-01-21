@@ -2,8 +2,8 @@
 using Ets.Mobile.ViewModel.Content.Main;
 using Ets.Mobile.ViewModel.Contracts.Main;
 using Ets.Mobile.ViewModel.Contracts.Shared;
-using Ets.Mobile.ViewModel.Pages.Shared;
 using Ets.Mobile.ViewModel.Pages.UserDetails;
+using Ets.Mobile.ViewModel.Panes.SideNavigation;
 using ReactiveUI;
 using ReactiveUI.Xaml.Controls.Core;
 using ReactiveUI.Xaml.Controls.Handlers;
@@ -16,7 +16,7 @@ using Windows.ApplicationModel;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
-    public class MainViewModelDt : DesignTimeBase, IMainViewModel
+    public class MainViewModelDt : DesignTimeBase, IMainPageViewModel
     {
         public MainViewModelDt()
         {
@@ -69,9 +69,9 @@ namespace Ets.Mobile.ViewModel.DesignTime
                 LoadCoursesSummaries = ReactivePresenterCommand.CreateAsyncTask(_ => Task.FromResult(new List<GradeSummaryViewModelGroup>()));
                 NavigateToSchedule = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
                 NavigateToProgram = ReactiveCommand.CreateAsyncTask(_ => Task.FromResult(Unit.Default));
-                SideNavigation = new SideNavigationViewModel(null)
+                SideNavigation = new SideNavigationPaneViewModel(null)
                 {
-                    UserDetails = new UserDetailsViewModel(null)
+                    UserDetails = new UserDetailsPageViewModel(null)
                     {
                         Profile = new UserDetailsVm
                         {
@@ -108,10 +108,14 @@ namespace Ets.Mobile.ViewModel.DesignTime
             }
         }
 
-        public ISideNavigationViewModel SideNavigation { get; }
+        public ISideNavigationPaneViewModel SideNavigation { get; }
 
         public ReactivePresenterCommand<ScheduleVm[]> LoadCoursesForToday { get; }
+        public IReactiveDerivedList<ScheduleVm> Today { get; }
+        public ReactiveList<ScheduleVm> TodayItems { get; }
         public ReactivePresenterCommand<List<GradeSummaryViewModelGroup>> LoadCoursesSummaries { get; }
+        public IReactiveDerivedList<GradeSummaryViewModelGroup> Grades { get; }
+        public ReactiveList<GradeSummaryViewModelGroup> GradesItems { get; }
         public ReactiveCommand<Unit> NavigateToSchedule { get; }
         public ReactiveCommand<Unit> NavigateToProgram { get; }
     }

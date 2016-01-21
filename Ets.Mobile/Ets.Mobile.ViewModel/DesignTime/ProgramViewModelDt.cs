@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Ets.Mobile.ViewModel.DesignTime
 {
-    public class ProgramViewModelDt : IProgramViewModel, INotifyPropertyChanged
+    public class ProgramViewModelDt : IProgramPageViewModel, INotifyPropertyChanged
     {
         #region PropertyChanged
 

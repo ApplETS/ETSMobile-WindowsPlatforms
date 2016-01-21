@@ -8,22 +8,22 @@ using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Ets.Mobile.Pages.Account
 {
-    public partial class LoginPage : IViewFor<LoginViewModel>
+    public partial class LoginPage : IViewFor<LoginPageViewModel>
     {
         #region IViewFor<T>
 
-        public LoginViewModel ViewModel
+        public LoginPageViewModel ViewModel
         {
-            get { return (LoginViewModel)GetValue(ViewModelProperty); }
+            get { return (LoginPageViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(LoginViewModel), typeof(LoginPage), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(LoginPageViewModel), typeof(LoginPage), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (LoginViewModel)value; }
+            set { ViewModel = (LoginPageViewModel)value; }
         }
 
         #endregion

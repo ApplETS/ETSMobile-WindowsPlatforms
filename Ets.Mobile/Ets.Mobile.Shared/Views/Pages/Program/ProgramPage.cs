@@ -5,22 +5,22 @@ using Windows.UI.Xaml;
 
 namespace Ets.Mobile.Pages.Program
 {
-    public partial class ProgramPage : IViewFor<ProgramViewModel>
+    public partial class ProgramPage : IViewFor<ProgramPageViewModel>
     {
         #region IViewFor<T>
 
-        public ProgramViewModel ViewModel
+        public ProgramPageViewModel ViewModel
         {
-            get { return (ProgramViewModel)GetValue(ViewModelProperty); }
+            get { return (ProgramPageViewModel)GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(ProgramViewModel), typeof(ProgramPage), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(ProgramPageViewModel), typeof(ProgramPage), new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (ProgramViewModel)value; }
+            set { ViewModel = (ProgramPageViewModel)value; }
         }
 
         #endregion

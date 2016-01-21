@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Ets.Mobile.ViewModel.Pages.Moodle
 {
-    public class MoodleMainPageViewModel : ViewModelBase
+    public class MoodleMainPageViewModel : ViewModelBase, IMoodleMainPageViewModel
     {
         public MoodleMainPageViewModel(IScreen screen) : base(screen, "MoodleMainPage")
         {
