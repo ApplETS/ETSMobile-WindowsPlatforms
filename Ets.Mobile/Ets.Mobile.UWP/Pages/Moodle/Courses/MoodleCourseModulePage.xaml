@@ -7,8 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:courses="using:Ets.Mobile.Content.Moodle.Courses"
     xmlns:shared="using:Ets.Mobile.Content.Shared"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     <Grid Background="{ThemeResource EtsBackgroundBodyBrush}">
         <Grid.RowDefinitions>
@@ -24,16 +23,14 @@
             </StackPanel>
         </StackPanel>
         <!-- Content -->
-        <Grid Grid.Row="1">
-            <courses:CoursesModule Margin="15,10,15,0" DataContext="{Binding CoursesModulePresenter}" />
+        <Grid Grid.Row="1" Margin="{StaticResource EtsPageWithBottomAppBarMargin}">
+            <courses:CoursesModule DataContext="{Binding CoursesModulePresenter}"  Margin="{StaticResource EtsPageContentMargin}" />
         </Grid>
-    </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar x:Name="CommandB" Background="{ThemeResource EtsCommandBarBackgroundBrush}" Foreground="{ThemeResource EtsCommandBarForegroundBrush}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
+        <!-- Command Bar -->
+        <CommandBar Grid.Row="2" x:Name="CommandB" Style="{StaticResource EtsCommandBarStyle}" IsEnabled="{Binding SideNavigation.IsSideNavigationVisible, Converter={StaticResource InversedBooleanConverter}}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="RefreshUid" Icon="Refresh" Label="Rafraîchir" Command="{Binding LoadCoursesModule}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Grid>
 </Page>
