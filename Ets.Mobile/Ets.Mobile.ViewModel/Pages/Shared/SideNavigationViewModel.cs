@@ -228,7 +228,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             set { this.RaiseAndSetIfChanged(ref _isGrade, value); }
         }
 
-        public Type[] GradeTypes { get; } = { typeof(SelectCourseForGradeViewModel), typeof(GradeViewModel) };
+        public Type[] GradeTypes { get; } = { typeof(SelectCourseForGradeViewModel), typeof(GradePageViewModel) };
 
         private bool _isProgram;
         public bool IsProgram

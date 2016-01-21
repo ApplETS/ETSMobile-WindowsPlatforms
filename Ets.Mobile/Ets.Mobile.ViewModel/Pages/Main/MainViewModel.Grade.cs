@@ -21,7 +21,7 @@ namespace Ets.Mobile.ViewModel.Pages.Main
         private void InitializeGrade()
         {
             _navigateToGradeItem = ReactiveCommand.CreateAsyncObservable(NavigateToGradeItemImpl);
-            _navigateToGradeItem.Subscribe(selectedItem => HostScreen.Router.Navigate.Execute(new GradeViewModel(HostScreen, selectedItem.Course)));
+            _navigateToGradeItem.Subscribe(selectedItem => HostScreen.Router.Navigate.Execute(new GradePageViewModel(HostScreen, selectedItem.Course)));
 
             GradesItems = new ReactiveList<GradeSummaryViewModelGroup>();
 

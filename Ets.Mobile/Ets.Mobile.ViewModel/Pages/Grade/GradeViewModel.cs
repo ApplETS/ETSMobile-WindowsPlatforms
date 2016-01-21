@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Ets.Mobile.ViewModel.Pages.Grade
 {
     [DataContract]
-    public class GradeViewModel : ViewModelBase, IDisposable
+    public class GradePageViewModel : ViewModelBase, IDisposable
     {
         #region IDisposable
 
@@ -26,7 +26,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
 
         #endregion
         
-        public GradeViewModel(IScreen screen, CourseVm selectedCourse) 
+        public GradePageViewModel(IScreen screen, CourseVm selectedCourse) 
             : base(screen, "Grades")
         {
             Semester = selectedCourse.Semester;

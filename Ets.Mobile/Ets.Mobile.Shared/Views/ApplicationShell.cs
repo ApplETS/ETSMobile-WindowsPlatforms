@@ -201,7 +201,7 @@ namespace Ets.Mobile.ViewModel
             resolver.Register(() => new LoginPage(), typeof(IViewFor<LoginPageViewModel>));
             resolver.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
             resolver.Register(() => new SchedulePage(), typeof(IViewFor<ScheduleViewModel>));
-            resolver.Register(() => new GradePage(), typeof(IViewFor<GradeViewModel>));
+            resolver.Register(() => new GradePage(), typeof(IViewFor<GradePageViewModel>));
             resolver.Register(() => new ProgramPage(), typeof(IViewFor<ProgramViewModel>));
             resolver.Register(() => new SelectCourseForGradePage(), typeof(IViewFor<SelectCourseForGradeViewModel>));
             resolver.Register(() => new SettingsPage(), typeof(IViewFor<SettingsViewModel>));

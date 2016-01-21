@@ -28,7 +28,7 @@ namespace Ets.Mobile.ViewModel.Pages.Grade
         protected sealed override void OnViewModelCreation()
         {
             _navigateToGradeItem = ReactiveCommand.CreateAsyncObservable(NavigateToGradeItemImpl);
-            _navigateToGradeItem.Subscribe(selectedItem => HostScreen.Router.Navigate.Execute(new GradeViewModel(HostScreen, selectedItem.Course)));
+            _navigateToGradeItem.Subscribe(selectedItem => HostScreen.Router.Navigate.Execute(new GradePageViewModel(HostScreen, selectedItem.Course)));
 
             GradesItems = new ReactiveList<GradeSummaryViewModelGroup>();
 
