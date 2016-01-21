@@ -255,7 +255,7 @@ namespace Ets.Mobile.ViewModel.Pages.Shared
             set { this.RaiseAndSetIfChanged(ref _isSettings, value); }
         }
 
-        public Type[] SettingsTypes { get; } = { typeof(SettingsViewModel) };
+        public Type[] SettingsTypes { get; } = { typeof(SettingsPageViewModel) };
 
     #endregion
 

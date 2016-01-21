@@ -15,6 +15,6 @@ namespace Ets.Mobile.Views
         public Type SelectCourseForGrade { get; set; } = typeof(SelectCourseForGradePageViewModel);
         public Type Program { get; set; } = typeof(ProgramPageViewModel);
         public Type Moodle { get; set; } = typeof(MoodleMainPageViewModel);
-        public Type Settings { get; set; } = typeof(SettingsViewModel);
+        public Type Settings { get; set; } = typeof(SettingsPageViewModel);
     }
 }

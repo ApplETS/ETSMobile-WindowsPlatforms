@@ -5,24 +5,24 @@ using Windows.UI.Xaml;
 
 namespace Ets.Mobile.Pages.Settings
 {
-    public partial class SettingsPage : IViewFor<SettingsViewModel>
+    public partial class SettingsPage : IViewFor<SettingsPageViewModel>
     {
         #region IViewFor<T>
 
-        public SettingsViewModel ViewModel
+        public SettingsPageViewModel ViewModel
         {
-            get { return (SettingsViewModel) GetValue(ViewModelProperty); }
+            get { return (SettingsPageViewModel) GetValue(ViewModelProperty); }
             set { SetValue(ViewModelProperty, value); }
         }
 
         public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof (SettingsViewModel), typeof (SettingsPage),
+            DependencyProperty.Register("ViewModel", typeof (SettingsPageViewModel), typeof (SettingsPage),
                 new PropertyMetadata(null));
 
         object IViewFor.ViewModel
         {
             get { return ViewModel; }
-            set { ViewModel = (SettingsViewModel) value; }
+            set { ViewModel = (SettingsPageViewModel) value; }
         }
 
         #endregion
