@@ -452,8 +452,8 @@
       <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.1.7\lib\wpa81\Coding4Fun.Toolkit.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CrittercismSDK, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Crittercism.2.2.4\lib\wpa81\CrittercismSDK.dll</HintPath>
+    <Reference Include="CrittercismSDK, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Crittercism.3.0.0\lib\wpa81\CrittercismSDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
