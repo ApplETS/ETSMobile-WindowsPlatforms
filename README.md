@@ -5,9 +5,11 @@ Welcome in the ETSMobile project for Windows Platforms!
 ### For Universal Windows Platforms (UWP) projects
 * Visual Studio 2015 with UWP packages.
 * Windows 10
+
 ### For Universal Application for Windows (WinRT8.1)
 * Visual Studio 2015 (Recommended) with Windows Phone 8.1 Development Kit
 * Windows 8.1 and above
+
 ### Optionally
 * [Resharper](https://www.jetbrains.com/resharper/)
 * [Xaml Region](https://visualstudiogallery.msdn.microsoft.com/3c534623-bb05-417f-afc0-c9e26bf0e177)
