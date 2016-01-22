@@ -48,8 +48,10 @@ Welcome in the ETSMobile project for Windows Platforms!
 * [Learn Windows Phone 8.1](https://channel9.msdn.com/Series/Windows-Phone-8-1-Development-for-Absolute-Beginners)
 * Learn C#, Windows Phone and UWP in [Microsoft MVA](https://mva.microsoft.com/)
 * Learn XAML with [Jerry Nixon](http://blog.jerrynixon.com/) arround the web
+
 ### Then
 * Learn Rx with [RxMarbles](http://rxmarbles.com/)
+
 ## And after that...
 * Learn ReactiveUI, Splat, Refit, Newtonsoft.Json, Fusillade amongst other things in [xamarinevolve2014](https://github.com/paulcbetts/xamarinevolve2014) with the almighty [Paul Betts](https://github.com/paulcbetts) arround the web
 * Checking some [ReactiveUI Samples](https://github.com/reactiveui/ReactiveUI/issues/979)
