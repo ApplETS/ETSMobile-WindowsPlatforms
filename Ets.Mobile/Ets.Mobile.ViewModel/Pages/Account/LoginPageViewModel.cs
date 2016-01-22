@@ -127,18 +127,21 @@ namespace Ets.Mobile.ViewModel.Pages.Account
         private void LoginThrownExceptionImpl(Exception ex)
         {
             var apiException = ex as ApiException;
-            var exception = apiException != null ? new ErrorMessageContent(Resources().GetStringForKey("NetworkError"), Resources().GetStringForKey("NetworkTitleError"), apiException) : new ErrorMessageContent(ex.Message, ex);
+            var agregateException = ex as AggregateException;
+            var isNetworkExceptionRelated = apiException != null || agregateException?.InnerExceptions?.First() is ApiException;
+
+            var messageToDisplay = isNetworkExceptionRelated ? new ErrorMessageContent(Resources().GetStringForKey("NetworkError"), Resources().GetStringForKey("NetworkTitleError"), apiException) : new ErrorMessageContent(ex.Message, ex);
 
             if (apiException == null)
             {
-                ViewServices().Popup.ShowMessage(exception);
+                ViewServices().Popup.ShowMessage(messageToDisplay);
             }
             else
             {
-                ViewServices().Popup.ShowMessage(exception.Message, exception.Title);
+                ViewServices().Popup.ShowMessage(messageToDisplay.Message, messageToDisplay.Title);
             }
 
-            UserError.Throw(exception.Message, ex);
+            UserError.Throw(messageToDisplay.Message, ex);
         }
 
         #region Properties
