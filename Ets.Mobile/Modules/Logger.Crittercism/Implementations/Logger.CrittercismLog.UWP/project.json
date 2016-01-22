@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Crittercism": "2.2.4",
+    "Crittercism": "3.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Splat": "1.6.2"
   },

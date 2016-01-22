@@ -11,7 +11,7 @@
                 <ResourceDictionary Source="/Skins/SplitViewStyles.xaml" />
                 <ResourceDictionary Source="/Skins/PhoneSkin.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <x:String x:Key="AppName">ETS Mobile</x:String>
+            <x:String x:Key="AppName">ÉTSMobile</x:String>
             <converters:SplatBitmapToBrushConverter x:Key="SplatBitmapToBrushConverter" />
             <converters:HtmlStringToStringConverter x:Key="HtmlStringToStringConverter" />
             <converters:HtmlStringToStringExcludingParameterConverter x:Key="HtmlStringToStringExcludingParameterConverter" />

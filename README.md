@@ -1,15 +1,21 @@
-# ETSMobile-WindowsPhone
-Bienvenue au projet Windows Phone de Ets Mobile.
+# ETSMobile for Windows Platforms
+Welcome in the ETSMobile project for Windows Platforms!
 
-## Pré-requis du projet
-* Visual Studio 2015 avec les packages pour le développement mobile de 8.1
-* Windows 8.1 et ultérieur
+## Project Requirements
+### For Universal Windows Platforms (UWP) projects
+* Visual Studio 2015 with UWP packages.
+* Windows 10
+### For Universal Application for Windows (WinRT8.1)
+* Visual Studio 2015 (Recommended) with Windows Phone 8.1 Development Kit
+* Windows 8.1 and above
+### Optionally
+* [Resharper](https://www.jetbrains.com/resharper/)
+* [Xaml Region](https://visualstudiogallery.msdn.microsoft.com/3c534623-bb05-417f-afc0-c9e26bf0e177)
+* [Productivity Power Tools](https://visualstudiogallery.msdn.microsoft.com/d0d33361-18e2-46c0-8ff2-4adea1e34fef)
+* [Github Extensions](https://visualstudio.github.com/)
+* [XAMLSpy](http://xamlspy.com/) -> Commercial License is better, but $.
 
-## Packages de Visual Studio
-* [VSCommands](http://vscommands.squaredinfinity.com/) (Pas encore disponible pour 2015)
-* [XAMLSpy](http://xamlspy.com/)
-
-## Résumé des Packages utilisés dans les Solutions
+## Packages used in the architecture
 * [Reactive Extensions (Rx)](https://msdn.microsoft.com/en-ca/data/gg577609.aspx)
 * [ReactiveUI](http://reactiveui.net/)
 * [Splat](https://github.com/paulcbetts/splat)
@@ -18,50 +24,30 @@ Bienvenue au projet Windows Phone de Ets Mobile.
 * [Refit](https://github.com/paulcbetts/refit)
 * [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json)
 * [Crittercism](http://www.crittercism.com/)
+* [Fusillade](https://github.com/paulcbetts/fusillade)
+* [Syncfusion Controls](http://www.syncfusion.com/)
 
-### Reactive Extensions
-#### Rx-Core
-Classes « Core » pour implémenter une architecture basé sur les « Schedulers ».
-#### Rx-Interfaces
-Interfaces « Core » pour implémenter une architecture basé sur les « Schedulers ».
-#### Rx-Linq
-Permet l'utilisation de [LINQ](https://msdn.microsoft.com/en-CA/library/bb397926.aspx) avec Rx
-#### Rx-PlatformServices
-Permet de différencier les platformes et interfaces pour obtenir les « Schedulers » approprié pour celle-ci.
-#### Rx-Main
-Combines les implémentions, classes, Linq et Platform Services pour implémenter une architecture basé sur les « Schedulers ».
-**[En savoir plus](https://msdn.microsoft.com/en-ca/data/gg577609.aspx)**
+## Where to learn them
+* [Reactive Extensions (Rx)](http://www.introtorx.com/content/v1.0.10621.0/01_WhyRx.html)
+* [ReactiveUI](http://docs.reactiveui.net/en/index.html)
+* [Splat](https://github.com/paulcbetts/splat)
+* [ModernHttpClient](https://github.com/paulcbetts/ModernHttpClient)
+* [Akavache](https://github.com/akavache/Akavache)
+* [Refit](https://github.com/paulcbetts/refit)
+* [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json)
+* [Crittercism](http://www.crittercism.com/)
+* [Fusillade](https://github.com/paulcbetts/fusillade)
+* [Syncfusion Controls for WP](http://www.syncfusion.com/products/windows-phone) in the Support section
+* [Syncfusion Controls for UWP](http://www.syncfusion.com/products/uwp) in the Support section
+* ... and, of course, by doing some Proof Of Concepts (PoC's) work!
 
-### ReactiveUI
-Permet la création d'application en utilisant le patron Model-View-ViewModel avec le patron Publish-Subscribe de Rx.
-**[En savoir plus](https://github.com/reactiveui/ReactiveUI)**
-
-### Splat
-Conteneur de services et autres outils
-**[En savoir plus](https://github.com/paulcbetts/splat)**
-
-### ModernHttpClient
-Ajout de fonctionalités au HttpClient
-**[En savoir plus](https://github.com/paulcbetts/ModernHttpClient)**
-
-### Akavache
-Sauvegarde d'objet dans une base de donnée SQLite
-**[En savoir plus](https://github.com/akavache/Akavache)**
-
-### Refit
-Générateur de client REST
-**[En savoir plus](https://github.com/paulcbetts/refit)**
-
-### Newtonsoft.Json
-Permet la manipulation d'objets ou de strings Json.
-**[En savoir plus](http://www.newtonsoft.com/json)**
-
-## Crittercism
-Permet d'évaluer la performance et les alertes reliés à l'historique d'évènement dans l'application.
-**[En savoir plus](http://www.crittercism.com/)**
-
-## Glossaire
-| Name          | Description   | |
-| :-------------: |:-------------:| :-----:|
-| JSON | échange légers de données |   [Link](http://json.org/) |
-| Mapping objet-relationnel | converti les données non-compatibles entre systèmes à des objets de type POO en classes de langages de programmation |   [Link](http://en.wikipedia.org/wiki/Object-relational_mapping)
+## Examples (Learning)
+### First
+* [Learn Windows Phone 8.1](https://channel9.msdn.com/Series/Windows-Phone-8-1-Development-for-Absolute-Beginners)
+* Learn C#, Windows Phone and UWP in [Microsoft MVA](https://mva.microsoft.com/)
+* Learn XAML with [Jerry Nixon](http://blog.jerrynixon.com/) arround the web
+### Then
+* Learn Rx with [RxMarbles](http://rxmarbles.com/)
+## And after that...
+* Learn ReactiveUI, Splat, Refit, Newtonsoft.Json, Fusillade amongst other things in [xamarinevolve2014](https://github.com/paulcbetts/xamarinevolve2014) with the almighty [Paul Betts](https://github.com/paulcbetts) arround the web
+* Checking some [ReactiveUI Samples](https://github.com/reactiveui/ReactiveUI/issues/979)
