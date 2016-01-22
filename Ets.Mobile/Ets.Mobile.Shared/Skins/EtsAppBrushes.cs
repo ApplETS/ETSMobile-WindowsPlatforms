@@ -4,7 +4,7 @@ using Themes.Entities;
 namespace Themes
 {
     /// <summary>
-    /// Ets Mobile Default Colors
+    /// ÉTSMobile Default Colors
     /// <para>Ref: <see cref="https://color.adobe.com/AppETS-color-theme-3400460/">Here</see></para>
     /// </summary>
     public sealed class EtsAppBrushes : IAppBrush
