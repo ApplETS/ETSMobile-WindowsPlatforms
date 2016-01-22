@@ -56,7 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Main\MainPageViewModel.Today.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Settings\SettingsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\UserDetails\UserDetailsPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Panes\SideNavigation\SideNavigationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Panes\SideNavigation\SideNavigationPaneViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModelKeys.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ApplicationServicesBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bases\ViewModelBase.cs" />

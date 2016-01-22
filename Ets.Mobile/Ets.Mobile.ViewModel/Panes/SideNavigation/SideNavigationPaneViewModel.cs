@@ -21,6 +21,7 @@ using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Ets.Mobile.ViewModel.Pages.Moodle.Courses;
 #if WINDOWS_PHONE_APP || WINDOWS_UWP
 using Windows.UI.ViewManagement;
 #endif
@@ -246,7 +247,7 @@ namespace Ets.Mobile.ViewModel.Panes.SideNavigation
             set { this.RaiseAndSetIfChanged(ref _isMoodle, value); }
         }
 
-        public Type[] MoodleTypes { get; } = { typeof(MoodleMainPageViewModel) };
+        public Type[] MoodleTypes { get; } = { typeof(MoodleMainPageViewModel), typeof(MoodleCourseModulePageViewModel), typeof(MoodleCourseModuleContentPageViewModel), typeof(MoodleCourseContentPageViewModel) };
 
         private bool _isSettings;
         public bool IsSettings
