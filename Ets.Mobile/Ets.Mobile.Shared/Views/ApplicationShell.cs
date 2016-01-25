@@ -31,10 +31,12 @@ using Refit;
 using Security.Contracts;
 using Splat;
 using System;
+using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Background;
 #if WINDOWS_PHONE_APP
 using Ets.Mobile.ViewModel.WinPhone.Pages.ExtendedSplashScreen;
 using Ets.Mobile.Pages.ExtendedSplashScreen;
@@ -166,6 +168,13 @@ namespace Ets.Mobile.ViewModel
 	    {
 	        BlobCache.UserAccount.GetObject<EtsUserCredentials>(ViewModelKeys.Login)
                 .Catch(Observable.Return(new EtsUserCredentials()))
+                .Do(async x =>
+                {
+                    if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == ScheduleTileUpdaterBackgroundTask.TaskName))
+                    {
+                        await ScheduleTileUpdaterBackgroundTask.RunTaskAsync().AsTask();
+                    }
+                })
 	            .Subscribe(signetsAccountVm =>
 	            {
 	                object navigateTo;
@@ -174,6 +183,7 @@ namespace Ets.Mobile.ViewModel
                         _resolver.GetService<ISsoService>().SetCredentials(signetsAccountVm);
                         _resolver.GetService<IUserEnabledLogger>().SetUser(Locator.Current.GetService<ISecurityProvider>().HashMd5(signetsAccountVm.Username));
 	                    SideNavigation.UserDetails.LoadProfile.Execute(null);
+	                    
                         navigateTo = new MainPageViewModel(this);
 	                }
 	                else
