@@ -32,13 +32,7 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
         protected sealed override void OnViewModelCreation()
         {
             IsScheduleBackgroundServiceActive = true;
-            this.ObservableForProperty(p => p.IsScheduleBackgroundServiceActive)
-                .Subscribe(isActive => HandleScheduleBackgroundService.Execute(isActive.Value));
-
-            Cache.GetObject<bool>(ViewModelKeys.ScheduleTileUpdaterActive)
-                .Catch(Observable.Return(false))
-                .Subscribe(isActive => IsScheduleBackgroundServiceActive = isActive);
-
+            
             SendFeedbackUri = new Uri("mailto:applets@ens.etsmtl.ca?subject=" +
 #if WINDOWS_PHONE_APP
             "ÉtsMobile-WindowsPhone"
@@ -77,6 +71,14 @@ namespace Ets.Mobile.ViewModel.Pages.Settings
             HandleScheduleBackgroundService.ThrownExceptions.Subscribe(error => UserError.Throw(error.Message, error));
 
             HandleScheduleBackgroundService.Subscribe(isActive => IsScheduleBackgroundServiceActive = isActive);
+
+            this.ObservableForProperty(p => p.IsScheduleBackgroundServiceActive)
+                .Subscribe(isActive => HandleScheduleBackgroundService.Execute(isActive.Value));
+
+            Cache.GetObject<bool>(ViewModelKeys.ScheduleTileUpdaterActive)
+                .Catch(Observable.Return(false))
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Subscribe(isActive => IsScheduleBackgroundServiceActive = isActive);
 
 #if WINDOWS_PHONE_APP || WINDOWS_UWP
             IntegrateScheduleToCalendar = ReactivePresenterCommand.CreateAsyncTask(async _ =>
