@@ -1,4 +1,5 @@
-﻿using Ets.Mobile.Client.Services;
+﻿using Ets.Mobile.Client.Entities.Schedule;
+using Ets.Mobile.Client.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,7 +39,12 @@ namespace Ets.Mobile.Agent
         {
             return Task.Run(() =>
             {
-                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+                var tileManager = TileUpdateManager.CreateTileUpdaterForApplication();
+                tileManager.Clear();
+                foreach (var tile in tileManager.GetScheduledTileNotifications())
+                {
+                    tileManager.RemoveFromSchedule(tile);
+                }
                 foreach (var task in BackgroundTaskRegistration.AllTasks.Where(task => task.Value.Name == TaskName))
                 {
                     task.Value.Unregister(true);
@@ -55,51 +61,189 @@ namespace Ets.Mobile.Agent
             deferal.Complete();
         }
 
-        private static async Task RunTaskAsync()
+        public static IAsyncAction RunTaskAsync()
         {
-            var scheduleItem =
-                await LiveTileAndLockScreenService.GetCurrentOrIncomingCourse();
+            return Task.Run(async () => {
+                var scheduleItem =
+                    await LiveTileAndLockScreenService.GetCurrentOrIncomingCourses();
 
-            if (scheduleItem != null)
+                if (scheduleItem != null && scheduleItem.Any())
+                {
+                    ScheduleTiles(scheduleItem.ToArray());
+                }
+                else
+                {
+                    TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+                    var scheduleItemForNextDay =
+                        await LiveTileAndLockScreenService.GetFollowingDayCourses();
+                    if (scheduleItemForNextDay.Any())
+                    {
+                        ScheduleFirstTileOfNextDay(scheduleItemForNextDay.First());
+                    }
+                }
+            }).AsAsyncAction();
+        }
+
+        private static void ScheduleTiles(ScheduleForLiveTile[] schedule)
+        {
+            var now = DateTimeOffset.Now;
+
+            // Tile Update Manager
+            //
+            var tileManager = TileUpdateManager.CreateTileUpdaterForApplication();
+            tileManager.Clear();
+
+            if (!schedule.Any(t => t.EndDate > now))
             {
-                UpdateTile(scheduleItem.ActivityName, scheduleItem.Location, scheduleItem.Name, scheduleItem.Group,
-                    scheduleItem.StartDate, scheduleItem.EndDate);
+                foreach (var tile in tileManager.GetScheduledTileNotifications())
+                {
+                    tileManager.RemoveFromSchedule(tile);
+                }
+                return;
+            }
+            
+            tileManager.EnableNotificationQueue(true);
+            tileManager.EnableNotificationQueueForSquare150x150(true);
+            tileManager.EnableNotificationQueueForWide310x150(true);
+
+            // Schedule Notifications
+            //
+            var scheduleItems = schedule.Where(t => t.EndDate > now).ToArray();
+
+            // We take 1 to 2 schedule items (2 schedule items X 2 Tile Sizes = 4
+            // and the maximum is 5 tiles scheduled)
+            scheduleItems = scheduleItems.Length > 1 ? scheduleItems.Take(2).ToArray() : scheduleItems;
+
+            if (scheduleItems.Length == 1)
+            {
+                // We have only one class right now or later in the day
+                var tile = scheduleItems[0];
+                var tileNotification = GenerateTileNotifications(tile);
+                tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item1, DateTimeOffset.Now.AddSeconds(2))
+                {
+                    ExpirationTime = tile.EndDate
+                });
+                tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item2, DateTimeOffset.Now.AddSeconds(3))
+                {
+                    ExpirationTime = tile.EndDate
+                });
             }
             else
             {
-                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+                // We have at least two classes, but since there are limitations, we only take 2.
+                if (scheduleItems.GroupBy(x => new { x.ActivityName, x.StartDate, x.EndDate }).ToArray().Length == 1)
+                {
+                    // They are the exact same class, starting at the same time.
+                    // This may occur if the user has (for instance) 2 different labs and 
+                    // the user needs to pick a class at the start of the semester.
+                    // Note: We have a second between each deletion
+                    foreach (var tile in scheduleItems)
+                    {
+                        var tileNotification = GenerateTileNotifications(tile);
+                        tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item1, DateTimeOffset.Now.AddSeconds(2))
+                        {
+                            ExpirationTime = tile.EndDate.Add(new TimeSpan(0, 0, 0, -15))
+                        });
+                        tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item2, DateTimeOffset.Now.AddSeconds(3))
+                        {
+                            ExpirationTime = tile.EndDate.Add(new TimeSpan(0, 0, 0, -15))
+                        });
+                    }
+
+                    // Clear both classes
+                    // There seem to be a limitation to remove two 
+                    var clear = GenerateTileNotifications(scheduleItems[0]);
+                    tileManager.AddToSchedule(new ScheduledTileNotification(clear.Item1, scheduleItems[0].EndDate.Add(new TimeSpan(0, 0, 0, -15)))
+                    {
+                        ExpirationTime = scheduleItems[0].EndDate
+                    });
+                }
+                else
+                {
+                    // They are two different classes
+                    var tile = scheduleItems[0];
+                    var tileNotification = GenerateTileNotifications(tile);
+                        
+                    // The class is occuring right now and the tile isn't showing
+                    // the schedule. Schedule it right now.
+                    //
+                    // Similarly, if it is the first class, 
+                    // we schedule it to show right now (because we want to see which
+                    // classes we have next)
+                    tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item1, DateTimeOffset.Now.AddSeconds(2))
+                    {
+                        ExpirationTime = tile.EndDate
+                    });
+                    tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item2, DateTimeOffset.Now.AddSeconds(2))
+                    {
+                        ExpirationTime = tile.EndDate
+                    });
+                    var dateUntilNextClass = tile.EndDate.AddMilliseconds(1);
+
+                    // the class is occuring later in the day (after the first one), so we get the previous class
+                    // and schedule its appearance when the previous class finishes
+                    tile = schedule[1];
+                    tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item1, dateUntilNextClass)
+                    {
+                        ExpirationTime = tile.EndDate
+                    });
+                    tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item2, dateUntilNextClass)
+                    {
+                        ExpirationTime = tile.EndDate
+                    });
+                }
             }
         }
 
-        private static void UpdateTile(string courseName, string location, string activityName, string group, DateTimeOffset startTime, DateTimeOffset endTime)
+        private static void ScheduleFirstTileOfNextDay(ScheduleForLiveTile tile)
         {
-#if WINDOWS_APP || WINDOWS_UWP
-            // Wide
-            //
-            foreach (var item in ContentWide.SelectNodes("//text"))
-            {
-                var namedItem = item.Attributes.GetNamedItem("id");
-                if (namedItem != null)
-                {
+            var now = DateTimeOffset.Now;
 
-                    switch (namedItem.NodeValue.ToString())
-                    {
-                        case "3":
-                            item.InnerText = courseName;
-                            break;
-                        case "4":
-                            item.InnerText = $"{location} - {activityName} (Gr: {group})";
-                            break;
-                        case "5":
-                            item.InnerText = startTime.ToString("HH:mm tt") + " - " + endTime.ToString("HH:mm tt");
-                            break;
-                    }
-                }
+            // Tile Update Manager
+            //
+            var tileManager = TileUpdateManager.CreateTileUpdaterForApplication();
+
+            // Schedule Notifications
+            //
+            var scheduledNotifications = tileManager.GetScheduledTileNotifications();
+            var tileId = $"{tile.ActivityName}{tile.Location} - {tile.Name} (Gr: {tile.Group}){tile.StartDate.ToString("HH:mm tt")} - {tile.EndDate.ToString("HH:mm tt")}";
+
+            if (!scheduledNotifications.Any(sn => ScheduleIsScheduled(tileId, sn)))
+            {
+                var tommorow = now.Date.AddDays(1).AddMilliseconds(1);
+                var tileNotification = GenerateTileNotifications(tile);
+
+                tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item1, tommorow)
+                {
+                    ExpirationTime = tile.EndDate
+                });
+                tileManager.AddToSchedule(new ScheduledTileNotification(tileNotification.Item2, tommorow)
+                {
+                    ExpirationTime = tile.EndDate
+                });
             }
-#elif WINDOWS_PHONE_APP
+        }
+
+        /// <summary>
+        /// Generate the tile for a ScheduleVm
+        /// </summary>
+        /// <param name="tile">ScheduleVm as ScheduleForLiveTile</param>
+        /// <returns>T1 is 150x150 Live Tile, T2 is Wide Live Tile</returns>
+        private static Tuple<XmlDocument, XmlDocument> GenerateTileNotifications(ScheduleForLiveTile tile)
+        {
+            var tileId = $"{tile.ActivityName}{tile.Location} - {tile.Name} (Gr: {tile.Group}){tile.StartDate.ToString("HH:mm tt")} - {tile.EndDate.ToString("HH:mm tt")}";
+#if WINDOWS_PHONE_APP
+            var contentForLockScreenWide = TileUpdateManager.GetTemplateContent(TileForLockScreenWide);
+#else
+            var contentWide = TileUpdateManager.GetTemplateContent(TileContentWide);
+#endif
+            var contentSquare150 = TileUpdateManager.GetTemplateContent(TileContentSquare150);
+#if WINDOWS_PHONE_APP
             // Wide
             //
-            foreach (var item in ContentForLockScreenWide.SelectNodes("//text"))
+            var idOfNotification = contentForLockScreenWide.CreateAttribute(IdOfNotificationKey);
+            idOfNotification.InnerText = $"{tile.ActivityName}{tile.Location}{tile.StartDate.ToString("HH:mm tt")} - {tile.EndDate.ToString("HH:mm tt")}";
+            foreach (var item in contentForLockScreenWide.SelectNodes("//text"))
             {
                 var namedItem = item.Attributes.GetNamedItem("id");
                 if (namedItem != null)
@@ -108,89 +252,93 @@ namespace Ets.Mobile.Agent
                     switch (namedItem.NodeValue.ToString())
                     {
                         case "1":
-                            item.InnerText = courseName;
+                            item.InnerText = tile.ActivityName;
                             break;
                         case "2":
-                            item.InnerText = $"{location} - {activityName} (Gr: {group})";
+                            item.InnerText = $"{tile.Location} - {tile.Name} (Gr: {tile.Group})";
                             break;
                         case "3":
-                            item.InnerText = startTime.ToString("HH:mm tt") + " - " + endTime.ToString("HH:mm tt");
+                            item.InnerText = tile.StartDate.ToString("HH:mm tt") + " - " + tile.EndDate.ToString("HH:mm tt");
                             break;
                     }
                 }
             }
-            foreach (var item in ContentForLockScreenWide.SelectNodes("//image"))
+            foreach (var item in contentForLockScreenWide.SelectNodes("//image"))
             {
                 var namedItem = item.Attributes.GetNamedItem("src");
                 if (namedItem != null)
                     namedItem.InnerText = "/Assets/TileImage/Badge.scale-240.png";
             }
+#else
+            // Wide
+            //
+            var idOfNotification = contentWide.CreateAttribute(IdOfNotificationKey);
+            idOfNotification.InnerText = tileId;
+            foreach (var item in contentWide.SelectNodes("//text"))
+            {
+                var namedItem = item.Attributes.GetNamedItem("id");
+                if (namedItem != null)
+                {
+
+                    switch (namedItem.NodeValue.ToString())
+                    {
+                        case "3":
+                            item.InnerText = tile.ActivityName;
+                            break;
+                        case "4":
+                            item.InnerText = $"{tile.Location} - {tile.Name} (Gr: {tile.Group})";
+                            break;
+                        case "5":
+                            item.InnerText = tile.StartDate.ToString("HH:mm tt") + " - " + tile.EndDate.ToString("HH:mm tt");
+                            break;
+                    }
+                }
+            }
 #endif
             // Square
             //
-            foreach (var item in ContentSquare150.SelectNodes("//text"))
+            var contentSquare150Id = contentSquare150.CreateAttribute(IdOfNotificationKey);
+            contentSquare150Id.InnerText = tileId;
+            foreach (var item in contentSquare150.SelectNodes("//text"))
             {
                 var namedItem = item.Attributes.GetNamedItem("id");
                 if (namedItem != null)
                     switch (namedItem.NodeValue.ToString())
                     {
                         case "1":
-                            item.InnerText = courseName;
+                            item.InnerText = tile.ActivityName;
                             break;
                         case "2":
-                            item.InnerText = $"{location}"
-                                + "\n" + startTime.ToString("HH:mm tt") + " - " + endTime.ToString("HH:mm tt");
+                            item.InnerText = $"{tile.Location}"
+                                + "\n" + tile.StartDate.ToString("HH:mm tt") + " - " + tile.EndDate.ToString("HH:mm tt");
                             break;
                     }
             }
-            foreach (var item in ContentSquare310.SelectNodes("//text"))
-            {
-                var namedItem = item.Attributes.GetNamedItem("id");
-                if (namedItem != null)
-                    switch (namedItem.NodeValue.ToString())
-                    {
-                        case "1":
-                            item.InnerText = courseName;
-                            break;
-                        case "2":
-                            item.InnerText = $"{location}"
-                                + "\n" + startTime.ToString("HH:mm tt") + " - " + endTime.ToString("HH:mm tt");
-                            break;
-                    }
-            }
-
-            // Tile Update Manager
-            //
-            TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
-            TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueueForSquare150x150(true);
-            TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueueForSquare310x310(true);
-            TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueueForWide310x150(true);
-#if WINDOWS_APP || WINDOWS_UWP
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(ContentWide));
-#elif WINDOWS_PHONE_APP
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(ContentForLockScreenWide));
+            
+            return new Tuple<XmlDocument, XmlDocument>(
+#if WINDOWS_PHONE_APP
+                contentForLockScreenWide,
+#else
+                contentWide,
 #endif
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(ContentSquare150));
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(ContentSquare310));
+
+                contentSquare150);
         }
 
         #region Properties
 
-        private const string TaskName = "ScheduTileUpdater";
+        public static string TaskName { get; } = "ScheduTileUpdater";
         private const string TaskEntryPoint = "Ets.Mobile.Agent.ScheduleTileUpdaterBackgroundTask";
+
+        private const string IdOfNotificationKey = "id_of_notification";
+        private static readonly Func<string, ScheduledTileNotification, bool> ScheduleIsScheduled = (tileId, x) => x.Content?.InnerText == tileId;
         private const TileTemplateType TileContentSquare150 = TileTemplateType.TileSquare150x150Text02;
-        private const TileTemplateType TileContentSquare310 = TileTemplateType.TileSquare310x310Text02;
 #if WINDOWS_PHONE_APP
         private const TileTemplateType TileForLockScreenWide = TileTemplateType.TileWide310x150IconWithBadgeAndText;
-        private static readonly XmlDocument ContentForLockScreenWide = TileUpdateManager.GetTemplateContent(TileForLockScreenWide);
 #else
         private const TileTemplateType TileContentWide = TileTemplateType.TileWide310x150BlockAndText01;
-        private static readonly XmlDocument ContentWide = TileUpdateManager.GetTemplateContent(TileContentWide);
 #endif
-        private static readonly XmlDocument ContentSquare150 = TileUpdateManager.GetTemplateContent(TileContentSquare150);
-        private static readonly XmlDocument ContentSquare310 = TileUpdateManager.GetTemplateContent(TileContentSquare310);
 
-
-#endregion
+        #endregion
     }
 }

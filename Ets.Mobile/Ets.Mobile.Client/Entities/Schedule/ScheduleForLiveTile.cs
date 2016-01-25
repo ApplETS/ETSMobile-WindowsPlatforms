@@ -4,7 +4,7 @@ namespace Ets.Mobile.Client.Entities.Schedule
 {
     public class ScheduleForLiveTile
     {
-        public ScheduleForLiveTile(string activityName, string location, string name, string group, DateTime startTime, DateTime endTime)
+        public ScheduleForLiveTile(string activityName, string courseAndGroup, string location, string name, string group, DateTime startTime, DateTime endTime)
         {
             ActivityName = activityName;
             Location = location;
@@ -12,9 +12,11 @@ namespace Ets.Mobile.Client.Entities.Schedule
             Group = group;
             StartDate = startTime;
             EndDate = endTime;
+            CourseAndGroup = courseAndGroup;
         }
 
         public string ActivityName { get; set; }
+        public string CourseAndGroup { get; set; }
         public string Location { get; set; }
         public string Name { get; set; }
         public string Group { get; set; }

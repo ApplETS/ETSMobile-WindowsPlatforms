@@ -11,7 +11,7 @@ namespace Ets.Mobile.Client.Services
 {
     public class LiveTileAndLockScreenService
     {
-        public static async Task<ScheduleForLiveTile> GetCurrentOrIncomingCourse()
+        public static async Task<ScheduleForLiveTile[]> GetCurrentOrIncomingCourses()
         {
             BlobCache.ApplicationName = "EtsMobile";
             var cache = BlobCache.UserAccount;
@@ -22,17 +22,26 @@ namespace Ets.Mobile.Client.Services
                     .Select(semesters => semesters.FirstOrDefault(y => y.StartDate <= now && y.EndDate > now))
                     .SelectMany(currentSemester => cache.GetObject<ScheduleVm[]>("schedule_" + currentSemester.AbridgedName))
                     // Get Today's Courses
-                    .Select(courses => courses.Where(c => c.StartDate.Date == now.Date).OrderBy(c => c.StartDate))
-                    // Get Current Course or Following Course
-                    .FirstOrDefaultAsync(courses => courses.Any(c => (c.StartDate <= now && c.EndDate > now) || c.StartDate > now))
-                    .SelectMany(courses =>
-                    {
-                        var currentOrIncomingCourse =
-                            courses?.FirstOrDefault(c => (c.StartDate <= now && c.EndDate > now) || c.StartDate > now);
-                        return currentOrIncomingCourse != null ? Observable.Return(currentOrIncomingCourse) : Observable.Return(default(ScheduleVm));
-                    })
+                    .Select(courses => courses.Where(c => c.StartDate.Date == now.Date && c.EndDate > now.Date).OrderBy(x => x.StartDate).ThenBy(x => x.Location))
                     // Convert to simple object
-                    .Select(scheduleItem => scheduleItem != null ? new ScheduleForLiveTile(scheduleItem.ActivityName, scheduleItem.Location, scheduleItem.Name, scheduleItem.Group, scheduleItem.StartDate, scheduleItem.EndDate) : default(ScheduleForLiveTile))
+                    .Select(scheduleItems => scheduleItems != null ? scheduleItems.Select(scheduleItem => new ScheduleForLiveTile(scheduleItem.ActivityName, scheduleItem.CourseAndGroup, scheduleItem.Location, scheduleItem.Name, scheduleItem.Group, scheduleItem.StartDate, scheduleItem.EndDate)).ToArray() : new ScheduleForLiveTile[] {})
+                    .ToTask();
+        }
+
+        public static async Task<ScheduleForLiveTile[]> GetFollowingDayCourses()
+        {
+            BlobCache.ApplicationName = "EtsMobile";
+            var cache = BlobCache.UserAccount;
+            var now = DateTime.Now;
+            return
+                await cache.GetObject<SemesterVm[]>("semesters")
+                    .Where(x => x.FirstOrDefault(y => y.StartDate <= now && y.EndDate > now) != null)
+                    .Select(semesters => semesters.FirstOrDefault(y => y.StartDate <= now && y.EndDate > now))
+                    .SelectMany(currentSemester => cache.GetObject<ScheduleVm[]>("schedule_" + currentSemester.AbridgedName))
+                    // Get Today's Courses
+                    .Select(courses => courses.Where(c => c.StartDate.Date == now.Date.AddDays(1)).OrderBy(x => x.StartDate).ThenBy(x => x.Location))
+                    // Convert to simple object
+                    .Select(scheduleItems => scheduleItems != null ? scheduleItems.Select(scheduleItem => new ScheduleForLiveTile(scheduleItem.ActivityName, scheduleItem.CourseAndGroup, scheduleItem.Location, scheduleItem.Name, scheduleItem.Group, scheduleItem.StartDate, scheduleItem.EndDate)).ToArray() : new ScheduleForLiveTile[] { })
                     .ToTask();
         }
     }
