@@ -427,9 +427,6 @@
     <SDKReference Include="Microsoft.VCLibs, Version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
     </SDKReference>
-    <SDKReference Include="Syncfusion 8.1 Controls for WP XAML, Version=13.4.0.53">
-      <Name>Syncfusion 8.1 Controls for WP XAML</Name>
-    </SDKReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Akavache, Version=4.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -482,6 +479,22 @@
     </Reference>
     <Reference Include="SQLitePCL.raw, Version=0.6.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLitePCL.raw_basic.0.7.0\lib\wpa81\SQLitePCL.raw.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.SfInput.WP, Version=13.4810.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfInput.WP.13.4.0.53\lib\wpa81\Syncfusion.SfInput.WP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.SfSchedule.WP, Version=13.4810.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfSchedule.WP.13.4.0.53\lib\wpa81\Syncfusion.SfSchedule.WP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.SfShared.WP, Version=13.4810.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfShared.WP.13.4.0.53\lib\wpa81\Syncfusion.SfShared.WP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Syncfusion.SfTabControl.WP, Version=13.4810.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfTabControl.WP.13.4.0.53\lib\wpa81\Syncfusion.SfTabControl.WP.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
