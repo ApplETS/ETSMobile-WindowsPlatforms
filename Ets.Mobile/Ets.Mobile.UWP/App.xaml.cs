@@ -1,4 +1,5 @@
-﻿using CrittercismSDK;
+﻿using Akavache;
+using CrittercismSDK;
 using Ets.Mobile.Logger;
 using Ets.Mobile.Shell;
 using Ets.Mobile.TaskObservers;
