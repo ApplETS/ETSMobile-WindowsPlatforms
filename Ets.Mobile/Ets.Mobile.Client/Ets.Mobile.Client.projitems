@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Schedule\ScheduleForLiveTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Moodle\MoodleExceptionHandlerExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\Signets\SignetsExceptionHandlerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Signets\SignetsServiceExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Abstractions\MoodleAbstractFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Abstractions\SignetsAbstractFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factories\Implementations\Moodle\MoodleCourseContentFactory.cs" />

@@ -72,7 +72,7 @@ namespace Ets.Mobile.ViewModel.Panes.SideNavigation
         {
             await Locator.Current.GetService<ICalendarService>().RemoveScheduleFromCalendar();
             await Agent.ScheduleTileUpdaterBackgroundTask.Unregister();
-            await BlobCache.UserAccount.InvalidateAll().ToTask();
+            await Locator.Current.GetService<IBlobCache>().InvalidateAll().ToTask();
             IsSideNavigationVisibleSubject.OnNext(false);
             Screen.Router.NavigateAndReset.Execute(new LoginPageViewModel(Locator.Current.GetService<IScreen>()));
             return Unit.Default;

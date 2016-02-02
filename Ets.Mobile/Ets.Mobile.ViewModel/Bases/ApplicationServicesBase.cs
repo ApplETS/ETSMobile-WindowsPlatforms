@@ -52,7 +52,7 @@ namespace Ets.Mobile.ViewModel.Bases
         }
 
         private IBlobCache _bc;
-        protected IBlobCache Cache => _bc ?? (_bc = BlobCache.UserAccount);
+        protected IBlobCache Cache => _bc ?? (_bc = Locator.Current.GetService<IBlobCache>());
 
         private IViewService _vs;
         protected IViewService ViewServices()

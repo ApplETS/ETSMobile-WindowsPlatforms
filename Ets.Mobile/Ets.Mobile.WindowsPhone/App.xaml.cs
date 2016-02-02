@@ -17,6 +17,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Akavache;
 
 namespace Ets.Mobile
 {
@@ -34,6 +35,7 @@ namespace Ets.Mobile
             var resourceLoader = new ResourceLoader();
             Locator.CurrentMutable.RegisterLazySingleton(() => resourceLoader, typeof(ResourceLoader));
             Locator.CurrentMutable.RegisterLazySingleton(() => new ResourceLoaderContainer(resourceLoader), typeof(IResourceContainer));
+            Locator.CurrentMutable.RegisterLazySingleton(() => BlobCache.UserAccount, typeof(IBlobCache));
 
             InitializeComponent();
 

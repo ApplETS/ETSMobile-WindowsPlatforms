@@ -1,5 +1,4 @@
-﻿using Syncfusion.Data.Extensions;
-using Syncfusion.UI.Xaml.Schedule;
+﻿using Syncfusion.UI.Xaml.Schedule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,15 +50,18 @@ namespace Ets.Mobile.Pages.Schedule
 
             var grid = calendarFlyout.Content as Grid;
             var stackPanel = grid?.Children.First() as StackPanel;
-            stackPanel?.Children.ForEach(x =>
+            if (stackPanel?.Children != null)
             {
-                var b = x as Button;
-                if (b != null)
+                foreach (var child in stackPanel?.Children)
                 {
-                    b.IsEnabled = b.Name != Scheduler.ScheduleType.ToString();
-                    b.Foreground = b.IsEnabled ? Application.Current.RequestedTheme == ApplicationTheme.Light ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.White) : new SolidColorBrush(Colors.Gray);
+                    var b = child as Button;
+                    if (b != null)
+                    {
+                        b.IsEnabled = b.Name != Scheduler.ScheduleType.ToString();
+                        b.Foreground = b.IsEnabled ? Application.Current.RequestedTheme == ApplicationTheme.Light ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.White) : new SolidColorBrush(Colors.Gray);
+                    }
                 }
-            });
+            }
 
             if (grid == null) return;
             grid.Tapped += (o, args) =>

@@ -1,5 +1,4 @@
-﻿using Akavache;
-using Ets.Mobile.Business.Contracts;
+﻿using Ets.Mobile.Business.Contracts;
 using Ets.Mobile.Business.Entities.Results.Signets;
 using Ets.Mobile.Business.Extensions;
 using Ets.Mobile.Client.Contracts;
@@ -8,11 +7,9 @@ using Ets.Mobile.Client.Factories.Abstractions;
 using Ets.Mobile.Client.Factories.Implementations.Signets;
 using Ets.Mobile.Entities.Auth;
 using Ets.Mobile.Entities.Signets;
-using Security.Contracts;
-using Splat;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Threading.Tasks;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace Ets.Mobile.Client.Services
@@ -53,12 +50,6 @@ namespace Ets.Mobile.Client.Services
             var userDetailsVm = _factory.CreateFor<UserDetailsResult, UserDetailsVm>(userDetailsResult);
 
             userDetailsVm.Username = _userCredentials.Username;
-
-#if !TEST
-            userDetailsVm.Image = await BlobCache.UserAccount.LoadImageFromUrl("gravatar",
-                "http://www.gravatar.com/avatar/" +
-                $"{Locator.Current.GetService<ISecurityProvider>().HashMd5(userDetailsVm.Email.ToLower())}", true).ToTask();
-#endif
 
             return userDetailsVm;
         }

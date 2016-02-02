@@ -36,7 +36,7 @@ namespace Ets.Mobile.Client.Services
 
         public async Task ApplyColorOnItemsForMoodleCourses(MoodleCourseVm[] items)
         {
-            var keys = await BlobCache.UserAccount.GetAllKeys().Select(k => k.Where(key => key.StartsWith("colorsFor_")).ToArray()).ToTask();
+            var keys = await Locator.Current.GetService<IBlobCache>().GetAllKeys().Select(k => k.Where(key => key.StartsWith("colorsFor_")).ToArray()).ToTask();
             
             if (!keys.Any())
             {
@@ -59,7 +59,7 @@ namespace Ets.Mobile.Client.Services
 
         public async Task ApplyColorOnItemsForMoodleCourseContents(MoodleCourseContentVm[] items, MoodleCourseVm course)
         {
-            var keys = await BlobCache.UserAccount.GetAllKeys().Select(k => k.Where(key => key.StartsWith("colorsFor_")).ToArray()).ToTask();
+            var keys = await Locator.Current.GetService<IBlobCache>().GetAllKeys().Select(k => k.Where(key => key.StartsWith("colorsFor_")).ToArray()).ToTask();
 
             if (!keys.Any())
             {
@@ -87,25 +87,25 @@ namespace Ets.Mobile.Client.Services
 
         private async Task InnerApplyColorOnCourses<T>(T customColorObj, string semester, string courseWithGroup) where T : ICustomColor 
         {
-            var colorOfSchedule = await BlobCache.UserAccount.GetObject<ColorVm>(ClientKeys.ColorCourseForSemester(semester, courseWithGroup));
+            var colorOfSchedule = await Locator.Current.GetService<IBlobCache>().GetObject<ColorVm>(ClientKeys.ColorCourseForSemester(semester, courseWithGroup));
             customColorObj.SetNewColor(colorOfSchedule);
         }
 
         private async Task InnerApplyColorOnCourses<T>(T customColorObj, string key) where T : ICustomColor
         {
-            var colorOfSchedule = await BlobCache.UserAccount.GetObject<ColorVm>(key);
+            var colorOfSchedule = await Locator.Current.GetService<IBlobCache>().GetObject<ColorVm>(key);
             customColorObj.SetNewColor(colorOfSchedule);
         }
 
         private async Task ApplyColorOnCoursesWithinSemester(ICustomColor customColorObj, string semester, string courseWithGroup, ColorAsString color)
         {
-            var colorVm = await BlobCache.UserAccount.GetOrCreateObject(ClientKeys.ColorCourseForSemester(semester, courseWithGroup), () => new ColorVm(color.HexColor)).ToTask();
+            var colorVm = await Locator.Current.GetService<IBlobCache>().GetOrCreateObject(ClientKeys.ColorCourseForSemester(semester, courseWithGroup), () => new ColorVm(color.HexColor)).ToTask();
             customColorObj.SetNewColor(colorVm);
         }
 
         private async Task InnerApplyColorOnCoursesWithoutKeys<T>(T customColorObj, string key, ColorAsString color) where T : ICustomColor
         {
-            var colorOfSchedule = await BlobCache.UserAccount.GetOrCreateObject(key, () => new ColorVm(color.HexColor));
+            var colorOfSchedule = await Locator.Current.GetService<IBlobCache>().GetOrCreateObject(key, () => new ColorVm(color.HexColor));
             customColorObj.SetNewColor(colorOfSchedule);
         }
     }

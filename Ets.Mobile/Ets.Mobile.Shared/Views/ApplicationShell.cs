@@ -155,7 +155,7 @@ namespace Ets.Mobile.ViewModel
         {
             // When the user is launching the app, ensure that the connectivity states are reset-ed
             await HandleOfflineTask.SetConnectivityValues();
-            await BlobCache.UserAccount.InsertObject("HasUserBeenNotified", false).ToTask();
+            await Locator.Current.GetService<IBlobCache>().InsertObject("HasUserBeenNotified", false).ToTask();
         }
         
         private void HandleApplicationExceptions()
@@ -166,7 +166,7 @@ namespace Ets.Mobile.ViewModel
 
         public void HandleAuthentificated()
 	    {
-	        BlobCache.UserAccount.GetObject<EtsUserCredentials>(ViewModelKeys.Login)
+	        Locator.Current.GetService<IBlobCache>().GetObject<EtsUserCredentials>(ViewModelKeys.Login)
                 .Catch(Observable.Return(new EtsUserCredentials()))
                 .Do(async x =>
                 {

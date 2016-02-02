@@ -1,4 +1,5 @@
 ﻿using Akavache;
+using Ets.Mobile.Client.Extensions.Signets;
 using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts.UserDetails;
@@ -37,7 +38,7 @@ namespace Ets.Mobile.ViewModel.Pages.UserDetails
 
         private IObservable<UserDetailsVm> FetchProfileImpl()
         {
-            var fetchProfile = Cache.GetAndFetchLatest(ViewModelKeys.UserProfile, () => ClientServices().SignetsService.UserDetails());
+            var fetchProfile = Cache.GetAndFetchLatest(ViewModelKeys.UserProfile, () => ClientServices().SignetsService.UserDetails().LoadUserImage());
 
             var loadProfileUserImage =
                 fetchProfile
