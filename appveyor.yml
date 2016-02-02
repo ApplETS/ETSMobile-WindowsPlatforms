@@ -1,0 +1,8 @@
+version: 1.0.{build}
+cache:
+- tools
+- src/packages
+build_script:
+- ps: ./build.ps1
+test: off
+deploy: off

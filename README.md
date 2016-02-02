@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/tgkj12vu87sgp9rf/branch/make-build-system-with-existing-tests?svg=true)](https://ci.appveyor.com/project/martingemme/etsmobile-windowsplatforms/branch/make-build-system-with-existing-tests)
+
 # ETSMobile for Windows Platforms
 Welcome in the ETSMobile project for Windows Platforms!
 
