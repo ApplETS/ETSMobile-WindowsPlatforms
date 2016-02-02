@@ -41,7 +41,15 @@ Task("Clean")
 Task("Restore-NuGet-Packages")
   .IsDependentOn("Clean")
   .Does(() => {
-    NuGetRestore(solutionPath);
+    NuGetRestore(solutionPath, new NuGetRestoreSettings()
+    {
+      Source = new List<string>()
+      {
+        "https://api.nuget.org/v3/index.json",
+        "http://nuget.syncfusion.com/MzAwMTE1LDEz",
+        "http://nuget.syncfusion.com/MzAwMTE1LDEw"
+      }
+    });
   });
 
 Task("Build")
