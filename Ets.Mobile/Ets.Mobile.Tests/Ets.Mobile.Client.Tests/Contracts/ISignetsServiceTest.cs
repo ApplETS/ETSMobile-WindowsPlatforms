@@ -5,7 +5,6 @@ namespace Ets.Mobile.Client.Tests.Contracts
 {
     public interface ISignetsServiceTest
     {
-        ISignetsService GetSignetsServices();
         Task LoginTest();
         Task UserDetailsTest();
         Task CoursesTest();

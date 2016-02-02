@@ -28,10 +28,10 @@ namespace Ets.Mobile.UserErrorHandlers
                 // async is not permitted in a static context, hence using both
                 // WaitAll and Task.Run togheter to run synchronously.
                 Task.WaitAll(Task.Run(async () => await HandleOfflineTask.SetConnectivityValues()));
-                BlobCache.UserAccount.GetObject<bool>("IsCurrentlyOffline")
+                Locator.Current.GetService<IBlobCache>().GetObject<bool>("IsCurrentlyOffline")
                     .Catch(Observable.Return(false))
                     .CombineLatest(
-                        BlobCache.UserAccount.GetObject<bool>("HasUserBeenNotified")
+                        Locator.Current.GetService<IBlobCache>().GetObject<bool>("HasUserBeenNotified")
                         .Catch(Observable.Return(false)),
                         (x, y) => x && !y
                     )
@@ -42,7 +42,7 @@ namespace Ets.Mobile.UserErrorHandlers
                         {
                             Locator.Current.GetService<IPopupManager>()
                                 .ShowMessage(StringResources.NetworkError, StringResources.NetworkTitleError);
-                            BlobCache.UserAccount.InsertObject("HasUserBeenNotified", true);
+                            Locator.Current.GetService<IBlobCache>().InsertObject("HasUserBeenNotified", true);
                         }
                     });
             }

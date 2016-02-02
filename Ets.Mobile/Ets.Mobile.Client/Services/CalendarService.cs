@@ -26,7 +26,7 @@ namespace Ets.Mobile.Client.Services
             // Delete all existing calendar that is named CalendarName
             try
             {
-                var localId = await BlobCache.UserAccount.GetObject<string>(CalendarIdStoreKey).Catch(Observable.Return(string.Empty)).ToTask();
+                var localId = await Locator.Current.GetService<IBlobCache>().GetObject<string>(CalendarIdStoreKey).Catch(Observable.Return(string.Empty)).ToTask();
                 if (!string.IsNullOrEmpty(localId))
                 {
                     var calendarToRemove = await store.GetAppointmentCalendarAsync(localId);
@@ -47,7 +47,7 @@ namespace Ets.Mobile.Client.Services
 
             // Create calendar with appointments
             var calendar = await store.CreateAppointmentCalendarAsync(Locator.Current.GetService<ResourceLoader>().GetString("ScheduleCalendarName"));
-            await BlobCache.UserAccount.InsertObject(CalendarIdStoreKey, calendar.LocalId).ToTask();
+            await Locator.Current.GetService<IBlobCache>().InsertObject(CalendarIdStoreKey, calendar.LocalId).ToTask();
             
             foreach (var scheduleItem in currentOrNextSemesterSchedule)
             {
@@ -84,7 +84,7 @@ namespace Ets.Mobile.Client.Services
             string localId;
             try
             {
-                localId = await BlobCache.UserAccount.GetObject<string>(CalendarIdStoreKey).ToTask();
+                localId = await Locator.Current.GetService<IBlobCache>().GetObject<string>(CalendarIdStoreKey).ToTask();
             }
             catch (KeyNotFoundException)
             {
@@ -99,9 +99,9 @@ namespace Ets.Mobile.Client.Services
                     await calendarToRemove.DeleteAsync();
                 }
             }
-            await BlobCache.UserAccount.Invalidate(CalendarIdStoreKey).ToTask();
+            await Locator.Current.GetService<IBlobCache>().Invalidate(CalendarIdStoreKey).ToTask();
 #endif
-            return new Tuple<bool, string>(true, string.Empty);
+            return await Task.FromResult(new Tuple<bool, string>(true, string.Empty));
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Ets.Mobile.Client.Services
 
             if (loadUserPicture)
             {
-                return await BlobCache.UserAccount.LoadImageFromUrl("moodle_userpicture", vm.UserPictureUrl, true).Select(image =>
+                return await Locator.Current.GetService<IBlobCache>().LoadImageFromUrl("moodle_userpicture", vm.UserPictureUrl, true).Select(image =>
                 {
                     vm.UserPicture = image;
                     return vm;
