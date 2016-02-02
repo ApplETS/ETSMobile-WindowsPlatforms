@@ -46,6 +46,7 @@ Task("Restore-NuGet-Packages")
       Source = new List<string>()
       {
         "https://api.nuget.org/v3/index.json",
+        "https://www.nuget.org/api/v2/curated-feeds/microsoftdotnet/",
         "http://nuget.syncfusion.com/MzAwMTE1LDEz",
         "http://nuget.syncfusion.com/MzAwMTE1LDEw"
       }
