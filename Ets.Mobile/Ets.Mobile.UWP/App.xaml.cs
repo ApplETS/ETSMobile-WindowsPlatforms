@@ -40,6 +40,7 @@ namespace Ets.Mobile
             var resourceLoader = new ResourceLoader();
             Locator.CurrentMutable.RegisterLazySingleton(() => resourceLoader, typeof(ResourceLoader));
             Locator.CurrentMutable.RegisterLazySingleton(() => new ResourceLoaderContainer(resourceLoader), typeof(IResourceContainer));
+            Locator.CurrentMutable.RegisterLazySingleton(() => BlobCache.UserAccount, typeof(IBlobCache));
 
             // Crittercism
             Crittercism.Init("55e87dc18d4d8c0a00d07811");
