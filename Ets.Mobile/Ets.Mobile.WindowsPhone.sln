@@ -156,8 +156,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.UAP", "Modules\Sec
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Security.Shared", "Modules\Security\Implementations\Security.Shared\Security.Shared.shproj", "{D6B5AE79-B1C9-4640-974E-2D3F34D888B0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Theme", "Theme", "{53AF9415-0089-4EDC-953B-E6121BAF1775}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Localization", "Localization", "{E9AD15BC-5DC4-4F1C-9B93-BCA1AD94D92D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementations", "Implementations", "{A6E3C690-A089-4E61-82FA-1A37A1C95DA9}"
@@ -167,6 +165,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization", "Modules\Localization\Implementations\Localization\Localization.csproj", "{8070A42A-49A9-46A6-8BC1-DAA063BC3832}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ets.Mobile.Business.Mocks", "Ets.Mobile.Tests\Ets.Mobile.Business.Mocks\Ets.Mobile.Business.Mocks.csproj", "{3C0000EE-95B7-41C0-BFAF-FBCE30C1CBD5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UAP", "UAP", "{B4561605-8024-4683-8FA9-B353E977B214}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -185,9 +185,9 @@ Global
 		Modules\Logger.SplatLog\Logger.SplatLog\Logger.SplatLog.projitems*{b956c749-a748-428c-ad7a-e87d5ec29ebe}*SharedItemsImports = 13
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{7b995881-1066-4b64-9b58-92fe40397667}*SharedItemsImports = 4
 		Modules\ReactiveUI\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls\ReactiveUI.Xaml.Controls.projitems*{69fe6da9-0059-4835-9a82-931d20486470}*SharedItemsImports = 13
+		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{7389b959-dcc6-4c29-bc14-5382f76fe2ed}*SharedItemsImports = 4
 		Ets.Mobile.Client\Ets.Mobile.Client.projitems*{7389b959-dcc6-4c29-bc14-5382f76fe2ed}*SharedItemsImports = 4
 		Ets.Mobile.Entities\Ets.Mobile.Entities.projitems*{7389b959-dcc6-4c29-bc14-5382f76fe2ed}*SharedItemsImports = 4
-		Ets.Mobile.Tests\Ets.Mobile.Shared.Tests\Ets.Mobile.Shared.Tests.projitems*{7389b959-dcc6-4c29-bc14-5382f76fe2ed}*SharedItemsImports = 4
 		Ets.Mobile.ViewModel\Ets.Mobile.ViewModel.projitems*{c5a679b8-8f8e-451a-8a8e-45ddbeb3c57d}*SharedItemsImports = 13
 		Modules\Messaging\Implementations\Messaging.UniversalApp\Messaging.UniversalApp.projitems*{f78a088c-306c-4c5d-b393-8ff9ea30ed8f}*SharedItemsImports = 4
 		Modules\Security\Implementations\Security.Shared\Security.Shared.projitems*{d6b5ae79-b1c9-4640-974e-2d3f34d888b0}*SharedItemsImports = 13
@@ -443,13 +443,13 @@ Global
 		{D7627491-FAE1-45DA-B961-3F6926A46264} = {0C6989AF-0235-40E5-8AA9-743684FBCA70}
 		{E17E1E1C-D806-4AE5-8C60-1F446EA3E1FF} = {D7627491-FAE1-45DA-B961-3F6926A46264}
 		{548F134E-64D7-4699-9672-62F98287D62C} = {D7627491-FAE1-45DA-B961-3F6926A46264}
-		{506B409B-90CE-4CFF-B683-5A5F7C29F610} = {E17E1E1C-D806-4AE5-8C60-1F446EA3E1FF}
+		{506B409B-90CE-4CFF-B683-5A5F7C29F610} = {B4561605-8024-4683-8FA9-B353E977B214}
 		{D6B5AE79-B1C9-4640-974E-2D3F34D888B0} = {E17E1E1C-D806-4AE5-8C60-1F446EA3E1FF}
-		{53AF9415-0089-4EDC-953B-E6121BAF1775} = {0C6989AF-0235-40E5-8AA9-743684FBCA70}
 		{E9AD15BC-5DC4-4F1C-9B93-BCA1AD94D92D} = {0C6989AF-0235-40E5-8AA9-743684FBCA70}
 		{A6E3C690-A089-4E61-82FA-1A37A1C95DA9} = {E9AD15BC-5DC4-4F1C-9B93-BCA1AD94D92D}
 		{826AAD69-11C1-43C4-BE7E-B1D8C3B45CB9} = {E9AD15BC-5DC4-4F1C-9B93-BCA1AD94D92D}
 		{8070A42A-49A9-46A6-8BC1-DAA063BC3832} = {A6E3C690-A089-4E61-82FA-1A37A1C95DA9}
 		{3C0000EE-95B7-41C0-BFAF-FBCE30C1CBD5} = {8E1D2687-AEF7-4FB6-A155-9A550615E128}
+		{B4561605-8024-4683-8FA9-B353E977B214} = {E17E1E1C-D806-4AE5-8C60-1F446EA3E1FF}
 	EndGlobalSection
 EndGlobal
