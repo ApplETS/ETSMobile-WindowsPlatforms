@@ -77,7 +77,6 @@
                     </ListView.ItemContainerTransitions>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem" BasedOn="{StaticResource FullWidthListViewItem}">
-                            
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
