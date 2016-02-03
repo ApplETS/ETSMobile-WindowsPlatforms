@@ -30,7 +30,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using Themes;
 using Themes.Contracts;
-using Windows.ApplicationModel.Resources;
 
 namespace Ets.Mobile.Shared
 {
@@ -67,7 +66,7 @@ namespace Ets.Mobile.Shared
             resolver.RegisterLazySingleton(() => new EtsAppColors(), typeof(IAppColors));
 
             // View Services
-            resolver.RegisterLazySingleton(() => new PopupManager(resolver.GetService<ResourceLoader>()), typeof(IPopupManager));
+            resolver.RegisterLazySingleton(() => new PopupManager(), typeof(IPopupManager));
             resolver.RegisterLazySingleton(() => new InAppNotificationManager(resolver.GetService<IAppBrush>().MediumBrush.HexColor), typeof(INotificationManager), "InApp");
             resolver.RegisterLazySingleton(() => new ViewService(), typeof(IViewService));
 
