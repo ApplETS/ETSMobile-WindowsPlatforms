@@ -161,7 +161,28 @@ namespace Ets.Mobile.ViewModel
         private void HandleApplicationExceptions()
         {
             // Ensure unobserved task exceptions (unawaited async methods returning Task or Task<T>) are handled
-            TaskScheduler.UnobservedTaskException += (sender, e) => Crittercism.LogUnhandledException(new Exception($"[UnhandledException][{DateTime.Now}] {sender.ToString()} - observed:{e.Observed} - {e.Exception.Message}, StackTrace:{e.Exception.StackTrace}", e.Exception));
+            TaskScheduler.UnobservedTaskException += (sender, e) =>
+            {
+                Func<string, Exception, string> exceptionToString = (message, exception) =>
+                {
+                    while (true)
+                    {
+                        if (string.IsNullOrEmpty(exception?.Message))
+                        {
+                            return message;
+                        }
+
+                        message += " -Inner-> " + exception.Message;
+                        exception = exception.InnerException;
+                    }
+                };
+                Crittercism.LogUnhandledException(
+                    new Exception(
+                        $"[TaskScheduler.UnobservedTaskException][{DateTime.Now}] " +
+                        $"Type:{sender.GetType()} - observed:{e.Observed} - {exceptionToString(e.Exception.Message, e.Exception)}, StackTrace:{e.Exception.StackTrace}",
+                        e.Exception)
+                );
+            };
         }
 
         public void HandleAuthentificated()
