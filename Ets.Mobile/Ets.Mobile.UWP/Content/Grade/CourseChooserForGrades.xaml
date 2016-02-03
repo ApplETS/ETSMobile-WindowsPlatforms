@@ -47,7 +47,7 @@
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
                            Style="{ThemeResource EtsCourseGradeForSelectingGradesStyle}"
-                           FontSize="{Binding Course.Grade, Converter={StaticResource NullOrNotToFontSizeSelectorConverter}, ConverterParameter='80,60'}"
+                           FontSize="{Binding Course.Grade, Converter={StaticResource NullOrNotToFontSizeSelectorConverter}, ConverterParameter='70,60'}"
                            Text="{Binding Course.Grade, Converter={StaticResource StringToTbdConverter}}" />
                     </Grid>
                 </Border>
