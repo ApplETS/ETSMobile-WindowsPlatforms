@@ -48,7 +48,7 @@ namespace Ets.Mobile.ViewModel.Content.Moodle.Courses.Content
 
         #endregion
 
-        public MoodleCourseModuleContentSummaryViewModel(MoodleCourseVm course, MoodleCourseContentVm courseContent, MoodleCourseModuleVm courseModule, MoodleCourseModuleContentVm courseModuleContent, ReactiveCommand<MoodleCourseModuleContentSummaryViewModel> navigateToCourseModuleContentUrl)
+        public MoodleCourseModuleContentSummaryViewModel(MoodleCourseVm course, MoodleCourseContentVm courseContent, MoodleCourseModuleVm courseModule, MoodleCourseModuleContentVm courseModuleContent, ReactiveCommand<string> navigateToCourseModuleContentUrl)
         {
             Course = course;
             CourseContent = courseContent;
@@ -91,8 +91,8 @@ namespace Ets.Mobile.ViewModel.Content.Moodle.Courses.Content
             set { this.RaiseAndSetIfChanged(ref _courseModuleContent, value); }
         }
 
-        private ReactiveCommand<MoodleCourseModuleContentSummaryViewModel> _navigateToCourseModuleContentUrl;
-        public ReactiveCommand<MoodleCourseModuleContentSummaryViewModel> NavigateToCourseModuleContentUrl
+        private ReactiveCommand<string> _navigateToCourseModuleContentUrl;
+        public ReactiveCommand<string> NavigateToCourseModuleContentUrl
         {
             get { return _navigateToCourseModuleContentUrl; }
             set { this.RaiseAndSetIfChanged(ref _navigateToCourseModuleContentUrl, value); }

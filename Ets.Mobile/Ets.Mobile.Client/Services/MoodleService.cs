@@ -33,7 +33,7 @@ namespace Ets.Mobile.Client.Services
             _userCredentials = credentials;
         }
 
-        private async  Task<string> GetToken()
+        public async Task<string> GetToken()
         {
             var token = await _services.Token(_userCredentials.Username, _userCredentials.Password);
 

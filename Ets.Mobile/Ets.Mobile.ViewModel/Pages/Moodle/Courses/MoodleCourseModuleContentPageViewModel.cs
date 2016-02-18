@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Windows.System;
@@ -32,7 +33,12 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
         protected sealed override void OnViewModelCreation()
         {
             _navigateToModuleContentItem = ReactiveCommand.CreateAsyncObservable(NavigateToModuleContentItemImpl);
-            _navigateToModuleContentItem.Subscribe(async selectedItem => await Launcher.LaunchUriAsync(new Uri(selectedItem.CourseModule.Url)));
+            _navigateToModuleContentItem.ThrownExceptions
+                .Subscribe(x =>
+                {
+                    UserError.Throw(x.Message, x);
+                });
+            _navigateToModuleContentItem.Subscribe(async url => await Launcher.LaunchUriAsync(new Uri(url)));
 
             CoursesModuleContentsItems = new ReactiveList<MoodleCourseModuleContentSummaryViewModel>(
                 CourseModule.Contents.Any() ? CourseModule.Contents.Select(c => new MoodleCourseModuleContentSummaryViewModel(Course, CourseContent, CourseModule, c, _navigateToModuleContentItem)) : new List<MoodleCourseModuleContentSummaryViewModel>()
@@ -56,17 +62,21 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
             }
         }
 
-        private IObservable<MoodleCourseModuleContentSummaryViewModel> NavigateToModuleContentItemImpl(object param)
+        private IObservable<string> NavigateToModuleContentItemImpl(object param)
         {
             var selectedItem = param as MoodleCourseModuleContentSummaryViewModel;
-            if (selectedItem != null)
+            if (!string.IsNullOrEmpty(selectedItem?.CourseModuleContent.FileUrl))
             {
-                if (!string.IsNullOrEmpty(selectedItem.CourseModule.Url))
-                {
-                    return Observable.Return(selectedItem);
-                }
+                return ClientServices().MoodleService.GetToken()
+                    .ToObservable()
+                    .Where(tkn => !string.IsNullOrEmpty(tkn))
+                    .SelectMany(token =>
+                    {
+                        var url = selectedItem.CourseModuleContent.FileUrl + "&token=" + token;
+                        return Observable.Return(url);
+                    });
             }
-            return Observable.Empty<MoodleCourseModuleContentSummaryViewModel>();
+            return Observable.Empty<string>();
         }
 
         private IObservable<List<MoodleCourseModuleContentSummaryViewModel>> FetchCourseModuleContentsImpl()
@@ -115,7 +125,7 @@ namespace Ets.Mobile.ViewModel.Pages.Moodle.Courses
             set { this.RaiseAndSetIfChanged(ref _courseModule, value); }
         }
         
-        private ReactiveCommand<MoodleCourseModuleContentSummaryViewModel> _navigateToModuleContentItem;
+        private ReactiveCommand<string> _navigateToModuleContentItem;
         public IReactiveDerivedList<MoodleCourseModuleContentSummaryViewModel> CoursesModuleContents { get; protected set; }
         public ReactivePresenterCommand<List<MoodleCourseModuleContentSummaryViewModel>> LoadCoursesModuleContent { get; set; }
         public IReactivePresenterHandler<IReactiveDerivedList<MoodleCourseModuleContentSummaryViewModel>> CoursesModuleContentPresenter { get; set; }
