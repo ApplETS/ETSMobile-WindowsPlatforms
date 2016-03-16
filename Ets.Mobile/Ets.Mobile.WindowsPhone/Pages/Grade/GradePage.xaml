@@ -31,11 +31,11 @@
 
                         <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Color}" Title="{Binding ActualGrade, FallbackValue='Résultat à ce jour', Source={StaticResource LocalizedStrings}}" Grade="{Binding ActualGrade, Converter={StaticResource StringToTbdConverter}}" />
 
-                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Color}" Title="{Binding Average, FallbackValue='Moyenne', Source={StaticResource LocalizedStrings}}" Grade="{Binding Average, Converter={StaticResource StringToTbdConverter}}" />
+                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Color}" Title="{Binding Average, FallbackValue='Moyenne', Source={StaticResource LocalizedStrings}}" Grade="{Binding AverageComputed, Converter={StaticResource StringToTbdConverter}}" />
 
                         <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Color}" Title="{Binding StandardDeviation, FallbackValue='Écart-type', Source={StaticResource LocalizedStrings}}" Grade="{Binding StandardDeviation, Converter={StaticResource StringToTbdConverter}}" />
 
-                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Color}" Title="{Binding Median, FallbackValue='Médianne', Source={StaticResource LocalizedStrings}}" Grade="{Binding Median, Converter={StaticResource StringToTbdConverter}}" />
+                        <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Color}" Title="{Binding Median, FallbackValue='Médianne', Source={StaticResource LocalizedStrings}}" Grade="{Binding MedianComputed, Converter={StaticResource StringToTbdConverter}}" />
 
                         <grade:GradeSummary Pivot.SlideInAnimationGroup="2" Margin="0,0,0,10" BackgroundBrush="{Binding Color}" Title="{Binding Percentile, FallbackValue='Rang centile', Source={StaticResource LocalizedStrings}}" Grade="{Binding Percentile, Converter={StaticResource StringToTbdConverter}}" />
 
@@ -57,8 +57,8 @@
                                                      BackgroundBrush="{Binding Color}"
                                                      Title="{Binding Name}"
                                                      Grade="{Binding GradeComputed, Converter={StaticResource StringToTbdConverter}}"
-                                                     Average="{Binding Average, Converter={StaticResource StringToTbdConverter}}"
-                                                     Median="{Binding Median, Converter={StaticResource StringToTbdConverter}}"
+                                                     Average="{Binding AverageComputed, Converter={StaticResource StringToTbdConverter}}"
+                                                     Median="{Binding MedianComputed, Converter={StaticResource StringToTbdConverter}}"
                                                      Percentile="{Binding Percentile, Converter={StaticResource StringToTbdConverter}}"
                                                      StandardDeviation="{Binding StandardDeviation, Converter={StaticResource StringToTbdConverter}}"
                                                      Weighting="{Binding Weighting, Converter={StaticResource StringToTbdConverter}}"/>
