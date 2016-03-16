@@ -43,6 +43,14 @@ namespace Ets.Mobile.Entities.Signets
             set { this.RaiseAndSetIfChanged(ref _average, value); }
         }
 
+        private double _averageComputed;
+        [DataMember]
+        public double AverageComputed
+        {
+            get { return _averageComputed; }
+            set { this.RaiseAndSetIfChanged(ref _averageComputed, value); }
+        }
+
         private double _standardDeviation;
         [DataMember] public double StandardDeviation 
         { 
@@ -55,6 +63,14 @@ namespace Ets.Mobile.Entities.Signets
         { 
             get { return _median; }
             set { this.RaiseAndSetIfChanged(ref _median, value); }
+        }
+
+        private double _medianComputed;
+        [DataMember]
+        public double MedianComputed
+        {
+            get { return _medianComputed; }
+            set { this.RaiseAndSetIfChanged(ref _medianComputed, value); }
         }
 
         private double _percentile;
@@ -151,18 +167,36 @@ namespace Ets.Mobile.Entities.Signets
             set { this.RaiseAndSetIfChanged(ref _total, value); }
         }
 
-        [DataMember]
-        public double GradeComputed => Math.Round((_grade / _total) * 100, 2, MidpointRounding.AwayFromZero);
+        private double _gradeComputed;
+        [DataMember] public double GradeComputed
+        {
+            get { return _gradeComputed; }
+            set { this.RaiseAndSetIfChanged(ref _gradeComputed, value); }
+        }
 
-        private string _weighting;
-        [DataMember] public string Weighting 
+        private double _averageComputed;
+        [DataMember] public double AverageComputed
+        {
+            get { return _averageComputed; }
+            set { this.RaiseAndSetIfChanged(ref _averageComputed, value); }
+        }
+
+        private double _medianComputed;
+        [DataMember] public double MedianComputed
+        {
+            get { return _medianComputed; }
+            set { this.RaiseAndSetIfChanged(ref _medianComputed, value); }
+        }
+
+        private double _weighting;
+        [DataMember] public double Weighting 
         { 
             get { return _weighting; }
             set { this.RaiseAndSetIfChanged(ref _weighting, value); }
         }
 
-        private string _average;
-        [DataMember] public string Average 
+        private double _average;
+        [DataMember] public double Average 
         { 
             get { return _average; }
             set { this.RaiseAndSetIfChanged(ref _average, value); }
@@ -175,8 +209,8 @@ namespace Ets.Mobile.Entities.Signets
             set { this.RaiseAndSetIfChanged(ref _standardDeviation, value); }
         }
 
-        private string _median;
-        [DataMember] public string Median 
+        private double _median;
+        [DataMember] public double Median 
         { 
             get { return _median; }
             set { this.RaiseAndSetIfChanged(ref _median, value); }
