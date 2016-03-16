@@ -18,13 +18,13 @@ namespace Ets.Mobile.Business.Entities.Signets
         [JsonProperty("corrigeSur")]
         public string Total { get; set; }
         [JsonProperty("ponderation")]
-        public string Weighting { get; set; }
+        public double? Weighting { get; set; }
         [JsonProperty("moyenne")]
-        public string Average { get; set; }
+        public double? Average { get; set; }
         [JsonProperty("ecartType")]
         public string StandardDeviation { get; set; }
         [JsonProperty("mediane")]
-        public string Median { get; set; }
+        public double? Median { get; set; }
         [JsonProperty("rangCentile")]
         public string Percentile { get; set; }
         [JsonProperty("publie")]

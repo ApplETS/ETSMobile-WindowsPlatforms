@@ -22,7 +22,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Pivot.SlideInAnimationGroup="1" Style="{ThemeResource EtsGradeItemTitleStyle}" Padding="10,2,0,0" Text="{Binding Title, Mode=TwoWay}" Margin="0,0,4,0" />
                             <TextBlock Pivot.SlideInAnimationGroup="1" Style="{ThemeResource EtsGradeItemGradeStyle}" Padding="10,6,5,0" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1">
-                                <Run Text="{Binding Grade, Mode=TwoWay}" />
+                                <Run Text="{Binding Grade}" />
                                 <Run Text="%" FontSize="12" />
                             </TextBlock>
                         </Grid>

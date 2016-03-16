@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="coledeTechnologieSuprieur.TSMobile" Publisher="CN=AD96D700-7CE9-4E92-877E-2A09FC6127D3" Version="1.0.0.3" />
+  <Identity Name="coledeTechnologieSuprieur.TSMobile" Publisher="CN=AD96D700-7CE9-4E92-877E-2A09FC6127D3" Version="1.0.0.5" />
   <mp:PhoneIdentity PhoneProductId="734914ff-cdf3-43b6-b6bb-748fe8edc9a6" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ÉTSMobile</DisplayName>
