@@ -408,8 +408,8 @@ namespace Ets.Mobile.Business.Mocks.Fixtures
                     Name = "Homework 1",
                     StandardDeviation = "10",
                     Percentile = "100",
-                    Median = "80",
-                    Average = "75",
+                    Median = 80,
+                    Average = 75,
                     CourseAndGroup = "ABC123-01",
                     Grade = 80,
                     IgnoredFromCalculation = "Non",
@@ -418,15 +418,15 @@ namespace Ets.Mobile.Business.Mocks.Fixtures
                     TargetDate = DateTime.Now.AddDays(1),
                     Team = "Team 1",
                     Total = "80",
-                    Weighting = "10"
+                    Weighting = 10
                 },
                 new Evaluation
                 {
                     Name = "Homework 2",
                     StandardDeviation = "10",
                     Percentile = "100",
-                    Median = "80",
-                    Average = "75",
+                    Median = 80,
+                    Average = 75,
                     CourseAndGroup = "ABC123-01",
                     Grade = 80,
                     IgnoredFromCalculation = "Non",
@@ -435,7 +435,7 @@ namespace Ets.Mobile.Business.Mocks.Fixtures
                     TargetDate = DateTime.Now.AddDays(1),
                     Team = "Team 1",
                     Total = "80",
-                    Weighting = "10"
+                    Weighting = 10
                 }
             },
             ErrorMessage = ""
