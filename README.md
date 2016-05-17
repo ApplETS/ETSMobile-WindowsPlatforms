@@ -1,6 +1,8 @@
 # ETSMobile for Windows Platforms
+Build Status | 
 [![Build status](https://ci.appveyor.com/api/projects/status/tgkj12vu87sgp9rf/branch/master?svg=true)](https://ci.appveyor.com/project/martingemme/etsmobile-windowsplatforms/branch/master)
-Welcome in the ETSMobile project for Windows Platforms!
+ 
+ Welcome to the ETSMobile project for Windows Platforms!
 
 ## Project Requirements
 ### For Universal Windows Platforms (UWP) projects
