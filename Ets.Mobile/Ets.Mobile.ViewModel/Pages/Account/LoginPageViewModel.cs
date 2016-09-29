@@ -19,6 +19,7 @@ using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
@@ -46,13 +47,14 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             var userNameChanged = this.WhenAny(vm => vm.UserName, x => !string.IsNullOrEmpty(x.Value));
             var passwordChanged = this.WhenAny(vm => vm.Password, changed => !string.IsNullOrWhiteSpace(changed.Value));
             var isValidatingChanged = this.WhenAny(vm => vm._isValidating, changed => !changed.Value);
-            var canLoginExecute = passwordChanged.CombineLatest(userNameChanged, isValidatingChanged, 
+            var canLoginExecute = passwordChanged.CombineLatest(userNameChanged, isValidatingChanged,
                 (validPass, validUserName, isNotValidating) => validPass & validUserName & isNotValidating
             );
 
             Login = ReactiveCommand.CreateAsyncTask(canLoginExecute, async _ => await LoginImpl());
 
-            Login.Subscribe(accountVm => {
+            Login.Subscribe(accountVm =>
+            {
                 LogSubject.OnNext("Navigate to MainPageViewModel");
                 HostScreen.Router.NavigateAndReset.Execute(new MainPageViewModel(HostScreen));
             });
@@ -92,7 +94,8 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             Locator.Current.GetService<ISsoService>().SetCredentials(credentials);
 
             LogSubject.OnNext("Save the credentials for logging");
-            Locator.Current.GetService<IUserEnabledLogger>().SetUser(Locator.Current.GetService<ISecurityProvider>().HashMd5(credentials.Username));
+            Locator.Current.GetService<IUserEnabledLogger>()
+                .SetUser(Locator.Current.GetService<ISecurityProvider>().HashMd5(credentials.Username));
 
             LogSubject.OnNext("Load details about the logged user");
             SideNavigation.UserDetails.LoadProfile.Execute(null);
@@ -107,10 +110,21 @@ namespace Ets.Mobile.ViewModel.Pages.Account
             var currentSemester = semesters.FirstOrDefault(y => y.StartDate <= DateTime.Now && y.EndDate > DateTime.Now);
             if (currentSemester != null)
             {
-                var schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService());
+                var schedule = new ScheduleVm[0];
+                try
+                {
+                    schedule = await ClientServices().SignetsService.Schedule(currentSemester.AbridgedName).ApplyCustomColors(SettingsService());
 
-                await Cache.InsertObject(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), schedule).ToTask();
-                LogSubject.OnNext("Saved the schedule");
+                    LogSubject.OnNext("Saved the schedule");
+                }
+                catch (Exception) // Not having classes is no big deal.
+                {
+                    LogSubject.OnNext("There was no classes or another error occured");
+                }
+                finally
+                {
+                    await Cache.InsertObject(ViewModelKeys.ScheduleForSemester(currentSemester.AbridgedName), schedule).ToTask();
+                }
             }
 
             LogSubject.OnNext("Register Schedule Tile and LockScreen Updater");
