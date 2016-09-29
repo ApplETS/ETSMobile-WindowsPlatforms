@@ -3,6 +3,7 @@ using Ets.Mobile.Client;
 using Ets.Mobile.Client.Contracts;
 using Ets.Mobile.Client.Mixins;
 using Ets.Mobile.Entities.Auth;
+using Ets.Mobile.Entities.Signets;
 using Ets.Mobile.ViewModel.Bases;
 using Ets.Mobile.ViewModel.Contracts.Account;
 using Ets.Mobile.ViewModel.Pages.Main;
@@ -19,7 +20,6 @@ using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using Ets.Mobile.Entities.Signets;
 
 namespace Ets.Mobile.ViewModel.Pages.Account
 {
@@ -53,8 +53,7 @@ namespace Ets.Mobile.ViewModel.Pages.Account
 
             Login = ReactiveCommand.CreateAsyncTask(canLoginExecute, async _ => await LoginImpl());
 
-            Login.Subscribe(accountVm =>
-            {
+            Login.Subscribe(accountVm => {
                 LogSubject.OnNext("Navigate to MainPageViewModel");
                 HostScreen.Router.NavigateAndReset.Execute(new MainPageViewModel(HostScreen));
             });
